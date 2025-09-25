@@ -1,0 +1,464 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Materialx | clock</title>
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg"></head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #071150;
+        position: relative;
+        padding: 10px;
+    }
+
+    #clock h2 {
+        position: relative;
+        display: block;
+        color: #fff;
+        text-align: center;
+        margin: 10px 0;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        font-size: 1.2em;
+    }
+
+    #clock h4 {
+        position: relative;
+        display: block;
+        color: #0bd816;
+        text-align: center;
+        margin: 10px 0;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        font-size: 1em;
+    }
+
+    #clock #time {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #clock #time div {
+        position: relative;
+        margin: 5px;
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+    }
+
+    #clock #time div span {
+        position: relative;
+        display: block;
+        width: 100px;
+        height: 80px;
+        background: #2196f3;
+        color: #fff;
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5em;
+        z-index: 10;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, .2);
+    }
+
+    #clock #time div span:nth-child(2) {
+        height: 30px;
+        font-size: 0.7em;
+        letter-spacing: 0.2em;
+        font-weight: 500;
+        z-index: 9;
+        box-shadow: none;
+        background: #127fd6;
+        text-transform: uppercase;
+    }
+
+    #clock #time div:nth-last-child(2) span {
+        background: #ff006a;
+    }
+
+    #clock #time div:nth-last-child(2) span:nth-child(2) {
+        background: #ec0062;
+    }
+
+    #clock #time div:nth-last-child(1) span {
+        position: absolute;
+        bottom: 0;
+        width: 60px;
+        height: 40px;
+        font-size: 1.5em;
+        background: #fff;
+        color: #000;
+        -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+    }
+
+    #developer-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px 20px;
+        background-color: #577fdb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #developer-btn:hover {
+        background-color: #e64a19;
+    }
+
+    #modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 300px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        padding: 20px;
+        text-align: center;
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -40%);
+        }
+
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    #modal img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    #modal h3 {
+        margin-top: 10px;
+        color: #333;
+        font-size: 1.2em;
+        animation: colorChange 2s infinite alternate;
+    }
+
+    #modal p {
+        color: #555;
+        font-size: 1em;
+        animation: colorChange 2s infinite alternate;
+    }
+
+    @keyframes colorChange {
+        0% {
+            color: #ff5722;
+        }
+
+        100% {
+            color: #0bd816;
+        }
+    }
+
+    #close-btn {
+        background: #0a3bb7;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    #close-btn:hover {
+        background: #e64a19;
+    }
+
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 99;
+    }
+
+    #study-timer {
+        text-align: center;
+        margin-top: 20px;
+        color: #fff;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+    }
+
+    #timer-display {
+        font-size: 2em;
+        margin: 20px 0;
+        background: #2196f3;
+        padding: 20px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+
+    #start-timer,
+    #reset-timer {
+        background-color: #0bd816;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        border-radius: 5px;
+    }
+
+    #start-timer:hover,
+    #reset-timer:hover {
+        background-color: #0a9d0a;
+    }
+
+    .time-input {
+        width: 60px;
+        padding: 10px;
+        border: 2px solid #2196f3;
+        border-radius: 5px;
+        font-size: 1.2em;
+        text-align: center;
+        transition: border-color 0.3s ease;
+        background-color: #fff;
+    }
+
+    .time-input:focus {
+        border-color: #0bd816;
+        outline: none;
+        box-shadow: 0 0 5px rgba(11, 216, 22, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        #clock #time div span {
+            width: 80px;
+            height: 60px;
+            font-size: 2em;
+        }
+
+        #clock h2 {
+            font-size: 1.1em;
+        }
+
+        #clock h4 {
+            font-size: 0.9em;
+        }
+
+        #study-timer {
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.9em;
+        }
+
+        #timer-display {
+            font-size: 1.5em;
+            padding: 15px;
+        }
+
+        #start-timer,
+        #reset-timer {
+            padding: 8px 16px;
+            font-size: 0.9em;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #clock #time div span {
+            width: 60px;
+            height: 50px;
+            font-size: 1.8em;
+        }
+
+        #clock h2 {
+            font-size: 1em;
+        }
+
+        #clock h4 {
+            font-size: 0.8em;
+        }
+
+        #study-timer {
+            bottom: 5px;
+            right: 5px;
+            font-size: 0.8em;
+        }
+
+        #timer-display {
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+        #start-timer,
+        #reset-timer {
+            padding: 6px 12px;
+            font-size: 0.8em;
+        }
+
+        .time-input {
+            width: 50px;
+            font-size: 1em;
+        }
+    }
+</style>
+
+<body>
+    <button id="developer-btn">Developer</button>
+    <div id="overlay"></div>
+    <div id="modal">
+        <img src="img/photo_2024-09-25_03-06-40.jpg" alt="Developer Image">
+        <h3>Developed all site by: XZ</h3>
+        <p>Software Engineer | Specializing in Software Testing</p>
+        <button id="close-btn">Close</button>
+    </div>
+    <div id="clock">
+        <h2>The time is now</h2>
+        <h4>Use your time for that is useful</h4>
+        <div id="time">
+            <div><span id="hour">00</span><span>Hours</span></div>
+            <div><span id="minutes">00</span><span>Minutes</span></div>
+            <div><span id="seconds">00</span><span>Seconds</span></div>
+            <div><span id="ampm"></span></div>
+        </div>
+    </div>
+
+    <div id="study-timer">
+        <label for="study-time-input">Select Study Time (in minutes): </label>
+        <input type="number" id="study-time-input" min="1" value="25" class="time-input">
+        <button id="start-timer">Start Timer</button>
+        <button id="reset-timer">Reset Timer</button>
+        <div id="timer-display">
+            <span id="study-minutes">25</span>:<span id="study-seconds">00</span>
+        </div>
+        <div id="timer-status"></div>
+    </div>
+
+    <script type="text/javascript">
+        function clock() {
+            var hours = document.getElementById('hour');
+            var minutes = document.getElementById('minutes');
+            var seconds = document.getElementById('seconds');
+            var ampm = document.getElementById('ampm');
+
+            var h = new Date().getHours();
+            var m = new Date().getMinutes();
+            var s = new Date().getSeconds();
+            var am = "AM";
+
+            if (h > 12) {
+                h = h - 12;
+                am = "PM";
+            }
+
+            h = (h < 10) ? "0" + h : h;
+            m = (m < 10) ? "0" + m : m;
+            s = (s < 10) ? "0" + s : s;
+
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+            ampm.innerHTML = am;
+        }
+
+        var interval = setInterval(clock, 1000);
+
+        document.getElementById('developer-btn').onclick = function () {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        };
+
+        document.getElementById('close-btn').onclick = function () {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        };
+
+        document.getElementById('overlay').onclick = function () {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        };
+
+        let studyInterval;
+        let studyTime = 1500;
+        let isStudying = false;
+
+        function updateStudyTimer() {
+            const minutes = Math.floor(studyTime / 60);
+            const seconds = studyTime % 60;
+
+            document.getElementById('study-minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('study-seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        document.getElementById('start-timer').onclick = function () {
+            if (isStudying) return;
+
+            const selectedMinutes = parseInt(document.getElementById('study-time-input').value);
+            studyTime = selectedMinutes * 60;
+            updateStudyTimer();
+
+            isStudying = true;
+            document.getElementById('timer-status').textContent = 'Study session in progress...';
+
+            studyInterval = setInterval(() => {
+                if (studyTime > 0) {
+                    studyTime--;
+                    updateStudyTimer();
+                } else {
+                    clearInterval(studyInterval);
+                    isStudying = false;
+                    document.getElementById('timer-status').textContent = 'Time is up! Take a break.';
+                    alert("Time is up Take a break.");
+                    studyTime = 1500;
+                    updateStudyTimer();
+                }
+            }, 1000);
+        };
+
+        document.getElementById('reset-timer').onclick = function () {
+            clearInterval(studyInterval);
+            isStudying = false;
+            studyTime = 1500;
+            updateStudyTimer();
+            document.getElementById('timer-status').textContent = 'Timer reset.';
+        };
+
+        updateStudyTimer();
+    </script>
+</body>
+
+</html>

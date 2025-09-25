@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Course Selection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --card-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --cs-color: #4361ee;
+            --ai-color: #f72585;
+            --is-color: #4cc9f0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--cs-color), var(--ai-color), var(--is-color));
+        }
+
+        h1 {
+            color: var(--secondary);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--dark);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .department-selection {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .department-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 25px;
+            width: 320px;
+            text-align: center;
+            box-shadow: 0 8px 20px var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .department-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .department-card.cs::before {
+            background: var(--cs-color);
+        }
+
+        .department-card.ai::before {
+            background: var(--ai-color);
+        }
+
+        .department-card.is::before {
+            background: var(--is-color);
+        }
+
+        .department-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .department-card.active {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .department-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .department-card.cs .department-icon {
+            color: var(--cs-color);
+        }
+
+        .department-card.ai .department-icon {
+            color: var(--ai-color);
+        }
+
+        .department-card.is .department-icon {
+            color: var(--is-color);
+        }
+
+        .department-card.active .department-icon {
+            transform: scale(1.1);
+        }
+
+        .department-title {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .department-card.cs .department-title {
+            color: var(--cs-color);
+        }
+
+        .department-card.ai .department-title {
+            color: var(--ai-color);
+        }
+
+        .department-card.is .department-title {
+            color: var(--is-color);
+        }
+
+        .department-desc {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .content-area {
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px var(--shadow);
+            margin-bottom: 40px;
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .content-area.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .content-title i {
+            font-size: 2.2rem;
+        }
+
+        .cs-content .content-title {
+            color: var(--cs-color);
+        }
+
+        .ai-content .content-title {
+            color: var(--ai-color);
+        }
+
+        .is-content .content-title {
+            color: var(--is-color);
+        }
+
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .course-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--success);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .lecturer-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .lecturer-info i {
+            color: var(--accent);
+        }
+
+        .course-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(67, 97, 238, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .course-link:hover {
+            color: white;
+            background: var(--primary);
+            transform: translateX(5px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            color: var(--dark);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 1100px) {
+            .courses-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .department-selection {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .department-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .content-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .department-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Department Course Selection</h1>
+            <p class="subtitle">Choose your department to explore available courses with lecturer information and resources</p>
+        </header>
+        
+        <div class="department-selection">
+            <div class="department-card cs" data-department="cs">
+                <div class="department-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="department-title">Computer Science</h3>
+                <!-- <p class="department-desc">Programming, Algorithms, Data Structures, Software Engineering, Web Development, Database Systems</p> -->
+            </div>
+            
+            <div class="department-card ai" data-department="ai">
+                <div class="department-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3 class="department-title">Artificial Intelligence</h3>
+            </div>
+            
+            <div class="department-card is" data-department="is">
+                <div class="department-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="department-title">Information Systems</h3>
+            </div>
+        </div>
+        
+        <div class="content-area cs-content" id="cs-content">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-laptop-code"></i> Computer Science Courses</h2>
+            </div>
+            <div class="courses-container" id="cs-courses">
+                <!-- CS courses will be added here dynamically -->
+            </div>
+        </div>
+        
+        <div class="content-area ai-content" id="ai-content">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-robot"></i> Artificial Intelligence Courses</h2>
+            </div>
+            <div class="courses-container" id="ai-courses">
+                <!-- AI courses will be added here dynamically -->
+            </div>
+        </div>
+        
+        <div class="content-area is-content" id="is-content">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-database"></i> Information Systems Courses</h2>
+            </div>
+            <div class="courses-container" id="is-courses">
+                <!-- IS courses will be added here dynamically -->
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Department selection functionality
+            const departmentCards = document.querySelectorAll('.department-card');
+            const contentAreas = document.querySelectorAll('.content-area');
+            
+            departmentCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove active class from all cards
+                    departmentCards.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked card
+                    this.classList.add('active');
+                    
+                    // Hide all content areas
+                    contentAreas.forEach(area => area.classList.remove('active'));
+                    
+                    // Show the corresponding content area
+                    const department = this.getAttribute('data-department');
+                    document.getElementById(`${department}-content`).classList.add('active');
+                });
+            });
+            
+            // Course data for each department (6 courses each)
+            const courseData = {
+                // cs: [
+                //     { 
+                //         title: "Introduction to Programming", 
+                //         lecturer: "Dr. Sarah Johnson",
+                //         link: "https://example.com/cs101" 
+                //     },
+                //     { 
+                //         title: "Data Structures and Algorithms", 
+                //         lecturer: "Prof. Michael Chen",
+                //         link: "https://example.com/cs201" 
+                //     },
+                //     { 
+                //         title: "Software Engineering", 
+                //         lecturer: "Dr. Emily Roberts",
+                //         link: "https://example.com/cs301" 
+                //     },
+                //     { 
+                //         title: "Web Development", 
+                //         lecturer: "Prof. David Wilson",
+                //         link: "https://example.com/cs401" 
+                //     },
+                //     { 
+                //         title: "Database Systems", 
+                //         lecturer: "Dr. Lisa Anderson",
+                //         link: "https://example.com/cs501" 
+                //     },
+                //     { 
+                //         title: "Computer Networks", 
+                //         lecturer: "Prof. James Miller",
+                //         link: "https://example.com/cs601" 
+                //     }
+                // ],
+    ai: [
+        { 
+            title: "Parallel Processing", 
+            lecturer: "Dr. Robert Taylor",
+            link: "https://example.com/ai101" 
+        },
+        { 
+            title: "Machine Learning", 
+            lecturer: "Prof. Amanda Lee",
+            link: "https://example.com/ai201" 
+        },
+        { 
+            title: "Artificial Intelligence", 
+            lecturer: "Dr. Kevin Brown",
+            link: "https://example.com/ai301" 
+        },
+        { 
+            title: "Big Data", 
+            lecturer: "Prof. Rachel Green",
+            link: "https://example.com/ai401" 
+        },
+        { 
+            title: "Database 2", 
+            lecturer: "Dr. Thomas White",
+            link: "https://example.com/ai501" 
+        },
+        { 
+            title: "Convex Optimization", 
+            lecturer: "Prof. Patricia Clark",
+            link: "https://example.com/ai601" 
+        }
+    ],
+    is: [
+        { 
+            title: "Data Mining", 
+            lecturer: "Dr. Christopher Hall",
+            link: "https://example.com/is101" 
+        },
+        { 
+            title: "Database 2", 
+            lecturer: "Prof. Nancy Adams",
+            link: "https://example.com/is201" 
+        },
+        { 
+            title: "Artificial Intelligence", 
+            lecturer: "Dr. Brian Scott",
+            link: "https://example.com/is301" 
+        },
+        { 
+            title: "Big Data", 
+            lecturer: "Prof. Karen Young",
+            link: "https://example.com/is401" 
+        },
+        { 
+            title: "Data Storage", 
+            lecturer: "Dr. Steven King",
+            link: "https://example.com/is501" 
+        },
+        { 
+            title: "Data Analytics", 
+            lecturer: "Prof. Jessica Baker",
+            link: "https://example.com/is601" 
+        }
+    ]
+};
+
+            
+            // Function to create a course card
+            function createCourseCard(course, index, department) {
+                const courseCard = document.createElement('div');
+                courseCard.className = 'course-card';
+                
+                // Set border color based on department
+                let borderColor = '';
+                if (department === 'cs') borderColor = 'var(--cs-color)';
+                else if (department === 'ai') borderColor = 'var(--ai-color)';
+                else if (department === 'is') borderColor = 'var(--is-color)';
+                
+                courseCard.style.borderLeftColor = borderColor;
+                
+                courseCard.innerHTML = `
+                    <div class="course-number">${index + 1}</div>
+                    <h4 class="course-title">${course.title}</h4>
+                    <div class="lecturer-info">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <p>Explore this course to learn more about ${course.title.toLowerCase()}.</p>
+                    <a href="${course.link}" target="_blank" class="course-link">
+                        <i class="fas fa-external-link-alt"></i> View Course Materials
+                    </a>
+                `;
+                return courseCard;
+            }
+            
+            // Initialize courses for each department
+            function initializeCourses() {
+                for (const department in courseData) {
+                    const coursesContainer = document.getElementById(`${department}-courses`);
+                    courseData[department].forEach((course, index) => {
+                        const courseCard = createCourseCard(course, index, department);
+                        coursesContainer.appendChild(courseCard);
+                    });
+                }
+            }
+            
+            // Initialize the page with courses
+            initializeCourses();
+            
+            // Activate the first department by default
+            departmentCards[0].click();
+        });
+    </script>
+</body>
+</html>

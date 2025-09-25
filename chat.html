@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materialx | Chatbot</title>
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background-color: #e5ddd5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .chatbot-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            background-color: #e5ddd5;
+            background-image: url('your-image-url.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: rgba(236, 229, 221, 0.9);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-radius: 10px;
+            padding-bottom: 60px;
+        }
+
+        .chat-message {
+            max-width: 75%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+
+        .bot-message {
+            background-color: #ffffff;
+            align-self: flex-start;
+            border-radius: 18px 18px 18px 0;
+            color: #333;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-message {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            border-radius: 18px 18px 0 18px;
+            color: #000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 1.1rem;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .options {
+            margin-top: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .option {
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f2f2f2;
+            margin: 5px 0;
+        }
+
+        .option:hover {
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 600px) {
+            .chat-message {
+                font-size: 0.9rem;
+            }
+
+            input[type="text"] {
+                font-size: 1rem;
+            }
+
+            button {
+                font-size: 1.1rem;
+            }
+
+            .input-area {
+                padding: 1vh;
+            }
+
+            #chat-box {
+                padding-bottom: 80px;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .chat-message {
+                font-size: 1rem;
+            }
+
+            input[type="text"] {
+                font-size: 1.1rem;
+            }
+
+            button {
+                font-size: 1.2rem;
+            }
+
+            .input-area {
+                padding: 10px;
+            }
+
+            #chat-box {
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .chat-message {
+                max-width: 60%;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chatbot-container">
+        <div id="chat-box">
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="اكتب رسالتك هنا...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            <button onclick="clearChat()"><i class="fas fa-trash-alt icon"></i></button>
+
+        </div>
+    </div>
+
+    <script>
+        const data = { 1: { advice: ["\u0631\u0643\u0632 \u0639\u0644\u0649 \u062A\u0639\u0644\u0645 \u0623\u0633\u0627\u0633\u064A\u0627\u062A \u0627\u0644\u0628\u0631\u0645\u062C\u0629 \u0645\u062B\u0644 \u0627\u0644\u062E\u0648\u0627\u0631\u0632\u0645\u064A\u0627\u062A \u0648\u0647\u064A\u0627\u0643\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A.", "\u0627\u0628\u062F\u0623 \u0628\u062A\u062C\u0631\u0628\u0629 \u0644\u063A\u0627\u062A \u0628\u0631\u0645\u062C\u0629 \u0645\u062E\u062A\u0644\u0641\u0629 \u0644\u062A\u062D\u062F\u064A\u062F \u0645\u0627 \u064A\u0646\u0627\u0633\u0628\u0643\u060C \u0645\u062B\u0644 Python \u0648JavaScript.", "\u0627\u0647\u062A\u0645 \u0628\u0641\u0647\u0645 \u0627\u0644\u0645\u0641\u0627\u0647\u064A\u0645 \u0627\u0644\u0623\u0633\u0627\u0633\u064A\u0629 \u0645\u062B\u0644 \u0627\u0644\u0645\u062A\u063A\u064A\u0631\u0627\u062A\u060C \u0627\u0644\u0634\u0631\u0637\u064A\u0629\u060C \u0648\u0627\u0644\u062D\u0644\u0642\u0627\u062A \u0627\u0644\u062A\u0643\u0631\u0627\u0631\u064A\u0629."], resources: ["\u0642\u0646\u0648\u0627\u062A \u064A\u0648\u062A\u064A\u0648\u0628 \u0645\u062B\u0644 'TheNewBoston' \u0648'Academind' \u0644\u062A\u0639\u0644\u0645 \u0627\u0644\u0628\u0631\u0645\u062C\u0629.", "\u0645\u0648\u0627\u0642\u0639 \u0645\u062B\u0644 'Codecademy' \u0648'Coursera' \u0644\u0644\u062A\u062F\u0631\u064A\u0628 \u0627\u0644\u0639\u0645\u0644\u064A."] }, 2: { advice: ["\u0627\u0628\u062F\u0623 \u0628\u0625\u0646\u0634\u0627\u0621 \u0645\u0634\u0627\u0631\u064A\u0639 \u0635\u063A\u064A\u0631\u0629 \u0644\u0632\u064A\u0627\u062F\u0629 \u0641\u0647\u0645\u0643 \u0627\u0644\u0639\u0645\u0644\u064A.", "\u062D\u0627\u0648\u0644 \u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0645\u0641\u0627\u0647\u064A\u0645 \u0639\u0644\u0649 \u0645\u0634\u0627\u0643\u0644 \u0648\u0627\u0642\u0639\u064A\u0629 \u0645\u062B\u0644 \u0628\u0646\u0627\u0621 \u062A\u0637\u0628\u064A\u0642\u0627\u062A \u0648\u064A\u0628 \u0628\u0633\u064A\u0637\u0629.", "\u0627\u0628\u062D\u062B \u0639\u0646 \u0641\u0631\u0635 \u062A\u062F\u0631\u064A\u0628\u064A\u0629 \u0641\u064A \u0634\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627."], resources: ["\u0645\u0648\u0642\u0639 'freeCodeCamp' \u064A\u062D\u062A\u0648\u064A \u0639\u0644\u0649 \u0645\u0634\u0627\u0631\u064A\u0639 \u0639\u0645\u0644\u064A\u0629 \u0645\u0645\u064A\u0632\u0629.", "\u0627\u0633\u062A\u0641\u062F \u0645\u0646 'GitHub' \u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0645\u0634\u0627\u0631\u064A\u0639\u0643 \u0645\u0639 \u0627\u0644\u0645\u062C\u062A\u0645\u0639.", "\u062F\u0648\u0631\u0627\u062A \u062A\u0637\u0648\u064A\u0631 \u0627\u0644\u0648\u064A\u0628 \u0639\u0644\u0649 'Udemy'."] }, 3: { IS: { description: { advantages: "\u062A\u062E\u0635\u0635 \u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u064A\u062A\u064A\u062D \u0644\u0643 \u0627\u0644\u062A\u0639\u0631\u0641 \u0639\u0644\u0649 \u0643\u064A\u0641\u064A\u0629 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0648\u062A\u062D\u0644\u064A\u0644\u0647\u0627\u060C \u0645\u0645\u0627 \u064A\u062C\u0639\u0644\u0643 \u0645\u0624\u0647\u0644\u0627\u064B \u0644\u0644\u0639\u0645\u0644 \u0641\u064A \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0642\u0637\u0627\u0639\u0627\u062A.", disadvantages: "\u0642\u062F \u062A\u062C\u062F \u0646\u0641\u0633\u0643 \u0645\u062D\u0635\u0648\u0631\u064B\u0627 \u0641\u064A \u062C\u0648\u0627\u0646\u0628 \u0625\u062F\u0627\u0631\u064A\u0629 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0627\u0644\u062C\u0648\u0627\u0646\u0628 \u0627\u0644\u062A\u0642\u0646\u064A\u0629." }, advice: ["\u0631\u0643\u0632 \u0639\u0644\u0649 \u0641\u0647\u0645 \u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0648\u0643\u064A\u0641\u064A\u0629 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A.", "\u062A\u0639\u0644\u0645 \u0643\u064A\u0641\u064A\u0629 \u062A\u0635\u0645\u064A\u0645 \u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0648\u062A\u0637\u0628\u064A\u0642 \u0646\u0638\u0645 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A.", "\u0627\u062D\u0631\u0635 \u0639\u0644\u0649 \u0627\u0643\u062A\u0633\u0627\u0628 \u0645\u0647\u0627\u0631\u0627\u062A \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A."], resources: ["\u062F\u0648\u0631\u0627\u062A \u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0639\u0644\u0649 'Udemy'.", "\u0643\u062A\u0628 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0646\u0638\u0645 \u0645\u062B\u0644 'Systems Analysis and Design'."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u062D\u0644\u0644 \u0646\u0638\u0645\u060C \u0645\u062F\u064A\u0631 \u0642\u0648\u0627\u0639\u062F \u0628\u064A\u0627\u0646\u0627\u062A\u060C \u0645\u0633\u0624\u0648\u0644 \u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A." }, CS: { description: { advantages: "\u0639\u0644\u0648\u0645 \u0627\u0644\u062D\u0627\u0633\u0648\u0628 \u062A\u0639\u062A\u0628\u0631 \u0645\u0646 \u0623\u0643\u062B\u0631 \u0627\u0644\u062A\u062E\u0635\u0635\u0627\u062A \u0637\u0644\u0628\u0627\u064B\u060C \u0648\u062A\u0641\u062A\u062D \u0644\u0643 \u0623\u0628\u0648\u0627\u0628 \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0641\u0631\u0635 \u0641\u064A \u0645\u062C\u0627\u0644\u0627\u062A \u0627\u0644\u0628\u0631\u0645\u062C\u0629 \u0648\u0627\u0644\u062A\u0637\u0648\u064A\u0631.", disadvantages: "\u0642\u062F \u062A\u0643\u0648\u0646 \u0627\u0644\u0645\u0648\u0627\u062F \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u0629 \u0635\u0639\u0628\u0629 \u0648\u062A\u062A\u0637\u0644\u0628 \u062C\u0647\u062F\u064B\u0627 \u0643\u0628\u064A\u0631\u064B\u0627 \u0644\u0641\u0647\u0645 \u0627\u0644\u062E\u0648\u0627\u0631\u0632\u0645\u064A\u0627\u062A." }, advice: ["\u062A\u0639\u0645\u0642 \u0641\u064A \u062F\u0631\u0627\u0633\u0629 \u0627\u0644\u062E\u0648\u0627\u0631\u0632\u0645\u064A\u0627\u062A \u0648\u0647\u064A\u0627\u0643\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u062A\u0642\u062F\u0645\u0629.", "\u0627\u0633\u062A\u0643\u0634\u0641 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0627\u0644\u062A\u0634\u063A\u064A\u0644\u064A\u0629 \u0648\u0628\u0646\u064A\u0629 \u0627\u0644\u062D\u0627\u0633\u0648\u0628.", "\u0634\u0627\u0631\u0643 \u0641\u064A \u0645\u0633\u0627\u0628\u0642\u0627\u062A \u0627\u0644\u0628\u0631\u0645\u062C\u0629 \u0644\u062A\u0637\u0648\u064A\u0631 \u0645\u0647\u0627\u0631\u0627\u062A\u0643."], resources: ["\u062F\u0648\u0631\u0627\u062A \u0639\u0644\u0649 'Coursera' \u062D\u0648\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A.", "\u0643\u062A\u0628 \u0645\u062B\u0644 'Introduction to Algorithms'."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u0647\u0646\u062F\u0633 \u0628\u0631\u0645\u062C\u064A\u0627\u062A\u060C \u0639\u0627\u0644\u0645 \u0628\u064A\u0627\u0646\u0627\u062A\u060C \u0645\u0637\u0648\u0631 \u062A\u0637\u0628\u064A\u0642\u0627\u062A." }, IT: { description: { advantages: "\u062A\u062E\u0635\u0635 \u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u064A\u0634\u0645\u0644 \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u062C\u0648\u0627\u0646\u0628 \u0627\u0644\u0639\u0645\u0644\u064A\u0629\u060C \u0645\u0645\u0627 \u064A\u062C\u0639\u0644\u0643 \u0645\u0633\u062A\u0639\u062F\u064B\u0627 \u0644\u0644\u0639\u0645\u0644 \u0641\u064A \u0623\u064A \u0645\u0643\u0627\u0646.", disadvantages: "\u0642\u062F \u062A\u062D\u062A\u0627\u062C \u0625\u0644\u0649 \u0645\u062C\u0647\u0648\u062F \u0645\u0633\u062A\u0645\u0631 \u0644\u0645\u0648\u0627\u0643\u0628\u0629 \u0627\u0644\u062A\u0637\u0648\u0631\u0627\u062A \u0627\u0644\u0633\u0631\u064A\u0639\u0629 \u0641\u064A \u0627\u0644\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627." }, advice: ["\u0631\u0643\u0632 \u0639\u0644\u0649 \u0641\u0647\u0645 \u0634\u0628\u0643\u0627\u062A \u0627\u0644\u062D\u0627\u0633\u0648\u0628 \u0648\u0623\u0645\u0646 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A.", "\u062A\u0639\u0644\u0645 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0648\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062D\u0648\u0633\u0628\u0629 \u0627\u0644\u0633\u062D\u0627\u0628\u064A\u0629.", "\u0627\u062D\u0631\u0635 \u0639\u0644\u0649 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A \u0627\u0644\u0645\u0639\u062A\u0631\u0641 \u0628\u0647\u0627 \u0645\u062B\u0644 CompTIA \u0648Cisco."], resources: ["\u062F\u0648\u0631\u0627\u062A 'Cisco' \u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u062D\u0627\u0633\u0648\u0628.", "\u0645\u0646\u0635\u0627\u062A \u0645\u062B\u0644 'Microsoft Learn' \u0644\u0644\u062D\u0648\u0633\u0628\u0629 \u0627\u0644\u0633\u062D\u0627\u0628\u064A\u0629."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u062F\u064A\u0631 \u0646\u0638\u0645 \u0645\u0639\u0644\u0648\u0645\u0627\u062A\u060C \u0645\u0633\u0624\u0648\u0644 \u0634\u0628\u0643\u0627\u062A\u060C \u0623\u062E\u0635\u0627\u0626\u064A \u062F\u0639\u0645 \u0641\u0646\u064A." }, AI: { description: { advantages: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0647\u0648 \u0645\u062C\u0627\u0644 \u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u060C \u0648\u064A\u062A\u064A\u062D \u0644\u0643 \u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0641\u064A \u062A\u0637\u0628\u064A\u0642\u0627\u062A \u062C\u062F\u064A\u062F\u0629.", disadvantages: "\u064A\u062A\u0637\u0644\u0628 \u0641\u0647\u0645\u064B\u0627 \u0639\u0645\u064A\u0642\u064B\u0627 \u0644\u0644\u0631\u064A\u0627\u0636\u064A\u0627\u062A \u0648\u0627\u0644\u0625\u062D\u0635\u0627\u0621." }, advice: ["\u0627\u0628\u062F\u0623 \u0628\u062A\u0639\u0644\u0645 \u0645\u0641\u0627\u0647\u064A\u0645 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0627\u0644\u0623\u0633\u0627\u0633\u064A\u0629 \u0645\u062B\u0644 \u0627\u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u0639\u0635\u0628\u064A\u0629.", "\u062A\u062F\u0631\u0628 \u0639\u0644\u0649 \u0623\u062F\u0648\u0627\u062A \u062A\u0639\u0644\u0645 \u0627\u0644\u0622\u0644\u0629 \u0645\u062B\u0644 TensorFlow.", "\u0643\u0646 \u0639\u0644\u0649 \u0627\u0637\u0644\u0627\u0639 \u0628\u0623\u062D\u062F\u062B \u0627\u0644\u0623\u0628\u062D\u0627\u062B \u0648\u0627\u0644\u062A\u0637\u0648\u0631\u0627\u062A \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0645\u062C\u0627\u0644."], resources: ["\u062F\u0648\u0631\u0627\u062A 'deeplearning.ai' \u0639\u0644\u0649 Coursera.", "\u0643\u062A\u0628 \u0645\u062B\u0644 'Hands-On Machine Learning with Scikit-Learn'."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u0647\u0646\u062F\u0633 \u062A\u0639\u0644\u0645 \u0627\u0644\u0622\u0644\u0629\u060C \u0645\u0637\u0648\u0631 \u0630\u0643\u0627\u0621 \u0627\u0635\u0637\u0646\u0627\u0639\u064A\u060C \u0628\u0627\u062D\u062B \u0641\u064A \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A." } } }; function startChat() {
+            const a = document.getElementById("chat-box"); a.innerHTML += `
+        <div class="chat-message bot-message">أهلاً! أنا المتحدث الذكي X. إذا كنت تحتاج نصائح، اكتب "نصائح"، وإذا كنت تريد معرفة عن التخصصات، اكتب "اعرف"، أو إذا كنت تريد معلومات عن الوظائف، اكتب "شغل".</div>
+    `, a.scrollTop = a.scrollHeight
+        } function sendMessage() { const a = document.getElementById("user-input"), b = a.value.trim(); if (b) { const c = document.getElementById("chat-box"); c.innerHTML += `<div class="chat-message user-message">${b}</div>`, a.value = "", handleUserMessage(b) } else showError("\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0631\u0633\u0627\u0644\u0629 \u0635\u062D\u064A\u062D\u0629."); chatBox.scrollTop = chatBox.scrollHeight } function showError(a) { const b = document.getElementById("chat-box"); b.innerHTML += `<div class="chat-message bot-message error-message">${a}</div>`, b.scrollTop = b.scrollHeight } function handleUserMessage(a) { const b = document.getElementById("chat-box"), c = a.toLowerCase(); "\u0627\u0647\u0644\u0627" === c || "\u0645\u0631\u062D\u0628\u0627" === c || "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643" === c || "\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064A\u0643\u0645" === c || "\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631" === c || "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631" === c || "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643 \u0627\u0644\u064A\u0648\u0645" === c || "\u0643\u064A\u0641\u0643" === c || "\u0627\u0632\u064A\u0643" === c || "\u0627\u0647\u0644\u0627 \u0648\u0633\u0647\u0644\u0627" === c || "\u0623\u0647\u0644\u0627\u064B \u0628\u0643" === c || "\u0647\u0627\u064A" === c || "\u0623\u0647\u0644\u0627\u064B \u064A\u0627 \u0635\u062F\u064A\u0642\u064A" === c || "\u0645\u0631\u062D\u0628\u0627\u064B \u0628\u0643" === c || "\u064A\u0633\u0637\u0627" === c ? b.innerHTML += `<div class="chat-message bot-message">اهلا كيف أستطيع مساعدتك اليوم؟ إذا كنت تريد معلومات، اكتب "اعرف"، وإذا كنت تريد نصائح، اكتب "نصائح"، أو إذا كنت تريد معلومات عن الوظائف، اكتب "شغل".</div>` : "\u0627\u0639\u0631\u0641" === c ? showSpecializationSelection(b) : "\u0646\u0635\u0627\u0626\u062D" === c ? showYearOptions(b) : "\u0634\u063A\u0644" === c ? showSpecializationOptionsForJobs(b) : showError("\u0639\u0630\u0631\u064B\u0627\u060C \u0644\u0645 \u0623\u0641\u0647\u0645 \u0627\u0644\u0631\u0633\u0627\u0644\u0629. \u064A\u0631\u062C\u0649 \u0627\u062E\u062A\u064A\u0627\u0631 '\u0646\u0635\u0627\u0626\u062D'\u060C '\u0627\u0639\u0631\u0641'\u060C \u0623\u0648 '\u0634\u063A\u0644'."), b.scrollTop = b.scrollHeight } function showSpecializationSelection(a) { a.innerHTML += `<div class="chat-message bot-message">اختر تخصصك:</div>${"\n        <div class=\"options\">\n            <div class=\"option\" onclick=\"selectSpecialization('IS')\">\u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IS)</div>\n            <div class=\"option\" onclick=\"selectSpecialization('CS')\">\u0639\u0644\u0648\u0645 \u0627\u0644\u062D\u0627\u0633\u0648\u0628 (CS)</div>\n            <div class=\"option\" onclick=\"selectSpecialization('IT')\">\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IT)</div>\n            <div class=\"option\" onclick=\"selectSpecialization('AI')\">\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A (AI)</div>\n        </div>\n    "}`, a.scrollTop = a.scrollHeight } function showYearOptions(a) { a.innerHTML += `<div class="chat-message bot-message">اختر فرقتك الدراسية:</div>${"\n        <div class=\"options\">\n            <div class=\"option\" onclick=\"selectYear('1')\">\u0627\u0644\u0641\u0631\u0642\u0629 \u0627\u0644\u0623\u0648\u0644\u0649</div>\n            <div class=\"option\" onclick=\"selectYear('2')\">\u0627\u0644\u0641\u0631\u0642\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629</div>\n            <div class=\"option\" onclick=\"selectYear('3')\">\u0627\u0644\u0641\u0631\u0642\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629</div>\n        </div>\n    "}`, a.scrollTop = a.scrollHeight } function selectYear(a) {
+            const b = document.getElementById("chat-box"); if (b.innerHTML += `<div class="chat-message user-message">الفرقة ${a} تم اختيارها.</div>`, "3" === a) showSpecializationSelection(b); else {
+                b.innerHTML += `<div class="chat-message bot-message">اختر معلومات إضافية:</div>${`
+            <div class="options">
+                <div class="option" onclick="showAdviceOrResources('${a}', 'advice')">نصائح</div>
+                <div class="option" onclick="showAdviceOrResources('${a}', 'resources')">مصادر</div>
+            </div>
+        `}`
+            } b.scrollTop = b.scrollHeight
+        } function selectSpecialization(a) {
+            const b = document.getElementById("chat-box"); b.innerHTML += `<div class="chat-message user-message">التخصص المختار: ${a}</div>`; const c = data[3][a], d = `
+        <div class="chat-message bot-message">
+            <strong>الوصف:</strong> ${c.description.advantages}
+            <br>
+            <strong>نصائح:</strong> ${c.advice.join(", ")}
+            <br>
+            <strong>الموارد:</strong> ${c.resources.join(", ")}
+            <br>
+            <strong>فرص العمل:</strong> ${c.career}
+        </div>
+    `; b.innerHTML += d, b.scrollTop = b.scrollHeight
+        } function showSpecializationOptionsForJobs(a) { a.innerHTML += "\n        <div class=\"chat-message bot-message\">\n            <strong>\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0639\u0646 \u0627\u0644\u0634\u063A\u0644:</strong>\n            <p>\u0644\u0644\u0639\u0645\u0644 \u0641\u064A \u0645\u062C\u0627\u0644\u0627\u062A \u0627\u0644\u062A\u0642\u0646\u064A\u0629\u060C \u0639\u0644\u064A\u0643 \u0627\u062E\u062A\u064A\u0627\u0631 \u062A\u062E\u0635\u0635 \u0645\u0646\u0627\u0633\u0628 \u0648\u0627\u062A\u0628\u0627\u0639 \u0646\u0635\u0627\u0626\u062D \u0641\u0639\u0627\u0644\u0629.</p>\n            <p>\u0625\u0644\u064A\u0643 \u0628\u0639\u0636 \u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0627\u0644\u0639\u0627\u0645\u0629 \u0644\u0644\u0646\u062C\u0627\u062D \u0641\u064A \u0627\u0644\u0639\u0645\u0644:</p>\n            <ul>\n                <li>\u0627\u0628\u062D\u062B \u0639\u0646 \u0641\u0631\u0635 \u062A\u062F\u0631\u064A\u0628\u064A\u0629 \u0644\u062A\u062D\u0633\u064A\u0646 \u0645\u0647\u0627\u0631\u0627\u062A\u0643 \u0627\u0644\u0639\u0645\u0644\u064A\u0629.</li>\n                <li>\u062D\u0627\u0641\u0638 \u0639\u0644\u0649 \u062A\u0637\u0648\u064A\u0631 \u0645\u0647\u0627\u0631\u0627\u062A\u0643 \u0628\u0627\u0646\u062A\u0638\u0627\u0645.</li>\n                <li>\u0642\u0645 \u0628\u062A\u0648\u0633\u064A\u0639 \u0634\u0628\u0643\u0629 \u0639\u0644\u0627\u0642\u0627\u062A\u0643 \u0641\u064A \u0627\u0644\u0645\u062C\u0627\u0644.</li>\n                <li>\u0643\u0646 \u0645\u0631\u0646\u064B\u0627 \u0641\u064A \u0642\u0628\u0648\u0644 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062C\u062F\u064A\u062F\u0629.</li>\n            </ul>\n            <p>\u0625\u0630\u0627 \u0643\u0646\u062A \u062A\u0631\u064A\u062F \u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0639\u0646 \u062A\u062E\u0635\u0635 \u0645\u062D\u062F\u062F\u060C \u0627\u062E\u062A\u0631 \u0645\u0646 \u0627\u0644\u062A\u062E\u0635\u0635\u0627\u062A \u0627\u0644\u062A\u0627\u0644\u064A\u0629:</p>\n            <div class=\"options\">\n                <div class=\"option\" onclick=\"selectSpecialization('IS')\">\u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IS)</div>\n                <div class=\"option\" onclick=\"selectSpecialization('CS')\">\u0639\u0644\u0648\u0645 \u0627\u0644\u062D\u0627\u0633\u0648\u0628 (CS)</div>\n                <div class=\"option\" onclick=\"selectSpecialization('IT')\">\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IT)</div>\n                <div class=\"option\" onclick=\"selectSpecialization('AI')\">\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A (AI)</div>\n            </div>\n        </div>\n    ", a.scrollTop = a.scrollHeight } function showAdviceOrResources(a, b) {
+            const c = document.getElementById("chat-box"), d = data[a], e = d[b].map(a => `<li>${a}</li>`).join(""); c.innerHTML += `
+        <div class="chat-message bot-message">
+            <strong>${"advice" === b ? "\u0646\u0635\u0627\u0626\u062D" : "\u0645\u0635\u0627\u062F\u0631"}:</strong>
+            <ul>${e}</ul>
+        </div>
+    `, c.scrollTop = c.scrollHeight
+        } startChat(); function clearChat() { location.reload() }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const inputField = document.getElementById("user-input");
+
+            inputField.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    sendMessage();
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

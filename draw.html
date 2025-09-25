@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Materialx | Drawing</title>   
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">  
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #000c37;
+        padding: 10px;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        padding: 10px;
+        max-width: 1050px;
+        flex-direction: column;
+    }
+
+    section {
+        background: #fff;
+        border-radius: 7px;
+    }
+
+    .tools-board {
+        width: 100%;
+        padding: 15px 22px 0;
+        max-width: 210px;
+    }
+
+    .tools-board .row {
+        margin-bottom: 20px;
+    }
+
+    .row .options {
+        list-style: none;
+        margin: 10px 0 0 5px;
+    }
+
+    .row .options .option {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .option:is(:hover, .active) img {
+        filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+    }
+
+    .option :where(span, label) {
+        color: #5A6168;
+        cursor: pointer;
+        padding-left: 10px;
+    }
+
+    .option:is(:hover, .active) :where(span, label) {
+        color: #4A98F7;
+    }
+
+    .option #fill-color {
+        cursor: pointer;
+        height: 14px;
+        width: 14px;
+    }
+
+    #fill-color:checked~label {
+        color: #4A98F7;
+    }
+
+    .option #size-slider {
+        width: 100%;
+        height: 5px;
+        margin-top: 10px;
+    }
+
+    .colors .options {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .colors .option {
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        margin-top: 3px;
+        position: relative;
+    }
+
+    .colors .option:nth-child(1) {
+        background-color: #fff;
+        border: 1px solid #bfbfbf;
+    }
+
+    .colors .option:nth-child(2) {
+        background-color: #000;
+    }
+
+    .colors .option:nth-child(3) {
+        background-color: #E02020;
+    }
+
+    .colors .option:nth-child(4) {
+        background-color: #6DD400;
+    }
+
+    .colors .option:nth-child(5) {
+        background-color: #4A98F7;
+    }
+
+    .colors .option.selected::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        height: 12px;
+        width: 12px;
+        background: inherit;
+        border-radius: inherit;
+        border: 2px solid #fff;
+        transform: translate(-50%, -50%);
+    }
+
+    .colors .option:first-child.selected::before {
+        border-color: #ccc;
+    }
+
+    .option #color-picker {
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .buttons button {
+        width: 100%;
+        color: #fff;
+        border: none;
+        outline: none;
+        padding: 11px 0;
+        font-size: 0.9rem;
+        margin-bottom: 13px;
+        background: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .buttons .clear-canvas {
+        color: #6C757D;
+        border: 1px solid #6C757D;
+        transition: all 0.3s ease;
+    }
+
+    .clear-canvas:hover {
+        color: #fff;
+        background: #6C757D;
+    }
+
+    .buttons .save-img {
+        background: #4A98F7;
+        border: 1px solid #4A98F7;
+    }
+
+    .drawing-board {
+        flex: 1;
+        overflow: hidden;
+    }
+
+    .drawing-board canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            flex-direction: row;
+        }
+
+        .tools-board {
+            width: 210px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .drawing-board {
+            height: 400px;/
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            flex-direction: column;
+            padding: 5px;
+        }
+
+        .tools-board {
+            max-width: 100%;
+            padding: 10px 15px;
+        }
+
+        .buttons button {
+            font-size: 0.8rem;
+        }
+
+        .drawing-board {
+            height: 300px;
+        }
+    }
+
+    .eraser-indicator {
+        position: absolute;
+        display: none;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <section class="tools-board">
+            <div class="row">
+                <label class="title">Shapes</label>
+                <ul class="options">
+                    <li class="option tool" id="rectangle">
+                        <img src="icons/rectangle.svg" alt="">
+                        <span>Rectangle</span>
+                    </li>
+                    <li class="option tool" id="circle">
+                        <img src="icons/circle.svg" alt="">
+                        <span>Circle</span>
+                    </li>
+                    <li class="option tool" id="triangle">
+                        <img src="icons/triangle.svg" alt="">
+                        <span>Triangle</span>
+                    </li>
+                    <li class="option">
+                        <input type="checkbox" id="fill-color">
+                        <label for="fill-color">Fill color</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <label class="title">Options</label>
+                <ul class="options">
+                    <li class="option active tool" id="brush">
+                        <img src="icons/brush.svg" alt="">
+                        <span>Brush</span>
+                    </li>
+                    <li class="option tool" id="eraser">
+                        <img src="icons/eraser.svg" alt="">
+                        <span>Eraser</span>
+                    </li>
+                    <li class="option">
+                        <input type="range" id="size-slider" min="1" max="30" value="5">
+                    </li>
+                </ul>
+            </div>
+            <div class="row colors">
+                <label class="title">Colors</label>
+                <ul class="options">
+                    <li class="option"></li>
+                    <li class="option selected"></li>
+                    <li class="option"></li>
+                    <li class="option"></li>
+                    <li class="option">
+                        <input type="color" id="color-picker" value="#4A98F7">
+                    </li>
+                </ul>
+            </div>
+            <div class="row buttons">
+                <button class="clear-canvas">Clear</button>
+                <button class="save-img">Save As Image</button>
+                <a href="index.html"><button class="save-img">Home</button></a>
+            </div>
+        </section>
+        <section class="drawing-board">
+            <canvas></canvas>
+        </section>
+        <div class="eraser-indicator"></div>
+    </div>
+    <script>
+        const canvas = document.querySelector("canvas"),
+            toolBtns = document.querySelectorAll(".tool"),
+            fillColor = document.querySelector("#fill-color"),
+            sizeSlider = document.querySelector("#size-slider"),
+            colorBtns = document.querySelectorAll(".colors .option"),
+            colorPicker = document.querySelector("#color-picker"),
+            clearCanvas = document.querySelector(".clear-canvas"),
+            eraserIndicator = document.querySelector(".eraser-indicator"),
+            saveImg = document.querySelector(".save-img"),
+            ctx = canvas.getContext("2d");
+
+        let prevMouseX, prevMouseY, snapshot,
+            isDrawing = false,
+            selectedTool = "brush",
+            brushWidth = 5,
+            selectedColor = "#000";
+
+        const setCanvasBackground = () => {
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = selectedColor;
+        }
+
+        window.addEventListener("load", () => {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            setCanvasBackground();
+        });
+
+        const drawRect = (e) => {
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            if (!fillColor.checked) {
+                return ctx.strokeRect(mouseX, mouseY, prevMouseX - mouseX, prevMouseY - mouseY);
+            }
+            ctx.fillRect(mouseX, mouseY, prevMouseX - mouseX, prevMouseY - mouseY);
+        }
+
+        const drawCircle = (e) => {
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            ctx.beginPath();
+            let radius = Math.sqrt(Math.pow((prevMouseX - mouseX), 2) + Math.pow((prevMouseY - mouseY), 2));
+            ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
+            fillColor.checked ? ctx.fill() : ctx.stroke();
+        }
+
+        const drawTriangle = (e) => {
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            ctx.beginPath();
+            ctx.moveTo(prevMouseX, prevMouseY);
+            ctx.lineTo(mouseX, mouseY);
+            ctx.lineTo(prevMouseX * 2 - mouseX, mouseY);
+            ctx.closePath();
+            fillColor.checked ? ctx.fill() : ctx.stroke();
+        }
+
+        const startDraw = (e) => {
+            e.preventDefault();
+            isDrawing = true;
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            ctx.beginPath();
+            ctx.lineWidth = brushWidth;
+            ctx.strokeStyle = selectedColor;
+            ctx.fillStyle = selectedColor;
+            snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        }
+
+        const drawing = (e) => {
+            if (!isDrawing) return;
+            e.preventDefault();
+            ctx.putImageData(snapshot, 0, 0);
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            if (selectedTool === "brush" || selectedTool === "eraser") {
+                ctx.strokeStyle = selectedTool === "eraser" ? "#fff" : selectedColor;
+                ctx.lineTo(mouseX, mouseY);
+                ctx.stroke();
+            } else if (selectedTool === "rectangle") {
+                drawRect(e);
+            } else if (selectedTool === "circle") {
+                drawCircle(e);
+            } else {
+                drawTriangle(e);
+            }
+        }
+
+        const stopDraw = (e) => {
+            e.preventDefault();
+            isDrawing = false;
+        }
+
+        toolBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelector(".options .active").classList.remove("active");
+                btn.classList.add("active");
+                selectedTool = btn.id;
+            });
+        });
+
+        sizeSlider.addEventListener("change", () => brushWidth = sizeSlider.value);
+
+        colorBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelector(".options .selected").classList.remove("selected");
+                btn.classList.add("selected");
+                selectedColor = window.getComputedStyle(btn).getPropertyValue("background-color");
+            });
+        });
+
+        colorPicker.addEventListener("change", () => {
+            colorPicker.parentElement.style.background = colorPicker.value;
+            colorPicker.parentElement.click();
+        });
+
+        clearCanvas.addEventListener("click", () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            setCanvasBackground();
+        });
+
+        saveImg.addEventListener("click", () => {
+            const link = document.createElement("a");
+            link.download = `${Date.now()}.jpg`;
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+
+        canvas.addEventListener("mousemove", (e) => {
+            if (selectedTool === "eraser") {
+                eraserIndicator.style.width = brushWidth + "px";
+                eraserIndicator.style.height = brushWidth + "px";
+                eraserIndicator.style.left = e.pageX - brushWidth / 2 + "px";
+                eraserIndicator.style.top = e.pageY - brushWidth / 2 + "px";
+                eraserIndicator.style.display = "block";
+            } else {
+                eraserIndicator.style.display = "none";
+            }
+            drawing(e);
+        });
+
+        toolBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelector(".options .active").classList.remove("active");
+                btn.classList.add("active");
+                selectedTool = btn.id;
+                eraserIndicator.style.display = (selectedTool === "eraser") ? "block" : "none";
+            });
+        });
+
+
+        canvas.addEventListener("mousedown", startDraw);
+        canvas.addEventListener("mousemove", drawing);
+        canvas.addEventListener("mouseup", stopDraw);
+
+        canvas.addEventListener("touchstart", startDraw);
+        canvas.addEventListener("touchmove", drawing);
+        canvas.addEventListener("touchend", stopDraw);
+    </script>
+
+</body>
+
+</html>
