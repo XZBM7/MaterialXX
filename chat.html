@@ -367,10 +367,12 @@
             40% { transform: scale(1); opacity: 1; }
         }
 
+        /* تحسينات للأجهزة المحمولة */
         @media (max-width: 768px) {
             .chatbot-container {
                 border-radius: 0;
                 height: 100vh;
+                max-width: 100%;
             }
             
             .chat-message {
@@ -380,6 +382,7 @@
             
             .input-area {
                 padding: 10px;
+                padding-bottom: max(10px, env(safe-area-inset-bottom));
             }
             
             button {
@@ -390,6 +393,19 @@
             
             .options {
                 flex-direction: column;
+            }
+            
+            /* تحسينات خاصة للكيبورد على الأجهزة المحمولة */
+            #user-input {
+                font-size: 16px; /* يمنع التكبير التلقائي في iOS */
+            }
+            
+            /* ضبط ارتفاع منطقة الإدخال عند ظهور الكيبورد */
+            .keyboard-open .input-area {
+                position: sticky;
+                bottom: 0;
+                background: white;
+                z-index: 1000;
             }
         }
 
@@ -405,6 +421,51 @@
             
             input[type="text"] {
                 padding: 10px 15px;
+            }
+            
+            .chat-header {
+                padding: 12px 15px;
+            }
+            
+            #chat-box {
+                padding: 15px;
+            }
+        }
+
+        /* تحسينات للشاشات الصغيرة جداً */
+        @media (max-width: 360px) {
+            .chat-header h1 {
+                font-size: 1.1rem;
+            }
+            
+            .chat-header .logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .action-buttons {
+                gap: 5px;
+            }
+            
+            button {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        /* تحسينات للوضع الأفقي على الأجهزة المحمولة */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .chat-header {
+                padding: 10px 15px;
+            }
+            
+            #chat-box {
+                padding: 10px;
+                max-height: 60vh;
+            }
+            
+            .input-area {
+                padding: 8px 10px;
             }
         }
     </style>
@@ -426,18 +487,15 @@
                 <p>أنا هنا لمساعدتك في رحلتك التعليمية. كيف يمكنني مساعدتك اليوم؟</p>
             </div>
         </div>
-
-        
         
         <div class="input-area">
-            <input type="text" id="user-input" placeholder="اكتب رسالتك هنا...">
+            <input type="text" id="user-input" placeholder="اكتب رسالتك هنا..." autocomplete="off">
             <div class="action-buttons">
-                <button onclick="sendMessage()" title="إرسال"><i class="fas fa-paper-plane"></i></button>
-                <button onclick="clearChat()" class="clear-btn" title="مسح المحادثة"><i class="fas fa-trash-alt"></i></button>
+                <button id="send-btn" title="إرسال"><i class="fas fa-paper-plane"></i></button>
+                <button id="clear-btn" class="clear-btn" title="مسح المحادثة"><i class="fas fa-trash-alt"></i></button>
             </div>
         </div>
     </div>
-
     
 
     
