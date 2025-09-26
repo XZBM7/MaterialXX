@@ -361,6 +361,139 @@
                 flex-direction: column;
             }
         }
+        /* إضافة استعلامات الوسائط (Media Queries) وتحسين التصميم الحالي */
+
+@media (max-width: 992px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .user-stats {
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .stat-value {
+        font-size: 20px;
+    }
+    
+    .stat-label {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        border-radius: 12px;
+    }
+    
+    header {
+        padding: 12px 15px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .user-stats {
+        gap: 15px;
+    }
+    
+    .stat-value {
+        font-size: 18px;
+    }
+    
+    .main-content {
+        min-height: auto;
+    }
+    
+    .sidebar {
+        padding: 15px;
+    }
+    
+    .content {
+        padding: 15px;
+    }
+    
+    .CodeMirror {
+        height: 250px;
+        font-size: 14px;
+    }
+    
+    .progress-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .achievement-list {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .user-stats {
+        gap: 10px;
+    }
+    
+    .stat-value {
+        font-size: 16px;
+    }
+    
+    .stat-label {
+        font-size: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .question-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .editor-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .action-buttons {
+        width: 100%;
+    }
+    
+    .CodeMirror {
+        height: 200px;
+    }
+    
+    .output-container {
+        min-height: 120px;
+        font-size: 14px;
+    }
+}
+
+/* تحسينات إضافية للشاشات الصغيرة جدًا */
+@media (max-width: 400px) {
+    .user-stats {
+        flex-wrap: wrap;
+    }
+    
+    .stat {
+        min-width: 30%;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+}
     </style>
 </head>
 <body>
@@ -370,20 +503,21 @@
                 <i class="fas fa-code"></i>
                 <h1>PyPractice</h1>
             </div>
-            <div class="user-stats">
-                <div class="stat">
-                    <div class="stat-value" id="headerScore">0</div>
-                    <div class="stat-label">SCORE</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="headerLevel">Easy</div>
-                    <div class="stat-label">LEVEL</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value" id="headerStreak">0</div>
-                    <div class="stat-label">STREAK</div>
-                </div>
-            </div>
+           <!-- في قسم الإحصائيات في الرأس -->
+<div class="user-stats" role="status" aria-label="User statistics">
+    <div class="stat" aria-label="Score">
+        <div class="stat-value" id="headerScore">0</div>
+        <div class="stat-label">SCORE</div>
+    </div>
+    <div class="stat" aria-label="Level">
+        <div class="stat-value" id="headerLevel">Easy</div>
+        <div class="stat-label">LEVEL</div>
+    </div>
+    <div class="stat" aria-label="Current streak">
+        <div class="stat-value" id="headerStreak">0</div>
+        <div class="stat-label">STREAK</div>
+    </div>
+</div>
         </header>
         
         <div class="main-content">

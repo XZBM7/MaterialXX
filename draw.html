@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8">
     <title>Materialx | Drawing</title>   
     <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">  
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
     * {
         margin: 0;
@@ -22,32 +22,41 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        background: #000c37;
+        background: linear-gradient(135deg, #000c37, #1a237e);
         padding: 10px;
     }
 
     .container {
         display: flex;
         width: 100%;
-        gap: 10px;
-        padding: 10px;
-        max-width: 1050px;
+        gap: 15px;
+        padding: 15px;
+        max-width: 1300px;
         flex-direction: column;
     }
 
     section {
         background: #fff;
-        border-radius: 7px;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .tools-board {
         width: 100%;
-        padding: 15px 22px 0;
-        max-width: 210px;
+        padding: 20px;
+        max-width: 240px;
     }
 
     .tools-board .row {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+    }
+
+    .row .title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        display: block;
     }
 
     .row .options {
@@ -59,7 +68,14 @@
         display: flex;
         cursor: pointer;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        padding: 8px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .row .options .option:hover {
+        background: #f0f4ff;
     }
 
     .option:is(:hover, .active) img {
@@ -69,17 +85,22 @@
     .option :where(span, label) {
         color: #5A6168;
         cursor: pointer;
-        padding-left: 10px;
+        padding-left: 12px;
+        font-size: 0.95rem;
     }
 
     .option:is(:hover, .active) :where(span, label) {
         color: #4A98F7;
     }
 
+    .option.active {
+        background: #e8f0fe;
+    }
+
     .option #fill-color {
         cursor: pointer;
-        height: 14px;
-        width: 14px;
+        height: 16px;
+        width: 16px;
     }
 
     #fill-color:checked~label {
@@ -88,8 +109,21 @@
 
     .option #size-slider {
         width: 100%;
-        height: 5px;
+        height: 6px;
         margin-top: 10px;
+        border-radius: 5px;
+        background: #e0e0e0;
+        outline: none;
+        -webkit-appearance: none;
+    }
+
+    .option #size-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #4A98F7;
+        cursor: pointer;
     }
 
     .colors .options {
@@ -98,11 +132,17 @@
     }
 
     .colors .option {
-        height: 20px;
-        width: 20px;
+        height: 24px;
+        width: 24px;
         border-radius: 50%;
         margin-top: 3px;
         position: relative;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .colors .option:hover {
+        transform: scale(1.1);
     }
 
     .colors .option:nth-child(1) {
@@ -131,8 +171,8 @@
         content: "";
         top: 50%;
         left: 50%;
-        height: 12px;
-        width: 12px;
+        height: 14px;
+        width: 14px;
         background: inherit;
         border-radius: inherit;
         border: 2px solid #fff;
@@ -146,6 +186,9 @@
     .option #color-picker {
         opacity: 0;
         cursor: pointer;
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 
     .buttons button {
@@ -153,18 +196,23 @@
         color: #fff;
         border: none;
         outline: none;
-        padding: 11px 0;
-        font-size: 0.9rem;
-        margin-bottom: 13px;
+        padding: 12px 0;
+        font-size: 0.95rem;
+        margin-bottom: 15px;
         background: none;
-        border-radius: 4px;
+        border-radius: 6px;
         cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
     }
 
     .buttons .clear-canvas {
         color: #6C757D;
         border: 1px solid #6C757D;
-        transition: all 0.3s ease;
     }
 
     .clear-canvas:hover {
@@ -177,52 +225,172 @@
         border: 1px solid #4A98F7;
     }
 
+    .buttons .save-img:hover {
+        background: #3a88e7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(58, 136, 231, 0.3);
+    }
+
     .drawing-board {
         flex: 1;
         overflow: hidden;
+        position: relative;
+        min-height: 500px;
     }
 
     .drawing-board canvas {
         width: 100%;
         height: 100%;
+        display: block;
+        border-radius: 8px;
     }
 
-    @media (min-width: 768px) {
-        .container {
-            flex-direction: row;
-        }
-
-        .tools-board {
-            width: 210px;
-        }
+    /* إدارة الصفحات - تصميم محسن */
+    .pages-management {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
 
-    @media (max-width: 768px) {
-        .drawing-board {
-            height: 400px;/
-        }
+    .pages-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 15px;
     }
 
-    @media (max-width: 480px) {
-        body {
-            flex-direction: column;
-            padding: 5px;
-        }
-
-        .tools-board {
-            max-width: 100%;
-            padding: 10px 15px;
-        }
-
-        .buttons button {
-            font-size: 0.8rem;
-        }
-
-        .drawing-board {
-            height: 300px;
-        }
+    .pages-header h3 {
+        color: #333;
+        font-size: 1.4rem;
+        font-weight: 600;
     }
 
+    .pages-controls {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .pages-controls button {
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+    }
+
+    .pages-controls .btn-new {
+        background: #4A98F7;
+        color: white;
+    }
+
+    .pages-controls .btn-new:hover {
+        background: #3a88e7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(58, 136, 231, 0.3);
+    }
+
+    .pages-controls .btn-delete {
+        background: #f8f9fa;
+        color: #E02020;
+        border: 1px solid #E02020;
+    }
+
+    .pages-controls .btn-delete:hover {
+        background: #E02020;
+        color: white;
+    }
+
+    .pages-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-height: 180px;
+        overflow-y: auto;
+        padding: 5px;
+    }
+
+    .page-item {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 12px 15px;
+        cursor: pointer;
+        min-width: 120px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        border: 2px solid transparent;
+        flex: 1;
+        min-width: 140px;
+        max-width: 180px;
+    }
+
+    .page-item.active {
+        background: #4A98F7;
+        color: white;
+        border-color: #3a88e7;
+        box-shadow: 0 4px 8px rgba(58, 136, 231, 0.2);
+    }
+
+    .page-item:hover {
+        background: #e9ecef;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-item.active:hover {
+        background: #3a88e7;
+    }
+
+    .page-name {
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .page-date {
+        font-size: 0.75rem;
+        opacity: 0.7;
+    }
+
+    .delete-page {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #E02020;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-item:hover .delete-page {
+        opacity: 1;
+    }
+
+    .delete-page:hover {
+        background: #c01818;
+        transform: scale(1.1);
+    }
+
+    /* مؤشر الممحاة */
     .eraser-indicator {
         position: absolute;
         display: none;
@@ -230,11 +398,141 @@
         border: 2px solid rgba(0, 0, 0, 0.2);
         background-color: rgba(255, 255, 255, 0.5);
         pointer-events: none;
+        z-index: 10;
+    }
+
+    /* تحسينات للاستجابة */
+    @media (min-width: 992px) {
+        .container {
+            flex-direction: row;
+        }
+
+        .tools-board {
+            width: 240px;
+        }
+        
+        .drawing-board {
+            min-height: 600px;
+        }
+    }
+
+    @media (max-width: 991px) and (min-width: 768px) {
+        .drawing-board {
+            height: 500px;
+        }
+        
+        .page-item {
+            min-width: 120px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        body {
+            padding: 5px;
+        }
+
+        .container {
+            padding: 10px;
+            gap: 10px;
+        }
+        
+        .tools-board {
+            max-width: 100%;
+            padding: 15px;
+        }
+
+        .buttons button {
+            font-size: 0.85rem;
+            padding: 10px 0;
+        }
+
+        .drawing-board {
+            height: 400px;
+            min-height: 400px;
+        }
+        
+        .pages-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .pages-controls {
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .pages-controls button {
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .pages-list {
+            max-height: 120px;
+        }
+        
+        .page-item {
+            min-width: calc(50% - 10px);
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .drawing-board {
+            height: 350px;
+        }
+        
+        .pages-controls {
+            flex-direction: column;
+        }
+        
+        .page-item {
+            min-width: 100%;
+        }
+        
+        .tools-board .row {
+            margin-bottom: 20px;
+        }
+    }
+
+    /* شريط التمرير المخصص */
+    .pages-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .pages-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .pages-list::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 10px;
+    }
+
+    .pages-list::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
     }
 </style>
 
 <body>
     <div class="container">
+        <section class="pages-management">
+            <div class="pages-header">
+                <h3><i class="fas fa-file-alt"></i> Pages Management</h3>
+                <div class="pages-controls">
+                    <button class="btn-new" id="new-page">
+                        <i class="fas fa-plus"></i> New Page
+                    </button>
+                    <button class="btn-delete" id="delete-all">
+                        <i class="fas fa-trash-alt"></i> Delete All
+                    </button>
+                </div>
+            </div>
+            <div class="pages-list" id="pages-list">
+                <!-- سيتم ملء قائمة الصفحات ديناميكيًا -->
+            </div>
+        </section>
+        
         <section class="tools-board">
             <div class="row">
                 <label class="title">Shapes</label>
@@ -258,7 +556,7 @@
                 </ul>
             </div>
             <div class="row">
-                <label class="title">Options</label>
+                <label class="title">Tools</label>
                 <ul class="options">
                     <li class="option active tool" id="brush">
                         <img src="icons/brush.svg" alt="">
@@ -286,9 +584,17 @@
                 </ul>
             </div>
             <div class="row buttons">
-                <button class="clear-canvas">Clear</button>
-                <button class="save-img">Save As Image</button>
-                <a href="index.html"><button class="save-img">Home</button></a>
+                <button class="clear-canvas">
+                    <i class="fas fa-broom"></i> Clear Canvas
+                </button>
+                <button class="save-img">
+                    <i class="fas fa-save"></i> Save As Image
+                </button>
+                <a href="homee.html" style="width: 100%; text-decoration: none;">
+                    <button class="save-img">
+                        <i class="fas fa-home"></i> Home
+                    </button>
+                </a>
             </div>
         </section>
         <section class="drawing-board">
@@ -306,26 +612,189 @@
             clearCanvas = document.querySelector(".clear-canvas"),
             eraserIndicator = document.querySelector(".eraser-indicator"),
             saveImg = document.querySelector(".save-img"),
+            newPageBtn = document.querySelector("#new-page"),
+            deleteAllBtn = document.querySelector("#delete-all"),
+            pagesList = document.querySelector("#pages-list"),
             ctx = canvas.getContext("2d");
 
         let prevMouseX, prevMouseY, snapshot,
             isDrawing = false,
             selectedTool = "brush",
             brushWidth = 5,
-            selectedColor = "#000";
+            selectedColor = "#000",
+            currentPageId = null,
+            pages = JSON.parse(localStorage.getItem('drawingPages')) || [];
 
+        // تهيئة التطبيق
+        const initApp = () => {
+            // إنشاء صفحة افتراضية إذا لم تكن هناك صفحات
+            if (pages.length === 0) {
+                createNewPage();
+            } else {
+                // تحميل الصفحة الأولى
+                loadPage(pages[0].id);
+            }
+            
+            // تحديث عرض قائمة الصفحات
+            updatePagesList();
+            
+            // ضبط أبعاد اللوحة
+            resizeCanvas();
+        };
+
+        // إنشاء صفحة جديدة
+        const createNewPage = () => {
+            const pageId = 'page_' + Date.now();
+            const newPage = {
+                id: pageId,
+                name: `Page ${pages.length + 1}`,
+                data: null, // سيتم حفظ البيانات عند التبديل
+                timestamp: Date.now()
+            };
+            
+            pages.push(newPage);
+            savePagesToStorage();
+            loadPage(pageId);
+            updatePagesList();
+        };
+
+        // تحميل صفحة
+        const loadPage = (pageId) => {
+            // حفظ الصفحة الحالية قبل التبديل
+            if (currentPageId) {
+                saveCurrentPage();
+            }
+            
+            const page = pages.find(p => p.id === pageId);
+            if (page) {
+                currentPageId = pageId;
+                
+                // مسح اللوحة الحالية
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                setCanvasBackground();
+                
+                // تحميل بيانات الصفحة إذا كانت موجودة
+                if (page.data) {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    img.src = page.data;
+                }
+                
+                // تحديث القائمة النشطة
+                updatePagesList();
+            }
+        };
+
+        // حفظ الصفحة الحالية
+        const saveCurrentPage = () => {
+            if (currentPageId) {
+                const pageIndex = pages.findIndex(p => p.id === currentPageId);
+                if (pageIndex !== -1) {
+                    pages[pageIndex].data = canvas.toDataURL();
+                    savePagesToStorage();
+                }
+            }
+        };
+
+        // حذف صفحة
+        const deletePage = (pageId) => {
+            if (pages.length <= 1) {
+                alert('You must have at least one page');
+                return;
+            }
+            
+            const pageIndex = pages.findIndex(p => p.id === pageId);
+            if (pageIndex !== -1) {
+                pages.splice(pageIndex, 1);
+                savePagesToStorage();
+                
+                // إذا كنا نحذف الصفحة النشطة، تحميل صفحة أخرى
+                if (pageId === currentPageId) {
+                    loadPage(pages[0].id);
+                } else {
+                    updatePagesList();
+                }
+            }
+        };
+
+        // حذف جميع الصفحات
+        const deleteAllPages = () => {
+            if (confirm('Are you sure you want to delete all pages?')) {
+                pages = [];
+                savePagesToStorage();
+                createNewPage();
+            }
+        };
+
+        // حفظ الصفحات في التخزين المحلي
+        const savePagesToStorage = () => {
+            localStorage.setItem('drawingPages', JSON.stringify(pages));
+        };
+
+        // تحديث قائمة الصفحات
+        const updatePagesList = () => {
+            pagesList.innerHTML = '';
+            
+            pages.forEach(page => {
+                const pageItem = document.createElement('div');
+                pageItem.className = `page-item ${page.id === currentPageId ? 'active' : ''}`;
+                
+                const pageName = document.createElement('div');
+                pageName.className = 'page-name';
+                pageName.textContent = page.name;
+                
+                const pageDate = document.createElement('div');
+                pageDate.className = 'page-date';
+                pageDate.textContent = new Date(page.timestamp).toLocaleDateString();
+                
+                pageItem.appendChild(pageName);
+                pageItem.appendChild(pageDate);
+                
+                pageItem.addEventListener('click', () => loadPage(page.id));
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-page';
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deletePage(page.id);
+                });
+                
+                pageItem.appendChild(deleteBtn);
+                pagesList.appendChild(pageItem);
+            });
+        };
+
+        // ضبط خلفية اللوحة
         const setCanvasBackground = () => {
             ctx.fillStyle = "#fff";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = selectedColor;
-        }
+        };
 
-        window.addEventListener("load", () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
+        // ضبط أبعاد اللوحة
+        const resizeCanvas = () => {
+            const drawingBoard = document.querySelector('.drawing-board');
+            canvas.width = drawingBoard.offsetWidth;
+            canvas.height = drawingBoard.offsetHeight;
             setCanvasBackground();
-        });
+            
+            // إعادة تحميل الصفحة الحالية بعد تغيير الحجم
+            if (currentPageId) {
+                const page = pages.find(p => p.id === currentPageId);
+                if (page && page.data) {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    img.src = page.data;
+                }
+            }
+        };
 
+        // دوال الرسم
         const drawRect = (e) => {
             const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
             const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
@@ -334,7 +803,7 @@
                 return ctx.strokeRect(mouseX, mouseY, prevMouseX - mouseX, prevMouseY - mouseY);
             }
             ctx.fillRect(mouseX, mouseY, prevMouseX - mouseX, prevMouseY - mouseY);
-        }
+        };
 
         const drawCircle = (e) => {
             const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
@@ -344,7 +813,7 @@
             let radius = Math.sqrt(Math.pow((prevMouseX - mouseX), 2) + Math.pow((prevMouseY - mouseY), 2));
             ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
             fillColor.checked ? ctx.fill() : ctx.stroke();
-        }
+        };
 
         const drawTriangle = (e) => {
             const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
@@ -356,7 +825,7 @@
             ctx.lineTo(prevMouseX * 2 - mouseX, mouseY);
             ctx.closePath();
             fillColor.checked ? ctx.fill() : ctx.stroke();
-        }
+        };
 
         const startDraw = (e) => {
             e.preventDefault();
@@ -371,7 +840,7 @@
             ctx.strokeStyle = selectedColor;
             ctx.fillStyle = selectedColor;
             snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        }
+        };
 
         const drawing = (e) => {
             if (!isDrawing) return;
@@ -391,18 +860,22 @@
             } else {
                 drawTriangle(e);
             }
-        }
+        };
 
         const stopDraw = (e) => {
             e.preventDefault();
             isDrawing = false;
-        }
+            // حفظ الصفحة بعد الانتهاء من الرسم
+            saveCurrentPage();
+        };
 
+        // أحداث الأدوات
         toolBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 document.querySelector(".options .active").classList.remove("active");
                 btn.classList.add("active");
                 selectedTool = btn.id;
+                eraserIndicator.style.display = (selectedTool === "eraser") ? "block" : "none";
             });
         });
 
@@ -424,15 +897,20 @@
         clearCanvas.addEventListener("click", () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             setCanvasBackground();
+            saveCurrentPage();
         });
 
         saveImg.addEventListener("click", () => {
             const link = document.createElement("a");
-            link.download = `${Date.now()}.jpg`;
+            link.download = `drawing-${Date.now()}.jpg`;
             link.href = canvas.toDataURL();
             link.click();
         });
 
+        newPageBtn.addEventListener("click", createNewPage);
+        deleteAllBtn.addEventListener("click", deleteAllPages);
+
+        // أحداث الفأرة واللمس
         canvas.addEventListener("mousemove", (e) => {
             if (selectedTool === "eraser") {
                 eraserIndicator.style.width = brushWidth + "px";
@@ -446,16 +924,6 @@
             drawing(e);
         });
 
-        toolBtns.forEach(btn => {
-            btn.addEventListener("click", () => {
-                document.querySelector(".options .active").classList.remove("active");
-                btn.classList.add("active");
-                selectedTool = btn.id;
-                eraserIndicator.style.display = (selectedTool === "eraser") ? "block" : "none";
-            });
-        });
-
-
         canvas.addEventListener("mousedown", startDraw);
         canvas.addEventListener("mousemove", drawing);
         canvas.addEventListener("mouseup", stopDraw);
@@ -463,8 +931,12 @@
         canvas.addEventListener("touchstart", startDraw);
         canvas.addEventListener("touchmove", drawing);
         canvas.addEventListener("touchend", stopDraw);
+
+        // أحداث تغيير الحجم
+        window.addEventListener("resize", resizeCanvas);
+
+        // تهيئة التطبيق عند التحميل
+        window.addEventListener("load", initApp);
     </script>
-
 </body>
-
 </html>

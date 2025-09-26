@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaterialX | الصفحة الرئيسية</title>
+    <title>MaterialX | Home</title>
     <link rel="icon" type="image/png" href="img/photo_2024-10-01_00-48-56.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         :root {
@@ -39,12 +39,12 @@
             min-height: 100vh;
             background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
             color: var(--text-color);
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
             position: relative;
         }
 
-        /* تأثيرات الخلفية المتطورة */
+        /* Advanced background effects */
         .bg-effects {
             position: absolute;
             top: 0;
@@ -85,7 +85,7 @@
             }
         }
 
-        /* شبكة خلفية */
+        /* Background grid */
         .grid-lines {
             position: absolute;
             top: 0;
@@ -100,7 +100,7 @@
             z-index: 1;
         }
 
-        /* الحاوية الرئيسية */
+        /* Main container */
         .intro-container {
             position: relative;
             z-index: 20;
@@ -114,7 +114,7 @@
             perspective: 1000px;
         }
 
-        /* الشعار */
+        /* Logo */
         #logo {
             display: none;
             width: min(35vw, 350px);
@@ -155,7 +155,7 @@
             }
         }
 
-        /* النص الرئيسي */
+        /* Main text */
         #text {
             display: none;
             font-size: clamp(3rem, 9vw, 7rem);
@@ -221,7 +221,7 @@
             100% { left: 100%; }
         }
 
-        /* العنوان الفرعي */
+        /* Subtitle */
         .subtitle {
             display: none;
             font-size: clamp(1.2rem, 3.5vw, 2rem);
@@ -246,7 +246,7 @@
             }
         }
 
-        /* شريط التحميل */
+        /* Loading bar */
         .loading-container {
             position: relative;
             width: 80%;
@@ -299,7 +299,7 @@
             100% { left: 100%; }
         }
 
-        /* معلومات إضافية */
+        /* Info cards */
         .info-cards {
             display: flex;
             justify-content: center;
@@ -307,6 +307,7 @@
             margin-top: 40px;
             opacity: 0;
             animation: fadeInUp 1s 3s forwards;
+            flex-wrap: wrap;
         }
 
         .info-card {
@@ -319,6 +320,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: var(--box-shadow);
             transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            flex: 0 0 auto;
         }
 
         .info-card:hover {
@@ -343,7 +345,7 @@
             color: var(--text-secondary);
         }
 
-        /* تأثيرات الانتقال */
+        /* Transition effects */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -375,18 +377,35 @@
             }
         }
 
-        /* تصميم متجاوب متقدم */
-        @media (max-width: 1024px) {
+        /* Advanced responsive design */
+        @media (max-width: 1200px) {
+            .intro-container {
+                padding: 25px;
+            }
+            
+            #logo {
+                width: min(40vw, 320px);
+            }
+        }
+
+        @media (max-width: 992px) {
             .intro-container {
                 padding: 20px;
             }
             
             #logo {
                 width: min(45vw, 300px);
+                margin-bottom: 25px;
             }
             
             .info-cards {
-                flex-wrap: wrap;
+                gap: 15px;
+                margin-top: 35px;
+            }
+            
+            .info-card {
+                width: 140px;
+                padding: 18px;
             }
         }
 
@@ -396,66 +415,170 @@
             }
             
             #logo {
-                width: min(60vw, 280px);
+                width: min(55vw, 280px);
+                margin-bottom: 20px;
             }
             
             #text {
                 font-size: clamp(2.5rem, 12vw, 5rem);
-                padding: 5px 10px;
+                padding: 8px 16px;
+                margin-bottom: 10px;
             }
             
             .subtitle {
                 font-size: clamp(1rem, 4vw, 1.5rem);
             }
             
+            .info-cards {
+                gap: 12px;
+                margin-top: 30px;
+            }
+            
             .info-card {
-                width: 130px;
+                width: calc(50% - 12px);
                 padding: 15px;
+            }
+            
+            .info-card i {
+                font-size: 1.8rem;
+            }
+            
+            .info-card h3 {
+                font-size: 0.9rem;
+            }
+            
+            .info-card p {
+                font-size: 0.75rem;
+            }
+            
+            .loading-container {
+                width: 90%;
+                margin-top: 30px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .intro-container {
                 padding: 10px;
             }
             
             #logo {
                 width: 70vw;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
             
             #text {
                 font-size: clamp(2rem, 14vw, 4rem);
-                margin-bottom: 10px;
+                padding: 6px 12px;
+                margin-bottom: 8px;
+            }
+            
+            .subtitle {
+                font-size: clamp(0.9rem, 4.5vw, 1.3rem);
+                letter-spacing: 1px;
             }
             
             .info-cards {
                 gap: 10px;
-                margin-top: 30px;
+                margin-top: 25px;
             }
             
             .info-card {
-                width: calc(50% - 10px);
+                width: 100%;
+                max-width: 200px;
+                padding: 12px;
+            }
+            
+            .info-card i {
+                font-size: 1.6rem;
+                margin-bottom: 8px;
+            }
+            
+            .info-card h3 {
+                font-size: 0.85rem;
+            }
+            
+            .info-card p {
+                font-size: 0.7rem;
+            }
+            
+            .loading-container {
+                width: 95%;
+                margin-top: 25px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            #logo {
+                width: 80vw;
+            }
+            
+            #text {
+                font-size: clamp(1.8rem, 16vw, 3.5rem);
+            }
+            
+            .subtitle {
+                font-size: clamp(0.8rem, 5vw, 1.2rem);
+            }
+            
+            .info-card {
+                padding: 10px;
+            }
+        }
+
+        @media (max-height: 600px) and (orientation: landscape) {
+            .intro-container {
+                padding: 15px;
+                flex-direction: row;
+                gap: 30px;
+            }
+            
+            #logo {
+                width: min(25vh, 200px);
+                margin-bottom: 0;
+            }
+            
+            .text-content {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            #text {
+                font-size: clamp(2rem, 8vh, 4rem);
+                text-align: left;
+                margin-bottom: 5px;
+            }
+            
+            .subtitle {
+                text-align: left;
+                font-size: clamp(0.9rem, 3vh, 1.5rem);
+            }
+            
+            .info-cards {
+                margin-top: 20px;
+                justify-content: flex-start;
+            }
+            
+            .info-card {
+                width: 120px;
                 padding: 10px;
             }
             
             .info-card i {
                 font-size: 1.5rem;
             }
-        }
-
-        @media (max-width: 360px) {
-            .info-card {
-                width: 100%;
+            
+            .info-card h3 {
+                font-size: 0.8rem;
             }
             
-            .info-cards {
-                flex-direction: column;
-                align-items: center;
+            .info-card p {
+                font-size: 0.65rem;
             }
         }
 
-        /* شاشة التحميل الأولية */
+        /* Initial loading screen */
         #initial-loader {
             position: fixed;
             top: 0;
@@ -483,6 +606,37 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Skip intro button for returning visitors */
+        .skip-intro {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 30;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .skip-intro:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .skip-intro {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -490,40 +644,44 @@
         <div class="loader-spinner"></div>
     </div>
     
+    <button class="skip-intro" id="skipIntro">Skip Intro</button>
+    
     <div class="bg-effects" id="bgEffects"></div>
     <div class="grid-lines"></div>
     
-   <div class="intro-container">
-    <div id="text"></div>
-    <div class="subtitle">Premium Materials and Solutions</div>
-    <img id="logo" src="img/WhatsApp_Image_2024-11-16_at_11.34.png" alt="MaterialX Logo">
-    
-    <div class="loading-container">
-        <div class="loading-text">Loading...</div>
-        <div class="loading-bar">
-            <div class="loading-progress"></div>
+    <div class="intro-container">
+        <img id="logo" src="img/WhatsApp_Image_2024-11-16_at_11.34.png" alt="MaterialX Logo">
+        
+        <div class="text-content">
+            <div id="text"></div>
+            <div class="subtitle">Premium Materials and Solutions</div>
+        </div>
+        
+        <div class="loading-container">
+            <div class="loading-text">Loading...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+        
+        <div class="info-cards">
+            <div class="info-card">
+                <i class='bx bx-cube'></i>
+                <h3>High Quality</h3>
+                <p>Best materials and resources</p>
+            </div>
+            <div class="info-card">
+                <i class='bx bx-rocket'></i>
+                <h3>Fast Delivery</h3>
+                <p>Available worldwide</p>
+            </div>
+            <div class="info-card">
+                <i class='bx bx-support'></i>
+                <h3>Customer Support</h3>
+                <p>24/7 assistance</p>
+            </div>
         </div>
     </div>
-    
-    <div class="info-cards">
-        <div class="info-card">
-            <i class='bx bx-cube'></i>
-            <h3>High Quality</h3>
-            <p>Best materials and resources</p>
-        </div>
-        <div class="info-card">
-            <i class='bx bx-rocket'></i>
-            <h3>Fast Delivery</h3>
-            <p>Available worldwide</p>
-        </div>
-        <div class="info-card">
-            <i class='bx bx-support'></i>
-            <h3>Customer Support</h3>
-            <p>24/7 assistance</p>
-        </div>
-    </div>
-</div>
-
 
     <script>
         const textElement = document.getElementById('text');
@@ -534,10 +692,11 @@
         const bgEffects = document.getElementById('bgEffects');
         const initialLoader = document.getElementById('initial-loader');
         const infoCards = document.querySelector('.info-cards');
+        const skipIntroBtn = document.getElementById('skipIntro');
         const text = "MaterialX";
         let index = 0;
 
-        // إخفاء شاشة التحميل الأولية بعد تحميل الصفحة
+        // Hide initial loader after page load
         window.addEventListener('load', () => {
             setTimeout(() => {
                 initialLoader.style.opacity = '0';
@@ -547,7 +706,7 @@
             }, 1000);
         });
 
-        // إنشاء تأثيرات الجسيمات في الخلفية
+        // Create background particle effects
         function createParticles() {
             const particleCount = Math.min(40, Math.floor(window.innerWidth / 25));
             
@@ -555,26 +714,31 @@
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // حجم عشوائي
+                // Random size
                 const size = Math.random() * 120 + 30;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
-                // موضع عشوائي
+                // Random position
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
                 
-                // تأخير عشوائي للحركة
+                // Random animation delay
                 particle.style.animationDelay = `${Math.random() * 20}s`;
                 
-                // شفافية عشوائية
+                // Random opacity
                 particle.style.opacity = Math.random() * 0.1 + 0.05;
                 
                 bgEffects.appendChild(particle);
             }
         }
 
-        // التحقق من الزيارة الأولى
+        // Skip intro functionality
+        skipIntroBtn.addEventListener('click', () => {
+            window.location.href = 'homee.html';
+        });
+
+        // Check if first visit
         if (!sessionStorage.getItem('firstVisit')) {
             sessionStorage.setItem('firstVisit', 'true');
             setTimeout(() => {
@@ -582,8 +746,12 @@
                 showLogo();
             }, 1200);
         } else {
-            // الانتقال مباشرة إلى الصفحة الرئيسية إذا لم تكن الزيارة الأولى
-            window.location.href = 'homee.html';
+            // Skip intro for returning visitors
+            skipIntroBtn.style.display = 'block';
+            setTimeout(() => {
+                createParticles();
+                showLogo();
+            }, 1200);
         }
 
         function showLogo() {
@@ -600,12 +768,12 @@
                 index++;
                 setTimeout(showText, 100);
             } else {
-                // إظهار العنوان الفرعي وشريط التحميل
+                // Show subtitle, loading bar, and info cards
                 subtitleElement.style.display = 'block';
                 loadingContainer.style.display = 'block';
                 infoCards.style.display = 'flex';
                 
-                // محاكاة شريط التحميل
+                // Simulate loading progress
                 let progress = 0;
                 const progressInterval = setInterval(() => {
                     progress += Math.random() * 8 + 2;
@@ -613,7 +781,7 @@
                         progress = 100;
                         clearInterval(progressInterval);
                         
-                        // الانتقال إلى الصفحة التالية بعد اكتمال التحميل
+                        // Redirect to next page after loading completes
                         setTimeout(() => {
                             document.querySelector('.intro-container').classList.add('fade-out');
                             setTimeout(() => {
@@ -626,17 +794,17 @@
             }
         }
 
-        // إعادة إنشاء الجسيمات عند تغيير حجم النافذة
+        // Recreate particles on window resize
         window.addEventListener('resize', () => {
-            // إزالة الجسيمات القديمة
+            // Remove old particles
             while (bgEffects.firstChild) {
                 bgEffects.removeChild(bgEffects.firstChild);
             }
-            // إنشاء جسيمات جديدة
+            // Create new particles
             createParticles();
         });
 
-        // تأثيرات تفاعلية للبطاقات
+        // Interactive effects for cards
         document.querySelectorAll('.info-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-10px) scale(1.05)';

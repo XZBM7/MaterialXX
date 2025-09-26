@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>MaterialX |  Task Manager</title>
-        <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <title>MaterialX | Task Manager</title>
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
 
     <style>
         :root {
@@ -262,6 +262,11 @@
             box-shadow: var(--shadow-hover);
         }
 
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
         .search-filter {
             display: flex;
             gap: 1rem;
@@ -420,6 +425,13 @@
         .stat-label {
             font-size: 0.9rem;
             opacity: 0.9;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .recent-activity {
@@ -593,6 +605,12 @@
             .search-filter {
                 flex-direction: column;
             }
+
+            .activity-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
         }
 
         /* Animation for new tasks */
@@ -622,8 +640,6 @@
             <p class="tagline">Your modern, intuitive task management solution</p>
         </div>
     </header>
-
-
 
     <main class="main-content">
         <div class="dashboard">
@@ -681,15 +697,16 @@
                     </div>
                 </div>
                 
-                <h3 class="section-title" style="font-size: 1.2rem; margin-top: 1.5rem;"><i class="fas fa-clock"></i> Recent Activity</h3>
+                <div class="activity-header">
+                    <h3 class="section-title" style="font-size: 1.2rem; margin-top: 1.5rem;"><i class="fas fa-clock"></i> Recent Activity</h3>
+                    <button class="btn btn-danger btn-small" id="clearActivityBtn"><i class="fas fa-trash"></i> Clear All</button>
+                </div>
                 <ul class="recent-activity" id="recentActivity">
                     <!-- Activity items will be added here -->
                 </ul>
             </div>
         </div>
     </main>
-
-   
 
     <div class="scroll-to-top" id="scrollToTop">
         <i class="fas fa-chevron-up"></i>
@@ -704,6 +721,7 @@
             const searchInput = document.getElementById('searchInput');
             const filterSelect = document.getElementById('filterSelect');
             const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+            const clearActivityBtn = document.getElementById('clearActivityBtn');
             const emptyState = document.getElementById('emptyState');
             const scrollToTopBtn = document.getElementById('scrollToTop');
             
@@ -735,6 +753,7 @@
                 searchInput.addEventListener('input', filterTasks);
                 filterSelect.addEventListener('change', filterTasks);
                 clearCompletedBtn.addEventListener('click', clearCompletedTasks);
+                clearActivityBtn.addEventListener('click', clearAllActivity);
                 
                 // Scroll to top button
                 window.addEventListener('scroll', toggleScrollToTop);
@@ -819,6 +838,17 @@
                     addActivity(`Cleared ${completedCount} completed task(s)`);
                     renderTasks();
                     updateStats();
+                }
+            }
+            
+            function clearAllActivity() {
+                if (activityLog.length === 0) return;
+                
+                if (confirm('Are you sure you want to clear all activity history?')) {
+                    activityLog = [];
+                    saveActivityLog();
+                    renderRecentActivity();
+                    addActivity('Cleared all activity history');
                 }
             }
             
