@@ -28,12 +28,17 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: var(--dark);
             min-height: 100vh;
             padding: 20px;
+            line-height: 1.6;
         }
 
         .container {
@@ -44,7 +49,7 @@
         .header {
             text-align: center;
             margin-bottom: 30px;
-            padding: 30px;
+            padding: 30px 20px;
             background: var(--gradient);
             color: white;
             border-radius: var(--radius);
@@ -65,24 +70,27 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
+            font-weight: 700;
         }
 
         .header p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             opacity: 0.9;
             position: relative;
             z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .card {
             background: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 25px;
+            padding: clamp(15px, 4vw, 25px);
             margin-bottom: 25px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -98,6 +106,7 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f0f0;
             font-weight: 700;
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
         }
 
         select {
@@ -116,6 +125,7 @@
             background-position: right 15px center;
             background-size: 16px;
             padding-right: 45px;
+            cursor: pointer;
         }
 
         select:focus {
@@ -130,7 +140,7 @@
 
         .lessons-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -143,6 +153,7 @@
             align-items: center;
             transition: all 0.3s ease;
             border-left: 4px solid var(--primary);
+            cursor: pointer;
         }
 
         .lesson-card:hover {
@@ -159,10 +170,11 @@
             margin-right: 15px;
             transform: scale(1.3);
             accent-color: var(--success);
+            cursor: pointer;
         }
 
         .lesson-label {
-            font-size: 16px;
+            font-size: clamp(14px, 3vw, 16px);
             font-weight: 500;
             flex-grow: 1;
             cursor: pointer;
@@ -179,6 +191,8 @@
             justify-content: space-between;
             margin-bottom: 10px;
             font-weight: 500;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .progress-bar {
@@ -221,6 +235,14 @@
         .note-input-container {
             display: flex;
             margin-bottom: 20px;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (min-width: 480px) {
+            .note-input-container {
+                flex-direction: row;
+            }
         }
 
         .note-input {
@@ -231,6 +253,8 @@
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             transition: border-color 0.3s ease;
+            min-height: 50px;
+            resize: vertical;
         }
 
         .note-input:focus {
@@ -243,12 +267,13 @@
             color: white;
             border: none;
             border-radius: var(--radius);
-            padding: 0 20px;
-            margin-left: 10px;
+            padding: 15px 20px;
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: 120px;
         }
 
         .add-note-btn:hover {
@@ -269,8 +294,9 @@
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             animation: slideIn 0.3s ease;
+            gap: 10px;
         }
 
         @keyframes slideIn {
@@ -281,6 +307,7 @@
         .note-text {
             flex-grow: 1;
             margin-right: 15px;
+            word-break: break-word;
         }
 
         .delete-note {
@@ -290,6 +317,7 @@
             cursor: pointer;
             font-size: 18px;
             transition: color 0.3s ease;
+            flex-shrink: 0;
         }
 
         .delete-note:hover {
@@ -308,6 +336,13 @@
             text-align: center;
             margin-top: 20px;
             box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+            width: 100%;
+        }
+
+        @media (min-width: 480px) {
+            .home-button {
+                width: auto;
+            }
         }
 
         .home-button:hover {
@@ -333,6 +368,8 @@
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
+            border: none;
+            font-size: 20px;
         }
 
         .scroll-to-top.visible {
@@ -364,17 +401,101 @@
             background: var(--secondary);
         }
 
+        /* Improved responsive design */
         @media (max-width: 768px) {
-            .lessons-grid {
-                grid-template-columns: 1fr;
+            body {
+                padding: 15px;
             }
             
-            .header h1 {
-                font-size: 2rem;
+            .header {
+                padding: 20px 15px;
+                margin-bottom: 20px;
             }
             
             .card {
-                padding: 20px;
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .lesson-card {
+                padding: 15px;
+            }
+            
+            .note-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .delete-note {
+                align-self: flex-end;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 15px 10px;
+            }
+            
+            .card {
+                padding: 15px 10px;
+            }
+            
+            select {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
+            .lesson-card {
+                padding: 12px;
+            }
+            
+            .lesson-checkbox {
+                transform: scale(1.1);
+                margin-right: 10px;
+            }
+            
+            .add-note-btn {
+                padding: 12px 15px;
+                min-width: 100px;
+            }
+            
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --primary: #000080;
+                --secondary: #0000FF;
+                --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            }
+            
+            .card {
+                border: 2px solid var(--dark);
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
             }
         }
     </style>
@@ -434,7 +555,7 @@
         </div>
 
         <div style="text-align: center;">
-            <a href="home.html" class="home-button">
+            <a href="homee.html" class="home-button">
                 <i class="fas fa-home"></i> Back to Home
             </a>
         </div>
@@ -462,27 +583,34 @@
         // Departments and Subjects Data
         const sections = {
             'IS': ['Data Mining', 'Database 2', 'Artificial Intelligence', 'Big Data', 'Data Storage', 'Data Analytics'],
-            // 'CS': ['Advanced Algorithms', 'Software Engineering', 'Computer Networks', 'Operating Systems', 'Information Security', 'Virtual Reality'],
+'CS': [
+    'Machine Learning',
+    'Artificial Intelligence',
+    'Computer Organization',
+    'Parallel Processing',
+    'Operating System - 2',
+    'Database 2',
+    'Concepts in Computer Science'
+],
             'AI': ['Parallel Processing', 'Machine Learning', 'Artificial Intelligence', 'Big Data', 'Database 2', 'Convex Optimization']
         };
 
         // Lectures Data (11 lectures for each subject)
         const lessons = {
-            'Data Mining': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Database 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Artificial Intelligence': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Big Data': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Data Storage': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Data Analytics': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Advanced Algorithms': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Software Engineering': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Computer Networks': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Operating Systems': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Information Security': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Virtual Reality': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Parallel Processing': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Machine Learning': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-            'Convex Optimization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+      'Data Mining': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Database 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Artificial Intelligence': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Big Data': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Data Storage': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Data Analytics': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Parallel Processing': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Machine Learning': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Convex Optimization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Computer Organization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Operating System - 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+'Concepts in Computer Science': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+
+
         };
 
         // Load progress and notes data from localStorage

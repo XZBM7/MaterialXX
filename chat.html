@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
@@ -8,17 +8,38 @@
     <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbc;
+            --accent-color: #ff7e5f;
+            --light-color: #f5f7fa;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --error-color: #e74c3c;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             direction: rtl;
             text-align: right;
-            background-color: #e5ddd5;
+            background: linear-gradient(135deg, #e5ddd5 0%, #d6e4f0 100%);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             height: 100vh;
             overflow: hidden;
+            color: var(--dark-color);
         }
 
         .chatbot-container {
@@ -26,166 +47,364 @@
             flex-direction: column;
             height: 100%;
             width: 100%;
-            background-color: #e5ddd5;
-            background-image: url('your-image-url.jpg');
-            background-size: cover;
-            background-position: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header .logo {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--success-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         #chat-box {
             flex: 1;
             overflow-y: auto;
-            padding: 15px;
-            background-color: rgba(236, 229, 221, 0.9);
+            padding: 20px;
+            background-color: var(--light-color);
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            border-radius: 10px;
-            padding-bottom: 60px;
+            gap: 15px;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5f7fa"/><path d="M0 0L100 100M100 0L0 100" stroke="%23e0e7ff" stroke-width="0.5"/></svg>');
+            background-size: 200px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
         }
 
         .chat-message {
-            max-width: 75%;
-            padding: 12px 15px;
+            max-width: 80%;
+            padding: 12px 18px;
             border-radius: 18px;
             font-size: 1rem;
             line-height: 1.6;
             margin: 5px 0;
+            position: relative;
+            transition: var(--transition);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .bot-message {
-            background-color: #ffffff;
+            background-color: white;
             align-self: flex-start;
-            border-radius: 18px 18px 18px 0;
-            color: #333;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+            border-radius: 18px 18px 18px 5px;
+            color: var(--dark-color);
+            box-shadow: var(--shadow);
+            border: 1px solid #e0e7ff;
+        }
+
+        .bot-message:before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid white;
         }
 
         .user-message {
-            background-color: #dcf8c6;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             align-self: flex-end;
-            border-radius: 18px 18px 0 18px;
-            color: #000;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+            border-radius: 18px 18px 5px 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .user-message:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--primary-color);
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .user-message .message-time {
+            text-align: right;
         }
 
         .input-area {
             display: flex;
-            padding: 10px;
-            background-color: #ffffff;
-            border-top: 1px solid #ddd;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e0e7ff;
             align-items: center;
             gap: 10px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
         }
 
         input[type="text"] {
             flex: 1;
-            padding: 12px;
-            border-radius: 20px;
-            border: 1px solid #ccc;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
             outline: none;
             box-sizing: border-box;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9f9f9;
         }
 
         input[type="text"]:focus {
-            border-color: #4CAF50;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+            background-color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
         }
 
         button {
             padding: 12px;
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .clear-btn {
+            background-color: var(--warning-color);
+        }
+
+        .clear-btn:hover {
+            background-color: #e67e22;
         }
 
         .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-top: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
         }
 
         .option {
-            padding: 8px 12px;
-            border-radius: 5px;
+            padding: 10px 15px;
+            border-radius: 20px;
             cursor: pointer;
-            background-color: #f2f2f2;
-            margin: 5px 0;
+            background-color: white;
+            border: 1px solid #e0e7ff;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .option:hover {
-            background-color: #e0e0e0;
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        @media (max-width: 600px) {
+        .specialization-info {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-top: 10px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-section {
+            margin-bottom: 15px;
+        }
+
+        .info-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .info-section ul {
+            padding-right: 20px;
+        }
+
+        .info-section li {
+            margin-bottom: 5px;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quick-action {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 18px;
+            align-self: flex-start;
+            box-shadow: var(--shadow);
+            margin: 5px 0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-container {
+                border-radius: 0;
+                height: 100vh;
+            }
+            
             .chat-message {
-                font-size: 0.9rem;
+                max-width: 90%;
+                font-size: 0.95rem;
             }
-
-            input[type="text"] {
-                font-size: 1rem;
-            }
-
-            button {
-                font-size: 1.1rem;
-            }
-
+            
             .input-area {
-                padding: 1vh;
+                padding: 10px;
             }
-
-            #chat-box {
-                padding-bottom: 80px;
+            
+            button {
+                width: 40px;
+                height: 40px;
+                padding: 10px;
+            }
+            
+            .options {
+                flex-direction: column;
             }
         }
 
-        @media (min-width: 601px) {
-            .chat-message {
-                font-size: 1rem;
-            }
-
-            input[type="text"] {
-                font-size: 1.1rem;
-            }
-
-            button {
+        @media (max-width: 480px) {
+            .chat-header h1 {
                 font-size: 1.2rem;
             }
-
-            .input-area {
-                padding: 10px;
-            }
-
-            #chat-box {
-                padding-bottom: 60px;
-            }
-        }
-
-        @media (min-width: 768px) {
+            
             .chat-message {
-                max-width: 60%;
+                max-width: 95%;
+                padding: 10px 15px;
             }
-
+            
             input[type="text"] {
-                padding: 10px;
+                padding: 10px 15px;
             }
         }
     </style>
@@ -193,62 +412,38 @@
 
 <body>
     <div class="chatbot-container">
-        <div id="chat-box">
+        <div class="chat-header">
+            <h1><span class="logo">M</span> Materialx Assistant</h1>
+            <div class="chat-status">
+                <span class="status-indicator"></span>
+                <span>متصل</span>
+            </div>
         </div>
+        
+        <div id="chat-box">
+            <div class="welcome-message">
+                <h2>مرحباً بك في مساعد Materialx التعليمي!</h2>
+                <p>أنا هنا لمساعدتك في رحلتك التعليمية. كيف يمكنني مساعدتك اليوم؟</p>
+            </div>
+        </div>
+
+        
+        
         <div class="input-area">
             <input type="text" id="user-input" placeholder="اكتب رسالتك هنا...">
-            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-            <button onclick="clearChat()"><i class="fas fa-trash-alt icon"></i></button>
-
+            <div class="action-buttons">
+                <button onclick="sendMessage()" title="إرسال"><i class="fas fa-paper-plane"></i></button>
+                <button onclick="clearChat()" class="clear-btn" title="مسح المحادثة"><i class="fas fa-trash-alt"></i></button>
+            </div>
         </div>
     </div>
 
+    
+
+    
+
     <script>
-        const data = { 1: { advice: ["\u0631\u0643\u0632 \u0639\u0644\u0649 \u062A\u0639\u0644\u0645 \u0623\u0633\u0627\u0633\u064A\u0627\u062A \u0627\u0644\u0628\u0631\u0645\u062C\u0629 \u0645\u062B\u0644 \u0627\u0644\u062E\u0648\u0627\u0631\u0632\u0645\u064A\u0627\u062A \u0648\u0647\u064A\u0627\u0643\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A.", "\u0627\u0628\u062F\u0623 \u0628\u062A\u062C\u0631\u0628\u0629 \u0644\u063A\u0627\u062A \u0628\u0631\u0645\u062C\u0629 \u0645\u062E\u062A\u0644\u0641\u0629 \u0644\u062A\u062D\u062F\u064A\u062F \u0645\u0627 \u064A\u0646\u0627\u0633\u0628\u0643\u060C \u0645\u062B\u0644 Python \u0648JavaScript.", "\u0627\u0647\u062A\u0645 \u0628\u0641\u0647\u0645 \u0627\u0644\u0645\u0641\u0627\u0647\u064A\u0645 \u0627\u0644\u0623\u0633\u0627\u0633\u064A\u0629 \u0645\u062B\u0644 \u0627\u0644\u0645\u062A\u063A\u064A\u0631\u0627\u062A\u060C \u0627\u0644\u0634\u0631\u0637\u064A\u0629\u060C \u0648\u0627\u0644\u062D\u0644\u0642\u0627\u062A \u0627\u0644\u062A\u0643\u0631\u0627\u0631\u064A\u0629."], resources: ["\u0642\u0646\u0648\u0627\u062A \u064A\u0648\u062A\u064A\u0648\u0628 \u0645\u062B\u0644 'TheNewBoston' \u0648'Academind' \u0644\u062A\u0639\u0644\u0645 \u0627\u0644\u0628\u0631\u0645\u062C\u0629.", "\u0645\u0648\u0627\u0642\u0639 \u0645\u062B\u0644 'Codecademy' \u0648'Coursera' \u0644\u0644\u062A\u062F\u0631\u064A\u0628 \u0627\u0644\u0639\u0645\u0644\u064A."] }, 2: { advice: ["\u0627\u0628\u062F\u0623 \u0628\u0625\u0646\u0634\u0627\u0621 \u0645\u0634\u0627\u0631\u064A\u0639 \u0635\u063A\u064A\u0631\u0629 \u0644\u0632\u064A\u0627\u062F\u0629 \u0641\u0647\u0645\u0643 \u0627\u0644\u0639\u0645\u0644\u064A.", "\u062D\u0627\u0648\u0644 \u062A\u0637\u0628\u064A\u0642 \u0627\u0644\u0645\u0641\u0627\u0647\u064A\u0645 \u0639\u0644\u0649 \u0645\u0634\u0627\u0643\u0644 \u0648\u0627\u0642\u0639\u064A\u0629 \u0645\u062B\u0644 \u0628\u0646\u0627\u0621 \u062A\u0637\u0628\u064A\u0642\u0627\u062A \u0648\u064A\u0628 \u0628\u0633\u064A\u0637\u0629.", "\u0627\u0628\u062D\u062B \u0639\u0646 \u0641\u0631\u0635 \u062A\u062F\u0631\u064A\u0628\u064A\u0629 \u0641\u064A \u0634\u0631\u0643\u0627\u062A \u0627\u0644\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627."], resources: ["\u0645\u0648\u0642\u0639 'freeCodeCamp' \u064A\u062D\u062A\u0648\u064A \u0639\u0644\u0649 \u0645\u0634\u0627\u0631\u064A\u0639 \u0639\u0645\u0644\u064A\u0629 \u0645\u0645\u064A\u0632\u0629.", "\u0627\u0633\u062A\u0641\u062F \u0645\u0646 'GitHub' \u0644\u0645\u0634\u0627\u0631\u0643\u0629 \u0645\u0634\u0627\u0631\u064A\u0639\u0643 \u0645\u0639 \u0627\u0644\u0645\u062C\u062A\u0645\u0639.", "\u062F\u0648\u0631\u0627\u062A \u062A\u0637\u0648\u064A\u0631 \u0627\u0644\u0648\u064A\u0628 \u0639\u0644\u0649 'Udemy'."] }, 3: { IS: { description: { advantages: "\u062A\u062E\u0635\u0635 \u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u064A\u062A\u064A\u062D \u0644\u0643 \u0627\u0644\u062A\u0639\u0631\u0641 \u0639\u0644\u0649 \u0643\u064A\u0641\u064A\u0629 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0648\u062A\u062D\u0644\u064A\u0644\u0647\u0627\u060C \u0645\u0645\u0627 \u064A\u062C\u0639\u0644\u0643 \u0645\u0624\u0647\u0644\u0627\u064B \u0644\u0644\u0639\u0645\u0644 \u0641\u064A \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0642\u0637\u0627\u0639\u0627\u062A.", disadvantages: "\u0642\u062F \u062A\u062C\u062F \u0646\u0641\u0633\u0643 \u0645\u062D\u0635\u0648\u0631\u064B\u0627 \u0641\u064A \u062C\u0648\u0627\u0646\u0628 \u0625\u062F\u0627\u0631\u064A\u0629 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0627\u0644\u062C\u0648\u0627\u0646\u0628 \u0627\u0644\u062A\u0642\u0646\u064A\u0629." }, advice: ["\u0631\u0643\u0632 \u0639\u0644\u0649 \u0641\u0647\u0645 \u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0648\u0643\u064A\u0641\u064A\u0629 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A.", "\u062A\u0639\u0644\u0645 \u0643\u064A\u0641\u064A\u0629 \u062A\u0635\u0645\u064A\u0645 \u0642\u0648\u0627\u0639\u062F \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0648\u062A\u0637\u0628\u064A\u0642 \u0646\u0638\u0645 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A.", "\u0627\u062D\u0631\u0635 \u0639\u0644\u0649 \u0627\u0643\u062A\u0633\u0627\u0628 \u0645\u0647\u0627\u0631\u0627\u062A \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A."], resources: ["\u062F\u0648\u0631\u0627\u062A \u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0639\u0644\u0649 'Udemy'.", "\u0643\u062A\u0628 \u062A\u062D\u0644\u064A\u0644 \u0627\u0644\u0646\u0638\u0645 \u0645\u062B\u0644 'Systems Analysis and Design'."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u062D\u0644\u0644 \u0646\u0638\u0645\u060C \u0645\u062F\u064A\u0631 \u0642\u0648\u0627\u0639\u062F \u0628\u064A\u0627\u0646\u0627\u062A\u060C \u0645\u0633\u0624\u0648\u0644 \u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A." }, CS: { description: { advantages: "\u0639\u0644\u0648\u0645 \u0627\u0644\u062D\u0627\u0633\u0648\u0628 \u062A\u0639\u062A\u0628\u0631 \u0645\u0646 \u0623\u0643\u062B\u0631 \u0627\u0644\u062A\u062E\u0635\u0635\u0627\u062A \u0637\u0644\u0628\u0627\u064B\u060C \u0648\u062A\u0641\u062A\u062D \u0644\u0643 \u0623\u0628\u0648\u0627\u0628 \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u0641\u0631\u0635 \u0641\u064A \u0645\u062C\u0627\u0644\u0627\u062A \u0627\u0644\u0628\u0631\u0645\u062C\u0629 \u0648\u0627\u0644\u062A\u0637\u0648\u064A\u0631.", disadvantages: "\u0642\u062F \u062A\u0643\u0648\u0646 \u0627\u0644\u0645\u0648\u0627\u062F \u0627\u0644\u062F\u0631\u0627\u0633\u064A\u0629 \u0635\u0639\u0628\u0629 \u0648\u062A\u062A\u0637\u0644\u0628 \u062C\u0647\u062F\u064B\u0627 \u0643\u0628\u064A\u0631\u064B\u0627 \u0644\u0641\u0647\u0645 \u0627\u0644\u062E\u0648\u0627\u0631\u0632\u0645\u064A\u0627\u062A." }, advice: ["\u062A\u0639\u0645\u0642 \u0641\u064A \u062F\u0631\u0627\u0633\u0629 \u0627\u0644\u062E\u0648\u0627\u0631\u0632\u0645\u064A\u0627\u062A \u0648\u0647\u064A\u0627\u0643\u0644 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A \u0627\u0644\u0645\u062A\u0642\u062F\u0645\u0629.", "\u0627\u0633\u062A\u0643\u0634\u0641 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0627\u0644\u062A\u0634\u063A\u064A\u0644\u064A\u0629 \u0648\u0628\u0646\u064A\u0629 \u0627\u0644\u062D\u0627\u0633\u0648\u0628.", "\u0634\u0627\u0631\u0643 \u0641\u064A \u0645\u0633\u0627\u0628\u0642\u0627\u062A \u0627\u0644\u0628\u0631\u0645\u062C\u0629 \u0644\u062A\u0637\u0648\u064A\u0631 \u0645\u0647\u0627\u0631\u0627\u062A\u0643."], resources: ["\u062F\u0648\u0631\u0627\u062A \u0639\u0644\u0649 'Coursera' \u062D\u0648\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A.", "\u0643\u062A\u0628 \u0645\u062B\u0644 'Introduction to Algorithms'."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u0647\u0646\u062F\u0633 \u0628\u0631\u0645\u062C\u064A\u0627\u062A\u060C \u0639\u0627\u0644\u0645 \u0628\u064A\u0627\u0646\u0627\u062A\u060C \u0645\u0637\u0648\u0631 \u062A\u0637\u0628\u064A\u0642\u0627\u062A." }, IT: { description: { advantages: "\u062A\u062E\u0635\u0635 \u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u064A\u0634\u0645\u0644 \u0627\u0644\u0639\u062F\u064A\u062F \u0645\u0646 \u0627\u0644\u062C\u0648\u0627\u0646\u0628 \u0627\u0644\u0639\u0645\u0644\u064A\u0629\u060C \u0645\u0645\u0627 \u064A\u062C\u0639\u0644\u0643 \u0645\u0633\u062A\u0639\u062F\u064B\u0627 \u0644\u0644\u0639\u0645\u0644 \u0641\u064A \u0623\u064A \u0645\u0643\u0627\u0646.", disadvantages: "\u0642\u062F \u062A\u062D\u062A\u0627\u062C \u0625\u0644\u0649 \u0645\u062C\u0647\u0648\u062F \u0645\u0633\u062A\u0645\u0631 \u0644\u0645\u0648\u0627\u0643\u0628\u0629 \u0627\u0644\u062A\u0637\u0648\u0631\u0627\u062A \u0627\u0644\u0633\u0631\u064A\u0639\u0629 \u0641\u064A \u0627\u0644\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627." }, advice: ["\u0631\u0643\u0632 \u0639\u0644\u0649 \u0641\u0647\u0645 \u0634\u0628\u0643\u0627\u062A \u0627\u0644\u062D\u0627\u0633\u0648\u0628 \u0648\u0623\u0645\u0646 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A.", "\u062A\u0639\u0644\u0645 \u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0623\u0646\u0638\u0645\u0629 \u0648\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0623\u062F\u0648\u0627\u062A \u0627\u0644\u062D\u0648\u0633\u0628\u0629 \u0627\u0644\u0633\u062D\u0627\u0628\u064A\u0629.", "\u0627\u062D\u0631\u0635 \u0639\u0644\u0649 \u0627\u0644\u0634\u0647\u0627\u062F\u0627\u062A \u0627\u0644\u0645\u0639\u062A\u0631\u0641 \u0628\u0647\u0627 \u0645\u062B\u0644 CompTIA \u0648Cisco."], resources: ["\u062F\u0648\u0631\u0627\u062A 'Cisco' \u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u062D\u0627\u0633\u0648\u0628.", "\u0645\u0646\u0635\u0627\u062A \u0645\u062B\u0644 'Microsoft Learn' \u0644\u0644\u062D\u0648\u0633\u0628\u0629 \u0627\u0644\u0633\u062D\u0627\u0628\u064A\u0629."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u062F\u064A\u0631 \u0646\u0638\u0645 \u0645\u0639\u0644\u0648\u0645\u0627\u062A\u060C \u0645\u0633\u0624\u0648\u0644 \u0634\u0628\u0643\u0627\u062A\u060C \u0623\u062E\u0635\u0627\u0626\u064A \u062F\u0639\u0645 \u0641\u0646\u064A." }, AI: { description: { advantages: "\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0647\u0648 \u0645\u062C\u0627\u0644 \u0627\u0644\u0645\u0633\u062A\u0642\u0628\u0644\u060C \u0648\u064A\u062A\u064A\u062D \u0644\u0643 \u0627\u0644\u0627\u0628\u062A\u0643\u0627\u0631 \u0641\u064A \u062A\u0637\u0628\u064A\u0642\u0627\u062A \u062C\u062F\u064A\u062F\u0629.", disadvantages: "\u064A\u062A\u0637\u0644\u0628 \u0641\u0647\u0645\u064B\u0627 \u0639\u0645\u064A\u0642\u064B\u0627 \u0644\u0644\u0631\u064A\u0627\u0636\u064A\u0627\u062A \u0648\u0627\u0644\u0625\u062D\u0635\u0627\u0621." }, advice: ["\u0627\u0628\u062F\u0623 \u0628\u062A\u0639\u0644\u0645 \u0645\u0641\u0627\u0647\u064A\u0645 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0627\u0644\u0623\u0633\u0627\u0633\u064A\u0629 \u0645\u062B\u0644 \u0627\u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u0639\u0635\u0628\u064A\u0629.", "\u062A\u062F\u0631\u0628 \u0639\u0644\u0649 \u0623\u062F\u0648\u0627\u062A \u062A\u0639\u0644\u0645 \u0627\u0644\u0622\u0644\u0629 \u0645\u062B\u0644 TensorFlow.", "\u0643\u0646 \u0639\u0644\u0649 \u0627\u0637\u0644\u0627\u0639 \u0628\u0623\u062D\u062F\u062B \u0627\u0644\u0623\u0628\u062D\u0627\u062B \u0648\u0627\u0644\u062A\u0637\u0648\u0631\u0627\u062A \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u0645\u062C\u0627\u0644."], resources: ["\u062F\u0648\u0631\u0627\u062A 'deeplearning.ai' \u0639\u0644\u0649 Coursera.", "\u0643\u062A\u0628 \u0645\u062B\u0644 'Hands-On Machine Learning with Scikit-Learn'."], career: "\u0641\u0631\u0635 \u0627\u0644\u0639\u0645\u0644 \u062A\u0634\u0645\u0644: \u0645\u0647\u0646\u062F\u0633 \u062A\u0639\u0644\u0645 \u0627\u0644\u0622\u0644\u0629\u060C \u0645\u0637\u0648\u0631 \u0630\u0643\u0627\u0621 \u0627\u0635\u0637\u0646\u0627\u0639\u064A\u060C \u0628\u0627\u062D\u062B \u0641\u064A \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A." } } }; function startChat() {
-            const a = document.getElementById("chat-box"); a.innerHTML += `
-        <div class="chat-message bot-message">أهلاً! أنا المتحدث الذكي X. إذا كنت تحتاج نصائح، اكتب "نصائح"، وإذا كنت تريد معرفة عن التخصصات، اكتب "اعرف"، أو إذا كنت تريد معلومات عن الوظائف، اكتب "شغل".</div>
-    `, a.scrollTop = a.scrollHeight
-        } function sendMessage() { const a = document.getElementById("user-input"), b = a.value.trim(); if (b) { const c = document.getElementById("chat-box"); c.innerHTML += `<div class="chat-message user-message">${b}</div>`, a.value = "", handleUserMessage(b) } else showError("\u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0631\u0633\u0627\u0644\u0629 \u0635\u062D\u064A\u062D\u0629."); chatBox.scrollTop = chatBox.scrollHeight } function showError(a) { const b = document.getElementById("chat-box"); b.innerHTML += `<div class="chat-message bot-message error-message">${a}</div>`, b.scrollTop = b.scrollHeight } function handleUserMessage(a) { const b = document.getElementById("chat-box"), c = a.toLowerCase(); "\u0627\u0647\u0644\u0627" === c || "\u0645\u0631\u062D\u0628\u0627" === c || "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643" === c || "\u0627\u0644\u0633\u0644\u0627\u0645 \u0639\u0644\u064A\u0643\u0645" === c || "\u0635\u0628\u0627\u062D \u0627\u0644\u062E\u064A\u0631" === c || "\u0645\u0633\u0627\u0621 \u0627\u0644\u062E\u064A\u0631" === c || "\u0643\u064A\u0641 \u062D\u0627\u0644\u0643 \u0627\u0644\u064A\u0648\u0645" === c || "\u0643\u064A\u0641\u0643" === c || "\u0627\u0632\u064A\u0643" === c || "\u0627\u0647\u0644\u0627 \u0648\u0633\u0647\u0644\u0627" === c || "\u0623\u0647\u0644\u0627\u064B \u0628\u0643" === c || "\u0647\u0627\u064A" === c || "\u0623\u0647\u0644\u0627\u064B \u064A\u0627 \u0635\u062F\u064A\u0642\u064A" === c || "\u0645\u0631\u062D\u0628\u0627\u064B \u0628\u0643" === c || "\u064A\u0633\u0637\u0627" === c ? b.innerHTML += `<div class="chat-message bot-message">اهلا كيف أستطيع مساعدتك اليوم؟ إذا كنت تريد معلومات، اكتب "اعرف"، وإذا كنت تريد نصائح، اكتب "نصائح"، أو إذا كنت تريد معلومات عن الوظائف، اكتب "شغل".</div>` : "\u0627\u0639\u0631\u0641" === c ? showSpecializationSelection(b) : "\u0646\u0635\u0627\u0626\u062D" === c ? showYearOptions(b) : "\u0634\u063A\u0644" === c ? showSpecializationOptionsForJobs(b) : showError("\u0639\u0630\u0631\u064B\u0627\u060C \u0644\u0645 \u0623\u0641\u0647\u0645 \u0627\u0644\u0631\u0633\u0627\u0644\u0629. \u064A\u0631\u062C\u0649 \u0627\u062E\u062A\u064A\u0627\u0631 '\u0646\u0635\u0627\u0626\u062D'\u060C '\u0627\u0639\u0631\u0641'\u060C \u0623\u0648 '\u0634\u063A\u0644'."), b.scrollTop = b.scrollHeight } function showSpecializationSelection(a) { a.innerHTML += `<div class="chat-message bot-message">اختر تخصصك:</div>${"\n        <div class=\"options\">\n            <div class=\"option\" onclick=\"selectSpecialization('IS')\">\u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IS)</div>\n            <div class=\"option\" onclick=\"selectSpecialization('CS')\">\u0639\u0644\u0648\u0645 \u0627\u0644\u062D\u0627\u0633\u0648\u0628 (CS)</div>\n            <div class=\"option\" onclick=\"selectSpecialization('IT')\">\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IT)</div>\n            <div class=\"option\" onclick=\"selectSpecialization('AI')\">\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A (AI)</div>\n        </div>\n    "}`, a.scrollTop = a.scrollHeight } function showYearOptions(a) { a.innerHTML += `<div class="chat-message bot-message">اختر فرقتك الدراسية:</div>${"\n        <div class=\"options\">\n            <div class=\"option\" onclick=\"selectYear('1')\">\u0627\u0644\u0641\u0631\u0642\u0629 \u0627\u0644\u0623\u0648\u0644\u0649</div>\n            <div class=\"option\" onclick=\"selectYear('2')\">\u0627\u0644\u0641\u0631\u0642\u0629 \u0627\u0644\u062B\u0627\u0646\u064A\u0629</div>\n            <div class=\"option\" onclick=\"selectYear('3')\">\u0627\u0644\u0641\u0631\u0642\u0629 \u0627\u0644\u062B\u0627\u0644\u062B\u0629</div>\n        </div>\n    "}`, a.scrollTop = a.scrollHeight } function selectYear(a) {
-            const b = document.getElementById("chat-box"); if (b.innerHTML += `<div class="chat-message user-message">الفرقة ${a} تم اختيارها.</div>`, "3" === a) showSpecializationSelection(b); else {
-                b.innerHTML += `<div class="chat-message bot-message">اختر معلومات إضافية:</div>${`
-            <div class="options">
-                <div class="option" onclick="showAdviceOrResources('${a}', 'advice')">نصائح</div>
-                <div class="option" onclick="showAdviceOrResources('${a}', 'resources')">مصادر</div>
-            </div>
-        `}`
-            } b.scrollTop = b.scrollHeight
-        } function selectSpecialization(a) {
-            const b = document.getElementById("chat-box"); b.innerHTML += `<div class="chat-message user-message">التخصص المختار: ${a}</div>`; const c = data[3][a], d = `
-        <div class="chat-message bot-message">
-            <strong>الوصف:</strong> ${c.description.advantages}
-            <br>
-            <strong>نصائح:</strong> ${c.advice.join(", ")}
-            <br>
-            <strong>الموارد:</strong> ${c.resources.join(", ")}
-            <br>
-            <strong>فرص العمل:</strong> ${c.career}
-        </div>
-    `; b.innerHTML += d, b.scrollTop = b.scrollHeight
-        } function showSpecializationOptionsForJobs(a) { a.innerHTML += "\n        <div class=\"chat-message bot-message\">\n            <strong>\u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0639\u0646 \u0627\u0644\u0634\u063A\u0644:</strong>\n            <p>\u0644\u0644\u0639\u0645\u0644 \u0641\u064A \u0645\u062C\u0627\u0644\u0627\u062A \u0627\u0644\u062A\u0642\u0646\u064A\u0629\u060C \u0639\u0644\u064A\u0643 \u0627\u062E\u062A\u064A\u0627\u0631 \u062A\u062E\u0635\u0635 \u0645\u0646\u0627\u0633\u0628 \u0648\u0627\u062A\u0628\u0627\u0639 \u0646\u0635\u0627\u0626\u062D \u0641\u0639\u0627\u0644\u0629.</p>\n            <p>\u0625\u0644\u064A\u0643 \u0628\u0639\u0636 \u0627\u0644\u0646\u0635\u0627\u0626\u062D \u0627\u0644\u0639\u0627\u0645\u0629 \u0644\u0644\u0646\u062C\u0627\u062D \u0641\u064A \u0627\u0644\u0639\u0645\u0644:</p>\n            <ul>\n                <li>\u0627\u0628\u062D\u062B \u0639\u0646 \u0641\u0631\u0635 \u062A\u062F\u0631\u064A\u0628\u064A\u0629 \u0644\u062A\u062D\u0633\u064A\u0646 \u0645\u0647\u0627\u0631\u0627\u062A\u0643 \u0627\u0644\u0639\u0645\u0644\u064A\u0629.</li>\n                <li>\u062D\u0627\u0641\u0638 \u0639\u0644\u0649 \u062A\u0637\u0648\u064A\u0631 \u0645\u0647\u0627\u0631\u0627\u062A\u0643 \u0628\u0627\u0646\u062A\u0638\u0627\u0645.</li>\n                <li>\u0642\u0645 \u0628\u062A\u0648\u0633\u064A\u0639 \u0634\u0628\u0643\u0629 \u0639\u0644\u0627\u0642\u0627\u062A\u0643 \u0641\u064A \u0627\u0644\u0645\u062C\u0627\u0644.</li>\n                <li>\u0643\u0646 \u0645\u0631\u0646\u064B\u0627 \u0641\u064A \u0642\u0628\u0648\u0644 \u0627\u0644\u0645\u0634\u0627\u0631\u064A\u0639 \u0627\u0644\u062C\u062F\u064A\u062F\u0629.</li>\n            </ul>\n            <p>\u0625\u0630\u0627 \u0643\u0646\u062A \u062A\u0631\u064A\u062F \u0645\u0639\u0644\u0648\u0645\u0627\u062A \u0639\u0646 \u062A\u062E\u0635\u0635 \u0645\u062D\u062F\u062F\u060C \u0627\u062E\u062A\u0631 \u0645\u0646 \u0627\u0644\u062A\u062E\u0635\u0635\u0627\u062A \u0627\u0644\u062A\u0627\u0644\u064A\u0629:</p>\n            <div class=\"options\">\n                <div class=\"option\" onclick=\"selectSpecialization('IS')\">\u0646\u0638\u0645 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IS)</div>\n                <div class=\"option\" onclick=\"selectSpecialization('CS')\">\u0639\u0644\u0648\u0645 \u0627\u0644\u062D\u0627\u0633\u0648\u0628 (CS)</div>\n                <div class=\"option\" onclick=\"selectSpecialization('IT')\">\u062A\u0643\u0646\u0648\u0644\u0648\u062C\u064A\u0627 \u0627\u0644\u0645\u0639\u0644\u0648\u0645\u0627\u062A (IT)</div>\n                <div class=\"option\" onclick=\"selectSpecialization('AI')\">\u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A (AI)</div>\n            </div>\n        </div>\n    ", a.scrollTop = a.scrollHeight } function showAdviceOrResources(a, b) {
-            const c = document.getElementById("chat-box"), d = data[a], e = d[b].map(a => `<li>${a}</li>`).join(""); c.innerHTML += `
-        <div class="chat-message bot-message">
-            <strong>${"advice" === b ? "\u0646\u0635\u0627\u0626\u062D" : "\u0645\u0635\u0627\u062F\u0631"}:</strong>
-            <ul>${e}</ul>
-        </div>
-    `, c.scrollTop = c.scrollHeight
-        } startChat(); function clearChat() { location.reload() }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const inputField = document.getElementById("user-input");
-
-            inputField.addEventListener("keydown", (event) => {
-                if (event.key === "Enter") {
-                    sendMessage();
-                }
-            });
-        });
-
-
+     const _0x194bfd=_0x4cec;(function(_0x3651a8,_0x4c2318){const _0x1222b5=_0x4cec,_0x494a6a=_0x3651a8();while(!![]){try{const _0x50a749=-parseInt(_0x1222b5(0x27a))/0x1+parseInt(_0x1222b5(0x284))/0x2+parseInt(_0x1222b5(0x201))/0x3*(parseInt(_0x1222b5(0x2fc))/0x4)+parseInt(_0x1222b5(0x205))/0x5*(-parseInt(_0x1222b5(0x224))/0x6)+-parseInt(_0x1222b5(0x309))/0x7+-parseInt(_0x1222b5(0x28c))/0x8+parseInt(_0x1222b5(0x24b))/0x9*(parseInt(_0x1222b5(0x23b))/0xa);if(_0x50a749===_0x4c2318)break;else _0x494a6a['push'](_0x494a6a['shift']());}catch(_0x48d32f){_0x494a6a['push'](_0x494a6a['shift']());}}}(_0x419b,0xa6eba));function _0x4cec(_0x58e073,_0x2dbdc0){const _0x419b01=_0x419b();return _0x4cec=function(_0x4ceca4,_0x45d7a9){_0x4ceca4=_0x4ceca4-0x1d4;let _0x57455b=_0x419b01[_0x4ceca4];return _0x57455b;},_0x4cec(_0x58e073,_0x2dbdc0);}const data={0x1:{'advice':[_0x194bfd(0x2e1),'ابدأ\x20بتجربة\x20لغات\x20برمجة\x20مختلفة\x20لتحديد\x20ما\x20يناسبك،\x20مثل\x20Python\x20وJavaScript.',_0x194bfd(0x1db),'احرص\x20على\x20حل\x20مسائل\x20برمجية\x20يومياً\x20لتنمية\x20مهاراتك.',_0x194bfd(0x289)],'resources':[_0x194bfd(0x30f),'مواقع\x20مثل\x20\x27Codecademy\x27\x20و\x27Coursera\x27\x20للتدريب\x20العملي.',_0x194bfd(0x228),_0x194bfd(0x1ec)],'questions':['ما\x20هي\x20لغات\x20البرمجة\x20التي\x20تثير\x20اهتمامك؟',_0x194bfd(0x20c),_0x194bfd(0x291),_0x194bfd(0x22d),'ما\x20هو\x20الوقت\x20الذي\x20تخصصه\x20للبرمجة\x20يومياً؟','هل\x20شاركت\x20في\x20أي\x20مشاريع\x20برمجية\x20مع\x20زملائك؟',_0x194bfd(0x281),_0x194bfd(0x295),_0x194bfd(0x2ff),'هل\x20تحضر\x20دورات\x20أو\x20ورش\x20عمل\x20في\x20البرمجة؟']},0x2:{'advice':[_0x194bfd(0x20b),_0x194bfd(0x2fe),'ابحث\x20عن\x20فرص\x20تدريبية\x20في\x20شركات\x20التكنولوجيا.','طور\x20مهاراتك\x20في\x20التعامل\x20مع\x20قواعد\x20البيانات.',_0x194bfd(0x23c)],'resources':[_0x194bfd(0x2d2),_0x194bfd(0x223),'دورات\x20تطوير\x20الويب\x20على\x20\x27Udemy\x27.',_0x194bfd(0x1fc),_0x194bfd(0x27f)],'questions':[_0x194bfd(0x28e),_0x194bfd(0x295),_0x194bfd(0x276),_0x194bfd(0x23a),_0x194bfd(0x2d3),_0x194bfd(0x312),_0x194bfd(0x250),'هل\x20تشارك\x20في\x20أي\x20مسابقات\x20أو\x20هاكاثونز\x20برمجية؟',_0x194bfd(0x271),'هل\x20حصلت\x20على\x20أي\x20فرصة\x20تدريبية\x20أو\x20تدريب\x20عملي؟']},0x3:{'IS':{'description':{'advantages':_0x194bfd(0x1e8),'disadvantages':_0x194bfd(0x219)},'advice':[_0x194bfd(0x280),'تعلم\x20كيفية\x20تصميم\x20قواعد\x20البيانات\x20وتطبيق\x20نظم\x20إدارة\x20البيانات.',_0x194bfd(0x2f6),_0x194bfd(0x2e5),'تعلم\x20أدوات\x20تحليل\x20الأعمال\x20مثل\x20Tableau\x20أو\x20Power\x20BI.'],'resources':['دورات\x20نظم\x20المعلومات\x20على\x20\x27Udemy\x27.',_0x194bfd(0x213),'دورات\x20تحليل\x20البيانات\x20على\x20Coursera.',_0x194bfd(0x2c7),_0x194bfd(0x287)],'career':_0x194bfd(0x2fd),'questions':[_0x194bfd(0x1d4),_0x194bfd(0x29c),_0x194bfd(0x1ea),_0x194bfd(0x233),'هل\x20تعتبر\x20نفسك\x20أكثر\x20تحليلاً\x20أم\x20تنفيذياً؟',_0x194bfd(0x1fd),'هل\x20لديك\x20خبرة\x20في\x20إدارة\x20المشاريع\x20التقنية؟','ما\x20هو\x20أكبر\x20تحدي\x20في\x20نظم\x20المعلومات\x20برأيك؟',_0x194bfd(0x211),_0x194bfd(0x208)]},'CS':{'description':{'advantages':_0x194bfd(0x1e0),'disadvantages':_0x194bfd(0x21e)},'advice':['تعمق\x20في\x20دراسة\x20الخوارزميات\x20وهياكل\x20البيانات\x20المتقدمة.',_0x194bfd(0x2b3),'شارك\x20في\x20مسابقات\x20البرمجة\x20لتطوير\x20مهاراتك.',_0x194bfd(0x2e8),_0x194bfd(0x2d1)],'resources':['دورات\x20على\x20\x27Coursera\x27\x20حول\x20الذكاء\x20الاصطناعي.',_0x194bfd(0x2b0),_0x194bfd(0x2eb),_0x194bfd(0x2ad),_0x194bfd(0x2ee)],'career':'فرص\x20العمل\x20تشمل:\x20مهندس\x20برمجيات،\x20عالم\x20بيانات،\x20مطور\x20تطبيقات،\x20مهندس\x20أمن\x20معلومات،\x20باحث\x20في\x20الذكاء\x20الاصطناعي.','questions':[_0x194bfd(0x244),_0x194bfd(0x25a),_0x194bfd(0x227),_0x194bfd(0x25d),'هل\x20تفضل\x20العمل\x20على\x20البرمجيات\x20أم\x20الأجهزة؟',_0x194bfd(0x24a),'هل\x20تهتم\x20بمجال\x20أمن\x20المعلومات؟',_0x194bfd(0x2ca),'هل\x20تفكر\x20في\x20استكمال\x20الدراسات\x20العليا؟',_0x194bfd(0x257)]},'IT':{'description':{'advantages':_0x194bfd(0x1f4),'disadvantages':_0x194bfd(0x240)},'advice':['ركز\x20على\x20فهم\x20شبكات\x20الحاسوب\x20وأمن\x20المعلومات.',_0x194bfd(0x285),_0x194bfd(0x2cb),'طور\x20مهاراتك\x20في\x20حل\x20المشكلات\x20التقنية.','تعلم\x20أساسيات\x20البرمجة\x20النصية.'],'resources':[_0x194bfd(0x2c8),_0x194bfd(0x1f9),_0x194bfd(0x1f0),'دورات\x20إدارة\x20الأنظمة\x20على\x20Udemy.','مواقع\x20متخصصة\x20في\x20أمن\x20المعلومات.'],'career':_0x194bfd(0x22a),'questions':[_0x194bfd(0x251),_0x194bfd(0x1e9),_0x194bfd(0x1eb),'ما\x20هو\x20رأيك\x20في\x20مستقبل\x20الحوسبة\x20السحابية؟',_0x194bfd(0x2a9),_0x194bfd(0x2c4),'هل\x20لديك\x20خبرة\x20في\x20التعامل\x20مع\x20خوادم\x20Windows/Linux؟','ما\x20هي\x20أدوات\x20المراقبة\x20التي\x20تعرف如何使用ها؟',_0x194bfd(0x2df),'ما\x20هو\x20تقييمك\x20لأهمية\x20الشهادات\x20المهنية\x20في\x20سوق\x20العمل؟']},'AI':{'description':{'advantages':_0x194bfd(0x2e6),'disadvantages':_0x194bfd(0x2cd)},'advice':[_0x194bfd(0x296),_0x194bfd(0x23f),'كن\x20على\x20اطلاع\x20بأحدث\x20الأبحاث\x20والتطورات\x20في\x20هذا\x20المجال.','طور\x20مهاراتك\x20في\x20الرياضيات\x20والإحصاء.',_0x194bfd(0x1df)],'resources':[_0x194bfd(0x21b),_0x194bfd(0x2be),'منصة\x20Kaggle\x20للمسابقات\x20والتعلم.','أوراق\x20بحثية\x20على\x20arXiv.',_0x194bfd(0x237)],'career':_0x194bfd(0x1d7),'questions':[_0x194bfd(0x232),_0x194bfd(0x206),_0x194bfd(0x29a),_0x194bfd(0x222),_0x194bfd(0x22c),'ما\x20هو\x20المشروع\x20الأكثر\x20إثارة\x20في\x20الذكاء\x20الاصطناعي\x20برأيك؟','هل\x20تتابع\x20آخر\x20الأبحاث\x20في\x20المجال؟','ما\x20هي\x20التحديات\x20الأخلاقية\x20التي\x20تواجه\x20الذكاء\x20الاصطناعي؟','هل\x20تعتقد\x20أن\x20الذكاء\x20الاصطناعي\x20سيحل\x20محل\x20الوظائف؟','ما\x20هو\x20حلمك\x20في\x20مجال\x20الذكاء\x20الاصطناعي؟']}}};function handleAdvancedUserMessage(_0x587e94){const _0x5b11e4=_0x194bfd,_0x5e520d=_0x587e94[_0x5b11e4(0x1d8)](),_0x475bd1={'مستقبل':'مستقبل\x20التكنولوجيا\x20واعد\x20جداً!\x20ما\x20المجال\x20الذي\x20يثير\x20فضولك\x20أكثر؟','مستقبلي':'مستقبلك\x20يعتمد\x20على\x20اختياراتك\x20اليوم.\x20ما\x20هي\x20خططك\x20القصيرة\x20والمتوسطة\x20المدى؟','راتب':_0x5b11e4(0x1da),'دخل':_0x5b11e4(0x1de),'صعب':_0x5b11e4(0x261),'تحدي':'التحديات\x20تجعلنا\x20أقوى!\x20ما\x20هو\x20التحدي\x20الذي\x20تريد\x20التغلب\x20عليه؟','وقت':_0x5b11e4(0x2b1),'متى':'البداية\x20الآن\x20هي\x20الأفضل!\x20ما\x20هو\x20أول\x20شيء\x20تريد\x20البدء\x20فيه؟','ناجح':_0x5b11e4(0x259),'تفوق':_0x5b11e4(0x246)};}let currentState={'year':null,'specialization':null,'lastQuestion':null};function startChat(){const _0x1d4133=_0x194bfd,_0x2c57e2=document[_0x1d4133(0x2bd)](_0x1d4133(0x292));addBotMessage(_0x1d4133(0x25e)),showMainOptions();}function sendMessage(){const _0x4bf417=_0x194bfd,_0x46bb78=document[_0x4bf417(0x2bd)](_0x4bf417(0x2c1)),_0x5b148c=_0x46bb78[_0x4bf417(0x2b8)]['trim']();_0x5b148c?(addUserMessage(_0x5b148c),_0x46bb78['value']='',simulateTyping(()=>{handleUserMessage(_0x5b148c);})):showError(_0x4bf417(0x270));}function addUserMessage(_0x5cd4d3){const _0x2c0812=_0x194bfd,_0x9b1403=document[_0x2c0812(0x2bd)](_0x2c0812(0x292)),_0x11a1ff=document['createElement']('div');_0x11a1ff[_0x2c0812(0x238)]=_0x2c0812(0x266),_0x11a1ff[_0x2c0812(0x24f)]=_0x2c0812(0x300)+_0x5cd4d3+_0x2c0812(0x294)+getCurrentTime()+_0x2c0812(0x221),_0x9b1403[_0x2c0812(0x2b9)](_0x11a1ff),scrollToBottom();}function addBotMessage(_0x229a99,_0x19309f=null){const _0x409a49=_0x194bfd,_0x11bcb6=document['getElementById'](_0x409a49(0x292)),_0x5f577e=document[_0x409a49(0x30e)](_0x409a49(0x2ec));_0x5f577e['className']='chat-message\x20bot-message',_0x5f577e[_0x409a49(0x24f)]=_0x409a49(0x300)+_0x229a99+_0x409a49(0x294)+getCurrentTime()+_0x409a49(0x221),_0x11bcb6[_0x409a49(0x2b9)](_0x5f577e),_0x19309f&&showOptions(_0x19309f),scrollToBottom();}function simulateTyping(_0x4cad8b){const _0x2c96ba=_0x194bfd,_0x3b7277=document[_0x2c96ba(0x2bd)](_0x2c96ba(0x292)),_0x3ceec3=document[_0x2c96ba(0x30e)](_0x2c96ba(0x2ec));_0x3ceec3[_0x2c96ba(0x238)]=_0x2c96ba(0x30b),_0x3ceec3[_0x2c96ba(0x24f)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22typing-dot\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22typing-dot\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22typing-dot\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x3b7277[_0x2c96ba(0x2b9)](_0x3ceec3),scrollToBottom(),setTimeout(()=>{const _0x528959=_0x2c96ba;_0x3b7277[_0x528959(0x2e4)](_0x3ceec3),_0x4cad8b();},0x3e8+Math[_0x2c96ba(0x1ef)]()*0x3e8);}function getCurrentTime(){const _0x1b5056=_0x194bfd,_0x29cf1b=new Date();return _0x29cf1b[_0x1b5056(0x2fa)]()+':'+_0x29cf1b[_0x1b5056(0x1f5)]()[_0x1b5056(0x299)]()['padStart'](0x2,'0');}function scrollToBottom(){const _0x5065a0=_0x194bfd,_0x150527=document[_0x5065a0(0x2bd)](_0x5065a0(0x292));_0x150527[_0x5065a0(0x215)]=_0x150527[_0x5065a0(0x267)];}function showMainOptions(){const _0x3b0188=_0x194bfd,_0x40b043=[{'text':_0x3b0188(0x2aa),'action':()=>showYearOptions()},{'text':_0x3b0188(0x2fb),'action':()=>showSpecializationSelection()},{'text':_0x3b0188(0x229),'action':()=>showCareerInfo()},{'text':_0x3b0188(0x2e0),'action':()=>startInteractiveQuestions()}];showOptions(_0x40b043);}function showOptions(_0x49b983){const _0x5dd6a6=_0x194bfd,_0x2a0436=document[_0x5dd6a6(0x2bd)](_0x5dd6a6(0x292)),_0x56b298=document[_0x5dd6a6(0x30e)]('div');_0x56b298[_0x5dd6a6(0x238)]=_0x5dd6a6(0x256),_0x49b983[_0x5dd6a6(0x20a)](_0x10a38c=>{const _0x2a13a4=_0x5dd6a6,_0x52fbc0=document[_0x2a13a4(0x30e)](_0x2a13a4(0x2ec));_0x52fbc0[_0x2a13a4(0x238)]=_0x2a13a4(0x26d),_0x52fbc0[_0x2a13a4(0x252)]=_0x10a38c[_0x2a13a4(0x2a6)],_0x52fbc0[_0x2a13a4(0x226)]=_0x10a38c['action'],_0x56b298[_0x2a13a4(0x2b9)](_0x52fbc0);}),_0x2a0436[_0x5dd6a6(0x2b9)](_0x56b298),scrollToBottom();}function handleUserMessage(_0x48a080){const _0x5628ab=_0x194bfd,_0x4ba56e=_0x48a080[_0x5628ab(0x1d8)]();if(isGreeting(_0x4ba56e)){addBotMessage(_0x5628ab(0x2d4)),showMainOptions();return;}switch(_0x4ba56e){case _0x5628ab(0x1e2):case _0x5628ab(0x2b4):showYearOptions();break;case _0x5628ab(0x2b7):case _0x5628ab(0x27d):case _0x5628ab(0x2e3):showSpecializationSelection();break;case'وظائف':case _0x5628ab(0x278):case _0x5628ab(0x305):showCareerInfo();break;case _0x5628ab(0x263):case'أسئلة':startInteractiveQuestions();break;case _0x5628ab(0x2f2):case _0x5628ab(0x28d):case _0x5628ab(0x2f9):showHelp();break;default:currentState[_0x5628ab(0x2f5)]?handleAnswer(_0x48a080):(addBotMessage(_0x5628ab(0x2b6)),showMainOptions());}}function isGreeting(_0x541ef5){const _0x25c867=_0x194bfd,_0x2c4692=[_0x25c867(0x2d5),_0x25c867(0x298),_0x25c867(0x304),'السلام\x20عليكم','صباح\x20الخير',_0x25c867(0x1e7),_0x25c867(0x2a2),'hello','hi'];return _0x2c4692['some'](_0x3fad91=>_0x541ef5['includes'](_0x3fad91));}function showYearOptions(){const _0x5f4847=_0x194bfd;addBotMessage(_0x5f4847(0x235),[{'text':'الفرقة\x20الأولى','action':()=>selectYear(0x1)},{'text':_0x5f4847(0x26c),'action':()=>selectYear(0x2)},{'text':_0x5f4847(0x273),'action':()=>selectYear(0x3)}]);}function selectYear(_0x4dda48){const _0x121177=_0x194bfd;currentState[_0x121177(0x2d7)]=_0x4dda48,addUserMessage(_0x121177(0x220)+_0x4dda48),_0x4dda48===0x3?showSpecializationSelection():addBotMessage('ممتاز!\x20أنت\x20في\x20الفرقة\x20'+_0x4dda48+_0x121177(0x2f3),[{'text':_0x121177(0x2aa),'action':()=>showAdvice(_0x4dda48)},{'text':_0x121177(0x272),'action':()=>showResources(_0x4dda48)},{'text':'أسئلة\x20تفاعلية','action':()=>askYearSpecificQuestion(_0x4dda48)}]);}function _0x419b(){const _0x1f55cd=['className','requirements','هل\x20بدأت\x20في\x20تعلم\x20إطار\x20عمل\x20معين\x20مثل\x20React\x20أو\x20Django؟','588530gJcqGE','تعلم\x20استخدام\x20أنظمة\x20التحكم\x20في\x20النسخ\x20مثل\x20Git.','محلل\x20نظم\x20(240,000-360,000\x20جنيه\x20سنوياً)','خبرة\x20في\x20TensorFlow/PyTorch،\x20مشاريع\x20عملية','تدرب\x20على\x20أدوات\x20تعلم\x20الآلة\x20مثل\x20TensorFlow.','قد\x20تحتاج\x20إلى\x20مجهود\x20مستمر\x20لمواكبة\x20التطورات\x20السريعة\x20في\x20التكنولوجيا.','\x27)\x22>مسارات\x20وظيفية</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showMainOptions()\x22>العودة\x20للرئيسية</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','floor','</ul>','ما\x20هي\x20مجالات\x20علوم\x20الحاسب\x20التي\x20تثير\x20اهتمامك\x20أكثر؟','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>كيفية\x20استخدام\x20المساعد:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>نصائح\x20دراسية:</strong>\x20احصل\x20على\x20نصائح\x20حسب\x20فرقتك\x20الدراسية</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>معلومات\x20عن\x20التخصصات:</strong>\x20تعرف\x20على\x20التخصصات\x20المختلفة\x20ومتطلباتها</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>معلومات\x20عن\x20الوظائف:</strong>\x20اكتشف\x20فرص\x20العمل\x20في\x20مجال\x20التكنولوجيا</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>أسئلة\x20تفاعلية:</strong>\x20شارك\x20في\x20حوار\x20تفاعلي\x20لمساعدتك\x20في\x20تحديد\x20مسارك</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>يمكنك\x20أيضاً\x20كتابة\x20رسائلك\x20مباشرة\x20وسأحاول\x20فهمها!</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','التفوق\x20يأتي\x20بالممارسة\x20والتركيز.\x20ما\x20هي\x20استراتيجيتك\x20للتعلم؟','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>معلومات\x20عن\x20الوظائف\x20في\x20مجال\x20التكنولوجيا</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>للعمل\x20في\x20مجالات\x20التقنية،\x20عليك\x20اختيار\x20تخصص\x20مناسب\x20واتباع\x20نصائح\x20فعالة.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>نصائح\x20عامة\x20للنجاح\x20في\x20العمل:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>ابحث\x20عن\x20فرص\x20تدريبية\x20لتحسين\x20مهاراتك\x20العملية.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>حافظ\x20على\x20تطوير\x20مهاراتك\x20بانظام.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>قم\x20بتوسيع\x20شبكة\x20علاقاتك\x20في\x20المجال.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>كن\x20مرناً\x20في\x20قبول\x20المشاريع\x20الجديدة.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>إذا\x20كنت\x20تريد\x20معلومات\x20عن\x20تخصص\x20محدد،\x20اختر\x20من\x20التخصصات\x20التالية:</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','التخصص:\x20','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','ما\x20هو\x20المشروع\x20الأكثر\x20تعقيداً\x20قمت\x20بتنفيذه؟','414ueKYrC','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22growth-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>📈\x20توقعات\x20النمو:</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>',':<br><ul>','growth','innerHTML','ما\x20هي\x20أكبر\x20مشكلة\x20واجهتها\x20في\x20مشروعك\x20الأخير؟','هل\x20تهتم\x20أكثر\x20بشبكات\x20الحاسوب\x20أم\x20أمن\x20المعلومات؟','textContent','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22requirements\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>المتطلبات:</strong>\x20','هل\x20تفضل\x20العمل\x20على\x20المشاريع\x20الفردية\x20أم\x20الجماعية؟','عالم\x20بيانات\x20رئيسي\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','options','ما\x20هو\x20حلمك\x20المهني\x20في\x20مجال\x20علوم\x20الحاسب؟','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>🎯\x20خطة\x20تطوير\x20المهارات\x20خلال\x205\x20سنوات:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','النجاح\x20يحتاج\x20استمرارية\x20وتطوير.\x20ما\x20هو\x20تعريفك\x20للنجاح؟','هل\x20شاركت\x20في\x20أي\x20مسابقات\x20برمجة\x20من\x20قبل؟','key','مهندس\x20تعلم\x20آلي\x20(600,000-900,000\x20جنيه\x20سنوياً)','ما\x20هو\x20رأيك\x20في\x20مستقبل\x20الذكاء\x20الاصطناعي؟','أهلاً!\x20أنا\x20المساعد\x20الذكي\x20Materialx.\x20كيف\x20يمكنني\x20مساعدتك\x20اليوم؟','resources','تعمق\x20في\x20الرياضيات\x20وتعلم\x20أحدث\x20أدوات\x20الذكاء\x20الاصطناعي','كل\x20مجال\x20له\x20تحدياته.\x20ما\x20هي\x20الصعوبة\x20التي\x20تواجهها\x20تحديداً؟','مدير\x20عمليات\x20تقنية\x20المعلومات\x20(2,160,000-3,600,000\x20جنيه\x20سنوياً)','اسئلة','أنظمة\x20التشغيل\x20والشبكات\x20★★★☆☆','مهندس\x20برمجيات\x20كبير\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','chat-message\x20user-message','scrollHeight','ماجستير،\x20خبرة\x20معمارية،\x20إدارة\x20فرق','0-2\x20سنوات','دكتوراة\x20أو\x20شهادات\x20تنفيذية،\x20خبرة\x20قيادية\x20واسعة','name','الفرقة\x20الثانية','option','قواعد\x20البيانات\x20NoSQL/SQL\x20★★★★☆','مدير\x20تقنية\x20المعلومات\x20CIO\x20(1,200,000-2,400,000\x20جنيه\x20سنوياً)','يرجى\x20إدخال\x20رسالة\x20صحيحة.','ما\x20هي\x20المهارات\x20التي\x20تشعر\x20أنك\x20بحاجة\x20لتحسينها؟','مصادر\x20تعليمية','الفرقة\x20الثالثة','7-12\x20سنة','مدير\x20أبحاث\x20الذكاء\x20الاصطناعي\x20(3,000,000-4,800,000\x20جنيه\x20سنوياً)','ما\x20هي\x20التقنيات\x20الجديدة\x20التي\x20تود\x20تعلمها؟','عالم\x20بيانات\x20(660,000-960,000\x20جنيه\x20سنوياً)','شغل','\x0a\x20\x20\x20\x20.career-stage\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#f8f9fa;\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2015px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2015px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-right:\x204px\x20solid\x20#3498db;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20.stage-positions\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2010px\x200;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20.position\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x205px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20color:\x20#2c3e50;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20.requirements\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#e8f4fd;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x205px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin-top:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20font-size:\x2014px;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20.skills-section\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#fff3cd;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2015px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2020px\x200;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20.skill-item\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x208px\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-bottom:\x201px\x20solid\x20#ffeaa7;\x0a\x20\x20\x20\x20}\x0a\x20\x20\x20\x20\x0a\x20\x20\x20\x20.growth-info\x20{\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20#d1ecf1;\x0a\x20\x20\x20\x20\x20\x20\x20\x20padding:\x2015px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20border-radius:\x2010px;\x0a\x20\x20\x20\x20\x20\x20\x20\x20margin:\x2015px\x200;\x0a\x20\x20\x20\x20}\x0a','1272487oNUgwe','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showSalaryComparison(\x27','كبير\x20مسؤولي\x20الشبكات\x20(1,080,000-1,680,000\x20جنيه\x20سنوياً)','تخصص','مهندس\x20برمجيات\x20(420,000-600,000\x20جنيه\x20سنوياً)','منصة\x20\x27Frontend\x20Mentor\x27\x20لتطوير\x20واجهات\x20المستخدم.','ركز\x20على\x20فهم\x20نظم\x20المعلومات\x20وكيفية\x20تحليل\x20البيانات.','ما\x20هي\x20أكبر\x20تحد\x20تواجهه\x20في\x20البرمجة\x20حالياً؟','DOMContentLoaded','مسؤول\x20شبكات\x20(360,000-540,000\x20جنيه\x20سنوياً)','1914820swyBNz','تعلم\x20إدارة\x20الأنظمة\x20واستخدام\x20أدوات\x20الحوسبة\x20السحابية.','\x27)\x22>أسئلة\x20حول\x20التخصص</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showCareerPaths(\x27','مواقع\x20متخصصة\x20في\x20تحليل\x20الأعمال.','مستوى\x20مبتدئ','انضم\x20لمجتمعات\x20برمجية\x20للتعلم\x20من\x20الآخرين.','ركز\x20على\x20شهادات\x20PMP\x20وCBAP\x20وتعلم\x20أدوات\x20تحليل\x20البيانات','disadvantages','4799216FZkuPv','مساعده','ما\x20هي\x20المشاريع\x20التي\x20قمت\x20بتطويرها\x20حتى\x20الآن؟','خبرة\x20تنفيذية،\x20إدارة\x20ميزانيات\x20كبيرة','رواتب\x20نظم\x20المعلومات\x20تنافسية\x20خاصة\x20في\x20قطاعات\x20البنوك\x20والاتصالات','ما\x20هي\x20المشاريع\x20البسيطة\x20التي\x20تود\x20البدء\x20في\x20تنفيذها؟','chat-box','اختر\x20تخصصك:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22message-time\x22>','هل\x20تفكر\x20في\x20التخصص\x20في\x20مجال\x20معين\x20من\x20البرمجة؟','ابدأ\x20بتعلم\x20مفاهيم\x20الذكاء\x20الاصطناعي\x20الأساسية\x20مثل\x20الشبكات\x20العصبية.','length','مرحبا','toString','ما\x20هي\x20أدوات\x20الذكاء\x20الاصطناعي\x20التي\x20جربتها؟','نمو\x20الوظائف:\x2015%\x20سنوياً\x20مع\x20الثورة\x20الرقمية','ما\x20هي\x20أدوات\x20تحليل\x20البيانات\x20التي\x20تعرفها؟','نظم\x20المعلومات\x20(IS)','شريك\x20تقني\x20(4,000,000-8,000,000+\x20جنيه\x20سنوياً)','مساعد\x20مدخل\x20بيانات\x20(144,000-192,000\x20جنيه\x20سنوياً)','نمو\x20الوظائف:\x2011%\x20سنوياً\x20مع\x20زيادة\x20الطلب\x20على\x20محترفي\x20تحليل\x20البيانات','questions','هاي','أخصائي\x20أمن\x20معلومات\x20(420,000-600,000\x20جنيه\x20سنوياً)','شكراً\x20لمشاركتك!\x20إجابتك:\x20\x22','تكنولوجيا\x20المعلومات\x20(IT)','text','إصلاح\x20الأعطال\x20والصيانة\x20★★★★★','مساعد\x20محلل\x20نظم\x20(180,000-240,000\x20جنيه\x20سنوياً)','هل\x20تعتبر\x20نفسك\x20ماهراً\x20في\x20حل\x20المشكلات\x20التقنية؟','نصائح\x20دراسية','نعم،\x20المزيد\x20من\x20المعلومات','مساعد\x20باحث\x20ذكاء\x20اصطناعي\x20(300,000-480,000\x20جنيه\x20سنوياً)','قنوات\x20يوتيوب\x20متخصصة\x20في\x20الخوارزميات.','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22career-stage\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>','keydown','كتب\x20مثل\x20\x27Introduction\x20to\x20Algorithms\x27.','إدارة\x20الوقت\x20أساسية\x20للنجاح.\x20كم\x20ساعة\x20تخصص\x20للتعلم\x20يومياً؟','نمو\x20الوظائف:\x2013%\x20سنوياً\x20مع\x20زيادة\x20الاعتماد\x20على\x20التقنية','استكشف\x20الأنظمة\x20التشغيلية\x20وبنية\x20الحاسوب.','نصيحة','advantages','عذراً،\x20لم\x20أفهم\x20رسالتك.\x20يمكنك\x20اختيار\x20أحد\x20الخيارات\x20التالية:','تخصصات','value','appendChild','مدير\x20أمن\x20المعلومات\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','نائب\x20رئيس\x20التقنية\x20(3,000,000-5,000,000+\x20جنيه\x20سنوياً)','رؤية\x20حاسوبية\x20★★★★☆','getElementById','كتب\x20مثل\x20\x27Hands-On\x20Machine\x20Learning\x20with\x20Scikit-Learn\x27.','قيادة\x20وإدارة','ماجستير،\x20أوراق\x20بحثية،\x20خبرة\x20متخصصة','user-input','هل\x20تريد\x20مسح\x20المحادثة؟','مستوى\x20متقدم','ما\x20هي\x20أكبر\x20مشكلة\x20شبكة\x20واجهتها\x20وحللتها؟','advice','بكالوريوس\x20نظم\x20معلومات،\x20معرفة\x20بقواعد\x20البيانات،\x20تدريب\x20عملي','شهادات\x20في\x20إدارة\x20المشاريع\x20مثل\x20PMP.','دورات\x20\x27Cisco\x27\x20لشبكات\x20الحاسوب.','علوم\x20الحاسب\x20(CS)','ما\x20هي\x20التقنيات\x20الناشئة\x20التي\x20تتابعها؟','احرص\x20على\x20الشهادات\x20المعترف\x20بها\x20مثل\x20CompTIA\x20وCisco.','map','يتطلب\x20فهماً\x20عميقاً\x20للرياضيات\x20والإحصاء.','نائب\x20رئيس\x20الذكاء\x20الاصطناعي\x20(4,800,000-8,000,000+\x20جنيه\x20سنوياً)','ما\x20هو\x20مستوى\x20خبرتك\x20الحالي\x20في\x20البرمجة؟','addEventListener','طور\x20مشاريع\x20شخصية\x20لتطبيق\x20ما\x20تتعلمه.','موقع\x20\x27freeCodeCamp\x27\x20يحتوي\x20على\x20مشاريع\x20عملية\x20مميزة.','ما\x20هو\x20مستوى\x20راحتك\x20في\x20التعامل\x20مع\x20قواعد\x20البيانات؟','أهلاً\x20وسهلاً!\x20كيف\x20يمكنني\x20مساعدتك\x20اليوم؟','اهلا','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>نبذة\x20عن\x20التخصص</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>المميزات:</strong>\x20','year','بكالوريوس\x20تكنولوجيا\x20معلومات،\x20شهادات\x20أساسية','نائب\x20رئيس\x20التكنولوجيا\x20(3,000,000-6,000,000+\x20جنيه\x20سنوياً)','مهندس\x20معماري\x20برمجيات\x20(1,440,000-2,400,000\x20جنيه\x20سنوياً)','معالجة\x20اللغات\x20الطبيعية\x20★★★★☆','الذكاء\x20الاصطناعي\x20(AI)','مهندس\x20أنظمة\x20(660,000-960,000\x20جنيه\x20سنوياً)','إدارة\x20الخوادم\x20والأنظمة\x20★★★★☆','هل\x20تهتم\x20بمجال\x20إنترنت\x20الأشياء؟','أسئلة\x20تفاعلية','ركز\x20على\x20تعلم\x20أساسيات\x20البرمجة\x20مثل\x20الخوارزميات\x20وهياكل\x20البيانات.','مطور\x20برامج\x20متقدم\x20(600,000-900,000\x20جنيه\x20سنوياً)','اعرف','removeChild','طور\x20مهاراتك\x20في\x20إدارة\x20المشاريع\x20التقنية.','الذكاء\x20الاصطناعي\x20هو\x20مجال\x20المستقبل،\x20ويتيح\x20لك\x20الابتكار\x20في\x20تطبيقات\x20جديدة.','12+\x20سنة','تعلم\x20لغات\x20برمجة\x20متعددة\x20وتخصص\x20في\x20واحدة.','شهادات\x20متقدمة\x20(PMP,\x20CBAP)،\x20خبرة\x20إدارية،\x20إدارة\x20مشاريع','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>🚀\x20المسار\x20الوظيفي\x20الكامل\x20في\x20','منصة\x20LeetCode\x20لتحسين\x20مهارات\x20حل\x20المشكلات.','div','محلل\x20أعمال\x20تقني\x20(450,000-660,000\x20جنيه\x20سنوياً)','مجتمعات\x20برمجية\x20مثل\x20Stack\x20Overflow.','خوارزميات\x20وهياكل\x20بيانات\x20★★★★★','</div>','reload','مساعدة','.\x20ما\x20الذي\x20تود\x20معرفته؟','خبرة\x20عملية،\x20شهادات\x20في\x20SQL،\x20معرفة\x20بتحليل\x20النظم','lastQuestion','احرص\x20على\x20اكتساب\x20مهارات\x20تحليل\x20البيانات.','إليك\x20بعض\x20المصادر\x20المفيدة\x20للفرقة\x20','مطور\x20تطبيقات\x20(384,000-552,000\x20جنيه\x20سنوياً)','help','getHours','معلومات\x20عن\x20التخصصات','28HoqgGl','فرص\x20العمل\x20تشمل:\x20محلل\x20نظم،\x20مدير\x20قواعد\x20بيانات،\x20مسؤول\x20تكنولوجيا\x20المعلومات،\x20محلل\x20أعمال،\x20مدير\x20مشاريع\x20تقنية.','حاول\x20تطبيق\x20المفاهيم\x20على\x20مشاكل\x20واقعية\x20مثل\x20بناء\x20تطبيقات\x20ويب\x20بسيطة.','ما\x20هي\x20المواقع\x20التي\x20تستخدمها\x20للتعلم\x20حالياً؟','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',')</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stage-positions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','علوم\x20الحاسب\x20الأعلى\x20دخلاً\x20مع\x20فرص\x20عمل\x20محلية\x20ودولية','مدير\x20هندسة\x20البرمجيات\x20(2,400,000-4,000,000\x20جنيه\x20سنوياً)','كيف\x20حالك','وظيفة','فني\x20دعم\x20فني\x20(192,000-276,000\x20جنيه\x20سنوياً)','career','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22askSpecializationQuestion(\x27','922411xPHSwE','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22skills-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>📊\x20المهارات\x20المطلوبة\x20وتقييمها:</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22skills-list\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','typing-indicator','دكتوراة،\x20براءات\x20اختراع،\x20قيادة\x20فرق\x20بحث','مستوسط\x20الخبرة','createElement','قنوات\x20يوتيوب\x20مثل\x20\x27TheNew\x20Boston\x27\x20و\x27Academind\x27\x20لتعلم\x20البرمجة.','join','<div\x20class=\x22skill-item\x22>','هل\x20لديك\x20خبرة\x20في\x20استخدام\x20Git\x20وGitHub؟','هل\x20تهتم\x20أكثر\x20بالجانب\x20الإداري\x20أم\x20التقني\x20في\x20نظم\x20المعلومات؟','مستشار\x20نظم\x20معلومات\x20(600,000-960,000\x20جنيه\x20سنوياً)','4-7\x20سنوات','فرص\x20العمل\x20تشمل:\x20مهندس\x20تعلم\x20الآلة،\x20مطور\x20ذكاء\x20اصطناعي،\x20باحث\x20في\x20الذكاء\x20الاصطناعي،\x20عالم\x20بيانات،\x20مهندس\x20رؤية\x20حاسوبية.','toLowerCase','كبير\x20محللي\x20النظم\x20(840,000-1,320,000\x20جنيه\x20سنوياً)','رواتب\x20مجالات\x20التكنولوجيا\x20تختلف\x20حسب\x20التخصص\x20والخبرة.\x20أي\x20تخصص\x20يهمك؟','اهتم\x20بفهم\x20المفاهيم\x20الأساسية\x20مثل\x20المتغيرات،\x20الشرطية،\x20والحلقات\x20التكرارية.','مهندس\x20معماري\x20ذكاء\x20اصطناعي\x20(2,160,000-3,360,000\x20جنيه\x20سنوياً)','احصل\x20على\x20شهادات\x20Cisco\x20وCompTIA\x20وتخصص\x20في\x20الأمن\x20السيبراني','الدخل\x20في\x20المجال\x20التقني\x20ممتاز\x20مع\x20التطور\x20المستمر.\x20ما\x20هو\x20مستوى\x20الخبرة\x20الذي\x20تطمح\x20إليه؟','شارك\x20في\x20مشاريع\x20ذكاء\x20اصطناعي\x20عملية.','علوم\x20الحاسب\x20تعتبر\x20من\x20أكثر\x20التخصصات\x20طلباً،\x20وتفتح\x20لك\x20أبواب\x20العديد\x20من\x20الفرص\x20في\x20مجالات\x20البرمجة\x20والتطوير.','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>💰\x20مقارنة\x20الرواتب\x20في\x20سوق\x20العمل\x20المصري:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','نصائح','طور\x20مهاراتك\x20في\x20الخوارزميات\x20وتعلم\x20إطارات\x20عمل\x20جديدة\x20باستمرار','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>التحديات:</strong>\x20','أدوات\x20تحليل\x20البيانات\x20(Tableau,\x20Power\x20BI)\x20★★★☆☆','شريك\x20استشاري\x20(1,500,000-3,000,000+\x20جنيه\x20سنوياً)','مساء\x20الخير','تخصص\x20نظم\x20المعلومات\x20يتيح\x20لك\x20التعرف\x20على\x20كيفية\x20إدارة\x20البيانات\x20وتحليلها،\x20مما\x20يجعلك\x20مؤهلاً\x20للعمل\x20في\x20العديد\x20من\x20القطاعات.','ما\x20هي\x20الشهادات\x20التقنية\x20التي\x20تخطط\x20للحصول\x20عليها؟','هل\x20لديك\x20خبرة\x20في\x20تصميم\x20قواعد\x20البيانات؟','هل\x20لديك\x20خبرة\x20في\x20إدارة\x20الأنظمة\x20والشبكات؟','منصة\x20HackerRank\x20لتحسين\x20مهارات\x20حل\x20المشكلات.','duration','هذه\x20معلومات\x20قيمة!\x20هل\x20تود\x20معرفة\x20المزيد؟','random','شهادات\x20CompTIA\x20A+,\x20Network+,\x20Security+.','2-4\x20سنوات','إدارة\x20الشبكات\x20والأجهزة\x20★★★★☆','positions','تخصص\x20تكنولوجيا\x20المعلومات\x20يشمل\x20العديد\x20من\x20الجوانب\x20العملية،\x20مما\x20يجعلك\x20مستعداً\x20للعمل\x20في\x20أي\x20مكان.','getMinutes','رائع!\x20دعنا\x20نبدأ\x20ببعض\x20الأسئلة\x20التفاعلية\x20لمساعدتك\x20في\x20تحديد\x20مسارك.','specialization','أدوات\x20الذكاء\x20الاصطناعي\x20(TensorFlow,\x20PyTorch)\x20★★★★☆','منصات\x20مثل\x20\x27Microsoft\x20Learn\x27\x20للحوسبة\x20السحابية.','Enter','دكتوراة،\x20خبرة\x20تنفيذية،\x20إدارة\x20استراتيجية','قناة\x20\x27Traversy\x20Media\x27\x20على\x20يوتيوب\x20لمشاريع\x20عملية.','ما\x20هي\x20البرامج\x20التي\x20تجيد\x20استخدامها\x20في\x20تحليل\x20البيانات؟','الذكاء\x20الاصطناعي','مدير\x20مركز\x20بيانات\x20(1,800,000-3,000,000\x20جنيه\x20سنوياً)','\x27)\x22>خطة\x20تطوير\x20المهارات</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showJobMarketTips(\x27','107787cVmxiY','بكالوريوس\x20علوم\x20حاسب،\x20مشاريع\x20شخصية،\x20معرفة\x20بلغات\x20برمجة','متدرب/حديث\x20التخرج','خبرة\x20تنفيذية،\x20إسهامات\x20بارزة\x20في\x20المجال','5IlYRgH','هل\x20لديك\x20خلفية\x20قوية\x20في\x20الرياضيات\x20والإحصاء؟','مساعد\x20مسؤول\x20شبكات\x20(216,000-312,000\x20جنيه\x20سنوياً)','ما\x20هي\x20المهارات\x20الإدارية\x20التي\x20تمتلكها؟','مسؤول\x20أنظمة\x20(384,000-552,000\x20جنيه\x20سنوياً)','forEach','ابدأ\x20بإنشاء\x20مشاريع\x20صغيرة\x20لزيادة\x20فهمك\x20العملي.','هل\x20واجهت\x20أي\x20صعوبات\x20في\x20فهم\x20أساسيات\x20البرمجة؟','رياضيات\x20وإحصاء\x20متقدم\x20★★★★★','تحليل\x20النظم\x20وتصميمها\x20★★★★☆','نظم\x20المعلومات','description','هل\x20تفضل\x20العمل\x20في\x20قطاع\x20خاص\x20أم\x20حكومي؟','إدارة\x20قواعد\x20البيانات\x20SQL\x20★★★★☆','كتب\x20تحليل\x20النظم\x20مثل\x20\x27Systems\x20Analysis\x20and\x20Design\x27.','</li>','scrollTop','شكراً،\x20هذا\x20يكفي','<li>','كبير\x20مهندسي\x20البرمجيات\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)','قد\x20تجد\x20نفسك\x20محصوراً\x20في\x20جوانب\x20إدارية\x20أكثر\x20من\x20الجوانب\x20التقنية.','<div\x20class=\x22position\x22>•\x20','دورات\x20\x27deeplearning.ai\x27\x20على\x20Coursera.','خبرة\x20في\x20إطار\x20عمل،\x20مشاريع\x20حقيقية،\x20معرفة\x20بالخوارزميات','مدير\x20قاعدة\x20بيانات\x20(480,000-720,000\x20جنيه\x20سنوياً)','قد\x20تكون\x20المواد\x20الدراسية\x20صعبة\x20وتتطلب\x20جهداً\x20كبيراً\x20لفهم\x20الخوارزميات.','مهندس\x20معماري\x20بنية\x20تحتية\x20(1,200,000-1,920,000\x20جنيه\x20سنوياً)','الفرقة\x20','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','ما\x20هو\x20رأيك\x20في\x20الأخلاقيات\x20في\x20الذكاء\x20الاصطناعي؟','استفد\x20من\x20\x27GitHub\x27\x20لمشاركة\x20مشاريعك\x20مع\x20المجتمع.','7369698xVdEax','مطور\x20ذكاء\x20اصطناعي\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','onclick','ما\x20هي\x20اللغات\x20البرمجية\x20التي\x20تتقنها؟','كتاب\x20\x27Automate\x20the\x20Boring\x20Stuff\x20with\x20Python\x27\x20للمبتدئين.','معلومات\x20عن\x20الوظائف','فرص\x20العمل\x20تشمل:\x20مدير\x20نظم\x20معلومات،\x20مسؤول\x20شبكات،\x20أخصائي\x20دعم\x20فني،\x20مهندس\x20سحابة\x20إلكترونية،\x20مسؤول\x20أمن\x20معلومات.','شهادات\x20متقدمة،\x20خبرة\x20إدارية','هل\x20تفضل\x20العمل\x20على\x20التعلم\x20العميق\x20أم\x20التعلم\x20الآلي\x20الكلاسيكي؟','هل\x20تفضل\x20التعلم\x20النظري\x20أم\x20العملي\x20أكثر؟','حسناً!\x20لا\x20تتردد\x20في\x20السؤال\x20إذا\x20احتجت\x20إلى\x20مساعدة\x20أخرى.','stages','مطور\x20برامج\x20مبتدئ\x20(240,000-360,000\x20جنيه\x20سنوياً)','مهندس\x20سحابة\x20إلكترونية\x20(660,000-960,000\x20جنيه\x20سنوياً)','ما\x20هي\x20تطبيقات\x20الذكاء\x20الاصطناعي\x20التي\x20تثير\x20اهتمامك؟','ما\x20هو\x20رأيك\x20في\x20دمج\x20التقنية\x20مع\x20إدارة\x20الأعمال؟','لغات\x20برمجة\x20متعددة\x20★★★★★','اختر\x20فرقتك\x20الدراسية:','متدرّب\x20نظم\x20معلومات\x20(120,000-180,000\x20جنيه\x20سنوياً)','قنوات\x20يوتيوب\x20متخصصة\x20في\x20الذكاء\x20الاصطناعي.'];_0x419b=function(){return _0x1f55cd;};return _0x419b();}function showAdvice(_0x10dfe6){const _0x10bb70=_0x194bfd,_0x47a79c=data[_0x10dfe6][_0x10bb70(0x2c5)];addBotMessage('إليك\x20بعض\x20النصائح\x20للفرقة\x20'+_0x10dfe6+_0x10bb70(0x24d)+_0x47a79c[_0x10bb70(0x2cc)](_0x3dc507=>_0x10bb70(0x217)+_0x3dc507+_0x10bb70(0x214))[_0x10bb70(0x310)]('')+_0x10bb70(0x243)),askFollowUpQuestion(_0x10dfe6);}function showResources(_0x31231a){const _0x2ca37b=_0x194bfd,_0x147b7c=data[_0x31231a][_0x2ca37b(0x25f)];addBotMessage(_0x2ca37b(0x2f7)+_0x31231a+_0x2ca37b(0x24d)+_0x147b7c['map'](_0x26c2de=>_0x2ca37b(0x217)+_0x26c2de+'</li>')[_0x2ca37b(0x310)]('')+'</ul>'),askFollowUpQuestion(_0x31231a);}function showSpecializationSelection(){const _0x13971a=_0x194bfd;addBotMessage(_0x13971a(0x293),[{'text':_0x13971a(0x29d),'action':()=>selectSpecialization('IS')},{'text':_0x13971a(0x2c9),'action':()=>selectSpecialization('CS')},{'text':_0x13971a(0x2a5),'action':()=>selectSpecialization('IT')},{'text':_0x13971a(0x2dc),'action':()=>selectSpecialization('AI')}]);}function selectSpecialization(_0x5014f5){const _0x395510=_0x194bfd;currentState['specialization']=_0x5014f5;const _0x418796=data[0x3][_0x5014f5];addUserMessage(_0x395510(0x248)+getSpecializationName(_0x5014f5));const _0x1831c9=_0x395510(0x2d6)+_0x418796[_0x395510(0x210)][_0x395510(0x2b5)]+_0x395510(0x1e4)+_0x418796[_0x395510(0x210)][_0x395510(0x28b)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>نصائح\x20مهمة</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>'+_0x418796[_0x395510(0x2c5)][_0x395510(0x2cc)](_0x44a3d4=>'<li>'+_0x44a3d4+_0x395510(0x214))['join']('')+'</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>مصادر\x20تعليمية</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>'+_0x418796[_0x395510(0x25f)][_0x395510(0x2cc)](_0x316184=>_0x395510(0x217)+_0x316184+_0x395510(0x214))[_0x395510(0x310)]('')+'</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>فرص\x20العمل</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>'+_0x418796[_0x395510(0x307)]+_0x395510(0x308)+_0x5014f5+_0x395510(0x286)+_0x5014f5+_0x395510(0x241);addBotMessage(_0x1831c9);}function getSpecializationName(_0x4d7413){const _0x615c3=_0x194bfd,_0x4775b9={'IS':_0x615c3(0x20f),'CS':'علوم\x20الحاسب','IT':'تكنولوجيا\x20المعلومات','AI':_0x615c3(0x1fe)};return _0x4775b9[_0x4d7413]||_0x4d7413;}function showCareerInfo(){const _0x5eba1a=_0x194bfd,_0x57e476=_0x5eba1a(0x247);addBotMessage(_0x57e476),showSpecializationSelection();}function startInteractiveQuestions(){const _0xa0d3c7=_0x194bfd;addBotMessage(_0xa0d3c7(0x1f6));if(currentState[_0xa0d3c7(0x2d7)])askYearSpecificQuestion(currentState[_0xa0d3c7(0x2d7)]);else currentState[_0xa0d3c7(0x1f7)]?askSpecializationQuestion(currentState[_0xa0d3c7(0x1f7)]):askGeneralQuestion();}function askGeneralQuestion(){const _0x1a8f6f=_0x194bfd,_0x240e49=['ما\x20هي\x20اهتماماتك\x20الرئيسية\x20في\x20مجال\x20التكنولوجيا؟',_0x1a8f6f(0x254),_0x1a8f6f(0x2cf)],_0x4403b4=_0x240e49[Math[_0x1a8f6f(0x242)](Math[_0x1a8f6f(0x1ef)]()*_0x240e49[_0x1a8f6f(0x297)])];currentState[_0x1a8f6f(0x2f5)]=_0x4403b4,addBotMessage(_0x4403b4);}function askYearSpecificQuestion(_0xba217f){const _0x399715=_0x194bfd;if(data[_0xba217f]&&data[_0xba217f][_0x399715(0x2a1)]){const _0x37dbac=data[_0xba217f]['questions'][Math[_0x399715(0x242)](Math['random']()*data[_0xba217f][_0x399715(0x2a1)]['length'])];currentState[_0x399715(0x2f5)]=_0x37dbac,addBotMessage(_0x37dbac);}else askGeneralQuestion();}function askSpecializationQuestion(_0x36fd89){const _0x3e6ebd=_0x194bfd;if(data[0x3][_0x36fd89]&&data[0x3][_0x36fd89][_0x3e6ebd(0x2a1)]){const _0x331e95=data[0x3][_0x36fd89][_0x3e6ebd(0x2a1)][Math['floor'](Math[_0x3e6ebd(0x1ef)]()*data[0x3][_0x36fd89][_0x3e6ebd(0x2a1)][_0x3e6ebd(0x297)])];currentState[_0x3e6ebd(0x2f5)]=_0x331e95,addBotMessage(_0x331e95);}else askGeneralQuestion();}function askFollowUpQuestion(_0x34de1c){setTimeout(()=>{askYearSpecificQuestion(_0x34de1c);},0x3e8);}function handleAnswer(_0x45eea2){const _0x58bb6c=_0x194bfd;addBotMessage(_0x58bb6c(0x2a4)+_0x45eea2+'\x22'),currentState[_0x58bb6c(0x2f5)]=null,setTimeout(()=>{const _0x39a9e7=_0x58bb6c;addBotMessage(_0x39a9e7(0x1ee),[{'text':_0x39a9e7(0x2ab),'action':()=>{const _0x215d74=_0x39a9e7;if(currentState['year'])showAdvice(currentState[_0x215d74(0x2d7)]);else{if(currentState[_0x215d74(0x1f7)])askSpecializationQuestion(currentState['specialization']);else showMainOptions();}}},{'text':_0x39a9e7(0x216),'action':()=>addBotMessage(_0x39a9e7(0x22e))}]);},0x1f4);}function showHelp(){const _0x41baf4=_0x194bfd;addBotMessage(_0x41baf4(0x245));}function clearChat(){const _0x4ef273=_0x194bfd;confirm(_0x4ef273(0x2c2))&&location[_0x4ef273(0x2f1)]();}document[_0x194bfd(0x2d0)](_0x194bfd(0x282),()=>{const _0x4e8bcb=_0x194bfd,_0x26eb49=document[_0x4e8bcb(0x2bd)](_0x4e8bcb(0x2c1));_0x26eb49[_0x4e8bcb(0x2d0)](_0x4e8bcb(0x2af),_0x23c589=>{const _0x3ddd56=_0x4e8bcb;_0x23c589[_0x3ddd56(0x25b)]===_0x3ddd56(0x1fa)&&sendMessage();}),setTimeout(startChat,0x1f4);});function showCareerPaths(_0x2163b6){const _0x23e1e8=_0x194bfd,_0x13057e={'IS':{'stages':[{'name':'متدرب/حديث\x20التخرج','positions':[_0x23e1e8(0x2a8),_0x23e1e8(0x29f),_0x23e1e8(0x236)],'duration':'0-2\x20سنوات','requirements':_0x23e1e8(0x2c6)},{'name':'مستوى\x20مبتدئ','positions':[_0x23e1e8(0x23d),'مسؤول\x20قاعدة\x20بيانات\x20مبتدئ\x20(264,000-384,000\x20جنيه\x20سنوياً)','أخصائي\x20دعم\x20نظم\x20(216,000-312,000\x20جنيه\x20سنوياً)'],'duration':'2-4\x20سنوات','requirements':_0x23e1e8(0x2f4)},{'name':_0x23e1e8(0x30d),'positions':['محلل\x20نظم\x20متقدم\x20(420,000-600,000\x20جنيه\x20سنوياً)',_0x23e1e8(0x21d),_0x23e1e8(0x2ed)],'duration':_0x23e1e8(0x1d6),'requirements':_0x23e1e8(0x2e9)},{'name':_0x23e1e8(0x2c3),'positions':['مدير\x20نظم\x20المعلومات\x20(720,000-1,200,000\x20جنيه\x20سنوياً)',_0x23e1e8(0x1d9),_0x23e1e8(0x1d5)],'duration':_0x23e1e8(0x274),'requirements':'ماجستير،\x20شهادات\x20قيادية،\x20خبرة\x20استشارية'},{'name':'قيادة\x20وإدارة','positions':[_0x23e1e8(0x26f),'مدير\x20العمليات\x20التقنية\x20(960,000-1,800,000\x20جنيه\x20سنوياً)',_0x23e1e8(0x1e6)],'duration':_0x23e1e8(0x2e7),'requirements':_0x23e1e8(0x26a)}],'skills':[_0x23e1e8(0x20e),_0x23e1e8(0x212),'إدارة\x20المشاريع\x20التقنية\x20★★★★☆','تحليل\x20متطلبات\x20الأعمال\x20★★★★☆',_0x23e1e8(0x1e5)],'growth':_0x23e1e8(0x2a0)},'CS':{'stages':[{'name':'متدرب/حديث\x20التخرج','positions':[_0x23e1e8(0x230),'مهندس\x20برمجيات\x20مبتدئ\x20(264,000-396,000\x20جنيه\x20سنوياً)','متدرّب\x20تطوير\x20(180,000-300,000\x20جنيه\x20سنوياً)'],'duration':_0x23e1e8(0x269),'requirements':_0x23e1e8(0x202)},{'name':_0x23e1e8(0x288),'positions':['مطور\x20برامج\x20(360,000-540,000\x20جنيه\x20سنوياً)',_0x23e1e8(0x27e),_0x23e1e8(0x2f8)],'duration':'2-4\x20سنوات','requirements':_0x23e1e8(0x21c)},{'name':'مستوسط\x20الخبرة','positions':[_0x23e1e8(0x2e2),_0x23e1e8(0x265),_0x23e1e8(0x2dd)],'duration':_0x23e1e8(0x1d6),'requirements':'تخصص\x20تقني،\x20شهادات\x20متقدمة،\x20خبرة\x20قيادية'},{'name':_0x23e1e8(0x2c3),'positions':[_0x23e1e8(0x218),_0x23e1e8(0x2da),_0x23e1e8(0x255)],'duration':_0x23e1e8(0x274),'requirements':_0x23e1e8(0x268)},{'name':_0x23e1e8(0x2bf),'positions':[_0x23e1e8(0x303),_0x23e1e8(0x2d9),_0x23e1e8(0x29e)],'duration':_0x23e1e8(0x2e7),'requirements':_0x23e1e8(0x1fb)}],'skills':[_0x23e1e8(0x2ef),_0x23e1e8(0x234),'تطوير\x20تطبيقات\x20الويب\x20والجوال\x20★★★★☆',_0x23e1e8(0x26e),_0x23e1e8(0x264)],'growth':_0x23e1e8(0x29b)},'IT':{'stages':[{'name':_0x23e1e8(0x203),'positions':[_0x23e1e8(0x207),_0x23e1e8(0x306),'متدرّب\x20أمن\x20معلومات\x20(240,000-360,000\x20جنيه\x20سنوياً)'],'duration':_0x23e1e8(0x269),'requirements':_0x23e1e8(0x2d8)},{'name':_0x23e1e8(0x288),'positions':[_0x23e1e8(0x283),_0x23e1e8(0x2a3),_0x23e1e8(0x209)],'duration':_0x23e1e8(0x1f1),'requirements':'شهادات\x20Cisco/CompTIA،\x20خبرة\x20عملية'},{'name':_0x23e1e8(0x30d),'positions':['مهندس\x20شبكات\x20متقدم\x20(600,000-900,000\x20جنيه\x20سنوياً)','مهندس\x20أمن\x20معلومات\x20كبير\x20(720,000-1,080,000\x20جنيه\x20سنوياً)',_0x23e1e8(0x231)],'duration':_0x23e1e8(0x1d6),'requirements':_0x23e1e8(0x22b)},{'name':'مستوى\x20متقدم','positions':[_0x23e1e8(0x27c),_0x23e1e8(0x2ba),_0x23e1e8(0x21f)],'duration':_0x23e1e8(0x274),'requirements':'شهادات\x20قيادية،\x20خبرة\x20استراتيجية'},{'name':_0x23e1e8(0x2bf),'positions':[_0x23e1e8(0x262),_0x23e1e8(0x2bb),_0x23e1e8(0x1ff)],'duration':_0x23e1e8(0x2e7),'requirements':_0x23e1e8(0x28f)}],'skills':[_0x23e1e8(0x1f2),'أمن\x20المعلومات\x20والسيبراني\x20★★★★☆',_0x23e1e8(0x2de),'الحوسبة\x20السحابية\x20(AWS,\x20Azure)\x20★★★☆☆',_0x23e1e8(0x2a7)],'growth':_0x23e1e8(0x2b2)},'AI':{'stages':[{'name':_0x23e1e8(0x203),'positions':[_0x23e1e8(0x2ac),'متدرّب\x20تعلم\x20آلي\x20(360,000-540,000\x20جنيه\x20سنوياً)','مساعد\x20عالم\x20بيانات\x20(336,000-504,000\x20جنيه\x20سنوياً)'],'duration':'0-2\x20سنوات','requirements':'بكالوريوس\x20+\x20مشاريع\x20في\x20الذكاء\x20الاصطناعي'},{'name':_0x23e1e8(0x288),'positions':[_0x23e1e8(0x25c),_0x23e1e8(0x277),_0x23e1e8(0x225)],'duration':_0x23e1e8(0x1f1),'requirements':_0x23e1e8(0x23e)},{'name':'مستوسط\x20الخبرة','positions':['مهندس\x20تعلم\x20آلي\x20متقدم\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)','عالم\x20بيانات\x20كبير\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','باحث\x20ذكاء\x20اصطناعي\x20(1,440,000-2,400,000\x20جنيه\x20سنوياً)'],'duration':'4-7\x20سنوات','requirements':_0x23e1e8(0x2c0)},{'name':'مستوى\x20متقدم','positions':['كبير\x20علماء\x20البيانات\x20(2,400,000-3,600,000\x20جنيه\x20سنوياً)',_0x23e1e8(0x275),_0x23e1e8(0x1dc)],'duration':'7-12\x20سنة','requirements':_0x23e1e8(0x30c)},{'name':'قيادة\x20وإدارة','positions':[_0x23e1e8(0x2ce),'مدير\x20إستراتيجية\x20الذكاء\x20الاصطناعي\x20(3,600,000-6,000,000+\x20جنيه\x20سنوياً)','شريك\x20في\x20شركة\x20ناشئة\x20(5,000,000-10,000,000+\x20جنيه\x20سنوياً)'],'duration':_0x23e1e8(0x2e7),'requirements':_0x23e1e8(0x204)}],'skills':['تعلم\x20الآلـي\x20والتعلم\x20العميق\x20★★★★★',_0x23e1e8(0x2db),_0x23e1e8(0x2bc),_0x23e1e8(0x20d),_0x23e1e8(0x1f8)],'growth':'نمو\x20الوظائف:\x2020%\x20سنوياً\x20مع\x20تسارع\x20التطور\x20في\x20المجال'}},_0x2de850=_0x13057e[_0x2163b6],_0x2db0be=_0x23e1e8(0x2ea)+getSpecializationName(_0x2163b6)+_0x23e1e8(0x249)+_0x2de850[_0x23e1e8(0x22f)]['map'](_0x14b22d=>_0x23e1e8(0x2ae)+_0x14b22d[_0x23e1e8(0x26b)]+'\x20('+_0x14b22d[_0x23e1e8(0x1ed)]+_0x23e1e8(0x301)+_0x14b22d[_0x23e1e8(0x1f3)][_0x23e1e8(0x2cc)](_0x275ef4=>_0x23e1e8(0x21a)+_0x275ef4+_0x23e1e8(0x2f0))['join']('')+_0x23e1e8(0x253)+_0x14b22d[_0x23e1e8(0x239)]+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x23e1e8(0x310)]('')+_0x23e1e8(0x30a)+_0x2de850['skills'][_0x23e1e8(0x2cc)](_0x115c1f=>_0x23e1e8(0x311)+_0x115c1f+'</div>')[_0x23e1e8(0x310)]('')+_0x23e1e8(0x24c)+_0x2de850[_0x23e1e8(0x24e)]+_0x23e1e8(0x27b)+_0x2163b6+'\x27)\x22>مقارنة\x20الرواتب</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showSkillDevelopmentPlan(\x27'+_0x2163b6+_0x23e1e8(0x200)+_0x2163b6+'\x27)\x22>نصائح\x20سوق\x20العمل</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';addBotMessage(_0x2db0be);}function showSalaryComparison(_0x428774){const _0x262cec=_0x194bfd,_0x48aed4={'IS':_0x262cec(0x290),'CS':_0x262cec(0x302),'IT':'تكنولوجيا\x20المعلومات\x20مستقرة\x20مع\x20طلب\x20متزايد\x20على\x20الأمن\x20السيبراني','AI':'الذكاء\x20الاصطناعي\x20الأسرع\x20نمواً\x20مع\x20أعلى\x20الرواتب\x20على\x20المدى\x20الطويل'};addBotMessage(_0x262cec(0x1e1)+_0x48aed4[_0x428774]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>الراتب\x20المتوسط\x20للتخصص:\x20<strong>600,000-1,200,000\x20جنيه\x20سنوياً</strong></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>أعلى\x20راتب\x20مسجل:\x20<strong>8,000,000+\x20جنيه\x20سنوياً</strong></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>معدل\x20النمو\x20السنوي:\x20<strong>10-15%</strong></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20');}function showSkillDevelopmentPlan(_0x4fa235){const _0x59dfd8=_0x194bfd,_0x4a125e={'IS':_0x59dfd8(0x28a),'CS':_0x59dfd8(0x1e3),'IT':_0x59dfd8(0x1dd),'AI':_0x59dfd8(0x260)};addBotMessage(_0x59dfd8(0x258)+_0x4a125e[_0x4fa235]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ol>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>السنة\x201-2:\x20بناء\x20أساس\x20قوي\x20في\x20التخصص</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>السنة\x203-4:\x20التخصص\x20والحصول\x20على\x20شهادات\x20متقدمة</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>السنة\x205:\x20القيادة\x20والتأثير\x20في\x20المجال</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ol>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20');}const careerStyles=_0x194bfd(0x279);
     </script>
 </body>
 

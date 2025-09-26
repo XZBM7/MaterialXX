@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Course Selection</title>
+    <title>MaterialX | Course Selection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+
     <style>
         * {
             margin: 0;
@@ -460,102 +462,108 @@
                 });
             });
             
-            // Course data for each department (6 courses each)
             const courseData = {
-                // cs: [
-                //     { 
-                //         title: "Introduction to Programming", 
-                //         lecturer: "Dr. Sarah Johnson",
-                //         link: "https://example.com/cs101" 
-                //     },
-                //     { 
-                //         title: "Data Structures and Algorithms", 
-                //         lecturer: "Prof. Michael Chen",
-                //         link: "https://example.com/cs201" 
-                //     },
-                //     { 
-                //         title: "Software Engineering", 
-                //         lecturer: "Dr. Emily Roberts",
-                //         link: "https://example.com/cs301" 
-                //     },
-                //     { 
-                //         title: "Web Development", 
-                //         lecturer: "Prof. David Wilson",
-                //         link: "https://example.com/cs401" 
-                //     },
-                //     { 
-                //         title: "Database Systems", 
-                //         lecturer: "Dr. Lisa Anderson",
-                //         link: "https://example.com/cs501" 
-                //     },
-                //     { 
-                //         title: "Computer Networks", 
-                //         lecturer: "Prof. James Miller",
-                //         link: "https://example.com/cs601" 
-                //     }
-                // ],
+    cs: [
+        { 
+            title: "Machine Learning", 
+            lecturer: "",
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a" 
+        },
+        { 
+            title: "Artificial Intelligence", 
+            lecturer: "",
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a" 
+        },
+        { 
+            title: "Computer Organization", 
+            lecturer: "",
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a" 
+        },
+        { 
+            title: "Parallel Processing", 
+            lecturer: "",
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a" 
+        },
+        { 
+            title: "Operating System - 2", 
+            lecturer: "",
+            link: "https://example.com/cs501" 
+        },
+        { 
+            title: "Database 2", 
+            lecturer: "",
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a" 
+        },
+        { 
+            title: "Concepts in Computer Science", 
+            lecturer: "",
+            link: "https://example.com/cs701" 
+        }
+    ],
+
+
     ai: [
         { 
             title: "Parallel Processing", 
             lecturer: "Dr. Robert Taylor",
-            link: "https://example.com/ai101" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a" 
         },
         { 
             title: "Machine Learning", 
             lecturer: "Prof. Amanda Lee",
-            link: "https://example.com/ai201" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a" 
         },
         { 
             title: "Artificial Intelligence", 
             lecturer: "Dr. Kevin Brown",
-            link: "https://example.com/ai301" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a" 
         },
         { 
             title: "Big Data", 
             lecturer: "Prof. Rachel Green",
-            link: "https://example.com/ai401" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a" 
         },
         { 
             title: "Database 2", 
             lecturer: "Dr. Thomas White",
-            link: "https://example.com/ai501" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a" 
         },
         { 
             title: "Convex Optimization", 
             lecturer: "Prof. Patricia Clark",
-            link: "https://example.com/ai601" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1FtizAsRIcyAI4W7isl7QmQHl8wD7kTf-?sort=13&direction=a" 
         }
     ],
     is: [
         { 
             title: "Data Mining", 
             lecturer: "Dr. Christopher Hall",
-            link: "https://example.com/is101" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1YnfoQIHayTzwLfnGJz98rdzlLCx108m0?sort=13&direction=a" 
         },
         { 
             title: "Database 2", 
             lecturer: "Prof. Nancy Adams",
-            link: "https://example.com/is201" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a" 
         },
         { 
             title: "Artificial Intelligence", 
             lecturer: "Dr. Brian Scott",
-            link: "https://example.com/is301" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a" 
         },
         { 
             title: "Big Data", 
             lecturer: "Prof. Karen Young",
-            link: "https://example.com/is401" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a" 
         },
         { 
             title: "Data Storage", 
             lecturer: "Dr. Steven King",
-            link: "https://example.com/is501" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1qG0XsmpcUfIugiR6jvvoVw8tqqV_nqoH?sort=13&direction=a" 
         },
         { 
-            title: "Data Analytics", 
+            title: "Data Analytics (BI)", 
             lecturer: "Prof. Jessica Baker",
-            link: "https://example.com/is601" 
+            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1xLA6MPCyyEdsIHLLOIaqlt9qqDXhHdCp?sort=13&direction=a" 
         }
     ]
 };
