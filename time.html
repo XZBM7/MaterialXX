@@ -238,6 +238,16 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        .btn-warning {
+            background: linear-gradient(135deg, #ff9800, #ffb74d);
+            color: white;
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(255, 152, 0, 0.4);
+        }
+
         .timer-display {
             text-align: center;
             font-size: 3.5rem;
@@ -471,6 +481,9 @@
                     <button id="start-timer" class="btn btn-primary">
                         <i class="fas fa-play"></i> Start Timer
                     </button>
+                    <button id="pause-timer" class="btn btn-warning" style="display: none;">
+                        <i class="fas fa-pause"></i> Pause
+                    </button>
                     <button id="reset-timer" class="btn btn-secondary">
                         <i class="fas fa-redo"></i> Reset
                     </button>
@@ -482,12 +495,12 @@
             </div>
         </div>
         
-    <div class="developer-section">
-    <a href="homee.html" target="_blank" class="developer-btn" id="developer-btn">
-        <i class="fas fa-code"></i> Back to home
-    </a>
-</div>
-
+        <div class="developer-section">
+            <a href="homee.html" target="_blank" class="developer-btn" id="developer-btn">
+                <i class="fas fa-code"></i> Back to home
+            </a>
+        </div>
+    </div>
     
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -530,52 +543,63 @@
         let studyInterval;
         let studyTime = 1500; // 25 minutes in seconds
         let isStudying = false;
+        let isPaused = false;
+        let remainingTime = studyTime;
         
         function updateStudyTimer() {
-            const minutes = Math.floor(studyTime / 60);
-            const seconds = studyTime % 60;
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
             
             document.getElementById('study-minutes').textContent = minutes.toString().padStart(2, '0');
             document.getElementById('study-seconds').textContent = seconds.toString().padStart(2, '0');
             
             // Add animation when timer completes
             const timerDisplay = document.querySelector('.timer-display');
-            if (studyTime === 0) {
+            if (remainingTime === 0) {
                 timerDisplay.classList.add('timer-complete');
             } else {
                 timerDisplay.classList.remove('timer-complete');
             }
         }
         
-        document.getElementById('start-timer').addEventListener('click', function() {
-            if (isStudying) return;
+        function startTimer() {
+            if (isStudying && !isPaused) return;
             
-            const selectedMinutes = parseInt(document.getElementById('study-time-input').value);
-            if (isNaN(selectedMinutes) || selectedMinutes < 1) {
-                alert('Please enter a valid number of minutes');
-                return;
+            if (isPaused) {
+                // Resume timer from paused state
+                isPaused = false;
+                document.getElementById('pause-timer').style.display = 'inline-flex';
+                document.getElementById('start-timer').style.display = 'none';
+                document.getElementById('timer-status').textContent = 'Study session in progress...';
+            } else {
+                // Start new timer
+                const selectedMinutes = parseInt(document.getElementById('study-time-input').value);
+                if (isNaN(selectedMinutes) || selectedMinutes < 1) {
+                    alert('Please enter a valid number of minutes');
+                    return;
+                }
+                
+                remainingTime = selectedMinutes * 60;
+                updateStudyTimer();
+                
+                isStudying = true;
+                document.getElementById('timer-status').textContent = 'Study session in progress...';
+                document.getElementById('pause-timer').style.display = 'inline-flex';
+                document.getElementById('start-timer').style.display = 'none';
             }
             
-            studyTime = selectedMinutes * 60;
-            updateStudyTimer();
-            
-            isStudying = true;
-            document.getElementById('timer-status').textContent = 'Study session in progress...';
-            document.getElementById('start-timer').innerHTML = '<i class="fas fa-pause"></i> Pause';
-            document.getElementById('start-timer').classList.add('btn-secondary');
-            document.getElementById('start-timer').classList.remove('btn-primary');
-            
             studyInterval = setInterval(() => {
-                if (studyTime > 0) {
-                    studyTime--;
+                if (remainingTime > 0) {
+                    remainingTime--;
                     updateStudyTimer();
                 } else {
                     clearInterval(studyInterval);
                     isStudying = false;
+                    isPaused = false;
                     document.getElementById('timer-status').textContent = 'Time is up! Take a break.';
                     document.getElementById('start-timer').innerHTML = '<i class="fas fa-play"></i> Start Timer';
-                    document.getElementById('start-timer').classList.remove('btn-secondary');
-                    document.getElementById('start-timer').classList.add('btn-primary');
+                    document.getElementById('start-timer').style.display = 'inline-flex';
+                    document.getElementById('pause-timer').style.display = 'none';
                     
                     // Play notification sound if available
                     if (typeof Audio !== "undefined") {
@@ -592,18 +616,35 @@
                     }
                 }
             }, 1000);
-        });
+        }
         
-        document.getElementById('reset-timer').addEventListener('click', function() {
+        function pauseTimer() {
+            if (!isStudying || isPaused) return;
+            
+            clearInterval(studyInterval);
+            isPaused = true;
+            document.getElementById('timer-status').textContent = 'Timer paused';
+            document.getElementById('start-timer').innerHTML = '<i class="fas fa-play"></i> Resume';
+            document.getElementById('start-timer').style.display = 'inline-flex';
+            document.getElementById('pause-timer').style.display = 'none';
+        }
+        
+        function resetTimer() {
             clearInterval(studyInterval);
             isStudying = false;
-            studyTime = parseInt(document.getElementById('study-time-input').value) * 60;
+            isPaused = false;
+            remainingTime = parseInt(document.getElementById('study-time-input').value) * 60;
             updateStudyTimer();
             document.getElementById('timer-status').textContent = 'Timer reset.';
             document.getElementById('start-timer').innerHTML = '<i class="fas fa-play"></i> Start Timer';
-            document.getElementById('start-timer').classList.remove('btn-secondary');
-            document.getElementById('start-timer').classList.add('btn-primary');
-        });
+            document.getElementById('start-timer').style.display = 'inline-flex';
+            document.getElementById('pause-timer').style.display = 'none';
+        }
+        
+        // Event listeners
+        document.getElementById('start-timer').addEventListener('click', startTimer);
+        document.getElementById('pause-timer').addEventListener('click', pauseTimer);
+        document.getElementById('reset-timer').addEventListener('click', resetTimer);
         
         // Initialize timer display
         updateStudyTimer();
