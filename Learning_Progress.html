@@ -7,7 +7,8 @@
     <title>Materialx | Learning Progress</title>
     <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #6a11cb;
@@ -224,8 +225,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .notes-section {
@@ -300,8 +308,15 @@
         }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .note-text {
@@ -406,26 +421,26 @@
             body {
                 padding: 15px;
             }
-            
+
             .header {
                 padding: 20px 15px;
                 margin-bottom: 20px;
             }
-            
+
             .card {
                 padding: 20px 15px;
                 margin-bottom: 20px;
             }
-            
+
             .lesson-card {
                 padding: 15px;
             }
-            
+
             .note-item {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+
             .delete-note {
                 align-self: flex-end;
                 margin-top: 10px;
@@ -436,34 +451,34 @@
             body {
                 padding: 10px;
             }
-            
+
             .header {
                 padding: 15px 10px;
             }
-            
+
             .card {
                 padding: 15px 10px;
             }
-            
+
             select {
                 padding: 12px;
                 font-size: 14px;
             }
-            
+
             .lesson-card {
                 padding: 12px;
             }
-            
+
             .lesson-checkbox {
                 transform: scale(1.1);
                 margin-right: 10px;
             }
-            
+
             .add-note-btn {
                 padding: 12px 15px;
                 min-width: 100px;
             }
-            
+
             .scroll-to-top {
                 bottom: 20px;
                 right: 20px;
@@ -480,7 +495,7 @@
                 --secondary: #0000FF;
                 --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             }
-            
+
             .card {
                 border: 2px solid var(--dark);
             }
@@ -493,7 +508,7 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
+
             html {
                 scroll-behavior: auto;
             }
@@ -512,9 +527,11 @@
             <h2>Select Department</h2>
             <select id="sectionSelect">
                 <option value="" disabled selected>Select Department</option>
-                <option value="IS">Information Systems (IS)</option>
-                <option value="CS">Computer Science (CS)</option>
-                <option value="AI">Artificial Intelligence (AI)</option>
+                <option value="Level1">Level 1 - General</option>
+                <option value="Level2">Level 2 - General</option>
+                <option value="IS">Information Systems (IS Level 3 & 4)</option>
+                <option value="CS">Computer Science (CS Level 3 & 4)</option>
+                <option value="AI">Artificial Intelligence (AI Level 3 & 4)</option>
             </select>
 
             <div class="subject-selection" style="display: none;">
@@ -582,33 +599,70 @@
 
         // Departments and Subjects Data
         const sections = {
-            'IS': ['Data Mining', 'Database 2', 'Artificial Intelligence', 'Big Data', 'Data Storage', 'Data Analytics'],
-'CS': [
-    'Machine Learning',
-    'Artificial Intelligence',
-    'Computer Organization',
-    'Parallel Processing',
-    'Operating System - 2',
-    'Database 2',
-    'Concepts in Computer Science'
-],
-            'AI': ['Parallel Processing', 'Machine Learning', 'Artificial Intelligence', 'Big Data', 'Database 2', 'Convex Optimization']
+            'Level1': ['Mathematics 1', 'Physics 1', 'Information System (IS)', 'English 1', 'Statistics 1', 'Introduction to Computer (CS)'],
+            'Level2': ['DC', 'SA-1', 'DS', 'DB-1', 'Digital Logic', 'PL-2', 'Human Rights'],
+            'IS': ['Data Mining', 'Database 2', 'Artificial Intelligence', 'Big Data', 'Data Storage', 'Data Analytics (BI)', 'ISS', 'PL-3', 'Data Science', 'Ethics', 'Quality Testing'],
+            'CS': [
+                'Machine Learning',
+                'Artificial Intelligence',
+                'Computer Organization',
+                'Parallel Processing',
+                'Operating System - 2',
+                'Database 2',
+                'Concepts in Computer Science',
+                'PL-3',
+                'Ethics',
+                'Multimedia',
+                'Image Processing',
+                'Deep and Neural'
+
+            ],
+            'AI': ['Parallel Processing', 'Machine Learning', 'Artificial Intelligence', 'Big Data', 'Database 2', 'Convex Optimization', 'PL-3', 'Ethics', 'Data Science', 'Image Processing', 'Deep and Neural']
         };
 
         // Lectures Data (11 lectures for each subject)
         const lessons = {
-      'Data Mining': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Database 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Artificial Intelligence': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Big Data': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Data Storage': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Data Analytics': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Parallel Processing': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Machine Learning': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Convex Optimization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Computer Organization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Operating System - 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
-'Concepts in Computer Science': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+            // Level 1 Subjects
+            'Mathematics 1': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Physics 1': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Information System (IS)': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'English 1': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Statistics 1': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Introduction to Computer (CS)': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+
+            // Level 2 Subjects
+            'DC': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'SA-1': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'DB-1': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'PL-2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Digital Logic': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'DS': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Human Rights': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+
+            'Data Mining': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Database 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Artificial Intelligence': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Big Data': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Data Storage': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Data Analytics (BI)': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'ISS': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'PL-3': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Data Science': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Ethics': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Quality Testing': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Parallel Processing': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Machine Learning': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Convex Optimization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Computer Organization': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Operating System - 2': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Concepts in Computer Science': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Multimedia': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Image Processing': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+            'Deep and Neural': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+
+
+
+
 
 
         };
@@ -671,7 +725,7 @@
         function populateLessons(subject) {
             lessonList.innerHTML = '';
             const lessonProgress = progressData[subject] || [];
-            
+
             lessons[subject].forEach((lecture, index) => {
                 const lessonCard = document.createElement('div');
                 lessonCard.className = 'lesson-card';
@@ -734,7 +788,7 @@
         function addNote() {
             const selectedSubject = subjectSelect.value;
             const note = noteInput.value.trim();
-            
+
             if (note && selectedSubject) {
                 if (!notesData[selectedSubject]) {
                     notesData[selectedSubject] = [];
@@ -749,7 +803,7 @@
         function loadNotes(subject) {
             notesList.innerHTML = '';
             const notes = notesData[subject] || [];
-            
+
             if (notes.length === 0) {
                 const emptyMessage = document.createElement('div');
                 emptyMessage.className = 'note-item';
@@ -760,7 +814,7 @@
                 notesList.appendChild(emptyMessage);
                 return;
             }
-            
+
             notes.forEach((note, index) => {
                 const noteItem = document.createElement('div');
                 noteItem.className = 'note-item';

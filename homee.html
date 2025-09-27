@@ -729,6 +729,404 @@
                 padding: 25px;
             }
         }
+        /* Search Styles */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 20px;
+}
+
+.search-box {
+    display: flex;
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition);
+}
+
+.search-box:focus-within {
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+#searchInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+#searchInput::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+#searchButton {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#searchButton:hover {
+    color: var(--accent);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1001;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: #f8f9fa;
+}
+
+.search-result-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.search-result-text h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--dark);
+}
+
+.search-result-text p {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* Responsive Search */
+@media (max-width: 992px) {
+    .search-container {
+        max-width: 300px;
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        order: 3;
+        max-width: 100%;
+        margin: 15px 0 0;
+    }
+    
+    .header-content {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    #searchInput {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .search-result-item {
+        padding: 12px 15px;
+    }
+}
+/* Search Styles */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 20px;
+}
+
+.search-box {
+    display: flex;
+    background: rgba(255,255,255,0.15);
+    border-radius: 30px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition);
+}
+
+.search-box:focus-within {
+    background: rgba(255,255,255,0.25);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+#searchInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+#searchInput::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+#searchButton {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#searchButton:hover {
+    color: var(--accent);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1001;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background: #f8f9fa;
+}
+
+.search-result-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.search-result-text h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--dark);
+}
+
+.search-result-text p {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+/* Responsive Search */
+@media (max-width: 992px) {
+    .search-container {
+        max-width: 300px;
+        margin: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        order: 3;
+        max-width: 100%;
+        margin: 15px 0 0;
+    }
+    
+    .header-content {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    #searchInput {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .search-result-item {
+        padding: 12px 15px;
+    }
+}
+/* Hamburger Menu for All Screens */
+.hamburger {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.hamburger:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.hamburger::after {
+    content: 'Menu';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap;
+}
+
+/* Navigation Menu for All Screens */
+nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    width: 280px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-top: 10px;
+    padding: 10px 0;
+    z-index: 1001;
+    flex-direction: column;
+}
+
+nav ul.active {
+    display: flex;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav ul li {
+    width: 100%;
+}
+
+nav ul li a {
+    border-radius: 0;
+    padding: 15px 25px;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav ul li:last-child a {
+    border-bottom: none;
+}
+
+nav ul li a:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateX(5px);
+}
+
+/* Adjust header layout for hamburger menu */
+.header-content {
+    position: relative;
+}
+
+/* Remove old responsive styles for navigation */
+@media (min-width: 577px) {
+    nav ul {
+        display: none; /* Keep hidden on all screens */
+    }
+    
+    .hamburger {
+        display: flex !important; /* Always show hamburger */
+    }
+}
+
+
+
+
     </style>
 </head>
 <body>
@@ -749,30 +1147,49 @@
         </div>
     </div>
 
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="img/WhatsApp_Image_2024-11-16_at_11.34.png" alt="Materialx Logo">
-                    <h1>Materialx</h1>
-                </div>
-                <div class="hamburger" id="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <nav>
-                    <ul id="nav-menu">
-                        <li><a href="homee.html"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="material.html"><i class="fas fa-book"></i> Material</a></li>
-                        <li><a href="play.html"><i class="fas fa-puzzle-piece"></i> Games</a></li>
-                        <li><a href="code.html"><i class="fas fa-code"></i> Coding</a></li>
-                        <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
-                        <li><a href="Learning_Progress.html"><i class="fas fa-chart-line"></i> Progress</a></li>
-                        <li><a href="chat.html"><i class="fas fa-robot"></i> Chatbot</a></li>
-                    </ul>
-                </nav>
+  <header>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <img src="img/WhatsApp_Image_2024-11-16_at_11.34.png" alt="Materialx Logo">
+                <h1>Materialx</h1>
             </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search for apps, materials, games...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <!-- Hamburger Menu - Always Visible -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="homee.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="material.html" target="_blank"><i class="fas fa-book"></i> Material</a></li>
+<li><a href="play.html" target="_blank"><i class="fas fa-puzzle-piece"></i> Games</a></li>
+<li><a href="code.html" target="_blank"><i class="fas fa-code"></i> Coding</a></li>
+<li><a href="quiz.html" target="_blank"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+<li><a href="Learning_Progress.html" target="_blank"><i class="fas fa-chart-line"></i> Progress</a></li>
+<li><a href="chat.html" target="_blank"><i class="fas fa-robot"></i> Chatbot</a></li>
+                   <li><a href="#departments"><i class="fas fa-building"></i> Departments</a></li>
+<li><a href="#apps"><i class="fas fa-file-alt"></i> Application</a></li>
+
+
+
+                </ul>
+            </nav>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -836,7 +1253,7 @@
     </section>
 
     <!-- Departments Section -->
-    <section class="departments-section">
+<section id="departments" class="departments-section">
         <div class="container">
             <div class="section-title">
                 <h2>Academic Departments</h2>
@@ -847,7 +1264,7 @@
                     <div class="dept-content">
                         <h3>Information Systems</h3>
                         <p>Explore the world of information systems, data management, and business technology solutions.</p>
-                        <a href="ISD.html" class="dept-link">Learn More</a>
+                        <a href="ISD.html" class="dept-link">Discover IS</a>
                     </div>
                 </div>
                 <div class="department-card">
@@ -863,10 +1280,11 @@
                     <div class="dept-content">
                         <h3>Computer Science</h3>
                         <p>Master the fundamentals of computer science, algorithms, and software development.</p>
-                        <a href="cs.html" class="dept-link">Explore CS</a>
+                        <a href="cs.html" class="dept-link">Discover CS</a>
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -918,27 +1336,29 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Users Say</h2>
-            </div>
-            <div class="testimonials-slider">
-                <div class="testimonial-item">
-                    <div class="testimonial-text">
-                        "Materialx has transformed how I learn. The combination of education and entertainment keeps me engaged for hours!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SJ</div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Computer Science Student</p>
-                        </div>
+ <section class="testimonials-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>What Our Students Say</h2>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-item">
+                <div class="testimonial-text">
+                    "The AI-powered learning platform perfectly complements our computer science curriculum. The practical coding exercises are exceptional!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AA</div>
+                    <div class="author-info">
+                        <h4>Ahmed Ali</h4>
+                        <p>Computer Science Student, Faculty of Computers and AI</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+
 
     <!-- Footer -->
     <footer>
@@ -1020,10 +1440,34 @@
             setVisited();
         });
 
-        // Mobile Menu Toggle
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('nav-menu').classList.toggle('active');
-        });
+       // Hamburger Menu Toggle
+document.getElementById('hamburger').addEventListener('click', function(e) {
+    e.stopPropagation();
+    const navMenu = document.getElementById('nav-menu');
+    const hamburger = this;
+    
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function(e) {
+    const navMenu = document.getElementById('nav-menu');
+    const hamburger = document.getElementById('hamburger');
+    
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+
+// Close menu when clicking on a link
+document.querySelectorAll('#nav-menu a').forEach(link => {
+    link.addEventListener('click', function() {
+        document.getElementById('nav-menu').classList.remove('active');
+        document.getElementById('hamburger').classList.remove('active');
+    });
+});
 
         // Back to Top Button
         window.addEventListener('scroll', function() {
@@ -1041,26 +1485,41 @@
                 behavior: 'smooth'
             });
         });
+        
 
-        // Simple testimonial slider
-        let currentTestimonial = 0;
-        const testimonials = [
-            {
-                text: "Materialx has transformed how I learn. The combination of education and entertainment keeps me engaged for hours!",
-                name: "Sarah Johnson",
-                role: "Computer Science Student"
-            },
-            {
-                text: "As a teacher, I've found Materialx to be an invaluable resource for making complex topics accessible to my students.",
-                name: "Michael Chen",
-                role: "High School Teacher"
-            },
-            {
-                text: "The progress tracking feature has helped me stay motivated and see how far I've come in my learning journey.",
-                name: "Emma Rodriguez",
-                role: "Self-Learner"
-            }
-        ];
+ let currentTestimonial = 0;
+    const testimonials = [
+        {
+            text: "The AI-powered learning platform perfectly complements our computer science curriculum. The practical coding exercises are exceptional!",
+            name: "Ahmed Ali",
+            role: "Computer Science Student, Faculty of Computers and AI"
+        },
+        {
+            text: "As an AI student, the machine learning tutorials and real-world projects have been invaluable for understanding complex algorithms.",
+            name: "Mona Hassan",
+            role: "Artificial Intelligence Student, Faculty of Computers and AI"
+        },
+        {
+            text: "The platform's data science track helped me master Python and statistical analysis, which are crucial for our information systems courses.",
+            name: "Youssef Mahmoud",
+            role: "Information Systems Student, Faculty of Computers and AI"
+        },
+        {
+            text: "Perfect resource for cybersecurity students! The hands-on labs and ethical hacking simulations are exactly what we need.",
+            name: "Nour El-Din",
+            role: "Cybersecurity Student, Faculty of Computers and AI"
+        },
+        {
+            text: "The software engineering projects and version control tutorials align perfectly with our faculty's practical approach to education.",
+            name: "Sara Mohamed",
+            role: "Software Engineering Student, Faculty of Computers and AI"
+        },
+        {
+            text: "As a bioinformatics student, the platform's integration of biology and computer science concepts is incredibly helpful.",
+            name: "Khaled Samy",
+            role: "Bioinformatics Student, Faculty of Computers and AI"
+        }
+    ];     
 
         function changeTestimonial() {
             const testimonialElement = document.querySelector('.testimonial-item');
@@ -1087,6 +1546,180 @@
 
         // Change testimonial every 5 seconds
         setInterval(changeTestimonial, 5000);
+
+      // Enhanced Search Functionality
+const searchData = [
+    { title: "Calculator", description: "Advanced calculator for mathematical operations", url: "Calculator.html", icon: "fas fa-calculator", category: "Apps" },
+    { title: "Find a Team", description: "Connect and collaborate with others", url: "post.html", icon: "fas fa-users", category: "Apps" },
+    { title: "Task Manager", description: "Organize your daily tasks", url: "task.html", icon: "fas fa-tasks", category: "Apps" },
+    { title: "Draw & Notes", description: "Creative drawing and note-taking", url: "draw.html", icon: "fas fa-paint-brush", category: "Apps" },
+    { title: "Time Manager", description: "Track and manage your time", url: "time.html", icon: "fas fa-clock", category: "Apps" },
+    { title: "Learning Materials", description: "Educational resources and content", url: "material.html", icon: "fas fa-book", category: "Resources" },
+    { title: "Educational Games", description: "Fun and interactive learning games", url: "play.html", icon: "fas fa-puzzle-piece", category: "Entertainment" },
+    { title: "Coding Practice", description: "Programming exercises and challenges", url: "code.html", icon: "fas fa-code", category: "Learning" },
+    { title: "Quizzes", description: "Test your knowledge with quizzes", url: "quiz.html", icon: "fas fa-question-circle", category: "Assessment" },
+    { title: "Progress Tracking", description: "Monitor your learning journey", url: "Learning_Progress.html", icon: "fas fa-chart-line", category: "Tools" },
+    { title: "AI Chatbot", description: "Get instant help with our chatbot", url: "chat.html", icon: "fas fa-robot", category: "Support" },
+    { title: "Information Systems", description: "Department resources and materials", url: "ISD.html", icon: "fas fa-database", category: "Departments" },
+    { title: "Artificial Intelligence", description: "AI department resources", url: "AID.html", icon: "fas fa-brain", category: "Departments" },
+    { title: "Computer Science", description: "CS department resources", url: "cs.html", icon: "fas fa-laptop-code", category: "Departments" },
+    { title: "Home", description: "Main dashboard and overview", url: "homee.html", icon: "fas fa-home", category: "Navigation" },
+    { title: "About Developer", description: "Learn about the platform creator", url: "about.html", icon: "fas fa-user", category: "Information" }
+];
+
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const searchResults = document.getElementById('searchResults');
+
+// Function to highlight matching text
+function highlightText(text, query) {
+    if (!query) return text;
+    
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, '<mark>$1</mark>');
+}
+
+// Enhanced search function
+function performSearch(query) {
+    if (query.length === 0) {
+        searchResults.classList.remove('active');
+        return;
+    }
+    
+    // Show all items that contain the query in title, description, or category
+    const filteredResults = searchData.filter(item => {
+        const searchableText = `${item.title} ${item.description} ${item.category}`.toLowerCase();
+        return searchableText.includes(query.toLowerCase());
+    });
+    
+    displayResults(filteredResults, query);
+}
+
+// Improved results display with highlighting
+function displayResults(results, query) {
+    if (results.length === 0) {
+        searchResults.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-search"></i>
+                <h4>No results found</h4>
+                <p>No matches for "<strong>${query}</strong>"</p>
+                <p>Try searching for: apps, materials, games, or departments</p>
+            </div>
+        `;
+        
+        // إزالة أي event listeners سابقة
+        searchResults.querySelectorAll('.search-result-item').forEach(item => {
+            item.replaceWith(item.cloneNode(true));
+        });
+    } else {
+        searchResults.innerHTML = results.map(item => `
+            <div class="search-result-item" data-url="${item.url}">
+                <div class="search-result-icon">
+                    <i class="${item.icon}"></i>
+                </div>
+                <div class="search-result-text">
+                    <h4>${highlightText(item.title, query)}</h4>
+                    <p>${highlightText(item.description, query)}</p>
+                    <span class="search-result-category">${item.category}</span>
+                </div>
+                <i class="fas fa-chevron-right" style="color: #6c757d; font-size: 0.9rem;"></i>
+            </div>
+        `).join('');
+        
+        // Add click event to result items (فقط للنتائج الموجودة)
+        document.querySelectorAll('.search-result-item[data-url]').forEach(item => {
+            item.addEventListener('click', function() {
+                window.location.href = this.getAttribute('data-url');
+            });
+        });
+    }
+    
+    searchResults.classList.add('active');
+}
+
+// Event listeners
+searchInput.addEventListener('input', function() {
+    performSearch(this.value.trim());
+});
+
+searchButton.addEventListener('click', function() {
+    performSearch(searchInput.value.trim());
+});
+
+// Close search results when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.search-container')) {
+        searchResults.classList.remove('active');
+    }
+});
+
+// Handle Enter key
+searchInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        performSearch(this.value.trim());
+        this.blur(); // Remove focus after search
+    }
+});
+
+// Add style for highlighted text
+const style = document.createElement('style');
+style.textContent = `
+    mark {
+        background-color: #fff3cd;
+        color: #856404;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+    }
+    
+    .no-results {
+        padding: 30px 20px;
+        text-align: center;
+        color: #6c757d;
+        cursor: default;
+    }
+    
+    .no-results:hover {
+        background: white !important;
+        transform: none !important;
+    }
+    
+    .no-results i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: #dee2e6;
+    }
+    
+    .no-results h4 {
+        color: #495057;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .no-results p {
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+    
+    .no-results strong {
+        color: #495057;
+        font-weight: 600;
+    }
+`;
+document.head.appendChild(style);
+
+// Focus on search input when pressing Ctrl+K
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        searchInput.focus();
+    }
+});
+
+// Show search shortcut hint
+searchInput.addEventListener('focus', function() {
+    this.setAttribute('title', 'Press Ctrl+K to quickly search');
+});
     </script>
 </body>
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaterialX | Course Selection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
 
     <style>
         * {
@@ -27,6 +28,8 @@
             --cs-color: #4361ee;
             --ai-color: #f72585;
             --is-color: #4cc9f0;
+            --level1-color: #06d6a0;
+            --level2-color: #ffd166;
         }
 
         body {
@@ -65,7 +68,7 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(to right, var(--cs-color), var(--ai-color), var(--is-color));
+            background: linear-gradient(to right, var(--cs-color), var(--ai-color), var(--is-color), var(--level1-color), var(--level2-color));
         }
 
         h1 {
@@ -86,6 +89,43 @@
             margin-right: auto;
         }
 
+        .search-container {
+            margin: 20px 0 30px 0;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
         .department-selection {
             display: flex;
             justify-content: center;
@@ -98,7 +138,7 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 30px 25px;
-            width: 320px;
+            width: 220px;
             text-align: center;
             box-shadow: 0 8px 20px var(--shadow);
             transition: all 0.4s ease;
@@ -130,6 +170,14 @@
             background: var(--is-color);
         }
 
+        .department-card.level1::before {
+            background: var(--level1-color);
+        }
+
+        .department-card.level2::before {
+            background: var(--level2-color);
+        }
+
         .department-card:hover {
             transform: translateY(-12px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
@@ -143,8 +191,8 @@
         }
 
         .department-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             transition: all 0.3s ease;
         }
 
@@ -160,13 +208,21 @@
             color: var(--is-color);
         }
 
+        .department-card.level1 .department-icon {
+            color: var(--level1-color);
+        }
+
+        .department-card.level2 .department-icon {
+            color: var(--level2-color);
+        }
+
         .department-card.active .department-icon {
             transform: scale(1.1);
         }
 
         .department-title {
-            font-size: 1.7rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
             font-weight: 700;
         }
 
@@ -182,10 +238,18 @@
             color: var(--is-color);
         }
 
+        .department-card.level1 .department-title {
+            color: var(--level1-color);
+        }
+
+        .department-card.level2 .department-title {
+            color: var(--level2-color);
+        }
+
         .department-desc {
             color: #666;
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .content-area {
@@ -204,8 +268,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .content-header {
@@ -239,6 +310,14 @@
 
         .is-content .content-title {
             color: var(--is-color);
+        }
+
+        .level1-content .content-title {
+            color: var(--level1-color);
+        }
+
+        .level2-content .content-title {
+            color: var(--level2-color);
         }
 
         .courses-container {
@@ -316,6 +395,20 @@
             transform: translateX(5px);
         }
 
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
         footer {
             text-align: center;
             margin-top: auto;
@@ -336,6 +429,10 @@
             .courses-container {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
+
+            .department-card {
+                width: 200px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -343,22 +440,22 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .department-card {
                 width: 100%;
-                max-width: 400px;
+                max-width: 300px;
             }
-            
+
             .content-header {
                 flex-direction: column;
                 gap: 20px;
                 text-align: center;
             }
-            
+
             h1 {
                 font-size: 2.2rem;
             }
-            
+
             .content-title {
                 font-size: 1.7rem;
             }
@@ -368,40 +465,98 @@
             .courses-container {
                 grid-template-columns: 1fr;
             }
-            
+
             h1 {
                 font-size: 1.8rem;
             }
-            
+
             .department-title {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
+
+            .search-input {
+                padding: 12px 45px 12px 15px;
+                font-size: 0.9rem;
+            }
+        }
+          .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>Department Course Selection</h1>
-            <p class="subtitle">Choose your department to explore available courses with lecturer information and resources</p>
+            <p class="subtitle">Choose your department to explore available courses with lecturer information and
+                resources</p>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search courses...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
         </header>
-        
+
         <div class="department-selection">
+            <div class="department-card level1" data-department="level1">
+                <div class="department-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="department-title">Level 1</h3>
+                <p class="department-desc">First Year General Courses</p>
+            </div>
+
+            <div class="department-card level2" data-department="level2">
+                <div class="department-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3 class="department-title">Level 2</h3>
+                <p class="department-desc">Second Year General Courses</p>
+            </div>
+
             <div class="department-card cs" data-department="cs">
                 <div class="department-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
                 <h3 class="department-title">Computer Science</h3>
-                <!-- <p class="department-desc">Programming, Algorithms, Data Structures, Software Engineering, Web Development, Database Systems</p> -->
             </div>
-            
+
             <div class="department-card ai" data-department="ai">
                 <div class="department-icon">
                     <i class="fas fa-robot"></i>
                 </div>
                 <h3 class="department-title">Artificial Intelligence</h3>
             </div>
-            
+
             <div class="department-card is" data-department="is">
                 <div class="department-icon">
                     <i class="fas fa-database"></i>
@@ -409,7 +564,25 @@
                 <h3 class="department-title">Information Systems</h3>
             </div>
         </div>
-        
+
+        <div class="content-area level1-content" id="level1-content">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-graduation-cap"></i> Level 1 Courses</h2>
+            </div>
+            <div class="courses-container" id="level1-courses">
+                <!-- Level 1 courses will be added here dynamically -->
+            </div>
+        </div>
+
+        <div class="content-area level2-content" id="level2-content">
+            <div class="content-header">
+                <h2 class="content-title"><i class="fas fa-book-open"></i> Level 2 Courses</h2>
+            </div>
+            <div class="courses-container" id="level2-courses">
+                <!-- Level 2 courses will be added here dynamically -->
+            </div>
+        </div>
+
         <div class="content-area cs-content" id="cs-content">
             <div class="content-header">
                 <h2 class="content-title"><i class="fas fa-laptop-code"></i> Computer Science Courses</h2>
@@ -418,7 +591,7 @@
                 <!-- CS courses will be added here dynamically -->
             </div>
         </div>
-        
+
         <div class="content-area ai-content" id="ai-content">
             <div class="content-header">
                 <h2 class="content-title"><i class="fas fa-robot"></i> Artificial Intelligence Courses</h2>
@@ -427,7 +600,7 @@
                 <!-- AI courses will be added here dynamically -->
             </div>
         </div>
-        
+
         <div class="content-area is-content" id="is-content">
             <div class="content-header">
                 <h2 class="content-title"><i class="fas fa-database"></i> Information Systems Courses</h2>
@@ -436,152 +609,361 @@
                 <!-- IS courses will be added here dynamically -->
             </div>
         </div>
-        
+
+    </div>
+
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+          window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
             // Department selection functionality
             const departmentCards = document.querySelectorAll('.department-card');
             const contentAreas = document.querySelectorAll('.content-area');
-            
+            const searchInput = document.getElementById('searchInput');
+
+            // Course data with all departments including Level 1 and Level 2
+            const courseData = {
+                level1: [
+                    {
+                        title: "Mathematics 1",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Physics 1",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Information System (IS)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "English 1",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Statistics 1",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Introduction to Computer (CS)",
+                        lecturer: "",
+                        link: "#"
+                    }
+                ],
+
+                level2: [
+                    {
+                        title: "DC",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "SA-1",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "DS",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "DB-1",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Digital Logic",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "PL-2",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Human Rights",
+                        lecturer: "",
+                        link: "#"
+                    }
+                ],
+
+                cs: [
+                    {
+                        title: "Machine Learning",
+                        lecturer: "Dr. Robert Taylor",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a"
+                    },
+                    {
+                        title: "Artificial Intelligence",
+                        lecturer: "Prof. Amanda Lee",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a"
+                    },
+                    {
+                        title: "Computer Organization",
+                        lecturer: "Dr. Kevin Brown",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a"
+                    },
+                    {
+                        title: "Parallel Processing",
+                        lecturer: "Prof. Rachel Green",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a"
+                    },
+                    {
+                        title: "Operating System - 2",
+                        lecturer: "Dr. Thomas White",
+                        link: "https://example.com/cs501"
+                    },
+                    {
+                        title: "Database 2",
+                        lecturer: "Prof. Patricia Clark",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a"
+                    },
+                    {
+                        title: "Concepts in Computer Science",
+                        lecturer: "Dr. Brian Scott",
+                        link: "https://example.com/cs701"
+                    },
+                    {
+                        title: "PL-3 (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Ethics (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Multimedia (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Image Processing (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Deep and Neural (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    }
+                ],
+                ai: [
+                    {
+                        title: "Parallel Processing",
+                        lecturer: "Dr. Robert Taylor",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a"
+                    },
+                    {
+                        title: "Machine Learning",
+                        lecturer: "Prof. Amanda Lee",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a"
+                    },
+                    {
+                        title: "Artificial Intelligence",
+                        lecturer: "Dr. Kevin Brown",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a"
+                    },
+                    {
+                        title: "Big Data",
+                        lecturer: "Prof. Rachel Green",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a"
+                    },
+                    {
+                        title: "Database 2",
+                        lecturer: "Dr. Thomas White",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a"
+                    },
+                    {
+                        title: "Convex Optimization",
+                        lecturer: "Prof. Patricia Clark",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1FtizAsRIcyAI4W7isl7QmQHl8wD7kTf-?sort=13&direction=a"
+                    },
+                    {
+                        title: "PL-3 (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Ethics (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Data Science (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Image Processing (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Deep and Neural (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    }
+                ],
+                is: [
+                    {
+                        title: "Data Mining",
+                        lecturer: "Dr. Christopher Hall",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1YnfoQIHayTzwLfnGJz98rdzlLCx108m0?sort=13&direction=a"
+                    },
+                    {
+                        title: "Database 2",
+                        lecturer: "Prof. Nancy Adams",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a"
+                    },
+                    {
+                        title: "Artificial Intelligence",
+                        lecturer: "Dr. Brian Scott",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a"
+                    },
+                    {
+                        title: "Big Data",
+                        lecturer: "Prof. Karen Young",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a"
+                    },
+                    {
+                        title: "Data Storage",
+                        lecturer: "Dr. Steven King",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1qG0XsmpcUfIugiR6jvvoVw8tqqV_nqoH?sort=13&direction=a"
+                    },
+                    {
+                        title: "Data Analytics (BI)",
+                        lecturer: "Prof. Jessica Baker",
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1xLA6MPCyyEdsIHLLOIaqlt9qqDXhHdCp?sort=13&direction=a"
+                    },
+                    {
+                        title: "ISS (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "PL-3 (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Data Science (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Ethics (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    },
+                    {
+                        title: "Quality Testing (Level 4)",
+                        lecturer: "",
+                        link: "#"
+                    }
+                ]
+            };
+
             departmentCards.forEach(card => {
-                card.addEventListener('click', function() {
+                card.addEventListener('click', function () {
                     // Remove active class from all cards
                     departmentCards.forEach(c => c.classList.remove('active'));
-                    
+
                     // Add active class to clicked card
                     this.classList.add('active');
-                    
+
                     // Hide all content areas
                     contentAreas.forEach(area => area.classList.remove('active'));
-                    
+
                     // Show the corresponding content area
                     const department = this.getAttribute('data-department');
                     document.getElementById(`${department}-content`).classList.add('active');
+
+                    // Clear search when switching departments
+                    searchInput.value = '';
+                    filterCourses(department, '');
                 });
             });
-            
-            const courseData = {
-    cs: [
-        { 
-            title: "Machine Learning", 
-            lecturer: "",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a" 
-        },
-        { 
-            title: "Artificial Intelligence", 
-            lecturer: "",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a" 
-        },
-        { 
-            title: "Computer Organization", 
-            lecturer: "",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a" 
-        },
-        { 
-            title: "Parallel Processing", 
-            lecturer: "",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a" 
-        },
-        { 
-            title: "Operating System - 2", 
-            lecturer: "",
-            link: "https://example.com/cs501" 
-        },
-        { 
-            title: "Database 2", 
-            lecturer: "",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a" 
-        },
-        { 
-            title: "Concepts in Computer Science", 
-            lecturer: "",
-            link: "https://example.com/cs701" 
-        }
-    ],
 
+            // Search functionality
+            searchInput.addEventListener('input', function () {
+                const searchTerm = this.value.toLowerCase();
+                const activeDepartment = document.querySelector('.department-card.active');
 
-    ai: [
-        { 
-            title: "Parallel Processing", 
-            lecturer: "Dr. Robert Taylor",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a" 
-        },
-        { 
-            title: "Machine Learning", 
-            lecturer: "Prof. Amanda Lee",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a" 
-        },
-        { 
-            title: "Artificial Intelligence", 
-            lecturer: "Dr. Kevin Brown",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a" 
-        },
-        { 
-            title: "Big Data", 
-            lecturer: "Prof. Rachel Green",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a" 
-        },
-        { 
-            title: "Database 2", 
-            lecturer: "Dr. Thomas White",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a" 
-        },
-        { 
-            title: "Convex Optimization", 
-            lecturer: "Prof. Patricia Clark",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1FtizAsRIcyAI4W7isl7QmQHl8wD7kTf-?sort=13&direction=a" 
-        }
-    ],
-    is: [
-        { 
-            title: "Data Mining", 
-            lecturer: "Dr. Christopher Hall",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1YnfoQIHayTzwLfnGJz98rdzlLCx108m0?sort=13&direction=a" 
-        },
-        { 
-            title: "Database 2", 
-            lecturer: "Prof. Nancy Adams",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a" 
-        },
-        { 
-            title: "Artificial Intelligence", 
-            lecturer: "Dr. Brian Scott",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a" 
-        },
-        { 
-            title: "Big Data", 
-            lecturer: "Prof. Karen Young",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a" 
-        },
-        { 
-            title: "Data Storage", 
-            lecturer: "Dr. Steven King",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1qG0XsmpcUfIugiR6jvvoVw8tqqV_nqoH?sort=13&direction=a" 
-        },
-        { 
-            title: "Data Analytics (BI)", 
-            lecturer: "Prof. Jessica Baker",
-            link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1xLA6MPCyyEdsIHLLOIaqlt9qqDXhHdCp?sort=13&direction=a" 
-        }
-    ]
-};
+                if (activeDepartment) {
+                    const department = activeDepartment.getAttribute('data-department');
+                    filterCourses(department, searchTerm);
+                }
+            });
 
-            
+            // Function to filter courses based on search term
+            function filterCourses(department, searchTerm) {
+                const coursesContainer = document.getElementById(`${department}-courses`);
+                const courses = courseData[department];
+
+                coursesContainer.innerHTML = '';
+
+                const filteredCourses = courses.filter(course =>
+                    course.title.toLowerCase().includes(searchTerm) ||
+                    course.lecturer.toLowerCase().includes(searchTerm)
+                );
+
+                if (filteredCourses.length === 0) {
+                    coursesContainer.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-search"></i>
+                            <p>No courses found matching "${searchTerm}"</p>
+                            <p>Try different keywords or browse all courses</p>
+                        </div>
+                    `;
+                } else {
+                    filteredCourses.forEach((course, index) => {
+                        const courseCard = createCourseCard(course, index, department);
+                        coursesContainer.appendChild(courseCard);
+                    });
+                }
+            }
+
             // Function to create a course card
             function createCourseCard(course, index, department) {
                 const courseCard = document.createElement('div');
                 courseCard.className = 'course-card';
-                
+
                 // Set border color based on department
                 let borderColor = '';
                 if (department === 'cs') borderColor = 'var(--cs-color)';
                 else if (department === 'ai') borderColor = 'var(--ai-color)';
                 else if (department === 'is') borderColor = 'var(--is-color)';
-                
+                else if (department === 'level1') borderColor = 'var(--level1-color)';
+                else if (department === 'level2') borderColor = 'var(--level2-color)';
+
                 courseCard.style.borderLeftColor = borderColor;
-                
+
                 courseCard.innerHTML = `
                     <div class="course-number">${index + 1}</div>
                     <h4 class="course-title">${course.title}</h4>
@@ -595,7 +977,7 @@
                 `;
                 return courseCard;
             }
-            
+
             // Initialize courses for each department
             function initializeCourses() {
                 for (const department in courseData) {
@@ -606,13 +988,14 @@
                     });
                 }
             }
-            
+
             // Initialize the page with courses
             initializeCourses();
-            
+
             // Activate the first department by default
             departmentCards[0].click();
         });
     </script>
 </body>
+
 </html>
