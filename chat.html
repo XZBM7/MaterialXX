@@ -563,6 +563,74 @@
 
 }
 
+ @media (max-width: 600px) {
+            .chat-message {
+                font-size: 0.9rem;
+            }
+
+            input[type="text"] {
+                font-size: 1rem;
+            }
+
+            button {
+                font-size: 1.1rem;
+            }
+
+            .input-area {
+                padding: 1vh;
+            }
+
+            #chat-box {
+                padding-bottom: 80px;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .chat-message {
+                font-size: 1rem;
+            }
+
+            input[type="text"] {
+                font-size: 1.1rem;
+            }
+
+            button {
+                font-size: 1.2rem;
+            }
+
+            .input-area {
+                padding: 10px;
+            }
+
+            #chat-box {
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .chat-message {
+                max-width: 60%;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+        }
+
+         .input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
     </style>
 </head>
 
