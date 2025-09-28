@@ -1054,9 +1054,10 @@
     font-size: 0.7rem;
     color: rgba(255,255,255,0.8);
     white-space: nowrap;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
-/* Navigation Menu for All Screens */
+/* Navigation Menu for Mobile */
 nav ul {
     display: none;
     position: absolute;
@@ -1097,6 +1098,8 @@ nav ul li a {
     padding: 15px 25px;
     justify-content: flex-start;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: right;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 nav ul li:last-child a {
@@ -1105,7 +1108,7 @@ nav ul li:last-child a {
 
 nav ul li a:hover {
     background: rgba(255,255,255,0.15);
-    transform: translateX(5px);
+    transform: translateX(-5px);
 }
 
 /* Adjust header layout for hamburger menu */
@@ -1113,17 +1116,50 @@ nav ul li a:hover {
     position: relative;
 }
 
-/* Remove old responsive styles for navigation */
-@media (min-width: 577px) {
-    nav ul {
-        display: none; /* Keep hidden on all screens */
+/* Mobile First Approach */
+@media (max-width: 576px) {
+    .hamburger {
+        display: flex !important;
     }
     
-    .hamburger {
-        display: flex !important; /* Always show hamburger */
+    nav ul {
+        width: 250px;
+        right: 10px;
+    }
+    
+    nav ul li a {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .hamburger::after {
+        font-size: 0.65rem;
+        bottom: -18px;
     }
 }
 
+/* For very small phones */
+@media (max-width: 360px) {
+    nav ul {
+        width: 220px;
+    }
+    
+    nav ul li a {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Hide navigation on desktop - show only hamburger */
+@media (min-width: 577px) {
+    nav ul {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex !important;
+    }
+}
 
 
 
@@ -1283,6 +1319,26 @@ nav ul li a:hover {
                         <a href="cs.html" class="dept-link">Discover CS</a>
                     </div>
                 </div>
+
+
+<div class="department-card">
+    <div class="dept-image" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="dept-content">
+        <h3>Level 1 - (General)</h3>
+        <p>Begin your journey in information technology and learn programming basics and computational thinking.</p>
+        <a href="cooming.html" class="dept-link">Discover Level 1</a>
+    </div>
+</div>
+
+<div class="department-card">
+<div class="dept-image" style="background-image: url('https://blog.skillitall.com/wp-content/uploads/2024/07/programming_language_beginner_advice.jpg');"></div>
+    <div class="dept-content">
+        <h3>Level 2 - (General)</h3>
+        <p>Dive into the exciting field of PL, Database, and More.</p>
+        <a href="cooming.html" class="dept-link">Discover Level 2</a>
+    </div>
+</div>
+
             </div>
             
         </div>
