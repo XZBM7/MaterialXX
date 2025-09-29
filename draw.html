@@ -19,105 +19,186 @@
 
     body {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         min-height: 100vh;
         background: linear-gradient(135deg, #000c37, #1a237e);
-        padding: 10px;
+        padding: 0;
     }
 
-    .container {
-        display: flex;
-        width: 100%;
-        gap: 15px;
-        padding: 15px;
-        max-width: 1300px;
-        flex-direction: column;
-    }
-
-    section {
+    /* شريط الأدوات العلوي */
+    .toolbar {
         background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 12px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+        z-index: 100;
     }
 
-    .tools-board {
-        width: 100%;
-        padding: 20px;
-        max-width: 240px;
+    .tool-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 12px;
+        border-right: 1px solid #eee;
     }
 
-    .tools-board .row {
-        margin-bottom: 25px;
+    .tool-group:last-child {
+        border-right: none;
     }
 
-    .row .title {
-        font-size: 1.1rem;
+    .tool-group .title {
+        font-size: 0.9rem;
         font-weight: 600;
         color: #333;
-        margin-bottom: 12px;
-        display: block;
+        white-space: nowrap;
     }
 
-    .row .options {
-        list-style: none;
-        margin: 10px 0 0 5px;
-    }
-
-    .row .options .option {
+    .tool-options {
         display: flex;
-        cursor: pointer;
+        gap: 8px;
         align-items: center;
-        margin-bottom: 12px;
-        padding: 8px;
+    }
+
+    .tool-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 10px;
         border-radius: 6px;
         transition: all 0.3s ease;
+        min-width: 60px;
     }
 
-    .row .options .option:hover {
+    .tool-option:hover {
         background: #f0f4ff;
+    }
+
+    .tool-option.active {
+        background: #e8f0fe;
+    }
+
+    .tool-option img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 5px;
+    }
+
+    .tool-option span {
+        font-size: 0.75rem;
+        color: #5A6168;
+        text-align: center;
+    }
+
+    .tool-option.active span {
+        color: #4A98F7;
+        font-weight: 500;
     }
 
     .option:is(:hover, .active) img {
         filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
     }
 
-    .option :where(span, label) {
-        color: #5A6168;
+    .color-options {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .color-option {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
         cursor: pointer;
-        padding-left: 12px;
-        font-size: 0.95rem;
+        position: relative;
+        transition: transform 0.2s ease;
     }
 
-    .option:is(:hover, .active) :where(span, label) {
-        color: #4A98F7;
+    .color-option:hover {
+        transform: scale(1.1);
     }
 
-    .option.active {
-        background: #e8f0fe;
+    .color-option.selected::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        height: 20px;
+        width: 20px;
+        background: inherit;
+        border-radius: inherit;
+        border: 2px solid #fff;
+        transform: translate(-50%, -50%);
     }
 
-    .option #fill-color {
+    .color-option:first-child {
+        background-color: #fff;
+        border: 1px solid #bfbfbf;
+    }
+
+    .color-option:first-child.selected::before {
+        border-color: #ccc;
+    }
+
+    .color-option:nth-child(2) {
+        background-color: #000;
+    }
+
+    .color-option:nth-child(3) {
+        background-color: #E02020;
+    }
+
+    .color-option:nth-child(4) {
+        background-color: #6DD400;
+    }
+
+    .color-option:nth-child(5) {
+        background-color: #4A98F7;
+    }
+
+    .color-picker-container {
+        position: relative;
+        width: 28px;
+        height: 28px;
+    }
+
+    #color-picker {
+        opacity: 0;
         cursor: pointer;
-        height: 16px;
-        width: 16px;
-    }
-
-    #fill-color:checked~label {
-        color: #4A98F7;
-    }
-
-    .option #size-slider {
+        position: absolute;
         width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .color-picker-preview {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #4A98F7;
+        border: 1px solid #ddd;
+    }
+
+    .size-slider-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #size-slider {
+        width: 120px;
         height: 6px;
-        margin-top: 10px;
         border-radius: 5px;
         background: #e0e0e0;
         outline: none;
         -webkit-appearance: none;
     }
 
-    .option #size-slider::-webkit-slider-thumb {
+    #size-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         width: 18px;
         height: 18px;
@@ -126,157 +207,92 @@
         cursor: pointer;
     }
 
-    .colors .options {
+    .action-buttons {
         display: flex;
-        justify-content: space-between;
+        gap: 10px;
     }
 
-    .colors .option {
-        height: 24px;
-        width: 24px;
-        border-radius: 50%;
-        margin-top: 3px;
-        position: relative;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
-
-    .colors .option:hover {
-        transform: scale(1.1);
-    }
-
-    .colors .option:nth-child(1) {
-        background-color: #fff;
-        border: 1px solid #bfbfbf;
-    }
-
-    .colors .option:nth-child(2) {
-        background-color: #000;
-    }
-
-    .colors .option:nth-child(3) {
-        background-color: #E02020;
-    }
-
-    .colors .option:nth-child(4) {
-        background-color: #6DD400;
-    }
-
-    .colors .option:nth-child(5) {
-        background-color: #4A98F7;
-    }
-
-    .colors .option.selected::before {
-        position: absolute;
-        content: "";
-        top: 50%;
-        left: 50%;
-        height: 14px;
-        width: 14px;
-        background: inherit;
-        border-radius: inherit;
-        border: 2px solid #fff;
-        transform: translate(-50%, -50%);
-    }
-
-    .colors .option:first-child.selected::before {
-        border-color: #ccc;
-    }
-
-    .option #color-picker {
-        opacity: 0;
-        cursor: pointer;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    .buttons button {
-        width: 100%;
-        color: #fff;
+    .action-button {
+        padding: 8px 16px;
         border: none;
-        outline: none;
-        padding: 12px 0;
-        font-size: 0.95rem;
-        margin-bottom: 15px;
-        background: none;
         border-radius: 6px;
-        cursor: pointer;
         font-weight: 500;
+        cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 8px;
+        gap: 6px;
+        font-size: 0.85rem;
     }
 
-    .buttons .clear-canvas {
+    .clear-button {
         color: #6C757D;
         border: 1px solid #6C757D;
+        background: transparent;
     }
 
-    .clear-canvas:hover {
+    .clear-button:hover {
         color: #fff;
         background: #6C757D;
     }
 
-    .buttons .save-img {
+    .save-button {
         background: #4A98F7;
+        color: white;
         border: 1px solid #4A98F7;
     }
 
-    .buttons .save-img:hover {
+    .save-button:hover {
         background: #3a88e7;
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(58, 136, 231, 0.3);
     }
 
-    .drawing-board {
-        flex: 1;
-        overflow: hidden;
-        position: relative;
-        min-height: 500px;
+    .home-button {
+        background: #6DD400;
+        color: white;
+        border: 1px solid #6DD400;
     }
 
-    .drawing-board canvas {
-        width: 100%;
-        height: 100%;
-        display: block;
-        border-radius: 8px;
+    .home-button:hover {
+        background: #5cb300;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(108, 212, 0, 0.3);
     }
 
     /* إدارة الصفحات - تصميم محسن */
     .pages-management {
         background: #fff;
-        border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 15px;
+        border-radius: 0 0 12px 12px;
+        padding: 15px 20px;
+        margin: 0 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        display: none; /* مخفي افتراضيًا */
     }
 
     .pages-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 10px;
     }
 
     .pages-header h3 {
         color: #333;
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 600;
     }
 
     .pages-controls {
         display: flex;
-        gap: 12px;
+        gap: 10px;
         flex-wrap: wrap;
     }
 
     .pages-controls button {
-        padding: 10px 18px;
+        padding: 8px 14px;
         border: none;
         border-radius: 6px;
         font-weight: 500;
@@ -284,8 +300,8 @@
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        gap: 8px;
-        font-size: 0.9rem;
+        gap: 6px;
+        font-size: 0.85rem;
     }
 
     .pages-controls .btn-new {
@@ -313,8 +329,8 @@
     .pages-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        max-height: 180px;
+        gap: 10px;
+        max-height: 120px;
         overflow-y: auto;
         padding: 5px;
     }
@@ -322,7 +338,7 @@
     .page-item {
         background: #f8f9fa;
         border-radius: 8px;
-        padding: 12px 15px;
+        padding: 10px 12px;
         cursor: pointer;
         min-width: 120px;
         text-align: center;
@@ -353,25 +369,26 @@
 
     .page-name {
         font-weight: 500;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
+        font-size: 0.9rem;
     }
 
     .page-date {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         opacity: 0.7;
     }
 
     .delete-page {
         position: absolute;
-        top: -8px;
-        right: -8px;
+        top: -6px;
+        right: -6px;
         background: #E02020;
         color: white;
         border: none;
         border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        font-size: 14px;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -390,6 +407,54 @@
         transform: scale(1.1);
     }
 
+    /* مساحة الرسم */
+    .drawing-area {
+        flex: 1;
+        display: flex;
+        padding: 15px;
+        overflow: hidden;
+    }
+
+    .drawing-board {
+        flex: 1;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .drawing-board canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    /* زر تبديل إدارة الصفحات */
+    .toggle-pages {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #4A98F7;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 12px;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .toggle-pages:hover {
+        background: #3a88e7;
+        transform: translateY(-2px);
+    }
+
     /* مؤشر الممحاة */
     .eraser-indicator {
         position: absolute;
@@ -402,219 +467,401 @@
     }
 
     /* تحسينات للاستجابة */
-    @media (min-width: 992px) {
-        .container {
-            flex-direction: row;
-        }
+   /* القيم الافتراضية لجميع الشاشات الكبيرة */
+.toolbar {
+    padding: 15px 20px;
+    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
-        .tools-board {
-            width: 240px;
-        }
-        
-        .drawing-board {
-            min-height: 600px;
-        }
+.tool-group {
+    padding: 10px 12px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tool-group .title {
+    display: block;
+}
+
+.tool-options {
+    display: flex;
+    gap: 8px;
+}
+
+.tool-option {
+    min-width: 60px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tool-option img {
+    width: 24px;
+    height: 24px;
+}
+
+.tool-option span {
+    font-size: 0.85rem;
+}
+
+.color-option,
+.color-picker-container,
+.color-picker-preview {
+    width: 28px;
+    height: 28px;
+}
+
+#size-slider {
+    width: 120px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-button {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pages-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pages-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pages-list {
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.page-item {
+    min-width: 150px;
+    padding: 10px;
+}
+
+/* شريط التمرير المخصص */
+.pages-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.pages-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.pages-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.pages-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.drawing-area {
+    padding: 12px;
+}
+
+/* شاشات متوسطة */
+@media (max-width: 1200px) {
+    .tool-group {
+        padding: 8px 10px;
     }
 
-    @media (max-width: 991px) and (min-width: 768px) {
-        .drawing-board {
-            height: 500px;
-        }
-        
-        .page-item {
-            min-width: 120px;
-        }
+    .tool-option {
+        min-width: 50px;
+        padding: 6px 8px;
     }
 
-    @media (max-width: 767px) {
-        body {
-            padding: 5px;
-        }
-
-        .container {
-            padding: 10px;
-            gap: 10px;
-        }
-        
-        .tools-board {
-            max-width: 100%;
-            padding: 15px;
-        }
-
-        .buttons button {
-            font-size: 0.85rem;
-            padding: 10px 0;
-        }
-
-        .drawing-board {
-            height: 400px;
-            min-height: 400px;
-        }
-        
-        .pages-header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .pages-controls {
-            width: 100%;
-            justify-content: space-between;
-        }
-        
-        .pages-controls button {
-            flex: 1;
-            justify-content: center;
-        }
-        
-        .pages-list {
-            max-height: 120px;
-        }
-        
-        .page-item {
-            min-width: calc(50% - 10px);
-            max-width: 100%;
-        }
+    .tool-option img {
+        width: 22px;
+        height: 22px;
     }
 
-    @media (max-width: 480px) {
-        .drawing-board {
-            height: 350px;
-        }
-        
-        .pages-controls {
-            flex-direction: column;
-        }
-        
-        .page-item {
-            min-width: 100%;
-        }
-        
-        .tools-board .row {
-            margin-bottom: 20px;
-        }
+    .tool-option span {
+        font-size: 0.75rem;
+    }
+}
+
+/* شاشات صغيرة */
+@media (max-width: 992px) {
+    .toolbar {
+        padding: 10px 15px;
+        gap: 10px;
     }
 
-    /* شريط التمرير المخصص */
-    .pages-list::-webkit-scrollbar {
-        width: 6px;
+    .tool-group {
+        padding: 6px;
+        border-right: none;
     }
 
-    .pages-list::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
+    .tool-group .title {
+        display: none;
     }
 
-    .pages-list::-webkit-scrollbar-thumb {
-        background: #c1c1c1;
-        border-radius: 10px;
+    .action-button span {
+        display: none;
     }
 
-    .pages-list::-webkit-scrollbar-thumb:hover {
-        background: #a8a8a8;
+    .action-button {
+        padding: 8px 10px;
     }
+
+    .pages-list {
+        max-height: 100px;
+    }
+
+    .page-item {
+        min-width: 120px;
+        max-width: 150px;
+        padding: 8px 10px;
+    }
+}
+
+/* شاشات صغيرة جدًا */
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .tool-group {
+        width: 100%;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .tool-group:last-child {
+        border-bottom: none;
+    }
+
+    .tool-options {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        flex: 1;
+    }
+
+    .action-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .action-button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .pages-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pages-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .pages-controls button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .pages-list {
+        max-height: 80px;
+    }
+
+    .page-item {
+        min-width: calc(50% - 5px);
+        max-width: 100%;
+    }
+
+    .drawing-area {
+        padding: 10px;
+    }
+}
+
+/* شاشات جدًا صغيرة / الهواتف */
+@media (max-width: 480px) {
+    .tool-option {
+        min-width: 40px;
+        padding: 5px;
+    }
+
+    .tool-option img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .tool-option span {
+        font-size: 0.65rem;
+    }
+
+    .color-option,
+    .color-picker-container,
+    .color-picker-preview {
+        width: 24px;
+        height: 24px;
+    }
+
+    #size-slider {
+        width: 100px;
+    }
+
+    .pages-controls {
+        flex-direction: column;
+    }
+
+    .page-item {
+        min-width: 100%;
+    }
+}
+
 </style>
 
 <body>
-    <div class="container">
-        <section class="pages-management">
-            <div class="pages-header">
-                <h3><i class="fas fa-file-alt"></i> Pages Management</h3>
-                <div class="pages-controls">
-                    <button class="btn-new" id="new-page">
-                        <i class="fas fa-plus"></i> New Page
-                    </button>
-                    <button class="btn-delete" id="delete-all">
-                        <i class="fas fa-trash-alt"></i> Delete All
-                    </button>
+    <!-- شريط الأدوات العلوي -->
+    <div class="toolbar">
+        <div class="tool-group">
+            <span class="title">Shapes</span>
+            <div class="tool-options">
+                <div class="tool-option tool" id="rectangle">
+                    <img src="icons/rectangle.svg" alt="">
+                    <span>Rectangle</span>
+                </div>
+                <div class="tool-option tool" id="circle">
+                    <img src="icons/circle.svg" alt="">
+                    <span>Circle</span>
+                </div>
+                <div class="tool-option tool" id="triangle">
+                    <img src="icons/triangle.svg" alt="">
+                    <span>Triangle</span>
+                </div>
+                <div class="tool-option" id="fill-toggle">
+                    <input type="checkbox" id="fill-color" style="display: none;">
+                    <img src="icons/fill.svg" alt="">
+                    <span>Fill</span>
                 </div>
             </div>
-            <div class="pages-list" id="pages-list">
-                <!-- سيتم ملء قائمة الصفحات ديناميكيًا -->
-            </div>
-        </section>
+        </div>
         
-        <section class="tools-board">
-            <div class="row">
-                <label class="title">Shapes</label>
-                <ul class="options">
-                    <li class="option tool" id="rectangle">
-                        <img src="icons/rectangle.svg" alt="">
-                        <span>Rectangle</span>
-                    </li>
-                    <li class="option tool" id="circle">
-                        <img src="icons/circle.svg" alt="">
-                        <span>Circle</span>
-                    </li>
-                    <li class="option tool" id="triangle">
-                        <img src="icons/triangle.svg" alt="">
-                        <span>Triangle</span>
-                    </li>
-                    <li class="option">
-                        <input type="checkbox" id="fill-color">
-                        <label for="fill-color">Fill color</label>
-                    </li>
-                </ul>
+        <div class="tool-group">
+            <span class="title">Tools</span>
+            <div class="tool-options">
+                <div class="tool-option active tool" id="brush">
+                    <img src="icons/brush.svg" alt="">
+                    <span>Brush</span>
+                </div>
+                <div class="tool-option tool" id="eraser">
+                    <img src="icons/eraser.svg" alt="">
+                    <span>Eraser</span>
+                </div>
+                <div class="size-slider-container">
+                    <span class="title">Size</span>
+                    <input type="range" id="size-slider" min="1" max="30" value="5">
+                </div>
             </div>
-            <div class="row">
-                <label class="title">Tools</label>
-                <ul class="options">
-                    <li class="option active tool" id="brush">
-                        <img src="icons/brush.svg" alt="">
-                        <span>Brush</span>
-                    </li>
-                    <li class="option tool" id="eraser">
-                        <img src="icons/eraser.svg" alt="">
-                        <span>Eraser</span>
-                    </li>
-                    <li class="option">
-                        <input type="range" id="size-slider" min="1" max="30" value="5">
-                    </li>
-                </ul>
+        </div>
+        
+        <div class="tool-group">
+            <span class="title">Colors</span>
+            <div class="color-options">
+                <div class="color-option"></div>
+                <div class="color-option selected"></div>
+                <div class="color-option"></div>
+                <div class="color-option"></div>
+                <div class="color-picker-container">
+                    <input type="color" id="color-picker" value="#4A98F7">
+                    <div class="color-picker-preview"></div>
+                </div>
             </div>
-            <div class="row colors">
-                <label class="title">Colors</label>
-                <ul class="options">
-                    <li class="option"></li>
-                    <li class="option selected"></li>
-                    <li class="option"></li>
-                    <li class="option"></li>
-                    <li class="option">
-                        <input type="color" id="color-picker" value="#4A98F7">
-                    </li>
-                </ul>
-            </div>
-            <div class="row buttons">
-                <button class="clear-canvas">
-                    <i class="fas fa-broom"></i> Clear Canvas
+        </div>
+        
+        <div class="tool-group">
+            <div class="action-buttons">
+                <button class="action-button clear-button" id="clear-canvas">
+                    <i class="fas fa-broom"></i>
+                    <span>Clear</span>
                 </button>
-                <button class="save-img">
-                    <i class="fas fa-save"></i> Save As Image
+                <button class="action-button save-button" id="save-img">
+                    <i class="fas fa-save"></i>
+                    <span>Save</span>
                 </button>
-                <a href="homee.html" style="width: 100%; text-decoration: none;">
-                    <button class="save-img">
-                        <i class="fas fa-home"></i> Home
+                <a href="homee.html" style="text-decoration: none;">
+                    <button class="action-button home-button">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
                     </button>
                 </a>
             </div>
-        </section>
+        </div>
+    </div>
+    
+    <!-- إدارة الصفحات -->
+    <section class="pages-management" id="pages-management">
+        <div class="pages-header">
+            <h3><i class="fas fa-file-alt"></i> Pages Management</h3>
+            <div class="pages-controls">
+                <button class="btn-new" id="new-page">
+                    <i class="fas fa-plus"></i> New Page
+                </button>
+                <button class="btn-delete" id="delete-all">
+                    <i class="fas fa-trash-alt"></i> Delete All
+                </button>
+            </div>
+        </div>
+        <div class="pages-list" id="pages-list">
+            <!-- سيتم ملء قائمة الصفحات ديناميكيًا -->
+        </div>
+    </section>
+    
+    <!-- مساحة الرسم -->
+    <div class="drawing-area">
         <section class="drawing-board">
+            <button class="toggle-pages" id="toggle-pages">
+                <i class="fas fa-caret-down"></i> Pages
+            </button>
             <canvas></canvas>
         </section>
-        <div class="eraser-indicator"></div>
     </div>
+    
+    <div class="eraser-indicator"></div>
+    
     <script>
         const canvas = document.querySelector("canvas"),
             toolBtns = document.querySelectorAll(".tool"),
             fillColor = document.querySelector("#fill-color"),
             sizeSlider = document.querySelector("#size-slider"),
-            colorBtns = document.querySelectorAll(".colors .option"),
+            colorOptions = document.querySelectorAll(".color-option"),
             colorPicker = document.querySelector("#color-picker"),
-            clearCanvas = document.querySelector(".clear-canvas"),
+            colorPickerPreview = document.querySelector(".color-picker-preview"),
+            clearCanvas = document.querySelector("#clear-canvas"),
             eraserIndicator = document.querySelector(".eraser-indicator"),
-            saveImg = document.querySelector(".save-img"),
+            saveImg = document.querySelector("#save-img"),
             newPageBtn = document.querySelector("#new-page"),
             deleteAllBtn = document.querySelector("#delete-all"),
             pagesList = document.querySelector("#pages-list"),
+            pagesManagement = document.querySelector("#pages-management"),
+            togglePagesBtn = document.querySelector("#toggle-pages"),
+            fillToggle = document.querySelector("#fill-toggle"),
             ctx = canvas.getContext("2d");
 
         let prevMouseX, prevMouseY, snapshot,
@@ -872,26 +1119,36 @@
         // أحداث الأدوات
         toolBtns.forEach(btn => {
             btn.addEventListener("click", () => {
-                document.querySelector(".options .active").classList.remove("active");
+                document.querySelector(".tool-option.active").classList.remove("active");
                 btn.classList.add("active");
                 selectedTool = btn.id;
                 eraserIndicator.style.display = (selectedTool === "eraser") ? "block" : "none";
             });
         });
 
+        // تبديل خاصية التعبئة
+        fillToggle.addEventListener("click", () => {
+            fillColor.checked = !fillColor.checked;
+            fillToggle.classList.toggle("active", fillColor.checked);
+        });
+
         sizeSlider.addEventListener("change", () => brushWidth = sizeSlider.value);
 
-        colorBtns.forEach(btn => {
+        colorOptions.forEach(btn => {
             btn.addEventListener("click", () => {
-                document.querySelector(".options .selected").classList.remove("selected");
+                document.querySelector(".color-option.selected").classList.remove("selected");
                 btn.classList.add("selected");
                 selectedColor = window.getComputedStyle(btn).getPropertyValue("background-color");
             });
         });
 
         colorPicker.addEventListener("change", () => {
-            colorPicker.parentElement.style.background = colorPicker.value;
-            colorPicker.parentElement.click();
+            colorPickerPreview.style.background = colorPicker.value;
+            selectedColor = colorPicker.value;
+            
+            // تحديث اللون المختار
+            document.querySelector(".color-option.selected").classList.remove("selected");
+            colorOptions[4].classList.add("selected");
         });
 
         clearCanvas.addEventListener("click", () => {
@@ -909,6 +1166,15 @@
 
         newPageBtn.addEventListener("click", createNewPage);
         deleteAllBtn.addEventListener("click", deleteAllPages);
+
+        // تبديل عرض إدارة الصفحات
+        togglePagesBtn.addEventListener("click", () => {
+            const isVisible = pagesManagement.style.display === "block";
+            pagesManagement.style.display = isVisible ? "none" : "block";
+            togglePagesBtn.innerHTML = isVisible ? 
+                '<i class="fas fa-caret-down"></i> Pages' : 
+                '<i class="fas fa-caret-up"></i> Pages';
+        });
 
         // أحداث الفأرة واللمس
         canvas.addEventListener("mousemove", (e) => {

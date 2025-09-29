@@ -375,11 +375,17 @@
             color: var(--accent);
         }
 
+        .course-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
         .course-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 20px;
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
@@ -387,12 +393,23 @@
             border-radius: 50px;
             background: rgba(67, 97, 238, 0.1);
             transition: all 0.3s ease;
+            justify-content: center;
         }
 
         .course-link:hover {
             color: white;
             background: var(--primary);
             transform: translateX(5px);
+        }
+
+        .playlist-link {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff0000;
+        }
+
+        .playlist-link:hover {
+            background: #ff0000;
+            color: white;
         }
 
         .no-results {
@@ -423,6 +440,36 @@
             margin: 0 auto;
             padding: 15px;
             border-top: 1px solid #ddd;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
         }
 
         @media (max-width: 1100px) {
@@ -478,35 +525,6 @@
                 padding: 12px 45px 12px 15px;
                 font-size: 0.9rem;
             }
-        }
-          .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
-        }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
         }
     </style>
 </head>
@@ -617,7 +635,7 @@
     </div>
 
     <script>
-          window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function() {
             const backToTop = document.getElementById('backToTop');
             if (window.scrollY > 300) {
                 backToTop.classList.add('active');
@@ -632,6 +650,7 @@
                 behavior: 'smooth'
             });
         });
+
         document.addEventListener('DOMContentLoaded', function () {
             // Department selection functionality
             const departmentCards = document.querySelectorAll('.department-card');
@@ -644,32 +663,38 @@
                     {
                         title: "Mathematics 1",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1Dla2BoiVaipXEpBmUpEkoDM8TEw_NXGN"
+                        link: "https://drive.google.com/drive/folders/1Dla2BoiVaipXEpBmUpEkoDM8TEw_NXGN",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Physics 1",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1DpOXQXz7G5Je-18tNcNDhfih89B550D9"
+                        link: "https://drive.google.com/drive/folders/1DpOXQXz7G5Je-18tNcNDhfih89B550D9",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Information System (IS)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1Dk4nVFo8nik_0_Lvf4fzdUEStEthXO8r"
+                        link: "https://drive.google.com/drive/folders/1Dk4nVFo8nik_0_Lvf4fzdUEStEthXO8r",
+                        playlist: "soon.html"
                     },
                     {
                         title: "English 1",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1DlobcF6Pyvt09BwGhC9Zv7AL86plOELl"
+                        link: "https://drive.google.com/drive/folders/1DlobcF6Pyvt09BwGhC9Zv7AL86plOELl",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Statistics 1",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1DwAoVaUAy7nVU5SpElueQe91Xfr6DIWC"
+                        link: "https://drive.google.com/drive/folders/1DwAoVaUAy7nVU5SpElueQe91Xfr6DIWC",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Introduction to Computer (CS)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1DdcauHp-dtDJIV93kVjfj0evHIzL3GwB"
+                        link: "https://drive.google.com/drive/folders/1DdcauHp-dtDJIV93kVjfj0evHIzL3GwB",
+                        playlist: "soon.html"
                     }
                 ],
 
@@ -677,37 +702,44 @@
                     {
                         title: "DC",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1CsKa-WsZ-42yQTyDVokDbz9neZjAA_c7"
+                        link: "https://drive.google.com/drive/folders/1CsKa-WsZ-42yQTyDVokDbz9neZjAA_c7",
+                        playlist: "Not Available.html"
                     },
                     {
                         title: "SA-1",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1UHORXC8wCCzezqhKJKIc0M9zGpmYXz_l"
+                        link: "https://drive.google.com/drive/folders/1UHORXC8wCCzezqhKJKIc0M9zGpmYXz_l",
+                        playlist: "https://youtube.com/playlist?list=PL1DUmTEdeA6I-bsfaErW12ro4_6hC7fSp&si=Lpzcr_qWSiCXykyF"
                     },
                     {
                         title: "DS",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1AG8TGHe9S0f-VVIKC6GUiur-NyGo9R1U"
+                        link: "https://drive.google.com/drive/folders/1AG8TGHe9S0f-VVIKC6GUiur-NyGo9R1U",
+                        playlist: "https://youtube.com/playlist?list=PLfay0LLBd0wiNeOR_SGoYfC3w-NxFwd0D&si=xo4n-75jN-UQzT_Z"
                     },
                     {
                         title: "DB-1",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/13dEy5Kn2jfkfWS9PHzx8GbwHttiii5nL"
+                        link: "https://drive.google.com/drive/folders/13dEy5Kn2jfkfWS9PHzx8GbwHttiii5nL",
+                        playlist: "https://youtube.com/playlist?list=PL37D52B7714788190&si=iuy7AhM0U_CRUVe1"
                     },
                     {
                         title: "Logic",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1xWzP6P6KCD4gdtGj8sMKMPRwf2Xp2PDg"
+                        link: "https://drive.google.com/drive/folders/1xWzP6P6KCD4gdtGj8sMKMPRwf2Xp2PDg",
+                        playlist: "soon.html"
                     },
                     {
                         title: "PL-2",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/14J2PMu1lR9sI2gXHl_dmVShX-tW-LSqM"
+                        link: "https://drive.google.com/drive/folders/14J2PMu1lR9sI2gXHl_dmVShX-tW-LSqM",
+                        playlist: "https://youtube.com/playlist?list=PLfay0LLBd0wiJSaLmXG0aJ1ECgSuISjp5&si=pB6wUy6rWIyPoV25",
                     },
                     {
                         title: "Human Rights",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1are2PKiVgxyyeVxKcE5SYURzzjrFMIS-"
+                        link: "https://drive.google.com/drive/folders/1are2PKiVgxyyeVxKcE5SYURzzjrFMIS-",
+                        playlist: "Not Available.html"
                     }
                 ],
 
@@ -715,176 +747,210 @@
                     {
                         title: "Machine Learning",
                         lecturer: "Dr. Robert Taylor",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Artificial Intelligence",
                         lecturer: "Prof. Amanda Lee",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Computer Organization",
                         lecturer: "Dr. Kevin Brown",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Parallel Processing",
                         lecturer: "Prof. Rachel Green",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Operating System - 2",
                         lecturer: "Dr. Thomas White",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1_KFUaFEHDZjyR3RouhmwltwXeUNUO2TZ/1Ly3lpmhL6splcKi0XBzziaZmpjRVkUlc?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Database 2",
                         lecturer: "Prof. Patricia Clark",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Concepts in Computer Science",
                         lecturer: "Dr. Brian Scott",
-                        link: "https://drive.google.com/drive/u/0/folders/1GW_Gc7Gq5n-3R1KlXic-ATv7Cpm4RPTZ?direction=a"
+                        link: "https://drive.google.com/drive/u/0/folders/1GW_Gc7Gq5n-3R1KlXic-ATv7Cpm4RPTZ?direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "PL-3 (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0"
+                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Ethics (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1zuAFnYx9W8-CpiX1T_O5Pz4I1txlkCya"
+                        link: "https://drive.google.com/drive/u/0/folders/1zuAFnYx9W8-CpiX1T_O5Pz4I1txlkCya",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Multimedia (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1hI7EAEgK9fcY8pXRm3gDFUaDVPG1s0ah?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/folders/1hI7EAEgK9fcY8pXRm3gDFUaDVPG1s0ah?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Image Processing (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1DSOryFAh0rmmc4kwaHs787C4mKY6DS5x"
+                        link: "https://drive.google.com/drive/u/0/folders/1DSOryFAh0rmmc4kwaHs787C4mKY6DS5x",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Deep and Neural (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1abenHiGcyleV40MeqdAP995BFaxQnD82"
+                        link: "https://drive.google.com/drive/u/0/folders/1abenHiGcyleV40MeqdAP995BFaxQnD82",
+                        playlist: "soon.html"
                     }
                 ],
                 ai: [
                     {
                         title: "Parallel Processing",
                         lecturer: "Dr. Robert Taylor",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/10wdi8N1zpsbz10MvOBgoc4b_9vrgNrWX?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Machine Learning",
                         lecturer: "Prof. Amanda Lee",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1uzOOvdmaUxl_xUJSSj1_JI4WDgApPj1F?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Artificial Intelligence",
                         lecturer: "Dr. Kevin Brown",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Big Data",
                         lecturer: "Prof. Rachel Green",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Database 2",
                         lecturer: "Dr. Thomas White",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Convex Optimization",
                         lecturer: "Prof. Patricia Clark",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1FtizAsRIcyAI4W7isl7QmQHl8wD7kTf-?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1FtizAsRIcyAI4W7isl7QmQHl8wD7kTf-?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "PL-3 (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0"
+                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Ethics (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1zuAFnYx9W8-CpiX1T_O5Pz4I1txlkCya"
+                        link: "https://drive.google.com/drive/u/0/folders/1zuAFnYx9W8-CpiX1T_O5Pz4I1txlkCya",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Data Science (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1TFuxGKjyKj34qunhLCl0OHgAFbkilYXq"
+                        link: "https://drive.google.com/drive/u/0/folders/1TFuxGKjyKj34qunhLCl0OHgAFbkilYXq",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Image Processing (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1DSOryFAh0rmmc4kwaHs787C4mKY6DS5x"
+                        link: "https://drive.google.com/drive/u/0/folders/1DSOryFAh0rmmc4kwaHs787C4mKY6DS5x",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Deep and Neural (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1abenHiGcyleV40MeqdAP995BFaxQnD82"
+                        link: "https://drive.google.com/drive/u/0/folders/1abenHiGcyleV40MeqdAP995BFaxQnD82",
+                        playlist: "soon.html"
                     }
                 ],
                 is: [
                     {
                         title: "Data Mining",
                         lecturer: "Dr. Christopher Hall",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1YnfoQIHayTzwLfnGJz98rdzlLCx108m0?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1YnfoQIHayTzwLfnGJz98rdzlLCx108m0?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Database 2",
                         lecturer: "Prof. Nancy Adams",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1SY5zoWNCUGdiKy64v6Mf8P8Eh8QticmI?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Artificial Intelligence",
                         lecturer: "Dr. Brian Scott",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1b4YOhbkWBJaIuHcZhWUlJ6um1pxqFpEM?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Big Data",
                         lecturer: "Prof. Karen Young",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1OqnT9fR9nVSSGFFcFBko0EsvKWMy3WSN?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Data Storage",
                         lecturer: "Dr. Steven King",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1qG0XsmpcUfIugiR6jvvoVw8tqqV_nqoH?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1qG0XsmpcUfIugiR6jvvoVw8tqqV_nqoH?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Data Analytics (BI)",
                         lecturer: "Prof. Jessica Baker",
-                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1xLA6MPCyyEdsIHLLOIaqlt9qqDXhHdCp?sort=13&direction=a"
+                        link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1RvNWsMC7vTRKbNm5vLlWpqdFhgZfKI5R/1xLA6MPCyyEdsIHLLOIaqlt9qqDXhHdCp?sort=13&direction=a",
+                        playlist: "soon.html"
                     },
                     {
                         title: "ISS (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/folders/1VUevSQdFUhKsf5dEXfsSoU91szxVHaC0?usp=sharing"
+                        link: "https://drive.google.com/drive/folders/1VUevSQdFUhKsf5dEXfsSoU91szxVHaC0?usp=sharing",
+                        playlist: "soon.html"
                     },
                     {
                         title: "PL-3 (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0"
+                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Data Science (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1TFuxGKjyKj34qunhLCl0OHgAFbkilYXq"
+                        link: "https://drive.google.com/drive/u/0/folders/1TFuxGKjyKj34qunhLCl0OHgAFbkilYXq",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Ethics (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1zuAFnYx9W8-CpiX1T_O5Pz4I1txlkCya"
+                        link: "https://drive.google.com/drive/u/0/folders/1zuAFnYx9W8-CpiX1T_O5Pz4I1txlkCya",
+                        playlist: "soon.html"
                     },
                     {
                         title: "Quality Testing (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1xn-uDA4wopHMz38lhHTFyf3iTcPSHU-w?direction=a"
+                        link: "https://drive.google.com/drive/u/0/folders/1xn-uDA4wopHMz38lhHTFyf3iTcPSHU-w?direction=a",
+                        playlist: "soon.html"
                     }
                 ]
             };
@@ -969,11 +1035,17 @@
                     <h4 class="course-title">${course.title}</h4>
                     <div class="lecturer-info">
                         <i class="fas fa-chalkboard-teacher"></i>
+                        <span>${course.lecturer || 'Lecturer information not available'}</span>
                     </div>
                     <p>Explore this course to learn more about ${course.title.toLowerCase()}.</p>
-                    <a href="${course.link}" target="_blank" class="course-link">
-                        <i class="fas fa-external-link-alt"></i> View Course Materials
-                    </a>
+                    <div class="course-links">
+                        <a href="${course.link}" target="_blank" class="course-link">
+                            <i class="fas fa-external-link-alt"></i> View Course Materials
+                        </a>
+                        <a href="${course.playlist}" target="_blank" class="course-link playlist-link">
+                            <i class="fab fa-youtube"></i> View Course Playlist
+                        </a>
+                    </div>
                 `;
                 return courseCard;
             }
