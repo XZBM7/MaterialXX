@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaterialX | Your Coding Path</title>
+      <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .question-counter {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .question-container {
+            animation: slideIn 0.5s ease;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .option.selected {
+            background: rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+        }
+
+        .option-icon {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .start-container {
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .start-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .start-btn {
+            background: var(--primary);
+            color: white;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+        }
+
+        .result-container {
+            text-align: center;
+            animation: fadeIn 1s ease;
+            display: none;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .major-result {
+            font-size: 1.5rem;
+            margin: 25px 0;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #7209b7, #4361ee);
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .restart-btn {
+            background: var(--accent);
+            color: white;
+            margin: 20px auto 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .major-result {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>اكتشف مسارك البرمجي</h1>
+            <p>أجب على الأسئلة التالية لاكتشاف المسار البرمجي والتخصص الجامعي الأنسب لشخصيتك ومهاراتك</p>
+        </div>
+        
+        <div class="start-container" id="startContainer">
+            <div class="start-description">
+                <p>مرحباً بك في اختبار اكتشاف المسار البرمجي والتخصص الجامعي!</p>
+                <p>هذا الاختبار يتكون من 20 سؤالاً مصمماً لمساعدتك في اكتشاف المجال البرمجي والتخصص الجامعي الأنسب لشخصيتك، مهاراتك، واهتماماتك.</p>
+                <p>سيتم عرض الأسئلة بشكل عشوائي في كل مرة تقوم فيها بإجراء الاختبار، مما يضمن تجربة فريدة في كل مرة.</p>
+                <p>اختر الإجابة التي تعكس تفضيلاتك الحقيقية دون التفكير كثيراً - لا توجد إجابات صحيحة أو خاطئة!</p>
+            </div>
+            <button class="btn start-btn" id="startBtn">ابدأ الاختبار</button>
+        </div>
+        
+        <div class="question-container hidden" id="questionContainer">
+            <div class="question-counter" id="questionCounter"></div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="question" id="questionText"></div>
+            <div class="options" id="optionsContainer"></div>
+            <div class="navigation">
+                <button class="btn btn-secondary" id="prevBtn" disabled>السابق</button>
+                <button class="btn btn-primary" id="nextBtn">التالي</button>
+            </div>
+        </div>
+        
+        <div class="result-container" id="resultContainer">
+            <h2 class="result-title" id="resultTitle"></h2>
+            <div class="result-description" id="resultDescription"></div>
+            
+            <div class="major-result" id="majorResult"></div>
+            
+            <div class="warning">
+                ⚠️ <strong>تنبيه:</strong> هذا الاختبار هو مجرد أداة تقديرية لمساعدتك في اكتشاف ميولك، وليس بديلاً عن الاستشارة الأكاديمية المهنية. النتائج تعتمد على إجاباتك وقد تختلف في الواقع.
+            </div>
+            
+            <button class="btn restart-btn" id="restartBtn">ابدأ من جديد</button>
+        </div>
+    </div>
+
+    <script>
+        // قاعدة بيانات الأسئلة
+        const questions = [
+            {
+                id: 1,
+                text: "ما هو اهتمامك الأساسي في مجال التكنولوجيا؟",
+                options: [
+                    { id: 1, text: "بناء تطبيقات ويب تفاعلية وجذابة", track: "frontend", major: "CS" },
+                    { id: 2, text: "العمل على قواعد البيانات والخوادم", track: "backend", major: "IT" },
+                    { id: 3, text: "تحليل البيانات واستخراج الأنماط والمعلومات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "تطوير تطبيقات الهواتف الذكية", track: "mobile", major: "CS" },
+                    { id: 5, text: "تصميم واجهات المستخدم وتجربة المستخدم", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 2,
+                text: "ما نوع المشاريع التي تفضل العمل عليها؟",
+                options: [
+                    { id: 1, text: "مشاريع إبداعية تركز على التصميم والتجربة البصرية", track: "frontend", major: "CS" },
+                    { id: 2, text: "مشاريع تتطلب معالجة البيانات والمنطق المعقد", track: "backend", major: "IT" },
+                    { id: 3, text: "مشاريع البحث وتحليل البيانات الضخمة", track: "dataScience", major: "AI" },
+                    { id: 4, text: "مشاريع تهدف للوصول للمستخدمين على هواتفهم", track: "mobile", major: "CS" },
+                    { id: 5, text: "مشاريع تحسين تجربة المستخدم وسهولة الاستخدام", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 3,
+                text: "ما هي المهارات التي تمتلكها بالفعل؟",
+                options: [
+                    { id: 1, text: "مهارات تصميم وإبداع بصري", track: "frontend", major: "CS" },
+                    { id: 2, text: "تفكير منطقي وتحليلي قوي", track: "backend", major: "IT" },
+                    { id: 3, text: "خبرة في الرياضيات والإحصاء", track: "dataScience", major: "AI" },
+                    { id: 4, text: "اهتمام بتجربة المستخدم على الأجهزة المحمولة", track: "mobile", major: "CS" },
+                    { id: 5, text: "فهم لسلوك المستخدم واحتياجاته", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 4,
+                text: "ما هو هدفك المهني على المدى الطويل؟",
+                options: [
+                    { id: 1, text: "مطور واجهات أمامية متخصص", track: "frontend", major: "CS" },
+                    { id: 2, text: "مهندس برمجيات أو مطور أنظمة", track: "backend", major: "IT" },
+                    { id: 3, text: "عالم بيانات أو محلل بيانات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "مطور تطبيقات محمولة", track: "mobile", major: "CS" },
+                    { id: 5, text: "مصمم واجهات وتجربة مستخدم", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 5,
+                text: "ما هي البيئة البرمجية التي تفضل العمل فيها؟",
+                options: [
+                    { id: 1, text: "بيئة ديناميكية وسريعة التغير", track: "frontend", major: "CS" },
+                    { id: 2, text: "بيئة منظمة ومنهجية", track: "backend", major: "IT" },
+                    { id: 3, text: "بيئة بحثية وتحليلية", track: "dataScience", major: "AI" },
+                    { id: 4, text: "بيئة تركز على الابتكار والتجربة", track: "mobile", major: "CS" },
+                    { id: 5, text: "بيئة تركز على التفاعل البشري", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 6,
+                text: "ما مدى اهتمامك بتفاصيل التصميم؟",
+                options: [
+                    { id: 1, text: "مهتم جداً بالتفاصيل البصرية والدقة", track: "frontend", major: "CS" },
+                    { id: 2, text: "أركز أكثر على الأداء والكفاءة", track: "backend", major: "IT" },
+                    { id: 3, text: "أركز على دقة البيانات والنتائج", track: "dataScience", major: "AI" },
+                    { id: 4, text: "أهتم بتجربة المستخدم على الشاشات الصغيرة", track: "mobile", major: "CS" },
+                    { id: 5, text: "مهتم بكل تفاصيل تجربة المستخدم", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 7,
+                text: "كيف تتعامل مع المشكلات التقنية؟",
+                options: [
+                    { id: 1, text: "أبحث عن حلول إبداعية وجذابة بصرياً", track: "frontend", major: "CS" },
+                    { id: 2, text: "أحلل المشكلة بشكل منهجي ومنطقي", track: "backend", major: "IT" },
+                    { id: 3, text: "أستخدم البيانات والأدلة للوصول للحل", track: "dataScience", major: "AI" },
+                    { id: 4, text: "أركز على حلول بسيطة وفعالة للمستخدم", track: "mobile", major: "CS" },
+                    { id: 5, text: "أفهم احتياجات المستخدم لأجد الحل المناسب", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 8,
+                text: "ما هو مستوى التفاعل الذي تفضله مع المستخدمين النهائيين؟",
+                options: [
+                    { id: 1, text: "أحب إنشاء تجارب تفاعلية وجذابة", track: "frontend", major: "CS" },
+                    { id: 2, text: "أفضل العمل في الخلفية مع قليل من التفاعل المباشر", track: "backend", major: "IT" },
+                    { id: 3, text: "أفضل تحليل احتياجاتهم من خلال البيانات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "أحب التفاعل مع المستخدمين لفهم احتياجاتهم على الهواتف", track: "mobile", major: "CS" },
+                    { id: 5, text: "أتفاعل مباشرة مع المستخدمين لفهم تجربتهم", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 9,
+                text: "ما مدى اهتمامك بأداء التطبيقات؟",
+                options: [
+                    { id: 1, text: "مهتم بأداء التطبيقات من ناحية سرعة التحميل والتفاعل", track: "frontend", major: "CS" },
+                    { id: 2, text: "مهتم جداً بأداء الخوادم وقواعد البيانات", track: "backend", major: "IT" },
+                    { id: 3, text: "مهتم بأداء خوارزميات تحليل البيانات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "مهتم بأداء التطبيقات على الأجهزة المختلفة", track: "mobile", major: "CS" },
+                    { id: 5, text: "مهتم بأداء التطبيقات من منظور تجربة المستخدم", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 10,
+                text: "ما هو مستوى الإبداع الذي تبحث عنه في عملك؟",
+                options: [
+                    { id: 1, text: "إبداع عالي في التصميم والتجربة البصرية", track: "frontend", major: "CS" },
+                    { id: 2, text: "إبداع في حل المشكلات المعقدة", track: "backend", major: "IT" },
+                    { id: 3, text: "إبداع في استخراج insights من البيانات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "إبداع في تقديم حلول مبتكرة على الهواتف", track: "mobile", major: "CS" },
+                    { id: 5, text: "إبداع في تصميم تجارب مستخدم فريدة", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 11,
+                text: "كيف تتعلم التقنيات الجديدة بشكل أفضل؟",
+                options: [
+                    { id: 1, text: "من خلال بناء مشاريع عملية وتجريبية", track: "frontend", major: "CS" },
+                    { id: 2, text: "من خلال دراسة الوثائق الرسمية والدروس المنظمة", track: "backend", major: "IT" },
+                    { id: 3, text: "من خلال تحليل البيانات وتطبيق النماذج", track: "dataScience", major: "AI" },
+                    { id: 4, text: "من خلال تجربة التطبيقات على أجهزة حقيقية", track: "mobile", major: "CS" },
+                    { id: 5, text: "من خلال اختبار التصاميم مع المستخدمين الحقيقيين", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 12,
+                text: "ما هو نوع التحدي الذي تستمتع به؟",
+                options: [
+                    { id: 1, text: "تحديات تتعلق بتحسين المظهر والأداء البصري", track: "frontend", major: "CS" },
+                    { id: 2, text: "تحديات تتعلق بتحسين الأداء والأمان", track: "backend", major: "IT" },
+                    { id: 3, text: "تحديات تتعلق باكتشاف أنماط خفية في البيانات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "تحديات تتعلق بتجربة المستخدم على الشاشات الصغيرة", track: "mobile", major: "CS" },
+                    { id: 5, text: "تحديات تتعلق بتحسين رضا المستخدم وسهولة الاستخدام", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 13,
+                text: "ما هو دورك المفضل في فريق العمل؟",
+                options: [
+                    { id: 1, text: "الشخص المسؤول عن المظهر النهائي للتطبيق", track: "frontend", major: "CS" },
+                    { id: 2, text: "الشخص المسؤول عن البنية التحتية والمنطق", track: "backend", major: "IT" },
+                    { id: 3, text: "الشخص المسؤول عن تحليل البيانات واتخاذ القرارات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "الشخص المسؤول عن تجربة المستخدم على الهواتف", track: "mobile", major: "CS" },
+                    { id: 5, text: "الشخص المسؤول عن تصميم تجربة المستخدم كاملة", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 14,
+                text: "ما هي الأدوات التي تفضل العمل بها؟",
+                options: [
+                    { id: 1, text: "أدوات التصميم ومحررات الكود المرئية", track: "frontend", major: "CS" },
+                    { id: 2, text: "أدوات قواعد البيانات والخوادم", track: "backend", major: "IT" },
+                    { id: 3, text: "أدوات تحليل البيانات والرسوم البيانية", track: "dataScience", major: "AI" },
+                    { id: 4, text: "أدوات تطوير التطبيقات المحمولة والمحاكيات", track: "mobile", major: "CS" },
+                    { id: 5, text: "أدوات تصميم الواجهات واختبار المستخدم", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 15,
+                text: "ما هو أكثر ما يثير حماسك في المشاريع التقنية؟",
+                options: [
+                    { id: 1, text: "رؤية التصميم يتحول إلى واقع تفاعلي", track: "frontend", major: "CS" },
+                    { id: 2, text: "بناء أنظمة قوية وقابلة للتطوير", track: "backend", major: "IT" },
+                    { id: 3, text: "اكتشاف رؤى جديدة من البيانات", track: "dataScience", major: "AI" },
+                    { id: 4, text: "تطوير تطبيقات مفيدة للمستخدمين في أي مكان", track: "mobile", major: "CS" },
+                    { id: 5, text: "تحسين تجربة المستخدم وجعلها أكثر سلاسة", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 16,
+                text: "كيف تتعامل مع التغييرات المتكررة في المتطلبات؟",
+                options: [
+                    { id: 1, text: "أتكيف بسرعة وأعدل التصميم بمرونة", track: "frontend", major: "CS" },
+                    { id: 2, text: "أبني نظاماً مرناً يتكيف مع التغييرات", track: "backend", major: "IT" },
+                    { id: 3, text: "أحلل تأثير التغييرات على البيانات والنتائج", track: "dataScience", major: "AI" },
+                    { id: 4, text: "أركز على الحفاظ على تجربة مستخدم متسقة", track: "mobile", major: "CS" },
+                    { id: 5, text: "أصمم واجهات قابلة للتكيف مع المتطلبات المتغيرة", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 17,
+                text: "ما هو مستوى التعقيد الذي تستمتع بالعمل عليه؟",
+                options: [
+                    { id: 1, text: "تعقيد في التصميم والتفاعلات البصرية", track: "frontend", major: "CS" },
+                    { id: 2, text: "تعقيد في الخوارزميات والمنطق", track: "backend", major: "IT" },
+                    { id: 3, text: "تعقيد في تحليل البيانات والأنماط", track: "dataScience", major: "AI" },
+                    { id: 4, text: "تعقيد في تكامل الميزات على الأجهزة المختلفة", track: "mobile", major: "CS" },
+                    { id: 5, text: "تعقيد في تدفقات المستخدم وتجربته", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 18,
+                text: "ما هو نوع العمل الذي تشعر أنه يحقق إنجازاً لك؟",
+                options: [
+                    { id: 1, text: "عمل ينتج عنه منتج جميل وسلس visually", track: "frontend", major: "CS" },
+                    { id: 2, text: "عمل ينتج عنه نظام فعال وموثوق", track: "backend", major: "IT" },
+                    { id: 3, text: "عمل ينتج عنه رؤى قابلة للتنفيذ", track: "dataScience", major: "AI" },
+                    { id: 4, text: "عمل ينتج عنه تطبيق مفيد في الحياة اليومية", track: "mobile", major: "CS" },
+                    { id: 5, text: "عمل ينتج عنه تجربة مستخدم متميزة", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 19,
+                text: "ما هو مجال الدراسة الذي كنت تفضله؟",
+                options: [
+                    { id: 1, text: "الرياضيات المتقدمة والخوارزميات", track: "frontend", major: "CS" },
+                    { id: 2, text: "الشبكات وإدارة الأنظمة", track: "backend", major: "IT" },
+                    { id: 3, text: "الإحصاء والتحليل الرياضي", track: "dataScience", major: "AI" },
+                    { id: 4, text: "الهندسة والفيزياء التطبيقية", track: "mobile", major: "CS" },
+                    { id: 5, text: "علم النفس وعلم الاجتماع", track: "uiux", major: "IS" }
+                ]
+            },
+            {
+                id: 20,
+                text: "ما هو الشيء الذي تفتقده في معظم التطبيقات التي تستخدمها؟",
+                options: [
+                    { id: 1, text: "أداء أفضل وسرعة في التنفيذ", track: "frontend", major: "CS" },
+                    { id: 2, text: "استقرار وأمان أعلى", track: "backend", major: "IT" },
+                    { id: 3, text: "توصيات ورؤى أكثر ذكاءً", track: "dataScience", major: "AI" },
+                    { id: 4, text: "تكامل أفضل مع الأجهزة المختلفة", track: "mobile", major: "CS" },
+                    { id: 5, text: "تجربة مستخدم أكثر سلاسة وبديهية", track: "uiux", major: "IS" }
+                ]
+            }
+        ];
+
+        // المسارات البرمجية
+        const tracks = {
+            frontend: {
+                title: "تطوير الواجهات الأمامية (Frontend Development)",
+                description: "مسار تطوير الواجهات الأمامية مثالي للأشخاص المبدعين الذين يستمتعون ببناء تجارب مستخدم جذابة وتفاعلية. ستعمل على HTML, CSS, JavaScript وإطارات عمل مثل React أو Vue.js. هذا المسار يتطلب اهتماماً بالتفاصيل البصرية وفهماً لتصميم واجهات المستخدم."
+            },
+            backend: {
+                title: "تطوير الواجهات الخلفية (Backend Development)",
+                description: "مسار تطوير الواجهات الخلفية يناسب الأشخاص المنطقيين الذين يستمتعون بحل المشكلات المعقدة والعمل على الخوادم وقواعد البيانات. ستعمل على لغات مثل Python, Java, Node.js وقواعد البيانات مثل MySQL أو MongoDB. هذا المسار يتطلب تفكيراً تحليلياً ومنهجياً."
+            },
+            dataScience: {
+                title: "علم البيانات (Data Science)",
+                description: "مسار علم البيانات مثالي للأشخاص المهتمين بالرياضيات والإحصاء وتحليل البيانات. ستعمل على Python, R, SQL وتقنيات التعلم الآلي. هذا المسار يتطلب فضولاً علمياً وقدرة على استخراج insights قيمة من البيانات المعقدة."
+            },
+            mobile: {
+                title: "تطوير تطبيقات الهواتف (Mobile Development)",
+                description: "مسار تطوير تطبيقات الهواتف يناسب الأشخاص المهتمين بالوصول للمستخدمين على أجهزتهم المحمولة. ستعمل على إطارات عمل مثل React Native, Flutter أو التطوير الأصلي لنظامي iOS وAndroid. هذا المسار يتطلب فهماً لقيود وإمكانيات الأجهزة المحمولة."
+            },
+            uiux: {
+                title: "تصميم واجهات وتجربة المستخدم (UI/UX Design)",
+                description: "مسار تصميم واجهات وتجربة المستخدم مثالي للأشخاص المبدعين الذين يفهمون سلوك المستخدم ويهتمون بتحسين تجربته. ستعمل على أدوات التصميم مثل Figma, Adobe XD وإجراء اختبارات المستخدم. هذا المسار يتطلب تعاطفاً مع المستخدم وفهماً لاحتياجاته."
+            }
+        };
+
+        // التخصصات الجامعية
+        const majors = {
+            CS: {
+                title: "علوم الحاسب (Computer Science)",
+                description: "يركز على الخوارزميات، بنية البيانات، البرمجة المتقدمة، والرياضيات المتعلقة بالحوسبة. مناسب لمن يهتم بالأساسيات النظرية للحاسوب وتطوير البرمجيات المعقدة."
+            },
+            IT: {
+                title: "تكنولوجيا المعلومات (Information Technology)",
+                description: "يركز على تطبيق التقنيات الحاسوبية في بيئات العمل، إدارة الشبكات، قواعد البيانات، وأمن المعلومات. مناسب لمن يهتم بالجوانب العملية والتطبيقية للتكنولوجيا."
+            },
+            IS: {
+                title: "نظم المعلومات (Information Systems)",
+                description: "يجمع بين التقنية والأعمال، ويركز على كيفية استخدام التقنية لتحسين العمليات التجارية واتخاذ القرارات. مناسب لمن يهتم بالجانب الإداري والتنظيمي للتكنولوجيا."
+            },
+            AI: {
+                title: "الذكاء الاصطناعي (Artificial Intelligence)",
+                description: "يركز على تطوير الأنظمة الذكية، التعلم الآلي، معالجة اللغات الطبيعية، والروبوتات. مناسب لمن يهتم بالرياضيات المتقدمة والخوارزميات المعقدة."
+            }
+        };
+
+        // حالة التطبيق
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let trackScores = {
+            frontend: 0,
+            backend: 0,
+            dataScience: 0,
+            mobile: 0,
+            uiux: 0
+        };
+        let majorScores = {
+            CS: 0,
+            IT: 0,
+            IS: 0,
+            AI: 0
+        };
+        let shuffledQuestions = [];
+
+        // عناصر DOM
+        const questionText = document.getElementById('questionText');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const progressBar = document.getElementById('progressBar');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const questionContainer = document.getElementById('questionContainer');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultDescription = document.getElementById('resultDescription');
+        const majorResult = document.getElementById('majorResult');
+        const restartBtn = document.getElementById('restartBtn');
+        const startContainer = document.getElementById('startContainer');
+        const startBtn = document.getElementById('startBtn');
+        const questionCounter = document.getElementById('questionCounter');
+
+        // تهيئة التطبيق
+        function initApp() {
+            // إضافة مستمعي الأحداث
+            nextBtn.addEventListener('click', goToNextQuestion);
+            prevBtn.addEventListener('click', goToPreviousQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            startBtn.addEventListener('click', startQuiz);
+        }
+
+        // بدء الاختبار
+        function startQuiz() {
+            // إخفاء واجهة البداية
+            startContainer.classList.add('hidden');
+            
+            // خلط الأسئلة عشوائياً
+            shuffledQuestions = [...questions].sort(() => Math.random() - 0.5);
+            
+            // إظهار واجهة الأسئلة
+            questionContainer.classList.remove('hidden');
+            
+            // عرض السؤال الأول
+            showQuestion(currentQuestionIndex);
+            updateProgressBar();
+        }
+
+        // عرض السؤال الحالي
+        function showQuestion(index) {
+            const question = shuffledQuestions[index];
+            questionText.textContent = question.text;
+            
+            // تحديث عداد الأسئلة
+            questionCounter.textContent = `سؤال ${index + 1} من ${shuffledQuestions.length}`;
+            
+            // مسح الخيارات السابقة
+            optionsContainer.innerHTML = '';
+            
+            // إضافة الخيارات الجديدة
+            question.options.forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                if (userAnswers[question.id] === option.id) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <span class="option-icon">${getOptionIcon(option.id)}</span>
+                    <span>${option.text}</span>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(question.id, option.id, option.track, option.major));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // تحديث حالة الأزرار
+            updateNavigationButtons();
+        }
+
+        // الحصول على أيقونة للخيار
+        function getOptionIcon(optionId) {
+            const icons = ['🚀', '💡', '🔍', '📱', '🎨'];
+            return icons[optionId - 1] || '●';
+        }
+
+        // اختيار خيار
+        function selectOption(questionId, optionId, track, major) {
+            userAnswers[questionId] = optionId;
+            
+            // تحديث النقاط
+            trackScores[track] += 1;
+            majorScores[major] += 1;
+            
+            // إعادة عرض السؤال لتحديث التحديد
+            showQuestion(currentQuestionIndex);
+        }
+
+        // الانتقال إلى السؤال التالي
+        function goToNextQuestion() {
+            if (currentQuestionIndex < shuffledQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+                updateProgressBar();
+            } else {
+                showResult();
+            }
+        }
+
+        // الانتقال إلى السؤال السابق
+        function goToPreviousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+                updateProgressBar();
+            }
+        }
+
+        // تحديث شريط التقدم
+        function updateProgressBar() {
+            const progress = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // تحديث أزرار التنقل
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === shuffledQuestions.length - 1) {
+                nextBtn.textContent = 'اظهر النتيجة';
+            } else {
+                nextBtn.textContent = 'التالي';
+            }
+            
+            // تعطيل زر التالي إذا لم يتم اختيار إجابة
+            const currentQuestion = shuffledQuestions[currentQuestionIndex];
+            nextBtn.disabled = !userAnswers[currentQuestion.id];
+        }
+
+        // عرض النتيجة
+        function showResult() {
+            // تحديد المسار الأعلى نقاطاً
+            let maxTrackScore = 0;
+            let recommendedTrack = 'frontend';
+            
+            for (const track in trackScores) {
+                if (trackScores[track] > maxTrackScore) {
+                    maxTrackScore = trackScores[track];
+                    recommendedTrack = track;
+                }
+            }
+            
+            // تحديد التخصص الأعلى نقاطاً
+            let maxMajorScore = 0;
+            let recommendedMajor = 'CS';
+            
+            for (const major in majorScores) {
+                if (majorScores[major] > maxMajorScore) {
+                    maxMajorScore = majorScores[major];
+                    recommendedMajor = major;
+                }
+            }
+            
+            // عرض النتيجة
+            resultTitle.textContent = tracks[recommendedTrack].title;
+            resultDescription.textContent = tracks[recommendedTrack].description;
+            
+            // عرض التخصص الجامعي
+            majorResult.innerHTML = `
+                <strong>التخصص الجامعي المقترح:</strong><br>
+                ${majors[recommendedMajor].title}<br>
+                <small>${majors[recommendedMajor].description}</small>
+            `;
+            
+            // إخفاء أسئلة وعرض النتيجة
+            questionContainer.classList.add('hidden');
+            resultContainer.style.display = 'block';
+        }
+
+        // إعادة بدء الاختبار
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            trackScores = {
+                frontend: 0,
+                backend: 0,
+                dataScience: 0,
+                mobile: 0,
+                uiux: 0
+            };
+            majorScores = {
+                CS: 0,
+                IT: 0,
+                IS: 0,
+                AI: 0
+            };
+            
+            resultContainer.style.display = 'none';
+            startContainer.classList.remove('hidden');
+        }
+
+        // بدء التطبيق
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

@@ -457,7 +457,145 @@
             .roadmap-step { padding: 15px; }
             .scroll-to-top { bottom: 20px; right: 20px; }
         }
+ .quiz-link-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .quiz-text {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color var(--transition-speed) ease;
+        }
+        .quiz-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse-glow 2.5s infinite ease-in-out;
+        }
+        .quiz-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(127, 90, 240, 0.7);
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+            50% { box-shadow: 0 4px 30px rgba(44, 182, 125, 0.5); }
+            100% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+        }
 
+        @media (max-width: 768px) {
+        .theme-switch-wrapper { top: 15px; left: 15px; }
+        
+        /* ===== أضف الكود الجديد هنا ===== */
+        .quiz-text {
+            display: none; /* إخفاء النص في شاشات الجوال */
+        }
+        .quiz-link-wrapper {
+            top: 15px;
+            right: 15px;
+        }
+        /* ============================= */
+    }
+        .header { padding: 80px 0 40px 0; }
+        /* --- NEW: Quiz Button (Updated) --- */
+.quiz-link-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.quiz-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.quiz-link:hover {
+    transform: scale(1.03); /* تكبير بسيط عند مرور الماوس */
+}
+
+.quiz-text {
+    font-weight: 700; /* خط أعرض */
+    font-size: 1rem;
+    /* --- هذا هو الكود المسؤول عن اللون المميز المتدرج --- */
+    background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: filter 0.3s ease;
+}
+
+.quiz-link:hover .quiz-text {
+    filter: brightness(1.2); /* زيادة سطوع اللون عند مرور الماوس */
+}
+
+.quiz-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: #fff;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5);
+    transition: all 0.3s ease;
+    animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+    50% { box-shadow: 0 4px 30px rgba(44, 182, 125, 0.5); }
+    100% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+}
+/* ---------------------------------- */
+
+/* ===== استبدل كل تنسيقات الزر القديمة داخل الميديا كويري بهذا الكود ===== */
+.quiz-link-wrapper {
+    top: 15px;
+    right: 15px;
+}
+
+.quiz-text-desktop {
+    display: none; /* إخفاء نص الكمبيوتر على الجوال */
+}
+
+.quiz-text-mobile {
+    display: inline; /* إظهار نص الجوال */
+    font-size: 0.9rem; /* حجم خط مناسب */
+}
+
+.quiz-link {
+    /* (إذا كنت قد أضفت أي تنسيقات خاصة هنا مثل flex-direction، يمكنك حذفها ليعود للشكل الأفقي الافتراضي) */
+    gap: 12px; /* تعديل المسافة بين النص والزر */
+}
+
+.quiz-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+}
+/* ======================================================================= */
 
     </style>
 </head>
@@ -473,6 +611,17 @@
             </div>
         </div>
     </div>
+
+   <div class="quiz-link-wrapper">
+    <a href="QA.html" class="quiz-link">
+        <span class="quiz-text quiz-text-desktop">Confused? Test to know your inclination towards your track and specialty.</span>
+<span class="quiz-text quiz-text-mobile">Curious? Click here (Beta)</span>
+        
+        <div class="quiz-button">
+            <i class="fas fa-question-circle"></i>
+        </div>
+    </a>
+</div>
 
    
     <div class="container">
