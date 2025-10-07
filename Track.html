@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MaterialX | Track</title>
+        <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+
+    <style>
+        /* CSS Styling - Over 800 lines of pure power */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+        :root {
+            /* --- Dark Mode (Default) --- */
+            --bg-color: #1a1a2e;
+            --bg-secondary-color: #16213e;
+            --neumorphic-bg: #1a1a2e;
+            --neumorphic-shadow-light: rgba(30, 30, 60, 0.5);
+            --neumorphic-shadow-dark: rgba(0, 0, 0, 0.4);
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0c0;
+            --accent-primary: #7f5af0;
+            --accent-secondary: #2cb67d;
+            --glow-color: rgba(127, 90, 240, 0.4);
+            --transition-speed: 0.4s;
+            --border-radius-lg: 25px;
+            --border-radius-md: 15px;
+        }
+
+        body.light-mode {
+            /* --- Light Mode --- */
+            --bg-color: #e0e5ec;
+            --bg-secondary-color: #dde2e9;
+            --neumorphic-bg: #e0e5ec;
+            --neumorphic-shadow-light: rgba(255, 255, 255, 0.9);
+            --neumorphic-shadow-dark: rgba(163, 177, 198, 0.6);
+            --text-primary: #333a52;
+            --text-secondary: #5a6482;
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+            line-height: 1.9;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        /* --- Particle JS Background --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* --- General Transition for Theme Change --- */
+        .header, #search-input, .specialization-card, .detail-section, .details-header, h1, h2, h3, h4, p, li, .back-button, .telegram-contact, .book-link {
+            transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        /* --- Theme Toggle Switch --- */
+        .theme-switch-wrapper {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+        }
+        .theme-switch {
+            width: 70px;
+            height: 36px;
+            background: var(--neumorphic-bg);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: inset 5px 5px 10px var(--neumorphic-shadow-dark), inset -5px -5px 10px var(--neumorphic-shadow-light);
+            display: flex;
+            align-items: center;
+        }
+        .theme-switch-handle {
+            height: 28px;
+            width: 28px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            position: absolute;
+            left: 4px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .theme-switch-handle .fa-moon { color: var(--bg-color); }
+        .theme-switch-handle .fa-sun { color: var(--bg-color); display: none; }
+        body.light-mode .theme-switch-handle { transform: translateX(34px); }
+        body.light-mode .fa-moon { display: none; }
+        body.light-mode .fa-sun { display: block; }
+
+        /* --- Scroll to Top Button --- */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--neumorphic-bg);
+            color: var(--text-secondary);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px var(--neumorphic-shadow-dark), -5px -5px 10px var(--neumorphic-shadow-light);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-to-top:hover {
+            color: var(--accent-primary);
+            box-shadow: 7px 7px 14px var(--neumorphic-shadow-dark), -7px -7px 14px var(--neumorphic-shadow-light), 0 0 10px var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        /* --- Header & Search --- */
+        .header {
+            text-align: center;
+            padding: 100px 0 60px 0;
+        }
+        .header h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -2px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUpFadeIn 0.8s 0.2s forwards;
+        }
+        .search-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+        }
+        #search-input {
+            width: 100%;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            background: var(--neumorphic-bg);
+            color: var(--text-primary);
+            box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark), inset -4px -4px 8px var(--neumorphic-shadow-light);
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUpFadeIn 0.8s 0.4s forwards;
+        }
+        #search-input::placeholder { color: var(--text-secondary); }
+        #search-input:focus {
+            outline: none;
+            box-shadow: inset 6px 6px 12px var(--neumorphic-shadow-dark), inset -6px -6px 12px var(--neumorphic-shadow-light), 0 0 0 2px var(--accent-primary);
+        }
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* --- Specializations Grid --- */
+        #specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .specialization-card {
+            background: var(--neumorphic-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 35px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 10px 10px 20px var(--neumorphic-shadow-dark), -10px -10px 20px var(--neumorphic-shadow-light);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUpFadeIn 0.6s forwards;
+        }
+        .specialization-card:nth-child(1) { animation-delay: 0.6s; }
+        .specialization-card:nth-child(2) { animation-delay: 0.7s; }
+        .specialization-card:nth-child(3) { animation-delay: 0.8s; }
+        
+        .specialization-card:hover {
+            box-shadow: 15px 15px 30px var(--neumorphic-shadow-dark), -15px -15px 30px var(--neumorphic-shadow-light);
+        }
+        .card-content h3 {
+            font-size: 1.9rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .card-content p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .card-glow-border {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: var(--border-radius-lg);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--accent-primary), transparent 40%);
+        }
+        .specialization-card:hover .card-glow-border {
+            opacity: 0.2;
+        }
+
+        /* --- Search Results Counter --- */
+        .search-results-info {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .search-results-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Details View --- */
+        #details-view {
+            display: none;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            overflow-y: auto;
+            perspective: 1000px;
+            background-color: var(--bg-color); /* Ensure background fills during transition */
+        }
+        #details-view.visible {
+            display: block;
+        }
+        .details-scroller {
+            padding: 40px 0;
+        }
+        .details-content {
+            background: var(--bg-color);
+            border-radius: var(--border-radius-lg);
+            opacity: 0;
+            transform-origin: center;
+            min-height: 100%;
+            position: relative; /* Needed for absolute positioning of back-button */
+            box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Stronger shadow for main content */
+        }
+        .details-header {
+            text-align: center;
+            padding: 120px 40px 80px 40px;
+            position: relative;
+            background: var(--bg-secondary-color);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+        }
+        .details-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -1.5px;
+        }
+        .back-button {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--neumorphic-bg);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px var(--neumorphic-shadow-dark), -5px -5px 10px var(--neumorphic-shadow-light);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .back-button:hover {
+            color: var(--accent-primary);
+            box-shadow: 7px 7px 14px var(--neumorphic-shadow-dark), -7px -7px 14px var(--neumorphic-shadow-light), 0 0 10px var(--accent-primary);
+            transform: scale(1.05);
+        }
+        
+        .details-body {
+            padding: 50px clamp(20px, 5vw, 60px);
+        }
+        .detail-section {
+            margin-bottom: 50px;
+            padding: 40px;
+            background: var(--neumorphic-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 10px 10px 20px var(--neumorphic-shadow-dark), -10px -10px 20px var(--neumorphic-shadow-light);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .detail-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .detail-section h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        .detail-section h3 i {
+            margin-left: 15px;
+            color: var(--accent-secondary);
+        }
+        .telegram-contact {
+            background-color: #2AABEE; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-size: 0.95rem;
+            font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+        }
+        .telegram-contact:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(42, 171, 238, 0.3);
+        }
+        .detail-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .detail-section ul li {
+            padding: 12px 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Lighter separator */
+            color: var(--text-secondary);
+        }
+        body.light-mode .detail-section ul li {
+             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .detail-section ul li:last-child {
+            border-bottom: none;
+        }
+        .detail-section h4 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-primary);
+            display: inline-block;
+        }
+        
+        /* Book Links */
+        .book-link {
+            color: var(--accent-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; /* Allows transform */
+        }
+        .book-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+
+        /* New styles for detailed roadmap */
+        .roadmap-step {
+            margin-bottom: 2rem;
+            padding: 20px;
+            background: var(--bg-secondary-color); /* Slightly different bg for steps */
+            border-radius: var(--border-radius-md);
+            box-shadow: inset 3px 3px 6px var(--neumorphic-shadow-dark), inset -3px -3px 6px var(--neumorphic-shadow-light);
+        }
+        .roadmap-step h4 {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            display: block; /* Override inline-block from generic h4 */
+        }
+        .roadmap-step p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        .roadmap-step ul {
+            margin-top: 1rem;
+        }
+
+
+        /* --- Animations --- */
+        @keyframes slideUpFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .theme-switch-wrapper { top: 15px; left: 15px; }
+            .header { padding: 80px 0 40px 0; }
+            .details-scroller { padding: 0; }
+            .details-header { padding: 100px 20px 60px 20px; }
+            .back-button { top: 20px; right: 20px; width: 45px; height: 45px; font-size: 1rem;}
+            .details-body { padding: 30px 15px; }
+            .detail-section { padding: 30px; }
+            .roadmap-step { padding: 15px; }
+            .scroll-to-top { bottom: 20px; right: 20px; }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    
+    <div class="theme-switch-wrapper">
+        <div id="theme-toggle" class="theme-switch">
+            <div class="theme-switch-handle">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="container">
+        <header class="header">
+            <h1>Find Your Perfect Track</h1>
+            <div class="search-container">
+<input type="text" id="search-input" placeholder="Search for your professional track...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </header>
+
+        <div class="search-results-info" id="searchResultsInfo"></div>
+
+        <main id="specializations-grid">
+            <div class="specialization-card" data-track="data-analyst">
+                 <div class="card-glow-border"></div>
+                <div class="card-content">
+                    <h3>Data Analyst / Business Intelligence</h3>
+                    <p>المجال الذي يحول البيانات الخام إلى قرارات ذكية تقود نجاح الشركات في المستقبل.</p>
+                </div>
+            </div>
+            
+            </div>
+        </main>
+        
+        <div id="not-found-message" style="display: none; text-align:center; font-size: 1.5rem; padding: 50px; color: var(--text-primary);">
+Not Found        </div>
+    </div>
+    
+    <section id="details-view">
+         <div class="details-scroller">
+            <div class="details-content">
+                </div>
+        </div>
+    </section>
+
+    <button id="scrollToTop" class="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+    <script>
+      
+    document.addEventListener('DOMContentLoaded', function() {
+        const telegramUsername = "B_X_Z7"; 
+        const specializations = {
+            'data-analyst': {
+                content: `
+                    <header class="details-header">
+                        <button class="back-button"><i class="fas fa-times"></i></button>
+                        <h2>Data Analyst / Business Intelligence</h2>
+                    </header>
+                    <div class="details-body">
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-bullseye"></i> تعريف المجال</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><p>محلل البيانات (Data Analyst) أو متخصص ذكاء الأعمال (Business Intelligence Analyst) هو الشخص اللي بيجمع وينظّف ويحلّل البيانات علشان يساعد الشركات تاخد قرارات مبنية على معلومات حقيقية مش تخمين. المجال ده بقى من أكتر المجالات المطلوبة دلوقتي، لإن كل مؤسسة تقريباً بقت محتاجة تفهم أرقامها وسلوك عملاءها وتطوّر قراراتها على أساس تحليلي.</p></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-cogs"></i> أهم المهارات المطلوبة</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>فهم كويس جداً لقواعد البيانات وكتابة استعلامات SQL.</li><li>القدرة على تحليل البيانات الإحصائية وتفسير النتائج.</li><li>مهارات عرض البيانات بشكل بصري جذّاب وواضح (Data Visualization).</li><li>معرفة كويسة بأدوات ذكاء الأعمال زي Power BI وTableau وGoogle Data Studio.</li><li>خبرة في Python أو R لتحليل البيانات (باستخدام مكتبات زي Pandas وNumPy وMatplotlib).</li><li>فهم عملية الـETL (استخراج وتحويل وتحميل البيانات).</li><li>القدرة على تصميم مستودعات البيانات (Data Warehouse) ونماذج الأبعاد (Star Schema / Snowflake).</li><li>فهم أساسيات التحليل التنبؤي وتعلم الآلة.</li><li>التركيز على جودة البيانات وحوكمتها (Data Quality & Governance).</li><li>مهارات تحليل الأعمال وكتابة تقارير احترافية توصل المعلومة ببساطة.</li><li>التفكير التحليلي وربط النتائج بالهدف التجاري مش بالأرقام بس.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-stream"></i> مسار التعلم</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><h4>البداية:</h4><ul><li>تعلم Excel بشكل متقدم (Pivot Tables، VLOOKUP، Conditional Formatting).</li><li>تعلم SQL من الأساسيات: SELECT، JOIN، GROUP BY.</li><li>مقدمة في Power BI أو Tableau علشان تتعلم إزاي تعرض البيانات.</li><li>دراسة مبادئ الإحصاء وتحليل البيانات.</li><li>تطبيق عملي على مشاريع بسيطة من مواقع زي Kaggle.</li></ul><h4>المستوى المتوسط:</h4><ul><li>SQL متقدم (Subqueries، Window Functions، CTE).</li><li>تحليل البيانات باستخدام Python (Pandas، NumPy، Matplotlib، Seaborn).</li><li>تعلم بناء خطوط بيانات (ETL pipelines).</li><li>إنشاء Dashboards تفاعلية واحترافية.</li><li>فهم تصميم نماذج البيانات (Data Modeling).</li><li>دراسة تحليل الأعمال وربط الأرقام بالنتائج التجارية.</li></ul><h4>المستوى المتقدم:</h4><ul><li>Predictive Analytics: تعلم خوارزميات أساسية في Machine Learning.</li><li>التعامل مع البيانات الضخمة (Big Data).</li><li>تعلم أدوات التحليل السحابية (AWS QuickSight، Google BigQuery، Azure Synapse).</li><li>بناء Data Pipelines متكاملة وأتمتة عمليات التحليل.</li><li>تحسين أداء الاستعلامات وقواعد البيانات.</li><li>إدارة جودة البيانات ووضع معايير لحوكمتها.</li><li>تقديم تحليلات استراتيجية للإدارة العليا.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-tools"></i> الأدوات اللي لازم تتقنها</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>Power BI، Tableau، Google Data Studio.</li><li>SQL (MySQL، PostgreSQL، SQL Server).</li><li>Python (Pandas، NumPy، Matplotlib، Seaborn، Scikit-learn).</li><li>أدوات ETL زي Talend، Apache Nifi، Airflow.</li><li>أدوات سحابية زي AWS Redshift، Azure Data Factory، Google BigQuery.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-certificate"></i> الشهادات المقترحة</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>Microsoft Certified: Data Analyst Associate.</li><li>Google Data Analytics Certificate.</li><li>Tableau Desktop Specialist.</li><li>Certified Business Intelligence Professional (CBIP).</li><li>AWS Data Analytics Specialty (لو حابب تتعمّق في السحابة).</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-sitemap"></i> التخصصات الفرعية</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>تحليل تسويقي (Marketing Analytics).</li><li>تحليل مالي (Financial Analytics).</li><li>تحليل منتجات (Product Analytics).</li><li>تحليل العمليات (Operations Analytics).</li><li>تحليل المستخدمين والويب (User & Web Analytics).</li><li>التحليل التنبؤي (Predictive Analytics).</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-chart-line"></i> مسار الوظائف</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><p>Junior Data Analyst → Data Analyst → Senior Data Analyst → BI Developer → BI Architect → Data Scientist → Data Strategy Lead. كل ترقية بتكون نتيجة تراكم خبرة تقنية وفهم أعمق للبيزنس.</p></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-money-bill-wave"></i> الرواتب في مصر</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>Junior: من 15,000 إلى 25,000 جنيه.</li><li>متوسط الخبرة: من 25,000 إلى 45,000 جنيه.</li><li>Senior: من 45,000 إلى 70,000 جنيه.</li><li>BI Developer / Data Scientist: قد يصل لـ 90,000 جنيه أو أكثر.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-book-open"></i> كتب ومراجع للمذاكرة</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul>
+                        <li><a href="https://www.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1491957662" target="_blank" class="book-link">Python for Data Analysis – Wes McKinney</a></li>
+                        <li><a href="https://www.amazon.com/Data-Science-Business-What-Need/dp/149208077X" target="_blank" class="book-link">Data Science for Business – Provost & Fawcett</a></li>
+                        <li><a href="https://www.amazon.com/Storytelling-Data-Visualization-Business-Professionals/dp/1119002257" target="_blank" class="book-link">Storytelling with Data – Cole Nussbaumer Knaflic</a></li>
+                        <li><a href="https://www.amazon.com/Data-Warehouse-Toolkit-Definitive-Dimensional/dp/1118530802" target="_blank" class="book-link">The Data Warehouse Toolkit – Ralph Kimball</a></li>
+                        <li><a href="https://www.amazon.com/Think-Stats-Probability-Programmers-Statistics/dp/1491957298" target="_blank" class="book-link">Think Stats – Allen B. Downey</a></li>
+                        <li><a href="https://www.amazon.com/Practical-Statistics-Data-Scientists-Python/dp/149207294X" target="_blank" class="book-link">Practical Statistics for Data Scientists – Bruce & Gedeck</a></li>
+                        <li>مواقع زي Coursera وDataCamp وKaggle ممتازة للتطبيق العملي.</li>
+                    </ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-star"></i> خطوات عملية للتميّز</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>اشتغل على مشاريع حقيقية وانشرها على GitHub أو LinkedIn.</li><li>ابنِ Portfolio فيه Dashboards وتصورات تفاعلية قوية.</li><li>شارك في مسابقات Kaggle لاكتساب خبرة حقيقية.</li><li>تعلم كل سنة Tool جديدة أو تقنية جديدة.</li><li>ركّز على القيمة اللي بتضيفها تحليلاتك للبيزنس.</li><li>شارك في مجتمعات تحليل البيانات وكن دائم التعلم.</li></ul></div>
+                    <div class="detail-section" id="roadmap-detailed-section"><div class="section-title-wrapper"><h3><i class="fas fa-road"></i> الخطة الدراسية (Roadmap)</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div>
+                        <div class="roadmap-step"><h4>الخطوة الأولى: بناء الأساس (Excel والإحصاء)</h4><p>المدة المقترحة: شهرين. أول خطوة تبدأ تبني الأساس بتاعك، فلازم تتقن Excel كويس جدًا لأنه أول أداة هتتعامل بيها مع البيانات. اتعلم الحاجات المتقدمة فيه زي Pivot Tables، وVLOOKUP، وConditional Formatting، وPower Query. ابدأ تحلل جداول بيانات حقيقية زي بيانات مبيعات أو عملاء من مواقع زي Kaggle علشان تتعود على التفكير التحليلي. في نفس المرحلة دي، راجع أساسيات الإحصاء البسيطة زي المتوسط والوسيط والانحراف المعياري والاحتمالات، لأن دي لغة التحليل اللي هتستخدمها بعد كده.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الثانية: لغة استخراج البيانات (SQL)</h4><p>المدة المقترحة: شهرين. بعد كده خش على SQL، ودي تعتبر أهم لغة في شغل المحلل. ابدأ بالأساسيات: SELECT، WHERE، JOIN، GROUP BY. لما تبقى مرتاح، اتعلم الحاجات المتقدمة زي Subqueries، CTE، Window Functions. جرب تشتغل على أدوات زي MySQL أو PostgreSQL واعمل مشروع بسيط، زي تحليل بيانات مبيعات أو بيانات موظفين. SQL هي اللي هتخليك تقدر تجيب البيانات بنفسك من قواعد البيانات وتجهزها للتحليل.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الثالثة: أدوات العرض البصري (Power BI / Tableau)</h4><p>المدة المقترحة: شهرين. الخطوة اللي بعد كده تكون إنك تتعلم Power BI أو Tableau، ودي الأدوات اللي بتعرض البيانات بشكل بصري تفاعلي. اتعلم إزاي تجيب البيانات من مصادر مختلفة وتبني Data Model بسيط وتعمل Dashboard احترافي يعرض الأرقام بطريقة مفهومة. ركز على إنك متكتفيش بالرسم، لكن تحكي قصة من ورا الأرقام – يعني Dashboard بتشرح واقع الشركة مش مجرد شارتات.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الرابعة: التحليل المتقدم (Python)</h4><p>المدة المقترحة: شهرين. بعدها تبدأ مرحلة Python لتحليل البيانات. اتعلم أساسيات اللغة الأول، وبعد كده اشتغل على مكتبات التحليل المشهورة زي Pandas، NumPy، Matplotlib، Seaborn. جرب تحلل ملفات CSV وتطلع Insights حقيقية زي “إيه أكتر منتج بيحقق أرباح” أو “العميل بيشتري إمتى أكتر”. المرحلة دي هتخليك تبدأ تفكر زي محلل فعلي مش مجرد مستخدم أدوات.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الخامسة: تنظيف البيانات (Data Cleaning)</h4><p>المدة المقترحة: شهر. بعد ما تتمكن من التحليل، لازم تتعلم جزء تنظيف البيانات (Data Cleaning) لأن دي أهم مرحلة في الشغل العملي. هتتعلم إزاي تتعامل مع Missing Values، والأخطاء في الأعمدة، وتوحّد الصيغ. تقدر تستخدم Python أو Power Query أو حتى SQL في الخطوة دي.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة السادسة: هندسة البيانات (ETL)</h4><p>المدة المقترحة: شهر. الخطوة اللي بعد كده هي فهم ETL، ودي عملية نقل وتحويل البيانات (Extract – Transform – Load). يعني إزاي تسحب البيانات من مصدر، تنظفها وتجهزها، وتحطها في قاعدة بيانات أو مستودع بيانات. افهم كمان أدوات زي Apache Airflow أو Talend أو حتى Power BI Dataflows.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة السابعة: تصميم النماذج التحليلية (Data Modeling)</h4><p>المدة المقترحة: شهر. بعد كده خش على تصميم قواعد البيانات التحليلية (Data Modeling & Warehousing). هنا هتفهم يعني إيه Fact وDimension، وإزاي تبني Star Schema. الجزء ده مهم جدًا في شغل الـ BI لأنك بتصمم النموذج اللي بيبني عليه التحليل كله. اقرأ في كتاب “The Data Warehouse Toolkit” لو عايز تفهم الأساس النظري صح.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الثامنة: التحليل التنبؤي (Predictive Analytics)</h4><p>المدة المقترحة: شهر. بعد ما تبقى فاهم التحليل والتصميم، تبدأ تدخل على مرحلة التحليل التنبؤي (Predictive Analytics). هتتعلم مبادئ بسيطة في الـ Machine Learning زي الانحدار الخطي (Linear Regression) أو الأشجار (Decision Trees). الهدف إنك تفهم إزاي تتوقع المستقبل من خلال البيانات السابقة. مثلاً تتوقع حجم المبيعات الشهر الجاي أو نسبة العملاء اللي ممكن يسيبوا الخدمة.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة التاسعة: التحليل السحابي (Cloud Analytics)</h4><p>المدة المقترحة: شهر. بعد كده وسّع مداركك وتعلم الأساسيات بتاعة التحليل السحابي (Cloud Analytics). اتعرف على أدوات زي Google BigQuery، AWS QuickSight، Azure Synapse. مش لازم تتعمق قوي في الأول، بس تعرف إزاي الشركات الكبيرة بتخزن وتحلل بياناتها على السحابة.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة العاشرة: بناء معرض الأعمال (Portfolio)</h4><p>المدة المقترحة: مستمر. وفي نهاية السنة، لازم تبني Portfolio محترم. جمّع كل المشاريع اللي اشتغلت عليها خلال رحلتك: تحليل Excel، Dashboards في Power BI، سكريبتات Python، تحليل تنبؤي بسيط. انشرهم على GitHub وLinkedIn، واعمل CV قوي يوضح مشاريعك ومهاراتك. ابدأ قدّم على شغل Junior Data Analyst أو BI Analyst، وراجع أسئلة مقابلات SQL وPower BI.</p></div>
+                    </div>
+                    </div>
+                `
+            },
+        };
+
+        const grid = document.getElementById('specializations-grid');
+        const detailsView = document.getElementById('details-view');
+        const detailsContent = detailsView.querySelector('.details-content');
+        const themeToggle = document.getElementById('theme-toggle');
+        const searchInput = document.getElementById('search-input');
+        const searchResultsInfo = document.getElementById('searchResultsInfo');
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        const notFoundMessage = document.getElementById('not-found-message');
+
+        // --- Scroll To Top Logic ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // For a smooth scrolling effect
+            });
+        });
+
+        // Search functionality with ranking
+        function performSearch(searchTerm) {
+            const cards = Array.from(document.querySelectorAll('.specialization-card'));
+            let foundCount = 0;
+            
+            // Reset all cards
+            cards.forEach(card => {
+                card.style.display = 'block';
+                card.style.order = '';
+            });
+            
+            if (searchTerm.trim() === '') {
+                searchResultsInfo.classList.remove('visible');
+                notFoundMessage.style.display = 'none';
+                return;
+            }
+            
+            // Score each card based on search relevance
+            const scoredCards = cards.map(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const track = card.getAttribute('data-track');
+                
+                let score = 0;
+                
+                // Exact match in title gets highest score
+                if (title.includes(searchTerm)) score += 10;
+                
+                // Partial match in title
+                if (title.includes(searchTerm.substring(0, Math.ceil(searchTerm.length / 2)))) score += 5;
+                
+                // Match in description
+                if (description.includes(searchTerm)) score += 3;
+                
+                // Partial match in description
+                if (description.includes(searchTerm.substring(0, Math.ceil(searchTerm.length / 2)))) score += 1;
+                
+                return { card, score, title };
+            });
+            
+            // Filter and sort by score
+            const filteredCards = scoredCards
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score);
+            
+            // Hide non-matching cards and reorder matching ones
+            cards.forEach(card => {
+                const isMatch = filteredCards.some(item => item.card === card);
+                if (!isMatch) {
+                    card.style.display = 'none';
+                } else {
+                    foundCount++;
+                    const index = filteredCards.findIndex(item => item.card === card);
+                    card.style.order = index;
+                }
+            });
+            
+            // Update search results info
+            if (foundCount > 0) {
+searchResultsInfo.textContent = `Found ${foundCount} result${foundCount !== 1 ? 's' : ''}`;
+                searchResultsInfo.classList.add('visible');
+                notFoundMessage.style.display = 'none';
+            } else {
+                searchResultsInfo.classList.remove('visible');
+                notFoundMessage.style.display = 'block';
+            }
+        }
+
+
+
+        function setupParticles() {
+            const isLight = document.body.classList.contains('light-mode');
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: isLight ? 100 : 50, density: { enable: true, value_area: 800 } },
+                    color: { value: isLight ? '#5a6482' : '#ffffff' },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: !isLight, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+        }
+
+        function showDetails(trackId, clickedCard) {
+            if (specializations[trackId]) {
+                const cardRect = clickedCard.getBoundingClientRect();
+                detailsContent.innerHTML = specializations[trackId].content;
+                detailsView.classList.add('visible');
+                
+                // GSAP Shared Element Transition
+                gsap.fromTo(detailsContent, 
+                    { 
+                        top: cardRect.top, 
+                        left: cardRect.left, 
+                        width: cardRect.width, 
+                        height: cardRect.height,
+                        borderRadius: 'var(--border-radius-lg)',
+                        opacity: 0.5,
+                        position: 'fixed' // Temporarily fix position for smooth transition
+                    }, 
+                    { 
+                        top: 0, 
+                        left: 0, 
+                        width: '100%', 
+                        height: 'auto',
+                        minHeight: '100%',
+                        borderRadius: '0px',
+                        opacity: 1,
+                        duration: 0.7, 
+                        ease: 'expo.inOut',
+                        onComplete: () => {
+                            gsap.set(detailsContent, { position: 'static' }); // Revert to static after transition
+                            observeSections();
+                            detailsContent.querySelector('.back-button').addEventListener('click', () => hideDetails(cardRect));
+                        }
+                    }
+                );
+                
+                gsap.to(detailsView, { opacity: 1, duration: 0.3 });
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hideDetails(cardRect) {
+            gsap.to(detailsContent.querySelectorAll('.detail-section, .details-header > *'), {
+                opacity: 0,
+                y: 20,
+                stagger: 0.05,
+                duration: 0.4
+            });
+
+            // Re-apply fixed position for reverse transition
+            gsap.set(detailsContent, { position: 'fixed', top: detailsView.scrollTop, left: 0, width: '100%' });
+
+
+            gsap.to(detailsContent, { 
+                top: cardRect.top, 
+                left: cardRect.left, 
+                width: cardRect.width, 
+                height: cardRect.height,
+                borderRadius: 'var(--border-radius-lg)',
+                duration: 0.7,
+                delay: 0.2,
+                ease: 'expo.inOut',
+                onComplete: () => {
+                    detailsView.classList.remove('visible');
+                    detailsView.style.opacity = 0;
+                    detailsContent.innerHTML = '';
+                    document.body.style.overflow = 'auto';
+                    gsap.set(detailsContent, { position: 'static' }); // Clean up
+                }
+            });
+        }
+        
+        function observeSections() {
+            const sections = detailsContent.querySelectorAll('.detail-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const section = entry.target;
+                        section.classList.add('is-visible');
+                        
+                        // Animate elements inside the section
+                        const elementsToAnimate = section.querySelectorAll('h3, h4, p, ul > li, .roadmap-step');
+                        gsap.from(elementsToAnimate, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.5,
+                            stagger: 0.1,
+                            ease: 'power2.out'
+                        });
+
+                        observer.unobserve(section);
+                    }
+                });
+            }, { root: detailsView.querySelector('.details-scroller'), threshold: 0.2 });
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Event Listeners
+        grid.addEventListener('click', (e) => {
+            const card = e.target.closest('.specialization-card');
+            if (card) showDetails(card.getAttribute('data-track'), card);
+        });
+
+        grid.addEventListener('mousemove', e => {
+            const card = e.target.closest('.specialization-card');
+            if(card) {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                
+                // 3D Tilt Effect
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateY = x / 20;
+                const rotateX = -y / 20;
+                gsap.to(card, {
+                    rotationY: rotateY,
+                    rotationX: rotateX,
+                    transformPerspective: 1000,
+                    ease: 'power1.out',
+                    duration: 0.5
+                });
+            }
+        });
+        
+        grid.addEventListener('mouseleave', e => {
+            const cards = grid.querySelectorAll('.specialization-card');
+            cards.forEach(card => {
+                 gsap.to(card, {
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: 'power3.out',
+                    duration: 1
+                });
+            });
+        });
+
+        // Search event listener
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            performSearch(searchTerm);
+        });
+
+
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            if (window.pJSDom && window.pJSDom[0]) {
+                window.pJSDom[0].pJS.fn.vendors.destroypJS();
+                window.pJSDom = [];
+            }
+            setupParticles();
+        });
+
+        // Initial Setup
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+        setupParticles();
+    });
+
+    </script>
+</body>
+</html>
