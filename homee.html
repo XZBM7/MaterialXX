@@ -1176,29 +1176,32 @@
 
 <body>
     <!-- Welcome Popup -->
-    <div class="welcome-popup" id="welcomePopup">
-        <div class="popup-content">
-            <div class="popup-icon">
-                <i class="fas fa-route"></i>
-          </div>
-<h2>Welcome to Materialx v3.3!</h2>
-<p>
-    We're excited to announce that <strong>Version 3.3</strong> is now available!  
-    We've improved most features, added a brand-new <strong>Contact Us</strong> section,  
-    and introduced our latest feature — <strong>Track</strong> — to help you explore different learning paths  
-    in the programming world and find the one that suits you best.
-</p>
+   <div class="welcome-popup" id="welcomePopup">
+    <div class="popup-content">
+        <div class="popup-icon">
+            <i class="fas fa-briefcase"></i>
+        </div>
+        <h2>New Feature: Smart Portfolio Builder 🚀</h2>
+        <p>
+            We’re thrilled to introduce our latest update — the <strong>Portfolio Builder</strong>!  
+            Now you can easily create a professional portfolio in seconds —  
+            just write a few details about yourself, and our system will instantly generate  
+            a complete portfolio for you.  
+            You can <strong>save</strong>, <strong>download</strong>, and even <strong>upload it under your name</strong> or  
+            <strong>edit it anytime</strong> — total freedom to make it your own.
+        </p>
 
-<div class="popup-buttons">
-    <a href="Track.html" target="_blank" class="popup-button primary">
-        Try Track Now <i class="fas fa-arrow-right"></i>
-    </a>
-    <button class="popup-button secondary" id="closePopup">
-        Maybe Later
-    </button>
-            </div>
+        <div class="popup-buttons">
+            <a href="proto.html" target="_blank" class="popup-button primary">
+                Try Portfolio Now <i class="fas fa-arrow-right"></i>
+            </a>
+            <button class="popup-button secondary" id="closePopup">
+                Maybe Later
+            </button>
         </div>
     </div>
+</div>
+
 
     <header>
         <div class="container">
@@ -1235,7 +1238,7 @@
                         <li><a href="quiz.html" target="_blank"><i class="fas fa-question-circle"></i> Quizzes</a></li>
                         <li><a href="Learning_Progress.html" target="_blank"><i class="fas fa-chart-line"></i>
                                 Progress</a></li>
-                        <li><a href="play.html" target="_blank"><i class="fas fa-puzzle-piece"></i> Games</a></li>
+                        <li><a href="play.html" target="_blank"><i class="fas fa-gamepad"></i> Games</a></li>
                         <li><a href="code.html" target="_blank"><i class="fas fa-code"></i> Coding</a></li>
 <li>
   <a href="#contact-us" id="contactLink">
@@ -1360,6 +1363,16 @@
                 </div>
 
 
+         <div class="app-card">
+    <div class="app-icon">
+        <i class="fas fa-briefcase"></i>
+    </div>
+    <h3>Create Your Portfolio</h3>
+    <p>Showcase your projects, skills, and achievements in a professional way. Build your personal brand and impress others.</p>
+    <a href="proto.html" class="app-link">Build Now <i class="fas fa-arrow-right"></i></a>
+</div>
+
+
               <div class="app-card">
     <div class="app-icon">
         <i class="fas fa-route"></i> 
@@ -1410,6 +1423,15 @@
                     <a href="time.html" target="_blank" class="app-link">Manage Time <i
                             class="fas fa-arrow-right"></i></a>
                 </div>
+
+               <div class="app-card">
+    <div class="app-icon">
+        <i class="fas fa-gamepad"></i>
+    </div>
+    <h3>Play Games</h3>
+    <p>Enjoy fun and interactive games designed to challenge your mind and entertain you anytime.</p>
+    <a href="play.html" target="_blank" class="app-link">Play Now <i class="fas fa-arrow-right"></i></a>
+</div>
 
             </div>
         </div>
@@ -1653,10 +1675,11 @@
             <div class="footer-column">
                 <h3>Resources</h3>
                 <ul class="footer-links">
+                    <li><a href="proto.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
                     <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
                     <li><a href="Learning_Progress.html"><i class="fas fa-chart-line"></i> Progress</a></li>
                     <li><a href="chat.html"><i class="fas fa-robot"></i> Chatbot</a></li>
-                    <li><a href="#"><i class="fas fa-book"></i> Tutorials</a></li>
+                    <li><a href="Track.html"><i class="fas fa-route"></i> track</a></li>
                 </ul>
             </div>
 
@@ -1748,27 +1771,35 @@
         return localStorage.getItem('materialxPopupSeen') === 'true';
     }
 
-    // Mark the popup as seen
-    function markPopupAsSeen() {
-        localStorage.setItem('materialxPopupSeen', 'true');
+    // 🔹 رقم الإصدار الحالي (غيّره كل ما تعمل تحديث جديد)
+    const POPUP_VERSION = "3.5";
+
+    // 🔹 التحقق إذا المستخدم شاف الـ popup لهذا الإصدار
+    function hasSeenPopup() {
+        return localStorage.getItem('materialxPopupVersion') === POPUP_VERSION;
     }
 
-    // Show popup only once per user
+    // 🔹 تعليم أنه شافها لهذا الإصدار
+    function markPopupAsSeen() {
+        localStorage.setItem('materialxPopupVersion', POPUP_VERSION);
+    }
+
+    // 🔹 عرضها مرة واحدة فقط لكل إصدار جديد
     window.addEventListener('DOMContentLoaded', function () {
         if (!hasSeenPopup()) {
             setTimeout(function () {
                 const popup = document.getElementById('welcomePopup');
                 if (popup) popup.classList.add('active');
+                markPopupAsSeen(); // ← نحفظ أنه شافها لهذا الإصدار
             }, 1000);
         }
     });
 
-    // Close popup and mark as seen
+    // 🔹 إغلاق الـ popup عند الضغط على الزر
     document.addEventListener('click', function (e) {
         if (e.target && e.target.id === 'closePopup') {
             const popup = document.getElementById('welcomePopup');
             popup.classList.remove('active');
-            markPopupAsSeen();
         }
     });
 
