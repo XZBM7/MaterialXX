@@ -1,1 +1,9557 @@
-const _0x6d96f2=_0x1138;(function(_0x424678,_0x220b17){const _0x2e6e8b=_0x1138,_0x494fa0=_0x424678();while(!![]){try{const _0x4bf022=-parseInt(_0x2e6e8b(0xa48))/0x1+-parseInt(_0x2e6e8b(0x28b))/0x2*(parseInt(_0x2e6e8b(0x7d7))/0x3)+-parseInt(_0x2e6e8b(0x1bc))/0x4*(-parseInt(_0x2e6e8b(0x1e9))/0x5)+parseInt(_0x2e6e8b(0x4a0))/0x6*(-parseInt(_0x2e6e8b(0xa65))/0x7)+parseInt(_0x2e6e8b(0x939))/0x8+-parseInt(_0x2e6e8b(0x35d))/0x9+parseInt(_0x2e6e8b(0x1a0))/0xa*(parseInt(_0x2e6e8b(0xb0b))/0xb);if(_0x4bf022===_0x220b17)break;else _0x494fa0['push'](_0x494fa0['shift']());}catch(_0x164a9e){_0x494fa0['push'](_0x494fa0['shift']());}}}(_0x3878,0xc82b1));let selectedQuiz='',databaseQuizVariant=0x1,dataStructureQuizVariant=0x1,dcQuizVariant=0x1,bigdataQuizVariant=0x1,dmQuizVariant=0x1,db2QuizVariant=0x1,irQuizVariant=0x1,biQuizVariant=0x1,currentQuestionIndex=0x0,totalQuestions=0x0,score=0x0,userAnswers=[],timeLimit=0x0,startTime,timerInterval,userStats=JSON[_0x6d96f2(0x4a6)](localStorage[_0x6d96f2(0xd3)](_0x6d96f2(0x8b8)))||{'totalQuizzes':0x0,'totalScore':0x0,'bestScore':0x0,'totalTime':0x0,'recentQuizzes':[]};function updateStatsDisplay(){const _0x4f68c3=_0x6d96f2;document[_0x4f68c3(0xd7)](_0x4f68c3(0x800))[_0x4f68c3(0x1a4)]=userStats[_0x4f68c3(0x5e1)],document['getElementById'](_0x4f68c3(0xa9d))['textContent']=userStats[_0x4f68c3(0x5e1)]>0x0?Math[_0x4f68c3(0xa3e)](userStats[_0x4f68c3(0x2c1)]/userStats[_0x4f68c3(0x5e1)])+'%':'0%',document[_0x4f68c3(0xd7)](_0x4f68c3(0x749))[_0x4f68c3(0x1a4)]=userStats[_0x4f68c3(0x630)]+'%';const _0x4aa7d0=Math[_0x4f68c3(0x52f)](userStats[_0x4f68c3(0x7b7)]/0x3c),_0x5530d5=userStats[_0x4f68c3(0x7b7)]%0x3c;document[_0x4f68c3(0xd7)]('total-time')['textContent']=_0x4aa7d0+'m\x20'+_0x5530d5+'s';const _0x41d06a=document[_0x4f68c3(0xd7)](_0x4f68c3(0x3d1));_0x41d06a[_0x4f68c3(0x381)]='',userStats[_0x4f68c3(0x6dd)][_0x4f68c3(0x2d3)]===0x0?_0x41d06a[_0x4f68c3(0x381)]=_0x4f68c3(0xb51):userStats[_0x4f68c3(0x6dd)]['slice'](0x0,0x3)[_0x4f68c3(0x6ff)](_0x587aba=>{const _0x338f01=_0x4f68c3,_0x239c97=document[_0x338f01(0x714)](_0x338f01(0x7f5));_0x239c97[_0x338f01(0x650)]='stat-item',_0x239c97[_0x338f01(0x381)]=_0x338f01(0x2ef)+_0x587aba['name']+_0x338f01(0x6fe)+_0x587aba[_0x338f01(0x3be)]+'%</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',_0x41d06a['appendChild'](_0x239c97);});}function updateUserStats(_0x5c2800,_0x42480f,_0x1ae945){const _0x319012=_0x6d96f2;userStats[_0x319012(0x5e1)]++,userStats[_0x319012(0x2c1)]+=_0x42480f,userStats['bestScore']=Math[_0x319012(0x948)](userStats['bestScore'],_0x42480f),userStats[_0x319012(0x7b7)]+=_0x1ae945,userStats[_0x319012(0x6dd)][_0x319012(0xe3)]({'name':_0x5c2800,'score':_0x42480f,'date':new Date()[_0x319012(0x6db)]()}),userStats[_0x319012(0x6dd)]['length']>0x5&&userStats[_0x319012(0x6dd)][_0x319012(0x45f)](),localStorage[_0x319012(0x42e)](_0x319012(0x8b8),JSON[_0x319012(0x747)](userStats)),updateStatsDisplay();}document[_0x6d96f2(0x86f)]('DOMContentLoaded',function(){const _0x3b1917=_0x6d96f2;updateStatsDisplay();const _0x1c7a57=document[_0x3b1917(0xd7)]('status');localStorage[_0x3b1917(0xd3)](_0x3b1917(0xb8c))===_0x3b1917(0x99f)&&(document['body'][_0x3b1917(0x4c4)][_0x3b1917(0x654)]('dark-mode'),_0x1c7a57[_0x3b1917(0x8fd)]=!![]),_0x1c7a57[_0x3b1917(0x86f)]('change',function(){const _0x5e0d8f=_0x3b1917;_0x1c7a57[_0x5e0d8f(0x8fd)]?(document['body']['classList'][_0x5e0d8f(0x654)](_0x5e0d8f(0x396)),localStorage[_0x5e0d8f(0x42e)](_0x5e0d8f(0xb8c),_0x5e0d8f(0x99f))):(document[_0x5e0d8f(0x5ea)][_0x5e0d8f(0x4c4)]['remove'](_0x5e0d8f(0x396)),localStorage[_0x5e0d8f(0x42e)]('darkMode',_0x5e0d8f(0x31f)));});});const databaseQuestions1=[{'question':_0x6d96f2(0x952),'options':[_0x6d96f2(0x5a0),_0x6d96f2(0x590),'A\x20program\x20that\x20retrieves\x20data',_0x6d96f2(0x9bf)],'answer':0x1},{'question':_0x6d96f2(0x455),'options':[_0x6d96f2(0x867),_0x6d96f2(0xb81),_0x6d96f2(0x205),_0x6d96f2(0x593)],'answer':0x1}],databaseQuestions2=[{'question':_0x6d96f2(0x709),'options':[_0x6d96f2(0xee),_0x6d96f2(0x5df),_0x6d96f2(0x160),'To\x20enhance\x20data\x20retrieval\x20speed'],'answer':0x1},{'question':_0x6d96f2(0x860),'options':[_0x6d96f2(0x8ec),_0x6d96f2(0x324),_0x6d96f2(0x704),_0x6d96f2(0x378)],'answer':0x2},{'question':_0x6d96f2(0x4af),'options':[_0x6d96f2(0x2dc),_0x6d96f2(0x2e4),_0x6d96f2(0x775),_0x6d96f2(0x4ea)],'answer':0x1},{'question':_0x6d96f2(0xb70),'options':['The\x20actual\x20data\x20stored\x20in\x20the\x20database',_0x6d96f2(0x729),_0x6d96f2(0x2f6),_0x6d96f2(0x108)],'answer':0x1},{'question':_0x6d96f2(0x8cb),'options':[_0x6d96f2(0x947),_0x6d96f2(0xe7),_0x6d96f2(0x649),_0x6d96f2(0x9ed)],'answer':0x1},{'question':_0x6d96f2(0x865),'options':[_0x6d96f2(0x797),_0x6d96f2(0x354),_0x6d96f2(0xb5a),'To\x20store\x20data\x20physically'],'answer':0x2},{'question':_0x6d96f2(0x337),'options':[_0x6d96f2(0x813),_0x6d96f2(0x39f),_0x6d96f2(0x11e),_0x6d96f2(0x67c)],'answer':0x2},{'question':_0x6d96f2(0x815),'options':[_0x6d96f2(0x67d),'The\x20ability\x20to\x20change\x20the\x20logical\x20schema\x20without\x20affecting\x20external\x20schemas',_0x6d96f2(0x1ed),_0x6d96f2(0x110)],'answer':0x1},{'question':_0x6d96f2(0x4c2),'options':[_0x6d96f2(0x818),_0x6d96f2(0xb1d),'Changes\x20to\x20the\x20database\x20state\x20without\x20affecting\x20the\x20schema',_0x6d96f2(0x816)],'answer':0x1},{'question':_0x6d96f2(0x424),'options':[_0x6d96f2(0x497),_0x6d96f2(0x328),_0x6d96f2(0x3e8),_0x6d96f2(0x293)],'answer':0x1},{'question':_0x6d96f2(0xac8),'options':[_0x6d96f2(0x3dc),_0x6d96f2(0x932),_0x6d96f2(0x4ae),_0x6d96f2(0x3fc)],'answer':0x2},{'question':_0x6d96f2(0x690),'options':[_0x6d96f2(0x28d),_0x6d96f2(0x11d),_0x6d96f2(0x208),_0x6d96f2(0x55c)],'answer':0x2},{'question':_0x6d96f2(0x457),'options':[_0x6d96f2(0x24a),'Data\x20independence',_0x6d96f2(0x5bf),'Fixed\x20data\x20structures'],'answer':0x3},{'question':_0x6d96f2(0xa66),'options':[_0x6d96f2(0xa0c),'The\x20complete\x20physical\x20storage\x20details','Names\x20of\x20record\x20types\x20and\x20some\x20constraints',_0x6d96f2(0x108)],'answer':0x2},{'question':_0x6d96f2(0x1a3),'options':[_0x6d96f2(0x130),_0x6d96f2(0x1e4),_0x6d96f2(0xb2a),_0x6d96f2(0x923)],'answer':0x1},{'question':'Data\x20abstraction\x20in\x20database\x20systems\x20aims\x20to\x20improve\x20data\x20storage\x20efficiency.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x8e0),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x82e),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x6fd),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x34a),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'Physical\x20data\x20independence\x20allows\x20changes\x20to\x20the\x20database\x20state\x20without\x20affecting\x20the\x20schema.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'In\x20a\x20two-tier\x20client/server\x20architecture,\x20the\x20application\x20server\x20runs\x20application\x20programs\x20and\x20manages\x20business\x20rules.','options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':'The\x20main\x20benefit\x20of\x20a\x20three-tier\x20architecture\x20is\x20increased\x20data\x20redundancy.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x7e8),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x1b3),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],databaseQuestions3=[{'question':_0x6d96f2(0x987),'options':[_0x6d96f2(0x6e4),'Degree',_0x6d96f2(0x693),_0x6d96f2(0x2ce)],'answer':0x2},{'question':'What\x20does\x20the\x20degree\x20of\x20a\x20relation\x20refer\x20to?','options':[_0x6d96f2(0xb9),_0x6d96f2(0x610),_0x6d96f2(0x8aa),'The\x20number\x20of\x20foreign\x20keys\x20in\x20a\x20relation'],'answer':0x1},{'question':'In\x20the\x20relational\x20model,\x20a\x20domain\x20is:','options':[_0x6d96f2(0xab6),_0x6d96f2(0xd8),_0x6d96f2(0x217),_0x6d96f2(0x6aa)],'answer':0x1},{'question':'What\x20is\x20a\x20super\x20key\x20in\x20a\x20relational\x20database?','options':[_0x6d96f2(0x8ef),_0x6d96f2(0xb5),'A\x20key\x20that\x20is\x20always\x20a\x20primary\x20key',_0x6d96f2(0x5fe)],'answer':0x1},{'question':_0x6d96f2(0x123),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'Which\x20operation\x20can\x20potentially\x20violate\x20referential\x20integrity?','options':['Select',_0x6d96f2(0x167),'Delete',_0x6d96f2(0x30c)],'answer':0x2},{'question':_0x6d96f2(0xab5),'options':[_0x6d96f2(0xa4c),'Foreign\x20key\x20values\x20must\x20exist\x20in\x20the\x20referenced\x20relation\x20or\x20be\x20NULL',_0x6d96f2(0x469),_0x6d96f2(0x76f)],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20is\x20NOT\x20allowed\x20in\x20a\x20relational\x20model?','options':[_0x6d96f2(0x26a),_0x6d96f2(0x88d),_0x6d96f2(0x6df),_0x6d96f2(0x641)],'answer':0x1},{'question':_0x6d96f2(0xa94),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x92),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x94a),'options':['True','False'],'answer':0x1},{'question':'In\x20a\x20valid\x20database\x20state,\x20all\x20defined\x20integrity\x20constraints\x20must\x20be\x20satisfied.','options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':'Updating\x20a\x20foreign\x20key\x20does\x20not\x20affect\x20referential\x20integrity.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x331),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':'\x20the\x20property\x20information\x20table:\x0a\x0a|\x20PropertyNo\x20|\x20Address\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Type\x20\x20|\x20Rooms\x20|\x20Rent\x20|\x20OwnerNo\x20|\x0a|------------|-------------------|-------|-------|------|---------|\x0a|\x20PA14\x20\x20\x20\x20\x20\x20\x20|\x2016\x20Holhead\x20House\x20\x20\x20|\x20House\x20|\x206\x20\x20\x20\x20\x20|\x20650\x20\x20|\x20C046\x20\x20\x20\x20|\x0a|\x20PL94\x20\x20\x20\x20\x20\x20\x20|\x206\x20Argyll\x20St.\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20400\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG4\x20\x20\x20\x20\x20\x20\x20\x20|\x206\x20Lawrence\x20St.\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20350\x20\x20|\x20C040\x20\x20\x20\x20|\x0a|\x20PG36\x20\x20\x20\x20\x20\x20\x20|\x202\x20Manor\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20375\x20\x20|\x20C093\x20\x20\x20\x20|\x0a|\x20PG21\x20\x20\x20\x20\x20\x20\x20|\x2018\x20Dale\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20House\x20|\x205\x20\x20\x20\x20\x20|\x20600\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG16\x20\x20\x20\x20\x20\x20\x20|\x205\x20Novar\x20Dr.\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20450\x20\x20|\x20C093\x20\x20\x20\x20|\x0a\x0aDegree\x20of\x20relation\x20is:','options':['7','8','9','6'],'answer':0x3},{'question':_0x6d96f2(0xa17),'options':['7','8','6','9'],'answer':0x2},{'question':'In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aWhat\x20is\x20the\x20primary\x20key\x20in\x20the\x20Employees\x20table?','options':['EmpID','Salary',_0x6d96f2(0x76d),'DeptNo'],'answer':0x0},{'question':'In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aWhich\x20of\x20the\x20following\x20represents\x20the\x20foreign\x20key\x20in\x20the\x20Employees\x20table?','options':['EmpID',_0x6d96f2(0x35b),_0x6d96f2(0x9b9),_0x6d96f2(0x23f)],'answer':0x1},{'question':_0x6d96f2(0x1db),'options':[_0x6d96f2(0x9fa),_0x6d96f2(0x9e7),_0x6d96f2(0xa18),_0x6d96f2(0x3a3)],'answer':0x0},{'question':_0x6d96f2(0x9ea),'options':[_0x6d96f2(0x580),_0x6d96f2(0xb6a),_0x6d96f2(0x164),_0x6d96f2(0x8f4)],'answer':0x3},{'question':_0x6d96f2(0xb1f),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aEach\x20employee\x20must\x20belong\x20to\x20a\x20department,\x20so\x20the\x20DeptNo\x20field\x20in\x20the\x20Employees\x20table\x20cannot\x20be\x20NULL.','options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0x927),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x374),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x19a),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x553),'options':['True','False'],'answer':0x1}],databaseQuestions4=[{'question':_0x6d96f2(0x952),'options':[_0x6d96f2(0x5a0),_0x6d96f2(0x590),_0x6d96f2(0x5ec),_0x6d96f2(0x9bf)],'answer':0x1},{'question':_0x6d96f2(0x455),'options':[_0x6d96f2(0x867),_0x6d96f2(0xb81),_0x6d96f2(0x205),'Browsing\x20the\x20internet'],'answer':0x1},{'question':_0x6d96f2(0xb39),'options':['To\x20create\x20images',_0x6d96f2(0x33a),_0x6d96f2(0x43d),_0x6d96f2(0x3a7)],'answer':0x1},{'question':_0x6d96f2(0x961),'options':[_0x6d96f2(0x765),'High\x20data\x20integrity','Data\x20duplication',_0x6d96f2(0x21f)],'answer':0x2},{'question':'What\x20does\x20data\x20consistency\x20in\x20a\x20database\x20imply?','options':['Data\x20stored\x20in\x20different\x20formats',_0x6d96f2(0x3d4),_0x6d96f2(0xb9d),_0x6d96f2(0x56a)],'answer':0x2},{'question':'What\x20does\x20a\x20database\x20catalog\x20contain?','options':['List\x20of\x20all\x20employees','Metadata',_0x6d96f2(0x82a),_0x6d96f2(0xcd)],'answer':0x1},{'question':_0x6d96f2(0x7e6),'options':[_0x6d96f2(0x1a9),_0x6d96f2(0x46c),'Protecting\x20the\x20database',_0x6d96f2(0x512)],'answer':0x3},{'question':_0x6d96f2(0x978),'options':[_0x6d96f2(0xaed),_0x6d96f2(0x102),_0x6d96f2(0x8b0),_0x6d96f2(0x42a)],'answer':0x1},{'question':_0x6d96f2(0x537),'options':[_0x6d96f2(0x351),'Data\x20Definition\x20Language\x20(DDL)',_0x6d96f2(0x9ff),_0x6d96f2(0x655)],'answer':0x1},{'question':_0x6d96f2(0x3c5),'options':[_0x6d96f2(0xb89),_0x6d96f2(0x99a),'Ease\x20of\x20use',_0x6d96f2(0xb08)],'answer':0x1},{'question':_0x6d96f2(0x8d5),'options':[_0x6d96f2(0x936),_0x6d96f2(0x54e),_0x6d96f2(0x9e1),_0x6d96f2(0x9db)],'answer':0x1},{'question':_0x6d96f2(0x625),'options':[_0x6d96f2(0x34f),_0x6d96f2(0x312),_0x6d96f2(0xa2c),_0x6d96f2(0x4b0)],'answer':0x2},{'question':_0x6d96f2(0x868),'options':[_0x6d96f2(0x139),_0x6d96f2(0x3ed),'A\x20backup\x20of\x20the\x20database',_0x6d96f2(0x133)],'answer':0x1},{'question':_0x6d96f2(0x96),'options':[_0x6d96f2(0x78b),'Designing\x20the\x20database',_0x6d96f2(0x2da),_0x6d96f2(0x88)],'answer':0x3},{'question':'When\x20is\x20it\x20more\x20desirable\x20to\x20use\x20regular\x20files\x20instead\x20of\x20a\x20database?','options':[_0x6d96f2(0x265),_0x6d96f2(0xb9c),_0x6d96f2(0x598),'For\x20systems\x20requiring\x20high\x20security'],'answer':0x1},{'question':_0x6d96f2(0x982),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x38d),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0xa20),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xa3b),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':'In\x20a\x20database,\x20data\x20redundancy\x20is\x20increased\x20to\x20improve\x20performance.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x277),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x462),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x84b),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'The\x20cost\x20of\x20implementing\x20a\x20DBMS\x20is\x20usually\x20lower\x20than\x20using\x20a\x20file-based\x20system.','options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x232),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x987),'options':[_0x6d96f2(0x6e4),_0x6d96f2(0x3aa),_0x6d96f2(0x693),'Domain'],'answer':0x2},{'question':_0x6d96f2(0x313),'options':[_0x6d96f2(0xb9),_0x6d96f2(0x610),'The\x20primary\x20key\x20of\x20the\x20relation',_0x6d96f2(0xa03)],'answer':0x1},{'question':_0x6d96f2(0x6ee),'options':[_0x6d96f2(0xab6),_0x6d96f2(0xd8),_0x6d96f2(0x217),_0x6d96f2(0x6aa)],'answer':0x1},{'question':_0x6d96f2(0x3c1),'options':[_0x6d96f2(0x8ef),_0x6d96f2(0xb5),_0x6d96f2(0x15e),_0x6d96f2(0x5fe)],'answer':0x1},{'question':'Primary\x20key\x20can\x20be\x20null.','options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x519),'options':['Select',_0x6d96f2(0x167),_0x6d96f2(0x724),_0x6d96f2(0x30c)],'answer':0x2},{'question':_0x6d96f2(0xab5),'options':[_0x6d96f2(0xa4c),'Foreign\x20key\x20values\x20must\x20exist\x20in\x20the\x20referenced\x20relation\x20or\x20be\x20NULL','Each\x20attribute\x20in\x20a\x20relation\x20must\x20be\x20unique','Relations\x20can\x20have\x20composite\x20attributes'],'answer':0x1},{'question':_0x6d96f2(0xa7),'options':[_0x6d96f2(0x26a),_0x6d96f2(0x88d),_0x6d96f2(0x6df),_0x6d96f2(0x641)],'answer':0x1},{'question':'In\x20the\x20relational\x20model,\x20each\x20attribute\x20in\x20a\x20relation\x20must\x20have\x20a\x20unique\x20name.','options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0x92),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x94a),'options':['True','False'],'answer':0x1},{'question':'In\x20a\x20valid\x20database\x20state,\x20all\x20defined\x20integrity\x20constraints\x20must\x20be\x20satisfied.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x7ca),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x331),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xad1),'options':['7','8','9','6'],'answer':0x3},{'question':'\x20the\x20property\x20information\x20table:\x0a\x0a|\x20PropertyNo\x20|\x20Address\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Type\x20\x20|\x20Rooms\x20|\x20Rent\x20|\x20OwnerNo\x20|\x0a|------------|-------------------|-------|-------|------|---------|\x0a|\x20PA14\x20\x20\x20\x20\x20\x20\x20|\x2016\x20Holhead\x20House\x20\x20\x20|\x20House\x20|\x206\x20\x20\x20\x20\x20|\x20650\x20\x20|\x20C046\x20\x20\x20\x20|\x0a|\x20PL94\x20\x20\x20\x20\x20\x20\x20|\x206\x20Argyll\x20St.\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20400\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG4\x20\x20\x20\x20\x20\x20\x20\x20|\x206\x20Lawrence\x20St.\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20350\x20\x20|\x20C040\x20\x20\x20\x20|\x0a|\x20PG36\x20\x20\x20\x20\x20\x20\x20|\x202\x20Manor\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20375\x20\x20|\x20C093\x20\x20\x20\x20|\x0a|\x20PG21\x20\x20\x20\x20\x20\x20\x20|\x2018\x20Dale\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20House\x20|\x205\x20\x20\x20\x20\x20|\x20600\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG16\x20\x20\x20\x20\x20\x20\x20|\x205\x20Novar\x20Dr.\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20450\x20\x20|\x20C093\x20\x20\x20\x20|\x0a\x0aCardinality\x20of\x20relation\x20:','options':['7','8','6','9'],'answer':0x2},{'question':'In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aWhat\x20is\x20the\x20primary\x20key\x20in\x20the\x20Employees\x20table?','options':['EmpID',_0x6d96f2(0x23f),_0x6d96f2(0x76d),'DeptNo'],'answer':0x0},{'question':_0x6d96f2(0x3b1),'options':['EmpID',_0x6d96f2(0x35b),_0x6d96f2(0x9b9),'Salary'],'answer':0x1},{'question':'In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aHow\x20can\x20the\x20department\x20name\x20where\x20a\x20specific\x20employee\x20works\x20be\x20retrieved?','options':[_0x6d96f2(0x9fa),_0x6d96f2(0x9e7),_0x6d96f2(0xa18),'It\x20is\x20not\x20possible\x20to\x20retrieve\x20the\x20department\x20name\x20from\x20the\x20existing\x20tables'],'answer':0x0},{'question':_0x6d96f2(0x9ea),'options':[_0x6d96f2(0x580),_0x6d96f2(0xb6a),'Finance','Warehouses'],'answer':0x3},{'question':_0x6d96f2(0xb1f),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xba1),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x927),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x374),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x19a),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x553),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'What\x20is\x20the\x20primary\x20purpose\x20of\x20data\x20abstraction\x20in\x20database\x20systems?','options':[_0x6d96f2(0xee),_0x6d96f2(0x5df),_0x6d96f2(0x160),_0x6d96f2(0xc2)],'answer':0x1},{'question':_0x6d96f2(0x860),'options':['It\x20describes\x20how\x20data\x20is\x20physically\x20stored.',_0x6d96f2(0x324),_0x6d96f2(0x704),_0x6d96f2(0x378)],'answer':0x2},{'question':_0x6d96f2(0x4af),'options':['Entity-Relationship\x20Model',_0x6d96f2(0x2e4),'Physical\x20Data\x20Model','Conceptual\x20Data\x20Model'],'answer':0x1},{'question':'What\x20does\x20the\x20term\x20\x27database\x20schema\x27\x20refer\x20to?','options':[_0x6d96f2(0x168),'The\x20description\x20of\x20the\x20database\x20structure',_0x6d96f2(0x2f6),_0x6d96f2(0x108)],'answer':0x1},{'question':'In\x20the\x20context\x20of\x20databases,\x20what\x20is\x20a\x20\x27database\x20state\x27?','options':[_0x6d96f2(0x947),_0x6d96f2(0xe7),_0x6d96f2(0x649),'The\x20data\x20model\x20used'],'answer':0x1},{'question':'What\x20is\x20the\x20primary\x20function\x20of\x20an\x20access\x20path\x20in\x20a\x20database?','options':['To\x20define\x20the\x20schema\x20of\x20the\x20database',_0x6d96f2(0x354),_0x6d96f2(0xb5a),_0x6d96f2(0xa9c)],'answer':0x2},{'question':_0x6d96f2(0x337),'options':['External\x20Level',_0x6d96f2(0x39f),_0x6d96f2(0x11e),'Conceptual\x20Level'],'answer':0x2},{'question':_0x6d96f2(0x815),'options':[_0x6d96f2(0x67d),_0x6d96f2(0x55f),_0x6d96f2(0x1ed),_0x6d96f2(0x110)],'answer':0x1},{'question':_0x6d96f2(0x4c2),'options':[_0x6d96f2(0x818),_0x6d96f2(0xb1d),_0x6d96f2(0x560),_0x6d96f2(0x816)],'answer':0x1},{'question':_0x6d96f2(0x424),'options':[_0x6d96f2(0x497),_0x6d96f2(0x328),_0x6d96f2(0x3e8),'It\x20is\x20primarily\x20used\x20for\x20web\x20applications.'],'answer':0x1},{'question':_0x6d96f2(0xac8),'options':[_0x6d96f2(0x3dc),'To\x20manage\x20user\x20interfaces','To\x20run\x20application\x20programs\x20and\x20manage\x20business\x20rules',_0x6d96f2(0x3fc)],'answer':0x2},{'question':_0x6d96f2(0x690),'options':[_0x6d96f2(0x28d),_0x6d96f2(0x11d),_0x6d96f2(0x208),_0x6d96f2(0x55c)],'answer':0x2},{'question':_0x6d96f2(0x457),'options':['Use\x20of\x20a\x20catalog\x20for\x20schema\x20storage',_0x6d96f2(0xa6),'Support\x20for\x20multiple\x20user\x20views','Fixed\x20data\x20structures'],'answer':0x3},{'question':'What\x20does\x20a\x20schema\x20diagram\x20typically\x20display?','options':[_0x6d96f2(0xa0c),_0x6d96f2(0x55b),_0x6d96f2(0xa8e),_0x6d96f2(0x108)],'answer':0x2},{'question':_0x6d96f2(0x1a3),'options':[_0x6d96f2(0x130),_0x6d96f2(0x1e4),_0x6d96f2(0xb2a),_0x6d96f2(0x923)],'answer':0x1},{'question':_0x6d96f2(0x112),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x8e0),'options':['True','False'],'answer':0x1},{'question':_0x6d96f2(0x82e),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':'The\x20internal\x20level\x20of\x20the\x20three-schema\x20architecture\x20describes\x20the\x20physical\x20storage\x20structure.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x34a),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x37c),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'In\x20a\x20two-tier\x20client/server\x20architecture,\x20the\x20application\x20server\x20runs\x20application\x20programs\x20and\x20manages\x20business\x20rules.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x803),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x7e8),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x1b3),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],databaseQuestion5=[{'question':'Which\x20SQL\x20statement\x20is\x20used\x20to\x20retrieve\x20data\x20from\x20a\x20database?','options':['SELECT',_0x6d96f2(0xb1b),'DELETE',_0x6d96f2(0x2fb)],'answer':0x0},{'question':_0x6d96f2(0x40e),'options':['ORDER\x20BY',_0x6d96f2(0x7f2),'GROUP\x20BY',_0x6d96f2(0x87a)],'answer':0x1},{'question':'What\x20is\x20the\x20correct\x20syntax\x20to\x20create\x20a\x20new\x20database?','options':[_0x6d96f2(0x7e9),_0x6d96f2(0x104),_0x6d96f2(0x32c),_0x6d96f2(0x94e)],'answer':0x0},{'question':_0x6d96f2(0x8e9),'options':[_0x6d96f2(0x17e),_0x6d96f2(0x634),_0x6d96f2(0x3ca),_0x6d96f2(0x48c)],'answer':0x1},{'question':'Which\x20command\x20is\x20used\x20to\x20remove\x20a\x20table\x20from\x20a\x20database?','options':[_0x6d96f2(0x91e),_0x6d96f2(0x783),'REMOVE',_0x6d96f2(0xb69)],'answer':0x1},{'question':_0x6d96f2(0xada),'options':[_0x6d96f2(0x835),_0x6d96f2(0x648),_0x6d96f2(0xa1a),_0x6d96f2(0x9d)],'answer':0x0},{'question':_0x6d96f2(0x6f1),'options':['Returns\x20unique\x20values',_0x6d96f2(0x9f9),'Groups\x20data',_0x6d96f2(0x75f)],'answer':0x0},{'question':_0x6d96f2(0x8f8),'options':[_0x6d96f2(0xd0),_0x6d96f2(0x29f),'A\x20foreign\x20key','An\x20encrypted\x20column'],'answer':0x1},{'question':_0x6d96f2(0x4f5),'options':[_0x6d96f2(0x778),_0x6d96f2(0xa6f),_0x6d96f2(0x1d5),_0x6d96f2(0x8c1)],'answer':0x1},{'question':_0x6d96f2(0x569),'options':[_0x6d96f2(0x796),_0x6d96f2(0x54d),_0x6d96f2(0x700),_0x6d96f2(0x9cf)],'answer':0x2},{'question':_0x6d96f2(0x5e7),'options':[_0x6d96f2(0xb1b),_0x6d96f2(0x57a),_0x6d96f2(0x44d),_0x6d96f2(0xaf9)],'answer':0x0},{'question':'Which\x20SQL\x20keyword\x20is\x20used\x20to\x20sort\x20the\x20result\x20set?','options':['ORDER\x20BY',_0x6d96f2(0x127),_0x6d96f2(0x316),'GROUP\x20BY'],'answer':0x0},{'question':_0x6d96f2(0x98a),'options':['=',_0x6d96f2(0x89c),'IN','EXISTS'],'answer':0x1},{'question':_0x6d96f2(0x72b),'options':[_0x6d96f2(0x128),_0x6d96f2(0x793),'Deletes\x20rows','Groups\x20data'],'answer':0x1},{'question':_0x6d96f2(0x311),'options':[_0x6d96f2(0x96f),_0x6d96f2(0xa2d),_0x6d96f2(0x688),_0x6d96f2(0xb1b)],'answer':0x2},{'question':'What\x20does\x20NULL\x20mean\x20in\x20SQL?','options':[_0x6d96f2(0xa2b),_0x6d96f2(0x4fd),_0x6d96f2(0x2bc),_0x6d96f2(0x72f)],'answer':0x2},{'question':_0x6d96f2(0xa39),'options':[_0x6d96f2(0x461),'MAX',_0x6d96f2(0x2bf),_0x6d96f2(0x166)],'answer':0x1},{'question':_0x6d96f2(0x4cb),'options':[_0x6d96f2(0xb0),_0x6d96f2(0x8a6),_0x6d96f2(0x243),'To\x20change\x20data\x20in\x20a\x20table'],'answer':0x0},{'question':_0x6d96f2(0x180),'options':['UNIQUE',_0x6d96f2(0x2ca),_0x6d96f2(0x66c),_0x6d96f2(0x91e)],'answer':0x1},{'question':_0x6d96f2(0x114),'options':['0','1','3','10'],'answer':0x1},{'question':_0x6d96f2(0x8ed),'options':['ORDER\x20BY','GROUP\x20BY',_0x6d96f2(0x7f2),_0x6d96f2(0x63d)],'answer':0x1},{'question':_0x6d96f2(0xa0),'options':[_0x6d96f2(0x61d),_0x6d96f2(0x2fb),_0x6d96f2(0x8e1),_0x6d96f2(0x85a)],'answer':0x1},{'question':_0x6d96f2(0x504),'options':[_0x6d96f2(0x31e),_0x6d96f2(0x5d6),'Sorts\x20data',_0x6d96f2(0x75f)],'answer':0x0},{'question':_0x6d96f2(0x853),'options':[_0x6d96f2(0x50b),_0x6d96f2(0x9a8),_0x6d96f2(0x8d1),_0x6d96f2(0x1d3)],'answer':0x1},{'question':_0x6d96f2(0x268),'options':[_0x6d96f2(0x348),_0x6d96f2(0xe2),_0x6d96f2(0x505),_0x6d96f2(0xa79)],'answer':0x1},{'question':_0x6d96f2(0x7fc),'options':[_0x6d96f2(0x52d),'IN',_0x6d96f2(0x4fb),_0x6d96f2(0xb2)],'answer':0x0},{'question':_0x6d96f2(0x7cf),'options':[_0x6d96f2(0x759),_0x6d96f2(0x1ae),_0x6d96f2(0x433),'A\x20database\x20schema'],'answer':0x1},{'question':_0x6d96f2(0x93b),'options':[_0x6d96f2(0x87a),'UNION','MERGE','INTERSECT'],'answer':0x1},{'question':_0x6d96f2(0x281),'options':[_0x6d96f2(0x98c),_0x6d96f2(0x59a),_0x6d96f2(0x259),'To\x20secure\x20data'],'answer':0x1},{'question':_0x6d96f2(0xaff),'options':[_0x6d96f2(0x1fd),_0x6d96f2(0x98d),_0x6d96f2(0x67a),_0x6d96f2(0x7cb)],'answer':0x1},{'question':_0x6d96f2(0xc8),'options':[_0x6d96f2(0x91e),'TRUNCATE','DROP',_0x6d96f2(0xb69)],'answer':0x1},{'question':_0x6d96f2(0x18e),'options':['SUM',_0x6d96f2(0x2bf),_0x6d96f2(0x166),_0x6d96f2(0x3ef)],'answer':0x2},{'question':_0x6d96f2(0xaad),'options':[_0x6d96f2(0x6f3),'AS',_0x6d96f2(0x61d),_0x6d96f2(0x85a)],'answer':0x1},{'question':_0x6d96f2(0x6a5),'options':[_0x6d96f2(0xa89),_0x6d96f2(0x2b9),_0x6d96f2(0x667),'Returns\x20all\x20rows\x20from\x20both\x20tables'],'answer':0x0},{'question':_0x6d96f2(0x1bd),'options':['LIKE','IN','BETWEEN','EXISTS'],'answer':0x1},{'question':'What\x20does\x20the\x20DATEDIFF\x20function\x20do?','options':['Calculates\x20the\x20difference\x20between\x20two\x20dates',_0x6d96f2(0x4e4),'Adds\x20days\x20to\x20a\x20date',_0x6d96f2(0xab3)],'answer':0x0},{'question':_0x6d96f2(0x4ad),'options':[_0x6d96f2(0x2d4),'Splits\x20a\x20string\x20into\x20parts',_0x6d96f2(0x3ba),'Reverses\x20a\x20string'],'answer':0x0},{'question':_0x6d96f2(0x11c),'options':[_0x6d96f2(0x901),_0x6d96f2(0x3ab),_0x6d96f2(0xc5),_0x6d96f2(0x87e)],'answer':0x0},{'question':_0x6d96f2(0x46f),'options':['SELECT',_0x6d96f2(0xb1b),_0x6d96f2(0x96f),'UPDATE'],'answer':0x2},{'question':_0x6d96f2(0x75a),'options':[_0x6d96f2(0x9b4),_0x6d96f2(0x8ff),'To\x20define\x20a\x20primary\x20key','To\x20enforce\x20a\x20relationship\x20between\x20tables'],'answer':0x1},{'question':_0x6d96f2(0x8d9),'options':[_0x6d96f2(0x74f),_0x6d96f2(0x2bf),_0x6d96f2(0x87e),_0x6d96f2(0x8c2)],'answer':0x1},{'question':_0x6d96f2(0xa83),'options':['Combines\x20rows\x20from\x20two\x20tables\x20only\x20when\x20there\x20is\x20a\x20match\x20in\x20both\x20tables',_0x6d96f2(0x366),_0x6d96f2(0xa76),_0x6d96f2(0x4d6)],'answer':0x0},{'question':_0x6d96f2(0x7e5),'options':[_0x6d96f2(0xd0),_0x6d96f2(0xb78),'A\x20link\x20between\x20two\x20tables',_0x6d96f2(0x8c6)],'answer':0x1},{'question':_0x6d96f2(0xb3f),'options':['DELETE',_0x6d96f2(0x688),_0x6d96f2(0x256),_0x6d96f2(0x375)],'answer':0x2},{'question':_0x6d96f2(0x4c7),'options':[_0x6d96f2(0x8a7),_0x6d96f2(0x7ea),'Groups\x20rows\x20based\x20on\x20a\x20condition',_0x6d96f2(0x2c3)],'answer':0x1},{'question':_0x6d96f2(0x762),'options':['WHERE',_0x6d96f2(0x63d),_0x6d96f2(0x92a),_0x6d96f2(0x380)],'answer':0x1},{'question':'What\x20is\x20the\x20purpose\x20of\x20the\x20ORDER\x20BY\x20clause\x20in\x20SQL?','options':[_0x6d96f2(0x29c),'To\x20filter\x20rows\x20based\x20on\x20a\x20condition','To\x20sort\x20the\x20result\x20set\x20in\x20ascending\x20or\x20descending\x20order',_0x6d96f2(0x103)],'answer':0x2},{'question':_0x6d96f2(0x175),'options':['Filters\x20rows\x20within\x20a\x20specific\x20range',_0x6d96f2(0xa1b),_0x6d96f2(0x698),_0x6d96f2(0x850)],'answer':0x0},{'question':_0x6d96f2(0xb14),'options':[_0x6d96f2(0x63d),_0x6d96f2(0x7f2),_0x6d96f2(0xae2),_0x6d96f2(0x92a)],'answer':0x1},{'question':_0x6d96f2(0x113),'options':['DELETE\x20removes\x20rows\x20selectively;\x20TRUNCATE\x20removes\x20all\x20rows','DELETE\x20removes\x20all\x20rows;\x20TRUNCATE\x20is\x20selective',_0x6d96f2(0xa05),_0x6d96f2(0x7f1)],'answer':0x0},{'question':_0x6d96f2(0x16b),'options':[_0x6d96f2(0x3ef),_0x6d96f2(0x461),_0x6d96f2(0x74f),_0x6d96f2(0x2bf)],'answer':0x0},{'question':_0x6d96f2(0x471),'options':[_0x6d96f2(0x57a),_0x6d96f2(0x61d),_0x6d96f2(0xb1b),'UPDATE'],'answer':0x1},{'question':'What\x20is\x20the\x20purpose\x20of\x20a\x20composite\x20key?','options':[_0x6d96f2(0xa55),'To\x20enforce\x20a\x20unique\x20identifier\x20using\x20multiple\x20columns','To\x20store\x20multiple\x20rows\x20in\x20a\x20single\x20column','To\x20speed\x20up\x20query\x20performance'],'answer':0x1},{'question':'Which\x20SQL\x20command\x20is\x20used\x20to\x20combine\x20rows\x20from\x20multiple\x20tables\x20based\x20on\x20a\x20related\x20column?','options':[_0x6d96f2(0x87a),_0x6d96f2(0x4e1),'MERGE',_0x6d96f2(0x145)],'answer':0x0},{'question':_0x6d96f2(0x737),'options':[_0x6d96f2(0xaa9),_0x6d96f2(0x616),'A\x20digit\x20only',_0x6d96f2(0x9b1)],'answer':0x0},{'question':_0x6d96f2(0xa24),'options':[_0x6d96f2(0x826),'To\x20specify\x20a\x20default\x20value',_0x6d96f2(0x1de),_0x6d96f2(0x1a7)],'answer':0x0},{'question':'Which\x20SQL\x20clause\x20is\x20used\x20to\x20return\x20rows\x20with\x20no\x20NULL\x20values\x20in\x20a\x20specific\x20column?','options':[_0x6d96f2(0x1c7),'IS\x20NOT\x20NULL','NO\x20NULL',_0x6d96f2(0xa5b)],'answer':0x1},{'question':_0x6d96f2(0x578),'options':[_0x6d96f2(0x74f),_0x6d96f2(0x2bf),_0x6d96f2(0x166),_0x6d96f2(0x3ef)],'answer':0x0},{'question':_0x6d96f2(0x6bc),'options':[_0x6d96f2(0x535),_0x6d96f2(0x877),_0x6d96f2(0x352),'NULL'],'answer':0x0},{'question':'What\x20is\x20the\x20purpose\x20of\x20a\x20FOREIGN\x20KEY\x20constraint?','options':[_0x6d96f2(0xa55),_0x6d96f2(0x423),_0x6d96f2(0x4a5),'To\x20set\x20a\x20primary\x20key'],'answer':0x0},{'question':_0x6d96f2(0x555),'options':[_0x6d96f2(0x47f),'To\x20group\x20rows\x20with\x20the\x20same\x20values\x20in\x20specified\x20columns','To\x20sort\x20the\x20result\x20set\x20in\x20ascending\x20or\x20descending\x20order',_0x6d96f2(0x6ac)],'answer':0x1},{'question':_0x6d96f2(0xb01),'options':['Combines\x20the\x20results\x20of\x20two\x20queries\x20and\x20removes\x20duplicates','Joins\x20two\x20tables\x20based\x20on\x20a\x20related\x20column',_0x6d96f2(0x63a),_0x6d96f2(0x6b9)],'answer':0x0},{'question':_0x6d96f2(0xa8f),'options':[_0x6d96f2(0x901),_0x6d96f2(0x7f2),_0x6d96f2(0x98b),_0x6d96f2(0x87e)],'answer':0x0},{'question':_0x6d96f2(0x504),'options':['Filters\x20grouped\x20rows\x20based\x20on\x20a\x20condition','Filters\x20rows\x20before\x20grouping',_0x6d96f2(0x297),_0x6d96f2(0x34e)],'answer':0x0},{'question':_0x6d96f2(0xec),'options':[_0x6d96f2(0x8e1),_0x6d96f2(0x61d),_0x6d96f2(0x2fb),_0x6d96f2(0x443)],'answer':0x2},{'question':_0x6d96f2(0x24e),'options':[_0x6d96f2(0x423),_0x6d96f2(0x91),_0x6d96f2(0x187),'To\x20remove\x20duplicate\x20rows'],'answer':0x1},{'question':_0x6d96f2(0x75a),'options':[_0x6d96f2(0xaf3),_0x6d96f2(0x372),'To\x20link\x20tables\x20together','To\x20set\x20a\x20primary\x20key'],'answer':0x1},{'question':_0x6d96f2(0x454),'options':[_0x6d96f2(0x2e3),'Filters\x20rows\x20with\x20NULL\x20values','Removes\x20NULL\x20values\x20from\x20the\x20table',_0x6d96f2(0x520)],'answer':0x0},{'question':'What\x20is\x20the\x20purpose\x20of\x20the\x20SQL\x20AVG\x20function?','options':['To\x20calculate\x20the\x20total\x20sum\x20of\x20a\x20column','To\x20find\x20the\x20average\x20value\x20of\x20a\x20numeric\x20column',_0x6d96f2(0x508),_0x6d96f2(0x4b4)],'answer':0x1},{'question':_0x6d96f2(0x741),'options':[_0x6d96f2(0xb5d),_0x6d96f2(0x287),'Deletes\x20the\x20table\x20from\x20the\x20database',_0x6d96f2(0x73a)],'answer':0x0},{'question':_0x6d96f2(0x84e),'options':[_0x6d96f2(0xaa7),_0x6d96f2(0x530),'Counts\x20the\x20distinct\x20values\x20in\x20a\x20column',_0x6d96f2(0x517)],'answer':0x1},{'question':'Which\x20type\x20of\x20join\x20returns\x20all\x20rows\x20when\x20there\x20is\x20a\x20match\x20in\x20one\x20of\x20the\x20tables?','options':[_0x6d96f2(0x9ca),_0x6d96f2(0x6c1),_0x6d96f2(0x2e1),_0x6d96f2(0x10b)],'answer':0x3},{'question':'What\x20is\x20the\x20main\x20function\x20of\x20a\x20foreign\x20key\x20in\x20SQL?','options':[_0x6d96f2(0x72e),_0x6d96f2(0xa55),_0x6d96f2(0x373),_0x6d96f2(0xa74)],'answer':0x1},{'question':_0x6d96f2(0x644),'options':[_0x6d96f2(0xb60),_0x6d96f2(0x263),_0x6d96f2(0x260),_0x6d96f2(0x65b)],'answer':0x1},{'question':_0x6d96f2(0xb3f),'options':[_0x6d96f2(0x688),_0x6d96f2(0x256),_0x6d96f2(0x91e),_0x6d96f2(0xb69)],'answer':0x1},{'question':'What\x20is\x20the\x20purpose\x20of\x20the\x20SQL\x20UNION\x20ALL\x20operator?','options':[_0x6d96f2(0x881),_0x6d96f2(0x955),_0x6d96f2(0x125),_0x6d96f2(0x1d8)],'answer':0x0},{'question':_0x6d96f2(0x5d2),'options':[_0x6d96f2(0x702),_0x6d96f2(0x6a7),_0x6d96f2(0xe0),'Sorts\x20rows\x20in\x20ascending\x20order'],'answer':0x1},{'question':_0x6d96f2(0x30f),'options':[_0x6d96f2(0x380),_0x6d96f2(0x92a),'SORT\x20BY',_0x6d96f2(0x262)],'answer':0x0},{'question':_0x6d96f2(0x5c3),'options':[_0x6d96f2(0x26f),_0x6d96f2(0x779),_0x6d96f2(0x33f),_0x6d96f2(0x3ba)],'answer':0x0},{'question':_0x6d96f2(0x363),'options':[_0x6d96f2(0x89c),_0x6d96f2(0x1b9),'IN',_0x6d96f2(0x52d)],'answer':0x0},{'question':_0x6d96f2(0x72c),'options':['GROUP\x20BY',_0x6d96f2(0x380),_0x6d96f2(0x2ca),_0x6d96f2(0x63d)],'answer':0x0},{'question':_0x6d96f2(0xb27),'options':['Calculates\x20the\x20average\x20value\x20of\x20a\x20column',_0x6d96f2(0x9a7),_0x6d96f2(0x8f7),_0x6d96f2(0x1cd)],'answer':0x0},{'question':_0x6d96f2(0x481),'options':[_0x6d96f2(0x626),'FOREIGN\x20KEY',_0x6d96f2(0x888),_0x6d96f2(0x1c7)],'answer':0x0},{'question':_0x6d96f2(0x70f),'options':[_0x6d96f2(0x91e),'TRUNCATE',_0x6d96f2(0x688),_0x6d96f2(0x256)],'answer':0x1},{'question':_0x6d96f2(0x9be),'options':['Ascending',_0x6d96f2(0x21a),_0x6d96f2(0x844),_0x6d96f2(0x90a)],'answer':0x0},{'question':_0x6d96f2(0x60a),'options':[_0x6d96f2(0xa6f),'CURRENT_DATE()',_0x6d96f2(0x778),_0x6d96f2(0x8c1)],'answer':0x0},{'question':_0x6d96f2(0x8e4),'options':[_0x6d96f2(0xad7),_0x6d96f2(0x871),'Updates\x20existing\x20data\x20in\x20a\x20table',_0x6d96f2(0xacd)],'answer':0x0},{'question':'What\x20is\x20the\x20purpose\x20of\x20the\x20SQL\x20BETWEEN\x20operator?','options':[_0x6d96f2(0x8ac),_0x6d96f2(0x7d8),_0x6d96f2(0x1fb),_0x6d96f2(0xb32)],'answer':0x0},{'question':_0x6d96f2(0x402),'options':[_0x6d96f2(0xb3a),_0x6d96f2(0x60f),_0x6d96f2(0xa35),_0x6d96f2(0x974)],'answer':0x0},{'question':_0x6d96f2(0x572),'options':[_0x6d96f2(0x883),_0x6d96f2(0x75c),'Sets\x20the\x20maximum\x20value\x20of\x20a\x20column',_0x6d96f2(0x8e8)],'answer':0x0},{'question':_0x6d96f2(0x14c),'options':['To\x20create\x20a\x20relationship\x20between\x20two\x20tables',_0x6d96f2(0x5f1),_0x6d96f2(0x477),_0x6d96f2(0x52e)],'answer':0x0},{'question':_0x6d96f2(0xb5b),'options':[_0x6d96f2(0x5d3),_0x6d96f2(0x95a),'COUNT()',_0x6d96f2(0x2fa)],'answer':0x0},{'question':_0x6d96f2(0xafc),'options':[_0x6d96f2(0x7ad),_0x6d96f2(0x3f6),'Deletes\x20a\x20column\x20from\x20a\x20table','Updates\x20a\x20table\x20schema'],'answer':0x0},{'question':'Which\x20SQL\x20statement\x20is\x20used\x20to\x20modify\x20existing\x20records\x20in\x20a\x20table?','options':[_0x6d96f2(0x2fb),'MODIFY',_0x6d96f2(0x7b9),_0x6d96f2(0x61d)],'answer':0x0},{'question':_0x6d96f2(0x1df),'options':[_0x6d96f2(0x628),_0x6d96f2(0x2ea),_0x6d96f2(0x1b8),_0x6d96f2(0x6c9)],'answer':0x0},{'question':'Which\x20of\x20these\x20is\x20a\x20valid\x20SQL\x20constraint\x20to\x20ensure\x20that\x20values\x20in\x20a\x20column\x20are\x20unique?','options':[_0x6d96f2(0x888),_0x6d96f2(0x626),_0x6d96f2(0x1c7),_0x6d96f2(0x3f9)],'answer':0x0},{'question':'Which\x20SQL\x20clause\x20is\x20used\x20to\x20filter\x20the\x20records\x20before\x20applying\x20aggregation?','options':[_0x6d96f2(0x7f2),_0x6d96f2(0x63d),'GROUP\x20BY',_0x6d96f2(0x66c)],'answer':0x0},{'question':_0x6d96f2(0x2b4),'options':['IN',_0x6d96f2(0x89c),'BETWEEN','IS\x20NULL'],'answer':0x0},{'question':'Which\x20SQL\x20clause\x20is\x20used\x20to\x20sort\x20the\x20result\x20set\x20in\x20a\x20specific\x20order?','options':[_0x6d96f2(0x380),_0x6d96f2(0x92a),'HAVING',_0x6d96f2(0x2ca)],'answer':0x0},{'question':_0x6d96f2(0x990),'options':[_0x6d96f2(0x2ee),'Combines\x20two\x20result\x20sets',_0x6d96f2(0x355),_0x6d96f2(0x916)],'answer':0x0}],databaseQuestion6=[{'question':'What\x20does\x20DDL\x20stand\x20for?','options':[_0x6d96f2(0x389),_0x6d96f2(0x670),_0x6d96f2(0x240),_0x6d96f2(0x64f)],'answer':0x0},{'question':_0x6d96f2(0x2b6),'options':[_0x6d96f2(0x96f),'SELECT',_0x6d96f2(0x61d),_0x6d96f2(0x256)],'answer':0x1},{'question':'What\x20does\x20the\x20CREATE\x20command\x20do\x20in\x20SQL\x20Server?','options':['Modifies\x20an\x20existing\x20table',_0x6d96f2(0x691),_0x6d96f2(0x9f5),_0x6d96f2(0x567)],'answer':0x2},{'question':_0x6d96f2(0x66d),'options':[_0x6d96f2(0x478),_0x6d96f2(0x73b),_0x6d96f2(0x472),_0x6d96f2(0xb86)],'answer':0x1},{'question':_0x6d96f2(0x8bb),'options':[_0x6d96f2(0x206),'Changes\x20data\x20in\x20a\x20table',_0x6d96f2(0x874),'Creates\x20a\x20backup'],'answer':0x0},{'question':'What\x20is\x20the\x20syntax\x20to\x20rename\x20a\x20column\x20using\x20ALTER?','options':[_0x6d96f2(0x3fe),_0x6d96f2(0xaeb),_0x6d96f2(0x467),_0x6d96f2(0x962)],'answer':0x0},{'question':_0x6d96f2(0x2a5),'options':['ERASE','REMOVE',_0x6d96f2(0x256),'DELETE'],'answer':0x2},{'question':_0x6d96f2(0x421),'options':[_0x6d96f2(0xf6),_0x6d96f2(0x681),'Both\x20table\x20structure\x20and\x20data\x20are\x20removed',_0x6d96f2(0x8dd)],'answer':0x2},{'question':_0x6d96f2(0x3f1),'options':['TRUNCATE',_0x6d96f2(0x256),_0x6d96f2(0x91e),_0x6d96f2(0x688)],'answer':0x0},{'question':'Which\x20command\x20is\x20used\x20to\x20modify\x20the\x20structure\x20of\x20an\x20existing\x20table?','options':[_0x6d96f2(0x96f),_0x6d96f2(0x2fb),_0x6d96f2(0x61d),_0x6d96f2(0x8e1)],'answer':0x2},{'question':'What\x20does\x20the\x20DROP\x20DATABASE\x20command\x20do?','options':[_0x6d96f2(0x82b),_0x6d96f2(0x32f),_0x6d96f2(0x4e8),_0x6d96f2(0x795)],'answer':0x1},{'question':_0x6d96f2(0xf5),'options':[_0x6d96f2(0xb84),_0x6d96f2(0x9f3),_0x6d96f2(0xae4),_0x6d96f2(0x498)],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20is\x20not\x20true\x20about\x20the\x20TRUNCATE\x20command?','options':[_0x6d96f2(0x5b0),_0x6d96f2(0x216),_0x6d96f2(0x559),_0x6d96f2(0xcb)],'answer':0x3},{'question':'What\x20is\x20a\x20primary\x20key\x20in\x20SQL\x20Server?','options':[_0x6d96f2(0x23c),_0x6d96f2(0x5b1),_0x6d96f2(0x98e),_0x6d96f2(0xbf)],'answer':0x0},{'question':'Which\x20command\x20is\x20used\x20to\x20add\x20a\x20new\x20primary\x20key?','options':[_0x6d96f2(0x3f8),'ADD\x20PRIMARY\x20KEY\x20(column_name);',_0x6d96f2(0x845),_0x6d96f2(0x94b)],'answer':0x0},{'question':_0x6d96f2(0xaff),'options':[_0x6d96f2(0x9e0),'Ensures\x20that\x20all\x20rows\x20are\x20unique','Allows\x20NULL\x20values\x20in\x20a\x20primary\x20key','Prevents\x20updates\x20to\x20the\x20column'],'answer':0x0},{'question':'What\x20is\x20the\x20default\x20constraint\x20in\x20SQL\x20Server?','options':['Allows\x20duplicate\x20values',_0x6d96f2(0x99),_0x6d96f2(0x1ad),_0x6d96f2(0xa53)],'answer':0x1},{'question':_0x6d96f2(0x14d),'options':[_0x6d96f2(0xb67),'ALTER\x20TABLE\x20table_name\x20DROP\x20COLUMN\x20column_name;','DELETE\x20column_name\x20FROM\x20table_name;',_0x6d96f2(0x575)],'answer':0x1},{'question':_0x6d96f2(0xb40),'options':['Ensures\x20column\x20values\x20meet\x20a\x20specific\x20condition',_0x6d96f2(0x283),_0x6d96f2(0x9af),'Prevents\x20data\x20from\x20being\x20updated'],'answer':0x0},{'question':'How\x20do\x20you\x20create\x20a\x20foreign\x20key?','options':['ALTER\x20TABLE\x20table_name\x20ADD\x20FOREIGN\x20KEY\x20(column_name)\x20REFERENCES\x20parent_table\x20(parent_column);',_0x6d96f2(0x2a3),_0x6d96f2(0xb30),'INSERT\x20FOREIGN\x20KEY;'],'answer':0x0},{'question':_0x6d96f2(0x4e6),'options':['It\x20allows\x20NULL\x20values',_0x6d96f2(0x91b),'It\x20ensures\x20unique\x20and\x20non-null\x20values',_0x6d96f2(0x94c)],'answer':0x2},{'question':_0x6d96f2(0x453),'options':[_0x6d96f2(0xae7),_0x6d96f2(0x227),_0x6d96f2(0x368),_0x6d96f2(0x930)],'answer':0x1},{'question':'How\x20do\x20you\x20create\x20a\x20schema?','options':[_0x6d96f2(0x2c9),_0x6d96f2(0x79c),_0x6d96f2(0xf2),_0x6d96f2(0x24c)],'answer':0x1},{'question':_0x6d96f2(0x267),'options':[_0x6d96f2(0x56f),_0x6d96f2(0x591),_0x6d96f2(0x902),_0x6d96f2(0x809)],'answer':0x2},{'question':_0x6d96f2(0x8fa),'options':[_0x6d96f2(0x509),_0x6d96f2(0x7dd),'Yes,\x20if\x20inside\x20a\x20transaction','No,\x20but\x20only\x20for\x20specific\x20cases'],'answer':0x2},{'question':_0x6d96f2(0xb20),'options':[_0x6d96f2(0x417),_0x6d96f2(0xb29),'Indexes\x20improve\x20query\x20performance',_0x6d96f2(0xa33)],'answer':0x2},{'question':_0x6d96f2(0x93),'options':[_0x6d96f2(0x238),_0x6d96f2(0x4f0),_0x6d96f2(0x19f),_0x6d96f2(0x20d)],'answer':0x0},{'question':'What\x20is\x20the\x20difference\x20between\x20DROP\x20and\x20TRUNCATE?','options':[_0x6d96f2(0x20b),'DROP\x20deletes\x20structure,\x20TRUNCATE\x20deletes\x20data\x20only','Both\x20are\x20identical',_0x6d96f2(0x1eb)],'answer':0x1},{'question':'How\x20do\x20you\x20set\x20a\x20column\x20as\x20NOT\x20NULL?','options':['ALTER\x20TABLE\x20table_name\x20MODIFY\x20COLUMN\x20column_name\x20NOT\x20NULL;',_0x6d96f2(0x550),_0x6d96f2(0x276),'UPDATE\x20table_name\x20SET\x20NOT\x20NULL;'],'answer':0x2},{'question':'How\x20do\x20you\x20create\x20an\x20index?','options':[_0x6d96f2(0x732),'ADD\x20INDEX\x20ON\x20table_name(column_name);','INSERT\x20INDEX\x20table_name(column_name);','INDEX\x20column_name\x20table_name;'],'answer':0x0},{'question':_0x6d96f2(0x3b5),'options':[_0x6d96f2(0xa4e),'Yes,\x20using\x20sp_rename',_0x6d96f2(0x5f9),'Yes,\x20by\x20updating\x20system\x20tables'],'answer':0x1},{'question':_0x6d96f2(0x74c),'options':['The\x20column\x20is\x20dropped',_0x6d96f2(0x629),_0x6d96f2(0x5f8),'Nothing\x20happens'],'answer':0x1},{'question':_0x6d96f2(0x7a5),'options':[_0x6d96f2(0x8f2),_0x6d96f2(0xb0d),_0x6d96f2(0x6a1),_0x6d96f2(0x3bc)],'answer':0x2},{'question':'What\x20is\x20the\x20default\x20schema\x20in\x20SQL\x20Server?','options':[_0x6d96f2(0x41d),_0x6d96f2(0x309),_0x6d96f2(0x9e3),_0x6d96f2(0x1cc)],'answer':0x1},{'question':_0x6d96f2(0x685),'options':[_0x6d96f2(0x51f),_0x6d96f2(0xf0),_0x6d96f2(0x5f2),_0x6d96f2(0x72d)],'answer':0x0},{'question':_0x6d96f2(0xb9b),'options':[_0x6d96f2(0xb2b),'DELETE\x20SCHEMA\x20schema_name;',_0x6d96f2(0x47d),'ALTER\x20SCHEMA\x20schema_name\x20DELETE;'],'answer':0x0},{'question':'Can\x20a\x20primary\x20key\x20column\x20have\x20duplicate\x20values?','options':['Yes,\x20always',_0x6d96f2(0x7dd),'Yes,\x20if\x20combined\x20with\x20UNIQUE\x20constraint',_0x6d96f2(0x977)],'answer':0x1},{'question':'How\x20do\x20you\x20list\x20all\x20tables\x20in\x20a\x20schema?','options':['SELECT\x20*\x20FROM\x20schema_name;',_0x6d96f2(0x1c0),'SELECT\x20TABLE_NAME\x20FROM\x20INFORMATION_SCHEMA.TABLES\x20WHERE\x20TABLE_SCHEMA\x20=\x20\x27schema_name\x27;',_0x6d96f2(0x64d)],'answer':0x2},{'question':_0x6d96f2(0x89f),'options':[_0x6d96f2(0x23e),_0x6d96f2(0x2be),'An\x20index\x20that\x20exists\x20only\x20for\x20primary\x20keys','A\x20secondary\x20index'],'answer':0x1},{'question':_0x6d96f2(0x34c),'options':['Database\x20metadata','User\x20data','Index\x20data',_0x6d96f2(0xb79)],'answer':0x0}],dataStructureQuestions=[{'question':_0x6d96f2(0x910),'options':[_0x6d96f2(0x7c1),_0x6d96f2(0x589),_0x6d96f2(0x7d2),_0x6d96f2(0xa0a)],'answer':0x1},{'question':_0x6d96f2(0xb59),'options':[_0x6d96f2(0x7c1),_0x6d96f2(0x589),_0x6d96f2(0x7d2),_0x6d96f2(0xa0a)],'answer':0x3},{'question':'In\x20a\x20stack,\x20if\x20a\x20user\x20tries\x20to\x20remove\x20an\x20element\x20from\x20an\x20empty\x20stack,\x20it\x20is\x20called:','options':[_0x6d96f2(0x9d6),_0x6d96f2(0xb64),'Overflow',_0x6d96f2(0xa29)],'answer':0x0},{'question':_0x6d96f2(0x1be),'options':[_0x6d96f2(0x9d6),_0x6d96f2(0x980),_0x6d96f2(0x9a5),_0x6d96f2(0x3db)],'answer':0x2},{'question':_0x6d96f2(0xa77),'options':['A\x20parentheses\x20balancing\x20program',_0x6d96f2(0xa19),_0x6d96f2(0x97a),_0x6d96f2(0x415)],'answer':0x3},{'question':_0x6d96f2(0x6d1),'options':['1','2','3',_0x6d96f2(0x182)],'answer':0x2},{'question':_0x6d96f2(0xef),'options':['1','40','74','-18'],'answer':0x3},{'question':_0x6d96f2(0x83f),'options':['1','2','3','4'],'answer':0x3},{'question':'The\x20data\x20structure\x20required\x20to\x20check\x20whether\x20an\x20expression\x20contains\x20balanced\x20parentheses\x20is:','options':[_0x6d96f2(0x45e),_0x6d96f2(0x861),'Array',_0x6d96f2(0x830)],'answer':0x0},{'question':_0x6d96f2(0x4d0),'options':[_0x6d96f2(0xb6b),_0x6d96f2(0xb7),_0x6d96f2(0x9ac),_0x6d96f2(0x846)],'answer':0x2},{'question':_0x6d96f2(0x9fb),'options':[_0x6d96f2(0x12a),_0x6d96f2(0x81f),_0x6d96f2(0x59e),_0x6d96f2(0x45e)],'answer':0x3},{'question':_0x6d96f2(0x95e),'options':[_0x6d96f2(0xafe),_0x6d96f2(0x384),_0x6d96f2(0x302),_0x6d96f2(0x7e2)],'answer':0x1},{'question':_0x6d96f2(0x88e),'options':[_0x6d96f2(0x45e),'Queue','Branch',_0x6d96f2(0x830)],'answer':0x0},{'question':_0x6d96f2(0x510),'options':[_0x6d96f2(0xb2e),'-ABCD*^DE','-A/B*C^DE',_0x6d96f2(0x19c)],'answer':0x2},{'question':_0x6d96f2(0x9ab),'options':[_0x6d96f2(0x5c9),'-+pqr*t',_0x6d96f2(0x48f),_0x6d96f2(0x458)],'answer':0x2},{'question':_0x6d96f2(0x787),'options':[_0x6d96f2(0x2ed),_0x6d96f2(0x861),_0x6d96f2(0x59e),_0x6d96f2(0x45e)],'answer':0x3},{'question':'The\x20result\x20of\x20evaluating\x20the\x20postfix\x20expression\x205\x204\x206\x20+\x20*\x204\x209\x203\x20/\x20+\x20*\x20is:','options':['600',_0x6d96f2(0xed),_0x6d96f2(0x43f),_0x6d96f2(0xb43)],'answer':0x1},{'question':'Convert\x20the\x20infix\x20expression\x20(A+B^D)/(E-F)+G\x20to\x20postfix:','options':[_0x6d96f2(0xa21),_0x6d96f2(0x666),_0x6d96f2(0x851),_0x6d96f2(0xaf8)],'answer':0x0},{'question':'Convert\x20the\x20infix\x20expression\x20x+y*z+(p*q+r)*s\x20to\x20postfix\x20form:','options':[_0x6d96f2(0xabf),_0x6d96f2(0x330),_0x6d96f2(0x3a2),'xyzp+**qr+s*+'],'answer':0x0},{'question':_0x6d96f2(0x570),'options':[_0x6d96f2(0x892),_0x6d96f2(0x485),_0x6d96f2(0x604),_0x6d96f2(0x66f)],'answer':0x3},{'question':'The\x20result\x20of\x20evaluating\x20the\x20postfix\x20expression\x2010\x205\x20+60\x206\x20/*8-\x20is:','options':[_0x6d96f2(0x4ac),_0x6d96f2(0xb02),'142','71'],'answer':0x2},{'question':_0x6d96f2(0x7b5),'options':[_0x6d96f2(0x615),'DCBA',_0x6d96f2(0xa2),_0x6d96f2(0x229)],'answer':0x1},{'question':_0x6d96f2(0x6c0),'options':['O(1)\x20for\x20insertion\x20and\x20O(n)\x20for\x20deletion',_0x6d96f2(0x4f1),'O(n)\x20for\x20insertion\x20and\x20O(1)\x20for\x20deletion',_0x6d96f2(0xaba)],'answer':0x1},{'question':'To\x20evaluate\x20an\x20expression\x20without\x20any\x20embedded\x20function\x20calls:','options':[_0x6d96f2(0x487),_0x6d96f2(0x154),'Two\x20stacks\x20are\x20needed',_0x6d96f2(0x652)],'answer':0x1}],dataStructureQuestions2=[],dataStructureQuestions3=[],dcQuestions1=[{'question':'Communication\x20between\x20a\x20computer\x20and\x20keyboard\x20involves\x20transmission.','options':[_0x6d96f2(0x2ac),'Automatic','Full-duplex','Half-duplex'],'answer':0x0},{'question':_0x6d96f2(0xd4),'options':[_0x6d96f2(0xa7e),_0x6d96f2(0x3cf),'Simplex',_0x6d96f2(0x377)],'answer':0x3},{'question':_0x6d96f2(0x935),'options':[_0x6d96f2(0xa7e),_0x6d96f2(0x2ac),'Semi-duplex',_0x6d96f2(0x3cf)],'answer':0x1},{'question':_0x6d96f2(0x642),'options':[_0x6d96f2(0x3cf),_0x6d96f2(0x695),'Simplex',_0x6d96f2(0xa7e)],'answer':0x3},{'question':_0x6d96f2(0x218),'options':[_0x6d96f2(0x2ac),'Semi-duplex',_0x6d96f2(0x3cf),_0x6d96f2(0xa7e)],'answer':0x2},{'question':_0x6d96f2(0x624),'options':[_0x6d96f2(0xa7e),'Full-duplex',_0x6d96f2(0x2ac),_0x6d96f2(0x695)],'answer':0x0},{'question':_0x6d96f2(0x746),'options':[_0x6d96f2(0xa7e),_0x6d96f2(0x44e),_0x6d96f2(0x2ac),_0x6d96f2(0x3cf)],'answer':0x2},{'question':_0x6d96f2(0xb19),'options':[_0x6d96f2(0x3cf),_0x6d96f2(0x44e),_0x6d96f2(0x2ac),'Half-duplex'],'answer':0x0},{'question':_0x6d96f2(0x179),'options':[_0x6d96f2(0x2de),_0x6d96f2(0xaa6),'Simplex\x20mode',_0x6d96f2(0x788)],'answer':0x0},{'question':'A\x20_____\x20is\x20the\x20physical\x20path\x20over\x20which\x20a\x20message\x20travels.','options':[_0x6d96f2(0x701),_0x6d96f2(0x96e),_0x6d96f2(0x811),_0x6d96f2(0x7bc)],'answer':0x1},{'question':'Which\x20of\x20these\x20elements\x20is\x20not\x20involved\x20in\x20the\x20process\x20of\x20communication?','options':[_0x6d96f2(0x336),_0x6d96f2(0x9e9),'message',_0x6d96f2(0x6fb)],'answer':0x0},{'question':_0x6d96f2(0x734),'options':[_0x6d96f2(0x619),'standards',_0x6d96f2(0x6cc),'Servers'],'answer':0x0},{'question':'A\x20______\x20is\x20the\x20person\x20who\x20transmits\x20a\x20message.','options':[_0x6d96f2(0x6c4),_0x6d96f2(0x1d1),'Message','Transmission\x20medium'],'answer':0x1},{'question':_0x6d96f2(0x2fc),'options':[_0x6d96f2(0x59b),_0x6d96f2(0x1d1),'Message',_0x6d96f2(0x55d)],'answer':0x3},{'question':_0x6d96f2(0xad5),'options':[_0x6d96f2(0x53c),_0x6d96f2(0x404),_0x6d96f2(0xa3f),_0x6d96f2(0x204)],'answer':0x0},{'question':_0x6d96f2(0x8a2),'options':[_0x6d96f2(0x4e9),'Symbols',_0x6d96f2(0x7a6),'Bytes'],'answer':0x0},{'question':_0x6d96f2(0xa75),'options':[_0x6d96f2(0x31c),_0x6d96f2(0x8b6),_0x6d96f2(0xb7f),'Pixel\x20is\x20the\x20cluster\x20of\x20an\x20analog\x20image'],'answer':0x0},{'question':_0x6d96f2(0x89a),'options':[_0x6d96f2(0x8d2),_0x6d96f2(0x252),_0x6d96f2(0x23d),'HSV'],'answer':0x0},{'question':'What\x20does\x20ASCII\x20stand\x20for?','options':[_0x6d96f2(0x69d),_0x6d96f2(0x2c4),_0x6d96f2(0x71b),_0x6d96f2(0x4c9)],'answer':0x0},{'question':'The\x20largest\x20geographic\x20area\x20a\x20wide\x20area\x20network\x20(WAN)\x20can\x20span\x20is\x20______.','options':['A\x20town',_0x6d96f2(0x3fd),'A\x20country',_0x6d96f2(0xb97)],'answer':0x3},{'question':_0x6d96f2(0x86b),'options':[_0x6d96f2(0x7f0),_0x6d96f2(0x47e),_0x6d96f2(0x289),_0x6d96f2(0x55a)],'answer':0x0},{'question':_0x6d96f2(0x4f9),'options':[_0x6d96f2(0x88a),_0x6d96f2(0x3e0),_0x6d96f2(0x2c2),_0x6d96f2(0x595)],'answer':0x2},{'question':_0x6d96f2(0x7a4),'options':[_0x6d96f2(0x678),_0x6d96f2(0xb4f),_0x6d96f2(0x9e6),_0x6d96f2(0x991)],'answer':0x1},{'question':_0x6d96f2(0x255),'options':[_0x6d96f2(0x66a),_0x6d96f2(0x275),'Are\x20used\x20by\x20international\x20organizations','All\x203\x20options'],'answer':0x3},{'question':_0x6d96f2(0x583),'options':[_0x6d96f2(0x75b),_0x6d96f2(0x651),'Metropolitan\x20Area\x20Network\x20(MAN)'],'answer':0x1},{'question':'How\x20is\x20software\x20reliability\x20defined?','options':[_0x6d96f2(0x786),_0x6d96f2(0x6b7),_0x6d96f2(0x223),_0x6d96f2(0x36b)],'answer':0x0},{'question':'A\x20local\x20area\x20network\x20(LAN)\x20is\x20defined\x20by\x20______.','options':['The\x20geometric\x20size\x20of\x20the\x20network',_0x6d96f2(0x225),_0x6d96f2(0xa42),_0x6d96f2(0x8b5)],'answer':0x1},{'question':_0x6d96f2(0x3e1),'options':['Wireless\x20Local\x20Area\x20Network',_0x6d96f2(0x532),'Wired\x20Local\x20Area\x20Network','Wireless\x20Local\x20Ambiguity\x20Network'],'answer':0x0},{'question':_0x6d96f2(0x490),'options':[_0x6d96f2(0xb54),_0x6d96f2(0xb22),'Security','All\x20of\x20the\x20choices\x20are\x20correct'],'answer':0x3},{'question':_0x6d96f2(0x307),'options':[_0x6d96f2(0x47e),'DSL',_0x6d96f2(0x289),_0x6d96f2(0x7f0)],'answer':0x0},{'question':_0x6d96f2(0x2d0),'options':['Network',_0x6d96f2(0x77e),_0x6d96f2(0x9c0),_0x6d96f2(0x12e)],'answer':0x1},{'question':_0x6d96f2(0x9ba),'options':['Unipoint','Multipoint','Point\x20to\x20point',_0x6d96f2(0x2ac)],'answer':0x1},{'question':_0x6d96f2(0x5ba),'options':[_0x6d96f2(0x76c),'Mesh',_0x6d96f2(0x79b),_0x6d96f2(0x4f8)],'answer':0x3},{'question':_0x6d96f2(0x170),'options':[_0x6d96f2(0x47c),_0x6d96f2(0x222),_0x6d96f2(0x8d3),_0x6d96f2(0x637)],'answer':0x2},{'question':_0x6d96f2(0xabb),'options':[_0x6d96f2(0x40b),'Physical',_0x6d96f2(0x4e2),'Incremental'],'answer':0x1},{'question':_0x6d96f2(0x1af),'options':[_0x6d96f2(0x76c),'Mesh',_0x6d96f2(0x79b),_0x6d96f2(0x4f8)],'answer':0x0}],dcQuestions2=[{'question':_0x6d96f2(0x69c),'options':['network',_0x6d96f2(0xa1e),_0x6d96f2(0x43e),_0x6d96f2(0x377)],'answer':0x1},{'question':_0x6d96f2(0x8d6),'options':[_0x6d96f2(0x88b),_0x6d96f2(0xa1e),_0x6d96f2(0x43e),'physical'],'answer':0x0},{'question':_0x6d96f2(0xb4e),'options':['network',_0x6d96f2(0xa1e),_0x6d96f2(0x43e),_0x6d96f2(0x377)],'answer':0x2},{'question':_0x6d96f2(0x447),'options':[_0x6d96f2(0x88b),'transport','data-link','physical'],'answer':0x1},{'question':_0x6d96f2(0x42f),'options':[_0x6d96f2(0x6c8),_0x6d96f2(0xab),'network\x20layer',_0x6d96f2(0x900)],'answer':0x2},{'question':_0x6d96f2(0x37e),'options':[_0x6d96f2(0x538),'Two',_0x6d96f2(0x73e),_0x6d96f2(0x9d1)],'answer':0x3},{'question':'PROTOCOL\x20LAYERING\x20is\x20applied\x20when\x20communication\x20is\x20____.','options':['large','simple','complex','complicated'],'answer':0x2},{'question':_0x6d96f2(0x814),'options':[_0x6d96f2(0x382),_0x6d96f2(0x91f),'bits',_0x6d96f2(0xa5)],'answer':0x0},{'question':_0x6d96f2(0x970),'options':[_0x6d96f2(0x382),_0x6d96f2(0x91f),'message',_0x6d96f2(0xf7)],'answer':0x2},{'question':_0x6d96f2(0x756),'options':[_0x6d96f2(0xa8a),'physical\x20layer',_0x6d96f2(0x6c8),_0x6d96f2(0xab)],'answer':0x0},{'question':_0x6d96f2(0xaa5),'options':['two',_0x6d96f2(0x44a),'five','six'],'answer':0x2},{'question':_0x6d96f2(0x781),'options':['two',_0x6d96f2(0x44a),_0x6d96f2(0x9f1),_0x6d96f2(0x3cd)],'answer':0x1},{'question':'A\x20link-layer\x20switch\x20is\x20involved\x20in\x20.........\x20layers\x20of\x20the\x20TCP/IP\x20protocol\x20suite.','options':[_0x6d96f2(0x7be),'three',_0x6d96f2(0x9f1),'four'],'answer':0x0},{'question':_0x6d96f2(0x6be),'options':[_0x6d96f2(0x9aa),'a\x20datagram','a\x20segment\x20or\x20a\x20user\x20datagram',_0x6d96f2(0x2df)],'answer':0x2},{'question':_0x6d96f2(0x7ed),'options':[_0x6d96f2(0x377),_0x6d96f2(0xa1e),_0x6d96f2(0x88b),_0x6d96f2(0x435)],'answer':0x1},{'question':_0x6d96f2(0x4f3),'options':['open\x20system\x20interconnection',_0x6d96f2(0xa10),_0x6d96f2(0x917),_0x6d96f2(0x973)],'answer':0x0},{'question':'The\x20number\x20of\x20layers\x20in\x20ISO\x20OSI\x20reference\x20model\x20is\x20______.','options':['4','5','6','7'],'answer':0x3},{'question':_0x6d96f2(0x196),'options':[_0x6d96f2(0x4fa),_0x6d96f2(0x6c8),'application\x20layer','network\x20layer'],'answer':0x0},{'question':_0x6d96f2(0x282),'options':[_0x6d96f2(0x4fa),'Presentation\x20layer',_0x6d96f2(0xab),_0x6d96f2(0xb45)],'answer':0x3},{'question':'In\x20OSI\x20model,\x20when\x20data\x20is\x20sent\x20from\x20device\x20A\x20to\x20device\x20B,\x20the\x205th\x20layer\x20to\x20receive\x20data\x20at\x20B\x20is\x20____.','options':[_0x6d96f2(0xab),_0x6d96f2(0x5a7),_0x6d96f2(0xabc),_0x6d96f2(0x577)],'answer':0x2},{'question':_0x6d96f2(0x184),'options':[_0x6d96f2(0x3f3),_0x6d96f2(0x6b6),_0x6d96f2(0xace),_0x6d96f2(0x149)],'answer':0x0},{'question':'In\x20the\x20TCP/IP\x20protocol\x20suite,\x20which\x20of\x20the\x20following\x20is\x20an\x20application\x20layer\x20protocol?','options':[_0x6d96f2(0x885),_0x6d96f2(0x794),'The\x20Transmission\x20Control\x20Protocol(TCP)',_0x6d96f2(0x998)],'answer':0x3},{'question':_0x6d96f2(0x9c5),'options':['The\x20Internet\x20Protocol\x20(IP)',_0x6d96f2(0x4a2),_0x6d96f2(0x1c8),_0x6d96f2(0x146)],'answer':0x3},{'question':_0x6d96f2(0x4e0),'options':[_0x6d96f2(0x410),_0x6d96f2(0x794),_0x6d96f2(0x30b),_0x6d96f2(0x8a4)],'answer':0x1},{'question':_0x6d96f2(0x4dd),'options':[_0x6d96f2(0x377),'data-link',_0x6d96f2(0xa1e),_0x6d96f2(0x88b)],'answer':0x1},{'question':_0x6d96f2(0xb7c),'options':[_0x6d96f2(0xab2),_0x6d96f2(0xb5f),_0x6d96f2(0x619),'bits'],'answer':0x3},{'question':_0x6d96f2(0x801),'options':[_0x6d96f2(0xab),_0x6d96f2(0xa8a),_0x6d96f2(0x6c8),_0x6d96f2(0x900)],'answer':0x2},{'question':_0x6d96f2(0x427),'options':[_0x6d96f2(0xa8a),_0x6d96f2(0x6c8),_0x6d96f2(0x891),'application\x20layer'],'answer':0x0},{'question':_0x6d96f2(0x5b6),'options':['a\x20unreliable','a\x20connection-oriented',_0x6d96f2(0xafd)],'answer':0x0},{'question':_0x6d96f2(0x5a2),'options':[_0x6d96f2(0xa99),_0x6d96f2(0x5bb),_0x6d96f2(0xa47),_0x6d96f2(0x956)],'answer':0x0},{'question':'In\x20TCP/IP,\x20a\x20logical\x20connection\x20between\x20an\x20entity\x20at\x20the\x20network\x20layer\x20can\x20be\x20made\x20with\x20another\x20entity\x20at\x20the\x20............\x20layer.','options':[_0x6d96f2(0x88b),'transport',_0x6d96f2(0x43e),_0x6d96f2(0x377)],'answer':0x0},{'question':_0x6d96f2(0x26d),'options':['network',_0x6d96f2(0xa1e),_0x6d96f2(0x43e),_0x6d96f2(0x377)],'answer':0x2},{'question':_0x6d96f2(0x1dc),'options':['HTTP',_0x6d96f2(0x306),_0x6d96f2(0x543),'TCP'],'answer':0x3},{'question':'Application\x20layer\x20offers\x20.........\x20service.','options':[_0x6d96f2(0xb6f),_0x6d96f2(0x47a),'None\x20of\x20the\x20mentioned',_0x6d96f2(0x6e7)],'answer':0x3},{'question':'Which\x20of\x20the\x20following\x20is\x20an\x20application\x20layer\x20service?','options':[_0x6d96f2(0x4b2),_0x6d96f2(0x880),_0x6d96f2(0x321),_0x6d96f2(0x116)],'answer':0x1},{'question':'Electronic\x20mail\x20uses\x20which\x20Application\x20layer\x20protocol?','options':[_0x6d96f2(0x61f),'SMTP','FTP',_0x6d96f2(0x2f4)],'answer':0x1},{'question':_0x6d96f2(0xa2f),'options':[_0x6d96f2(0x8a5),'process\x20to\x20process\x20delivery',_0x6d96f2(0x924),_0x6d96f2(0x609)],'answer':0x0},{'question':_0x6d96f2(0x24d),'options':[_0x6d96f2(0xab),_0x6d96f2(0x6c8),'network\x20layer',_0x6d96f2(0x7e1)],'answer':0x0},{'question':'Which\x20level\x20is\x20the\x20network\x20layer\x20in\x20the\x20OSI\x20model?','options':[_0x6d96f2(0xb13),'Fourth\x20level',_0x6d96f2(0x7d0),_0x6d96f2(0x922)],'answer':0x0},{'question':_0x6d96f2(0x959),'options':[_0x6d96f2(0x4bc),'Internet\x20Control\x20Message\x20Protocol',_0x6d96f2(0x9dc),_0x6d96f2(0x5e9)],'answer':0x1}],bigdataQuestions1=[{'question':_0x6d96f2(0x2a9),'options':[_0x6d96f2(0x602),_0x6d96f2(0xb2f),_0x6d96f2(0x25a),'High\x20diversity\x20and\x20distribution'],'answer':0x3},{'question':_0x6d96f2(0x613),'options':['Batch\x20processing',_0x6d96f2(0x687),'NoSQL\x20capabilities',_0x6d96f2(0x1d9)],'answer':0x1},{'question':_0x6d96f2(0x4ee),'options':['Low-latency\x20real-time\x20processing',_0x6d96f2(0x8a1),'Fault-tolerance',_0x6d96f2(0x802)],'answer':0x0},{'question':_0x6d96f2(0xb37),'options':[_0x6d96f2(0x353),_0x6d96f2(0x96d),_0x6d96f2(0x6d6),_0x6d96f2(0x551)],'answer':0x1},{'question':_0x6d96f2(0x953),'options':[_0x6d96f2(0x228),_0x6d96f2(0x6ce),_0x6d96f2(0x3a1),_0x6d96f2(0x5a5)],'answer':0x1},{'question':_0x6d96f2(0xb8e),'options':[_0x6d96f2(0xa28),'Real-time\x20data\x20streaming','Flexible\x20interpretation\x20of\x20unstructured\x20data',_0x6d96f2(0x486)],'answer':0x2},{'question':_0x6d96f2(0x1f2),'options':['Spark\x20Streaming',_0x6d96f2(0x6a6),_0x6d96f2(0xc6),'Apache\x20Flink'],'answer':0x3},{'question':_0x6d96f2(0xa9f),'options':['Historical\x20data\x20analysis',_0x6d96f2(0x976),_0x6d96f2(0x41c),'Batch\x20processing'],'answer':0x2},{'question':'What\x20is\x20the\x20role\x20of\x20the\x20\x27reduce\x27\x20function\x20in\x20MapReduce?','options':[_0x6d96f2(0x55e),_0x6d96f2(0x49e),_0x6d96f2(0xaa2),_0x6d96f2(0x3f5)],'answer':0x1},{'question':_0x6d96f2(0x3cc),'options':[_0x6d96f2(0xa8d),_0x6d96f2(0x828),_0x6d96f2(0x9cc),_0x6d96f2(0x132)],'answer':0x2},{'question':'Which\x20of\x20the\x20following\x20is\x20a\x20primary\x20advantage\x20of\x20data\x20locality\x20in\x20Hadoop?','options':[_0x6d96f2(0x869),_0x6d96f2(0x523),'Enhanced\x20data\x20normalization','Direct\x20access\x20to\x20remote\x20databases'],'answer':0x1},{'question':_0x6d96f2(0xb1e),'options':['Spark\x20is\x20faster\x20due\x20to\x20in-memory\x20processing.','MapReduce\x20is\x20faster\x20due\x20to\x20disk-based\x20processing.',_0x6d96f2(0x9ef),_0x6d96f2(0x4ec)],'answer':0x0},{'question':'What\x20is\x20the\x20primary\x20use\x20of\x20Apache\x20Flink?','options':[_0x6d96f2(0x7de),_0x6d96f2(0x8d7),'Real-time\x20data\x20processing\x20and\x20analysis',_0x6d96f2(0x210)],'answer':0x2},{'question':_0x6d96f2(0x2c5),'options':[_0x6d96f2(0x6a6),_0x6d96f2(0x62f),_0x6d96f2(0x1dd),_0x6d96f2(0x9f2)],'answer':0x1},{'question':_0x6d96f2(0xa98),'options':[_0x6d96f2(0x716),'Tasks\x20are\x20independent\x20with\x20no\x20dependencies.',_0x6d96f2(0x5c7),_0x6d96f2(0x958)],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20types\x20of\x20data\x20is\x20NOT\x20ideal\x20for\x20RDBMS?','options':['Highly\x20normalized\x20data',_0x6d96f2(0x70b),_0x6d96f2(0xa26),_0x6d96f2(0x981)],'answer':0x3},{'question':'In\x20Hadoop,\x20how\x20does\x20\x27schema-on-read\x27\x20differ\x20from\x20traditional\x20RDBMS\x20schema\x20management?','options':[_0x6d96f2(0x6e2),'Allows\x20data\x20structure\x20to\x20be\x20defined\x20during\x20read',_0x6d96f2(0x50c),'Processes\x20data\x20in\x20a\x20relational\x20format\x20only'],'answer':0x1},{'question':_0x6d96f2(0x9f6),'options':[_0x6d96f2(0x841),_0x6d96f2(0x895),'Prioritizes\x20data\x20over\x20computational\x20power',_0x6d96f2(0x115)],'answer':0x3},{'question':_0x6d96f2(0x6b2),'options':[_0x6d96f2(0x7b6),_0x6d96f2(0x989),_0x6d96f2(0x52b),_0x6d96f2(0x41e)],'answer':0x1},{'question':_0x6d96f2(0x9cd),'options':[_0x6d96f2(0xa4a),_0x6d96f2(0xa91),_0x6d96f2(0x1f5),_0x6d96f2(0x859)],'answer':0x1},{'question':_0x6d96f2(0x503),'options':['It\x20relies\x20solely\x20on\x20disk\x20storage.',_0x6d96f2(0x9ad),_0x6d96f2(0x81d),'It\x20exclusively\x20uses\x20HDFS\x20for\x20data\x20storage.'],'answer':0x1},{'question':_0x6d96f2(0x6b0),'options':[_0x6d96f2(0x83a),_0x6d96f2(0x430),_0x6d96f2(0x711),_0x6d96f2(0x367)],'answer':0x1},{'question':_0x6d96f2(0x9e5),'options':['MapReduce\x20is\x20faster\x20due\x20to\x20its\x20interactive\x20data\x20processing.',_0x6d96f2(0x3fa),_0x6d96f2(0x8c),_0x6d96f2(0x248)],'answer':0x1},{'question':_0x6d96f2(0xac5),'options':['It\x20relies\x20only\x20on\x20batch\x20processing.',_0x6d96f2(0x4ff),_0x6d96f2(0xde),_0x6d96f2(0xa59)],'answer':0x1},{'question':'When\x20handling\x20streaming\x20data,\x20which\x20of\x20the\x20following\x20distinguishes\x20Apache\x20Flink\x20from\x20Apache\x20Spark?','options':[_0x6d96f2(0x9c7),'Flink\x20offers\x20native\x20processing\x20for\x20unbounded\x20data\x20streams.','MapReduce\x20is\x20faster\x20than\x20both\x20Flink\x20and\x20Spark.',_0x6d96f2(0xbe)],'answer':0x1},{'question':_0x6d96f2(0xf3),'options':['MapReduce\x20depends\x20on\x20in-memory\x20processing\x20to\x20increase\x20speed.','Spark\x20exclusively\x20stores\x20data\x20on\x20disk.','MapReduce\x20stores\x20data\x20on\x20disk\x20and\x20reloads\x20it\x20with\x20each\x20iteration.',_0x6d96f2(0xb77)],'answer':0x2},{'question':_0x6d96f2(0x4d1),'options':[_0x6d96f2(0x730),_0x6d96f2(0x579),'It\x20does\x20not\x20support\x20disk-based\x20storage.',_0x6d96f2(0x770)],'answer':0x1},{'question':_0x6d96f2(0x5ac),'options':[_0x6d96f2(0xb1),_0x6d96f2(0x371),_0x6d96f2(0x842),_0x6d96f2(0x757)],'answer':0x0},{'question':'In\x20which\x20way\x20does\x20Flink\x20outperform\x20Spark\x20for\x20stateful\x20stream\x20processing?','options':[_0x6d96f2(0x713),_0x6d96f2(0xc3),_0x6d96f2(0xa70),'Spark\x20allows\x20faster\x20batch\x20analysis\x20in\x20real-time\x20applications.'],'answer':0x0},{'question':_0x6d96f2(0x592),'options':['Spark’s\x20exclusive\x20reliance\x20on\x20disk\x20storage\x20for\x20faster\x20retrieval.',_0x6d96f2(0x3e4),'MapReduce’s\x20advantage\x20in\x20real-time\x20processing.','MapReduce’s\x20native\x20support\x20for\x20streaming\x20operations.'],'answer':0x1},{'question':_0x6d96f2(0x16a),'options':[_0x6d96f2(0x4b3),_0x6d96f2(0x86e),_0x6d96f2(0x245),'Cannot\x20be\x20classified'],'answer':0x1},{'question':_0x6d96f2(0xaf2),'options':[_0x6d96f2(0x4b3),_0x6d96f2(0x86e),_0x6d96f2(0x245),_0x6d96f2(0xa8)],'answer':0x1},{'question':_0x6d96f2(0xab0),'options':[_0x6d96f2(0x4b3),'Semi-structured\x20Data',_0x6d96f2(0x245),'Cannot\x20be\x20classified'],'answer':0x0},{'question':_0x6d96f2(0x5f0),'options':['Structured\x20Data',_0x6d96f2(0x86e),_0x6d96f2(0x245),_0x6d96f2(0xa8)],'answer':0x1},{'question':_0x6d96f2(0x185),'options':[_0x6d96f2(0x4b3),'Semi-structured\x20Data',_0x6d96f2(0x245),_0x6d96f2(0xa8)],'answer':0x2},{'question':_0x6d96f2(0x1c4),'options':[_0x6d96f2(0x4b3),_0x6d96f2(0x86e),_0x6d96f2(0x245),_0x6d96f2(0xa82)],'answer':0x2}],bigdataQuestions2=[{'question':_0x6d96f2(0x2e2),'options':['Web\x20scraping',_0x6d96f2(0x4a4),_0x6d96f2(0x49c),'Real-time\x20data\x20analysis'],'answer':0x1},{'question':_0x6d96f2(0x7e0),'options':[_0x6d96f2(0xad2),_0x6d96f2(0x51e),'R',_0x6d96f2(0x6af)],'answer':0x1},{'question':'The\x20Hadoop\x20Distributed\x20File\x20System\x20(HDFS)\x20primarily\x20supports:','options':[_0x6d96f2(0xb38),_0x6d96f2(0x8a1),_0x6d96f2(0x3a8),_0x6d96f2(0xafa)],'answer':0x1},{'question':_0x6d96f2(0x52c),'options':[_0x6d96f2(0xf1),_0x6d96f2(0x2b8),_0x6d96f2(0x6b8),_0x6d96f2(0x1a8)],'answer':0x1},{'question':'The\x20MapReduce\x20model\x20is\x20divided\x20into\x20which\x20two\x20main\x20phases?','options':[_0x6d96f2(0x62a),_0x6d96f2(0x950),_0x6d96f2(0x118),'Shuffle\x20and\x20Aggregate'],'answer':0x1},{'question':_0x6d96f2(0x6ae),'options':['Aggregating\x20results','Reading\x20and\x20processing\x20input\x20data','Managing\x20data\x20locality',_0x6d96f2(0x997)],'answer':0x1},{'question':_0x6d96f2(0x1f0),'options':[_0x6d96f2(0x376),'Combine','Shuffle',_0x6d96f2(0x1a6)],'answer':0x3},{'question':'What\x20does\x20fault\x20tolerance\x20in\x20Hadoop\x20mean?','options':['The\x20system\x20stops\x20when\x20a\x20node\x20fails',_0x6d96f2(0x2af),_0x6d96f2(0x718),_0x6d96f2(0x2ae)],'answer':0x1},{'question':'Data\x20locality\x20in\x20Hadoop\x20refers\x20to:','options':[_0x6d96f2(0x442),_0x6d96f2(0x866),'Running\x20tasks\x20on\x20remote\x20servers',_0x6d96f2(0x833)],'answer':0x1},{'question':_0x6d96f2(0x999),'options':[_0x6d96f2(0x790),_0x6d96f2(0x5dd),'To\x20ensure\x20fault\x20tolerance','To\x20optimize\x20data\x20processing\x20efficiency'],'answer':0x3},{'question':_0x6d96f2(0xdc),'options':['HDFS',_0x6d96f2(0x304),_0x6d96f2(0x40a),_0x6d96f2(0x7ff)],'answer':0x1},{'question':_0x6d96f2(0x620),'options':['Directly\x20in\x20HDFS','On\x20local\x20disk','In\x20the\x20cloud',_0x6d96f2(0x16e)],'answer':0x1},{'question':'A\x20good\x20split\x20size\x20in\x20MapReduce\x20processing\x20is\x20often:','options':['512\x20bytes',_0x6d96f2(0x4fe),_0x6d96f2(0x960),'1\x20GB'],'answer':0x2},{'question':_0x6d96f2(0x264),'options':[_0x6d96f2(0x571),'Reduced\x20processing\x20speed','Improved\x20reliability\x20and\x20availability',_0x6d96f2(0x27e)],'answer':0x2},{'question':_0x6d96f2(0x8ae),'options':[_0x6d96f2(0x4cd),'Aggregate\x20and\x20summarize\x20data','Duplicate\x20data\x20for\x20redundancy',_0x6d96f2(0x9a4)],'answer':0x1},{'question':_0x6d96f2(0x397),'options':[_0x6d96f2(0x8bc),_0x6d96f2(0xa71),'Split\x20data\x20into\x20smaller\x20blocks',_0x6d96f2(0xa6d)],'answer':0x1},{'question':_0x6d96f2(0xa72),'options':['It\x20occurs\x20after\x20the\x20reduce\x20phase',_0x6d96f2(0xb47),_0x6d96f2(0x3ac),_0x6d96f2(0x745)],'answer':0x1},{'question':_0x6d96f2(0x599),'options':[_0x6d96f2(0x446),_0x6d96f2(0x739),_0x6d96f2(0x86c),_0x6d96f2(0x8fc)],'answer':0x1},{'question':'In\x20a\x20Hadoop\x20cluster,\x20if\x20a\x20node\x20fails,\x20Hadoop:','options':[_0x6d96f2(0x17f),'Reschedules\x20tasks\x20to\x20other\x20nodes','Reboots\x20the\x20entire\x20system',_0x6d96f2(0x918)],'answer':0x1},{'question':_0x6d96f2(0x3b8),'options':[_0x6d96f2(0x8f6),_0x6d96f2(0x9a6),_0x6d96f2(0x967),_0x6d96f2(0x74d)],'answer':0x0},{'question':_0x6d96f2(0xa8b),'options':[_0x6d96f2(0x886),_0x6d96f2(0x326),_0x6d96f2(0x7d5),_0x6d96f2(0x9fe)],'answer':0x1},{'question':'Map\x20tasks\x20run\x20on\x20nodes\x20where:','options':['HDFS\x20data\x20blocks\x20are\x20located',_0x6d96f2(0x887),_0x6d96f2(0xb8d),_0x6d96f2(0x761)],'answer':0x0},{'question':_0x6d96f2(0x2a8),'options':['By\x20eliminating\x20map\x20tasks',_0x6d96f2(0x68c),_0x6d96f2(0xfa),'By\x20increasing\x20the\x20number\x20of\x20reduce\x20tasks'],'answer':0x1},{'question':'Data\x20locality\x20helps\x20in\x20minimizing:','options':['Network\x20bandwidth\x20usage','Number\x20of\x20map\x20tasks',_0x6d96f2(0x440),_0x6d96f2(0x6bd)],'answer':0x0},{'question':_0x6d96f2(0x89d),'options':['YARN’s\x20job\x20scheduling',_0x6d96f2(0xabe),'Data\x20replication\x20in\x20HDFS',_0x6d96f2(0x2bd)],'answer':0x2},{'question':_0x6d96f2(0x972),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x6a4),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x197),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xa25),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xb88),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x54a),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x95d),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x4df),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xb63),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'The\x20MapReduce\x20combiner\x20function\x20can\x20be\x20used\x20to\x20minimize\x20network\x20data\x20transfer\x20between\x20map\x20and\x20reduce\x20phases.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],bigdataQuestions3=[{'question':'Which\x20component\x20in\x20Hadoop\x20is\x20responsible\x20for\x20reading\x20data\x20in\x20MapReduce?','options':[_0x6d96f2(0x233),'RecordSplitter',_0x6d96f2(0xb10),_0x6d96f2(0xa22)],'answer':0x0},{'question':_0x6d96f2(0x731),'options':['To\x20split\x20input\x20data\x20into\x20records',_0x6d96f2(0x81a),'To\x20read\x20and\x20parse\x20records',_0x6d96f2(0x1e0)],'answer':0x2},{'question':_0x6d96f2(0x75d),'options':['TextInputFormat',_0x6d96f2(0x6d0),_0x6d96f2(0x33e),'SequenceFileInputFormat'],'answer':0x3},{'question':_0x6d96f2(0x822),'options':['Space',_0x6d96f2(0x8b7),_0x6d96f2(0x1b7),'Colon'],'answer':0x1},{'question':_0x6d96f2(0x68a),'options':['Each\x20line\x20is\x20processed\x20individually',_0x6d96f2(0x14e),'Each\x20line\x20has\x20a\x20unique\x20key',_0x6d96f2(0x33d)],'answer':0x1},{'question':_0x6d96f2(0x879),'options':['Counts\x20lines','Counts\x20words',_0x6d96f2(0x635),_0x6d96f2(0xa6a)],'answer':0x1},{'question':_0x6d96f2(0x54b),'options':[_0x6d96f2(0x22d),'Converting\x20structured\x20objects\x20into\x20byte\x20streams',_0x6d96f2(0x5d0),_0x6d96f2(0x253)],'answer':0x1},{'question':'Deserialization\x20in\x20Hadoop\x20refers\x20to:','options':[_0x6d96f2(0xb74),_0x6d96f2(0x886),'Encrypting\x20data\x20for\x20security',_0x6d96f2(0x921)],'answer':0x0},{'question':_0x6d96f2(0x346),'options':[_0x6d96f2(0x905),_0x6d96f2(0x278),_0x6d96f2(0x92d),_0x6d96f2(0x9bc)],'answer':0x1},{'question':_0x6d96f2(0xa86),'options':['Inexpensive\x20hardware',_0x6d96f2(0x7b3),'Supports\x20multiple\x20data\x20types',_0x6d96f2(0x5c5)],'answer':0x1},{'question':'A\x20SequenceFile\x20in\x20Hadoop\x20is\x20designed\x20to\x20solve\x20which\x20problem?','options':[_0x6d96f2(0x660),_0x6d96f2(0x183),_0x6d96f2(0x8ab),'Difficulties\x20in\x20serialization'],'answer':0x0},{'question':_0x6d96f2(0x6cb),'options':[_0x6d96f2(0x46b),'Use\x20a\x20single\x20mapper',_0x6d96f2(0x2d9),_0x6d96f2(0x705)],'answer':0x3},{'question':_0x6d96f2(0x784),'options':[_0x6d96f2(0x406),_0x6d96f2(0x33e),'TextInputFormat',_0x6d96f2(0x2c8)],'answer':0x1},{'question':_0x6d96f2(0x4f7),'options':['Key-value\x20pairs\x20of\x20words\x20and\x20counts','Text-only\x20data',_0x6d96f2(0x7c7),_0x6d96f2(0x31a)],'answer':0x0},{'question':_0x6d96f2(0xab4),'options':['64\x20KB','128\x20MB',_0x6d96f2(0x12d),_0x6d96f2(0x494)],'answer':0x1},{'question':_0x6d96f2(0x2f1),'options':[_0x6d96f2(0x20c),_0x6d96f2(0x406),_0x6d96f2(0xb95),'CSVInputFormat'],'answer':0x1},{'question':_0x6d96f2(0x707),'options':[_0x6d96f2(0xaf1),_0x6d96f2(0x5e3),_0x6d96f2(0x9d7),_0x6d96f2(0xae8)],'answer':0x1},{'question':_0x6d96f2(0x451),'options':[_0x6d96f2(0x48b),_0x6d96f2(0xb2c),'Two\x20files\x20of\x20data',_0x6d96f2(0x90c)],'answer':0x1},{'question':_0x6d96f2(0x445),'options':[_0x6d96f2(0x33c),_0x6d96f2(0xa5a),_0x6d96f2(0x58e),_0x6d96f2(0xa6e)],'answer':0x2},{'question':_0x6d96f2(0x408),'options':['Write\x20data\x20to\x20HDFS','Accumulate\x20and\x20output\x20word\x20counts',_0x6d96f2(0x723),_0x6d96f2(0x856)],'answer':0x1},{'question':_0x6d96f2(0x789),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x35e),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20SequenceFile\x20is\x20ideal\x20for\x20handling\x20large\x20files\x20with\x20structured\x20records\x20only.','options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x21e),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':'True\x20or\x20False:\x20NLineInputFormat\x20allows\x20each\x20mapper\x20to\x20receive\x20a\x20variable\x20number\x20of\x20lines.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x82c),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x21c),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x129),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xa5c),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20In\x20MapReduce,\x20each\x20mapper\x20processes\x20only\x20one\x20line\x20of\x20input\x20by\x20default.','options':['True',_0x6d96f2(0x72f)],'answer':0x1}],bigdataQuestions4=[{'question':_0x6d96f2(0x193),'options':['Writing\x20data\x20to\x20HDFS',_0x6d96f2(0x126),_0x6d96f2(0x398),'Managing\x20cache\x20memory'],'answer':0x1},{'question':_0x6d96f2(0x8c9),'options':['InputSplitter','RecordReader',_0x6d96f2(0x5f5),'DataMapper'],'answer':0x3},{'question':_0x6d96f2(0x4b9),'options':[_0x6d96f2(0xc1),_0x6d96f2(0xb6),_0x6d96f2(0x3af),_0x6d96f2(0x194)],'answer':0x1},{'question':_0x6d96f2(0xb48),'options':[_0x6d96f2(0x3d0),_0x6d96f2(0x515),_0x6d96f2(0xa04),_0x6d96f2(0x6ba)],'answer':0x1},{'question':_0x6d96f2(0xb3b),'options':[_0x6d96f2(0x181),_0x6d96f2(0x2a4),'HDFS\x20replication\x20and\x20RecordReader',_0x6d96f2(0x403)],'answer':0x1},{'question':_0x6d96f2(0x42d),'options':[_0x6d96f2(0x90f),'5\x20GB',_0x6d96f2(0xaa8),_0x6d96f2(0x94d)],'answer':0x2},{'question':_0x6d96f2(0x109),'options':[_0x6d96f2(0x53a),_0x6d96f2(0x35f),'Copying\x20files\x20to\x20nodes\x20for\x20use\x20in\x20tasks','Managing\x20MapReduce\x20jobs'],'answer':0x2},{'question':_0x6d96f2(0x975),'options':[_0x6d96f2(0x712),_0x6d96f2(0x3d9),'JobConf','InputFormat'],'answer':0x1},{'question':_0x6d96f2(0x6b3),'options':[_0x6d96f2(0x36e),_0x6d96f2(0x5f0),_0x6d96f2(0xaf2),_0x6d96f2(0x370)],'answer':0x3},{'question':_0x6d96f2(0x96a),'options':['To\x20initialize\x20resources\x20before\x20tasks\x20begin',_0x6d96f2(0x3c2),_0x6d96f2(0x7a0),'To\x20finalize\x20the\x20MapReduce\x20job'],'answer':0x0},{'question':'Which\x20method\x20in\x20MapReduce\x20helps\x20to\x20manage\x20the\x20lifecycle\x20and\x20dependencies\x20of\x20cached\x20files?','options':['DefaultStringifier',_0x6d96f2(0x214),_0x6d96f2(0x712),_0x6d96f2(0x5f5)],'answer':0x2},{'question':_0x6d96f2(0x9fc),'options':['Reduce-side\x20join',_0x6d96f2(0x1fe),_0x6d96f2(0x2aa),'Output\x20join'],'answer':0x1},{'question':_0x6d96f2(0x8a0),'options':[_0x6d96f2(0x1fe),'Reduce-side\x20join',_0x6d96f2(0x2aa),'Input\x20join'],'answer':0x0},{'question':_0x6d96f2(0x2cc),'options':['Distributed\x20cache',_0x6d96f2(0x84),_0x6d96f2(0x5d4),_0x6d96f2(0x1fe)],'answer':0x2},{'question':_0x6d96f2(0x58b),'options':[_0x6d96f2(0x557),'Data\x20type','Join\x20key',_0x6d96f2(0x926)],'answer':0x2},{'question':'In\x20MapReduce,\x20Distributed\x20Cache\x20files\x20are\x20copied\x20to\x20each\x20data\x20node\x20only\x20once\x20per\x20job.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'A\x20Map-side\x20join\x20is\x20generally\x20more\x20efficient\x20than\x20a\x20Reduce-side\x20join.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x849),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x428),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'Reduce-side\x20joins\x20require\x20both\x20datasets\x20to\x20go\x20through\x20the\x20shuffle\x20phase\x20in\x20MapReduce.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x2b2),'options':[_0x6d96f2(0x8cf),_0x6d96f2(0x3d0),'MapReduce\x20join\x20with\x20multiple\x20parallel\x20processes',_0x6d96f2(0x722)],'answer':0x2},{'question':_0x6d96f2(0x995),'options':['Join\x20using\x20traditional\x20database\x20SQL',_0x6d96f2(0xb3d),'Perform\x20the\x20join\x20using\x20MapReduce\x20with\x20custom\x20filters',_0x6d96f2(0x722)],'answer':0x1},{'question':_0x6d96f2(0x563),'options':['Traditional\x20SQL\x20with\x20temporary\x20operations',_0x6d96f2(0x6d8),_0x6d96f2(0x8a),'A\x20combination\x20of\x20distributed\x20caching\x20and\x20real-time\x20analytics'],'answer':0x3},{'question':_0x6d96f2(0x93a),'options':[_0x6d96f2(0x8cf),_0x6d96f2(0x18c),_0x6d96f2(0x715),_0x6d96f2(0x722)],'answer':0x0},{'question':_0x6d96f2(0x502),'options':['Traditional\x20SQL\x20on\x20a\x20single\x20server',_0x6d96f2(0x755),'MapReduce\x20with\x20data\x20distribution\x20management',_0x6d96f2(0xa7c)],'answer':0x3}],bigdataQuestions5=[{'question':'What\x20is\x20the\x20primary\x20function\x20of\x20HDFS\x20in\x20Hadoop?','options':['Data\x20analysis',_0x6d96f2(0x215),_0x6d96f2(0xb4),_0x6d96f2(0x744)],'answer':0x1},{'question':_0x6d96f2(0x383),'options':[_0x6d96f2(0xaa3),_0x6d96f2(0x304),_0x6d96f2(0xc6),'Spark'],'answer':0x3},{'question':_0x6d96f2(0x937),'options':['1','2','3','4'],'answer':0x2},{'question':_0x6d96f2(0x80b),'options':[_0x6d96f2(0x7b2),_0x6d96f2(0x878),_0x6d96f2(0x7eb),'Proprietary\x20servers'],'answer':0x1},{'question':_0x6d96f2(0xa50),'options':[_0x6d96f2(0x304),'Spark',_0x6d96f2(0x911),_0x6d96f2(0xc6)],'answer':0x2},{'question':_0x6d96f2(0x82d),'options':['Large\x20data\x20files',_0x6d96f2(0x6a3),_0x6d96f2(0x773),_0x6d96f2(0x533)],'answer':0x2},{'question':_0x6d96f2(0x94),'options':[_0x6d96f2(0x6e9),_0x6d96f2(0x57f),_0x6d96f2(0x63f),'Node\x20failure\x20management'],'answer':0x1},{'question':'Which\x20scheduling\x20policy\x20is\x20NOT\x20used\x20in\x20YARN?','options':[_0x6d96f2(0x26c),_0x6d96f2(0x607),_0x6d96f2(0x586),'Fair\x20Scheduler'],'answer':0x1},{'question':_0x6d96f2(0x8b3),'options':[_0x6d96f2(0x411),_0x6d96f2(0xac6),_0x6d96f2(0x15d),'NameNode'],'answer':0x2},{'question':'What\x20is\x20a\x20container\x20in\x20YARN?','options':[_0x6d96f2(0xd9),_0x6d96f2(0x2a1),_0x6d96f2(0x810),'A\x20redundant\x20backup\x20of\x20a\x20job'],'answer':0x2},{'question':'What\x20does\x20YARN\x20stand\x20for?','options':[_0x6d96f2(0x7aa),_0x6d96f2(0x274),_0x6d96f2(0x58a),_0x6d96f2(0x1ac)],'answer':0x1},{'question':'Which\x20YARN\x20component\x20schedules\x20applications\x20according\x20to\x20policy?','options':[_0x6d96f2(0x1f8),_0x6d96f2(0x411),_0x6d96f2(0x697),_0x6d96f2(0x4bb)],'answer':0x3},{'question':_0x6d96f2(0x2d5),'options':[_0x6d96f2(0xa12),_0x6d96f2(0x65e),_0x6d96f2(0x61a),'Scheduling\x20tasks\x20in\x20the\x20cluster'],'answer':0x3},{'question':_0x6d96f2(0x556),'options':[_0x6d96f2(0x4b7),_0x6d96f2(0x394),_0x6d96f2(0x4dc),_0x6d96f2(0x54f)],'answer':0x2},{'question':_0x6d96f2(0xaa4),'options':['FIFO\x20Scheduler',_0x6d96f2(0x586),_0x6d96f2(0xdd),'Priority\x20Scheduler'],'answer':0x1},{'question':_0x6d96f2(0x7c9),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xbb),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x5c1),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':'MapReduce\x20in\x20Hadoop\x201\x20managed\x20both\x20job\x20scheduling\x20and\x20task\x20progress\x20monitoring.','options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x85c),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],dmQuestions1=[{'question':'Which\x20of\x20the\x20following\x20best\x20defines\x20data\x20mining?','options':['Extracting\x20data\x20directly\x20from\x20primary\x20storage',_0x6d96f2(0xa1d),_0x6d96f2(0x67f),_0x6d96f2(0x68b)],'answer':0x1},{'question':_0x6d96f2(0x1cb),'options':['Data\x20structuring',_0x6d96f2(0xb6d),'Systematic\x20Data\x20Archiving\x20(SDA)','Information\x20Transformation'],'answer':0x1},{'question':_0x6d96f2(0x7c0),'options':[_0x6d96f2(0x36a),'Data\x20streams',_0x6d96f2(0x237),_0x6d96f2(0x8c8)],'answer':0x1},{'question':'Which\x20data\x20mining\x20task\x20focuses\x20on\x20grouping\x20objects\x20based\x20on\x20similarities?','options':['Classification',_0x6d96f2(0xa7b),_0x6d96f2(0xb9f),_0x6d96f2(0x3c7)],'answer':0x2},{'question':'What\x20type\x20of\x20data\x20is\x20used\x20to\x20identify\x20clusters\x20in\x20customer\x20segmentation?','options':[_0x6d96f2(0xb4c),_0x6d96f2(0x2c0),_0x6d96f2(0x8c8),_0x6d96f2(0x738)],'answer':0x2},{'question':_0x6d96f2(0x495),'options':[_0x6d96f2(0x231),'Classification',_0x6d96f2(0xb9f),_0x6d96f2(0x249)],'answer':0x0},{'question':_0x6d96f2(0x391),'options':[_0x6d96f2(0x322),_0x6d96f2(0x618),_0x6d96f2(0x5c4),_0x6d96f2(0x838)],'answer':0x3},{'question':_0x6d96f2(0x848),'options':[_0x6d96f2(0x9d2),_0x6d96f2(0x9b8),_0x6d96f2(0x249),_0x6d96f2(0x51b)],'answer':0x3},{'question':_0x6d96f2(0xb85),'options':[_0x6d96f2(0x39c),_0x6d96f2(0x84f),_0x6d96f2(0x496),_0x6d96f2(0x656)],'answer':0x1},{'question':'What\x20is\x20a\x20primary\x20goal\x20of\x20data\x20preprocessing\x20in\x20data\x20mining?','options':[_0x6d96f2(0x456),_0x6d96f2(0x6f8),_0x6d96f2(0xb71),_0x6d96f2(0x83b)],'answer':0x1},{'question':'Which\x20of\x20these\x20is\x20an\x20example\x20of\x20a\x20supervised\x20learning\x20technique?','options':[_0x6d96f2(0xb9f),_0x6d96f2(0x988),_0x6d96f2(0x71c),'Data\x20Transformation'],'answer':0x1},{'question':_0x6d96f2(0x46d),'options':[_0x6d96f2(0x473),_0x6d96f2(0x3c7),_0x6d96f2(0x249),'Clustering'],'answer':0x1},{'question':_0x6d96f2(0x8d8),'options':[_0x6d96f2(0x69b),'Detecting\x20deviations\x20from\x20expected\x20behavior',_0x6d96f2(0x4de),'Organizing\x20data\x20into\x20clusters'],'answer':0x1},{'question':_0x6d96f2(0x5f4),'options':['Creating\x20databases\x20with\x20specific\x20queries',_0x6d96f2(0x38c),_0x6d96f2(0xb21),_0x6d96f2(0x506)],'answer':0x2},{'question':'What\x20is\x20a\x20major\x20issue\x20in\x20data\x20mining\x20regarding\x20privacy?','options':[_0x6d96f2(0x692),_0x6d96f2(0x460),_0x6d96f2(0x720),_0x6d96f2(0x940)],'answer':0x2},{'question':_0x6d96f2(0x6bb),'options':[_0x6d96f2(0x8c8),'Graph\x20data','Textual\x20data','Multimedia\x20data'],'answer':0x1},{'question':_0x6d96f2(0x200),'options':[_0x6d96f2(0x72a),'Enhancing\x20inter-cluster\x20similarity',_0x6d96f2(0x2f7),_0x6d96f2(0x884)],'answer':0x0},{'question':'Which\x20task\x20would\x20most\x20likely\x20use\x20decision\x20trees\x20for\x20analysis?','options':[_0x6d96f2(0x7bd),_0x6d96f2(0x518),_0x6d96f2(0x988),'Frequent\x20itemset\x20discovery'],'answer':0x2},{'question':'An\x20example\x20of\x20an\x20anomaly\x20detection\x20application\x20is:','options':['Market\x20segmentation',_0x6d96f2(0x10f),'Credit\x20card\x20fraud\x20detection','Product\x20recommendation'],'answer':0x2},{'question':_0x6d96f2(0x4bf),'options':[_0x6d96f2(0xa38),_0x6d96f2(0x78e),_0x6d96f2(0xa14),_0x6d96f2(0x8ce)],'answer':0x2},{'question':'The\x20efficiency\x20of\x20a\x20data\x20mining\x20algorithm\x20is\x20mainly\x20affected\x20by:','options':[_0x6d96f2(0x69a),'User\x20input',_0x6d96f2(0x896),_0x6d96f2(0x5b4)],'answer':0x0},{'question':'Which\x20data\x20mining\x20technique\x20is\x20most\x20appropriate\x20for\x20categorizing\x20news\x20articles?','options':[_0x6d96f2(0xb9f),_0x6d96f2(0x231),'Classification',_0x6d96f2(0xa41)],'answer':0x2},{'question':_0x6d96f2(0x546),'options':[_0x6d96f2(0x812),_0x6d96f2(0x2d1),_0x6d96f2(0x5e5),_0x6d96f2(0x42b)],'answer':0x2},{'question':_0x6d96f2(0x38b),'options':['Classification',_0x6d96f2(0xb9f),_0x6d96f2(0xa7b),_0x6d96f2(0x43a)],'answer':0x2},{'question':_0x6d96f2(0x38f),'options':[_0x6d96f2(0xa96),_0x6d96f2(0x943),_0x6d96f2(0x758),_0x6d96f2(0x1f3)],'answer':0x1},{'question':'Data\x20mining\x20is\x20only\x20concerned\x20with\x20structured\x20data\x20from\x20relational\x20databases.','options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x7ab),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x97f),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'Decision\x20trees\x20can\x20be\x20applied\x20in\x20both\x20classification\x20and\x20regression\x20tasks.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x362),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x429),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x16d),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x9a0),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x772),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':'Data\x20mining\x20tasks\x20can\x20be\x20either\x20predictive\x20or\x20descriptive\x20in\x20nature.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],dmQuestions2=[{'question':_0x6d96f2(0x9c9),'options':['A\x20table\x20column',_0x6d96f2(0x59d),_0x6d96f2(0x622),_0x6d96f2(0x20e)],'answer':0x1},{'question':_0x6d96f2(0x6d4),'options':[_0x6d96f2(0x3d3),_0x6d96f2(0x437),_0x6d96f2(0xa62),_0x6d96f2(0x23f)],'answer':0x2},{'question':_0x6d96f2(0x9eb),'options':[_0x6d96f2(0x15c),_0x6d96f2(0x6a2),_0x6d96f2(0x9fd),'Rows'],'answer':0x1},{'question':_0x6d96f2(0x928),'options':[_0x6d96f2(0x829),_0x6d96f2(0xcc),_0x6d96f2(0x247),'Ratio-scaled'],'answer':0x0},{'question':_0x6d96f2(0x831),'options':['Nominal',_0x6d96f2(0x247),_0x6d96f2(0x594),_0x6d96f2(0x78d)],'answer':0x1},{'question':'What\x20is\x20the\x20main\x20difference\x20between\x20interval\x20and\x20ratio-scaled\x20attributes?','options':[_0x6d96f2(0x5ef),'Ratio\x20scales\x20have\x20a\x20true\x20zero\x20point',_0x6d96f2(0xaa),_0x6d96f2(0x965)],'answer':0x1},{'question':_0x6d96f2(0x44c),'options':[_0x6d96f2(0x873),'Interval-scaled\x20attributes',_0x6d96f2(0xb4a),_0x6d96f2(0xa15)],'answer':0x1},{'question':_0x6d96f2(0x676),'options':[_0x6d96f2(0x9e),'Binary\x20variables',_0x6d96f2(0x7fe),_0x6d96f2(0xabd)],'answer':0x2},{'question':_0x6d96f2(0x32b),'options':[_0x6d96f2(0x6b1),_0x6d96f2(0x26e),'Proximity\x20measures',_0x6d96f2(0x190)],'answer':0x1},{'question':_0x6d96f2(0x971),'options':['Mode',_0x6d96f2(0x90e),_0x6d96f2(0x66e),_0x6d96f2(0x2bb)],'answer':0x2},{'question':_0x6d96f2(0x6a0),'options':[_0x6d96f2(0x2bb),_0x6d96f2(0x1cf),_0x6d96f2(0x90e),_0x6d96f2(0x601)],'answer':0x2},{'question':_0x6d96f2(0x5da),'options':[_0x6d96f2(0xa3),_0x6d96f2(0x3f2),_0x6d96f2(0x273),'The\x20difference\x20between\x20the\x20mean\x20and\x20median'],'answer':0x1},{'question':_0x6d96f2(0x6e1),'options':[_0x6d96f2(0x142),_0x6d96f2(0x61b),'An\x20outlier',_0x6d96f2(0xa30)],'answer':0x2},{'question':_0x6d96f2(0x526),'options':[_0x6d96f2(0x189),'Scatter\x20plot',_0x6d96f2(0x64e),_0x6d96f2(0x97)],'answer':0x2},{'question':_0x6d96f2(0x203),'options':[_0x6d96f2(0xb34),_0x6d96f2(0x8e2),_0x6d96f2(0x3dd),_0x6d96f2(0xa84)],'answer':0x1},{'question':'A\x20measure\x20that\x20describes\x20how\x20different\x20two\x20data\x20objects\x20are\x20is\x20called:','options':['Similarity',_0x6d96f2(0x420),_0x6d96f2(0x898),_0x6d96f2(0x26e)],'answer':0x1},{'question':'Which\x20is\x20not\x20a\x20common\x20measure\x20of\x20dissimilarity?','options':[_0x6d96f2(0x6da),_0x6d96f2(0x5fc),_0x6d96f2(0x482),_0x6d96f2(0x53d)],'answer':0x2},{'question':'The\x20Manhattan\x20distance\x20is\x20also\x20known\x20as:','options':[_0x6d96f2(0x6da),'Minkowski\x20distance',_0x6d96f2(0x6ed),_0x6d96f2(0x6f0)],'answer':0x2},{'question':_0x6d96f2(0x568),'options':[_0x6d96f2(0x2e7),_0x6d96f2(0x2eb),_0x6d96f2(0x489),_0x6d96f2(0x101)],'answer':0x2},{'question':'Cosine\x20similarity\x20is\x20commonly\x20used\x20for\x20comparing:','options':[_0x6d96f2(0x3d2),'Nominal\x20attributes',_0x6d96f2(0x719),'Document\x20term-frequency\x20vectors'],'answer':0x3},{'question':_0x6d96f2(0x646),'options':[_0x6d96f2(0xb9a),_0x6d96f2(0x148),'Asymmetric\x20binary\x20variables',_0x6d96f2(0x318)],'answer':0x2},{'question':_0x6d96f2(0x564),'options':['Excluding\x20non-numeric\x20data','Using\x20the\x20sum\x20of\x20all\x20similarity\x20values','Applying\x20a\x20weighted\x20formula',_0x6d96f2(0x100)],'answer':0x2},{'question':'The\x20Euclidean\x20distance\x20between\x20two\x20points\x20is\x20equivalent\x20to:','options':['The\x20sum\x20of\x20their\x20absolute\x20differences',_0x6d96f2(0xa60),_0x6d96f2(0xa9b),_0x6d96f2(0x390)],'answer':0x2},{'question':_0x6d96f2(0x8c5),'options':[_0x6d96f2(0x83d),_0x6d96f2(0x9d8),_0x6d96f2(0x548),'Subtracting\x20median'],'answer':0x0},{'question':_0x6d96f2(0x441),'options':['Have\x20no\x20similarity',_0x6d96f2(0x8b2),_0x6d96f2(0x840),_0x6d96f2(0x444)],'answer':0x1},{'question':_0x6d96f2(0x39b),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':'True\x20or\x20False:\x20A\x20binary\x20attribute\x20always\x20represents\x20an\x20ordinal\x20scale.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20An\x20asymmetric\x20binary\x20attribute\x20gives\x20equal\x20importance\x20to\x20both\x20states.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20In\x20interval-scaled\x20attributes,\x20there\x20is\x20no\x20true\x20zero\x20point.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x491),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x9d5),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x4db),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x15b),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xb26),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xae0),'options':['True',_0x6d96f2(0x72f)],'answer':0x0}],dmQuestions3=[{'question':'What\x20is\x20a\x20common\x20issue\x20with\x20real-world\x20databases?','options':[_0x6d96f2(0x735),'They\x20have\x20perfect\x20accuracy',_0x6d96f2(0x37b),_0x6d96f2(0x5e0)],'answer':0x2},{'question':_0x6d96f2(0x8bf),'options':[_0x6d96f2(0xb0a),_0x6d96f2(0x271),_0x6d96f2(0x596),'Believability'],'answer':0x2},{'question':'Data\x20cleaning\x20in\x20data\x20preprocessing\x20includes:','options':[_0x6d96f2(0x31d),_0x6d96f2(0x56e),_0x6d96f2(0x77b),_0x6d96f2(0x30d)],'answer':0x2},{'question':_0x6d96f2(0x9de),'options':['Missing\x20Completely\x20at\x20Random\x20(MCAR)',_0x6d96f2(0x8df),'Missing\x20Not\x20at\x20Random\x20(MNAR)','None\x20of\x20the\x20above'],'answer':0x0},{'question':_0x6d96f2(0x3f7),'options':[_0x6d96f2(0x4ab),_0x6d96f2(0xa44),_0x6d96f2(0x98),'Duplicate\x20missing\x20values'],'answer':0x1},{'question':_0x6d96f2(0xb06),'options':[_0x6d96f2(0x92e),'Assigning\x20each\x20bin\x20a\x20different\x20width',_0x6d96f2(0xa67),_0x6d96f2(0x15f)],'answer':0x2},{'question':'How\x20does\x20the\x20clustering\x20method\x20help\x20handle\x20noisy\x20data?','options':['By\x20adding\x20more\x20noise',_0x6d96f2(0x82f),_0x6d96f2(0xaf),_0x6d96f2(0x5e8)],'answer':0x1},{'question':_0x6d96f2(0x876),'options':[_0x6d96f2(0x35a),_0x6d96f2(0x684),_0x6d96f2(0x864),_0x6d96f2(0x53e)],'answer':0x1},{'question':_0x6d96f2(0x9a3),'options':[_0x6d96f2(0x647),_0x6d96f2(0x5eb),_0x6d96f2(0x37d),_0x6d96f2(0xa4b)],'answer':0x1},{'question':_0x6d96f2(0x50f),'options':[_0x6d96f2(0x134),_0x6d96f2(0x4c6),_0x6d96f2(0x984),_0x6d96f2(0x9a2)],'answer':0x1},{'question':_0x6d96f2(0x528),'options':[_0x6d96f2(0x90e),_0x6d96f2(0x1cf),_0x6d96f2(0x2bb),_0x6d96f2(0x231)],'answer':0x1},{'question':_0x6d96f2(0x452),'options':[_0x6d96f2(0x3e3),_0x6d96f2(0x1c5),_0x6d96f2(0xb1a),_0x6d96f2(0x7dc)],'answer':0x1},{'question':_0x6d96f2(0x201),'options':['Detecting\x20errors\x20based\x20on\x20domain\x20knowledge',_0x6d96f2(0xa2e),_0x6d96f2(0xa34),_0x6d96f2(0x8cc)],'answer':0x0},{'question':'Which\x20missing\x20data\x20type\x20can\x20be\x20predicted\x20based\x20on\x20other\x20variables\x20in\x20the\x20data\x20set?','options':[_0x6d96f2(0xdf),_0x6d96f2(0x9a9),_0x6d96f2(0x1f9),_0x6d96f2(0x1d7)],'answer':0x1},{'question':'In\x20equal-depth\x20binning,\x20each\x20bin:','options':[_0x6d96f2(0x539),'Has\x20equal-sized\x20intervals',_0x6d96f2(0x78c),_0x6d96f2(0x3de)],'answer':0x0},{'question':_0x6d96f2(0x3ad),'options':[_0x6d96f2(0x5d5),_0x6d96f2(0x3a4),_0x6d96f2(0x675),_0x6d96f2(0xb07)],'answer':0x1},{'question':_0x6d96f2(0x1ba),'options':[_0x6d96f2(0x195),_0x6d96f2(0x51a),'To\x20increase\x20data\x20variance','To\x20ignore\x20irrelevant\x20data'],'answer':0x0},{'question':'The\x20process\x20of\x20reducing\x20the\x20number\x20of\x20attributes\x20in\x20a\x20data\x20set\x20is\x20called:','options':['Data\x20transformation',_0x6d96f2(0xf1),'Dimensionality\x20reduction','Data\x20discretization'],'answer':0x2},{'question':_0x6d96f2(0x122),'options':[_0x6d96f2(0x832),'Normalization',_0x6d96f2(0x315),_0x6d96f2(0x231)],'answer':0x1},{'question':_0x6d96f2(0x1b0),'options':['All\x20data\x20having\x20the\x20same\x20accuracy',_0x6d96f2(0x992),_0x6d96f2(0xa13),_0x6d96f2(0x3bb)],'answer':0x1},{'question':_0x6d96f2(0xb98),'options':['True','False'],'answer':0x0},{'question':_0x6d96f2(0x87d),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xb61),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Binning\x20is\x20only\x20applicable\x20to\x20categorical\x20data\x20for\x20smoothing.','options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20Data\x20integration\x20involves\x20combining\x20data\x20from\x20multiple\x20sources\x20into\x20a\x20coherent\x20data\x20store.','options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':'True\x20or\x20False:\x20Normalization\x20is\x20a\x20method\x20to\x20handle\x20missing\x20values.','options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x740),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xa88),'options':['True','False'],'answer':0x0},{'question':_0x6d96f2(0x507),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x3f4),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],db2Questions1=[{'question':_0x6d96f2(0x25d),'options':[_0x6d96f2(0x5b8),_0x6d96f2(0x235),_0x6d96f2(0xb58),_0x6d96f2(0x736)],'answer':0x1},{'question':_0x6d96f2(0x323),'options':[_0x6d96f2(0xa90),'Flash\x20memory',_0x6d96f2(0x341),'Magnetic\x20tape'],'answer':0x2},{'question':_0x6d96f2(0x5b2),'options':[_0x6d96f2(0x763),_0x6d96f2(0x71a),_0x6d96f2(0x251),_0x6d96f2(0x77c)],'answer':0x3},{'question':_0x6d96f2(0x338),'options':[_0x6d96f2(0x633),_0x6d96f2(0x56c),_0x6d96f2(0xa90),_0x6d96f2(0x5a6)],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20terms\x20describes\x20a\x20circular\x20track\x20on\x20a\x20disk?','options':[_0x6d96f2(0x721),'Cylinder','Platter','Track'],'answer':0x3},{'question':'Which\x20component\x20is\x20responsible\x20for\x20reading\x20and\x20writing\x20on\x20disk\x20platters?','options':[_0x6d96f2(0xa2a),'Read-write\x20head',_0x6d96f2(0x7df),_0x6d96f2(0xb3e)],'answer':0x1},{'question':'In\x20a\x20single-sided\x20disk\x20with\x20one\x20read-write\x20head,\x20data\x20is:','options':['Stored\x20on\x20both\x20sides\x20of\x20the\x20platter',_0x6d96f2(0xa3c),'Divided\x20into\x20partitions','Divided\x20into\x20sectors'],'answer':0x1},{'question':'Which\x20concept\x20allows\x20multiple\x20concurrent\x20processes\x20to\x20access\x20a\x20buffer?','options':['Single\x20buffering',_0x6d96f2(0x951),_0x6d96f2(0x91c),'Interleaved\x20buffering'],'answer':0x3},{'question':_0x6d96f2(0x2ad),'options':[_0x6d96f2(0x111),_0x6d96f2(0x7b4),_0x6d96f2(0x69e),_0x6d96f2(0x804)],'answer':0x0},{'question':_0x6d96f2(0x576),'options':['Single\x20disk\x20platter',_0x6d96f2(0x2db),_0x6d96f2(0x524),_0x6d96f2(0xa80)],'answer':0x2},{'question':_0x6d96f2(0x86),'options':[_0x6d96f2(0x614),'Cylinder\x20caching',_0x6d96f2(0x951),'Sector\x20linking'],'answer':0x1},{'question':_0x6d96f2(0x369),'options':[_0x6d96f2(0xa16),_0x6d96f2(0x3ee),'LRU','Clock\x20policy'],'answer':0x1},{'question':_0x6d96f2(0xaf4),'options':['1','Negative','Zero','None\x20of\x20the\x20above'],'answer':0x2},{'question':_0x6d96f2(0x7d9),'options':[_0x6d96f2(0xa16),_0x6d96f2(0x1b6),_0x6d96f2(0xb99),_0x6d96f2(0x733)],'answer':0x1},{'question':_0x6d96f2(0x191),'options':['Sector',_0x6d96f2(0x588),_0x6d96f2(0x5ee),_0x6d96f2(0xaaf)],'answer':0x2},{'question':'Which\x20buffer\x20replacement\x20strategy\x20uses\x20a\x20rotating\x20hand\x20to\x20mark\x20buffers?','options':[_0x6d96f2(0xa16),'Clock\x20policy',_0x6d96f2(0x1b6),_0x6d96f2(0x3ee)],'answer':0x1},{'question':_0x6d96f2(0x674),'options':[_0x6d96f2(0x426),'It\x20is\x20prioritized\x20for\x20replacement',_0x6d96f2(0x1ee),_0x6d96f2(0xf4)],'answer':0x1},{'question':_0x6d96f2(0x475),'options':[_0x6d96f2(0x212),'Disk\x20packs','Disk\x20blocks',_0x6d96f2(0x13f)],'answer':0x0},{'question':_0x6d96f2(0x292),'options':[_0x6d96f2(0xe9),'With\x20parallel\x20processes',_0x6d96f2(0xd2),_0x6d96f2(0x87)],'answer':0x1},{'question':'In\x20buffer\x20management,\x20which\x20condition\x20necessitates\x20a\x20write-back\x20operation?','options':[_0x6d96f2(0x300),_0x6d96f2(0x7b8),_0x6d96f2(0xb11),_0x6d96f2(0x98f)],'answer':0x2},{'question':_0x6d96f2(0x80d),'options':[_0x6d96f2(0x2ab),_0x6d96f2(0x8ba),_0x6d96f2(0x8e3),_0x6d96f2(0x41b)],'answer':0x1},{'question':_0x6d96f2(0xa40),'options':['Sequential\x20buffering',_0x6d96f2(0x951),_0x6d96f2(0x5e2),_0x6d96f2(0x6ea)],'answer':0x0},{'question':'The\x20hardware\x20address\x20of\x20a\x20block\x20does\x20NOT\x20contain:','options':[_0x6d96f2(0x672),'Track\x20number',_0x6d96f2(0x5cc),'Sector\x20frequency'],'answer':0x3},{'question':_0x6d96f2(0x3bf),'options':[_0x6d96f2(0x18a),'Large\x20capacity',_0x6d96f2(0x8f0),_0x6d96f2(0x30e)],'answer':0x0},{'question':_0x6d96f2(0x4c3),'options':[_0x6d96f2(0xa16),'LRU',_0x6d96f2(0xb99),_0x6d96f2(0x10c)],'answer':0x0},{'question':'The\x20main\x20purpose\x20of\x20secondary\x20storage\x20is\x20to\x20provide\x20a\x20persistent,\x20long-term\x20storage\x20option.','options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':'Magnetic\x20disks\x20are\x20considered\x20non-volatile\x20storage.','options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x8e5),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x174),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x748),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x4d7),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x764),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x5a3),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x58d),'options':['True','False'],'answer':0x0},{'question':_0x6d96f2(0x459),'options':['True',_0x6d96f2(0x72f)],'answer':0x1}],db2Questions2=[{'question':'What\x20is\x20the\x20purpose\x20of\x20a\x20file\x20header\x20in\x20a\x20database?','options':[_0x6d96f2(0x5f6),_0x6d96f2(0x5ce),'Indexing\x20records',_0x6d96f2(0x806)],'answer':0x1},{'question':_0x6d96f2(0x663),'options':[_0x6d96f2(0x350),'String',_0x6d96f2(0x2b0),_0x6d96f2(0x32e)],'answer':0x3},{'question':_0x6d96f2(0x343),'options':[_0x6d96f2(0x6de),_0x6d96f2(0x1e8),_0x6d96f2(0xa6c),_0x6d96f2(0x3c0)],'answer':0x1},{'question':'In\x20an\x20unspanned\x20record\x20organization:','options':[_0x6d96f2(0x6c5),_0x6d96f2(0x8d4),_0x6d96f2(0xa0e),_0x6d96f2(0x431)],'answer':0x0},{'question':_0x6d96f2(0x73f),'options':[_0x6d96f2(0x83),_0x6d96f2(0x7db),'Contiguous',_0x6d96f2(0x844)],'answer':0x2},{'question':_0x6d96f2(0xcf),'options':[_0x6d96f2(0x4ce),_0x6d96f2(0xaf6),'All\x20records\x20are\x20of\x20fixed\x20length',_0x6d96f2(0xaef)],'answer':0x1},{'question':_0x6d96f2(0x658),'options':[_0x6d96f2(0x266),_0x6d96f2(0x1a2),_0x6d96f2(0x14f),'BLOB\x20file\x20organization'],'answer':0x0},{'question':_0x6d96f2(0x1fa),'options':[_0x6d96f2(0x163),_0x6d96f2(0x9b3),_0x6d96f2(0x45a),_0x6d96f2(0x7d3)],'answer':0x2},{'question':'Which\x20data\x20structure\x20is\x20essential\x20for\x20sequential\x20file\x20organization?','options':[_0x6d96f2(0x45e),_0x6d96f2(0x861),_0x6d96f2(0x727),'Array'],'answer':0x2},{'question':_0x6d96f2(0x3df),'options':[_0x6d96f2(0x40f),_0x6d96f2(0x7ce),_0x6d96f2(0xa85),_0x6d96f2(0x5c0)],'answer':0x1},{'question':_0x6d96f2(0x9f4),'options':['Heap\x20files',_0x6d96f2(0x361),_0x6d96f2(0x59c),_0x6d96f2(0x5cd)],'answer':0x0},{'question':_0x6d96f2(0x6ec),'options':[_0x6d96f2(0x137),_0x6d96f2(0x785),_0x6d96f2(0x9b7),_0x6d96f2(0x51c)],'answer':0x1},{'question':_0x6d96f2(0x931),'options':[_0x6d96f2(0x62b),_0x6d96f2(0xb8),'It\x20makes\x20file\x20reading\x20slower',_0x6d96f2(0x327)],'answer':0x2},{'question':_0x6d96f2(0x728),'options':[_0x6d96f2(0x4b8),'Points\x20to\x20a\x20record\x20in\x20memory',_0x6d96f2(0x344),'Reads\x20multiple\x20records\x20at\x20once'],'answer':0x1},{'question':'The\x20correct\x20blocking\x20factor\x20(bfr)\x20for\x20unspanned\x20records\x20with\x20a\x20block\x20size\x20of\x20512\x20bytes\x20and\x20record\x20size\x20of\x20101\x20bytes\x20is:','options':['5','6','7','8'],'answer':0x0},{'question':_0x6d96f2(0x996),'options':[_0x6d96f2(0xad4),_0x6d96f2(0x9cb),'It\x20uses\x20a\x20hashing\x20algorithm','It\x20reads\x20all\x20blocks\x20at\x20once'],'answer':0x1},{'question':_0x6d96f2(0x20a),'options':[_0x6d96f2(0x358),_0x6d96f2(0xa95),_0x6d96f2(0x52a),_0x6d96f2(0x85b)],'answer':0x0},{'question':_0x6d96f2(0x6d5),'options':['Fixed-length\x20fields',_0x6d96f2(0xdb),'Spanned\x20blocks','Blocking\x20factor'],'answer':0x2},{'question':'What\x20happens\x20during\x20the\x20\x27close\x27\x20operation\x20on\x20a\x20file?','options':[_0x6d96f2(0x8db),_0x6d96f2(0x399),_0x6d96f2(0x516),'The\x20file\x20is\x20saved'],'answer':0x1},{'question':_0x6d96f2(0x38a),'options':[_0x6d96f2(0x388),_0x6d96f2(0x13e),_0x6d96f2(0x325),_0x6d96f2(0x4fc)],'answer':0x3},{'question':_0x6d96f2(0xeb),'options':['True','False'],'answer':0x0},{'question':_0x6d96f2(0xb7d),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x57c),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20Contiguous\x20allocation\x20involves\x20pointers\x20to\x20connect\x20different\x20blocks\x20of\x20a\x20file.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x291),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x155),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x514),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Inserting\x20a\x20record\x20into\x20an\x20ordered\x20file\x20is\x20generally\x20time-consuming.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x3b7),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x5b9),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1}],db2Questions3=[{'question':_0x6d96f2(0x8d),'options':['To\x20compress\x20data','To\x20organize\x20records\x20into\x20specific\x20memory\x20locations','To\x20encrypt\x20data','To\x20increase\x20storage\x20capacity'],'answer':0x1},{'question':_0x6d96f2(0x5a9),'options':[_0x6d96f2(0x465),'Distributing\x20records\x20uniformly\x20across\x20the\x20address\x20space','Grouping\x20similar\x20records\x20in\x20the\x20same\x20location',_0x6d96f2(0x585)],'answer':0x1},{'question':_0x6d96f2(0xae5),'options':[_0x6d96f2(0x244),'Searches\x20sequentially\x20for\x20an\x20empty\x20slot',_0x6d96f2(0xa81),_0x6d96f2(0xa06)],'answer':0x1},{'question':_0x6d96f2(0xb57),'options':[_0x6d96f2(0xff),'By\x20dividing\x20records\x20into\x20smaller\x20parts','By\x20duplicating\x20the\x20record\x20in\x20another\x20location',_0x6d96f2(0x279)],'answer':0x0},{'question':_0x6d96f2(0x334),'options':['Speeds\x20up\x20computations','Assigns\x20unique\x20addresses\x20to\x20each\x20value',_0x6d96f2(0x22b),_0x6d96f2(0xacc)],'answer':0x2},{'question':'What\x20is\x20an\x20advantage\x20of\x20using\x20dynamic\x20hashing?','options':[_0x6d96f2(0x7a7),_0x6d96f2(0x28f),_0x6d96f2(0x78f),_0x6d96f2(0x2f5)],'answer':0x2},{'question':_0x6d96f2(0x4aa),'options':['It\x20occurs\x20in\x20main\x20memory',_0x6d96f2(0x2b7),_0x6d96f2(0xb0e),_0x6d96f2(0x65a)],'answer':0x0},{'question':_0x6d96f2(0xba0),'options':[_0x6d96f2(0x463),_0x6d96f2(0xa45),_0x6d96f2(0x78a),_0x6d96f2(0x7da)],'answer':0x1},{'question':_0x6d96f2(0x1a1),'options':['It\x20uses\x20a\x20fixed\x20hash\x20table\x20size',_0x6d96f2(0x2ec),_0x6d96f2(0xa1c),_0x6d96f2(0x552)],'answer':0x2},{'question':_0x6d96f2(0x8a3),'options':['Increased\x20memory\x20cost',_0x6d96f2(0x3ec),_0x6d96f2(0x80c),_0x6d96f2(0x767)],'answer':0x1},{'question':_0x6d96f2(0x1b2),'options':[_0x6d96f2(0x320),_0x6d96f2(0xad6),_0x6d96f2(0x1c1),'Directly\x20after\x20the\x20previous\x20record'],'answer':0x0},{'question':'What\x20is\x20the\x20primary\x20goal\x20of\x20a\x20good\x20hash\x20function?','options':[_0x6d96f2(0x73c),_0x6d96f2(0x8c4),_0x6d96f2(0x3b9),_0x6d96f2(0x2d7)],'answer':0x1},{'question':_0x6d96f2(0xb94),'options':[_0x6d96f2(0x165),_0x6d96f2(0x53b),'The\x20total\x20memory\x20available','The\x20count\x20of\x20buckets\x20used'],'answer':0x1},{'question':_0x6d96f2(0xb50),'options':['Linear\x20probing',_0x6d96f2(0x73d),'Extendible\x20hashing',_0x6d96f2(0x9c8)],'answer':0x2},{'question':_0x6d96f2(0xa78),'options':['The\x20directory\x20size\x20increases','Existing\x20records\x20are\x20deleted',_0x6d96f2(0xa63),_0x6d96f2(0xad0)],'answer':0x2},{'question':_0x6d96f2(0x728),'options':['Deletes\x20a\x20record',_0x6d96f2(0x664),_0x6d96f2(0x344),'Reads\x20multiple\x20records\x20at\x20once'],'answer':0x1},{'question':_0x6d96f2(0x996),'options':[_0x6d96f2(0xad4),_0x6d96f2(0x9cb),_0x6d96f2(0x169),_0x6d96f2(0xae6)],'answer':0x1},{'question':_0x6d96f2(0x20a),'options':[_0x6d96f2(0x358),_0x6d96f2(0xa95),_0x6d96f2(0x52a),_0x6d96f2(0x85b)],'answer':0x0},{'question':'Why\x20can\x20collisions\x20occur\x20in\x20hashing?','options':[_0x6d96f2(0x6e3),'Because\x20address\x20space\x20is\x20smaller\x20than\x20hash\x20field\x20space',_0x6d96f2(0x62e),_0x6d96f2(0x6ca)],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20collision\x20resolution\x20technique?','options':[_0x6d96f2(0x73d),_0x6d96f2(0x882),_0x6d96f2(0x621),'Mirroring'],'answer':0x3},{'question':'What\x20is\x20chaining\x20in\x20hashing?','options':[_0x6d96f2(0x949),'It\x20creates\x20overflow\x20positions\x20for\x20colliding\x20records','It\x20deletes\x20repeated\x20records',_0x6d96f2(0x944)],'answer':0x1},{'question':_0x6d96f2(0x696),'options':['Uses\x20only\x20one\x20hash\x20function',_0x6d96f2(0x357),_0x6d96f2(0xa27),_0x6d96f2(0xad9)],'answer':0x2},{'question':'What\x20is\x20a\x20bucket\x20in\x20external\x20hashing?','options':[_0x6d96f2(0x6ab),_0x6d96f2(0x70c),_0x6d96f2(0x82),_0x6d96f2(0x1c2)],'answer':0x0},{'question':'In\x20a\x20bucket,\x20what\x20happens\x20when\x20it\x20overflows?','options':[_0x6d96f2(0x941),'An\x20additional\x20linked\x20list\x20is\x20created',_0x6d96f2(0x531),_0x6d96f2(0x270)],'answer':0x1},{'question':_0x6d96f2(0x480),'options':['Constantly\x20changing\x20number\x20of\x20buckets',_0x6d96f2(0x689),_0x6d96f2(0x3e6),'Dynamic\x20directory'],'answer':0x1},{'question':_0x6d96f2(0x88c),'options':[_0x6d96f2(0x766),_0x6d96f2(0x63c),_0x6d96f2(0xa64),_0x6d96f2(0xc9)],'answer':0x2},{'question':_0x6d96f2(0x9b5),'options':['Lack\x20of\x20memory','Inefficient\x20use\x20of\x20buckets',_0x6d96f2(0x1fc),_0x6d96f2(0x7a3)],'answer':0x2},{'question':_0x6d96f2(0x63b),'options':[_0x6d96f2(0x71e),_0x6d96f2(0xb76),_0x6d96f2(0x8f),_0x6d96f2(0x3b6)],'answer':0x1},{'question':_0x6d96f2(0x6e5),'options':[_0x6d96f2(0x3d5),_0x6d96f2(0x10e),_0x6d96f2(0xac0),_0x6d96f2(0x9f7)],'answer':0x0},{'question':_0x6d96f2(0x29a),'options':[_0x6d96f2(0xb53),_0x6d96f2(0x3ff),_0x6d96f2(0x97b),_0x6d96f2(0x882)],'answer':0x1},{'question':_0x6d96f2(0x7a2),'options':['A\x20record\x20identifier','Memory\x20space',_0x6d96f2(0x983),_0x6d96f2(0x834)],'answer':0x0},{'question':_0x6d96f2(0x573),'options':[_0x6d96f2(0x90d),'0.5\x20and\x200.7',_0x6d96f2(0x144),_0x6d96f2(0x77f)],'answer':0x2},{'question':'Which\x20hashing\x20type\x20dynamically\x20expands\x20with\x20data?','options':['Extendible\x20hashing','Static\x20hashing',_0x6d96f2(0x662),'RAID\x20hashing'],'answer':0x0},{'question':_0x6d96f2(0x6d3),'options':[_0x6d96f2(0xad3),_0x6d96f2(0x3ec),_0x6d96f2(0x23b),_0x6d96f2(0x74a)],'answer':0x1},{'question':_0x6d96f2(0x908),'options':['Purpose\x20of\x20addressing\x20storage',_0x6d96f2(0x9b6),_0x6d96f2(0x1da),'Storage\x20cost'],'answer':0x2}],db2Questions4=[{'question':'What\x20is\x20the\x20primary\x20storage\x20in\x20a\x20computer\x20system?','options':[_0x6d96f2(0x5b8),_0x6d96f2(0xa07),_0x6d96f2(0x1ea),_0x6d96f2(0xa4d)],'answer':0x1},{'question':'Which\x20type\x20of\x20storage\x20is\x20characterized\x20as\x20non-volatile?','options':[_0x6d96f2(0x341),_0x6d96f2(0x235),'Secondary\x20storage',_0x6d96f2(0x736)],'answer':0x2},{'question':_0x6d96f2(0x3c8),'options':[_0x6d96f2(0x4d9),_0x6d96f2(0x64c),'To\x20encrypt\x20data','To\x20improve\x20network\x20speed'],'answer':0x0},{'question':_0x6d96f2(0x56d),'options':[_0x6d96f2(0xb7a),'Data\x20Backup\x20Management\x20System',_0x6d96f2(0x71d),'Data\x20Base\x20Management\x20Software'],'answer':0x0},{'question':_0x6d96f2(0x79f),'options':[_0x6d96f2(0x89b),'Flash\x20memory',_0x6d96f2(0x7c3),_0x6d96f2(0x633)],'answer':0x2},{'question':'What\x20is\x20a\x20sector\x20on\x20a\x20disk?','options':[_0x6d96f2(0x135),'A\x20collection\x20of\x20bytes',_0x6d96f2(0xb28),'A\x20fixed-size\x20unit\x20of\x20data'],'answer':0x3},{'question':_0x6d96f2(0xa92),'options':[_0x6d96f2(0x9d0),_0x6d96f2(0x81),_0x6d96f2(0x5a4),_0x6d96f2(0x34d)],'answer':0x3},{'question':_0x6d96f2(0x3ea),'options':['To\x20increase\x20the\x20size\x20of\x20data',_0x6d96f2(0x919),'To\x20reduce\x20the\x20number\x20of\x20records','To\x20encrypt\x20data'],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20is\x20a\x20buffer\x20replacement\x20strategy?','options':[_0x6d96f2(0x106),_0x6d96f2(0xa31),_0x6d96f2(0x708),_0x6d96f2(0x536)],'answer':0x0},{'question':_0x6d96f2(0x938),'options':[_0x6d96f2(0x7ef),'A\x20method\x20of\x20data\x20encryption','A\x20type\x20of\x20storage\x20device',_0x6d96f2(0x4cf)],'answer':0x0},{'question':_0x6d96f2(0xb68),'options':['They\x20can\x20be\x20easily\x20accessed',_0x6d96f2(0x6b5),_0x6d96f2(0xab1),'They\x20are\x20volatile'],'answer':0x1},{'question':_0x6d96f2(0x529),'options':[_0x6d96f2(0x5b3),_0x6d96f2(0xa01),'In\x20a\x20linear\x20fashion',_0x6d96f2(0x8be)],'answer':0x1},{'question':_0x6d96f2(0x241),'options':[_0x6d96f2(0xb62),_0x6d96f2(0xb7b),_0x6d96f2(0x434),'To\x20encrypt\x20data'],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20describes\x20a\x20cylinder\x20in\x20disk\x20storage?','options':[_0x6d96f2(0x5fa),_0x6d96f2(0xbd),'A\x20collection\x20of\x20sectors',_0x6d96f2(0x9a1)],'answer':0x1},{'question':_0x6d96f2(0x77a),'options':['Using\x20two\x20disks\x20for\x20redundancy','Using\x20two\x20buffers\x20to\x20read\x20and\x20write\x20data\x20simultaneously',_0x6d96f2(0xac3),_0x6d96f2(0x385)],'answer':0x1},{'question':'What\x20happens\x20when\x20a\x20block\x20is\x20replaced\x20in\x20a\x20buffer?','options':[_0x6d96f2(0x14b),_0x6d96f2(0x8cd),_0x6d96f2(0x8a9),_0x6d96f2(0x673)],'answer':0x1},{'question':_0x6d96f2(0x863),'options':[_0x6d96f2(0x97c),_0x6d96f2(0x521),_0x6d96f2(0x768),_0x6d96f2(0x29e)],'answer':0x1},{'question':_0x6d96f2(0x27b),'options':[_0x6d96f2(0xb52),_0x6d96f2(0x8dc),_0x6d96f2(0x5ab),_0x6d96f2(0x4e3)],'answer':0x2},{'question':'What\x20is\x20the\x20main\x20advantage\x20of\x20using\x20cache\x20memory?','options':['It\x20is\x20non-volatile','It\x20increases\x20data\x20transfer\x20speeds','It\x20holds\x20permanent\x20data',_0x6d96f2(0x760)],'answer':0x1},{'question':_0x6d96f2(0x3a6),'options':['Increases\x20the\x20storage\x20capacity',_0x6d96f2(0x85d),_0x6d96f2(0x7a9),_0x6d96f2(0xaac)],'answer':0x1},{'question':'What\x20is\x20a\x20common\x20block\x20size\x20range\x20for\x20disk\x20storage?','options':[_0x6d96f2(0x3e5),_0x6d96f2(0x58f),_0x6d96f2(0x3a9),_0x6d96f2(0x8b9)],'answer':0x1},{'question':'Which\x20type\x20of\x20storage\x20is\x20typically\x20used\x20for\x20long-term\x20data\x20retention?','options':[_0x6d96f2(0x341),_0x6d96f2(0x235),'Secondary\x20storage',_0x6d96f2(0x736)],'answer':0x2},{'question':_0x6d96f2(0xa3d),'options':[_0x6d96f2(0xadc),_0x6d96f2(0x8e6),_0x6d96f2(0x41a),'To\x20increase\x20processing\x20speed'],'answer':0x1},{'question':'What\x20is\x20the\x20main\x20function\x20of\x20a\x20disk\x20I/O\x20controller?','options':[_0x6d96f2(0x221),'To\x20control\x20the\x20transfer\x20of\x20data\x20between\x20memory\x20and\x20disk',_0x6d96f2(0x41a),'To\x20format\x20disks'],'answer':0x1},{'question':_0x6d96f2(0x432),'options':['Random\x20replacement','Least\x20recently\x20used\x20(LRU)','Last-in-first-out\x20(LIFO)','Sequential\x20access'],'answer':0x1},{'question':_0x6d96f2(0x466),'options':[_0x6d96f2(0x5b7),_0x6d96f2(0x706),'The\x20amount\x20of\x20data\x20in\x20a\x20block',_0x6d96f2(0x9e2)],'answer':0x0},{'question':_0x6d96f2(0x8ca),'options':[_0x6d96f2(0x1c9),'Data\x20is\x20written\x20from\x20the\x20buffer\x20to\x20the\x20disk',_0x6d96f2(0x782),_0x6d96f2(0x340)],'answer':0x1},{'question':_0x6d96f2(0x1ca),'options':[_0x6d96f2(0x9c4),_0x6d96f2(0xb4b),_0x6d96f2(0x986),_0x6d96f2(0xad8)],'answer':0x2},{'question':_0x6d96f2(0x60e),'options':[_0x6d96f2(0x76a),_0x6d96f2(0xa4),_0x6d96f2(0x11f),'It\x20has\x20a\x20higher\x20access\x20speed'],'answer':0x2},{'question':_0x6d96f2(0x862),'options':[_0x6d96f2(0x1d2),'By\x20allowing\x20simultaneous\x20reading\x20and\x20writing',_0x6d96f2(0xa7f),_0x6d96f2(0x76e)],'answer':0x1}],db2Questions5=[{'question':_0x6d96f2(0x640),'options':[_0x6d96f2(0x6fc),_0x6d96f2(0x7c4),_0x6d96f2(0x99b),'A\x20file\x20descriptor'],'answer':0x1},{'question':_0x6d96f2(0x7a8),'options':['Numeric',_0x6d96f2(0x83e),_0x6d96f2(0x121),'Boolean'],'answer':0x2},{'question':_0x6d96f2(0x199),'options':[_0x6d96f2(0x25c),_0x6d96f2(0x8f3),_0x6d96f2(0x30a),_0x6d96f2(0x87b)],'answer':0x0},{'question':_0x6d96f2(0x2cb),'options':[_0x6d96f2(0x97d),_0x6d96f2(0x1e6),_0x6d96f2(0xacb),_0x6d96f2(0x7f8)],'answer':0x1},{'question':_0x6d96f2(0x4ed),'options':[_0x6d96f2(0x4a8),'Average\x20number\x20of\x20file\x20records\x20stored\x20in\x20a\x20disk\x20block',_0x6d96f2(0x67e),_0x6d96f2(0x173)],'answer':0x1},{'question':_0x6d96f2(0xa11),'options':['When\x20records\x20are\x20of\x20fixed\x20length',_0x6d96f2(0xae3),_0x6d96f2(0x347),_0x6d96f2(0x854)],'answer':0x2},{'question':_0x6d96f2(0x22a),'options':['To\x20store\x20data\x20records','To\x20describe\x20the\x20file\x20and\x20its\x20contents','To\x20store\x20user\x20permissions',_0x6d96f2(0x93e)],'answer':0x1},{'question':_0x6d96f2(0x875),'options':[_0x6d96f2(0x4eb),_0x6d96f2(0x299),_0x6d96f2(0x97e),_0x6d96f2(0x643)],'answer':0x2},{'question':_0x6d96f2(0x464),'options':[_0x6d96f2(0x686),'Reading\x20the\x20whole\x20file\x20is\x20slow',_0x6d96f2(0x8de),_0x6d96f2(0x61e)],'answer':0x1},{'question':_0x6d96f2(0x6d2),'options':[_0x6d96f2(0x266),_0x6d96f2(0x3c9),_0x6d96f2(0x198),_0x6d96f2(0x14f)],'answer':0x1},{'question':_0x6d96f2(0xfd),'options':[_0x6d96f2(0x207),'The\x20size\x20of\x20the\x20blocks',_0x6d96f2(0xb93),_0x6d96f2(0xb2d)],'answer':0x2},{'question':_0x6d96f2(0xa58),'options':['6','5','4','7'],'answer':0x1},{'question':_0x6d96f2(0x9c6),'options':[_0x6d96f2(0xac4),_0x6d96f2(0x3b3),_0x6d96f2(0x7ba),'Only\x20the\x20first\x20record\x20is\x20checked'],'answer':0x2},{'question':_0x6d96f2(0x213),'options':[_0x6d96f2(0x8fe),_0x6d96f2(0x9c3),_0x6d96f2(0x554),_0x6d96f2(0xaca)],'answer':0x1},{'question':_0x6d96f2(0x141),'options':[_0x6d96f2(0xacf),_0x6d96f2(0x8a8),_0x6d96f2(0x167),_0x6d96f2(0x724)],'answer':0x2},{'question':'Which\x20of\x20the\x20following\x20is\x20a\x20characteristic\x20of\x20ordered\x20files?','options':[_0x6d96f2(0x280),_0x6d96f2(0x3e9),_0x6d96f2(0x3b4),_0x6d96f2(0x286)],'answer':0x2},{'question':_0x6d96f2(0x17b),'options':[_0x6d96f2(0x547),_0x6d96f2(0x22e),_0x6d96f2(0x890),'1\x20GB'],'answer':0x0},{'question':_0x6d96f2(0x84c),'options':[_0x6d96f2(0x85f),_0x6d96f2(0x5ad),_0x6d96f2(0x807),_0x6d96f2(0x574)],'answer':0x1},{'question':'What\x20is\x20the\x20effect\x20of\x20using\x20deletion\x20markers\x20in\x20ordered\x20files?','options':[_0x6d96f2(0x136),_0x6d96f2(0x11a),'They\x20simplify\x20record\x20insertion','They\x20eliminate\x20the\x20need\x20for\x20a\x20file\x20header'],'answer':0x1},{'question':_0x6d96f2(0x5d8),'options':['Contiguous\x20allocation',_0x6d96f2(0x4eb),_0x6d96f2(0x299),_0x6d96f2(0x643)],'answer':0x3},{'question':_0x6d96f2(0x808),'options':[_0x6d96f2(0x48a),_0x6d96f2(0x915),_0x6d96f2(0x86a),_0x6d96f2(0x56b)],'answer':0x1},{'question':'Which\x20operation\x20completes\x20file\x20access\x20by\x20releasing\x20buffers?','options':[_0x6d96f2(0x2e8),_0x6d96f2(0x84d),_0x6d96f2(0x8a8),_0x6d96f2(0xacf)],'answer':0x1},{'question':_0x6d96f2(0xfe),'options':['Fast\x20insertion',_0x6d96f2(0x680),_0x6d96f2(0xb9e),_0x6d96f2(0xb25)],'answer':0x2},{'question':_0x6d96f2(0x34b),'options':['Heap\x20file',_0x6d96f2(0x13e),_0x6d96f2(0x325),'Unordered\x20file'],'answer':0x1},{'question':'What\x20is\x20the\x20main\x20goal\x20of\x20good\x20file\x20organization?','options':[_0x6d96f2(0x4bd),'To\x20minimize\x20access\x20time',_0x6d96f2(0x717),'To\x20allow\x20for\x20unlimited\x20records'],'answer':0x1},{'question':_0x6d96f2(0x64a),'options':[_0x6d96f2(0x13e),_0x6d96f2(0x388),'Hashed\x20file',_0x6d96f2(0x4fc)],'answer':0x2},{'question':_0x6d96f2(0x780),'options':[_0x6d96f2(0x4f2),_0x6d96f2(0x95b),'Constant',_0x6d96f2(0x962)],'answer':0x1},{'question':_0x6d96f2(0x10d),'options':[_0x6d96f2(0x597),_0x6d96f2(0x8ea),'They\x20cannot\x20be\x20modified','They\x20are\x20always\x20full'],'answer':0x1},{'question':_0x6d96f2(0x639),'options':[_0x6d96f2(0x177),'Lower\x20blocking\x20factor\x20leads\x20to\x20better\x20utilization',_0x6d96f2(0x19d),_0x6d96f2(0x617)],'answer':0x1},{'question':_0x6d96f2(0x80f),'options':['They\x20contain\x20only\x20the\x20file\x20name',_0x6d96f2(0x500),_0x6d96f2(0xb8b),_0x6d96f2(0x2cf)],'answer':0x1}],irQuestions1=[{'question':_0x6d96f2(0xaab),'options':[_0x6d96f2(0x124),_0x6d96f2(0x365),_0x6d96f2(0x7ec),_0x6d96f2(0x2cd)],'answer':0x1},{'question':_0x6d96f2(0xb05),'options':[_0x6d96f2(0x3cb),_0x6d96f2(0x94f),_0x6d96f2(0x16c),'It\x20duplicates\x20document\x20entries'],'answer':0x0},{'question':'An\x20inverted\x20index\x20stores:','options':['Only\x20document\x20titles',_0x6d96f2(0x254),_0x6d96f2(0x561),_0x6d96f2(0x47b)],'answer':0x2},{'question':_0x6d96f2(0x6cf),'options':[_0x6d96f2(0x6fa),_0x6d96f2(0x9d9),_0x6d96f2(0x4b5),'Aggregation'],'answer':0x2},{'question':_0x6d96f2(0x49b),'options':[_0x6d96f2(0x317),_0x6d96f2(0x945),_0x6d96f2(0x2f8),'A\x20set\x20of\x20paragraphs'],'answer':0x1},{'question':_0x6d96f2(0x64b),'options':['Ranked\x20retrieval',_0x6d96f2(0x587),_0x6d96f2(0x50a),'Fuzzy\x20retrieval'],'answer':0x2},{'question':_0x6d96f2(0x1f4),'options':[_0x6d96f2(0x21d),'AND\x20queries',_0x6d96f2(0x6c3),_0x6d96f2(0x942)],'answer':0x1},{'question':_0x6d96f2(0x301),'options':['Only\x20one\x20term\x20must\x20appear','Both\x20terms\x20must\x20appear',_0x6d96f2(0x120),'Grouping\x20terms\x20by\x20category'],'answer':0x0},{'question':_0x6d96f2(0x4be),'options':[_0x6d96f2(0xab7),_0x6d96f2(0xb0f),_0x6d96f2(0x54c),'No\x20particular\x20order'],'answer':0x2},{'question':'The\x20term\x20frequency\x20(tf)\x20is\x20important\x20for:','options':[_0x6d96f2(0x86d),_0x6d96f2(0xafb),_0x6d96f2(0x356),_0x6d96f2(0xa5f)],'answer':0x2},{'question':_0x6d96f2(0x5ae),'options':[_0x6d96f2(0x392),_0x6d96f2(0xb44),'Is\x20processed\x20faster\x20than\x20regular\x20queries','Uses\x20tokenization\x20to\x20match\x20exact\x20phrases'],'answer':0x1},{'question':_0x6d96f2(0x4d8),'options':[_0x6d96f2(0xe6),_0x6d96f2(0x44b),_0x6d96f2(0xa51),_0x6d96f2(0xa73)],'answer':0x1},{'question':_0x6d96f2(0x220),'options':[_0x6d96f2(0x8c0),_0x6d96f2(0x920),_0x6d96f2(0x31b),'Provide\x20predictive\x20search\x20capability'],'answer':0x1},{'question':_0x6d96f2(0x153),'options':['Number\x20of\x20words\x20per\x20document',_0x6d96f2(0xb12),'Total\x20characters\x20in\x20a\x20document',_0x6d96f2(0x8b1)],'answer':0x1},{'question':_0x6d96f2(0x17c),'options':[_0x6d96f2(0x40c),_0x6d96f2(0x7fb),_0x6d96f2(0x305),_0x6d96f2(0x319)],'answer':0x2},{'question':_0x6d96f2(0x5c2),'options':[_0x6d96f2(0xb80),_0x6d96f2(0x39a),'Sorting\x20search\x20results',_0x6d96f2(0xf9)],'answer':0x1},{'question':_0x6d96f2(0x176),'options':[_0x6d96f2(0x3d7),_0x6d96f2(0x1e3),_0x6d96f2(0x4c1),_0x6d96f2(0x903)],'answer':0x2},{'question':_0x6d96f2(0x22c),'options':[_0x6d96f2(0xb82),_0x6d96f2(0x703),_0x6d96f2(0x95c),_0x6d96f2(0x8eb)],'answer':0x1},{'question':_0x6d96f2(0x3a0),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0x46e),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x525),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x632),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':'True\x20or\x20False:\x20Boolean\x20operators\x20are\x20irrelevant\x20in\x20a\x20term-document\x20incidence\x20matrix.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20Stemming\x20in\x20text\x20processing\x20helps\x20match\x20different\x20forms\x20of\x20a\x20root\x20word.','options':['True','False'],'answer':0x0},{'question':_0x6d96f2(0x219),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x45d),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':'True\x20or\x20False:\x20Variable-size\x20posting\x20lists\x20in\x20an\x20inverted\x20index\x20improve\x20flexibility\x20and\x20memory\x20use.','options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x897),'options':['True',_0x6d96f2(0x72f)],'answer':0x1}],irQuestions2=[{'question':_0x6d96f2(0x19e),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Stop\x20words\x20are\x20commonly\x20excluded\x20from\x20indexes\x20due\x20to\x20their\x20high\x20informational\x20content.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x777),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xd6),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xab8),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x70d),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x7cd),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x39e),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x42c),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Zone\x20indexes\x20are\x20only\x20used\x20for\x20document\x20titles.','options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20Case\x20folding\x20converts\x20all\x20letters\x20in\x20a\x20document\x20to\x20uppercase.','options':['True','False'],'answer':0x1},{'question':'True\x20or\x20False:\x20In\x20skip\x20lists,\x20pointers\x20are\x20used\x20to\x20speed\x20up\x20the\x20search\x20in\x20postings\x20lists.','options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0x3a5),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0xb92),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x81c),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x26b),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20In\x20ranked\x20retrieval,\x20documents\x20are\x20sorted\x20based\x20on\x20their\x20relevance\x20to\x20the\x20query.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x79d),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x37f),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Zone\x20weighting\x20allows\x20specific\x20document\x20zones\x20to\x20impact\x20the\x20retrieval\x20score\x20differently.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x5e6),'options':['True','False'],'answer':0x0},{'question':'True\x20or\x20False:\x20Parametric\x20search\x20uses\x20document\x20metadata\x20fields\x20to\x20refine\x20queries.','options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xb72),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x5d7),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20Weighted\x20zone\x20scoring\x20uses\x20only\x20Boolean\x20values\x20in\x20calculations.','options':['True','False'],'answer':0x1},{'question':_0x6d96f2(0x290),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x682),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x150),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x9d4),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x1d4),'options':[_0x6d96f2(0x92c),'False'],'answer':0x0},{'question':_0x6d96f2(0x7e3),'options':[_0x6d96f2(0x418),_0x6d96f2(0x909),_0x6d96f2(0x2a7),'To\x20calculate\x20document\x20relevance'],'answer':0x1},{'question':'In\x20tf-idf,\x20what\x20does\x20\x27idf\x27\x20measure?','options':[_0x6d96f2(0x9bb),'The\x20importance\x20of\x20a\x20term\x20in\x20the\x20collection',_0x6d96f2(0x70a),_0x6d96f2(0x683)],'answer':0x1},{'question':_0x6d96f2(0xb96),'options':[_0x6d96f2(0xe4),'Store\x20metadata\x20information\x20for\x20all\x20documents',_0x6d96f2(0xade),_0x6d96f2(0x7e4)],'answer':0x2},{'question':_0x6d96f2(0x156),'options':[_0x6d96f2(0xae1),_0x6d96f2(0x6eb),'Boolean\x20Model',_0x6d96f2(0x7f9)],'answer':0x3},{'question':_0x6d96f2(0xa87),'options':[_0x6d96f2(0x889),_0x6d96f2(0x7b1),'They\x20reduce\x20document\x20length',_0x6d96f2(0x7d6)],'answer':0x1},{'question':_0x6d96f2(0x39d),'options':[_0x6d96f2(0xb04),'Each\x20query\x20term\x20equally',_0x6d96f2(0xb87),_0x6d96f2(0x653)],'answer':0x2},{'question':_0x6d96f2(0x96b),'options':[_0x6d96f2(0x89),_0x6d96f2(0x9c1),_0x6d96f2(0x339),_0x6d96f2(0x2f3)],'answer':0x1},{'question':_0x6d96f2(0x7c8),'options':[_0x6d96f2(0x611),_0x6d96f2(0x33b),'Euclidean\x20Distance',_0x6d96f2(0x24b)],'answer':0x1},{'question':'Normalization\x20in\x20text\x20processing\x20can\x20involve:','options':['Tokenizing\x20text',_0x6d96f2(0x395),_0x6d96f2(0x7af),_0x6d96f2(0x436)],'answer':0x1},{'question':_0x6d96f2(0x549),'options':[_0x6d96f2(0x9f),_0x6d96f2(0xfc),_0x6d96f2(0xa09),_0x6d96f2(0x44f)],'answer':0x2},{'question':'What\x20is\x20a\x20primary\x20purpose\x20of\x20using\x20tf-idf\x20weighting?','options':[_0x6d96f2(0x448),_0x6d96f2(0x67b),_0x6d96f2(0xb90),_0x6d96f2(0x25f)],'answer':0x1},{'question':_0x6d96f2(0x27a),'options':[_0x6d96f2(0x4b5),_0x6d96f2(0x2b3),_0x6d96f2(0x28e),_0x6d96f2(0x7f6)],'answer':0x1},{'question':_0x6d96f2(0x612),'options':[_0x6d96f2(0x7c2),_0x6d96f2(0x5bc),_0x6d96f2(0x820),'Frequency\x20of\x20rare\x20terms\x20only'],'answer':0x0},{'question':'Which\x20index\x20type\x20supports\x20phrase\x20queries\x20effectively?','options':['Biword\x20Index',_0x6d96f2(0x499),_0x6d96f2(0x2ba),_0x6d96f2(0x1c3)],'answer':0x2},{'question':'Cosine\x20similarity\x20is\x20used\x20in\x20IR\x20because\x20it\x20compensates\x20for\x20differences\x20in:','options':[_0x6d96f2(0x9e8),_0x6d96f2(0x6d9),_0x6d96f2(0x1ec),_0x6d96f2(0xb42)],'answer':0x1},{'question':_0x6d96f2(0x63e),'options':[_0x6d96f2(0x7f7),'A\x20matrix\x20showing\x20term\x20occurrences\x20in\x20documents',_0x6d96f2(0x107),'The\x20frequency\x20of\x20terms\x20in\x20a\x20given\x20document'],'answer':0x1},{'question':'In\x20an\x20IR\x20system,\x20\x27stemming\x27\x20is\x20important\x20for:','options':[_0x6d96f2(0x329),_0x6d96f2(0x62d),_0x6d96f2(0x5fd),'Converting\x20tokens\x20into\x20binary\x20vectors'],'answer':0x0},{'question':'Why\x20are\x20stop\x20words\x20often\x20removed\x20in\x20indexing?','options':[_0x6d96f2(0x668),_0x6d96f2(0x855),_0x6d96f2(0xa9e),_0x6d96f2(0x161)],'answer':0x2},{'question':'Weighted\x20zone\x20scoring\x20calculates\x20a\x20document\x27s\x20score\x20based\x20on:','options':[_0x6d96f2(0x985),_0x6d96f2(0xa0f),_0x6d96f2(0x261),'The\x20number\x20of\x20rare\x20terms\x20in\x20the\x20document'],'answer':0x1},{'question':'Which\x20of\x20the\x20following\x20describes\x20inverse\x20document\x20frequency\x20(idf)\x20best?','options':['The\x20count\x20of\x20terms\x20in\x20a\x20document',_0x6d96f2(0x8b),_0x6d96f2(0x76b),_0x6d96f2(0x68e)],'answer':0x1}],irQuestions3=[{'question':_0x6d96f2(0x6f7),'options':['True','False'],'answer':0x0},{'question':'True\x20or\x20False:\x20Zone\x20indexing\x20only\x20applies\x20to\x20metadata\x20fields\x20like\x20author\x20or\x20date\x20and\x20does\x20not\x20consider\x20the\x20main\x20body\x20of\x20the\x20document.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x933),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x7ee),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x19b),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'Which\x20of\x20the\x20following\x20best\x20defines\x20\x27zone\x20indexing\x27?','options':['Dividing\x20documents\x20by\x20file\x20type',_0x6d96f2(0x1bf),_0x6d96f2(0x272),_0x6d96f2(0x5fd)],'answer':0x1},{'question':_0x6d96f2(0x288),'options':[_0x6d96f2(0x333),_0x6d96f2(0x162),_0x6d96f2(0x893),_0x6d96f2(0x68d)],'answer':0x1},{'question':_0x6d96f2(0x5ff),'options':[_0x6d96f2(0x7fa),_0x6d96f2(0x9b),_0x6d96f2(0x929),_0x6d96f2(0x6ef)],'answer':0x1},{'question':'The\x20term\x20\x27bag-of-words\x20model\x27\x20refers\x20to:','options':['A\x20model\x20that\x20includes\x20only\x20unique\x20words\x20from\x20each\x20document',_0x6d96f2(0x819),'A\x20model\x20that\x20segments\x20documents\x20into\x20phrases','A\x20method\x20that\x20considers\x20synonyms\x20in\x20retrieval'],'answer':0x1},{'question':_0x6d96f2(0x1b5),'options':['Zone\x20frequency',_0x6d96f2(0x631),_0x6d96f2(0x239),_0x6d96f2(0xe1)],'answer':0x2}],irQuestions4=[{'question':'IR\x20objective\x20is\x20to\x20retrieve\x20_______\x20the\x20relevant\x20documents.','options':[_0x6d96f2(0x726),_0x6d96f2(0x119),_0x6d96f2(0xb65),_0x6d96f2(0x962)],'answer':0x0},{'question':'In\x20information\x20retrieval\x20the\x20term\x20\x27relevant\x27\x20is\x20used\x20to\x20represent\x20an\x20item','options':[_0x6d96f2(0xadd),_0x6d96f2(0x87c),_0x6d96f2(0x852),_0x6d96f2(0x962)],'answer':0x2},{'question':_0x6d96f2(0xb17),'options':[_0x6d96f2(0x8e),_0x6d96f2(0x8f5),_0x6d96f2(0x5be),_0x6d96f2(0x722)],'answer':0x3},{'question':_0x6d96f2(0xaaa),'options':['Structured','Unstructured','Semi-structured',_0x6d96f2(0x962)],'answer':0x2},{'question':_0x6d96f2(0x3ce),'options':[_0x6d96f2(0xb9f),_0x6d96f2(0x988),_0x6d96f2(0xa5e),_0x6d96f2(0x722)],'answer':0x1},{'question':_0x6d96f2(0x17d),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x99e),'options':['Documents',_0x6d96f2(0x70e),'Text\x20files','None\x20of\x20the\x20above'],'answer':0x1},{'question':_0x6d96f2(0x969),'options':['1)\x20Information\x202)\x20retrieval\x203)\x20database',_0x6d96f2(0x9f8),_0x6d96f2(0xae9),_0x6d96f2(0x962)],'answer':0x0},{'question':_0x6d96f2(0x979),'options':[_0x6d96f2(0x409),_0x6d96f2(0x22f),_0x6d96f2(0xa52),'All\x20of\x20the\x20above'],'answer':0x2},{'question':_0x6d96f2(0x27f),'options':[_0x6d96f2(0x968),_0x6d96f2(0xa9a),_0x6d96f2(0x9d9),_0x6d96f2(0x722)],'answer':0x0},{'question':_0x6d96f2(0x131),'options':['Documents',_0x6d96f2(0x91d),'Data',_0x6d96f2(0x962)],'answer':0x0},{'question':_0x6d96f2(0x5f7),'options':[_0x6d96f2(0x2c7),_0x6d96f2(0xb09),_0x6d96f2(0xb49),_0x6d96f2(0x962)],'answer':0x0},{'question':_0x6d96f2(0x5de),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x117),'options':[_0x6d96f2(0x6f6),_0x6d96f2(0x83e),_0x6d96f2(0xb0c),'None\x20of\x20the\x20above'],'answer':0x0},{'question':_0x6d96f2(0x751),'options':[_0x6d96f2(0x2f0),_0x6d96f2(0xa5d),_0x6d96f2(0xb33),_0x6d96f2(0x962)],'answer':0x1},{'question':_0x6d96f2(0x9c2),'options':[_0x6d96f2(0x7bb),_0x6d96f2(0x140),_0x6d96f2(0x1d0)],'answer':0x1},{'question':_0x6d96f2(0x9d3),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xb03),'options':[_0x6d96f2(0x13c),_0x6d96f2(0x2e6),'Selects\x20all\x20items\x20that\x20discuss\x20computer\x20or\x20information\x20that\x20do\x20not\x20discuss\x20data'],'answer':0x0},{'question':_0x6d96f2(0x25b),'options':[_0x6d96f2(0x771),_0x6d96f2(0xa1),_0x6d96f2(0xe5)],'answer':0x1},{'question':_0x6d96f2(0x6c7),'options':[_0x6d96f2(0x562),_0x6d96f2(0x1e2),_0x6d96f2(0x968)],'answer':0x0},{'question':'The\x20objective\x20of\x20________\x20is\x20to\x20allow\x20for\x20a\x20mapping\x20between\x20a\x20user\x27s\x20specified\x20need\x20and\x20the\x20items\x20in\x20the\x20information\x20database\x20that\x20will\x20answer\x20that\x20need.','options':[_0x6d96f2(0x1d6),'Browse\x20capabilities',_0x6d96f2(0x774)],'answer':0x0},{'question':_0x6d96f2(0x3b0),'options':[_0x6d96f2(0x1c6),'1)\x20fish\x202)\x20and\x203)\x20chips',_0x6d96f2(0x527)],'answer':0x0},{'question':_0x6d96f2(0x1ce),'options':[_0x6d96f2(0x2a0),_0x6d96f2(0x538),_0x6d96f2(0x57e),_0x6d96f2(0x962)],'answer':0x0},{'question':_0x6d96f2(0x608),'options':[_0x6d96f2(0x401),_0x6d96f2(0xa36),_0x6d96f2(0x9ce),_0x6d96f2(0x962)],'answer':0x0},{'question':_0x6d96f2(0x27d),'options':[_0x6d96f2(0x7b0),_0x6d96f2(0x45c),'Applicability',_0x6d96f2(0x962)],'answer':0x1},{'question':_0x6d96f2(0x9bd),'options':[_0x6d96f2(0x21b),'Eats',_0x6d96f2(0x211),'None\x20of\x20the\x20above'],'answer':0x0}],biQuestions1=[{'question':_0x6d96f2(0x964),'options':[_0x6d96f2(0x85e),_0x6d96f2(0x230),_0x6d96f2(0x581),_0x6d96f2(0x476)],'answer':0x1},{'question':_0x6d96f2(0xaf0),'options':['CRM\x20systems','MIS\x20reporting\x20systems\x20in\x20the\x201970s',_0x6d96f2(0x3d8),_0x6d96f2(0xb23)],'answer':0x1},{'question':_0x6d96f2(0xb6e),'options':[_0x6d96f2(0xb8a),_0x6d96f2(0x202),_0x6d96f2(0x12b),'Business\x20Performance\x20Management'],'answer':0x2},{'question':_0x6d96f2(0x1f6),'options':[_0x6d96f2(0x542),_0x6d96f2(0x3e2),_0x6d96f2(0x558),'Optimize\x20inventory\x20management'],'answer':0x2},{'question':_0x6d96f2(0x6f4),'options':['On-Line\x20Transaction\x20Processing',_0x6d96f2(0x3d6),_0x6d96f2(0x6ad),'Offline\x20Transaction\x20Process'],'answer':0x0},{'question':_0x6d96f2(0xac),'options':[_0x6d96f2(0x4a9),_0x6d96f2(0x50e),_0x6d96f2(0x75e),_0x6d96f2(0xb5e)],'answer':0x2},{'question':'Which\x20of\x20the\x20following\x20describes\x20Normalization?','options':['Merging\x20data\x20to\x20reduce\x20storage',_0x6d96f2(0x623),_0x6d96f2(0x294),_0x6d96f2(0x7c6)],'answer':0x1},{'question':_0x6d96f2(0x13b),'options':[_0x6d96f2(0xac7),'Data\x20mining',_0x6d96f2(0x8c7),_0x6d96f2(0x3eb)],'answer':0x3},{'question':_0x6d96f2(0x6f2),'options':[_0x6d96f2(0x50d),_0x6d96f2(0x32a),_0x6d96f2(0x4d2),_0x6d96f2(0x603)],'answer':0x2},{'question':_0x6d96f2(0x3bd),'options':[_0x6d96f2(0x894),_0x6d96f2(0x9f0),_0x6d96f2(0x870),_0x6d96f2(0x2c6)],'answer':0x1},{'question':_0x6d96f2(0x11b),'options':['Predictive',_0x6d96f2(0x894),_0x6d96f2(0x870),'Diagnostic'],'answer':0x2},{'question':_0x6d96f2(0x488),'options':[_0x6d96f2(0xb8a),_0x6d96f2(0x202),_0x6d96f2(0x4ba),_0x6d96f2(0x407)],'answer':0x2},{'question':_0x6d96f2(0x105),'options':[_0x6d96f2(0x29b),_0x6d96f2(0x2a2),_0x6d96f2(0x9d9),_0x6d96f2(0x792)],'answer':0x2},{'question':_0x6d96f2(0x147),'options':[_0x6d96f2(0xb8a),'Business\x20Analytics',_0x6d96f2(0x483),'User\x20Interface'],'answer':0x2},{'question':_0x6d96f2(0x46a),'options':[_0x6d96f2(0x934),'Faster,\x20more\x20accurate\x20reporting',_0x6d96f2(0x28d),_0x6d96f2(0xaf5)],'answer':0x1},{'question':_0x6d96f2(0xb16),'options':[_0x6d96f2(0x57d),_0x6d96f2(0x157),_0x6d96f2(0x65f),_0x6d96f2(0x209)],'answer':0x1},{'question':_0x6d96f2(0x5af),'options':['OLAP',_0x6d96f2(0xb8a),'OLTP',_0x6d96f2(0x349)],'answer':0x2},{'question':_0x6d96f2(0x360),'options':[_0x6d96f2(0x9d9),'Denormalization',_0x6d96f2(0x407),'Aggregation'],'answer':0x1},{'question':_0x6d96f2(0x48d),'options':['Business\x20process\x20automation','Basic\x20Excel\x20and\x20SQL\x20skills','Advanced\x20statistics\x20and\x20machine\x20learning',_0x6d96f2(0xb5e)],'answer':0x2},{'question':_0x6d96f2(0x545),'options':[_0x6d96f2(0x158),'Business\x20process\x20management',_0x6d96f2(0x4c5),_0x6d96f2(0x5ed)],'answer':0x2},{'question':_0x6d96f2(0x8ad),'options':[_0x6d96f2(0x9c),_0x6d96f2(0x35c),_0x6d96f2(0x2e0),_0x6d96f2(0x492)],'answer':0x1},{'question':_0x6d96f2(0x677),'options':['Cube\x20analysis','Enterprise\x20reporting',_0x6d96f2(0x8c7),_0x6d96f2(0x4ca)],'answer':0x0},{'question':_0x6d96f2(0x645),'options':[_0x6d96f2(0xc4),_0x6d96f2(0xb3c),'Online\x20Transaction\x20Processing',_0x6d96f2(0x89e)],'answer':0x3},{'question':_0x6d96f2(0x9e4),'options':[_0x6d96f2(0x159),_0x6d96f2(0x138),'Data\x20visualization',_0x6d96f2(0xb75)],'answer':0x2},{'question':_0x6d96f2(0x85),'options':[_0x6d96f2(0xb3c),_0x6d96f2(0x450),'Denormalized\x20structures',_0x6d96f2(0x242)],'answer':0x2},{'question':_0x6d96f2(0x296),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x511),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x152),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x257),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x541),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x310),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Descriptive\x20analytics\x20helps\x20in\x20understanding\x20trends\x20and\x20causes\x20in\x20data.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x7a1),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xaf7),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Dashboards\x20provide\x20a\x20static\x20view\x20of\x20business\x20performance\x20metrics.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1}],biQuestions2=[{'question':_0x6d96f2(0xa68),'options':[_0x6d96f2(0x359),_0x6d96f2(0x843),_0x6d96f2(0xadf),_0x6d96f2(0x61c)],'answer':0x1},{'question':_0x6d96f2(0xb24),'options':['OLTP',_0x6d96f2(0x821),_0x6d96f2(0x743),_0x6d96f2(0x79e)],'answer':0x2},{'question':_0x6d96f2(0x342),'options':['Storing\x20daily\x20transactions',_0x6d96f2(0x9a),'Enabling\x20frequent\x20data\x20updates',_0x6d96f2(0x2fd)],'answer':0x1},{'question':_0x6d96f2(0x627),'options':[_0x6d96f2(0x28a),_0x6d96f2(0x2e9),_0x6d96f2(0x750),_0x6d96f2(0x661)],'answer':0x2},{'question':_0x6d96f2(0x79a),'options':[_0x6d96f2(0x13a),_0x6d96f2(0xa43),'Data\x20changes\x20every\x20week',_0x6d96f2(0xa8c)],'answer':0x1},{'question':_0x6d96f2(0x62c),'options':[_0x6d96f2(0x957),'Real-time\x20processing\x20only',_0x6d96f2(0x37a),_0x6d96f2(0x172)],'answer':0x0},{'question':'What\x20is\x20a\x20dependent\x20data\x20mart?','options':[_0x6d96f2(0x2fe),'A\x20subset\x20of\x20the\x20warehouse\x20derived\x20directly\x20from\x20it','A\x20data\x20storage\x20for\x20real-time\x20analytics',_0x6d96f2(0x9ec)],'answer':0x1},{'question':_0x6d96f2(0x1f1),'options':[_0x6d96f2(0x386),_0x6d96f2(0x2d6),_0x6d96f2(0x7cc),_0x6d96f2(0xa97)],'answer':0x1},{'question':_0x6d96f2(0xb56),'options':['Increased\x20data\x20entry\x20speeds','Real-time\x20data\x20modifications',_0x6d96f2(0x9ae),'Personalized\x20data\x20storage\x20for\x20each\x20department'],'answer':0x2},{'question':'Data\x20in\x20an\x20Operational\x20Data\x20Store\x20(ODS)\x20is\x20typically:','options':[_0x6d96f2(0x7f3),_0x6d96f2(0x236),_0x6d96f2(0x534),_0x6d96f2(0x914)],'answer':0x1},{'question':_0x6d96f2(0x81b),'options':['Database\x20logs',_0x6d96f2(0x4e5),_0x6d96f2(0x5a1),_0x6d96f2(0x422)],'answer':0x3},{'question':_0x6d96f2(0x345),'options':[_0x6d96f2(0x1a5),_0x6d96f2(0x5ca),_0x6d96f2(0x4a1),_0x6d96f2(0x53f)],'answer':0x1},{'question':_0x6d96f2(0x2dd),'options':['Gathering\x20new\x20data','Storing\x20transformed\x20data\x20in\x20the\x20warehouse',_0x6d96f2(0x38e),'Validating\x20data\x20changes'],'answer':0x1},{'question':_0x6d96f2(0xd1),'options':[_0x6d96f2(0xb5c),_0x6d96f2(0x669),_0x6d96f2(0x858),_0x6d96f2(0x957)],'answer':0x2},{'question':_0x6d96f2(0x6e6),'options':[_0x6d96f2(0xca),_0x6d96f2(0x40d),_0x6d96f2(0x59f),_0x6d96f2(0x823)],'answer':0x2},{'question':_0x6d96f2(0x7c5),'options':[_0x6d96f2(0xa49),'Business\x20measurements\x20like\x20sales\x20or\x20expenses',_0x6d96f2(0x954),_0x6d96f2(0x671)],'answer':0x1},{'question':_0x6d96f2(0x91a),'options':[_0x6d96f2(0xaae),'Are\x20numerical\x20measurements\x20only',_0x6d96f2(0x4a7),_0x6d96f2(0xba)],'answer':0x0},{'question':_0x6d96f2(0xce),'options':[_0x6d96f2(0x386),'Transformation','Load','Cleansing'],'answer':0x0},{'question':'In\x20a\x20data\x20warehouse,\x20\x27granularity\x27\x20refers\x20to:','options':[_0x6d96f2(0x60c),_0x6d96f2(0x484),_0x6d96f2(0x298),_0x6d96f2(0x36c)],'answer':0x1},{'question':_0x6d96f2(0x57b),'options':['Only\x20primary\x20keys',_0x6d96f2(0xa93),'Metadata\x20only',_0x6d96f2(0x513)],'answer':0x1},{'question':'True\x20or\x20False:\x20A\x20data\x20warehouse\x20can\x20change\x20or\x20update\x20data\x20once\x20it\x20is\x20stored.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x6d7),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x4d4),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x284),'options':['True',_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x5d1),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x416),'options':['True',_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x143),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0xadb),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x7fd),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x474),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1}],biQuestions3=[{'question':_0x6d96f2(0x8fb),'options':['Snowflake\x20schema',_0x6d96f2(0x68f),_0x6d96f2(0x90b),_0x6d96f2(0x5cf)],'answer':0x1},{'question':'The\x20main\x20purpose\x20of\x20the\x20fact\x20table\x20in\x20a\x20star\x20schema\x20is\x20to:','options':[_0x6d96f2(0x3da),_0x6d96f2(0x4d3),_0x6d96f2(0xa69),_0x6d96f2(0x36f)],'answer':0x1},{'question':'In\x20a\x20star\x20schema,\x20dimension\x20tables\x20are:','options':[_0x6d96f2(0xe8),'Normalized',_0x6d96f2(0x837),_0x6d96f2(0xaa0)],'answer':0x0},{'question':_0x6d96f2(0x544),'options':['Snowflake\x20schema','Hybrid\x20schema','Star\x20schema',_0x6d96f2(0x90b)],'answer':0x2},{'question':_0x6d96f2(0xa61),'options':['Denormalized\x20dimension\x20tables',_0x6d96f2(0x1f7),_0x6d96f2(0xa1f),'High\x20data\x20redundancy'],'answer':0x1},{'question':_0x6d96f2(0xa23),'options':[_0x6d96f2(0x5b5),_0x6d96f2(0xac2),'Reduced\x20table\x20complexity','Direct\x20links\x20between\x20fact\x20tables'],'answer':0x0},{'question':'In\x20a\x20star\x20schema,\x20the\x20foreign\x20keys\x20in\x20the\x20fact\x20table:','options':[_0x6d96f2(0x1b1),_0x6d96f2(0x438),_0x6d96f2(0xaea),_0x6d96f2(0x6bf)],'answer':0x1},{'question':_0x6d96f2(0x99c),'options':['All\x20data\x20is\x20stored\x20only\x20once',_0x6d96f2(0xa46),'Some\x20data\x20may\x20be\x20repeated\x20across\x20tables',_0x6d96f2(0x95)],'answer':0x2},{'question':'The\x20snowflake\x20schema\x20is\x20considered\x20more\x20complex\x20than\x20the\x20star\x20schema\x20because:','options':[_0x6d96f2(0xad),_0x6d96f2(0x5c8),_0x6d96f2(0xbc),'It\x20relies\x20on\x20real-time\x20data\x20updates'],'answer':0x1},{'question':_0x6d96f2(0x501),'options':['Snowflake\x20schema',_0x6d96f2(0x68f),_0x6d96f2(0x5cf),'ER\x20schema'],'answer':0x1},{'question':'In\x20data\x20warehousing,\x20a\x20\x27conformed\x20dimension\x27\x20refers\x20to:','options':[_0x6d96f2(0x5a8),_0x6d96f2(0x6dc),_0x6d96f2(0x5dc),_0x6d96f2(0x8bd)],'answer':0x1},{'question':_0x6d96f2(0x907),'options':[_0x6d96f2(0x68f),'Snowflake\x20schema',_0x6d96f2(0x7f4),_0x6d96f2(0x2f9)],'answer':0x0},{'question':'Which\x20of\x20the\x20following\x20is\x20a\x20shared\x20characteristic\x20of\x20both\x20star\x20and\x20snowflake\x20schemas?','options':[_0x6d96f2(0x425),_0x6d96f2(0xa37),_0x6d96f2(0x9b2),'Faster\x20updates\x20for\x20transactional\x20systems'],'answer':0x1},{'question':_0x6d96f2(0xa32),'options':[_0x6d96f2(0x847),_0x6d96f2(0x6b4),_0x6d96f2(0x2e5),'A\x20hybrid\x20snowflake\x20model'],'answer':0x0},{'question':_0x6d96f2(0x71f),'options':[_0x6d96f2(0x95f),_0x6d96f2(0x12f),'Dimensional\x20modeling\x20in\x20BI',_0x6d96f2(0x12c)],'answer':0x1},{'question':_0x6d96f2(0xa00),'options':[_0x6d96f2(0x4d5),'Business\x20intelligence\x20(BI)\x20applications',_0x6d96f2(0x83c),_0x6d96f2(0x6e0)],'answer':0x1},{'question':'In\x20dimensional\x20modeling,\x20data\x20redundancy\x20is:','options':[_0x6d96f2(0x8f9),_0x6d96f2(0x2d8),_0x6d96f2(0x49f),_0x6d96f2(0x799)],'answer':0x1},{'question':_0x6d96f2(0x540),'options':['Star\x20schema',_0x6d96f2(0x8c3),'Hybrid\x20schema','Multi-fact\x20schema'],'answer':0x1},{'question':_0x6d96f2(0x5c6),'options':['Stores\x20only\x20unique\x20keys',_0x6d96f2(0x414),_0x6d96f2(0x4da),_0x6d96f2(0x5cb)],'answer':0x1},{'question':_0x6d96f2(0x754),'options':[_0x6d96f2(0xb3),_0x6d96f2(0x899),_0x6d96f2(0x4b1),_0x6d96f2(0x90)],'answer':0x1},{'question':_0x6d96f2(0x470),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':'True\x20or\x20False:\x20In\x20a\x20star\x20schema,\x20dimension\x20tables\x20have\x20a\x20one-to-many\x20relationship\x20with\x20the\x20fact\x20table.','options':['True','False'],'answer':0x0},{'question':'True\x20or\x20False:\x20Dimensional\x20modeling\x20is\x20best\x20suited\x20for\x20transactional\x20systems\x20rather\x20than\x20business\x20intelligence\x20applications.','options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x872),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':_0x6d96f2(0x29d),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0}],biQuestions4=[{'question':_0x6d96f2(0xfb),'options':['Dimension','Measure',_0x6d96f2(0xa57),'Hierarchy'],'answer':0x2},{'question':_0x6d96f2(0x49d),'options':[_0x6d96f2(0xb6c),'Level\x20of\x20information\x20detail',_0x6d96f2(0xb55),_0x6d96f2(0x1b4)],'answer':0x1},{'question':_0x6d96f2(0xab9),'options':[_0x6d96f2(0x2b1),_0x6d96f2(0x3e7),_0x6d96f2(0x23a),_0x6d96f2(0xb4d)],'answer':0x1},{'question':'Which\x20fact\x20table\x20type\x20is\x20known\x20for\x20capturing\x20the\x20status\x20of\x20facts\x20at\x20regular\x20time\x20intervals?','options':['Transaction\x20fact',_0x6d96f2(0x2b1),_0x6d96f2(0x23a),_0x6d96f2(0x87f)],'answer':0x3},{'question':'A\x20transaction\x20fact\x20table\x20typically\x20grows\x20very\x20quickly\x20because:','options':['It\x20has\x20a\x20high\x20level\x20of\x20granularity','It\x20stores\x20data\x20at\x20a\x20monthly\x20level','It\x20only\x20records\x20totals','It\x20uses\x20multiple\x20dimensions'],'answer':0x0},{'question':_0x6d96f2(0x5d9),'options':['Recording\x20each\x20purchase\x20at\x20a\x20store',_0x6d96f2(0x413),_0x6d96f2(0x43c),_0x6d96f2(0x2f2)],'answer':0x1},{'question':'Which\x20fact\x20type\x20captures\x20all\x20key\x20events\x20in\x20a\x20process\x20from\x20beginning\x20to\x20end,\x20updating\x20each\x20step\x20as\x20it\x20progresses?','options':[_0x6d96f2(0x3e7),_0x6d96f2(0x2b1),'Accumulating\x20fact',_0x6d96f2(0x2a6)],'answer':0x2},{'question':_0x6d96f2(0x584),'options':[_0x6d96f2(0x1ff),_0x6d96f2(0x3fb),_0x6d96f2(0x171),'Does\x20not\x20change\x20once\x20the\x20row\x20is\x20created'],'answer':0x1},{'question':_0x6d96f2(0x308),'options':[_0x6d96f2(0x798),_0x6d96f2(0xa54),_0x6d96f2(0x8d0),'Recording\x20monthly\x20inventory'],'answer':0x1},{'question':_0x6d96f2(0x192),'options':[_0x6d96f2(0x379),'Summing\x20values\x20across\x20only\x20some\x20dimensions',_0x6d96f2(0x8ee),_0x6d96f2(0x400)],'answer':0x0},{'question':'A\x20measure\x20like\x20\x27account\x20balance\x27\x20that\x20cannot\x20be\x20summed\x20across\x20time\x20is\x20known\x20as:','options':[_0x6d96f2(0x742),_0x6d96f2(0xaee),_0x6d96f2(0x295),'Derived'],'answer':0x1},{'question':_0x6d96f2(0x753),'options':[_0x6d96f2(0x15a),'Semi-additive\x20fact',_0x6d96f2(0x791),'Snapshot\x20fact'],'answer':0x2},{'question':_0x6d96f2(0xa0b),'options':[_0x6d96f2(0x5bd),_0x6d96f2(0xda),'Derived\x20facts\x20are\x20calculated\x20from\x20other\x20measures',_0x6d96f2(0x96c)],'answer':0x2},{'question':_0x6d96f2(0x9b0),'options':[_0x6d96f2(0x1e5),_0x6d96f2(0xb15),_0x6d96f2(0xb18),_0x6d96f2(0x647)],'answer':0x0},{'question':_0x6d96f2(0x335),'options':[_0x6d96f2(0x4b6),_0x6d96f2(0x2b5),_0x6d96f2(0x699),_0x6d96f2(0x65c)],'answer':0x2},{'question':_0x6d96f2(0x186),'options':[_0x6d96f2(0x742),_0x6d96f2(0x295),_0x6d96f2(0xaee),'Derived'],'answer':0x0},{'question':_0x6d96f2(0x4ef),'options':[_0x6d96f2(0x946),_0x6d96f2(0x14a),_0x6d96f2(0x66b),_0x6d96f2(0x7d1)],'answer':0x1},{'question':_0x6d96f2(0xf8),'options':[_0x6d96f2(0x659),_0x6d96f2(0x7bf),'Querying\x20speed\x20only',_0x6d96f2(0xc7)],'answer':0x0},{'question':_0x6d96f2(0x565),'options':[_0x6d96f2(0x412),_0x6d96f2(0x224),_0x6d96f2(0x3f0),_0x6d96f2(0x4f4)],'answer':0x2},{'question':'Which\x20of\x20these\x20fact\x20types\x20would\x20you\x20use\x20to\x20analyze\x20monthly\x20sales\x20trends?','options':['Transaction\x20fact','Periodic\x20fact',_0x6d96f2(0x23a),_0x6d96f2(0x87f)],'answer':0x3},{'question':_0x6d96f2(0xac9),'options':[_0x6d96f2(0x2b1),'Transaction\x20fact',_0x6d96f2(0x23a),_0x6d96f2(0x87f)],'answer':0x2},{'question':_0x6d96f2(0x25e),'options':[_0x6d96f2(0x665),_0x6d96f2(0x5db),_0x6d96f2(0x5fb),'Frequency\x20of\x20data\x20updates'],'answer':0x1},{'question':_0x6d96f2(0x1e7),'options':[_0x6d96f2(0x3e7),'Periodic\x20fact','Accumulating\x20fact',_0x6d96f2(0xb4d)],'answer':0x0},{'question':_0x6d96f2(0x769),'options':[_0x6d96f2(0x3e7),_0x6d96f2(0x2b1),_0x6d96f2(0x23a),_0x6d96f2(0x87f)],'answer':0x3},{'question':_0x6d96f2(0x92b),'options':[_0x6d96f2(0x5aa),'Derived\x20facts',_0x6d96f2(0x966),'Semi-additive\x20facts'],'answer':0x1},{'question':_0x6d96f2(0x60d),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0xaa1),'options':[_0x6d96f2(0x92c),'False'],'answer':0x1},{'question':_0x6d96f2(0x1ab),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'True\x20or\x20False:\x20Semi-additive\x20measures\x20can\x20be\x20aggregated\x20across\x20all\x20dimensions,\x20including\x20time.','options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x1},{'question':_0x6d96f2(0x605),'options':[_0x6d96f2(0x92c),_0x6d96f2(0x72f)],'answer':0x0},{'question':'Which\x20SQL\x20function\x20is\x20used\x20to\x20get\x20the\x20current\x20date\x20and\x20time?','options':[_0x6d96f2(0xa6f),_0x6d96f2(0x778),'CURDATE()','SYSDATE()'],'answer':0x0},{'question':_0x6d96f2(0x1ef),'options':[_0x6d96f2(0xb73),_0x6d96f2(0x18f),'To\x20add\x20new\x20data\x20to\x20a\x20table',_0x6d96f2(0x13d)],'answer':0x1},{'question':'What\x20is\x20the\x20default\x20sorting\x20order\x20used\x20in\x20the\x20ORDER\x20BY\x20clause?','options':[_0x6d96f2(0x21a),_0x6d96f2(0x1e1),_0x6d96f2(0xb46),'Random'],'answer':0x1},{'question':_0x6d96f2(0x805),'options':['It\x20can\x20contain\x20NULL\x20values',_0x6d96f2(0xb1c),_0x6d96f2(0x48e),'It\x20is\x20an\x20optional\x20constraint'],'answer':0x1},{'question':_0x6d96f2(0x694),'options':[_0x6d96f2(0xa9),_0x6d96f2(0x92f),_0x6d96f2(0x836),_0x6d96f2(0x6a9)],'answer':0x2},{'question':_0x6d96f2(0x10a),'options':[_0x6d96f2(0xb1b),'ADD',_0x6d96f2(0x4a3),_0x6d96f2(0x776)],'answer':0x0},{'question':_0x6d96f2(0x606),'options':['Filters\x20the\x20result\x20set\x20by\x20matching\x20a\x20pattern',_0x6d96f2(0x332),'Combines\x20results\x20from\x20two\x20queries','Specifies\x20conditions\x20for\x20joining\x20tables'],'answer':0x1},{'question':_0x6d96f2(0x906),'options':[_0x6d96f2(0xa35),_0x6d96f2(0xb3a),_0x6d96f2(0x60f),_0x6d96f2(0x974)],'answer':0x1},{'question':'What\x20is\x20a\x20subquery\x20in\x20SQL?','options':[_0x6d96f2(0x657),_0x6d96f2(0x4f6),_0x6d96f2(0x3c6),_0x6d96f2(0xae)],'answer':0x0},{'question':_0x6d96f2(0x572),'options':[_0x6d96f2(0x600),_0x6d96f2(0x963),_0x6d96f2(0x8da),_0x6d96f2(0x6c6)],'answer':0x0},{'question':_0x6d96f2(0x285),'options':[_0x6d96f2(0xc0),_0x6d96f2(0x8b4),_0x6d96f2(0x752),_0x6d96f2(0x2fa)],'answer':0x0},{'question':_0x6d96f2(0x27c),'options':[_0x6d96f2(0x7f2),'HAVING',_0x6d96f2(0x66c),_0x6d96f2(0x92a)],'answer':0x1},{'question':'What\x20does\x20the\x20SQL\x20LIKE\x20operator\x20do?','options':[_0x6d96f2(0x419),_0x6d96f2(0x269),_0x6d96f2(0x468),_0x6d96f2(0x226)],'answer':0x1},{'question':_0x6d96f2(0x8e7),'options':[_0x6d96f2(0x1bb),_0x6d96f2(0x2c3),_0x6d96f2(0x8af),'Sorts\x20results\x20in\x20ascending\x20order'],'answer':0x0},{'question':_0x6d96f2(0x6f9),'options':[_0x6d96f2(0xb7e),_0x6d96f2(0x51d),_0x6d96f2(0x18b),'CONSTRAINT\x20FOREIGN\x20KEY\x20table_name'],'answer':0x0},{'question':_0x6d96f2(0x18d),'options':[_0x6d96f2(0x783),_0x6d96f2(0x43b),'REMOVE\x20TABLE',_0x6d96f2(0xb83)],'answer':0x0},{'question':'Which\x20SQL\x20command\x20is\x20used\x20to\x20modify\x20the\x20structure\x20of\x20an\x20existing\x20table?','options':[_0x6d96f2(0x904),_0x6d96f2(0x5f3),_0x6d96f2(0x77d),_0x6d96f2(0x449)],'answer':0x0},{'question':_0x6d96f2(0x857),'options':[_0x6d96f2(0x479),_0x6d96f2(0x3c4),'Joins\x20tables\x20based\x20on\x20a\x20common\x20column',_0x6d96f2(0x913)],'answer':0x0},{'question':_0x6d96f2(0xac1),'options':[_0x6d96f2(0xa7d),_0x6d96f2(0x354),_0x6d96f2(0x314),_0x6d96f2(0x9da)],'answer':0x0},{'question':_0x6d96f2(0x178),'options':[_0x6d96f2(0x81e),_0x6d96f2(0x871),'Updates\x20an\x20existing\x20table\x20with\x20new\x20data',_0x6d96f2(0x439)],'answer':0x0}];function selectQuiz(_0x22d186){const _0x1b8fe6=_0x6d96f2;selectedQuiz=_0x22d186;if(_0x22d186===_0x1b8fe6(0x65d))document[_0x1b8fe6(0xd7)]('quiz-selection')[_0x1b8fe6(0x4c4)]['add']('hidden'),document[_0x1b8fe6(0xd7)]('database-quiz-selection')[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x8f1)](_0x1b8fe6(0xb91));else{if(_0x22d186===_0x1b8fe6(0x3b2))document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))[_0x1b8fe6(0x4c4)]['add'](_0x1b8fe6(0xb91)),document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x493))[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x8f1)](_0x1b8fe6(0xb91));else{if(_0x22d186==='dc')document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))['classList'][_0x1b8fe6(0x654)](_0x1b8fe6(0xb91)),document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x6c2))[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x8f1)](_0x1b8fe6(0xb91));else{if(_0x22d186===_0x1b8fe6(0x364))document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x654)](_0x1b8fe6(0xb91)),document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x839))[_0x1b8fe6(0x4c4)]['remove'](_0x1b8fe6(0xb91));else{if(_0x22d186==='dm')document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))['classList'][_0x1b8fe6(0x654)](_0x1b8fe6(0xb91)),document[_0x1b8fe6(0xd7)](_0x1b8fe6(0xa7a))[_0x1b8fe6(0x4c4)]['remove'](_0x1b8fe6(0xb91));else{if(_0x22d186==='db2')document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))['classList'][_0x1b8fe6(0x654)](_0x1b8fe6(0xb91)),document[_0x1b8fe6(0xd7)]('db2-quiz-selection')['classList']['remove'](_0x1b8fe6(0xb91));else{if(_0x22d186==='ir')document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x654)](_0x1b8fe6(0xb91)),document['getElementById'](_0x1b8fe6(0x1aa))[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x8f1)]('hidden');else _0x22d186==='bi'&&(document[_0x1b8fe6(0xd7)](_0x1b8fe6(0x93d))[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x654)](_0x1b8fe6(0xb91)),document[_0x1b8fe6(0xd7)]('bi-quiz-selection')[_0x1b8fe6(0x4c4)][_0x1b8fe6(0x8f1)](_0x1b8fe6(0xb91)));}}}}}}}function chooseDatabaseQuiz(_0x39b72d){const _0x5e2125=_0x6d96f2;databaseQuizVariant=_0x39b72d,totalQuestions=getDatabaseQuestions()[_0x5e2125(0x2d3)],document[_0x5e2125(0xd7)](_0x5e2125(0x60b))['innerText']=_0x5e2125(0x725)+_0x39b72d,document['getElementById'](_0x5e2125(0x817))[_0x5e2125(0x4c4)][_0x5e2125(0x654)](_0x5e2125(0xb91)),document[_0x5e2125(0xd7)]('time-options')[_0x5e2125(0x4c4)][_0x5e2125(0x8f1)](_0x5e2125(0xb91));}function getDatabaseQuestions(){if(databaseQuizVariant===0x1)return databaseQuestions1;if(databaseQuizVariant===0x2)return databaseQuestions2;if(databaseQuizVariant===0x3)return databaseQuestions3;if(databaseQuizVariant===0x4)return databaseQuestions4;if(databaseQuizVariant===0x5)return databaseQuestion5;if(databaseQuizVariant===0x6)return databaseQuestion6;}function chooseDataStructuresQuiz(_0x394d90){const _0x19a4c3=_0x6d96f2;dataStructureQuizVariant=_0x394d90,totalQuestions=getDataStructureQuestions()[_0x19a4c3(0x2d3)],document[_0x19a4c3(0xd7)](_0x19a4c3(0x60b))[_0x19a4c3(0xb8f)]=_0x19a4c3(0x246)+_0x394d90,document[_0x19a4c3(0xd7)](_0x19a4c3(0x493))['classList']['add'](_0x19a4c3(0xb91)),document[_0x19a4c3(0xd7)](_0x19a4c3(0xa6b))[_0x19a4c3(0x4c4)][_0x19a4c3(0x8f1)](_0x19a4c3(0xb91));}function getDataStructureQuestions(){if(dataStructureQuizVariant===0x1)return dataStructureQuestions;if(dataStructureQuizVariant===0x2)return dataStructureQuestions2;if(dataStructureQuizVariant===0x3)return dataStructureQuestions3;}function chooseDCQuiz(_0x4b00fc){const _0x2e2f09=_0x6d96f2;dcQuizVariant=_0x4b00fc,totalQuestions=getDCQuestions()[_0x2e2f09(0x2d3)],document[_0x2e2f09(0xd7)](_0x2e2f09(0x60b))[_0x2e2f09(0xb8f)]='DC\x20Quiz\x20'+_0x4b00fc,document[_0x2e2f09(0xd7)](_0x2e2f09(0x6c2))[_0x2e2f09(0x4c4)]['add'](_0x2e2f09(0xb91)),document[_0x2e2f09(0xd7)](_0x2e2f09(0xa6b))[_0x2e2f09(0x4c4)]['remove'](_0x2e2f09(0xb91));}function getDCQuestions(){if(dcQuizVariant===0x1)return dcQuestions1;if(dcQuizVariant===0x2)return dcQuestions2;}function choosebigdataQuiz(_0x39b771){const _0x20bf71=_0x6d96f2;bigdataQuizVariant=_0x39b771,totalQuestions=getbigdataQuestions()[_0x20bf71(0x2d3)],document[_0x20bf71(0xd7)](_0x20bf71(0x60b))['innerText']=_0x20bf71(0x9ee)+_0x39b771,document['getElementById'](_0x20bf71(0x839))[_0x20bf71(0x4c4)][_0x20bf71(0x654)](_0x20bf71(0xb91)),document[_0x20bf71(0xd7)](_0x20bf71(0xa6b))['classList'][_0x20bf71(0x8f1)](_0x20bf71(0xb91));}function getbigdataQuestions(){if(bigdataQuizVariant===0x1)return bigdataQuestions1;if(bigdataQuizVariant===0x2)return bigdataQuestions2;if(bigdataQuizVariant===0x3)return bigdataQuestions3;if(bigdataQuizVariant===0x4)return bigdataQuestions4;if(bigdataQuizVariant===0x5)return bigdataQuestions5;}function choosedmQuiz(_0x495b6a){const _0x4add70=_0x6d96f2;dmQuizVariant=_0x495b6a,totalQuestions=getdmQuestions()[_0x4add70(0x2d3)],document[_0x4add70(0xd7)](_0x4add70(0x60b))[_0x4add70(0xb8f)]=_0x4add70(0x74e)+_0x495b6a,document[_0x4add70(0xd7)](_0x4add70(0xa7a))[_0x4add70(0x4c4)][_0x4add70(0x654)]('hidden'),document[_0x4add70(0xd7)](_0x4add70(0xa6b))[_0x4add70(0x4c4)]['remove'](_0x4add70(0xb91));}function _0x3878(){const _0x461b6f=['Which\x20SQL\x20keyword\x20is\x20used\x20to\x20rename\x20a\x20column\x20in\x20the\x20result\x20set?','Define\x20the\x20context\x20for\x20facts','Cylinder','Excel','They\x20need\x20constant\x20updates','programs','Formats\x20a\x20date\x20value','The\x20default\x20block\x20size\x20in\x20HDFS\x20is\x20generally:','The\x20referential\x20integrity\x20constraint\x20ensures\x20that:','A\x20set\x20of\x20tables\x20in\x20the\x20database','Decreasing\x20term\x20frequency','True\x20or\x20False:\x20The\x20\x27bag-of-words\x27\x20model\x20preserves\x20the\x20order\x20of\x20words\x20in\x20a\x20document.','Which\x20type\x20of\x20fact\x20table\x20records\x20data\x20at\x20each\x20individual\x20business\x20event\x20level?','O(n)\x20for\x20insertion\x20and\x20O(n)\x20for\x20deletion','A\x20topology\x20that\x20is\x20responsible\x20for\x20describing\x20the\x20geometric\x20arrangement\x20of\x20components\x20that\x20make\x20up\x20the\x20LAN\x20is\x20______.','Session\x20layer','Ordinal\x20values','Data\x20locality\x20optimization','xyz*+pq*r+s*+','When\x20memory\x20is\x20full','What\x20is\x20the\x20purpose\x20of\x20an\x20index\x20in\x20a\x20SQL\x20database?','Faster\x20query\x20response\x20than\x20star\x20schema','A\x20method\x20for\x20compressing\x20data','All\x20records\x20are\x20searched\x20simultaneously','Why\x20is\x20Flink\x20more\x20suitable\x20for\x20applications\x20that\x20require\x20quick\x20response\x20times\x20compared\x20to\x20MapReduce?','Application\x20Manager','Cube\x20analysis','In\x20a\x20three-tier\x20architecture,\x20what\x20is\x20the\x20role\x20of\x20the\x20application\x20server?','Which\x20type\x20of\x20fact\x20table\x20is\x20often\x20used\x20to\x20track\x20event\x20milestones\x20such\x20as\x20\x27order\x20placed,\x27\x20\x27order\x20shipped,\x27\x20and\x20\x27order\x20delivered\x27?','Files\x20that\x20are\x20read-only','Records\x20that\x20cannot\x20be\x20modified','Groups\x20records\x20in\x20a\x20single\x20location','Deletes\x20data\x20from\x20a\x20table','hypertext\x20transfer\x20protocol','Find','A\x20fixed\x20limit\x20is\x20imposed\x20on\x20new\x20entries','\x20the\x20property\x20information\x20table:\x0a\x0a|\x20PropertyNo\x20|\x20Address\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Type\x20\x20|\x20Rooms\x20|\x20Rent\x20|\x20OwnerNo\x20|\x0a|------------|-------------------|-------|-------|------|---------|\x0a|\x20PA14\x20\x20\x20\x20\x20\x20\x20|\x2016\x20Holhead\x20House\x20\x20\x20|\x20House\x20|\x206\x20\x20\x20\x20\x20|\x20650\x20\x20|\x20C046\x20\x20\x20\x20|\x0a|\x20PL94\x20\x20\x20\x20\x20\x20\x20|\x206\x20Argyll\x20St.\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20400\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG4\x20\x20\x20\x20\x20\x20\x20\x20|\x206\x20Lawrence\x20St.\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20350\x20\x20|\x20C040\x20\x20\x20\x20|\x0a|\x20PG36\x20\x20\x20\x20\x20\x20\x20|\x202\x20Manor\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20375\x20\x20|\x20C093\x20\x20\x20\x20|\x0a|\x20PG21\x20\x20\x20\x20\x20\x20\x20|\x2018\x20Dale\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20House\x20|\x205\x20\x20\x20\x20\x20|\x20600\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG16\x20\x20\x20\x20\x20\x20\x20|\x205\x20Novar\x20Dr.\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20450\x20\x20|\x20C093\x20\x20\x20\x20|\x0a\x0aDegree\x20of\x20relation\x20is:','Python','Slow\x20data\x20access','Records\x20are\x20unsorted','The\x20function\x20of\x20the\x20data\x20transmission\x20element\x20is\x20______.','In\x20main\x20memory\x20only','Inserts\x20new\x20data\x20into\x20a\x20table','It\x20has\x20a\x20high\x20access\x20speed','Creates\x20multiple\x20copies\x20of\x20a\x20record','What\x20does\x20the\x20COUNT()\x20function\x20do?','True\x20or\x20False:\x20An\x20independent\x20data\x20mart\x20is\x20created\x20from\x20an\x20existing\x20enterprise\x20data\x20warehouse.','To\x20manage\x20disk\x20space','Exactly\x20match\x20information\x20needed','Link\x20each\x20term\x20to\x20documents\x20containing\x20that\x20term','Web\x20browsing','True\x20or\x20False:\x20Cosine\x20similarity\x20measures\x20the\x20angle\x20between\x20two\x20vectors\x20to\x20determine\x20similarity.','Binary\x20Model','FROM','When\x20the\x20record\x20size\x20is\x20less\x20than\x20the\x20block\x20size','CHANGE\x20DATA\x20TYPE','Which\x20of\x20the\x20following\x20is\x20correct\x20about\x20collision\x20handling\x20with\x20open\x20addressing?','It\x20reads\x20all\x20blocks\x20at\x20once','A\x20backup\x20file','Divides\x20large\x20files\x20into\x20smaller\x20blocks','1)\x20Information,\x20retrieval\x20&\x20database','Are\x20unused\x20during\x20queries','ALTER\x20TABLE\x20table_name\x20ALTER\x20COLUMN\x20old_name\x20new_name;','<button\x20class=\x22action-btn\x22\x20onclick=\x22backToResults()\x22\x20style=\x22margin:\x2020px\x20auto;\x20display:\x20block;\x22><i\x20class=\x22fas\x20fa-arrow-left\x22></i>\x20Back\x20to\x20Results</button>','The\x20ability\x20to\x20store\x20large\x20files','Semi-additive','Disk\x20blocks\x20are\x20indexed','BI\x20initially\x20emerged\x20from:','Uses\x20compression\x20for\x20small\x20files','XML','To\x20enforce\x20unique\x20values','When\x20a\x20page\x20is\x20unpinned,\x20its\x20pin-count\x20becomes:','Increased\x20transaction\x20processing\x20speed','Record\x20size\x20exceeds\x20block\x20size','True\x20or\x20False:\x20In\x20normalization,\x20data\x20is\x20structured\x20to\x20reduce\x20redundancy\x20and\x20improve\x20integrity.','(ABDEF+^/-G+)','PUSH','Local\x20disk\x20storage\x20only','Optimizing\x20the\x20search\x20algorithm','What\x20does\x20the\x20SQL\x20DROP\x20command\x20do?','a\x20reliable\x20and\x20connection-oriented','*AB/CD+','What\x20does\x20the\x20UNIQUE\x20constraint\x20do?','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22label\x22>Average\x20Score</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22value\x22>','What\x20does\x20the\x20UNION\x20operator\x20do\x20in\x20SQL?','213','What\x20is\x20the\x20retrieved\x20result\x20of\x20\x27Computer\x20OR\x20Information\x20NOT\x20Data\x27?','Each\x20term\x20in\x20a\x20document','The\x20inverted\x20index\x20is\x20used\x20because:','In\x20binning\x20methods,\x20\x27equal-width\x20binning\x27\x20refers\x20to:','Data\x20discretization','Small\x20size','Unstructured','Completeness','44wplSGC','Text','A\x20combination\x20of\x20multiple\x20foreign\x20keys','Requires\x20all\x20collisions\x20to\x20direct\x20to\x20the\x20same\x20location','Random\x20order','DataParser','When\x20dirty\x20bit\x20is\x20on','Frequency\x20of\x20a\x20term\x20across\x20documents','Third\x20level','Which\x20SQL\x20clause\x20is\x20used\x20to\x20specify\x20the\x20condition\x20for\x20filtering\x20rows\x20in\x20a\x20SELECT\x20query?','Total\x20sales\x20amount\x20after\x20applying\x20a\x20discount','In\x20which\x20decade\x20was\x20the\x20term\x20“Business\x20Intelligence”\x20(BI)\x20coined?','______\x20is\x20an\x20example\x20of\x20Information\x20retrieval\x20systems.','The\x20transaction\x20date','Data\x20can\x20flow\x20in\x20both\x20directions\x20all\x20the\x20time\x20in\x20a\x20_____\x20mode.','Creating\x20bins\x20with\x20random\x20values','INSERT','It\x20uniquely\x20identifies\x20each\x20row\x20in\x20a\x20table','Changes\x20to\x20the\x20internal\x20schema\x20without\x20affecting\x20the\x20logical\x20schema','In\x20a\x20Hadoop\x20ecosystem,\x20how\x20does\x20Spark\x20differ\x20from\x20MapReduce\x20in\x20handling\x20data?','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aThere\x20can\x20be\x20more\x20than\x20one\x20employee\x20with\x20the\x20same\x20EmpID\x20in\x20the\x20Employees\x20table.','Which\x20statement\x20about\x20indexes\x20is\x20true?','Identifying\x20non-trivial\x20patterns\x20from\x20large\x20data\x20sets','Reliability','Cloud\x20computing','Which\x20term\x20describes\x20data\x20structured\x20for\x20analysis\x20in\x20data\x20warehousing?','Limited\x20storage\x20capacity','True\x20or\x20False:\x20Euclidean\x20distance\x20is\x20best\x20used\x20with\x20binary\x20attributes.','What\x20does\x20the\x20SQL\x20AVG()\x20function\x20do?','The\x20entire\x20disk\x20surface','Indexes\x20cannot\x20be\x20created\x20on\x20primary\x20keys','It\x20is\x20used\x20for\x20designing\x20user\x20interfaces.','DROP\x20SCHEMA\x20schema_name;','Two\x20lines\x20of\x20data','The\x20block\x20transfer\x20rate','-/*^ACBDE','Centralized\x20storage','ADD\x20FOREIGN\x20KEY\x20TO\x20table_name;','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>Confirm\x20Reset</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Are\x20you\x20sure\x20you\x20want\x20to\x20delete\x20all\x20statistics?\x20This\x20action\x20cannot\x20be\x20undone.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22modal-buttons\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22confirm-btn\x22\x20onclick=\x22resetStats()\x22>Yes,\x20Delete\x20All</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22cancel-btn\x22\x20onclick=\x22closeModal()\x22>Cancel</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','Matches\x20a\x20specific\x20pattern','Comparison','Different','correct-answers','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stats-modal-content\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stats-modal-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2><i\x20class=\x22fas\x20fa-chart-line\x22></i>\x20Complete\x20Quiz\x20History</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22close-btn\x22\x20onclick=\x22closeStatsModal()\x22>&times;</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','What\x20does\x20YARN\x20enable\x20in\x20Hadoop\x202?','Single-machine\x20storage','What\x20is\x20the\x20primary\x20purpose\x20of\x20a\x20Database\x20Management\x20System\x20(DBMS)?','VARCHAR','Which\x20of\x20these\x20is\x20a\x20method\x20for\x20managing\x20side\x20data\x20in\x20MapReduce?','OLAP\x20systems','Use\x20a\x20distributed\x20cache\x20to\x20store\x20the\x20reference\x20data','Block\x20manager','Which\x20SQL\x20keyword\x20is\x20used\x20to\x20remove\x20a\x20table\x20from\x20the\x20database?','What\x20does\x20the\x20CHECK\x20constraint\x20do?','stats-modal','Metadata\x20fields','588','Is\x20organized\x20by\x20frequency\x20to\x20optimize\x20processing','Session\x20and\x20Presentation\x20layer','Alphabetical','It\x20transfers\x20data\x20from\x20mappers\x20to\x20reducers','Which\x20technique\x20is\x20used\x20to\x20pass\x20small\x20pieces\x20of\x20metadata\x20in\x20MapReduce?','Semi-structured','Nominal\x20attributes','It\x20is\x20simple\x20to\x20implement','Text\x20data','Aggregate\x20fact','In\x20TCP/IP,\x20a\x20message\x20belonging\x20to\x20the\x20network\x20layer\x20is\x20decapsulated\x20from\x20a\x20packet\x20at\x20the\x20____\x20layer.','To\x20allow\x20computers\x20to\x20communicate\x20with\x20each\x20other\x20anywhere\x20in\x20the\x20world','Which\x20technique\x20allows\x20hash\x20tables\x20to\x20handle\x20more\x20records\x20without\x20restructuring\x20the\x20entire\x20table?','<p>No\x20quizzes\x20taken\x20yet</p>','It\x20is\x20volatile','Merging','Performance','Type\x20of\x20schema\x20used','A\x20key\x20benefit\x20of\x20a\x20data\x20warehouse\x20is:','In\x20chaining,\x20how\x20are\x20collisions\x20handled?','Secondary\x20storage','Process\x20of\x20removing\x20an\x20element\x20from\x20a\x20stack\x20is\x20called:','To\x20make\x20searching\x20for\x20records\x20efficient','Which\x20function\x20is\x20used\x20to\x20return\x20the\x20highest\x20value\x20in\x20a\x20column\x20in\x20SQL?','Time-variant\x20data','Deletes\x20all\x20rows\x20from\x20a\x20table\x20without\x20logging\x20individual\x20row\x20deletions','Inventory\x20management','dialogs','CREATE\x20NEW\x20TABLE\x20table_name','True\x20or\x20False:\x20A\x20correlation\x20coefficient\x20of\x200\x20indicates\x20no\x20relationship\x20between\x20two\x20variables.','To\x20format\x20the\x20disk','Data\x20locality\x20in\x20Hadoop\x20aims\x20to\x20run\x20tasks\x20on\x20the\x20node\x20where\x20the\x20data\x20resides.','Empty\x20collection','Half','post-quiz-buttons','DROP\x20COLUMN\x20column_name;','What\x20is\x20the\x20main\x20reason\x20most\x20databases\x20are\x20stored\x20on\x20secondary\x20storage?','CLEAR','Human\x20Resource','AB+CD*E-FG/**','Level\x20of\x20normalization','Knowledge\x20Discovery\x20in\x20Databases\x20(KDD)','Which\x20component\x20is\x20not\x20part\x20of\x20the\x20BI\x20architecture?','End\x20to\x20end','What\x20does\x20the\x20term\x20\x27database\x20schema\x27\x20refer\x20to?','To\x20visualize\x20data\x20clusters','True\x20or\x20False:\x20In\x20the\x20vector\x20space\x20model,\x20each\x20term\x20is\x20an\x20axis\x20in\x20a\x20high-dimensional\x20space.','To\x20delete\x20data\x20from\x20a\x20table','Converting\x20byte\x20streams\x20back\x20into\x20structured\x20objects','Simple\x20databases','Bits\x20used\x20to\x20index\x20directory\x20entries','Spark\x20does\x20not\x20support\x20large-scale\x20data\x20processing.','A\x20unique\x20identifier\x20for\x20each\x20record','Backup\x20logs','Database\x20Management\x20System','To\x20read\x20and\x20write\x20data\x20magnetically','In\x20the\x20TCP/IP\x20protocol\x20suite,\x20the\x20physical\x20layer\x20is\x20concerned\x20with\x20the\x20movement\x20of\x20.......\x20over\x20the\x20physical\x20medium.','True\x20or\x20False:\x20A\x20heap\x20file\x20organization\x20is\x20also\x20known\x20as\x20a\x20sequential\x20file.','FOREIGN\x20KEY\x20(column_name)\x20REFERENCES\x20table_name','Pixel\x20is\x20the\x20element\x20of\x20an\x20analog\x20image','Storing\x20important\x20words','Defining\x20the\x20database','It\x20provides\x20approximate\x20results','CLEAR\x20TABLE','MODIFY\x20COLUMN','Which\x20algorithm\x20is\x20commonly\x20used\x20for\x20frequent\x20pattern\x20mining\x20in\x20association\x20analysis?','INSERT\x20INTO\x20myTable;','Different\x20document\x20zones','Hadoop’s\x20fault\x20tolerance\x20means\x20that\x20lost\x20data\x20cannot\x20be\x20recovered.','High\x20performance','Data\x20Warehouse','They\x20are\x20not\x20necessary\x20for\x20file\x20operations','darkMode','Data\x20backups\x20are\x20stored','In\x20Hadoop,\x20what\x20is\x20\x27schema-on-read\x27\x20primarily\x20designed\x20for?','innerText','To\x20reduce\x20overall\x20indexing\x20time','hidden','True\x20or\x20False:\x20A\x20positional\x20index\x20only\x20records\x20the\x20frequency\x20of\x20terms,\x20not\x20their\x20positions.','The\x20type\x20of\x20file\x20organization','In\x20extendible\x20hashing,\x20what\x20does\x20the\x20\x27global\x20depth\x27\x20represent?','KeyValueTextInputFormat','The\x20primary\x20function\x20of\x20an\x20inverted\x20index\x20is\x20to:','The\x20world','True\x20or\x20False:\x20Data\x20cleaning\x20is\x20an\x20essential\x20step\x20to\x20ensure\x20data\x20accuracy\x20and\x20consistency.','Clock','Symmetric\x20binary\x20variables','How\x20do\x20you\x20delete\x20a\x20schema?','For\x20embedded\x20systems\x20with\x20limited\x20storage\x20capacity','Any\x20update\x20is\x20performed\x20once\x20and\x20is\x20available\x20to\x20all\x20users','Expensive\x20linear\x20search','Clustering','When\x20a\x20new\x20record\x20causes\x20a\x20bucket\x20to\x20overflow,\x20what\x20is\x20the\x20appropriate\x20collision\x20resolution\x20technique?','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aEach\x20employee\x20must\x20belong\x20to\x20a\x20department,\x20so\x20the\x20DeptNo\x20field\x20in\x20the\x20Employees\x20table\x20cannot\x20be\x20NULL.','It\x20is\x20managed\x20by\x20the\x20CPU','An\x20independent\x20record','Linked','Shuffle','Data\x20integrity\x20is\x20harder\x20to\x20maintain\x20in:','Which\x20method\x20of\x20buffering\x20is\x20used\x20to\x20minimize\x20rotational\x20delay\x20and\x20seek\x20time?','On\x20tertiary\x20storage','Developing\x20applications','Ordered\x20sequences\x20of\x20terms','MapReduce\x20with\x20periodic\x20updates','A\x20measure\x20of\x20a\x20term\x27s\x20rarity\x20across\x20documents','Spark\x20is\x20slower\x20because\x20all\x20data\x20is\x20stored\x20on\x20disk.','What\x20is\x20the\x20primary\x20purpose\x20of\x20using\x20hash\x20functions\x20in\x20a\x20database?','Digital\x20library','Overflow\x20blocks\x20needed','Must\x20all\x20link\x20directly\x20to\x20the\x20fact\x20table','To\x20improve\x20the\x20speed\x20of\x20data\x20retrieval','Foreign\x20key\x20can\x20be\x20repeat\x20value.','How\x20do\x20you\x20delete\x20a\x20constraint?','The\x20NameNode\x20in\x20HDFS\x20is\x20primarily\x20responsible\x20for:','Tables\x20contain\x20only\x20unique\x20data\x20entries','Which\x20of\x20the\x20following\x20tasks\x20is\x20not\x20typically\x20handled\x20by\x20a\x20Database\x20Administrator\x20(DBA)?','Line\x20graph','Randomly\x20delete\x20values','Provides\x20a\x20default\x20value\x20if\x20none\x20is\x20specified','Organizing\x20data\x20by\x20topics\x20like\x20sales\x20and\x20customers','The\x20system\x20ranks\x20documents\x20in\x20order\x20of\x20relevance','Data\x20Science\x20Systems','Counts\x20columns','Integer\x20variables','Paragraph\x20spacing','Which\x20command\x20is\x20used\x20to\x20update\x20existing\x20records\x20in\x20a\x20table?','Selects\x20all\x20items\x20that\x20discuss\x20information\x20and\x20do\x20not\x20discuss\x20both\x20of\x20retrieval\x20and\x20extraction','DCAB','The\x20difference\x20between\x20maximum\x20and\x20minimum\x20values','It\x20is\x20volatile\x20and\x20temporary','bytes','Data\x20independence','Which\x20of\x20the\x20following\x20is\x20NOT\x20allowed\x20in\x20a\x20relational\x20model?','Cannot\x20be\x20classified','Filters\x20rows\x20before\x20grouping','Interval\x20scales\x20measure\x20categorical\x20data','application\x20layer','What\x20does\x20OLAP\x20primarily\x20support?','It\x20does\x20not\x20use\x20foreign\x20keys','A\x20query\x20that\x20modifies\x20data\x20in\x20multiple\x20tables','By\x20transforming\x20data\x20into\x20a\x20single\x20value','To\x20add\x20or\x20modify\x20table\x20structure','Spark\x20uses\x20in-memory\x20caching,\x20reducing\x20disk\x20reads.','ALL','Are\x20all\x20denormalized','Low-latency\x20data\x20access','A\x20key\x20that\x20uniquely\x20identifies\x20a\x20tuple\x20and\x20may\x20contain\x20redundant\x20attributes','Auxiliary\x20data\x20needed\x20by\x20a\x20job\x20for\x20processing','AB+CD*E-F**G/','It\x20slows\x20down\x20file\x20expansion','Number\x20of\x20tuples\x20in\x20a\x20relation','Are\x20temporary\x20data\x20only','YARN\x20separates\x20resource\x20management\x20from\x20the\x20data\x20processing\x20component.','It\x20has\x20no\x20dimension\x20tables','All\x20tracks\x20of\x20the\x20same\x20diameter\x20on\x20all\x20platters','Spark\x20relies\x20entirely\x20on\x20disk\x20storage\x20for\x20data.','A\x20foreign\x20key\x20column','SUM()','Data\x20stored\x20on\x20the\x20server\x20side','To\x20enhance\x20data\x20retrieval\x20speed','Spark’s\x20streaming\x20capabilities\x20are\x20more\x20advanced\x20for\x20continuous\x20updates.','Ad-hoc\x20reporting','FETCH','MapReduce','Reporting\x20hierarchy\x20only','Which\x20command\x20removes\x20all\x20rows\x20from\x20a\x20table\x20without\x20logging\x20individual\x20row\x20deletions?','Hashes\x20all\x20records\x20to\x20the\x20same\x20position','Data\x20cleaning','It\x20can\x20be\x20rolled\x20back','Continuous','System\x20logs','Which\x20component\x20of\x20the\x20ETL\x20process\x20reads\x20data\x20from\x20various\x20sources?','A\x20spanned\x20record\x20organization\x20is\x20required\x20when:','A\x20column\x20with\x20duplicate\x20values','Which\x20is\x20NOT\x20a\x20characteristic\x20of\x20a\x20data\x20warehouse?','With\x20single-threaded\x20tasks','getItem','Which\x20of\x20the\x20following\x20isn’t\x20a\x20type\x20of\x20transmission\x20mode?','reload','True\x20or\x20False:\x20A\x20term-document\x20count\x20matrix\x20records\x20only\x20the\x20presence\x20or\x20absence\x20of\x20terms.','getElementById','A\x20set\x20of\x20allowable\x20values\x20for\x20one\x20or\x20more\x20attributes','A\x20single\x20node\x20in\x20the\x20cluster','Derived\x20facts\x20require\x20complex\x20relationships','Unspanned\x20blocks','Which\x20component\x20handles\x20the\x20scheduling\x20and\x20resource\x20allocation\x20in\x20Hadoop?','Fair\x20Scheduler','It\x20primarily\x20relies\x20on\x20HDFS\x20for\x20storage.','MCAR','Combines\x20multiple\x20rows','Log-frequency','Delete\x20all\x20rows\x20in\x20a\x20table','unshift','Match\x20documents\x20based\x20on\x20keyword\x20frequencies','Selects\x20all\x20items\x20that\x20discuss\x20information\x20only','Within\x203\x20paragraphs','The\x20current\x20set\x20of\x20data\x20in\x20the\x20database','Denormalized','When\x20one\x20process\x20runs','ir\x20Quiz\x20','True\x20or\x20False:\x20Spanned\x20records\x20are\x20used\x20when\x20records\x20are\x20larger\x20than\x20a\x20single\x20block.','Which\x20SQL\x20keyword\x20is\x20used\x20to\x20update\x20data\x20in\x20a\x20table?','350','To\x20improve\x20data\x20storage\x20efficiency','What\x20is\x20the\x20value\x20of\x20the\x20postfix\x20expression\x206\x203\x202\x204\x20+\x20-\x20*\x20?','ADD\x20DATABASE\x20database_name;','Data\x20compression','ADD\x20SCHEMA\x20schema_name;','What\x20is\x20the\x20key\x20difference\x20between\x20MapReduce\x20and\x20Spark\x20regarding\x20storage\x20and\x20memory\x20use?','The\x20buffer\x20is\x20locked\x20for\x20access','How\x20can\x20you\x20change\x20the\x20data\x20type\x20of\x20a\x20column\x20in\x20SQL\x20Server?','Only\x20the\x20data\x20is\x20deleted','segment','The\x20grain\x20of\x20a\x20fact\x20table\x20affects\x20which\x20of\x20the\x20following?','Detecting\x20errors','By\x20decreasing\x20disk\x20storage\x20requirements','Which\x20term\x20refers\x20to\x20the\x20definition\x20of\x20what\x20a\x20single\x20row\x20in\x20a\x20fact\x20table\x20will\x20represent?','Font\x20style','What\x20is\x20the\x20average\x20access\x20time\x20for\x20a\x20file\x20of\x20b\x20blocks\x20under\x20basic\x20file\x20organizations\x20dependent\x20on?','What\x20is\x20the\x20disadvantage\x20of\x20using\x20a\x20heap\x20file\x20for\x20searching?','By\x20creating\x20a\x20pointer\x20to\x20additional\x20storage\x20locations','Calculating\x20the\x20range\x20of\x20each\x20variable','To\x20increase\x20the\x20data\x20spread','The\x20ability\x20to\x20process\x20transactions\x20entirely\x20or\x20not\x20at\x20all','To\x20limit\x20the\x20number\x20of\x20rows\x20returned','NEW\x20DATABASE\x20database_name','Which\x20term\x20describes\x20the\x20process\x20of\x20optimizing\x20a\x20database\x20to\x20remove\x20redundancy?','First-in-first-out\x20(FIFO)','A\x20list\x20of\x20documents\x20sorted\x20by\x20length','The\x20current\x20state\x20of\x20the\x20database','The\x20distributed\x20cache\x20mechanism\x20in\x20Hadoop\x20is\x20primarily\x20used\x20for:','Which\x20SQL\x20command\x20is\x20used\x20to\x20add\x20a\x20new\x20row\x20of\x20data\x20to\x20a\x20table?','FULL\x20OUTER\x20JOIN','Time-priority','What\x20is\x20a\x20common\x20issue\x20with\x20ordered\x20files\x20during\x20deletion?','During\x20a\x20memory\x20read','Sales\x20forecasting','The\x20ability\x20to\x20change\x20data\x20types\x20in\x20the\x20database','Pin-count','Data\x20abstraction\x20in\x20database\x20systems\x20aims\x20to\x20improve\x20data\x20storage\x20efficiency.','What\x20is\x20the\x20difference\x20between\x20DELETE\x20and\x20TRUNCATE\x20commands?','What\x20is\x20the\x20output\x20of\x20SELECT\x2010\x20%\x203\x20in\x20SQL\x20Server?','Relies\x20on\x20data\x20locality\x20for\x20efficiency','Mail\x20service','Each\x20word\x20of\x20the\x20query\x20is\x20called\x20________.','Split\x20and\x20Aggregate','Specified\x20number','They\x20reduce\x20the\x20need\x20for\x20periodic\x20reorganization','Which\x20analytics\x20type\x20focuses\x20on\x20making\x20decisions\x20to\x20improve\x20system\x20performance?','Which\x20SQL\x20statement\x20is\x20used\x20to\x20limit\x20the\x20number\x20of\x20rows\x20returned?','Simplified\x20database\x20design','Internal\x20Level','It\x20is\x20less\x20expensive\x20and\x20can\x20store\x20larger\x20amounts\x20of\x20data','Excluding\x20both\x20terms','Object','Which\x20data\x20transformation\x20technique\x20involves\x20scaling\x20data\x20to\x20a\x20smaller\x20range?','Primary\x20key\x20can\x20be\x20null.','Weighted\x20relevance','Joins\x20multiple\x20tables\x20based\x20on\x20foreign\x20keys','Splitting\x20input\x20data\x20for\x20processing','SORT\x20BY','Filters\x20data','True\x20or\x20False:\x20Writable\x20classes\x20in\x20Hadoop\x20are\x20used\x20to\x20enable\x20lightweight\x20serialization.','Heap','Customer\x20Relationship\x20Management','Generating\x20ad\x20hoc\x20reports','256\x20KB','Interconnection','Transactional\x20systems\x20(OLTP)','It\x20focuses\x20on\x20user\x20interactions\x20with\x20the\x20database.','The\x20retrieved\x20material\x20of\x20IR\x20is\x20usually\x20_______.','Samza','A\x20query\x20language','The\x20range\x20of\x20data','A\x20track\x20divided\x20into\x20smaller\x20blocks','They\x20improve\x20access\x20times','Sorting\x20the\x20file\x20continuously','Artificial\x20Intelligence','A\x20different\x20program','Data\x20is\x20always\x20current','Which\x20of\x20the\x20following\x20is\x20NOT\x20an\x20identified\x20style\x20of\x20BI\x20by\x20MicroStrategy,\x20Corp.?','Selects\x20all\x20items\x20that\x20discuss\x20computer\x20and/or\x20information\x20that\x20do\x20not\x20discuss\x20data','To\x20retrieve\x20data\x20from\x20a\x20table','Ordered\x20file','Disk\x20heads','NOT\x20then\x20AND\x20then\x20OR','Which\x20operation\x20is\x20used\x20to\x20insert\x20a\x20new\x20record\x20in\x20a\x20file?','A\x20mode','True\x20or\x20False:\x20A\x20nonvolatile\x20data\x20warehouse\x20means\x20data\x20cannot\x20be\x20overwritten\x20or\x20changed\x20after\x20being\x20added.','0.7\x20and\x200.9','INTERSECT','The\x20Transmission\x20Control\x20Protocol\x20(TCP)','Which\x20BI\x20component\x20measures\x20and\x20monitors\x20Key\x20Performance\x20Indicators\x20(KPIs)?','Ordinal\x20data\x20only','internet\x20mail\x20access\x20protocol','Semi-additive\x20measure','It\x20is\x20deleted\x20permanently','What\x20is\x20a\x20foreign\x20key\x20used\x20for\x20in\x20SQL?','How\x20do\x20you\x20remove\x20a\x20column\x20from\x20a\x20table?','Mappers\x20receive\x20a\x20fixed\x20number\x20of\x20lines\x20as\x20input','Sequential\x20file\x20organization','True\x20or\x20False:\x20The\x20use\x20of\x20stop\x20lists\x20reduces\x20the\x20size\x20of\x20postings\x20lists.','wrong-answers','True\x20or\x20False:\x20Denormalization\x20reduces\x20data\x20redundancy.','The\x20document\x20frequency\x20indicates:','One\x20stack\x20is\x20enough','True\x20or\x20False:\x20In\x20unspanned\x20records,\x20a\x20record\x20can\x20be\x20split\x20across\x20multiple\x20blocks.','Which\x20model\x20considers\x20documents\x20as\x20vectors\x20in\x20high-dimensional\x20space?','1980s','Predictive\x20analytics','Cloud\x20storage','Additive\x20fact','True\x20or\x20False:\x20A\x20dissimilarity\x20matrix\x20records\x20the\x20distance\x20between\x20pairs\x20of\x20objects.','Relations','Resource\x20Manager','A\x20key\x20that\x20is\x20always\x20a\x20primary\x20key','No\x20division\x20of\x20data','To\x20increase\x20data\x20redundancy','They\x20affect\x20tf-idf\x20weighting\x20directly','To\x20enhance\x20scoring\x20based\x20on\x20specific\x20document\x20regions\x20like\x20title\x20or\x20abstract','Simplicity','Finance','The\x20number\x20of\x20records\x20in\x20a\x20bucket','AVG','Insert','The\x20actual\x20data\x20stored\x20in\x20the\x20database','It\x20uses\x20a\x20hashing\x20algorithm','HTML','Which\x20SQL\x20function\x20returns\x20the\x20maximum\x20value\x20in\x20a\x20column?','It\x20discards\x20irrelevant\x20terms','K-means\x20is\x20an\x20example\x20of\x20a\x20clustering\x20algorithm\x20that\x20requires\x20specifying\x20the\x20number\x20of\x20clusters.','In\x20the\x20memory\x20of\x20the\x20main\x20node','style','The\x20participating\x20computers\x20in\x20a\x20network\x20are\x20referred\x20to\x20as\x20______.','Records\x20only\x20a\x20snapshot\x20at\x20a\x20single\x20point\x20in\x20time','Unstructured\x20data\x20collection','Size\x20of\x20a\x20block','Buffering\x20can\x20speed\x20up\x20the\x20read\x20and\x20write\x20processes\x20on\x20disk.','What\x20does\x20the\x20BETWEEN\x20operator\x20do\x20in\x20SQL?','An\x20indexer\x20processes\x20documents\x20by:','Higher\x20blocking\x20factor\x20leads\x20to\x20more\x20unused\x20space','What\x20does\x20the\x20SQL\x20SELECT\x20INTO\x20statement\x20do?','Both\x20stations\x20can\x20transmit\x20and\x20receive\x20data\x20simultaneously\x20in\x20______.','toggle','What\x20is\x20the\x20capacity\x20of\x20a\x20track\x20if\x20the\x20sector\x20size\x20is\x20512\x20bytes\x20and\x20there\x20are\x2016947\x20sectors\x20per\x20track?','The\x20merging\x20of\x20postings\x20lists\x20is\x20essential\x20in\x20Boolean\x20retrieval\x20to:','Suggesting\x20preferable\x20restaurants\x20is\x20one\x20of\x20the\x20tasks\x20handled\x20by\x20information\x20retrieval.','number','Stops\x20processing\x20immediately','Which\x20keyword\x20is\x20used\x20to\x20remove\x20duplicate\x20rows?','Job\x20configuration\x20and\x20InputFormat','4\x20or\x20more','Block\x20allocation\x20issues','Which\x20one\x20of\x20the\x20following\x20protocol\x20delivers/stores\x20mail\x20to\x20receiver\x20server?','Images','What\x20type\x20of\x20measure\x20can\x20be\x20summed\x20across\x20all\x20dimensions?','To\x20define\x20the\x20structure\x20of\x20a\x20table','question','Histogram','High-speed\x20access','PRIMARY\x20KEY\x20(column_name)','Use\x20a\x20distributed\x20cache\x20to\x20perform\x20the\x20join','Which\x20of\x20these\x20SQL\x20commands\x20is\x20used\x20to\x20remove\x20a\x20table\x20from\x20a\x20database?','Which\x20SQL\x20function\x20is\x20used\x20to\x20calculate\x20the\x20average\x20value\x20of\x20a\x20numeric\x20column?','To\x20modify\x20existing\x20data\x20in\x20a\x20table','Data\x20similarity','What\x20is\x20the\x20usual\x20unit\x20for\x20data\x20transfer\x20between\x20main\x20memory\x20and\x20disk?','Additive\x20measures\x20in\x20fact\x20tables\x20allow\x20for:','What\x20is\x20the\x20role\x20of\x20the\x20InputSplitter\x20class\x20in\x20Hadoop\x27s\x20MapReduce?','Temporary\x20data','To\x20verify\x20data\x20redundancy','TCP/IP\x20model\x20does\x20not\x20have\x20____\x20layer\x20but\x20OSI\x20model\x20have\x20this\x20layer.','Data\x20is\x20stored\x20in\x20HDFS\x20as\x20fixed-size\x20blocks,\x20typically\x20128\x20MB.','Hashed\x20file\x20organization','What\x20does\x20BLOB\x20stand\x20for?','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aThe\x20combination\x20of\x20EmpID\x20and\x20DeptNo\x20can\x20serve\x20as\x20a\x20composite\x20key\x20in\x20the\x20Employees\x20table.','True\x20or\x20False:\x20In\x20ranked\x20retrieval\x20models,\x20the\x20system\x20returns\x20a\x20ranked\x20list\x20of\x20documents\x20based\x20on\x20relevance\x20to\x20the\x20query.','-A/BC*^DE','It\x20has\x20no\x20effect\x20on\x20utilization','True\x20or\x20False:\x20Tokenization\x20involves\x20dividing\x20text\x20into\x20individual\x20units\x20called\x20tokens.','DELETE\x20CONSTRAINT\x20constraint_name;','8547400xdykSZ','Which\x20statement\x20best\x20describes\x20extendible\x20hashing?','Indexed\x20file\x20organization','Which\x20of\x20the\x20following\x20best\x20describes\x20the\x20physical\x20data\x20model?','textContent','Store\x20transaction\x20data','Reduce','To\x20define\x20a\x20primary\x20key','File\x20replication','Manipulating\x20data','ir-quiz-selection','True\x20or\x20False:\x20Periodic\x20fact\x20tables\x20capture\x20snapshots\x20of\x20data\x20for\x20specific\x20time\x20intervals.','Your\x20Algorithmic\x20Resource\x20Negotiator','Automatically\x20updates\x20values','A\x20virtual\x20table','Which\x20network\x20topology\x20requires\x20a\x20central\x20controller\x20or\x20hub?','Consistency\x20in\x20data\x20quality\x20refers\x20to:','Refer\x20to\x20other\x20fact\x20tables','In\x20chaining,\x20where\x20are\x20overflow\x20records\x20stored?','The\x20physical\x20data\x20model\x20focuses\x20on\x20how\x20data\x20is\x20stored\x20as\x20files\x20in\x20the\x20computer.','Dimension\x20hierarchy','Which\x20of\x20the\x20following\x20terms\x20is\x20used\x20to\x20refer\x20to\x20the\x20frequency\x20of\x20a\x20term\x20in\x20a\x20document?','LRU','Comma','Counts\x20the\x20number\x20of\x20NULL\x20values\x20in\x20a\x20column','MATCH','What\x20is\x20the\x20purpose\x20of\x20correlation\x20analysis\x20in\x20data\x20preprocessing?','Removes\x20duplicate\x20values\x20from\x20the\x20result\x20set','53200rWLYya','Which\x20SQL\x20keyword\x20is\x20used\x20to\x20test\x20if\x20a\x20value\x20matches\x20a\x20specific\x20list\x20of\x20values?','Pushing\x20an\x20element\x20into\x20a\x20stack\x20already\x20having\x20five\x20elements\x20and\x20a\x20size\x20limit\x20of\x205\x20will\x20cause:','Creating\x20separate\x20indexes\x20for\x20specific\x20parts\x20of\x20documents\x20like\x20title\x20and\x20abstract','SHOW\x20TABLES;','In\x20a\x20compressed\x20format\x20within\x20the\x20bucket','A\x20series\x20of\x20empty\x20slots','Document\x20Frequency\x20Index','Python\x20(for\x20code)','Smoothing\x20data\x20by\x20using\x20closest\x20boundary\x20values','1)\x20fish\x202)\x20chips','NOT\x20NULL','The\x20Address\x20Resolution\x20Protocol\x20(ARP)','Data\x20is\x20deleted\x20from\x20the\x20buffer','What\x20is\x20the\x20main\x20disadvantage\x20of\x20using\x20LRU\x20as\x20a\x20buffer\x20replacement\x20strategy?','What\x20is\x20an\x20alternative\x20term\x20commonly\x20used\x20for\x20data\x20mining?','default_schema','Finds\x20the\x20maximum\x20value\x20in\x20a\x20column','Document\x20parsing\x20may\x20have\x20____\x20format\x20in\x20IR\x20system.','Mode','AND\x20then\x20NOT\x20then\x20OR','Sender','By\x20reducing\x20the\x20size\x20of\x20data','An\x20index','True\x20or\x20False:\x20Vector\x20similarity\x20scores\x20can\x20help\x20to\x20filter\x20irrelevant\x20documents.','CURDATE()','Search\x20capabilities','Imputed','Returns\x20only\x20matching\x20rows\x20from\x20both\x20queries','Schema-on-read\x20flexibility','Response\x20to\x20collisions','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aHow\x20can\x20the\x20department\x20name\x20where\x20a\x20specific\x20employee\x20works\x20be\x20retrieved?','Which\x20is\x20not\x20a\x20application\x20layer\x20protocol?','Apache\x20Hive','To\x20allow\x20duplicate\x20values','What\x20is\x20the\x20function\x20of\x20the\x20SQL\x20ISNULL()\x20function?','To\x20sort\x20data\x20records','Ascending','Profiles','Sorting\x20them\x20alphabetically','It\x20describes\x20how\x20data\x20is\x20stored\x20as\x20files\x20in\x20the\x20computer.','Profit\x20margin\x20percentage','Records\x20that\x20can\x20vary\x20in\x20size\x20based\x20on\x20their\x20fields','In\x20which\x20fact\x20table\x20type\x20is\x20each\x20new\x20transaction\x20represented\x20by\x20a\x20single\x20row?','Average\x20number\x20of\x20records\x20per\x20block','95rsmVsP','Flash\x20memory','DROP\x20is\x20slower\x20than\x20TRUNCATE','Term\x20occurrence','The\x20ability\x20to\x20change\x20external\x20schemas\x20without\x20affecting\x20the\x20logical\x20schema','The\x20flag\x20resets\x20all\x20other\x20buffers','What\x20is\x20the\x20purpose\x20of\x20the\x20SQL\x20UPDATE\x20statement?','In\x20MapReduce,\x20which\x20phase\x20typically\x20reduces\x20the\x20data\x20volume\x20by\x20combining\x20values?','Which\x20ETL\x20process\x20involves\x20converting\x20data\x20to\x20fit\x20the\x20warehouse\x20structure?','Which\x20tool\x20is\x20commonly\x20used\x20for\x20interactive\x20SQL\x20on\x20Hadoop?','The\x20ability\x20to\x20classify\x20data\x20based\x20on\x20rules','When\x20combining\x20search\x20results,\x20intersecting\x20postings\x20lists\x20is\x20essential\x20for:','MapReduce\x20is\x20more\x20memory-efficient.','The\x20main\x20purpose\x20of\x20a\x20data\x20warehouse\x20is\x20to:','Dimension\x20tables\x20linked\x20in\x20a\x20hierarchical\x20structure','NameNode','MNAR','What\x20is\x20the\x20advantage\x20of\x20indexed\x20allocation?','Filters\x20data\x20based\x20on\x20multiple\x20conditions','Deletion\x20issues','Allows\x20null\x20values','Map-side\x20join','Records\x20one\x20row\x20per\x20transaction','In\x20clustering,\x20maximizing\x20intra-cluster\x20similarity\x20means:','Data\x20scrubbing\x20in\x20data\x20cleaning\x20refers\x20to:','Business\x20Analytics','In\x20a\x20symmetric\x20distribution,\x20the\x20mean,\x20median,\x20and\x20mode\x20are:','To\x20separate\x20the\x20signal\x20hidden\x20in\x20the\x20noise','Printing\x20documents','Adds\x20or\x20removes\x20columns\x20from\x20a\x20table','The\x20number\x20of\x20records','Improved\x20security\x20and\x20easier\x20application\x20updates','2000s','To\x20perform\x20a\x20scan\x20operation,\x20the\x20system:','DROP\x20removes\x20only\x20data,\x20TRUNCATE\x20removes\x20structure','TextInputFormat','ALTER\x20TABLE\x20DROP\x20PRIMARY\x20KEY\x20constraint_name;','A\x20categorical\x20variable','bi-quiz-selection','Data\x20storage\x20management','Eating','Equal-size\x20sectors','What\x20does\x20the\x20term\x20\x27heap\x20file\x27\x20refer\x20to?','Context\x20Configuration','File\x20storage\x20for\x20large\x20files','It\x20removes\x20all\x20rows\x20in\x20a\x20table','The\x20primary\x20key\x20of\x20a\x20table','Telephone\x20networks\x20operate\x20in\x20this\x20mode.','True\x20or\x20False:\x20Query\x20optimization\x20in\x20Boolean\x20retrieval\x20often\x20starts\x20with\x20the\x20highest-frequency\x20terms.','Descending','Eat','True\x20or\x20False:\x20Hadoop\x20is\x20most\x20efficient\x20for\x20processing\x20a\x20large\x20number\x20of\x20small\x20files.','OR\x20queries','True\x20or\x20False:\x20Serialization\x20in\x20Hadoop\x20converts\x20structured\x20data\x20into\x20binary.','Automatic\x20backup','Inverted\x20indexes\x20are\x20particularly\x20effective\x20because\x20they:','To\x20manage\x20CPU\x20operations','Servers','Efficiency','Data\x20snapshots\x20over\x20time','The\x20maximum\x20number\x20of\x20hosts\x20in\x20the\x20network\x20and/or\x20the\x20geometric\x20size\x20of\x20the\x20network','Joins\x20tables\x20based\x20on\x20a\x20condition','A\x20logical\x20grouping\x20of\x20database\x20objects','It\x20is\x20the\x20only\x20option\x20for\x20interactive\x20queries.','ABDC','What\x20is\x20the\x20purpose\x20of\x20a\x20file\x20header?','Transforms\x20values\x20into\x20a\x20limited\x20range','The\x20Boolean\x20model\x20is\x20preferred\x20in\x20legal\x20searches\x20like\x20WestLaw\x20because:','Converting\x20data\x20into\x20human-readable\x20form','100\x20MB','Web\x20search\x20service','Enable\x20interactive\x20access\x20to\x20data\x20for\x20analysis','Regression','Data\x20integrity\x20in\x20a\x20database\x20is\x20easier\x20to\x20achieve\x20than\x20in\x20a\x20file-based\x20system.','InputSplitter','review-btn','Primary\x20storage','Updated\x20in\x20real-time','Historical\x20data','ALTER\x20TABLE\x20table_name\x20DROP\x20CONSTRAINT\x20constraint_name;','Term\x20Frequency\x20(tf)','Accumulating\x20fact','High\x20memory\x20cost','A\x20column\x20that\x20holds\x20unique\x20values','CMU','An\x20index\x20that\x20allows\x20duplicate\x20values','Salary','Data\x20Description\x20Language','What\x20is\x20the\x20main\x20function\x20of\x20the\x20read/write\x20head\x20in\x20a\x20disk\x20drive?','Real-time\x20dashboards','To\x20rename\x20a\x20table','Uses\x20a\x20linked\x20list','Unstructured\x20Data','Data\x20Structures\x20Quiz\x20','Ordinal','MapReduce\x20is\x20faster\x20because\x20it\x20uses\x20caching.','Association','Use\x20of\x20a\x20catalog\x20for\x20schema\x20storage','Manhattan\x20Distance','INSERT\x20INTO\x20schema_name;','HTTP\x20is\x20......\x20protocol.','What\x20is\x20the\x20purpose\x20of\x20the\x20INDEX\x20in\x20a\x20database?','timer','overflow','Large\x20storage\x20capacity','RYB','Simplifying\x20data\x20structures','A\x20list\x20of\x20terms\x20and\x20their\x20frequencies','Wide\x20Area\x20Networks\x20(WANs)\x20______.','DROP','True\x20or\x20False:\x20Predictive\x20analytics\x20aims\x20to\x20optimize\x20current\x20business\x20performance.','next-btn','To\x20prevent\x20duplicate\x20data','Unchanging\x20structure','What\x20is\x20the\x20retrieved\x20result\x20of\x20\x27Information\x20AND\x20NOT\x20(Retrieval\x20AND\x20Extraction)\x27?','Binary\x20Large\x20Object','Which\x20type\x20of\x20storage\x20is\x20typically\x20the\x20fastest\x20in\x20a\x20storage\x20hierarchy?','In\x20data\x20warehousing,\x20what\x20does\x20granularity\x20refer\x20to?','To\x20ensure\x20uniform\x20weighting\x20for\x20each\x20document','TABLE\x20CREATE\x20table_name','The\x20most\x20common\x20terms\x20only','FILTER\x20BY','CREATE\x20TABLE\x20table_name\x20()','Which\x20of\x20the\x20following\x20is\x20an\x20advantage\x20of\x20Hadoop’s\x20data\x20replication?','For\x20complex,\x20ever-changing\x20applications','Unordered\x20file\x20organization','Which\x20command\x20is\x20used\x20to\x20rename\x20a\x20table?','What\x20is\x20the\x20purpose\x20of\x20the\x20TRUNCATE\x20TABLE\x20command?','Matches\x20patterns\x20in\x20a\x20column','NULL\x20values','True\x20or\x20False:\x20tf-idf\x20weighting\x20is\x20unaffected\x20by\x20term\x20frequency\x20within\x20the\x20document.','FIFO\x20Scheduler','In\x20TCP/IP,\x20a\x20logical\x20connection\x20between\x20an\x20entity\x20at\x20the\x20data-link\x20layer\x20can\x20be\x20made\x20with\x20another\x20entity\x20at\x20the\x20.........\x20layer.','Central\x20tendency','Returns\x20a\x20specified\x20portion\x20of\x20a\x20string','Data\x20is\x20moved\x20to\x20main\x20memory','Consistency','Assigning\x20weights\x20to\x20words\x20based\x20on\x20their\x20frequency','The\x20average\x20of\x20the\x20data\x20set','Yet\x20Another\x20Resource\x20Negotiator','Use\x20cables,\x20telephone\x20lines,\x20satellites,\x20and\x20radio\x20waves\x20to\x20connect','ALTER\x20TABLE\x20table_name\x20ALTER\x20COLUMN\x20column_name\x20NOT\x20NULL;','A\x20file-based\x20system\x20is\x20more\x20efficient\x20than\x20a\x20database\x20in\x20handling\x20complex\x20data\x20relationships.','Writable\x20classes\x20are\x20more\x20efficient\x20for\x20Hadoop','By\x20expanding\x20memory\x20size','Which\x20technique\x20is\x20commonly\x20used\x20to\x20reduce\x20inflectional\x20forms\x20of\x20words?','Which\x20of\x20the\x20following\x20is\x20a\x20characteristic\x20of\x20a\x20hard\x20disk\x20drive?','Which\x20of\x20the\x20following\x20SQL\x20clauses\x20is\x20used\x20to\x20filter\x20results\x20after\x20the\x20GROUP\x20BY\x20operation?','When\x20applying\x20Porter\x20algorithm\x20rules,\x20what\x20will\x20the\x20following\x20word\x20be\x20stemmed\x20to:\x20applicable\x20would\x20be\x20____________.','Cost\x20reduction','_______\x20is\x20an\x20instance\x20of\x20a\x20sequence\x20of\x20characters.','Records\x20are\x20stored\x20in\x20random\x20order','What\x20is\x20the\x20purpose\x20of\x20indexing\x20in\x20SQL?','Which\x20of\x20the\x20following\x20layers\x20is\x20an\x20addition\x20to\x20OSI\x20model\x20when\x20compared\x20with\x20TCP\x20IP\x20model?','Checks\x20for\x20NULL\x20values','True\x20or\x20False:\x20Metadata\x20in\x20a\x20data\x20warehouse\x20is\x20unimportant\x20for\x20business\x20intelligence\x20applications.','Which\x20SQL\x20function\x20is\x20used\x20to\x20return\x20the\x20total\x20sum\x20of\x20a\x20numeric\x20column?','They\x20require\x20no\x20sorting\x20for\x20reading','Removes\x20specific\x20rows\x20based\x20on\x20a\x20condition','What\x20is\x20the\x20purpose\x20of\x20using\x20weighted\x20zone\x20scoring\x20in\x20information\x20retrieval?','MAN','All\x20data\x20is\x20in\x20real-time','4OrwKeC','%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22label\x22>Best\x20Score</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22value\x22>','Increased\x20data\x20redundancy','Stop-word\x20filtering','Improves\x20data\x20access\x20speed','True\x20or\x20False:\x20High-frequency\x20terms\x20are\x20usually\x20assigned\x20high\x20weights\x20to\x20increase\x20their\x20impact.','True\x20or\x20False:\x20A\x20blocking\x20factor\x20helps\x20determine\x20the\x20average\x20number\x20of\x20records\x20per\x20block.','In\x20which\x20scenario\x20is\x20buffering\x20most\x20effective?','It\x20is\x20primarily\x20used\x20for\x20web\x20applications.','Combining\x20multiple\x20tables\x20for\x20faster\x20retrieval','Non-additive','True\x20or\x20False:\x20BI\x20helps\x20decision-makers\x20analyze\x20both\x20historical\x20and\x20current\x20data.','Sorts\x20rows\x20in\x20the\x20result\x20set','Database\x20size','Indexed\x20allocation','In\x20extendible\x20hashing,\x20reducing\x20the\x20directory\x20size\x20by\x20half\x20is\x20called:','Denormalization','To\x20group\x20records\x20with\x20the\x20same\x20values','True\x20or\x20False:\x20Normalized\x20dimension\x20tables\x20in\x20a\x20snowflake\x20schema\x20reduce\x20data\x20redundancy.','The\x20time\x20taken\x20to\x20transfer\x20data\x20over\x20a\x20network','A\x20unique\x20identifier\x20for\x20rows','Multiple','A\x20physical\x20storage\x20unit\x20for\x20data','Aggregation','CREATE\x20FOREIGN\x20KEY\x20column_name;','Distributed\x20cache\x20and\x20Job\x20configuration','Which\x20command\x20deletes\x20a\x20table\x20from\x20the\x20database?','Event\x20fact','To\x20count\x20term\x20frequency','Why\x20might\x20a\x20combiner\x20function\x20improve\x20MapReduce\x20performance?','What\x20is\x20a\x20primary\x20characteristic\x20of\x20big\x20data?','Shuffle\x20join','Is\x20frequently\x20accessed','Simplex','Buffer\x20management\x20uses\x20which\x20strategy\x20to\x20track\x20page\x20access?','Hadoop\x20does\x20not\x20support\x20fault\x20tolerance','The\x20system\x20continues\x20to\x20operate\x20even\x20if\x20some\x20nodes\x20fail','BLOBs','Periodic\x20fact','Suppose\x20we\x20have\x20two\x20massive\x20datasets,\x20each\x20containing\x20billions\x20of\x20records,\x20and\x20we\x20need\x20to\x20join\x20them\x20using\x20a\x20multi-column\x20join\x20condition.\x20What\x20is\x20the\x20most\x20suitable\x20approach\x20for\x20this\x20scenario?','Stemming','Which\x20SQL\x20operator\x20is\x20used\x20to\x20compare\x20a\x20value\x20to\x20a\x20list\x20of\x20values?','Quantitative\x20data','Which\x20of\x20the\x20following\x20is\x20not\x20a\x20DDL\x20command?','Uses\x20disks\x20to\x20store\x20records','Job\x20scheduling\x20and\x20resource\x20management','Returns\x20rows\x20that\x20exist\x20in\x20both\x20tables','Positional\x20Index','Median','Missing\x20or\x20undefined\x20value','Using\x20cloud\x20storage','An\x20index\x20where\x20rows\x20are\x20stored\x20in\x20physical\x20order','COUNT','Spatiotemporal\x20data','totalScore','Wide\x20area\x20network','Joins\x20multiple\x20tables','American\x20Scientific\x20Code\x20for\x20Information\x20Interchange','Which\x20of\x20these\x20frameworks\x20is\x20specifically\x20designed\x20for\x20real-time\x20data\x20stream\x20processing?','Diagnostic','Structured','BinaryInputFormat','CREATE\x20TABLE\x20schema_name;','DISTINCT','What\x20are\x20variable-length\x20records?','Which\x20MapReduce\x20feature\x20supports\x20joining\x20large\x20datasets\x20without\x20a\x20predefined\x20structure?','Probabilistic\x20relevance','Domain','They\x20can\x20be\x20ignored\x20by\x20the\x20DBMS','A\x20term\x20that\x20refers\x20to\x20the\x20way\x20in\x20which\x20the\x20nodes\x20of\x20a\x20network\x20are\x20linked\x20together\x20is\x20called\x20______.','Semi-supervised\x20learning','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22','length','Joins\x20multiple\x20strings\x20into\x20one','Which\x20of\x20these\x20is\x20NOT\x20a\x20function\x20of\x20the\x20Node\x20Manager\x20in\x20YARN?','Transformation','To\x20double\x20the\x20available\x20memory','Maintained\x20to\x20support\x20complex\x20analysis','Avoid\x20splitting\x20the\x20file','Monitoring\x20database\x20use','Disk\x20with\x20multiple\x20tracks','Entity-Relationship\x20Model','In\x20ETL,\x20the\x20process\x20of\x20loading\x20means:','Full-duplex\x20mode','a\x20frame','Data\x20Service\x20System','RIGHT\x20JOIN','What\x20is\x20Hadoop\x20primarily\x20designed\x20for?','Filters\x20rows\x20with\x20non-NULL\x20values','Hierarchical\x20Model','An\x20ER\x20schema','Selects\x20all\x20items\x20that\x20discuss\x20computer\x20and\x20information\x20that\x20do\x20not\x20discuss\x20data','To\x20reduce\x20the\x20data\x20to\x20binary\x20form','Open','Data\x20is\x20updated\x20hourly','Checks\x20if\x20a\x20column\x20value\x20is\x20NULL','To\x20assign\x20higher\x20weights\x20to\x20larger\x20values','It\x20creates\x20overflow\x20buckets\x20for\x20each\x20collision','List','Returns\x20the\x20difference\x20between\x20two\x20result\x20sets','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>','Representation','Which\x20format\x20is\x20best\x20for\x20storing\x20small\x20binary\x20files?','Tracking\x20customer\x20feedback\x20scores','A\x20Boolean\x20vector','SIP','Supports\x20multiple\x20simultaneous\x20users','The\x20physical\x20storage\x20of\x20data','Maximizing\x20distances\x20between\x20clusters','A\x20cluster\x20of\x20phrases','ER\x20schema','AVG()','UPDATE','Which\x20of\x20the\x20following\x20is\x20not\x20one\x20of\x20the\x20components\x20of\x20a\x20data\x20communication\x20system?','Supporting\x20marketing\x20activities\x20only','A\x20data\x20source\x20external\x20to\x20the\x20data\x20warehouse','score-poor','When\x20dirty\x20bit\x20is\x20off','In\x20the\x20Boolean\x20model,\x20\x27OR\x27\x20between\x20terms\x20indicates:','A*BC+/D','❌\x20Wrong','YARN','Match\x20multiple\x20terms\x20in\x20a\x20query','SMTP','Which\x20of\x20the\x20following\x20is\x20a\x20small\x20single-site\x20network?','Which\x20of\x20the\x20following\x20scenarios\x20would\x20most\x20likely\x20use\x20an\x20accumulating\x20fact\x20table?','dbo','Binary\x20Local\x20Object','The\x20Secure\x20Shell\x20(SSH)','Update','Ignoring\x20all\x20missing\x20values','Durability','Which\x20clause\x20is\x20used\x20to\x20sort\x20the\x20results\x20of\x20a\x20SQL\x20query?','True\x20or\x20False:\x20Data\x20scientists\x20usually\x20require\x20programming\x20skills\x20in\x20languages\x20like\x20Python\x20or\x20R.','Which\x20of\x20these\x20is\x20not\x20a\x20valid\x20SQL\x20statement?','Limited\x20data\x20sharing','What\x20does\x20the\x20degree\x20of\x20a\x20relation\x20refer\x20to?','To\x20store\x20duplicate\x20data','Binning','ARRANGE\x20BY','A\x20set\x20of\x20sentences','Data\x20normalization','Organize\x20terms\x20alphabetically','Map\x20outputs\x20without\x20a\x20key','Increase\x20accuracy\x20of\x20results','Pixel\x20is\x20the\x20element\x20of\x20a\x20digital\x20image','Removing\x20all\x20data','Filters\x20grouped\x20data','disabled','In\x20a\x20linked\x20list\x20attached\x20to\x20the\x20original\x20bucket','File\x20transfer,\x20access,\x20and\x20management','Decision\x20Trees','Which\x20type\x20of\x20storage\x20is\x20volatile?','It\x20is\x20used\x20for\x20database\x20implementation\x20in\x20DBMS.','Hashed\x20file','Parallel\x20processing\x20of\x20large\x20data\x20sets','It\x20requires\x20indexing','It\x20separates\x20user\x20interface\x20and\x20application\x20programs\x20from\x20the\x20database.','Matching\x20related\x20words\x20in\x20queries\x20and\x20documents','Optimizing\x20current\x20processes','Measures\x20like\x20mean,\x20median,\x20and\x20mode\x20are\x20used\x20to\x20describe:','MAKE\x20DATABASE\x20database_name','answer','Schema','Deletes\x20the\x20database\x20and\x20all\x20its\x20contents','xyz*+pq*r+s+*','Unique\x20key\x20can\x20be\x20null.','Checks\x20if\x20a\x20value\x20falls\x20within\x20a\x20given\x20range','To\x20filter\x20documents\x20by\x20metadata\x20only','What\x20is\x20the\x20benefit\x20of\x20using\x20the\x20function\x20h(K)\x20=\x20K\x20mod\x20M\x20in\x20hashing?','Textual\x20facts\x20in\x20a\x20fact\x20table\x20generally\x20store:','pipe','Which\x20level\x20of\x20the\x20three-schema\x20architecture\x20describes\x20the\x20physical\x20storage\x20structure?','Which\x20device\x20must\x20data\x20be\x20brought\x20to\x20before\x20CPU\x20processing?','A\x20single\x20vector\x20representation','To\x20manage\x20data\x20efficiently','Cosine\x20Similarity','A\x20method\x20to\x20divide\x20processing','Lines\x20are\x20skipped\x20based\x20on\x20byte\x20offsets','KeyValueInputFormat','Finds\x20the\x20length\x20of\x20a\x20string','Data\x20is\x20encrypted','Cache\x20memory','A\x20data\x20warehouse’s\x20\x27subject-oriented\x27\x20nature\x20primarily\x20refers\x20to:','The\x20blocking\x20factor\x20(bfr)\x20represents:','Sorts\x20records','Metadata\x20in\x20a\x20data\x20warehouse\x20is\x20used\x20to:','Why\x20does\x20Hadoop\x20use\x20classes\x20like\x20IntWritable\x20instead\x20of\x20Java’s\x20int?','When\x20record\x20size\x20is\x20greater\x20than\x20block\x20size','Remove\x20a\x20table','CRM','Logical\x20data\x20independence\x20allows\x20changes\x20to\x20the\x20logical\x20schema\x20without\x20affecting\x20external\x20schemas.','In\x20which\x20file\x20organization\x20is\x20a\x20binary\x20search\x20used?','What\x20does\x20INFORMATION_SCHEMA\x20store?','Both\x20A\x20and\x20C','Combines\x20results\x20of\x20two\x20queries','Data\x20redundancy','Numeric','Data\x20Manipulation\x20Language\x20(DML)','CHECK\x20NULL','Only\x20MapReduce\x20processing','To\x20ensure\x20data\x20integrity','Returns\x20records\x20that\x20match\x20in\x20both\x20result\x20sets','Weighting\x20term\x20relevance','Replaces\x20open\x20addressing','Reads\x20the\x20file\x20from\x20the\x20beginning','Real-time\x20processing','Removing\x20all\x20duplicate\x20data','DeptNo','Decision\x20Support\x20Systems','9561168EUHVCQ','True\x20or\x20False:\x20KeyValueTextInputFormat\x20is\x20used\x20when\x20input\x20records\x20contain\x20tab-separated\x20key-value\x20pairs.','Caching\x20large\x20datasets\x20in\x20memory','Which\x20of\x20these\x20processes\x20combines\x20tables\x20to\x20make\x20data\x20retrieval\x20faster?','Ordered\x20files','Privacy\x20concerns\x20in\x20data\x20mining\x20only\x20apply\x20to\x20personal\x20data.','Which\x20operator\x20is\x20used\x20to\x20find\x20values\x20that\x20match\x20a\x20pattern\x20in\x20SQL?','bigdata','Boolean\x20expressions','Returns\x20all\x20rows\x20from\x20the\x20left\x20table','It\x20is\x20not\x20suitable\x20for\x20iterative\x20processing.','A\x20table\x20data\x20type','Buffer\x20replacement\x20policies\x20include\x20all\x20of\x20the\x20following\x20except:','Static\x20data','Speed','Update\x20frequency','finish-btn','CSV','Manage\x20database\x20transactions','No\x20specific\x20format\x20is\x20required','MapReduce\x20is\x20more\x20efficient\x20in\x20processing\x20large\x20files.','To\x20provide\x20a\x20fallback\x20value\x20if\x20none\x20is\x20specified','To\x20ensure\x20no\x20NULL\x20values\x20in\x20a\x20column','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aA\x20new\x20department\x20can\x20be\x20added\x20to\x20the\x20Departments\x20table\x20without\x20any\x20employees\x20being\x20assigned\x20to\x20it\x20initially.','TRUNCATE','Map','physical','It\x20focuses\x20on\x20data\x20retrieval\x20operations.','Summing\x20values\x20across\x20all\x20dimensions','High\x20update\x20frequency','They\x20often\x20contain\x20noisy,\x20missing,\x20or\x20inconsistent\x20data','Physical\x20data\x20independence\x20allows\x20changes\x20to\x20the\x20database\x20state\x20without\x20affecting\x20the\x20schema.','Product\x20name','How\x20many\x20levels\x20of\x20addressing\x20is\x20provided\x20in\x20TCP/IP\x20protocol?','True\x20or\x20False:\x20Phrase\x20queries\x20are\x20a\x20feature\x20that\x20can\x20be\x20implemented\x20using\x20positional\x20indexes.','ORDER\x20BY','innerHTML','packets','Which\x20component\x20is\x20NOT\x20a\x20core\x20part\x20of\x20Hadoop?','AB*CD/+','A\x20technique\x20for\x20encrypting\x20data','Extraction','progress-bar','Heap\x20file','Data\x20Definition\x20Language','Which\x20file\x20organization\x20is\x20ideal\x20for\x20records\x20that\x20need\x20to\x20be\x20accessed\x20in\x20order?','Which\x20data\x20mining\x20application\x20involves\x20determining\x20correlations\x20among\x20customer\x20buying\x20patterns?','Using\x20neural\x20networks\x20to\x20extract\x20knowledge','A\x20DBMS\x20allows\x20multiple\x20users\x20to\x20access\x20data\x20simultaneously.','Editing\x20raw\x20data','In\x20association\x20rule\x20mining,\x20what\x20does\x20confidence\x20represent?','The\x20difference\x20in\x20their\x20ranks','Which\x20of\x20these\x20methods\x20is\x20NOT\x20typically\x20used\x20in\x20classification?','Has\x20no\x20frequency\x20limits','correct','Scheduling\x20jobs\x20in\x20the\x20cluster','Removing\x20accents\x20and\x20punctuation','dark-mode','The\x20MapReduce\x20combiner\x20function\x20is\x20used\x20to:','Reading\x20data\x20in\x20JSON\x20format','Buffers\x20are\x20released','Excluding\x20common\x20words','True\x20or\x20False:\x20In\x20data\x20mining,\x20data\x20objects\x20are\x20also\x20known\x20as\x20tuples\x20or\x20instances.','Support\x20Vector\x20Machine','Weighted\x20zone\x20scoring\x20assigns\x20weights\x20to:','True\x20or\x20False:\x20tf-idf\x20weighting\x20combines\x20both\x20term\x20frequency\x20and\x20document\x20frequency\x20to\x20measure\x20term\x20importance.','Logical\x20Level','True\x20or\x20False:\x20Boolean\x20retrieval\x20models\x20rely\x20solely\x20on\x20the\x20terms\x20\x27AND\x27\x20and\x20\x27OR.\x27','It\x20cannot\x20scale\x20for\x20large\x20datasets.','xyz+*pq*r+s*+','It\x20is\x20not\x20possible\x20to\x20retrieve\x20the\x20department\x20name\x20from\x20the\x20existing\x20tables','Testing\x20relationships\x20between\x20nominal\x20data','True\x20or\x20False:\x20Cosine\x20similarity\x20is\x20used\x20to\x20compare\x20vector\x20representations\x20of\x20documents.','In\x20disk\x20storage,\x20what\x20does\x20formatting\x20do?','To\x20manage\x20emails','Cloud-based\x20storage\x20only','1024\x20bytes\x20to\x202048\x20bytes','Degree','TOP','It\x20happens\x20before\x20data\x20is\x20split','The\x20Chi-Square\x20test\x20is\x20useful\x20for:','<div\x20class=\x22no-data\x22><i\x20class=\x22fas\x20fa-chart-bar\x22\x20style=\x22font-size:\x203rem;\x20margin-bottom:\x2015px;\x22></i><p>No\x20quiz\x20data\x20available\x20yet.\x20Start\x20taking\x20quizzes\x20to\x20see\x20your\x20statistics!</p></div>','User-generated\x20data','What\x20are\x20the\x20tokens\x20of\x20\x27fish\x20and\x20chips\x27?','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aWhich\x20of\x20the\x20following\x20represents\x20the\x20foreign\x20key\x20in\x20the\x20Employees\x20table?','datastructures','Records\x20are\x20sorted\x20first','Records\x20are\x20kept\x20physically\x20sorted','Can\x20you\x20rename\x20a\x20constraint\x20in\x20SQL\x20Server?','Level\x20of\x20data\x20compression','True\x20or\x20False:\x20Record\x20deletion\x20in\x20a\x20heap\x20file\x20typically\x20requires\x20marking\x20the\x20record\x20instead\x20of\x20moving\x20all\x20records.','Why\x20does\x20Hadoop\x20emphasize\x20using\x20commodity\x20hardware?','To\x20create\x20long\x20chains','Converts\x20a\x20string\x20to\x20uppercase','Missing\x20data\x20across\x20multiple\x20sources','A\x20backup\x20for\x20the\x20primary\x20key','Which\x20analytics\x20type\x20aims\x20to\x20predict\x20future\x20customer\x20behavior?','score','Which\x20is\x20not\x20an\x20advantage\x20of\x20secondary\x20storage?','Total\x20size\x20of\x20each\x20block','What\x20is\x20a\x20super\x20key\x20in\x20a\x20relational\x20database?','To\x20split\x20data\x20into\x20blocks','question-info','Combines\x20results\x20from\x20two\x20queries,\x20keeping\x20duplicates','Which\x20of\x20the\x20following\x20is\x20a\x20disadvantage\x20of\x20using\x20a\x20database?','A\x20query\x20that\x20returns\x20only\x20one\x20column','Prediction','What\x20is\x20the\x20purpose\x20of\x20file\x20organization\x20in\x20databases?','Ordered\x20file\x20organization','string','It\x20reduces\x20retrieval\x20time\x20by\x20organizing\x20term\x20lists','Which\x20platform\x20can\x20index\x20and\x20serve\x20search\x20queries\x20on\x20Hadoop\x20clusters?','four','When\x20deciding\x20where\x20the\x20new\x20document\x20will\x20be\x20added\x20to\x20the\x20existing\x20topics.','Full-duplex','Distributed\x20cache','recent-performance','Categorical\x20data','Temperature','Data\x20is\x20consistent\x20across\x20different\x20files','After\x20a\x20bucket\x20overflow','Operational\x20Level\x20Technology\x20Processing','Extracting\x20metadata\x20only','Online\x20transaction\x20processing','DefaultStringifier','Store\x20metadata\x20about\x20dimensions','Crash','To\x20store\x20the\x20database','Equal\x20to\x20the\x20standard\x20deviation','Contains\x20only\x20outliers','What\x20operation\x20is\x20required\x20to\x20delete\x20a\x20record\x20in\x20a\x20heap\x20file?','Web\x20area\x20network','WLAN\x20stands\x20for\x20______.','Perform\x20real-time\x20updates','Binning\x20by\x20mean\x20values','Spark’s\x20ability\x20to\x20store\x20intermediate\x20data\x20in\x20memory\x20for\x20iterative\x20tasks.','128\x20bytes\x20to\x20256\x20bytes','Flexible\x20address\x20space','Transaction\x20fact','It\x20allows\x20for\x20multiple\x20databases\x20to\x20be\x20accessed\x20simultaneously.','Insertion\x20is\x20efficient','What\x20is\x20the\x20purpose\x20of\x20buffering\x20in\x20data\x20management?','Enterprise\x20resource\x20planning','High\x20collision\x20frequency','A\x20subset\x20of\x20the\x20database','LIFO','MAX','Individual\x20business\x20events\x20or\x20transactions','Which\x20command\x20is\x20used\x20to\x20delete\x20all\x20data\x20from\x20a\x20table\x20but\x20keep\x20the\x20structure?','The\x20range\x20of\x20the\x20middle\x2050%\x20of\x20data','simple\x20mail\x20transfer\x20protocol','True\x20or\x20False:\x20In\x20data\x20reduction,\x20data\x20compression\x20and\x20dimensionality\x20reduction\x20are\x20common\x20techniques.','To\x20convert\x20data\x20into\x20structured\x20format','Removes\x20all\x20rows\x20from\x20a\x20table','What\x20is\x20one\x20technique\x20to\x20handle\x20missing\x20data?','ALTER\x20TABLE\x20table_name\x20ADD\x20PRIMARY\x20KEY\x20(column_name);','FOREIGN\x20KEY','Spark\x20is\x20more\x20efficient\x20for\x20iterative\x20processing\x20as\x20it\x20keeps\x20data\x20in\x20memory.','Stores\x20data\x20for\x20a\x20defined\x20process\x20with\x20multiple\x20milestones','To\x20handle\x20data\x20backups','A\x20state','ALTER\x20TABLE\x20table_name\x20RENAME\x20COLUMN\x20old_name\x20TO\x20new_name;','Halving','Storing\x20non-numeric\x20data','Duplic','Which\x20of\x20the\x20following\x20is\x20a\x20valid\x20SQL\x20data\x20type\x20for\x20storing\x20text?','Data\x20nodes\x20and\x20RecordReader','To\x20process\x20the\x20data','visibility','SequenceFileInputFormat','Data\x20Mining','The\x20reduce\x20method’s\x20purpose\x20in\x20a\x20word\x20count\x20program\x20is\x20to:','Library\x20catalog','Mapper','Complex','Rank\x20results','Enhancing\x20OLTP\x20databases','Which\x20clause\x20is\x20used\x20to\x20filter\x20records\x20in\x20a\x20query?','Sorting\x20the\x20records','The\x20Stream\x20Control\x20Transmission\x20Protocol\x20(SCTP)','Node\x20Manager','The\x20entire\x20life\x20cycle\x20of\x20a\x20process','Summarizing\x20daily\x20account\x20balances\x20at\x20month-end','Contains\x20both\x20foreign\x20keys\x20and\x20measures','Data\x20transfer\x20between\x20two\x20asynchronous\x20processes','True\x20or\x20False:\x20A\x20data\x20mart\x20is\x20smaller\x20than\x20an\x20enterprise\x20data\x20warehouse\x20and\x20focuses\x20on\x20a\x20single\x20subject.','They\x20are\x20part\x20of\x20DDL\x20commands','To\x20remove\x20irrelevant\x20words','Matches\x20exact\x20values','To\x20encrypt\x20data','Is\x20not\x20used\x20often','Credit\x20card\x20transaction\x20validation','System','It\x20limits\x20schema\x20flexibility.','question-box','Dissimilarity','What\x20happens\x20when\x20a\x20table\x20is\x20dropped?','Data\x20tables\x20only','To\x20enforce\x20unique\x20values\x20in\x20a\x20column','What\x20characterizes\x20a\x20two-tier\x20client/server\x20architecture?','High\x20data\x20redundancy','The\x20buffer\x20is\x20replaced\x20immediately','In\x20the\x20TCP/IP\x20protocol\x20suite,\x20a\x20logical\x20address\x20is\x20the\x20identifier\x20at\x20the........','The\x20Hadoop\x20Distributed\x20Cache\x20is\x20used\x20primarily\x20for\x20storing\x20large,\x20complex\x20datasets\x20permanently.','Clustering\x20techniques\x20require\x20labeled\x20data\x20to\x20group\x20similar\x20items.','The\x20ability\x20to\x20create\x20backups','Rule-based\x20learning','True\x20or\x20False:\x20Inverted\x20indexes\x20map\x20terms\x20to\x20lists\x20of\x20documents\x20containing\x20those\x20terms.','What\x20is\x20the\x20default\x20size\x20of\x20the\x20Hadoop\x20Distributed\x20Cache?','setItem','Which\x20layer\x20does\x20the\x20data\x20link\x20layer\x20take\x20packets\x20from\x20and\x20encapsulate\x20them\x20into\x20frames\x20for\x20transmission?','It\x20supports\x20real-time\x20and\x20interactive\x20data\x20processing.','Files\x20are\x20stored\x20sequentially','Which\x20of\x20the\x20following\x20strategies\x20is\x20efficient\x20for\x20buffer\x20management?','A\x20stored\x20procedure','To\x20manage\x20the\x20disk\x27s\x20physical\x20layout','application','Applying\x20a\x20dictionary','Height','Link\x20to\x20the\x20primary\x20keys\x20in\x20dimension\x20tables','Joins\x20multiple\x20tables\x20together','Regression\x20analysis','DELETE\x20TABLE','Calculating\x20a\x20final\x20shipping\x20date','To\x20play\x20music','data-link','650','Reduce\x20task\x20load','In\x20cosine\x20similarity,\x20a\x20cosine\x20value\x20close\x20to\x201\x20indicates\x20that\x20the\x20two\x20vectors:','Storing\x20data\x20only\x20on\x20a\x20single\x20server','REPLACE','Have\x20negative\x20correlation','In\x20MapReduce,\x20a\x20\x27split\x27\x20refers\x20to:','Simple\x20data\x20sorting\x20only','In\x20TCP/IP,\x20a\x20message\x20belonging\x20to\x20the\x20transport\x20layer\x20is\x20decapsulated\x20from\x20a\x20packet\x20at\x20the\x20____\x20layer.','To\x20prioritize\x20terms\x20based\x20on\x20document\x20length','CHANGE\x20TABLE','three','Within\x203\x20words','Attributes\x20like\x20temperature\x20(Celsius)\x20or\x20calendar\x20dates\x20are\x20examples\x20of:','MERGE','None\x20of\x20these','Text\x20color','Normalized\x20tables','When\x20NLineInputFormat\x20is\x20set\x20with\x20N=2,\x20each\x20mapper\x20receives:','What\x20does\x20the\x20term\x20\x27bin\x20boundaries\x27\x20refer\x20to\x20in\x20binning?','What\x20is\x20a\x20schema\x20in\x20SQL\x20Server?','What\x20does\x20the\x20SQL\x20keyword\x20IS\x20NOT\x20NULL\x20do?','Which\x20of\x20the\x20following\x20is\x20a\x20function\x20of\x20a\x20DBMS?','To\x20model\x20data\x20for\x20better\x20prediction','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20characteristic\x20of\x20the\x20database\x20approach?','-+*pqrt','In\x20the\x20clock\x20buffer\x20replacement\x20policy,\x20buffers\x20with\x20a\x20flag\x20of\x201\x20are\x20replaced\x20first.','Allows\x20expansion\x20without\x20reorganization','score-good','Applic','True\x20or\x20False:\x20Stop\x20words\x20like\x20\x27the\x27\x20or\x20\x27and\x27\x20are\x20usually\x20excluded\x20from\x20Boolean\x20searches.','Stack','pop','Network\x20efficiency','MIN','A\x20DBMS\x20does\x20not\x20provide\x20any\x20security\x20mechanisms\x20to\x20protect\x20data.','Delete\x20the\x20oldest\x20record','What\x20is\x20a\x20disadvantage\x20of\x20linked\x20allocation?','Using\x20a\x20large\x20number\x20of\x20hash\x20functions','What\x20does\x20a\x20\x27pin-count\x27\x20indicate\x20in\x20buffer\x20management?','ALTER\x20TABLE\x20table_name\x20RENAME\x20new_name\x20TO\x20old_name;','Filters\x20results\x20by\x20range','Each\x20attribute\x20in\x20a\x20relation\x20must\x20be\x20unique','Which\x20of\x20the\x20following\x20is\x20a\x20benefit\x20of\x20BI?','Use\x20the\x20default\x20InputFormat','Sharing\x20the\x20database','What\x20do\x20we\x20call\x20a\x20data\x20mining\x20technique\x20that\x20predicts\x20unknown\x20or\x20future\x20values?','True\x20or\x20False:\x20A\x20Boolean\x20retrieval\x20model\x20is\x20considered\x20precise\x20since\x20documents\x20either\x20match\x20or\x20do\x20not.','Which\x20of\x20these\x20is\x20a\x20DDL\x20(Data\x20Definition\x20Language)\x20command?','True\x20or\x20False:\x20The\x20snowflake\x20schema\x20has\x20a\x20simpler\x20design\x20than\x20the\x20star\x20schema.','Which\x20command\x20is\x20used\x20to\x20add\x20a\x20new\x20column\x20to\x20an\x20existing\x20table?','ADD\x20TABLE\x20myTable;','Description','True\x20or\x20False:\x20Real-time\x20data\x20processing\x20is\x20a\x20characteristic\x20of\x20all\x20data\x20warehouses.','Disk\x20formatting\x20organizes\x20disk\x20storage\x20into:','Enhance\x20transaction\x20processing','To\x20store\x20duplicate\x20values','CREATE\x20DATABASE\x20myTable;','Combines\x20the\x20results\x20of\x20two\x20queries,\x20removing\x20duplicates','Process\x20to\x20process','Document\x20metadata\x20only','Clients','REMOVE\x20SCHEMA\x20schema_name;','LAN','To\x20filter\x20rows\x20based\x20on\x20a\x20condition','Static\x20hashing\x20is\x20characterized\x20by:','Which\x20keyword\x20is\x20used\x20to\x20define\x20a\x20primary\x20key\x20in\x20SQL?','Mode\x20distance','Business\x20Performance\x20Management\x20(BPM)','The\x20level\x20of\x20detail\x20in\x20data','Evaluation\x20of\x20postfix\x20expression','Enforcing\x20predefined\x20data\x20structures','As\x20many\x20stacks\x20as\x20the\x20height\x20of\x20the\x20expression\x20tree\x20are\x20needed','A\x20BI\x20dashboard\x20is\x20an\x20example\x20of\x20which\x20BI\x20component?','To\x20place\x20data\x20within\x20a\x20standard\x20range','Fast\x20insertion','Two\x20bytes\x20of\x20data','chararray','Data\x20Scientist\x20skills\x20often\x20include:','It\x20can\x20contain\x20duplicate\x20values','-+pq*rt','Which\x20of\x20the\x20following\x20is\x20not\x20one\x20of\x20the\x20network\x20criteria?','True\x20or\x20False:\x20Continuous\x20attributes\x20can\x20only\x20have\x20a\x20finite\x20number\x20of\x20values.','Decision\x20Security\x20Service','data-structure-quiz-selection','512\x20MB','Which\x20model\x20is\x20used\x20to\x20predict\x20continuous\x20variables\x20based\x20on\x20other\x20variable\x20values?','Decision\x20Tree','It\x20has\x20three\x20distinct\x20layers\x20of\x20processing.','ALTER\x20TYPE\x20column_name\x20new_data_type;','Binary\x20Index','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Status:</strong>\x20','The\x20Boolean\x20retrieval\x20model\x20considers\x20each\x20document\x20as:','Database\x20transactions','In\x20a\x20fact\x20table,\x20what\x20does\x20the\x20grain\x20represent?','To\x20aggregate\x20intermediate\x20outputs','Considered\x20an\x20error\x20to\x20be\x20corrected','8254914gOZXqP','Automatically\x20update\x20all\x20data','The\x20Internet\x20Control\x20Message\x20Protocol\x20(ICMP)','INSERT\x20INTO','Distributed\x20processing\x20of\x20large\x20data\x20sets','To\x20define\x20a\x20default\x20value','parse','Cannot\x20be\x20organized\x20hierarchically','Number\x20of\x20records\x20in\x20a\x20file','Real-time\x20updates','Which\x20of\x20the\x20following\x20is\x20true\x20about\x20internal\x20hashing?','Always\x20ignore\x20the\x20data\x20set','284','What\x20does\x20the\x20CONCAT\x20function\x20do\x20in\x20SQL?','To\x20run\x20application\x20programs\x20and\x20manage\x20business\x20rules','What\x20is\x20an\x20example\x20of\x20a\x20representational\x20data\x20model?','Atomicity\x20problems','Contain\x20only\x20foreign\x20keys','Network\x20virtual\x20terminal','Structured\x20Data','To\x20return\x20the\x20highest\x20value\x20in\x20a\x20column','Tokenization','Dates\x20only','Storing\x20file\x20system\x20metadata','Deletes\x20a\x20record','In\x20MapReduce,\x20what\x20is\x20\x27side\x20data\x27?','User\x20Interface','Scheduler','Internet\x20Coordinate\x20Message\x20Protocol','To\x20maximize\x20disk\x20space\x20usage','For\x20optimization,\x20queries\x20should\x20be\x20processed\x20in\x20order\x20of:','In\x20data\x20mining,\x20what\x20is\x20often\x20the\x20first\x20step\x20before\x20any\x20analysis?','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20','Breaking\x20down\x20and\x20storing\x20terms','What\x20does\x20physical\x20data\x20independence\x20allow?','In\x20which\x20buffer\x20replacement\x20policy\x20is\x20the\x20oldest\x20page\x20replaced\x20first?','classList','Data\x20compilation\x20and\x20reporting','The\x20relationship\x20strength\x20between\x20two\x20variables','What\x20does\x20the\x20DISTINCT\x20keyword\x20do\x20in\x20a\x20SELECT\x20statement?','value','American\x20Standard\x20Code\x20for\x20Interchanging\x20Information','Data\x20mining','What\x20is\x20the\x20purpose\x20of\x20the\x20ALTER\x20TABLE\x20command?','db2','Distribute\x20data\x20across\x20nodes','Record\x20size\x20is\x20smaller\x20than\x20block\x20size','A\x20measure\x20of\x20access\x20time','The\x20postfix\x20form\x20of\x20the\x20expression\x20(A+B)*(C*D-E)*F/G\x20is:','What\x20is\x20a\x20major\x20drawback\x20of\x20MapReduce\x20compared\x20to\x20Spark\x20in\x20handling\x20iterative\x20algorithms?','Understanding\x20past\x20and\x20present\x20trends','Contain\x20measures\x20and\x20metrics\x20for\x20decision\x20analysis','True\x20or\x20False:\x20Operational\x20Data\x20Stores\x20(ODS)\x20are\x20used\x20for\x20short-term\x20decision-making.','OLTP\x20systems','Returns\x20all\x20rows\x20from\x20both\x20tables\x20regardless\x20of\x20matching','Disk\x20blocks\x20are\x20typically\x20organized\x20into\x20cylinders\x20for\x20efficient\x20data\x20retrieval.','In\x20WestLaw’s\x20Boolean\x20search,\x20\x27/3\x27\x20specifies:','To\x20determine\x20how\x20records\x20are\x20accessed','Is\x20only\x20used\x20for\x20primary\x20key\x20data','True\x20or\x20False:\x20Boxplots\x20are\x20graphical\x20tools\x20that\x20display\x20mean,\x20range,\x20and\x20mode.','Managing\x20the\x20execution\x20of\x20tasks\x20within\x20containers','In\x20the\x20TCP/IP\x20protocol\x20suite,\x20the\x20......\x20layer\x20is\x20responsible\x20for\x20moving\x20frames\x20from\x20one\x20hop\x20(node)\x20to\x20the\x20next.','Identifying\x20highly\x20frequent\x20data\x20patterns','HDFS\x20writes\x20the\x20output\x20of\x20map\x20tasks\x20directly\x20to\x20cloud\x20storage\x20for\x20redundancy.','In\x20the\x20TCP/IP\x20protocol\x20suite,\x20which\x20of\x20the\x20following\x20is\x20a\x20network\x20layer\x20protocol?','UNION','Logical','It\x20is\x20primarily\x20used\x20for\x20temporary\x20data','Returns\x20the\x20current\x20date','Middleware\x20tools','Which\x20statement\x20about\x20the\x20PRIMARY\x20KEY\x20is\x20true?','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','Deletes\x20only\x20the\x20schema','Characters','Conceptual\x20Data\x20Model','Linked\x20allocation','MapReduce\x20has\x20built-in\x20iterative\x20processing.','What\x20is\x20the\x20blocking\x20factor\x20(bfr)?','Which\x20of\x20the\x20following\x20is\x20NOT\x20typically\x20associated\x20with\x20Hadoop?','Which\x20measure\x20type\x20is\x20challenging\x20to\x20aggregate\x20across\x20all\x20dimensions?','REMOVE\x20CONSTRAINT\x20constraint_name;','O(1)\x20for\x20insertion\x20and\x20O(1)\x20for\x20deletion','Fixed','OSI\x20stands\x20for\x20______.','Summaries\x20for\x20each\x20quarter','Which\x20function\x20returns\x20the\x20current\x20date\x20and\x20time?','A\x20query\x20that\x20runs\x20in\x20parallel\x20to\x20another\x20query','In\x20a\x20word\x20count\x20program,\x20the\x20Reducer\x20takes\x20as\x20input:','Bus','WAN\x20stands\x20for\x20______.','session\x20layer','ANY','Sequential\x20file','Empty\x20string','64\x20MB','It\x20supports\x20continuous\x20data\x20streaming\x20with\x20low\x20latency.','They\x20include\x20information\x20about\x20the\x20file\x20format','What\x20type\x20of\x20schema\x20typically\x20supports\x20ad\x20hoc\x20querying\x20and\x20easy\x20maintenance?','If\x20our\x20data\x20is\x20distributed\x20across\x20multiple\x20data\x20centers\x20around\x20the\x20world\x20and\x20we\x20need\x20to\x20join\x20this\x20data\x20while\x20minimizing\x20latency,\x20which\x20technique\x20is\x20best\x20suited\x20to\x20achieve\x20this\x20goal?','Which\x20of\x20the\x20following\x20is\x20a\x20key\x20advantage\x20of\x20Apache\x20Spark\x20compared\x20to\x20MapReduce?','What\x20does\x20the\x20HAVING\x20clause\x20do\x20in\x20SQL?','Remove\x20specific\x20rows','Setting\x20up\x20transactional\x20databases\x20for\x20e-commerce','True\x20or\x20False:\x20Outliers\x20are\x20often\x20removed\x20to\x20reduce\x20noise\x20in\x20data\x20preprocessing.','To\x20count\x20the\x20number\x20of\x20rows\x20in\x20a\x20table','Yes,\x20always','Boolean\x20retrieval','A\x20unique\x20column','Involves\x20static\x20data\x20definitions','Predicting\x20future\x20outcomes','Routine\x20transaction\x20processing','A\x20\x27correlation\x20coefficient\x27\x20measures:','The\x20prefix\x20form\x20of\x20A-B/(C*D^E)\x20is:','True\x20or\x20False:\x20OLTP\x20systems\x20are\x20primarily\x20used\x20for\x20complex,\x20ad-hoc\x20analysis.','Compiling\x20code','Hierarchical\x20dimensions','True\x20or\x20False:\x20Indexed\x20allocation\x20is\x20usually\x20slower\x20for\x20sequential\x20file\x20reading.','Job\x20configuration','Records\x20are\x20reorganized','Counts\x20the\x20total\x20number\x20of\x20columns','Transaction\x20grouping','Which\x20operation\x20can\x20potentially\x20violate\x20referential\x20integrity?','To\x20delete\x20duplicated\x20data','Support','Using\x20a\x20backup\x20file','REFERENCES\x20table_name\x20(column_name)','Java','CREATE\x20DATABASE\x20database_name;','Replaces\x20NULL\x20values\x20with\x20defaults','The\x20time\x20taken\x20to\x20locate\x20the\x20correct\x20track\x20on\x20a\x20disk','wrong','Reduced\x20network\x20bandwidth\x20usage','Group\x20of\x20tracks\x20on\x20different\x20platters\x20with\x20the\x20same\x20radius','True\x20or\x20False:\x20In\x20Boolean\x20retrieval,\x20\x27tokenization\x27\x20refers\x20to\x20assigning\x20documents\x20unique\x20IDs.','Which\x20graphical\x20tool\x20is\x20used\x20to\x20represent\x20a\x20five-number\x20summary\x20of\x20data?','1)\x20fishandchips','Which\x20imputation\x20method\x20is\x20commonly\x20used\x20for\x20categorical\x20data?','How\x20is\x20data\x20organized\x20on\x20a\x20magnetic\x20disk?','Inserts\x20a\x20new\x20record','It\x20reduces\x20data\x20diversity.','Which\x20of\x20the\x20following\x20is\x20a\x20function\x20of\x20YARN\x20in\x20the\x20Hadoop\x20ecosystem?','EXISTS','To\x20optimize\x20query\x20performance','floor','Counts\x20the\x20number\x20of\x20non-NULL\x20values\x20in\x20a\x20column','Data\x20in\x20the\x20bucket\x20is\x20compressed','Wire\x20Lost\x20Area\x20Network','Data\x20replication','Subject\x20to\x20regular\x20archiving','IS\x20NULL','Sequential\x20access','What\x20type\x20of\x20language\x20is\x20used\x20to\x20specify\x20the\x20structure\x20of\x20a\x20database?','One','Contains\x20the\x20same\x20number\x20of\x20samples','Storing\x20metadata','The\x20number\x20of\x20bits\x20used\x20for\x20indexing','To\x20transfer\x20data\x20from\x20one\x20element\x20to\x20another','Jaccard\x20coefficient','Converting\x20data\x20into\x20binary\x20format','Store\x20unrelated\x20information','Which\x20type\x20of\x20schema\x20would\x20require\x20the\x20most\x20joins\x20during\x20queries?','True\x20or\x20False:\x20The\x20user\x20interface\x20in\x20BI\x20architecture\x20is\x20typically\x20used\x20for\x20storage.','Store\x20transactional\x20data','FTP','Which\x20schema\x20is\x20more\x20optimized\x20for\x20query\x20performance\x20and\x20has\x20simpler\x20design\x20requirements?','A\x20data\x20analyst\x20primarily\x20works\x20with:','What\x20type\x20of\x20learning\x20is\x20clustering\x20considered?','8\x20MB','Mean\x20calculation','In\x20zone-based\x20indexing,\x20which\x20of\x20the\x20following\x20might\x20be\x20a\x20document\x20zone?','Map\x20tasks\x20in\x20Hadoop\x20are\x20generally\x20performed\x20close\x20to\x20the\x20data\x20to\x20reduce\x20network\x20traffic.','In\x20the\x20Hadoop\x20architecture,\x20serialization\x20is\x20used\x20for:','Increasing\x20document\x20frequency','(0,\x201)','End\x20Users','Monitoring\x20cluster\x20health','CREATE\x20COLUMN\x20column_name\x20NOT\x20NULL;','Limited\x20scalability\x20for\x20big\x20data','It\x20uses\x20two\x20hash\x20functions\x20for\x20each\x20record','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aThe\x20DeptNo\x20column\x20in\x20the\x20Employees\x20table\x20is\x20a\x20primary\x20key.','Files\x20that\x20use\x20indexed\x20allocation','What\x20is\x20the\x20purpose\x20of\x20the\x20GROUP\x20BY\x20clause\x20in\x20SQL?','In\x20the\x20context\x20of\x20YARN,\x20what\x20is\x20an\x20Application\x20Master\x20responsible\x20for?','Random\x20number','Store\x20and\x20organize\x20historical\x20data','It\x20preserves\x20table\x20structure','PAN','The\x20complete\x20physical\x20storage\x20details','Faster\x20data\x20retrieval','All\x20of\x20the\x20choices\x20are\x20correct','To\x20split\x20datasets\x20for\x20faster\x20processing','The\x20ability\x20to\x20change\x20the\x20logical\x20schema\x20without\x20affecting\x20external\x20schemas','Changes\x20to\x20the\x20database\x20state\x20without\x20affecting\x20the\x20schema','A\x20list\x20of\x20terms\x20with\x20document\x20IDs','Queries','We\x20have\x20massive\x20historical\x20data\x20that\x20we\x20want\x20to\x20join\x20with\x20real-time\x20data\x20to\x20provide\x20instant\x20analytics.\x20Which\x20of\x20the\x20following\x20methods\x20is\x20best\x20suited\x20to\x20achieve\x20real-time\x20performance?','In\x20a\x20dataset\x20with\x20mixed\x20attribute\x20types,\x20dissimilarity\x20is\x20often\x20calculated\x20by:','What\x20does\x20a\x20transaction\x20fact\x20table\x20primarily\x20capture?','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Correct\x20Answer:</strong>\x20','Retrieves\x20data','What\x20is\x20the\x20purpose\x20of\x20normalizing\x20data\x20before\x20calculating\x20distance?','What\x20is\x20the\x20default\x20value\x20of\x20the\x20IDENTITY\x20property\x20in\x20SQL\x20Server?','Multiple\x20copies\x20of\x20data\x20exist','Simplifies\x20file\x20management','Main\x20memory','What\x20does\x20DBMS\x20stand\x20for?','Adding\x20duplicate\x20data','RENAME\x20TABLE\x20old_name\x20TO\x20new_name;','Which\x20of\x20the\x20following\x20is\x20not\x20an\x20inherent\x20application\x20of\x20stack?','Faster\x20network\x20transfer','What\x20does\x20the\x20SQL\x20LIMIT\x20clause\x20do?','A\x20hash\x20table\x27s\x20load\x20factor\x20is\x20generally\x20considered\x20ideal\x20between:','Records\x20that\x20are\x20indexed','REMOVE\x20COLUMN\x20column_name;','What\x20does\x20\x27cylinder\x27\x20in\x20disk\x20terminology\x20refer\x20to?','Link\x20layer','Which\x20SQL\x20aggregate\x20function\x20is\x20used\x20to\x20find\x20the\x20total\x20sum\x20of\x20a\x20numeric\x20column?','It\x20needs\x20to\x20load\x20data\x20from\x20disk\x20for\x20each\x20iteration,\x20making\x20it\x20slower.','ADD','A\x20fact\x20table\x20typically\x20consists\x20of:','True\x20or\x20False:\x20Linked\x20allocation\x20makes\x20file\x20reading\x20faster\x20but\x20makes\x20it\x20hard\x20to\x20expand\x20files.','1970s','Maximum\x204','Managing\x20file\x20system\x20metadata','Sales','Reduce\x20data\x20redundancy','options','The\x20World\x20Wide\x20Web\x20(WWW)\x20is\x20the\x20largest\x20______.','Which\x20of\x20these\x20characteristics\x20applies\x20to\x20an\x20accumulating\x20fact\x20table?','Reducing\x20the\x20number\x20of\x20records\x20in\x20each\x20bucket','Capacity\x20Scheduler','Neural\x20retrieval','Track','Push','Your\x20Advanced\x20Resource\x20Network','In\x20a\x20Reduce-side\x20join,\x20what\x20is\x20used\x20as\x20the\x20map\x20output\x20key?','score-percentage','The\x20pin-count\x20in\x20buffer\x20management\x20indicates\x20the\x20number\x20of\x20users\x20currently\x20accessing\x20the\x20page.','A\x20file\x20segment\x20for\x20mappers','512\x20bytes\x20to\x204096\x20bytes','A\x20collection\x20of\x20related\x20data','ALTER\x20TABLE\x20old_name\x20RENAME\x20TO\x20new_name;','What\x20is\x20a\x20primary\x20reason\x20for\x20using\x20Spark\x20over\x20MapReduce\x20in\x20big\x20data\x20analytics?','Browsing\x20the\x20internet','Ratio','Web\x20access\x20network','Precision','They\x20are\x20difficult\x20to\x20read','For\x20large\x20multi-user\x20environments','What\x20advantage\x20does\x20MapReduce’s\x20use\x20of\x20\x27key-value\x20pairs\x27\x20provide?','To\x20speed\x20up\x20data\x20retrieval','Medium','Hashed\x20files','An\x20entity\x20in\x20a\x20dataset','Array','Structuring\x20data\x20for\x20BI\x20analysis','A\x20collection\x20of\x20unrelated\x20data','Social\x20media\x20plugins','The\x20application\x20layer\x20in\x20the\x20TCP/IP\x20protocol\x20suite\x20is\x20usually\x20considered\x20to\x20be\x20the\x20combination\x20of\x20.......\x20layers\x20in\x20the\x20OSI\x20model.','The\x20FIFO\x20policy\x20replaces\x20the\x20page\x20with\x20the\x20most\x20recent\x20access\x20time.','It\x20consists\x20of\x20multiple\x20sectors','It\x20requires\x20complex\x20configurations.','Hard\x20disk','Transport\x20layer','A\x20unique\x20dimension\x20used\x20in\x20only\x20one\x20schema','In\x20hashing,\x20what\x20condition\x20is\x20ideal\x20for\x20minimizing\x20collisions?','Additive\x20facts','It\x20provides\x20slow\x20access\x20to\x20data','Which\x20feature\x20makes\x20Spark\x20more\x20efficient\x20for\x20machine\x20learning\x20tasks\x20compared\x20to\x20MapReduce?','Records\x20that\x20cannot\x20cross\x20block\x20boundaries','In\x20Boolean\x20search,\x20an\x20extended\x20query\x20(like\x20\x27madding\x20OR\x20crowd\x27)\x20typically:','Which\x20is\x20primarily\x20responsible\x20for\x20handling\x20a\x20company’s\x20routine\x20ongoing\x20transactions?','It\x20resets\x20the\x20identity\x20column','A\x20column\x20that\x20allows\x20duplicate\x20values','What\x20is\x20the\x20primary\x20reason\x20for\x20using\x20secondary\x20storage\x20for\x20databases?','In\x20random\x20order','The\x20chosen\x20database\x20type','Lower\x20disk\x20space\x20usage\x20due\x20to\x20normalization','The\x20Internet\x20Protocol\x20(IP)\x20is\x20......\x20protocol.','The\x20number\x20of\x20times\x20a\x20page\x20has\x20been\x20accessed','Magnetic\x20disks','True\x20or\x20False:\x20Binary\x20search\x20can\x20be\x20used\x20with\x20unordered\x20files\x20for\x20efficient\x20searching.','______\x20topology\x20requires\x20multiple\x20connections.','application,\x20transport,\x20and\x20network','Total\x20frequency\x20across\x20documents','Derived\x20facts\x20are\x20always\x20additive','Mail','Support\x20for\x20multiple\x20user\x20views','Moving\x20all\x20records\x20up','The\x20NameNode\x20in\x20HDFS\x20holds\x20the\x20actual\x20data\x20blocks.','The\x20term\x20\x27stopping\x27\x20in\x20Boolean\x20retrieval\x20often\x20refers\x20to:','What\x20is\x20the\x20function\x20of\x20the\x20SQL\x20SUBSTRING()\x20function?','Neural\x20Networks','Efficient\x20for\x20small\x20files','The\x20fact\x20table\x20in\x20a\x20dimensional\x20model:','Tasks\x20must\x20be\x20rerun\x20in\x20sequence.','It\x20normalizes\x20dimensions,\x20resulting\x20in\x20more\x20tables','+\x20pq\x20-\x20*rt','Describe\x20the\x20structure\x20and\x20rules\x20for\x20data\x20use','Uses\x20only\x20denormalized\x20data','Block\x20number','Indexed\x20files','Containing\x20metadata\x20about\x20the\x20file','Hybrid\x20schema','Storing\x20data\x20locally','True\x20or\x20False:\x20ETL\x20stands\x20for\x20Extraction,\x20Transaction,\x20and\x20Loading.','What\x20is\x20the\x20purpose\x20of\x20the\x20SQL\x20DISTINCT\x20keyword?','MAX()','Reduce-side\x20join','Analyzing\x20correlation\x20between\x20numeric\x20data\x20only','Filters\x20individual\x20rows','True\x20or\x20False:\x20Cosine\x20similarity\x20values\x20range\x20from\x20-1\x20to\x201.','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20technique\x20for\x20allocating\x20file\x20blocks\x20on\x20disk?','An\x20example\x20of\x20a\x20periodic\x20fact\x20table\x20would\x20be:','What\x20is\x20the\x20Interquartile\x20Range\x20(IQR)?','Level\x20of\x20data\x20detail\x20in\x20the\x20fact\x20table','A\x20measure\x20in\x20the\x20fact\x20table','To\x20align\x20with\x20network\x20bandwidth','Finding\x20a\x20file\x20on\x20a\x20computer\x20is\x20an\x20example\x20of\x20search\x20systems.','To\x20hide\x20details\x20of\x20physical\x20data\x20storage','They\x20are\x20generally\x20small\x20in\x20size','totalQuizzes','Cylinder\x20caching','Combines\x20many\x20small\x20files\x20into\x20one\x20large\x20file','auto','Unsupervised\x20learning','True\x20or\x20False:\x20Stemming\x20algorithms,\x20like\x20Porter’s,\x20reduce\x20words\x20to\x20their\x20grammatical\x20roots.','Which\x20of\x20the\x20following\x20is\x20used\x20to\x20add\x20a\x20row\x20to\x20a\x20table?','By\x20duplicating\x20noisy\x20values','Interconnect\x20Coordinate\x20Message\x20Protocol','body','Annual\x20revenue','A\x20program\x20that\x20retrieves\x20data','Automated\x20decision\x20systems','Block','Interval\x20scales\x20have\x20a\x20true\x20zero\x20point','JSON','To\x20enforce\x20uniqueness\x20in\x20a\x20column','INSERT\x20DATABASE\x20database_name;','MODIFY\x20TABLE','The\x20Knowledge\x20Discovery\x20in\x20Databases\x20(KDD)\x20process\x20involves:','InputFormat','Storing\x20the\x20data\x20records','The\x20retrieved\x20information\x20in\x20Database\x20is\x20________\x20Data.','The\x20foreign\x20key\x20constraint\x20is\x20automatically\x20dropped','No,\x20constraints\x20cannot\x20be\x20renamed','A\x20single\x20track\x20on\x20one\x20platter','Data\x20redundancy\x20in\x20dimension\x20tables','Manhattan\x20distance','Sorting\x20documents\x20by\x20date','A\x20key\x20that\x20contains\x20no\x20attributes','In\x20the\x20context\x20of\x20ranked\x20retrieval,\x20which\x20of\x20these\x20is\x20true?','Limits\x20the\x20number\x20of\x20rows\x20returned\x20in\x20a\x20query','Range','Small\x20volume','Automating\x20business\x20operations','Implementation\x20of\x20recursion','True\x20or\x20False:\x20Accumulating\x20fact\x20tables\x20are\x20often\x20used\x20to\x20analyze\x20processes\x20with\x20clear\x20stages\x20or\x20milestones.','What\x20is\x20the\x20purpose\x20of\x20the\x20SQL\x20BETWEEN\x20operator?','Priority\x20Scheduler','When\x20applying\x20Porter\x20algorithm\x20rules,\x20what\x20will\x20the\x20following\x20word\x20be\x20stemmed\x20to:\x20Duplicatable\x20would\x20be\x20____________.','port\x20to\x20port\x20delivery','Which\x20SQL\x20function\x20is\x20used\x20to\x20return\x20the\x20current\x20date\x20and\x20time?','quiz-title','Data\x20type\x20restrictions','True\x20or\x20False:\x20Granularity\x20in\x20a\x20fact\x20table\x20always\x20refers\x20to\x20the\x20amount\x20of\x20data\x20in\x20each\x20column.','What\x20is\x20the\x20primary\x20reason\x20for\x20using\x20secondary\x20storage\x20in\x20databases?','TEXT','Number\x20of\x20attributes\x20in\x20a\x20relation','Jaccard\x20Index','What\x20is\x20the\x20\x27tf\x27\x20component\x20in\x20tf-idf?','What\x20feature\x20does\x20Apache\x20Spark\x20provide\x20that\x20MapReduce\x20lacks?','Single\x20buffering','ABCD','A\x20single\x20character','It\x20determines\x20the\x20record\x20size','Naïve\x20Bayesian\x20Classification','protocols','Managing\x20the\x20life\x20cycle\x20of\x20containers','A\x20boxplot\x20value','Transaction\x20processing','ALTER','Difficult\x20to\x20implement','HTTP','Map\x20tasks\x20in\x20MapReduce\x20typically\x20store\x20output:','Linear\x20probing','A\x20unique\x20attribute','Arranging\x20data\x20to\x20eliminate\x20redundancy','A\x20walkie-talkie\x20operates\x20in\x20________.','Which\x20of\x20the\x20following\x20is\x20an\x20advantage\x20of\x20a\x20database\x20system?','PRIMARY\x20KEY','In\x20a\x20data\x20warehouse,\x20integration\x20ensures\x20that:','Replaces\x20NULL\x20values\x20with\x20a\x20specified\x20value','The\x20drop\x20fails\x20unless\x20references\x20are\x20removed','Map\x20and\x20Split','It\x20uses\x20more\x20disk\x20space','Which\x20of\x20the\x20following\x20is\x20a\x20characteristic\x20of\x20data\x20warehousing?','Filtering\x20high-frequency\x20words','Due\x20to\x20high\x20capacity\x20of\x20hash\x20tables','Apache\x20Samza','bestScore','Term\x20Weight','True\x20or\x20False:\x20The\x20inverted\x20index\x20lists\x20only\x20the\x20most\x20frequent\x20terms\x20in\x20each\x20document.','Magnetic\x20tape','int','Sorts\x20words','%)</h3>','CPUs','db2-quiz-selection','How\x20does\x20the\x20blocking\x20factor\x20affect\x20disk\x20space\x20utilization?','Combines\x20rows\x20within\x20the\x20same\x20table','What\x20does\x20the\x20term\x20\x27local\x20depth\x27\x20in\x20extendible\x20hashing\x20represent?','Uses\x20chaining\x20for\x20all\x20records','HAVING','Which\x20of\x20the\x20following\x20best\x20defines\x20\x27term-document\x20incidence\x27?','Replicating\x20data','What\x20is\x20a\x20record?','Atomic\x20values','A\x20transmission\x20mode\x20that\x20can\x20transmit\x20data\x20in\x20both\x20directions\x20but\x20transmits\x20in\x20only\x20one\x20direction\x20at\x20a\x20time.','Random\x20allocation','Which\x20of\x20the\x20following\x20is\x20a\x20correct\x20syntax\x20for\x20creating\x20a\x20new\x20table\x20in\x20SQL?','In\x20BI,\x20“real-time\x20view\x20of\x20corporate\x20performance”\x20is\x20primarily\x20provided\x20by:','In\x20proximity\x20measures\x20for\x20binary\x20attributes,\x20the\x20Jaccard\x20coefficient\x20is\x20used\x20for:','Customer\x20ID','Sums\x20numeric\x20columns','A\x20backup\x20of\x20the\x20database','Which\x20type\x20of\x20file\x20organization\x20is\x20best\x20for\x20random\x20access?','Which\x20IR\x20system\x20is\x20based\x20on\x20Boolean\x20logic\x20and\x20has\x20been\x20widely\x20used\x20commercially?','To\x20increase\x20storage\x20capacity','EXEC\x20SHOW\x20TABLES;','Boxplot','Data\x20Deployment\x20Language','className','Wide\x20Area\x20Network\x20(WAN)','A\x20Turing\x20machine\x20is\x20needed\x20in\x20the\x20general\x20case','Specific\x20stop\x20words','add','Procedural\x20Language','K-means','A\x20query\x20that\x20is\x20embedded\x20inside\x20another\x20query','The\x20term\x20\x27heap\x20file\x27\x20refers\x20to:','Number\x20of\x20dimensions\x20available','Utilizes\x20dynamic\x20hashing','MAKE\x20TABLE\x20table_name','Calculations\x20of\x20additive\x20facts','database','Allocating\x20resources\x20for\x20tasks','1990s','High\x20memory\x20usage\x20for\x20NameNode','All\x20data\x20is\x20anonymized','Linear\x20hashing','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20common\x20data\x20type\x20for\x20records?','Points\x20to\x20a\x20record\x20in\x20memory','Database\x20storage\x20format','(ABD+^EF-/G+)','Returns\x20rows\x20from\x20the\x20right\x20table\x20only','They\x20are\x20rarely\x20used\x20in\x20queries','Integration\x20of\x20sources','Cover\x20a\x20large\x20geographical\x20area','Derived\x20measure','FILTER','How\x20do\x20you\x20create\x20a\x20table\x20in\x20SQL\x20Server?','Variance','Job\x20scheduling','Data\x20Dynamic\x20Language','Data\x20structure\x20only','Cylinder\x20number','It\x20is\x20encrypted','In\x20the\x20clock\x20replacement\x20policy,\x20when\x20the\x20buffer’s\x20flag\x20is\x20set\x20to\x20zero:','Measuring\x20missing\x20data','Continuous\x20attributes\x20are\x20typically\x20represented\x20as:','Which\x20BI\x20style\x20allows\x20for\x20\x27slice-and-dice\x27\x20analysis?','To\x20allow\x20computers\x20to\x20communicate\x20with\x20each\x20other\x20in\x20the\x20same\x20area','</div>','Links\x20tables\x20together','To\x20increase\x20relevance\x20by\x20considering\x20term\x20rarity','Conceptual\x20Level','The\x20ability\x20to\x20change\x20physical\x20storage\x20without\x20affecting\x20the\x20logical\x20schema','Size\x20of\x20a\x20record','Archiving\x20data\x20systematically','Requires\x20sorting','The\x20table\x20structure\x20is\x20preserved','True\x20or\x20False:\x20Normalization\x20in\x20IR\x20can\x20involve\x20converting\x20uppercase\x20letters\x20to\x20lowercase.','The\x20relevance\x20of\x20a\x20document','Identifying\x20different\x20names\x20for\x20the\x20same\x20entity','Which\x20command\x20creates\x20a\x20new\x20database?','Files\x20cannot\x20be\x20expanded','Iterative\x20processing','REMOVE','Fixed\x20number\x20of\x20buckets','NLineInputFormat\x20ensures:','Organizing\x20data\x20into\x20tables','By\x20reducing\x20data\x20shuffled\x20across\x20the\x20network','To\x20eliminate\x20irrelevant\x20documents','The\x20position\x20of\x20a\x20term\x20within\x20documents','Star\x20schema','What\x20is\x20the\x20main\x20benefit\x20of\x20a\x20three-tier\x20architecture\x20in\x20database\x20systems?','Deletes\x20a\x20table','Scalability','Hierarchical\x20node','What\x20does\x20the\x20SQL\x20HAVING\x20clause\x20do?','Semi-duplex','Which\x20statement\x20is\x20true\x20about\x20multiple\x20hashing?','Application\x20Master','Returns\x20rows\x20matching\x20a\x20specific\x20pattern','Descriptive\x20data\x20or\x20flags','The\x20amount\x20of\x20data','Classifying\x20normal\x20data\x20points','In\x20TCP/IP,\x20a\x20message\x20at\x20the\x20application\x20layer\x20is\x20encapsulated\x20in\x20a\x20packet\x20at\x20the\x20____\x20layer.','American\x20Standard\x20Code\x20for\x20Information\x20Interchange','Time-stamp','bi\x20Quiz\x20','The\x20measure\x20of\x20central\x20tendency\x20that\x20is\x20most\x20affected\x20by\x20extreme\x20values\x20is:','A\x20primary\x20key\x20consisting\x20of\x20two\x20or\x20more\x20columns','Variables','High\x20throughput\x20data\x20access','MapReduce\x20divides\x20data\x20processing\x20into\x20the\x20\x27map\x27\x20and\x20\x27reduce\x27\x20phases.','What\x20does\x20the\x20LEFT\x20JOIN\x20operation\x20do?','Apache\x20Tez','Ensures\x20rows\x20are\x20unique','result-details','Sorts\x20the\x20rows','A\x20unique\x20identifier\x20for\x20a\x20row','A\x20group\x20of\x20hashed\x20records','To\x20combine\x20rows\x20from\x20multiple\x20tables','On-Level\x20Technology\x20Performance','What\x20is\x20the\x20purpose\x20of\x20the\x20Mapper\x20function\x20in\x20MapReduce?','C++','When\x20comparing\x20Flink\x20to\x20MapReduce,\x20what\x20is\x20a\x20main\x20advantage\x20of\x20Flink\x20in\x20data\x20processing?','Dispersion\x20of\x20data','Why\x20is\x20normalization\x20challenging\x20in\x20a\x20Hadoop\x20environment?','What\x20file\x20format\x20is\x20typically\x20used\x20in\x20the\x20distributed\x20cache\x20for\x20lookup\x20tables?','A\x20normalized\x20schema','They\x20are\x20too\x20large\x20for\x20main\x20memory','post\x20office\x20protocol','Quality','Data\x20indexing','Returns\x20only\x20matching\x20rows\x20from\x20two\x20queries','File\x20splitter','What\x20kind\x20of\x20data\x20is\x20typically\x20used\x20in\x20social\x20network\x20analysis?','Which\x20SQL\x20keyword\x20is\x20used\x20to\x20check\x20if\x20a\x20value\x20is\x20null?','HDFS\x20storage\x20needs','The\x20transport-layer\x20packet\x20in\x20the\x20TCP/IP\x20protocol\x20suite\x20is\x20called........','Are\x20only\x20used\x20for\x20data\x20integrity\x20checks','Suppose\x20a\x20stack\x20is\x20implemented\x20with\x20a\x20linked\x20list\x20instead\x20of\x20an\x20array.\x20What\x20would\x20be\x20the\x20time\x20complexity\x20of\x20push\x20and\x20pop\x20operations?','LEFT\x20JOIN','datacommunction-quiz-selection','NOT\x20queries','Receiver','Records\x20cannot\x20cross\x20block\x20boundaries','Limits\x20the\x20execution\x20time\x20of\x20a\x20query','___________\x20are\x20typically\x20short\x20and\x20focused\x20on\x20specific\x20area\x20of\x20interest.','transport\x20layer','Converts\x20NULL\x20values\x20to\x20zero','Hashing\x20does\x20not\x20allow\x20duplicate\x20keys','To\x20process\x20a\x20large\x20file\x20in\x20parallel\x20in\x20MapReduce,\x20you\x20should:','RFCs','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','It\x20provides\x20foundational\x20concepts\x20in\x20data\x20processing.','The\x20process\x20of\x20breaking\x20down\x20a\x20document\x20into\x20individual\x20terms\x20is\x20called:','NLineInputFormat','The\x20maximum\x20number\x20of\x20parentheses\x20that\x20appear\x20on\x20the\x20stack\x20at\x20any\x20one\x20time\x20when\x20analyzing\x20(()(())(()))\x20is:','Which\x20type\x20of\x20file\x20organization\x20allows\x20for\x20efficient\x20searching\x20but\x20is\x20expensive\x20for\x20insertion?','In\x20linear\x20probing,\x20which\x20issue\x20is\x20most\x20common?','Which\x20of\x20these\x20is\x20an\x20example\x20of\x20a\x20nominal\x20attribute?','Which\x20of\x20the\x20following\x20is\x20used\x20to\x20store\x20a\x20variable\x20number\x20of\x20fields\x20in\x20a\x20record?','Exclusive\x20access\x20to\x20storage\x20nodes','True\x20or\x20False:\x20Dimensional\x20modeling\x20is\x20a\x20logical\x20design\x20technique\x20for\x20organizing\x20data\x20in\x20BI.','Distributed\x20cache\x20with\x20real-time\x20data\x20handling','Document\x20length','Euclidean\x20distance','toLocaleDateString','A\x20dimension\x20shared\x20across\x20multiple\x20fact\x20tables','recentQuizzes','Total\x20number\x20of\x20records\x20in\x20a\x20file','Unique\x20keys','Document\x20databases','A\x20data\x20value\x20that\x20lies\x20beyond\x201.5\x20times\x20the\x20IQR\x20from\x20the\x20quartiles\x20is\x20considered:','Requires\x20predefined\x20schema\x20at\x20load\x20time','Because\x20hash\x20functions\x20are\x20designed\x20to\x20be\x20unique','Tuple','When\x20does\x20the\x20directory\x20in\x20extendible\x20hashing\x20double\x20in\x20size?','What\x20is\x20Dimensional\x20Modeling\x20used\x20for?','Both\x20End\x20to\x20end\x20and\x20Process\x20to\x20process','total-questions','Storing\x20data\x20blocks','Multi-disk\x20reading','Positional\x20Model','Which\x20of\x20the\x20following\x20would\x20improve\x20file\x20insertion\x20efficiency?','City\x20block\x20distance','In\x20the\x20relational\x20model,\x20a\x20domain\x20is:','Documents\x20are\x20ranked\x20based\x20on\x20document\x20length\x20alone','Ordinal\x20distance','What\x20does\x20the\x20DISTINCT\x20keyword\x20do?','Descriptive\x20Analytics\x20is\x20primarily\x20concerned\x20with:','RENAME','OLTP\x20stands\x20for:','review-answers','Keyword','True\x20or\x20False:\x20Tokenization\x20is\x20the\x20process\x20of\x20breaking\x20text\x20into\x20smaller\x20units\x20called\x20tokens,\x20which\x20are\x20often\x20individual\x20words.','To\x20remove\x20noise\x20and\x20inconsistent\x20data','Which\x20of\x20the\x20following\x20is\x20a\x20valid\x20way\x20to\x20declare\x20a\x20column\x20as\x20a\x20foreign\x20key\x20in\x20SQL?','Parsing','channel','A\x20single\x20data\x20value','The\x20internal\x20level\x20of\x20the\x20three-schema\x20architecture\x20describes\x20the\x20physical\x20storage\x20structure.','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22stat-value\x22>','forEach','(1,\x201)','path','Filters\x20out\x20NULL\x20values','It\x20allows\x20for\x20precise\x20control\x20of\x20search\x20terms','It\x20describes\x20the\x20database\x20structure\x20in\x20an\x20understandable\x20way\x20for\x20most\x20users.','Use\x20SequenceFileInputFormat','The\x20size\x20of\x20the\x20buffer','How\x20does\x20SequenceFile\x20help\x20manage\x20memory\x20in\x20NameNode?','Random\x20access','What\x20is\x20the\x20primary\x20purpose\x20of\x20data\x20abstraction\x20in\x20database\x20systems?','The\x20overall\x20length\x20of\x20a\x20document','Frequently\x20updated\x20data','A\x20reserved\x20memory\x20space','True\x20or\x20False:\x20Term\x20frequency\x20(tf)\x20refers\x20to\x20the\x20number\x20of\x20times\x20a\x20term\x20appears\x20in\x20a\x20document.','Databases','Which\x20SQL\x20command\x20is\x20used\x20to\x20remove\x20all\x20rows\x20from\x20a\x20table\x20without\x20deleting\x20the\x20table?','visible','It\x20does\x20not\x20handle\x20large\x20data\x20sets\x20effectively.','DistributedCache','Flink\x20offers\x20lower\x20latency\x20and\x20supports\x20stateful\x20stream\x20operations\x20natively.','createElement','Create\x20data\x20streams\x20using\x20MapReduce\x20for\x20small\x20data\x20processing','All\x20tasks\x20depend\x20on\x20each\x20other.','To\x20simplify\x20record\x20formats','Data\x20is\x20lost\x20if\x20a\x20node\x20fails','Numeric\x20matrices','Faster\x20access\x20time','American\x20Scientific\x20Code\x20for\x20Interchanging\x20Information','Anomaly\x20Detection','Digital\x20Backup\x20Management\x20Software','Number\x20of\x20records\x20in\x20a\x20bucket','Entity-relationship\x20(ER)\x20modeling\x20is\x20generally\x20more\x20suited\x20for:','Security\x20and\x20ethical\x20concerns\x20in\x20data\x20handling','Sector','All\x20of\x20the\x20above','Filter\x20out\x20duplicate\x20words','Delete','Database\x20Quiz\x20','All','Linked\x20List','What\x20does\x20a\x20\x27find\x27\x20operation\x20in\x20a\x20file\x20system\x20do?','The\x20description\x20of\x20the\x20database\x20structure','Minimizing\x20distances\x20within\x20clusters','What\x20does\x20the\x20JOIN\x20keyword\x20do?','Which\x20SQL\x20clause\x20is\x20used\x20to\x20group\x20rows\x20that\x20have\x20the\x20same\x20values?','ALTER\x20DATABASE\x20database_name;','To\x20ensure\x20uniqueness\x20of\x20values\x20in\x20a\x20column','False','MapReduce\x20cannot\x20process\x20large\x20data\x20sets.','What\x20is\x20the\x20purpose\x20of\x20the\x20RecordReader\x20in\x20MapReduce?','CREATE\x20INDEX\x20index_name\x20ON\x20table_name(column_name);','Priority','A\x20______\x20set\x20of\x20rules\x20that\x20governs\x20data\x20communication\x20is\x20called\x20______.','They\x20are\x20always\x20complete','Tertiary\x20storage','What\x20does\x20the\x20SQL\x20wildcard\x20\x27%\x27\x20represent\x20in\x20a\x20LIKE\x20statement?','Multimedia\x20data','Easy\x20data\x20partitioning\x20and\x20parallel\x20processing','Clears\x20duplicate\x20rows\x20from\x20a\x20table','CREATE\x20TABLE\x20myTable\x20(Column1\x20INT,\x20Column2\x20VARCHAR(50));','To\x20group\x20similar\x20records\x20together','Open\x20addressing','Three','Which\x20allocation\x20type\x20is\x20fastest\x20for\x20reading\x20an\x20entire\x20file?','True\x20or\x20False:\x20Data\x20auditing\x20is\x20a\x20process\x20used\x20to\x20identify\x20rules\x20and\x20relationships\x20within\x20data\x20to\x20detect\x20violators.','What\x20does\x20the\x20TRUNCATE\x20command\x20do\x20in\x20SQL?','Additive','OLAP','Hardware\x20management','It\x20combines\x20data\x20into\x20a\x20single\x20output','Data\x20can\x20flow\x20only\x20in\x20one\x20direction\x20all\x20the\x20time\x20in\x20a\x20_____\x20mode.','stringify','A\x20dirty\x20bit\x20of\x200\x20means\x20a\x20block\x20has\x20not\x20been\x20modified.','best-score','Frequent\x20expansion',':</strong>\x20','What\x20happens\x20when\x20you\x20drop\x20a\x20column\x20with\x20foreign\x20key\x20references?','To\x20use\x20high-performance\x20machines','dm\x20Quiz\x20','SUM','Data\x20from\x20different\x20sources\x20have\x20a\x20consistent\x20format','A\x20data\x20structure\x20that\x20improves\x20the\x20speed\x20of\x20word\x20retrieval.','COUNT()','Which\x20type\x20of\x20fact\x20cannot\x20be\x20added\x20across\x20any\x20dimensions\x20due\x20to\x20its\x20nature,\x20often\x20involving\x20ratios\x20or\x20percentages?','In\x20a\x20snowflake\x20schema,\x20dimension\x20tables:','Distributed\x20cache\x20across\x20multiple\x20locations','The\x20data\x20link\x20layer\x20takes\x20the\x20packets\x20from......\x20and\x20encapsulates\x20them\x20into\x20frames\x20for\x20transmission.','MapReduce\x20has\x20in-built\x20support\x20for\x20real-time\x20analytics.','The\x20strength\x20of\x20a\x20rule\x20based\x20on\x20pattern\x20occurrence','A\x20temporary\x20table','What\x20is\x20the\x20purpose\x20of\x20the\x20DEFAULT\x20constraint\x20in\x20SQL?','Local\x20Area\x20Network\x20(LAN)','Limits\x20the\x20size\x20of\x20data\x20in\x20a\x20column','Which\x20of\x20the\x20following\x20InputFormats\x20is\x20used\x20for\x20processing\x20binary\x20data?','Complex\x20queries\x20and\x20data\x20analysis','Joins\x20tables','It\x20is\x20cheaper\x20than\x20secondary\x20storage','Cloud\x20data\x20is\x20processed','Which\x20SQL\x20clause\x20is\x20used\x20to\x20filter\x20rows\x20after\x20grouping\x20data?','Low\x20cost','Double\x20buffering\x20eliminates\x20rotational\x20delay\x20for\x20all\x20data\x20transfers.','Easy\x20data\x20sharing','Uses\x20separate\x20slots\x20for\x20every\x20collision','Unavailability\x20of\x20empty\x20slots','The\x20time\x20taken\x20to\x20read\x20data\x20from\x20memory','Which\x20fact\x20type\x20is\x20best\x20for\x20representing\x20the\x20latest\x20status\x20of\x20a\x20fact\x20as\x20of\x20a\x20certain\x20date?','It\x20is\x20faster\x20than\x20primary\x20storage','The\x20average\x20frequency\x20of\x20a\x20term','Star','EmpName','By\x20encrypting\x20data','Relations\x20can\x20have\x20composite\x20attributes','It\x20is\x20unsuitable\x20for\x20batch\x20processing.','Selects\x20all\x20items\x20that\x20discuss\x20information\x20and/or\x20retrieval\x20that\x20do\x20not\x20discuss\x20extraction','Data\x20preprocessing\x20in\x20data\x20mining\x20is\x20primarily\x20focused\x20on\x20visualizing\x20data\x20trends.','Low-latency\x20applications','Miscellaneous\x20capabilities','Physical\x20Data\x20Model','PUT','True\x20or\x20False:\x20Stemming\x20converts\x20different\x20forms\x20of\x20a\x20word\x20to\x20a\x20common\x20base\x20form.','NOW()','Replaces\x20part\x20of\x20a\x20string\x20with\x20another\x20string','What\x20is\x20double\x20buffering?','Identifying\x20and\x20removing\x20outliers','Persistent\x20storage\x20requirements','UPDATE\x20TABLE','Topology','0.9\x20and\x201.0','What\x20is\x20the\x20average\x20number\x20of\x20records\x20per\x20block\x20for\x20variable-length\x20records?','A\x20router\x20is\x20involved\x20in........\x20layers\x20of\x20the\x20TCP/IP\x20protocol\x20suite.','Data\x20is\x20compressed','DROP\x20TABLE','Which\x20InputFormat\x20is\x20typically\x20used\x20for\x20reading\x20lines\x20of\x20text\x20as\x20key-value\x20pairs?','Using\x20heap\x20files','Time','Which\x20data\x20structure\x20is\x20used\x20for\x20implementing\x20recursion?','Half-duplex\x20mode','True\x20or\x20False:\x20Hadoop’s\x20TextInputFormat\x20is\x20the\x20default\x20input\x20format.','Apply\x20a\x20secondary\x20hash\x20function','Authorizing\x20access\x20to\x20the\x20database','Has\x20random\x20values','Interval','Data\x20transformation','Reduces\x20collisions\x20as\x20the\x20file\x20expands','To\x20minimize\x20file\x20size','Non-additive\x20fact','Fragmentation','Combines\x20rows\x20from\x20multiple\x20tables','The\x20Internet\x20Protocol\x20(IP)','Only\x20deletes\x20empty\x20databases','(1,\x200)','To\x20define\x20the\x20schema\x20of\x20the\x20database','Tracking\x20daily\x20sales','Caused\x20by\x20normalized\x20dimension\x20tables','Time-variant\x20data\x20in\x20a\x20warehouse\x20means:','Ring','CREATE\x20SCHEMA\x20schema_name;','True\x20or\x20False:\x20Document\x20frequency\x20is\x20used\x20to\x20assign\x20higher\x20weights\x20to\x20commonly\x20occurring\x20terms.','E-commerce','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20type\x20of\x20secondary\x20storage?','To\x20send\x20data\x20to\x20HDFS','True\x20or\x20False:\x20Data\x20warehouses\x20are\x20used\x20mainly\x20for\x20transaction\x20processing.','What\x20typically\x20defines\x20a\x20\x27key\x27\x20in\x20hashing?','Too\x20many\x20chains','What\x20is\x20the\x20purpose\x20of\x20a\x20WAN?','What\x20is\x20a\x20composite\x20key?','Bits','Reduces\x20memory\x20usage','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20data\x20type\x20mentioned\x20in\x20the\x20document?','Encrypts\x20the\x20data','Yet\x20Another\x20Resource\x20Network','Anomaly\x20detection\x20is\x20essential\x20for\x20identifying\x20rare\x20events\x20in\x20data\x20mining.','name','Deletes\x20a\x20table\x20or\x20database','db2\x20Quiz\x20','Sorting\x20terms\x20alphabetically','Application','They\x20improve\x20search\x20speed\x20by\x20skipping\x20non-relevant\x20postings','Custom,\x20high-performance\x20hardware','High\x20latency\x20in\x20data\x20access','Dirty\x20bit','If\x20elements\x20\x27A\x27,\x20\x27B\x27,\x20\x27C\x27,\x20and\x20\x27D\x27\x20are\x20placed\x20in\x20a\x20stack\x20and\x20are\x20deleted\x20one\x20at\x20a\x20time,\x20what\x20is\x20the\x20order\x20of\x20removal?','It\x20leads\x20to\x20data\x20duplication.','totalTime','When\x20page\x20pin-count\x20is\x20zero','EDIT','Each\x20file\x20block\x20is\x20copied\x20into\x20a\x20buffer\x20and\x20searched','OR\x20then\x20AND\x20then\x20NOT','route','Identifying\x20outliers','two','Schema\x20type\x20used','In\x20data\x20mining,\x20which\x20term\x20refers\x20to\x20data\x20that\x20is\x20continuously\x20generated\x20in\x20real-time?','Create','Term\x20frequency\x20in\x20a\x20document','Cache','A\x20collection\x20of\x20related\x20data\x20values','In\x20a\x20dimensional\x20model,\x20a\x20\x27fact\x27\x20represents:','Creating\x20backup\x20copies\x20of\x20data','Binary\x20data','In\x20the\x20vector\x20space\x20model,\x20document\x20similarity\x20is\x20often\x20measured\x20using:','HDFS\x20is\x20designed\x20to\x20operate\x20on\x20high-cost,\x20custom\x20hardware\x20only.','Updating\x20a\x20foreign\x20key\x20does\x20not\x20affect\x20referential\x20integrity.','Defines\x20a\x20foreign\x20key','Load','True\x20or\x20False:\x20The\x20inverse\x20document\x20frequency\x20(idf)\x20increases\x20for\x20terms\x20that\x20appear\x20frequently\x20in\x20the\x20collection.','Marking\x20it\x20as\x20deleted','What\x20is\x20a\x20view\x20in\x20SQL?','Second\x20level','Non-additive\x20measure','Evaluation','Eliminates\x20the\x20need\x20for\x20data\x20pointers','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','Storing\x20data\x20in\x20local\x20nodes','They\x20help\x20with\x20case\x20folding','2081613kkJMMO','Joins\x20two\x20tables\x20together','Which\x20buffer\x20replacement\x20strategy\x20tracks\x20the\x20least\x20recently\x20used\x20page?','Compress\x20all\x20records\x20in\x20the\x20bucket','Indexed','Assigning\x20bins\x20based\x20on\x20central\x20tendency','No,\x20never','Batch\x20processing\x20only','Disk\x20arm','Which\x20programming\x20language\x20is\x20Hadoop\x20primarily\x20written\x20in?','data\x20link\x20layer','ABCD+/*','What\x20is\x20the\x20purpose\x20of\x20tokenization\x20in\x20information\x20retrieval?','Order\x20documents\x20by\x20relevance\x20score','What\x20is\x20a\x20primary\x20key\x20in\x20a\x20database?','Which\x20of\x20the\x20following\x20is\x20not\x20a\x20DBMS\x20function?','.stats-modal','A\x20schema\x20diagram\x20typically\x20displays\x20the\x20actual\x20data\x20in\x20the\x20database.','CREATE\x20DATABASE\x20database_name','Filters\x20out\x20duplicate\x20rows','Cloud-based\x20hardware\x20only','Neural\x20networks','The.........\x20layer\x20is\x20responsible\x20for\x20the\x20delivery\x20of\x20a\x20message\x20from\x20one\x20process\x20to\x20another.','True\x20or\x20False:\x20The\x20bag-of-words\x20model\x20considers\x20the\x20order\x20of\x20words\x20in\x20a\x20document\x20when\x20creating\x20vectors.','A\x20flag\x20indicating\x20that\x20a\x20page\x20has\x20been\x20modified','WAN','DELETE\x20clears\x20the\x20table\x20structure;\x20TRUNCATE\x20removes\x20duplicates','WHERE','Historical','Multidimensional\x20schema','div','Zoning','The\x20presence\x20of\x20a\x20term\x20in\x20all\x20documents','Records\x20only\x20containing\x20numbers','Vector\x20Space\x20Model','The\x20system\x20returns\x20a\x20set\x20of\x20documents\x20without\x20a\x20specific\x20order','Exclude\x20stop\x20words','Which\x20SQL\x20operator\x20tests\x20for\x20the\x20existence\x20of\x20rows\x20in\x20a\x20subquery?','True\x20or\x20False:\x20Data\x20granularity\x20is\x20the\x20degree\x20to\x20which\x20data\x20can\x20be\x20aggregated.','Floating-point\x20variables','Reducer','total-quizzes','In\x20the\x20TCP/IP\x20protocol\x20suite,\x20a\x20port\x20number\x20is\x20the\x20identifier\x20at\x20the.........','Batch\x20processing','The\x20main\x20benefit\x20of\x20a\x20three-tier\x20architecture\x20is\x20increased\x20data\x20redundancy.','Track\x20marker','Which\x20of\x20the\x20following\x20is\x20true\x20about\x20a\x20SQL\x20Primary\x20Key?','Storing\x20images','Records\x20that\x20are\x20stored\x20in\x20a\x20heap','What\x20is\x20the\x20primary\x20advantage\x20of\x20indexed\x20allocation?','MODIFY\x20TABLE\x20old_name\x20TO\x20new_name;','prev-btn','What\x20type\x20of\x20hardware\x20does\x20HDFS\x20operate\x20on?','Complexity\x20in\x20handling\x20duplicates','If\x20a\x20block’s\x20dirty\x20bit\x20is\x201,\x20it\x20means\x20the\x20block:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stats-summary\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22label\x22>Total\x20Quizzes</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22value\x22>','Which\x20of\x20the\x20following\x20statements\x20about\x20file\x20headers\x20is\x20true?','A\x20collection\x20of\x20resources\x20such\x20as\x20RAM,\x20CPU\x20cores,\x20and\x20disks','protocol','Supervised\x20learning','External\x20Level','The\x20network\x20layer\x20is\x20concerned\x20with........\x20of\x20data.','What\x20is\x20logical\x20data\x20independence?','Changes\x20to\x20the\x20external\x20schema\x20without\x20affecting\x20the\x20internal\x20schema','database-quiz-selection','Changes\x20to\x20the\x20logical\x20schema\x20without\x20affecting\x20external\x20schemas','A\x20model\x20that\x20disregards\x20word\x20order\x20but\x20counts\x20term\x20frequency','To\x20assign\x20keys\x20to\x20data\x20records','Which\x20is\x20a\x20main\x20component\x20of\x20a\x20data\x20warehouse?','True\x20or\x20False:\x20A\x20document\x27s\x20length\x20affects\x20its\x20vector\x20representation\x20in\x20the\x20vector\x20space\x20model.','It\x20focuses\x20only\x20on\x20batch\x20processing\x20without\x20interactive\x20analysis\x20support.','Creates\x20a\x20new\x20table\x20and\x20inserts\x20selected\x20data\x20into\x20it','Binary\x20Tree','Frequency\x20of\x20common\x20terms\x20only','Metadata','The\x20default\x20separator\x20in\x20KeyValueTextInputFormat\x20is:','Reducing\x20storage\x20requirements','%</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22summary-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22label\x22>Total\x20Time</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22value\x22>','.option','To\x20ensure\x20all\x20values\x20in\x20a\x20column\x20are\x20different','timeTaken','Apache\x20Storm','Binary','User\x20passwords','Deletes\x20all\x20tables\x20in\x20the\x20database','True\x20or\x20False:\x20The\x20Mapper\x20and\x20Reducer\x20classes\x20in\x20Hadoop\x20must\x20use\x20the\x20same\x20key\x20and\x20value\x20types.','Which\x20of\x20the\x20following\x20is\x20NOT\x20suitable\x20for\x20HDFS?','The\x20current\x20set\x20of\x20data\x20in\x20a\x20database\x20is\x20called\x20the\x20database\x20schema.','By\x20grouping\x20data\x20and\x20removing\x20outliers','Tree','Which\x20attribute\x20type\x20has\x20a\x20meaningful\x20order\x20but\x20unknown\x20magnitude\x20between\x20values?','Imputation','Using\x20cloud\x20storage\x20for\x20data','A\x20bucket\x20pointer','Counts\x20rows','Filters\x20groups\x20after\x20aggregation','Linked\x20to\x20each\x20other','Apriori\x20Algorithm','bigdata-quiz-selection','It\x20supports\x20only\x20batch\x20processing.','To\x20apply\x20association\x20rules','Real-time\x20data\x20processing','Mapping\x20to\x20ranks','String','The\x20maximum\x20number\x20of\x20symbols\x20that\x20will\x20appear\x20on\x20the\x20stack\x20at\x20one\x20time\x20during\x20the\x20conversion\x20of\x204\x20+\x203*(6*3-12)\x20from\x20infix\x20to\x20postfix\x20notation\x20is:','Are\x20perpendicular','Focuses\x20on\x20low-level\x20data\x20flow\x20control','Spark\x20lacks\x20support\x20for\x20iterative\x20processing.','Decision\x20support','Random','MODIFY\x20PRIMARY\x20KEY;','AB+CDE*-*F*G/','A\x20multi-fact\x20star\x20model','In\x20association\x20analysis,\x20which\x20metric\x20reflects\x20how\x20often\x20items\x20appear\x20together\x20in\x20transactions?','The\x20RecordReader\x20class\x20in\x20MapReduce\x20is\x20responsible\x20for\x20writing\x20data\x20to\x20HDFS.','result','Sharing\x20a\x20database\x20can\x20only\x20be\x20done\x20by\x20a\x20single\x20user\x20at\x20a\x20time.','What\x20does\x20the\x20term\x20\x27unspanned\x20records\x27\x20mean?','Close','What\x20does\x20the\x20SQL\x20COUNT\x20function\x20do?','Apriori','Adds\x20a\x20condition\x20to\x20the\x20query','(ABD^+EF/-G+)','Both\x20a\x20and\x20b','What\x20is\x20a\x20foreign\x20key\x20in\x20a\x20database?','When\x20records\x20are\x20unstructured','They\x20reduce\x20indexing\x20accuracy','Assign\x20keys\x20to\x20words','What\x20does\x20the\x20SQL\x20UNION\x20operator\x20do?','Volatile\x20data','MapReduce\x20supports\x20continuous\x20query\x20updates.','SET','Modifies\x20a\x20record','In\x20YARN,\x20the\x20equivalent\x20of\x20a\x20TaskTracker\x20from\x20MapReduce\x201\x20is\x20a\x20Node\x20Manager.','Divides\x20tracks\x20into\x20equal-sized\x20disk\x20blocks','Increase\x20storage\x20capacity','Records\x20that\x20can\x20span\x20multiple\x20blocks','Which\x20of\x20the\x20following\x20describes\x20a\x20conceptual\x20data\x20model?','Queue','How\x20does\x20double\x20buffering\x20improve\x20data\x20transfer?','What\x20does\x20the\x20term\x20\x27seek\x20time\x27\x20refer\x20to?','Ensuring\x20every\x20entity\x20is\x20unique','What\x20is\x20the\x20primary\x20function\x20of\x20an\x20access\x20path\x20in\x20a\x20database?','Processing\x20data\x20close\x20to\x20where\x20it\x20is\x20stored','Text\x20editing','What\x20is\x20a\x20\x27view\x27\x20in\x20the\x20context\x20of\x20databases?','Increased\x20storage\x20capacity','Requires\x20less\x20disk\x20space','A\x20data\x20communication\x20system\x20spanning\x20states,\x20countries,\x20or\x20the\x20whole\x20world\x20is\x20a\x20______.','Improved\x20data\x20security','Exact\x20Boolean\x20matches','Semi-structured\x20Data','addEventListener','Prescriptive','Retrieves\x20data\x20from\x20a\x20table','True\x20or\x20False:\x20The\x20star\x20schema\x20is\x20optimized\x20for\x20query\x20performance\x20by\x20reducing\x20the\x20number\x20of\x20joins\x20needed.','Ratio-scaled\x20attributes','Deletes\x20a\x20database','Which\x20allocation\x20method\x20allows\x20file\x20blocks\x20to\x20be\x20allocated\x20to\x20consecutive\x20disk\x20blocks?','Data\x20integration\x20often\x20faces\x20the\x20\x27entity\x20identification\x27\x20problem,\x20which\x20involves:','IS\x20EMPTY','Commodity\x20hardware','What\x20is\x20the\x20primary\x20function\x20of\x20a\x20Mapper\x20in\x20a\x20word\x20count\x20example?','JOIN','Basic\x20Local\x20Object','Partially\x20matches\x20information\x20needed','True\x20or\x20False:\x20Missing\x20Completely\x20at\x20Random\x20(MCAR)\x20data\x20can\x20be\x20ignored\x20without\x20biasing\x20the\x20analysis.','ROWNUM','Snapshot\x20fact','All\x20of\x20the\x20mentioned','Combines\x20the\x20results\x20of\x20two\x20queries,\x20including\x20duplicates','Chaining','Limits\x20the\x20number\x20of\x20rows\x20returned\x20by\x20a\x20query','Ignoring\x20similarities\x20within\x20clusters','The\x20User\x20Datagram\x20Protocol\x20(UDP)','Compressing\x20data\x20for\x20storage','Job\x20scheduling\x20occurs','UNIQUE','They\x20help\x20in\x20tokenizing\x20text','World\x20area\x20network','network','Which\x20of\x20these\x20best\x20describes\x20open\x20addressing?','Composite\x20attributes','Which\x20data\x20structure\x20is\x20needed\x20to\x20convert\x20infix\x20notation\x20to\x20postfix\x20notation?','confirmation-modal','512\x20KB','data-link\x20layer','Reversing\x20a\x20string','To\x20identify\x20stop\x20words','Descriptive','Only\x20supports\x20small\x20datasets','Hardware\x20constraints\x20only','True\x20or\x20False:\x20Proximity\x20operators\x20ensure\x20terms\x20are\x20adjacent\x20in\x20the\x20search\x20results.','Dispersion','Are\x20split\x20into\x20multiple\x20related\x20tables','Which\x20color\x20model\x20is\x20used\x20for\x20most\x20computer\x20model\x20and\x20video\x20systems?','Hard\x20disk\x20drive','LIKE','Which\x20aspect\x20of\x20Hadoop\x20ensures\x20high\x20availability\x20of\x20data?','Dashboards\x20and\x20portals','What\x20is\x20a\x20clustered\x20index?','Which\x20join\x20type\x20in\x20MapReduce\x20requires\x20input\x20to\x20be\x20partitioned\x20and\x20sorted\x20by\x20key?','Distributed\x20data\x20storage','Any\x20set\x20of\x20digits\x20or\x20alphabets\x20are\x20generally\x20referred\x20to\x20as\x20______.','What\x20is\x20a\x20common\x20issue\x20with\x20linear\x20probing\x20in\x20open\x20addressing?','User\x20Datagram\x20Protocol\x20(UDP)','bit-by-bit\x20delivery','To\x20delete\x20a\x20table','Sorts\x20the\x20rows\x20by\x20a\x20column','Read','It\x20is\x20stored\x20in\x20a\x20cache','The\x20primary\x20key\x20of\x20the\x20relation','Redundant\x20data\x20storage','Filters\x20data\x20within\x20a\x20specific\x20range','What\x20does\x20“DSS”\x20stand\x20for\x20in\x20BI\x20terminology?','The\x20reduce\x20phase\x20in\x20MapReduce\x20aims\x20to:','Groups\x20data\x20by\x20unique\x20values','The\x20ability\x20to\x20share\x20data\x20among\x20users','Search\x20relevance\x20score','Are\x20closely\x20matched','Which\x20component\x20in\x20YARN\x20allocates\x20resources\x20to\x20applications?','TOTAL()','The\x20topology\x20of\x20the\x20network','Pixel\x20is\x20the\x20cluster\x20of\x20a\x20digital\x20image','Tab','userStats','1\x20KB\x20to\x202\x20KB','Has\x20been\x20modified','What\x20does\x20the\x20ALTER\x20command\x20do?','Filter\x20data\x20records','An\x20index\x20used\x20to\x20speed\x20up\x20queries','In\x20a\x20three-dimensional\x20array','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20measure\x20of\x20data\x20quality?','Reduce\x20the\x20memory\x20needed\x20for\x20storage','SYSDATE()','LENGTH','Snowflake\x20schema','To\x20uniformly\x20distribute\x20records\x20across\x20address\x20space','For\x20ordinal\x20data,\x20what\x20transformation\x20is\x20applied\x20before\x20measuring\x20distance?','An\x20index\x20for\x20fast\x20retrieval','Ad-hoc\x20queries','Transactional\x20data','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20component\x20of\x20reading\x20data\x20in\x20MapReduce?','What\x20is\x20the\x20result\x20of\x20a\x20\x27write-back\x27\x20operation\x20in\x20buffer\x20management?','In\x20the\x20context\x20of\x20databases,\x20what\x20is\x20a\x20\x27database\x20state\x27?','Adding\x20duplicate\x20records','It\x20is\x20written\x20back\x20to\x20disk\x20if\x20modified','Decision\x20tree\x20generation','Traditional\x20database\x20SQL','Logging\x20website\x20visits','A\x20table\x20identifier','RGB','Nodes','Records\x20can\x20cross\x20block\x20boundaries','Which\x20users\x20primarily\x20interact\x20with\x20the\x20database\x20to\x20satisfy\x20their\x20data\x20needs?','In\x20TCP/IP,\x20a\x20message\x20at\x20the\x20transport\x20layer\x20is\x20encapsulated\x20in\x20a\x20packet\x20at\x20the\x20____\x20layer.','In-memory\x20data\x20analytics','Which\x20of\x20the\x20following\x20best\x20describes\x20\x27outlier\x20analysis\x27?','Which\x20SQL\x20function\x20is\x20used\x20to\x20return\x20the\x20number\x20of\x20rows\x20in\x20a\x20table?','Limits\x20the\x20size\x20of\x20the\x20database','The\x20file\x20pointer\x20is\x20reset','It\x20has\x20low\x20storage\x20capacity','Nothing\x20happens','Requires\x20contiguous\x20disk\x20space','Missing\x20at\x20Random\x20(MAR)','The\x20entity-relationship\x20model\x20is\x20an\x20example\x20of\x20a\x20representational\x20data\x20model.','MODIFY','Aligned','Is\x20ready\x20for\x20replacement','What\x20does\x20the\x20SQL\x20INSERT\x20INTO\x20statement\x20do?','Data\x20in\x20main\x20memory\x20is\x20slower\x20to\x20access\x20than\x20data\x20on\x20magnetic\x20disks.','To\x20handle\x20requests\x20for\x20data\x20and\x20manage\x20buffers','What\x20is\x20the\x20function\x20of\x20the\x20SQL\x20DISTINCT\x20keyword?','Restricts\x20access\x20to\x20certain\x20rows','Which\x20of\x20these\x20is\x20a\x20valid\x20data\x20type\x20in\x20SQL\x20Server?','They\x20require\x20frequent\x20reorganization','It\x20excludes\x20proximity\x20operators','It\x20describes\x20how\x20data\x20is\x20physically\x20stored.','Which\x20SQL\x20clause\x20is\x20used\x20to\x20group\x20records\x20that\x20have\x20the\x20same\x20values?','Dividing\x20values\x20across\x20dimensions','A\x20key\x20that\x20contains\x20foreign\x20keys\x20only','Cost-effectiveness','remove','A\x20single\x20primary\x20key','Basic\x20Large\x20Object','Warehouses','Search\x20engines','To\x20reduce\x20costs','Counts\x20the\x20number\x20of\x20rows','What\x20is\x20the\x20primary\x20key?','Eliminated\x20entirely','Can\x20the\x20TRUNCATE\x20command\x20be\x20rolled\x20back?','Which\x20schema\x20type\x20is\x20known\x20for\x20having\x20a\x20central\x20fact\x20table\x20connected\x20to\x20multiple\x20dimension\x20tables?','Enhanced\x20real-time\x20processing','checked','Files\x20with\x20sorted\x20records','To\x20specify\x20a\x20default\x20value\x20if\x20no\x20value\x20is\x20provided','physical\x20layer','LIMIT','EXEC\x20sp_rename\x20\x27old_name\x27,\x20\x27new_name\x27;','Compiling\x20a\x20list\x20of\x20all\x20document\x20IDs','ALTER\x20TABLE','Java’s\x20int\x20is\x20faster\x20but\x20heavier','Which\x20data\x20type\x20is\x20used\x20in\x20SQL\x20to\x20store\x20variable-length\x20strings?','Which\x20schema\x20would\x20be\x20best\x20suited\x20for\x20a\x20data\x20mart\x20with\x20simple\x20one-to-many\x20relationships?','The\x20difference\x20between\x20a\x20primary\x20and\x20secondary\x20hash\x20function\x20is:','To\x20break\x20text\x20into\x20terms\x20for\x20indexing','No\x20sorting','Galaxy\x20schema','Two\x20splits\x20of\x20data','0.3\x20and\x200.5','Mean','1\x20GB','Process\x20of\x20inserting\x20an\x20element\x20in\x20a\x20stack\x20is\x20called:','HBase','<em>No\x20answer</em>','Filters\x20results\x20by\x20multiple\x20conditions','Deleted\x20frequently','Efficient\x20searching','Removes\x20duplicates\x20from\x20a\x20result\x20set','optical\x20service\x20implementation','Deletes\x20the\x20data\x20on\x20that\x20node','To\x20speed\x20up\x20data\x20transfer\x20processes','Dimensions\x20in\x20a\x20data\x20warehouse:','A\x20table\x20can\x20have\x20multiple\x20primary\x20keys','Buffering\x20of\x20blocks','Videos','DELETE','frames','Simplify\x20the\x20process\x20of\x20intersecting\x20postings','Converting\x20data\x20to\x20binary','Fifth\x20layer','It\x20defines\x20the\x20relationships\x20among\x20data\x20entities.','application\x20to\x20application\x20delivery','Please\x20enter\x20a\x20number\x20between\x201-120\x20minutes.','Input\x20format','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aThere\x20is\x20a\x20one-to-many\x20relationship\x20between\x20the\x20Departments\x20and\x20Employees\x20tables.','A\x20nominal\x20attribute\x20with\x20only\x20two\x20states\x20(0\x20and\x201)\x20is\x20called:','Only\x20exact\x20matches\x20to\x20the\x20query\x20are\x20retrieved','GROUP\x20BY','In\x20data\x20modeling,\x20what\x20term\x20refers\x20to\x20facts\x20created\x20from\x20performing\x20calculations\x20on\x20other\x20fact\x20measures?','True','Java’s\x20int\x20is\x20not\x20compatible\x20with\x20Hadoop','Dividing\x20the\x20data\x20range\x20into\x20bins\x20of\x20equal\x20element\x20count','Groups\x20rows\x20based\x20on\x20a\x20specified\x20condition','A\x20query\x20result\x20set','The\x20main\x20disadvantage\x20of\x20linked\x20allocation\x20is:','To\x20manage\x20user\x20interfaces','True\x20or\x20False:\x20Weighted\x20zone\x20scoring\x20assigns\x20each\x20document\x20a\x20score\x20between\x200\x20and\x201\x20based\x20on\x20Boolean\x20matches\x20in\x20different\x20zones.','Reduced\x20data\x20storage','A\x20transmission\x20that\x20generally\x20involves\x20dedicated\x20circuits.','Database\x20Designers','In\x20HDFS,\x20how\x20many\x20default\x20replicas\x20are\x20created\x20for\x20each\x20data\x20block?','What\x20does\x20the\x20term\x20\x27dirty\x20bit\x27\x20refer\x20to\x20in\x20buffer\x20management?','11295904RiNqjt','When\x20we\x20have\x20multiple\x20small\x20datasets\x20in\x20different\x20data\x20sources\x20and\x20we\x20need\x20to\x20perform\x20a\x20join\x20while\x20ensuring\x20high\x20data\x20quality\x20and\x20accuracy,\x20what\x20is\x20the\x20optimal\x20approach\x20for\x20this\x20scenario?','Which\x20SQL\x20keyword\x20is\x20used\x20to\x20combine\x20the\x20results\x20of\x20two\x20queries?','time-limit','quiz-selection','To\x20define\x20the\x20file\x20format','✅\x20Correct','Format\x20conversion\x20of\x20multimedia\x20data','New\x20data\x20is\x20discarded','Complex\x20searches','The\x20probability\x20of\x20items\x20appearing\x20together','It\x20compresses\x20keys\x20into\x20buckets','A\x20set\x20of\x20words','Additive\x20measure','The\x20schema\x20of\x20the\x20database','max','It\x20links\x20multiple\x20hash\x20tables','Super\x20keys\x20always\x20contain\x20redundant\x20attributes.','UPDATE\x20PRIMARY\x20KEY;','It\x20is\x20optional\x20in\x20every\x20table','20\x20GB','DATABASE\x20CREATE\x20database_name','It\x20prioritizes\x20frequently\x20used\x20terms','Map\x20and\x20Reduce','Double\x20buffering','What\x20is\x20a\x20database?','Why\x20is\x20MapReduce\x20still\x20studied\x20despite\x20newer\x20frameworks?','A\x20type\x20of\x20metadata','Removes\x20duplicates\x20from\x20the\x20result\x20set','network,\x20data-link,\x20and\x20physical','Nonvolatile\x20data','Only\x20one\x20task\x20runs\x20at\x20a\x20time.','ICMP\x20stands\x20for.......','MIN()','Variable','It\x20is\x20faster\x20than\x20other\x20models','Reducers\x20process\x20data\x20before\x20Mappers\x20in\x20the\x20MapReduce\x20framework.','The\x20postfix\x20form\x20of\x20A*B+C/D\x20is:','Analytical\x20processing\x20in\x20data\x20warehouses','128\x20MB','Which\x20of\x20the\x20following\x20is\x20a\x20disadvantage\x20of\x20file-based\x20systems?','None\x20of\x20the\x20above','Limits\x20the\x20range\x20of\x20values\x20returned\x20in\x20a\x20column','What\x20is\x20the\x20main\x20goal\x20of\x20Business\x20Intelligence\x20(BI)?','Ratio\x20scales\x20cannot\x20be\x20used\x20with\x20binary\x20data','Non-additive\x20facts','To\x20minimize\x20scalability','Token','What\x20are\x20the\x20tokens\x20of\x20\x27information,\x20retrieval\x20&\x20database\x27?','What\x20is\x20the\x20purpose\x20of\x20the\x20setup\x20method\x20in\x20a\x20MapReduce\x20Reducer?','A\x20\x27bag\x20of\x20words\x27\x20approach\x20treats\x20documents\x20as:','Derived\x20facts\x20are\x20stored\x20as\x20textual\x20data\x20only','Management\x20of\x20cluster\x20resources\x20for\x20various\x20applications','medium','CREATE','The\x20packet\x20of\x20information\x20at\x20the\x20application\x20layer\x20is\x20called........','Which\x20statistic\x20describes\x20the\x20spread\x20of\x20data\x20values?','The\x20primary\x20purpose\x20of\x20Hadoop\x20is\x20to\x20process\x20data\x20in\x20real-time.','open\x20service\x20Internet','STRING','Which\x20of\x20the\x20following\x20classes\x20in\x20MapReduce\x20helps\x20with\x20serializing\x20objects?','Log\x20file\x20analysis','Yes,\x20in\x20some\x20databases','What\x20is\x20atomicity\x20in\x20the\x20context\x20of\x20databases?','_______\x20is\x20used\x20for\x20finding\x20research\x20information\x20about\x20specific\x20topics.','Compiler\x20Syntax\x20Analyzer','Compaction','The\x20time\x20taken\x20for\x20the\x20CPU\x20to\x20process\x20data','Records\x20with\x20fixed\x20sizes','Contiguous\x20allocation','Regression\x20techniques\x20are\x20best\x20suited\x20for\x20predicting\x20discrete\x20class\x20labels.','User\x20flow','Large-scale\x20unstructured\x20data','Data\x20is\x20always\x20consistent\x20in\x20a\x20file-based\x20system.','A\x20type\x20of\x20collision','The\x20sum\x20of\x20all\x20values','The\x20overall\x20length\x20of\x20each\x20document','It\x20requires\x20maintaining\x20a\x20table\x20of\x20access\x20times','Which\x20of\x20the\x20following\x20is\x20NOT\x20a\x20key\x20concept\x20in\x20the\x20relational\x20model?','Classification','It\x20complicates\x20high-speed\x20data\x20access.','Which\x20operator\x20is\x20used\x20for\x20pattern\x20matching?','OFFSET','To\x20store\x20data','Ensures\x20all\x20values\x20are\x20different','A\x20column\x20that\x20can\x20be\x20NULL','When\x20data\x20is\x20read-only','What\x20is\x20the\x20use\x20of\x20the\x20SQL\x20EXCEPT\x20operator?','To\x20allow\x20computers\x20to\x20communicate\x20with\x20each\x20other\x20in\x20the\x20home','Having\x20uniform\x20data\x20across\x20records','width','Please\x20enter\x20a\x20valid\x20number\x20of\x20minutes.','If\x20we\x20have\x20a\x20large\x20dataset\x20and\x20a\x20small\x20reference\x20dataset\x20that\x20we\x20need\x20to\x20use\x20to\x20filter\x20the\x20large\x20dataset,\x20what\x20is\x20the\x20most\x20efficient\x20technique\x20to\x20minimize\x20response\x20time\x20and\x20optimize\x20performance?','Why\x20is\x20binary\x20search\x20more\x20efficient\x20in\x20ordered\x20files?','Scheduling\x20tasks','The\x20File\x20Transfer\x20Protocol\x20(FTP)','Why\x20is\x20the\x20default\x20HDFS\x20block\x20size\x20128\x20MB?','Complexity','A\x20data\x20type','Which\x20of\x20the\x20following\x20best\x20describes\x20\x27data\x20redundancy\x27\x20in\x20a\x20star\x20schema?','time-taken-value','Which\x20of\x20the\x20following\x20are\x20not\x20handled\x20by\x20Information\x20retrieval','enabled','Outliers\x20in\x20data\x20are\x20always\x20errors\x20that\x20need\x20to\x20be\x20removed.','A\x20buffer\x20in\x20memory','Data\x20accuracy','Which\x20of\x20the\x20following\x20is\x20an\x20example\x20of\x20derived\x20data?','Transform\x20data\x20into\x20splits','Overflow','For\x20faster\x20processing','Calculates\x20the\x20sum\x20of\x20a\x20column','A\x20column\x20that\x20links\x20to\x20another\x20table','MAR','a\x20message','The\x20prefix\x20form\x20of\x20the\x20infix\x20expression\x20(p\x20+\x20q)\x20-\x20(r\x20*\x20t)\x20is:','AB+CD*E-*F*G/','It\x20provides\x20faster\x20iterative\x20processing\x20due\x20to\x20in-memory\x20processing.','Centralized\x20data\x20for\x20decision-making','Ensures\x20only\x20unique\x20values\x20are\x20allowed','An\x20example\x20of\x20a\x20derived\x20fact\x20could\x20be:','A\x20range\x20of\x20characters','Use\x20of\x20normalized\x20dimension\x20tables\x20only','High\x20speed\x20for\x20sequential\x20access','To\x20ensure\x20all\x20values\x20are\x20unique','A\x20common\x20challenge\x20in\x20open\x20addressing\x20is:','Speed\x20of\x20calculation','Using\x20overflow\x20files','Lift','DeptName','Three\x20or\x20more\x20devices\x20share\x20a\x20link\x20in\x20a\x20______\x20connection.','The\x20frequency\x20of\x20terms\x20in\x20a\x20document','Writables\x20make\x20Hadoop\x20slower','When\x20applying\x20Porter\x20algorithm\x20rules,\x20what\x20will\x20the\x20following\x20word\x20be\x20stemmed\x20to:\x20eating\x20would\x20be\x20____________.','What\x20is\x20the\x20default\x20sorting\x20order\x20for\x20the\x20ORDER\x20BY\x20clause\x20in\x20SQL?','A\x20storage\x20medium\x20for\x20documents','Connection','Unordered\x20collections\x20of\x20terms','In\x20Boolean\x20search\x20algorithm\x20the\x20default\x20precedence\x20ordering\x20of\x20operations\x20is\x20________.','Files\x20with\x20unordered\x20records','It\x20requires\x20less\x20memory','In\x20the\x20TCP/IP\x20protocol\x20suite,\x20which\x20of\x20the\x20following\x20is\x20a\x20transport-layer\x20protocol?','What\x20happens\x20during\x20a\x20linear\x20search\x20for\x20a\x20record?','Spark\x20does\x20not\x20support\x20continuous\x20streaming.','Fixed-depth\x20hashing','What\x20is\x20a\x20data\x20object?','INNER\x20JOIN','Records\x20are\x20sorted','Solr','Which\x20is\x20a\x20key\x20differentiator\x20of\x20Spark\x20compared\x20to\x20MapReduce\x20for\x20machine\x20learning\x20tasks?','Duplicatable','(0,\x200)','It\x20is\x20a\x20hardware-level\x20abstraction','Four','Confidence','In\x20Proximity\x20searching\x20algorithms\x20the\x20default\x20direction\x20of\x20search\x20is\x20forward\x20only.','True\x20or\x20False:\x20In\x20tf-idf,\x20\x27tf\x27\x20stands\x20for\x20\x27total\x20frequency.\x27','True\x20or\x20False:\x20The\x20median\x20is\x20generally\x20unaffected\x20by\x20extreme\x20values.','Underflow','Converts\x20files\x20into\x20binary\x20format','Binarization','Normalization','To\x20manage\x20database\x20backups','Systems\x20Analysts','Interconnect\x20Control\x20Message\x20Protocol','current-question','Which\x20type\x20of\x20missing\x20data\x20occurs\x20randomly\x20without\x20any\x20pattern?','s</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h3><i\x20class=\x22fas\x20fa-history\x22></i>\x20Quiz\x20History</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22quiz-history-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Date</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Quiz\x20Name</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Score</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>Time\x20Taken</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20','Prevents\x20duplicate\x20values\x20in\x20a\x20column','Database\x20Administrators','The\x20speed\x20of\x20the\x20disk','master','What\x20technology\x20became\x20prominent\x20in\x20BI\x20by\x202005?','What\x20is\x20the\x20main\x20difference\x20between\x20MapReduce\x20and\x20Spark\x20in\x20terms\x20of\x20data\x20processing\x20efficiency?','To\x20allow\x20computers\x20to\x20communicate\x20with\x20each\x20other\x20in\x20the\x20same\x20country','By\x20using\x20the\x20EmpID\x20column','Term\x20length','sender','In\x20the\x20Employees\x20table\x20(emp):\x20|\x20EmpID\x20|\x20EmpName\x20\x20\x20\x20\x20\x20|\x20Salary\x20|\x20DeptNo\x20|\x20\x0a|-------|--------------|--------|--------|\x20\x0a|\x201234\x20\x20|\x20Ahmed\x20Salem\x20\x20|\x202000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202456\x20\x20|\x20Maha\x20Karim\x20\x20\x20|\x203000\x20\x20\x20|\x201\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204658\x20\x20|\x20Sherif\x20Maged\x20|\x202500\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x209840\x20\x20|\x20Yasser\x20Amin\x20\x20|\x204000\x20\x20\x20|\x202\x20\x20\x20\x20\x20\x20|\x20\x0a|\x203945\x20\x20|\x20Magda\x20Farid\x20\x20|\x205000\x20\x20\x20|\x203\x20\x20\x20\x20\x20\x20|\x20\x0aIn\x20the\x20Departments\x20table\x20(Dep):\x20|\x20DeptNo\x20|\x20DeptName\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|--------|-----------------|\x20\x0a|\x201\x20\x20\x20\x20\x20\x20|\x20Sales\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x202\x20\x20\x20\x20\x20\x20|\x20Human\x20Resource\x20\x20|\x20\x0a|\x203\x20\x20\x20\x20\x20\x20|\x20Finance\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20\x0a|\x204\x20\x20\x20\x20\x20\x20|\x20Warehouses\x20\x20\x20\x20\x20\x20|\x20\x0aWhich\x20of\x20the\x20following\x20departments\x20has\x20no\x20employees\x20according\x20to\x20the\x20tables?','Attributes\x20in\x20data\x20can\x20also\x20be\x20referred\x20to\x20as:','A\x20non-integrated\x20collection\x20of\x20reports','The\x20data\x20model\x20used','bigdata\x20Quiz\x20','Spark\x20cannot\x20handle\x20large\x20datasets.','Predictive','five','Apache\x20HDFS','ALTER\x20TABLE\x20table_name\x20ALTER\x20COLUMN\x20column_name\x20new_data_type;','A\x20linear\x20search\x20is\x20necessary\x20for\x20which\x20type\x20of\x20file?','Creates\x20a\x20new\x20table\x20or\x20database','Which\x20of\x20these\x20statements\x20accurately\x20describes\x20\x27grid\x20computing\x27\x20compared\x20to\x20Hadoop?','With\x20the\x20addition\x20of\x20a\x20new\x20record','1)\x20Information\x202)\x20retrieval\x20&\x20database','Filters\x20rows','By\x20joining\x20the\x20Employees\x20table\x20with\x20the\x20DeptNo\x20column','The\x20process\x20of\x20accessing\x20data\x20stored\x20in\x20a\x20serial\x20access\x20memory\x20is\x20similar\x20to\x20manipulating\x20data\x20on\x20a:','Which\x20join\x20operation\x20in\x20MapReduce\x20is\x20performed\x20during\x20the\x20map\x20phase?','Entities','Managing\x20cloud\x20resources','Data\x20Query\x20Language\x20(DQL)','Dimensional\x20modeling\x20is\x20primarily\x20used\x20in:','In\x20concentric\x20circles\x20called\x20tracks','padStart','The\x20number\x20of\x20foreign\x20keys\x20in\x20a\x20relation','HDFS\x20replication','DELETE\x20removes\x20the\x20table;\x20TRUNCATE\x20clears\x20specific\x20columns','Deletes\x20all\x20colliding\x20records','CPU\x20main\x20memory','querySelector','Author\x27s\x20name','Pop','Which\x20is\x20a\x20characteristic\x20of\x20derived\x20facts\x20in\x20a\x20fact\x20table?','The\x20actual\x20data\x20in\x20the\x20database','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','All\x20records\x20are\x20variable\x20length','The\x20contribution\x20of\x20various\x20document\x20zones','operating\x20system\x20interface','In\x20which\x20situation\x20is\x20record\x20spanning\x20mandatory?','Reporting\x20node\x20health','Data\x20containing\x20outliers','Data\x20cleaning\x20and\x20preprocessing','Ordinal\x20attributes','FIFO','\x20the\x20property\x20information\x20table:\x0a\x0a|\x20PropertyNo\x20|\x20Address\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Type\x20\x20|\x20Rooms\x20|\x20Rent\x20|\x20OwnerNo\x20|\x0a|------------|-------------------|-------|-------|------|---------|\x0a|\x20PA14\x20\x20\x20\x20\x20\x20\x20|\x2016\x20Holhead\x20House\x20\x20\x20|\x20House\x20|\x206\x20\x20\x20\x20\x20|\x20650\x20\x20|\x20C046\x20\x20\x20\x20|\x0a|\x20PL94\x20\x20\x20\x20\x20\x20\x20|\x206\x20Argyll\x20St.\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20400\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG4\x20\x20\x20\x20\x20\x20\x20\x20|\x206\x20Lawrence\x20St.\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20350\x20\x20|\x20C040\x20\x20\x20\x20|\x0a|\x20PG36\x20\x20\x20\x20\x20\x20\x20|\x202\x20Manor\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x203\x20\x20\x20\x20\x20|\x20375\x20\x20|\x20C093\x20\x20\x20\x20|\x0a|\x20PG21\x20\x20\x20\x20\x20\x20\x20|\x2018\x20Dale\x20Rd\x20\x20\x20\x20\x20\x20\x20\x20\x20|\x20House\x20|\x205\x20\x20\x20\x20\x20|\x20600\x20\x20|\x20C087\x20\x20\x20\x20|\x0a|\x20PG16\x20\x20\x20\x20\x20\x20\x20|\x205\x20Novar\x20Dr.\x20\x20\x20\x20\x20\x20\x20\x20|\x20Flat\x20\x20|\x204\x20\x20\x20\x20\x20|\x20450\x20\x20|\x20C093\x20\x20\x20\x20|\x0a\x0aCardinality\x20of\x20relation\x20:','By\x20searching\x20in\x20the\x20Departments\x20table\x20using\x20DeptName\x20only','Tracking\x20of\x20local\x20variables\x20at\x20run\x20time','Returns\x20maximum\x20value','Joins\x20two\x20tables','It\x20dynamically\x20expands\x20the\x20directory\x20when\x20needed','Discovering\x20patterns\x20in\x20large\x20datasets','transport','Simpler\x20design\x20than\x20the\x20star\x20schema','A\x20database\x20application\x20is\x20a\x20program\x20that\x20interacts\x20with\x20the\x20database.','(ABD^+EF-/G+)','BlockReader','A\x20major\x20advantage\x20of\x20the\x20snowflake\x20schema\x20is:','What\x20is\x20the\x20purpose\x20of\x20the\x20UNIQUE\x20constraint\x20in\x20SQL?','YARN\x20is\x20responsible\x20for\x20data\x20replication\x20in\x20Hadoop\x20clusters.','Structured\x20XML\x20data','Uses\x20a\x20secondary\x20hash\x20function\x20after\x20a\x20collision','Structured\x20data\x20analysis','Garbage\x20Collection','Disk\x20controller','Zero','Improved\x20data\x20integrity','SELECT','Ignoring\x20all\x20noisy\x20data','The\x20physical\x20layer\x20is\x20concerned\x20with.....','A\x20median','Last-in-first-out\x20(LIFO)','In\x20an\x20enterprise\x20setting,\x20multiple\x20fact\x20tables\x20connected\x20to\x20shared\x20dimensions\x20are\x20typical\x20of:','Indexes\x20are\x20mandatory\x20for\x20all\x20tables','Grouping\x20data\x20with\x20errors','CHAR','Duplicate','A\x20central\x20fact\x20table\x20surrounded\x20by\x20dimensions','Visualization','Which\x20SQL\x20function\x20is\x20used\x20to\x20find\x20the\x20largest\x20value?','\x20out\x20of\x20','The\x20physical\x20structure\x20of\x20data\x20is\x20independent\x20of\x20application\x20programs\x20in\x20a\x20DBMS.','Accessible\x20only\x20on\x20a\x20single\x20side\x20of\x20the\x20disk','What\x20is\x20the\x20purpose\x20of\x20the\x20buffer\x20manager\x20in\x20a\x20DBMS?','round','To\x20modify\x20the\x20data','What\x20is\x20required\x20for\x20continuous\x20data\x20transfer\x20between\x20disk\x20blocks?','Association\x20Analysis','The\x20maximum\x20number\x20of\x20hosts\x20in\x20the\x20network','Data\x20shows\x20historical\x20trends','Fill\x20with\x20a\x20global\x20constant\x20or\x20mean','Use\x20open\x20addressing','Duplicate\x20data\x20is\x20minimized\x20due\x20to\x20normalization','application,\x20data-link,\x20and\x20physical','437846oXPkCY','Historical\x20records\x20only','Spark\x20uses\x20disk\x20storage\x20exclusively.','Birthdate','A\x20tuple’s\x20primary\x20key\x20can\x20be\x20NULL','Removable\x20media','Yes,\x20using\x20ALTER\x20TABLE\x20RENAME\x20CONSTRAINT','querySelectorAll','Which\x20application\x20is\x20more\x20suitable\x20for\x20low-latency\x20data\x20access\x20instead\x20of\x20HDFS?','Exactly\x203\x20times','Abstracting\x20and\x20indexing\x20system','Prevents\x20NULL\x20values','Monitoring\x20insurance\x20claim\x20processing\x20stages','To\x20link\x20two\x20tables\x20together','score-excellent','Granularity','What\x20is\x20the\x20correct\x20blocking\x20factor\x20for\x20fixed-length\x20records\x20if\x20the\x20block\x20size\x20is\x20512\x20bytes\x20and\x20record\x20size\x20is\x20101\x20bytes?','It\x20depends\x20on\x20non-interactive\x20analysis.','A\x20file\x20divided\x20by\x20block\x20size','EXCLUDE\x20NULL','True\x20or\x20False:\x20Hadoop’s\x20HDFS\x20is\x20designed\x20to\x20have\x20a\x20large\x20number\x20of\x20small\x20blocks.','Indexing','Opinion\x20mining','Generating\x20token\x20IDs','The\x20cosine\x20of\x20the\x20angle\x20between\x20them','What\x20is\x20a\x20characteristic\x20of\x20the\x20snowflake\x20schema?','Hair\x20color','Buckets\x20are\x20split\x20or\x20merged','Searches\x20for\x20an\x20empty\x20position\x20sequentially','7yaTCda','What\x20does\x20a\x20schema\x20diagram\x20typically\x20display?','Dividing\x20the\x20data\x20range\x20into\x20intervals\x20of\x20equal\x20size','What\x20is\x20a\x20primary\x20purpose\x20of\x20a\x20data\x20warehouse?','Link\x20dimension\x20tables\x20together','Filters\x20text','time-options','Number\x20of\x20sectors\x20per\x20track','Replicate\x20data\x20for\x20fault\x20tolerance','A\x20line\x20in\x20the\x20file','GETDATE()','Flink\x20relies\x20heavily\x20on\x20batch\x20processing.','Minimize\x20data\x20transferred\x20between\x20map\x20and\x20reduce\x20tasks','Which\x20statement\x20is\x20true\x20about\x20the\x20Shuffle\x20phase\x20in\x20MapReduce?','Excludes\x20the\x20term\x20after\x20it','To\x20store\x20large\x20amounts\x20of\x20data','What\x20is\x20a\x20pixel?','Returns\x20all\x20rows\x20from\x20the\x20right\x20table','Which\x20of\x20the\x20following\x20is\x20not\x20an\x20application\x20of\x20stack?','In\x20dynamic\x20hashing,\x20how\x20is\x20the\x20hash\x20table\x20modified\x20when\x20more\x20records\x20are\x20added?','Clear\x20all\x20columns\x20in\x20a\x20table','dm-quiz-selection','Association\x20analysis','A\x20combination\x20of\x20distributed\x20caching\x20and\x20MapReduce\x20operations','To\x20speed\x20up\x20query\x20execution','Half-duplex','By\x20compressing\x20data\x20during\x20transfer','Circular\x20magnetic\x20storage\x20unit','Adds\x20the\x20record\x20at\x20the\x20start\x20of\x20the\x20table','All\x20of\x20this','What\x20does\x20the\x20INNER\x20JOIN\x20operation\x20do?','Skewed\x20to\x20the\x20left','Removing\x20the\x20record\x20physically','Which\x20of\x20these\x20is\x20a\x20disadvantage\x20of\x20Hadoop?','What\x20role\x20do\x20skip\x20pointers\x20play\x20in\x20postings\x20lists?','True\x20or\x20False:\x20Data\x20discretization\x20is\x20the\x20process\x20of\x20converting\x20continuous\x20data\x20into\x20categorical\x20data.','Returns\x20all\x20rows\x20from\x20the\x20left\x20table\x20and\x20matching\x20rows\x20from\x20the\x20right\x20table','network\x20layer','What\x20is\x20the\x20main\x20function\x20of\x20the\x20MapReduce\x20framework?','Only\x20current\x20year\x20data\x20is\x20stored','Spark\x20SQL','Names\x20of\x20record\x20types\x20and\x20some\x20constraints','Which\x20SQL\x20clause\x20is\x20used\x20to\x20limit\x20the\x20number\x20of\x20rows\x20returned\x20by\x20a\x20query?','Optical\x20disk','Spark\x20allows\x20data\x20processing\x20in\x20real\x20time.','Which\x20characteristic\x20defines\x20a\x20block\x20in\x20the\x20context\x20of\x20disk\x20storage?','Keys\x20and\x20measurements','In\x20the\x20relational\x20model,\x20each\x20attribute\x20in\x20a\x20relation\x20must\x20have\x20a\x20unique\x20name.','Reads\x20specific\x20record\x20data','The\x20probability\x20of\x20items\x20appearing\x20individually','Integration','What\x20is\x20a\x20key\x20feature\x20of\x20the\x20\x27shared-nothing\x27\x20architecture\x20in\x20MapReduce?','application,\x20presentation,\x20and\x20session','Stop\x20word','The\x20straight-line\x20distance\x20between\x20them','To\x20store\x20data\x20physically','average-score','They\x20consume\x20indexing\x20space\x20without\x20adding\x20much\x20meaning','Which\x20type\x20of\x20data\x20processing\x20requires\x20low\x20latency\x20and\x20is\x20best\x20achieved\x20with\x20stream\x20processing?','Used\x20only\x20for\x20indexing','True\x20or\x20False:\x20A\x20transaction\x20fact\x20table\x20is\x20known\x20for\x20storing\x20a\x20record\x20for\x20the\x20entire\x20process\x20lifecycle.','To\x20directly\x20query\x20the\x20dataset','HDFS','Which\x20YARN\x20scheduling\x20policy\x20divides\x20cluster\x20resources\x20into\x20multiple\x20queues?','The\x20TCP/IP\x20protocol\x20suite\x20consists\x20of........\x20layers.','Unicode','Counts\x20the\x20number\x20of\x20rows\x20in\x20a\x20table','10\x20GB','Zero\x20or\x20more\x20characters','When\x20having\x20a\x20document\x20with\x20identified\x20zones\x20it\x20can\x20be\x20classified','In\x20the\x20Boolean\x20retrieval\x20model,\x20documents\x20are\x20retrieved\x20based\x20on:','Compresses\x20the\x20data'];_0x3878=function(){return _0x461b6f;};return _0x3878();}function getdmQuestions(){if(dmQuizVariant===0x1)return dmQuestions1;if(dmQuizVariant===0x2)return dmQuestions2;if(dmQuizVariant===0x3)return dmQuestions3;}function choosedb2Quiz(_0x745363){const _0x5510ae=_0x6d96f2;db2QuizVariant=_0x745363,totalQuestions=getdb2Questions()[_0x5510ae(0x2d3)],document[_0x5510ae(0xd7)](_0x5510ae(0x60b))[_0x5510ae(0xb8f)]=_0x5510ae(0x7ae)+_0x745363,document[_0x5510ae(0xd7)](_0x5510ae(0x638))[_0x5510ae(0x4c4)][_0x5510ae(0x654)](_0x5510ae(0xb91)),document[_0x5510ae(0xd7)](_0x5510ae(0xa6b))[_0x5510ae(0x4c4)][_0x5510ae(0x8f1)](_0x5510ae(0xb91));}function getdb2Questions(){if(db2QuizVariant===0x1)return db2Questions1;if(db2QuizVariant===0x2)return db2Questions2;if(db2QuizVariant===0x3)return db2Questions3;if(db2QuizVariant===0x4)return db2Questions4;if(db2QuizVariant===0x5)return db2Questions5;}function chooseirQuiz(_0x5861cc){const _0x457a2e=_0x6d96f2;irQuizVariant=_0x5861cc,totalQuestions=getirQuestions()[_0x457a2e(0x2d3)],document[_0x457a2e(0xd7)](_0x457a2e(0x60b))[_0x457a2e(0xb8f)]=_0x457a2e(0xea)+_0x5861cc,document[_0x457a2e(0xd7)](_0x457a2e(0x1aa))['classList'][_0x457a2e(0x654)]('hidden'),document[_0x457a2e(0xd7)](_0x457a2e(0xa6b))[_0x457a2e(0x4c4)][_0x457a2e(0x8f1)](_0x457a2e(0xb91));}function getirQuestions(){if(irQuizVariant===0x1)return irQuestions1;if(irQuizVariant===0x2)return irQuestions2;if(irQuizVariant===0x3)return irQuestions3;if(irQuizVariant===0x4)return irQuestions4;if(irQuizVariant===0x5)return irQuestions5;}function choosebiQuiz(_0xcf4f2a){const _0x569dae=_0x6d96f2;biQuizVariant=_0xcf4f2a,totalQuestions=getbiQuestions()[_0x569dae(0x2d3)],document[_0x569dae(0xd7)](_0x569dae(0x60b))[_0x569dae(0xb8f)]=_0x569dae(0x69f)+_0xcf4f2a,document[_0x569dae(0xd7)](_0x569dae(0x20f))[_0x569dae(0x4c4)][_0x569dae(0x654)](_0x569dae(0xb91)),document[_0x569dae(0xd7)]('time-options')['classList']['remove'](_0x569dae(0xb91));}function getbiQuestions(){if(biQuizVariant===0x1)return biQuestions1;if(biQuizVariant===0x2)return biQuestions2;if(biQuizVariant===0x3)return biQuestions3;if(biQuizVariant===0x4)return biQuestions4;}function showTimeInput(){const _0x31f738=_0x6d96f2;document[_0x31f738(0xd7)](_0x31f738(0xa6b))[_0x31f738(0x4c4)][_0x31f738(0x654)](_0x31f738(0xb91)),document['getElementById']('time-input')[_0x31f738(0x4c4)][_0x31f738(0x8f1)]('hidden');}function setTimeLimit(){const _0x167295=_0x6d96f2,_0x1980d0=parseInt(document[_0x167295(0xd7)](_0x167295(0x93c))[_0x167295(0x4c8)]);if(isNaN(_0x1980d0)||_0x1980d0<0x1){alert(_0x167295(0x994));return;}if(_0x1980d0>0x78)return alert(_0x167295(0x925)),![];timeLimit=_0x1980d0*0x3c,updateTimerDisplay(timeLimit),document[_0x167295(0xd7)](_0x167295(0x24f))[_0x167295(0x16f)][_0x167295(0x405)]=_0x167295(0x710),startQuizWithTimer();}function startQuizWithoutTime(){startQuiz();}function startQuizWithTimer(){startQuiz(),startTime=new Date(),timerInterval=setInterval(updateTimer,0x3e8);}function startQuiz(){const _0x37ae89=_0x6d96f2;document[_0x37ae89(0xd7)](_0x37ae89(0xa6b))[_0x37ae89(0x4c4)][_0x37ae89(0x654)](_0x37ae89(0xb91)),document['getElementById']('time-input')[_0x37ae89(0x4c4)][_0x37ae89(0x654)](_0x37ae89(0xb91)),document[_0x37ae89(0xd7)]('question-info')[_0x37ae89(0x4c4)][_0x37ae89(0x8f1)](_0x37ae89(0xb91)),document[_0x37ae89(0xd7)](_0x37ae89(0x41f))[_0x37ae89(0x4c4)]['remove']('hidden'),document[_0x37ae89(0xd7)](_0x37ae89(0x24f))[_0x37ae89(0x4c4)][_0x37ae89(0x8f1)](_0x37ae89(0xb91)),userAnswers=new Array(totalQuestions)['fill'](-0x1),score=0x0,loadQuestion();}function loadQuestion(){const _0x40b898=_0x6d96f2,_0x3c4b28=(currentQuestionIndex+0x1)/totalQuestions*0x64;document['getElementById'](_0x40b898(0x387))[_0x40b898(0x16f)][_0x40b898(0x993)]=_0x3c4b28+'%';let _0x47023e;if(selectedQuiz===_0x40b898(0x65d))_0x47023e=getDatabaseQuestions();else{if(selectedQuiz===_0x40b898(0x3b2))_0x47023e=getDataStructureQuestions();else{if(selectedQuiz==='dc')_0x47023e=getDCQuestions();else{if(selectedQuiz===_0x40b898(0x364))_0x47023e=getbigdataQuestions();else{if(selectedQuiz==='dm')_0x47023e=getdmQuestions();else{if(selectedQuiz==='db2')_0x47023e=getdb2Questions();else{if(selectedQuiz==='ir')_0x47023e=getirQuestions();else selectedQuiz==='bi'&&(_0x47023e=getbiQuestions());}}}}}}document[_0x40b898(0xd7)](_0x40b898(0x9dd))['innerText']=currentQuestionIndex+0x1,document['getElementById'](_0x40b898(0x6e8))[_0x40b898(0xb8f)]=totalQuestions,document[_0x40b898(0xd7)](_0x40b898(0x188))[_0x40b898(0xb8f)]=_0x47023e[currentQuestionIndex]['question'];const _0x352baa=document['querySelectorAll'](_0x40b898(0x825));_0x352baa[_0x40b898(0x6ff)]((_0x28852e,_0x4b957e)=>{const _0x195f96=_0x40b898;_0x28852e[_0x195f96(0xb8f)]=_0x47023e[currentQuestionIndex][_0x195f96(0x582)][_0x4b957e],_0x28852e[_0x195f96(0x4c4)][_0x195f96(0x8f1)]('correct','wrong'),_0x28852e[_0x195f96(0x31f)]=![];}),showCurrentAnswer();}function checkAnswer(_0x5cfd42){const _0x30579d=_0x6d96f2;let _0x3e34bd;if(selectedQuiz===_0x30579d(0x65d))_0x3e34bd=getDatabaseQuestions();else{if(selectedQuiz===_0x30579d(0x3b2))_0x3e34bd=getDataStructureQuestions();else{if(selectedQuiz==='dc')_0x3e34bd=getDCQuestions();else{if(selectedQuiz===_0x30579d(0x364))_0x3e34bd=getbigdataQuestions();else{if(selectedQuiz==='dm')_0x3e34bd=getdmQuestions();else{if(selectedQuiz===_0x30579d(0x4cc))_0x3e34bd=getdb2Questions();else{if(selectedQuiz==='ir')_0x3e34bd=getirQuestions();else selectedQuiz==='bi'&&(_0x3e34bd=getbiQuestions());}}}}}}const _0x288e3f=_0x3e34bd[currentQuestionIndex][_0x30579d(0x32d)];userAnswers[currentQuestionIndex]=_0x5cfd42;const _0x3cd275=document[_0x30579d(0xa4f)](_0x30579d(0x825));_0x3cd275['forEach']((_0x2e3f9d,_0x153135)=>{const _0x37cf26=_0x30579d;_0x2e3f9d[_0x37cf26(0x4c4)][_0x37cf26(0x8f1)](_0x37cf26(0x393),'wrong');if(_0x153135===_0x288e3f)_0x2e3f9d[_0x37cf26(0x4c4)][_0x37cf26(0x654)](_0x37cf26(0x393));else _0x153135===_0x5cfd42&&_0x2e3f9d[_0x37cf26(0x4c4)][_0x37cf26(0x654)]('wrong');}),_0x5cfd42===_0x288e3f&&score++,currentQuestionIndex<totalQuestions-0x1?document[_0x30579d(0xd7)](_0x30579d(0x258))[_0x30579d(0x4c4)][_0x30579d(0x8f1)](_0x30579d(0xb91)):document[_0x30579d(0xd7)](_0x30579d(0x36d))['classList']['remove'](_0x30579d(0xb91));}function nextQuestion(){currentQuestionIndex++,loadQuestion();}function prevQuestion(){currentQuestionIndex>0x0&&(currentQuestionIndex--,loadQuestion(),showCurrentAnswer());}function showCurrentAnswer(){const _0x4ea621=_0x6d96f2;if(userAnswers[currentQuestionIndex]!==-0x1){let _0x2bbdd9;if(selectedQuiz==='database')_0x2bbdd9=getDatabaseQuestions();else{if(selectedQuiz==='datastructures')_0x2bbdd9=getDataStructureQuestions();else{if(selectedQuiz==='dc')_0x2bbdd9=getDCQuestions();else{if(selectedQuiz===_0x4ea621(0x364))_0x2bbdd9=getbigdataQuestions();else{if(selectedQuiz==='dm')_0x2bbdd9=getdmQuestions();else{if(selectedQuiz===_0x4ea621(0x4cc))_0x2bbdd9=getdb2Questions();else{if(selectedQuiz==='ir')_0x2bbdd9=getirQuestions();else selectedQuiz==='bi'&&(_0x2bbdd9=getbiQuestions());}}}}}}const _0x1a1c5f=_0x2bbdd9[currentQuestionIndex][_0x4ea621(0x32d)],_0x4848cb=userAnswers[currentQuestionIndex],_0x41ccf2=document[_0x4ea621(0xa4f)](_0x4ea621(0x825));_0x41ccf2[_0x4ea621(0x6ff)]((_0x15ae6a,_0x589066)=>{const _0x144e7e=_0x4ea621;_0x15ae6a[_0x144e7e(0x4c4)][_0x144e7e(0x8f1)]('correct',_0x144e7e(0x522));if(_0x589066===_0x1a1c5f)_0x15ae6a[_0x144e7e(0x4c4)][_0x144e7e(0x654)]('correct');else _0x589066===_0x4848cb&&_0x4848cb!==_0x1a1c5f&&_0x15ae6a[_0x144e7e(0x4c4)][_0x144e7e(0x654)](_0x144e7e(0x522));}),_0x41ccf2[_0x4ea621(0x6ff)](_0x356183=>{const _0x438e0f=_0x4ea621;_0x356183[_0x438e0f(0x31f)]=!![];});}else{const _0x47bdd6=document[_0x4ea621(0xa4f)](_0x4ea621(0x825));_0x47bdd6['forEach'](_0x81f923=>{const _0x4a07f6=_0x4ea621;_0x81f923[_0x4a07f6(0x31f)]=![],_0x81f923[_0x4a07f6(0x4c4)][_0x4a07f6(0x8f1)]('correct',_0x4a07f6(0x522));});}updateNavigationButtons();}function _0x1138(_0x5ba2a3,_0x3e944d){const _0x38782a=_0x3878();return _0x1138=function(_0x113890,_0x542676){_0x113890=_0x113890-0x81;let _0x27b1f5=_0x38782a[_0x113890];return _0x27b1f5;},_0x1138(_0x5ba2a3,_0x3e944d);}function updateNavigationButtons(){const _0x530966=_0x6d96f2;document[_0x530966(0xd7)](_0x530966(0x80a))['classList']['toggle'](_0x530966(0xb91),currentQuestionIndex===0x0),document[_0x530966(0xd7)]('next-btn')[_0x530966(0x4c4)][_0x530966(0x17a)](_0x530966(0xb91),currentQuestionIndex===totalQuestions-0x1),document[_0x530966(0xd7)]('finish-btn')['classList'][_0x530966(0x17a)](_0x530966(0xb91),currentQuestionIndex!==totalQuestions-0x1);}function showResult(){const _0xa43e6b=_0x6d96f2;clearInterval(timerInterval),document['getElementById'](_0xa43e6b(0x3c3))[_0xa43e6b(0x4c4)]['add'](_0xa43e6b(0xb91)),document[_0xa43e6b(0xd7)](_0xa43e6b(0x41f))[_0xa43e6b(0x4c4)][_0xa43e6b(0x654)]('hidden'),document[_0xa43e6b(0xd7)](_0xa43e6b(0x84a))[_0xa43e6b(0x4c4)][_0xa43e6b(0x8f1)](_0xa43e6b(0xb91)),document[_0xa43e6b(0xd7)](_0xa43e6b(0x36d))[_0xa43e6b(0x4c4)][_0xa43e6b(0x654)](_0xa43e6b(0xb91)),document[_0xa43e6b(0xd7)](_0xa43e6b(0x80a))['classList'][_0xa43e6b(0x654)](_0xa43e6b(0xb91));const _0x446c7f=Math[_0xa43e6b(0xa3e)](score/totalQuestions*0x64);document[_0xa43e6b(0xd7)](_0xa43e6b(0x84a))[_0xa43e6b(0x381)]='<h3>Your\x20Score:\x20'+score+_0xa43e6b(0xa3a)+totalQuestions+'\x20('+_0x446c7f+_0xa43e6b(0x636),document[_0xa43e6b(0xd7)](_0xa43e6b(0xb35))['textContent']=score,document[_0xa43e6b(0xd7)](_0xa43e6b(0x151))['textContent']=totalQuestions-score,document[_0xa43e6b(0xd7)](_0xa43e6b(0x58c))[_0xa43e6b(0x1a4)]=_0x446c7f+'%';const _0xdcd35f=timeLimit?Math[_0xa43e6b(0x52f)]((new Date()-startTime)/0x3e8):0x0,_0x390631=Math[_0xa43e6b(0x52f)](_0xdcd35f/0x3c),_0x5c5f8f=_0xdcd35f%0x3c;document[_0xa43e6b(0xd7)](_0xa43e6b(0x99d))['textContent']=_0x390631+'m\x20'+_0x5c5f8f+'s',document[_0xa43e6b(0xd7)](_0xa43e6b(0x6a8))[_0xa43e6b(0x4c4)][_0xa43e6b(0x8f1)]('hidden'),document[_0xa43e6b(0xd7)](_0xa43e6b(0xb66))[_0xa43e6b(0x4c4)][_0xa43e6b(0x8f1)](_0xa43e6b(0xb91));let _0xc45597=selectedQuiz+'\x20Quiz\x20'+getQuizVariant();updateUserStats(_0xc45597,_0x446c7f,_0xdcd35f);}function getQuizVariant(){const _0x883857=_0x6d96f2;if(selectedQuiz===_0x883857(0x65d))return databaseQuizVariant;if(selectedQuiz==='datastructures')return dataStructureQuizVariant;if(selectedQuiz==='dc')return dcQuizVariant;if(selectedQuiz===_0x883857(0x364))return bigdataQuizVariant;if(selectedQuiz==='dm')return dmQuizVariant;if(selectedQuiz===_0x883857(0x4cc))return db2QuizVariant;if(selectedQuiz==='ir')return irQuizVariant;if(selectedQuiz==='bi')return biQuizVariant;return 0x1;}function startNewQuiz(){location['reload']();}function updateTimer(){timeLimit--,timeLimit<=0x0&&(clearInterval(timerInterval),showResult()),updateTimerDisplay(timeLimit);}function updateTimerDisplay(_0x55888c){const _0x4ca047=_0x6d96f2,_0x47474d=Math[_0x4ca047(0x52f)](_0x55888c/0x3c),_0x559661=_0x55888c%0x3c;document[_0x4ca047(0xd7)]('time-left')[_0x4ca047(0xb8f)]=_0x47474d['toString']()[_0x4ca047(0xa02)](0x2,'0')+':'+_0x559661['toString']()[_0x4ca047(0xa02)](0x2,'0');}function backToHome(){const _0x22d8d5=_0x6d96f2;location[_0x22d8d5(0xd5)]();}document[_0x6d96f2(0xd7)](_0x6d96f2(0x234))[_0x6d96f2(0x4c4)][_0x6d96f2(0x8f1)](_0x6d96f2(0xb91));function reviewAnswers(){const _0x16f20c=_0x6d96f2;let _0x47fc52;if(selectedQuiz==='database')_0x47fc52=getDatabaseQuestions();else{if(selectedQuiz===_0x16f20c(0x3b2))_0x47fc52=getDataStructureQuestions();else{if(selectedQuiz==='dc')_0x47fc52=getDCQuestions();else{if(selectedQuiz==='bigdata')_0x47fc52=getbigdataQuestions();else{if(selectedQuiz==='dm')_0x47fc52=getdmQuestions();else{if(selectedQuiz===_0x16f20c(0x4cc))_0x47fc52=getdb2Questions();else{if(selectedQuiz==='ir')_0x47fc52=getirQuestions();else selectedQuiz==='bi'&&(_0x47fc52=getbiQuestions());}}}}}}let _0x36fd58='<div\x20class=\x22review-container\x22>';for(let _0x1b0d54=0x0;_0x1b0d54<totalQuestions;_0x1b0d54++){let _0x51d1a1=userAnswers[_0x1b0d54],_0x293f13=_0x47fc52[_0x1b0d54][_0x16f20c(0x32d)];_0x36fd58+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22review-question\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Question\x20'+(_0x1b0d54+0x1)+_0x16f20c(0x74b)+_0x47fc52[_0x1b0d54][_0x16f20c(0x188)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Your\x20Answer:</strong>\x20'+(_0x51d1a1!==-0x1?_0x47fc52[_0x1b0d54][_0x16f20c(0x582)][_0x51d1a1]:_0x16f20c(0x912))+_0x16f20c(0x566)+_0x47fc52[_0x1b0d54][_0x16f20c(0x582)][_0x293f13]+_0x16f20c(0x49a)+(_0x51d1a1===_0x293f13?_0x16f20c(0x93f):_0x16f20c(0x303))+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';}_0x36fd58+=_0x16f20c(0x679),document[_0x16f20c(0xd7)](_0x16f20c(0x84a))['classList'][_0x16f20c(0x654)](_0x16f20c(0xb91)),document[_0x16f20c(0xd7)](_0x16f20c(0x6a8))[_0x16f20c(0x4c4)][_0x16f20c(0x654)](_0x16f20c(0xb91)),document[_0x16f20c(0xd7)](_0x16f20c(0xb66))[_0x16f20c(0x4c4)][_0x16f20c(0x654)](_0x16f20c(0xb91)),document[_0x16f20c(0xd7)](_0x16f20c(0x6f5))['innerHTML']=_0x36fd58,document[_0x16f20c(0xd7)]('review-answers')[_0x16f20c(0x4c4)][_0x16f20c(0x8f1)](_0x16f20c(0xb91));const _0xc73b13=_0x16f20c(0xaec);document['getElementById'](_0x16f20c(0x6f5))['innerHTML']+=_0xc73b13;}function backToResults(){const _0x292590=_0x6d96f2;document[_0x292590(0xd7)](_0x292590(0x6f5))[_0x292590(0x4c4)][_0x292590(0x654)]('hidden'),document[_0x292590(0xd7)](_0x292590(0x6f5))['innerHTML']='',document[_0x292590(0xd7)](_0x292590(0x84a))['classList'][_0x292590(0x8f1)]('hidden'),document[_0x292590(0xd7)](_0x292590(0x6a8))[_0x292590(0x4c4)][_0x292590(0x8f1)](_0x292590(0xb91)),document[_0x292590(0xd7)](_0x292590(0xb66))[_0x292590(0x4c4)][_0x292590(0x8f1)](_0x292590(0xb91));}function confirmResetStats(){const _0x3ef297=_0x6d96f2,_0x224f03=document[_0x3ef297(0x714)](_0x3ef297(0x7f5));_0x224f03[_0x3ef297(0x650)]=_0x3ef297(0x88f),_0x224f03['innerHTML']=_0x3ef297(0xb31),document[_0x3ef297(0x5ea)]['appendChild'](_0x224f03);}function closeModal(){const _0x215550=_0x6d96f2,_0xa58129=document[_0x215550(0xa08)]('.confirmation-modal');_0xa58129&&_0xa58129[_0x215550(0x8f1)]();}function resetStats(){const _0x4cb707=_0x6d96f2;userStats={'totalQuizzes':0x0,'totalScore':0x0,'bestScore':0x0,'totalTime':0x0,'recentQuizzes':[]},localStorage[_0x4cb707(0x42e)](_0x4cb707(0x8b8),JSON[_0x4cb707(0x747)](userStats)),updateStatsDisplay(),closeModal(),alert('All\x20statistics\x20have\x20been\x20reset\x20successfully!');}function showAllStatistics(){const _0x21ad5d=_0x6d96f2,_0x47ccbc=document[_0x21ad5d(0x714)](_0x21ad5d(0x7f5));_0x47ccbc['className']=_0x21ad5d(0xb41),_0x47ccbc['innerHTML']=_0x21ad5d(0xb36)+generateStatsContent()+_0x21ad5d(0x4e7),document[_0x21ad5d(0x5ea)]['appendChild'](_0x47ccbc),document[_0x21ad5d(0x5ea)][_0x21ad5d(0x16f)][_0x21ad5d(0x250)]=_0x21ad5d(0xb91);}function closeStatsModal(){const _0xeb2c0e=_0x6d96f2,_0x139fc9=document['querySelector'](_0xeb2c0e(0x7e7));_0x139fc9&&_0x139fc9[_0xeb2c0e(0x8f1)](),document[_0xeb2c0e(0x5ea)]['style'][_0xeb2c0e(0x250)]=_0xeb2c0e(0x5e4);}function generateStatsContent(){const _0x2f4283=_0x6d96f2;if(userStats[_0x2f4283(0x6dd)]['length']===0x0)return _0x2f4283(0x3ae);let _0x2504d4=_0x2f4283(0x80e)+userStats[_0x2f4283(0x5e1)]+_0x2f4283(0xb00)+(userStats[_0x2f4283(0x5e1)]>0x0?Math[_0x2f4283(0xa3e)](userStats['totalScore']/userStats[_0x2f4283(0x5e1)]):0x0)+_0x2f4283(0x28c)+userStats[_0x2f4283(0x630)]+_0x2f4283(0x824)+Math['floor'](userStats[_0x2f4283(0x7b7)]/0x3c)+'m\x20'+userStats[_0x2f4283(0x7b7)]%0x3c+_0x2f4283(0x9df);return userStats['recentQuizzes']['forEach'](_0xa58985=>{const _0x165f6b=_0x2f4283,_0x409f66=_0xa58985[_0x165f6b(0x3be)]>=0x50?_0x165f6b(0xa56):_0xa58985[_0x165f6b(0x3be)]>=0x3c?_0x165f6b(0x45b):_0x165f6b(0x2ff);_0x2504d4+=_0x165f6b(0xa0d)+_0xa58985['date']+_0x165f6b(0x6cd)+_0xa58985[_0x165f6b(0x7ac)]+_0x165f6b(0x2d2)+_0x409f66+'\x22>'+_0xa58985[_0x165f6b(0x3be)]+'%</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+(_0xa58985['timeTaken']?Math['floor'](_0xa58985['timeTaken']/0x3c)+'m\x20'+_0xa58985[_0x165f6b(0x827)]%0x3c+'s':'N/A')+_0x165f6b(0x7d4);}),_0x2504d4+=_0x2f4283(0x4c0),_0x2504d4;}function updateUserStats(_0x239dfe,_0x34bfa7,_0x402a35){const _0x35e3aa=_0x6d96f2;userStats['totalQuizzes']++,userStats[_0x35e3aa(0x2c1)]+=_0x34bfa7,userStats['bestScore']=Math[_0x35e3aa(0x948)](userStats[_0x35e3aa(0x630)],_0x34bfa7),userStats[_0x35e3aa(0x7b7)]+=_0x402a35,userStats[_0x35e3aa(0x6dd)]['unshift']({'name':_0x239dfe,'score':_0x34bfa7,'date':new Date()[_0x35e3aa(0x6db)](),'timeTaken':_0x402a35}),userStats['recentQuizzes'][_0x35e3aa(0x2d3)]>0x32&&userStats[_0x35e3aa(0x6dd)]['pop'](),localStorage[_0x35e3aa(0x42e)]('userStats',JSON[_0x35e3aa(0x747)](userStats)),updateStatsDisplay();}
+   
+        let selectedQuiz = '';
+        let databaseQuizVariant = 1;
+        let dataStructureQuizVariant = 1;
+        let dcQuizVariant = 1;
+        let bigdataQuizVariant = 1;
+        let dmQuizVariant = 1;
+        let db2QuizVariant = 1;
+        let irQuizVariant = 1;
+        let biQuizVariant = 1;
+        let issQuizVariant = 1;
+        let plQuizVariant = 1;
+        let ethicsQuizVariant = 1;
+
+
+
+        let currentQuestionIndex = 0;
+        let totalQuestions = 0;
+        let score = 0;
+        let userAnswers = [];
+        let timeLimit = 0;
+        let startTime;
+        let timerInterval;
+
+        
+        let userStats = JSON.parse(localStorage.getItem('userStats')) || {
+            totalQuizzes: 0,
+            totalScore: 0,
+            bestScore: 0,
+            totalTime: 0,
+            recentQuizzes: []
+        };
+
+        
+        function updateStatsDisplay() {
+            document.getElementById('total-quizzes').textContent = userStats.totalQuizzes;
+            document.getElementById('average-score').textContent = userStats.totalQuizzes > 0 ?
+                Math.round(userStats.totalScore / userStats.totalQuizzes) + '%' : '0%';
+            document.getElementById('best-score').textContent = userStats.bestScore + '%';
+
+            const totalMinutes = Math.floor(userStats.totalTime / 60);
+            const totalSeconds = userStats.totalTime % 60;
+            document.getElementById('total-time').textContent = `${totalMinutes}m ${totalSeconds}s`;
+
+            
+            const recentPerformance = document.getElementById('recent-performance');
+            recentPerformance.innerHTML = '';
+
+            if (userStats.recentQuizzes.length === 0) {
+                recentPerformance.innerHTML = '<p>No quizzes taken yet</p>';
+            } else {
+                userStats.recentQuizzes.slice(0, 3).forEach(quiz => {
+                    const quizElement = document.createElement('div');
+                    quizElement.className = 'stat-item';
+                    quizElement.innerHTML = `
+                        <span>${quiz.name}</span>
+                        <span class="stat-value">${quiz.score}%</span>
+                    `;
+                    recentPerformance.appendChild(quizElement);
+                });
+            }
+        }
+
+        
+        function updateUserStats(quizName, score, timeTaken) {
+            userStats.totalQuizzes++;
+            userStats.totalScore += score;
+            userStats.bestScore = Math.max(userStats.bestScore, score);
+            userStats.totalTime += timeTaken;
+
+            userStats.recentQuizzes.unshift({
+                name: quizName,
+                score: score,
+                date: new Date().toLocaleDateString()
+            });
+
+            if (userStats.recentQuizzes.length > 5) {
+                userStats.recentQuizzes.pop();
+            }
+
+            localStorage.setItem('userStats', JSON.stringify(userStats));
+            updateStatsDisplay();
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            updateStatsDisplay();
+
+            
+            const checkbox = document.getElementById("status");
+            if (localStorage.getItem("darkMode") === "enabled") {
+                document.body.classList.add("dark-mode");
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener("change", function () {
+                if (checkbox.checked) {
+                    document.body.classList.add("dark-mode");
+                    localStorage.setItem("darkMode", "enabled");
+                } else {
+                    document.body.classList.remove("dark-mode");
+                    localStorage.setItem("darkMode", "disabled");
+                }
+            });
+        });
+
+
+
+
+
+
+        
+
+
+
+
+        const databaseQuestions1 = [
+
+            {
+                question: "What is a database?",
+                options: ["A collection of unrelated data", "A collection of related data", "A program that retrieves data", "A storage medium for documents"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a function of a DBMS?",
+                options: ["Text editing", "Defining the database", "Printing documents", "Browsing the internet"],
+                answer: 1
+            },
+
+        ];
+
+          const databaseQuestions2 = [
+
+            {
+                question: "What is the primary purpose of data abstraction in database systems?",
+                options: [
+                    "To improve data storage efficiency",
+                    "To hide details of physical data storage",
+                    "To increase data redundancy",
+                    "To enhance data retrieval speed"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of the following describes a conceptual data model?",
+                options: [
+                    "It describes how data is physically stored.",
+                    "It is used for database implementation in DBMS.",
+                    "It describes the database structure in an understandable way for most users.",
+                    "It focuses on data retrieval operations."
+                ],
+                answer: 2
+            },
+            {
+                question: "What is an example of a representational data model?",
+                options: [
+                    "Entity-Relationship Model",
+                    "Hierarchical Model",
+                    "Physical Data Model",
+                    "Conceptual Data Model"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does the term 'database schema' refer to?",
+                options: [
+                    "The actual data stored in the database",
+                    "The description of the database structure",
+                    "The physical storage of data",
+                    "The current state of the database"
+                ],
+                answer: 1
+            },
+            {
+                question: "In the context of databases, what is a 'database state'?",
+                options: [
+                    "The schema of the database",
+                    "The current set of data in the database",
+                    "A backup of the database",
+                    "The data model used"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is the primary function of an access path in a database?",
+                options: [
+                    "To define the schema of the database",
+                    "To ensure data integrity",
+                    "To make searching for records efficient",
+                    "To store data physically"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which level of the three-schema architecture describes the physical storage structure?",
+                options: [
+                    "External Level",
+                    "Logical Level",
+                    "Internal Level",
+                    "Conceptual Level"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is logical data independence?",
+                options: [
+                    "The ability to change physical storage without affecting the logical schema",
+                    "The ability to change the logical schema without affecting external schemas",
+                    "The ability to change external schemas without affecting the logical schema",
+                    "The ability to change data types in the database"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does physical data independence allow?",
+                options: [
+                    "Changes to the logical schema without affecting external schemas",
+                    "Changes to the internal schema without affecting the logical schema",
+                    "Changes to the database state without affecting the schema",
+                    "Changes to the external schema without affecting the internal schema"
+                ],
+                answer: 1
+            },
+            {
+                question: "What characterizes a two-tier client/server architecture?",
+                options: [
+                    "It has three distinct layers of processing.",
+                    "It separates user interface and application programs from the database.",
+                    "It allows for multiple databases to be accessed simultaneously.",
+                    "It is primarily used for web applications."
+                ],
+                answer: 1
+            },
+            {
+                question: "In a three-tier architecture, what is the role of the application server?",
+                options: [
+                    "To store the database",
+                    "To manage user interfaces",
+                    "To run application programs and manage business rules",
+                    "To handle data backups"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is the main benefit of a three-tier architecture in database systems?",
+                options: [
+                    "Increased data redundancy",
+                    "Simplified database design",
+                    "Improved security and easier application updates",
+                    "Faster data retrieval"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which of the following is NOT a characteristic of the database approach?",
+                options: [
+                    "Use of a catalog for schema storage",
+                    "Data independence",
+                    "Support for multiple user views",
+                    "Fixed data structures"
+                ],
+                answer: 3
+            },
+            {
+                question: "What does a schema diagram typically display?",
+                options: [
+                    "The actual data in the database",
+                    "The complete physical storage details",
+                    "Names of record types and some constraints",
+                    "The current state of the database"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which of the following best describes the physical data model?",
+                options: [
+                    "It focuses on user interactions with the database.",
+                    "It describes how data is stored as files in the computer.",
+                    "It is used for designing user interfaces.",
+                    "It defines the relationships among data entities."
+                ],
+                answer: 1
+            },
+
+            {
+                question: "Data abstraction in database systems aims to improve data storage efficiency.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The entity-relationship model is an example of a representational data model.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The current set of data in a database is called the database schema.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The internal level of the three-schema architecture describes the physical storage structure.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Logical data independence allows changes to the logical schema without affecting external schemas.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Physical data independence allows changes to the database state without affecting the schema.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "In a two-tier client/server architecture, the application server runs application programs and manages business rules.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The main benefit of a three-tier architecture is increased data redundancy.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "A schema diagram typically displays the actual data in the database.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The physical data model focuses on how data is stored as files in the computer.",
+                options: ["True", "False"],
+                answer: 0
+            }
+
+        ];
+
+        const databaseQuestions3 = [
+            {
+                "question": "Which of the following is NOT a key concept in the relational model?",
+                "options": [
+                    "Tuple",
+                    "Degree",
+                    "Hierarchical node",
+                    "Domain"
+                ],
+                "answer": 2
+            },
+            {
+                "question": "What does the degree of a relation refer to?",
+                "options": [
+                    "Number of tuples in a relation",
+                    "Number of attributes in a relation",
+                    "The primary key of the relation",
+                    "The number of foreign keys in a relation"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the relational model, a domain is:",
+                "options": [
+                    "A set of tables in the database",
+                    "A set of allowable values for one or more attributes",
+                    "The primary key of a table",
+                    "A unique identifier for a row"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "What is a super key in a relational database?",
+                "options": [
+                    "A key that contains foreign keys only",
+                    "A key that uniquely identifies a tuple and may contain redundant attributes",
+                    "A key that is always a primary key",
+                    "A key that contains no attributes"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Primary key can be null.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Which operation can potentially violate referential integrity?",
+                "options": [
+                    "Select",
+                    "Insert",
+                    "Delete",
+                    "Update"
+                ],
+                "answer": 2
+            },
+            {
+                "question": "The referential integrity constraint ensures that:",
+                "options": [
+                    "A tuple’s primary key can be NULL",
+                    "Foreign key values must exist in the referenced relation or be NULL",
+                    "Each attribute in a relation must be unique",
+                    "Relations can have composite attributes"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following is NOT allowed in a relational model?",
+                "options": [
+                    "NULL values",
+                    "Composite attributes",
+                    "Unique keys",
+                    "Atomic values"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the relational model, each attribute in a relation must have a unique name.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "Foreign key can be repeat value.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "Super keys always contain redundant attributes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In a valid database state, all defined integrity constraints must be satisfied.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "Updating a foreign key does not affect referential integrity.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Unique key can be null.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": " the property information table:\n\n| PropertyNo | Address           | Type  | Rooms | Rent | OwnerNo |\n|------------|-------------------|-------|-------|------|---------|\n| PA14       | 16 Holhead House   | House | 6     | 650  | C046    |\n| PL94       | 6 Argyll St.       | Flat  | 4     | 400  | C087    |\n| PG4        | 6 Lawrence St.     | Flat  | 3     | 350  | C040    |\n| PG36       | 2 Manor Rd         | Flat  | 3     | 375  | C093    |\n| PG21       | 18 Dale Rd         | House | 5     | 600  | C087    |\n| PG16       | 5 Novar Dr.        | Flat  | 4     | 450  | C093    |\n\nDegree of relation is:",
+                "options": [
+                    "7",
+                    "8",
+                    "9",
+                    "6"
+                ],
+                "answer": 3
+            },
+
+            {
+                question: " the property information table:\n\n| PropertyNo | Address           | Type  | Rooms | Rent | OwnerNo |\n|------------|-------------------|-------|-------|------|---------|\n| PA14       | 16 Holhead House   | House | 6     | 650  | C046    |\n| PL94       | 6 Argyll St.       | Flat  | 4     | 400  | C087    |\n| PG4        | 6 Lawrence St.     | Flat  | 3     | 350  | C040    |\n| PG36       | 2 Manor Rd         | Flat  | 3     | 375  | C093    |\n| PG21       | 18 Dale Rd         | House | 5     | 600  | C087    |\n| PG16       | 5 Novar Dr.        | Flat  | 4     | 450  | C093    |\n\nCardinality of relation :",
+                options: [
+                    "7",
+                    "8",
+                    "6",
+                    "9"
+                ],
+                answer: 2
+            },
+
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nWhat is the primary key in the Employees table?",
+                "options": [
+                    "EmpID",
+                    "Salary",
+                    "EmpName",
+                    "DeptNo"
+                ],
+                "answer": 0
+            },
+
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nWhich of the following represents the foreign key in the Employees table?",
+                "options": [
+                    "EmpID",
+                    "DeptNo",
+                    "DeptName",
+                    "Salary"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nHow can the department name where a specific employee works be retrieved?",
+                "options": [
+                    "By joining the Employees table with the DeptNo column",
+                    "By using the EmpID column",
+                    "By searching in the Departments table using DeptName only",
+                    "It is not possible to retrieve the department name from the existing tables"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nWhich of the following departments has no employees according to the tables?",
+                "options": [
+                    "Sales",
+                    "Human Resource",
+                    "Finance",
+                    "Warehouses"
+                ],
+                "answer": 3
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThere can be more than one employee with the same EmpID in the Employees table.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nEach employee must belong to a department, so the DeptNo field in the Employees table cannot be NULL.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThere is a one-to-many relationship between the Departments and Employees tables.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nA new department can be added to the Departments table without any employees being assigned to it initially.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThe combination of EmpID and DeptNo can serve as a composite key in the Employees table.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThe DeptNo column in the Employees table is a primary key.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            }
+        ];
+
+
+
+
+        const databaseQuestions4 = [
+
+            {
+                question: "What is a database?",
+                options: ["A collection of unrelated data", "A collection of related data", "A program that retrieves data", "A storage medium for documents"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a function of a DBMS?",
+                options: ["Text editing", "Defining the database", "Printing documents", "Browsing the internet"],
+                answer: 1
+            },
+            {
+                question: "What is the primary purpose of a Database Management System (DBMS)?",
+                options: ["To create images", "To manage data efficiently", "To play music", "To manage emails"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a disadvantage of file-based systems?",
+                options: ["Easy data sharing", "High data integrity", "Data duplication", "Automatic backup"],
+                answer: 2
+            },
+            {
+                question: "What does data consistency in a database imply?",
+                options: ["Data stored in different formats", "Data is consistent across different files", "Any update is performed once and is available to all users", "Multiple copies of data exist"],
+                answer: 2
+            },
+            {
+                question: "What does a database catalog contain?",
+                options: ["List of all employees", "Metadata", "User passwords", "System logs"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is not a DBMS function?",
+                options: ["Manipulating data", "Sharing the database", "Protecting the database", "Compiling code"],
+                answer: 3
+            },
+            {
+                question: "What is atomicity in the context of databases?",
+                options: ["The ability to store large files", "The ability to process transactions entirely or not at all", "The ability to share data among users", "The ability to create backups"],
+                answer: 1
+            },
+            {
+                question: "What type of language is used to specify the structure of a database?",
+                options: ["Data Manipulation Language (DML)", "Data Definition Language (DDL)", "Data Query Language (DQL)", "Procedural Language"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a disadvantage of using a database?",
+                options: ["High performance", "Complexity", "Ease of use", "Small size"],
+                answer: 1
+            },
+            {
+                question: "Which users primarily interact with the database to satisfy their data needs?",
+                options: ["Database Designers", "End Users", "Database Administrators", "Systems Analysts"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is an advantage of a database system?",
+                options: ["Data redundancy", "Limited data sharing", "Improved data integrity", "Atomicity problems"],
+                answer: 2
+            },
+            {
+                question: "What is a 'view' in the context of databases?",
+                options: ["A different program", "A subset of the database", "A backup of the database", "A query language"],
+                answer: 1
+            },
+            {
+                question: "Which of the following tasks is not typically handled by a Database Administrator (DBA)?",
+                options: ["Authorizing access to the database", "Designing the database", "Monitoring database use", "Developing applications"],
+                answer: 3
+            },
+            {
+                question: "When is it more desirable to use regular files instead of a database?",
+                options: ["For complex, ever-changing applications", "For embedded systems with limited storage capacity", "For large multi-user environments", "For systems requiring high security"],
+                answer: 1
+            },
+            {
+                question: "Data is always consistent in a file-based system.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "A DBMS allows multiple users to access data simultaneously.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "A database application is a program that interacts with the database.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "The physical structure of data is independent of application programs in a DBMS.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "In a database, data redundancy is increased to improve performance.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "A file-based system is more efficient than a database in handling complex data relationships.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "A DBMS does not provide any security mechanisms to protect data.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Sharing a database can only be done by a single user at a time.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The cost of implementing a DBMS is usually lower than using a file-based system.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Data integrity in a database is easier to achieve than in a file-based system.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                "question": "Which of the following is NOT a key concept in the relational model?",
+                "options": [
+                    "Tuple",
+                    "Degree",
+                    "Hierarchical node",
+                    "Domain"
+                ],
+                "answer": 2
+            },
+            {
+                "question": "What does the degree of a relation refer to?",
+                "options": [
+                    "Number of tuples in a relation",
+                    "Number of attributes in a relation",
+                    "The primary key of the relation",
+                    "The number of foreign keys in a relation"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the relational model, a domain is:",
+                "options": [
+                    "A set of tables in the database",
+                    "A set of allowable values for one or more attributes",
+                    "The primary key of a table",
+                    "A unique identifier for a row"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "What is a super key in a relational database?",
+                "options": [
+                    "A key that contains foreign keys only",
+                    "A key that uniquely identifies a tuple and may contain redundant attributes",
+                    "A key that is always a primary key",
+                    "A key that contains no attributes"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Primary key can be null.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Which operation can potentially violate referential integrity?",
+                "options": [
+                    "Select",
+                    "Insert",
+                    "Delete",
+                    "Update"
+                ],
+                "answer": 2
+            },
+            {
+                "question": "The referential integrity constraint ensures that:",
+                "options": [
+                    "A tuple’s primary key can be NULL",
+                    "Foreign key values must exist in the referenced relation or be NULL",
+                    "Each attribute in a relation must be unique",
+                    "Relations can have composite attributes"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following is NOT allowed in a relational model?",
+                "options": [
+                    "NULL values",
+                    "Composite attributes",
+                    "Unique keys",
+                    "Atomic values"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the relational model, each attribute in a relation must have a unique name.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "Foreign key can be repeat value.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "Super keys always contain redundant attributes.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In a valid database state, all defined integrity constraints must be satisfied.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "Updating a foreign key does not affect referential integrity.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "Unique key can be null.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": " the property information table:\n\n| PropertyNo | Address           | Type  | Rooms | Rent | OwnerNo |\n|------------|-------------------|-------|-------|------|---------|\n| PA14       | 16 Holhead House   | House | 6     | 650  | C046    |\n| PL94       | 6 Argyll St.       | Flat  | 4     | 400  | C087    |\n| PG4        | 6 Lawrence St.     | Flat  | 3     | 350  | C040    |\n| PG36       | 2 Manor Rd         | Flat  | 3     | 375  | C093    |\n| PG21       | 18 Dale Rd         | House | 5     | 600  | C087    |\n| PG16       | 5 Novar Dr.        | Flat  | 4     | 450  | C093    |\n\nDegree of relation is:",
+                "options": [
+                    "7",
+                    "8",
+                    "9",
+                    "6"
+                ],
+                "answer": 3
+            },
+            {
+                question: " the property information table:\n\n| PropertyNo | Address           | Type  | Rooms | Rent | OwnerNo |\n|------------|-------------------|-------|-------|------|---------|\n| PA14       | 16 Holhead House   | House | 6     | 650  | C046    |\n| PL94       | 6 Argyll St.       | Flat  | 4     | 400  | C087    |\n| PG4        | 6 Lawrence St.     | Flat  | 3     | 350  | C040    |\n| PG36       | 2 Manor Rd         | Flat  | 3     | 375  | C093    |\n| PG21       | 18 Dale Rd         | House | 5     | 600  | C087    |\n| PG16       | 5 Novar Dr.        | Flat  | 4     | 450  | C093    |\n\nCardinality of relation :",
+                options: [
+                    "7",
+                    "8",
+                    "6",
+                    "9"
+                ],
+                answer: 2
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nWhat is the primary key in the Employees table?",
+                "options": [
+                    "EmpID",
+                    "Salary",
+                    "EmpName",
+                    "DeptNo"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nWhich of the following represents the foreign key in the Employees table?",
+                "options": [
+                    "EmpID",
+                    "DeptNo",
+                    "DeptName",
+                    "Salary"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nHow can the department name where a specific employee works be retrieved?",
+                "options": [
+                    "By joining the Employees table with the DeptNo column",
+                    "By using the EmpID column",
+                    "By searching in the Departments table using DeptName only",
+                    "It is not possible to retrieve the department name from the existing tables"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nWhich of the following departments has no employees according to the tables?",
+                "options": [
+                    "Sales",
+                    "Human Resource",
+                    "Finance",
+                    "Warehouses"
+                ],
+                "answer": 3
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThere can be more than one employee with the same EmpID in the Employees table.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nEach employee must belong to a department, so the DeptNo field in the Employees table cannot be NULL.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThere is a one-to-many relationship between the Departments and Employees tables.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nA new department can be added to the Departments table without any employees being assigned to it initially.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 0
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThe combination of EmpID and DeptNo can serve as a composite key in the Employees table.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                "question": "In the Employees table (emp): | EmpID | EmpName      | Salary | DeptNo | \n|-------|--------------|--------|--------| \n| 1234  | Ahmed Salem  | 2000   | 1      | \n| 2456  | Maha Karim   | 3000   | 1      | \n| 4658  | Sherif Maged | 2500   | 2      | \n| 9840  | Yasser Amin  | 4000   | 2      | \n| 3945  | Magda Farid  | 5000   | 3      | \nIn the Departments table (Dep): | DeptNo | DeptName        | \n|--------|-----------------| \n| 1      | Sales           | \n| 2      | Human Resource  | \n| 3      | Finance         | \n| 4      | Warehouses      | \nThe DeptNo column in the Employees table is a primary key.",
+                "options": [
+                    "True",
+                    "False"
+                ],
+                "answer": 1
+            },
+            {
+                question: "What is the primary purpose of data abstraction in database systems?",
+                options: [
+                    "To improve data storage efficiency",
+                    "To hide details of physical data storage",
+                    "To increase data redundancy",
+                    "To enhance data retrieval speed"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of the following describes a conceptual data model?",
+                options: [
+                    "It describes how data is physically stored.",
+                    "It is used for database implementation in DBMS.",
+                    "It describes the database structure in an understandable way for most users.",
+                    "It focuses on data retrieval operations."
+                ],
+                answer: 2
+            },
+            {
+                question: "What is an example of a representational data model?",
+                options: [
+                    "Entity-Relationship Model",
+                    "Hierarchical Model",
+                    "Physical Data Model",
+                    "Conceptual Data Model"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does the term 'database schema' refer to?",
+                options: [
+                    "The actual data stored in the database",
+                    "The description of the database structure",
+                    "The physical storage of data",
+                    "The current state of the database"
+                ],
+                answer: 1
+            },
+            {
+                question: "In the context of databases, what is a 'database state'?",
+                options: [
+                    "The schema of the database",
+                    "The current set of data in the database",
+                    "A backup of the database",
+                    "The data model used"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is the primary function of an access path in a database?",
+                options: [
+                    "To define the schema of the database",
+                    "To ensure data integrity",
+                    "To make searching for records efficient",
+                    "To store data physically"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which level of the three-schema architecture describes the physical storage structure?",
+                options: [
+                    "External Level",
+                    "Logical Level",
+                    "Internal Level",
+                    "Conceptual Level"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is logical data independence?",
+                options: [
+                    "The ability to change physical storage without affecting the logical schema",
+                    "The ability to change the logical schema without affecting external schemas",
+                    "The ability to change external schemas without affecting the logical schema",
+                    "The ability to change data types in the database"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does physical data independence allow?",
+                options: [
+                    "Changes to the logical schema without affecting external schemas",
+                    "Changes to the internal schema without affecting the logical schema",
+                    "Changes to the database state without affecting the schema",
+                    "Changes to the external schema without affecting the internal schema"
+                ],
+                answer: 1
+            },
+            {
+                question: "What characterizes a two-tier client/server architecture?",
+                options: [
+                    "It has three distinct layers of processing.",
+                    "It separates user interface and application programs from the database.",
+                    "It allows for multiple databases to be accessed simultaneously.",
+                    "It is primarily used for web applications."
+                ],
+                answer: 1
+            },
+            {
+                question: "In a three-tier architecture, what is the role of the application server?",
+                options: [
+                    "To store the database",
+                    "To manage user interfaces",
+                    "To run application programs and manage business rules",
+                    "To handle data backups"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is the main benefit of a three-tier architecture in database systems?",
+                options: [
+                    "Increased data redundancy",
+                    "Simplified database design",
+                    "Improved security and easier application updates",
+                    "Faster data retrieval"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which of the following is NOT a characteristic of the database approach?",
+                options: [
+                    "Use of a catalog for schema storage",
+                    "Data independence",
+                    "Support for multiple user views",
+                    "Fixed data structures"
+                ],
+                answer: 3
+            },
+            {
+                question: "What does a schema diagram typically display?",
+                options: [
+                    "The actual data in the database",
+                    "The complete physical storage details",
+                    "Names of record types and some constraints",
+                    "The current state of the database"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which of the following best describes the physical data model?",
+                options: [
+                    "It focuses on user interactions with the database.",
+                    "It describes how data is stored as files in the computer.",
+                    "It is used for designing user interfaces.",
+                    "It defines the relationships among data entities."
+                ],
+                answer: 1
+            },
+
+            {
+                question: "Data abstraction in database systems aims to improve data storage efficiency.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The entity-relationship model is an example of a representational data model.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The current set of data in a database is called the database schema.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The internal level of the three-schema architecture describes the physical storage structure.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Logical data independence allows changes to the logical schema without affecting external schemas.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Physical data independence allows changes to the database state without affecting the schema.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "In a two-tier client/server architecture, the application server runs application programs and manages business rules.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The main benefit of a three-tier architecture is increased data redundancy.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "A schema diagram typically displays the actual data in the database.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The physical data model focuses on how data is stored as files in the computer.",
+                options: ["True", "False"],
+                answer: 0
+            }
+
+        ];
+
+
+
+        const databaseQuestion5 =
+            [
+                {
+                    "question": "Which SQL statement is used to retrieve data from a database?",
+                    "options": ["SELECT", "INSERT", "DELETE", "UPDATE"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which clause is used to filter records in a query?",
+                    "options": ["ORDER BY", "WHERE", "GROUP BY", "JOIN"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the correct syntax to create a new database?",
+                    "options": ["CREATE DATABASE database_name", "NEW DATABASE database_name", "MAKE DATABASE database_name", "DATABASE CREATE database_name"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of these is a valid data type in SQL Server?",
+                    "options": ["number", "int", "string", "chararray"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which command is used to remove a table from a database?",
+                    "options": ["DELETE", "DROP TABLE", "REMOVE", "CLEAR"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the COUNT() function do?",
+                    "options": ["Counts rows", "Sums numeric columns", "Returns maximum value", "Counts columns"],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the DISTINCT keyword do?",
+                    "options": ["Returns unique values", "Filters rows", "Groups data", "Joins tables"],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the primary key?",
+                    "options": ["A column with duplicate values", "A unique identifier for rows", "A foreign key", "An encrypted column"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which function returns the current date and time?",
+                    "options": ["NOW()", "GETDATE()", "CURDATE()", "SYSDATE()"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the default value of the IDENTITY property in SQL Server?",
+                    "options": ["(1, 0)", "(0, 1)", "(1, 1)", "(0, 0)"],
+                    "answer": 2
+                },
+                {
+                    "question": "Which of the following is used to add a row to a table?",
+                    "options": ["INSERT", "ADD", "MERGE", "PUSH"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL keyword is used to sort the result set?",
+                    "options": ["ORDER BY", "SORT BY", "ARRANGE BY", "GROUP BY"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which operator is used for pattern matching?",
+                    "options": ["=", "LIKE", "IN", "EXISTS"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the JOIN keyword do?",
+                    "options": ["Filters data", "Combines rows from multiple tables", "Deletes rows", "Groups data"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which of these is not a valid SQL statement?",
+                    "options": ["CREATE", "SELECT", "REMOVE", "INSERT"],
+                    "answer": 2
+                },
+                {
+                    "question": "What does NULL mean in SQL?",
+                    "options": ["Zero", "Empty string", "Missing or undefined value", "False"],
+                    "answer": 2
+                },
+                {
+                    "question": "Which SQL function is used to find the largest value?",
+                    "options": ["MIN", "MAX", "COUNT", "AVG"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of the ALTER TABLE command?",
+                    "options": ["To add or modify table structure", "To delete a table", "To rename a table", "To change data in a table"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which keyword is used to remove duplicate rows?",
+                    "options": ["UNIQUE", "DISTINCT", "FILTER", "DELETE"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the output of SELECT 10 % 3 in SQL Server?",
+                    "options": ["0", "1", "3", "10"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL clause is used to group records that have the same values?",
+                    "options": ["ORDER BY", "GROUP BY", "WHERE", "HAVING"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which command is used to update existing records in a table?",
+                    "options": ["ALTER", "UPDATE", "MODIFY", "SET"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the HAVING clause do in SQL?",
+                    "options": ["Filters grouped data", "Filters individual rows", "Sorts data", "Joins tables"],
+                    "answer": 0
+                },
+                {
+                    "question": "What is a foreign key in a database?",
+                    "options": ["A unique column", "A column that links to another table", "A table identifier", "An index"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of the TRUNCATE TABLE command?",
+                    "options": ["Remove a table", "Delete all rows in a table", "Remove specific rows", "Clear all columns in a table"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL operator tests for the existence of rows in a subquery?",
+                    "options": ["EXISTS", "IN", "ANY", "ALL"],
+                    "answer": 0
+                },
+                {
+                    "question": "What is a view in SQL?",
+                    "options": ["A temporary table", "A virtual table", "A stored procedure", "A database schema"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL keyword is used to combine the results of two queries?",
+                    "options": ["JOIN", "UNION", "MERGE", "INTERSECT"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of indexing in SQL?",
+                    "options": ["To store data", "To speed up data retrieval", "To prevent duplicate data", "To secure data"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the UNIQUE constraint do?",
+                    "options": ["Allows null values", "Ensures all values are different", "Links tables together", "Defines a foreign key"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which command removes all rows from a table without logging individual row deletions?",
+                    "options": ["DELETE", "TRUNCATE", "DROP", "CLEAR"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL function is used to calculate the average value of a numeric column?",
+                    "options": ["SUM", "COUNT", "AVG", "MAX"],
+                    "answer": 2
+                },
+                {
+                    "question": "Which SQL keyword is used to rename a column in the result set?",
+                    "options": ["RENAME", "AS", "ALTER", "SET"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the LEFT JOIN operation do?",
+                    "options": [
+                        "Returns all rows from the left table and matching rows from the right table",
+                        "Returns rows that exist in both tables",
+                        "Returns rows from the right table only",
+                        "Returns all rows from both tables"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL keyword is used to test if a value matches a specific list of values?",
+                    "options": ["LIKE", "IN", "BETWEEN", "EXISTS"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the DATEDIFF function do?",
+                    "options": [
+                        "Calculates the difference between two dates",
+                        "Returns the current date",
+                        "Adds days to a date",
+                        "Formats a date value"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the CONCAT function do in SQL?",
+                    "options": [
+                        "Joins multiple strings into one",
+                        "Splits a string into parts",
+                        "Converts a string to uppercase",
+                        "Reverses a string"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL statement is used to limit the number of rows returned?",
+                    "options": ["LIMIT", "TOP", "FETCH", "ROWNUM"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of these is a DDL (Data Definition Language) command?",
+                    "options": ["SELECT", "INSERT", "CREATE", "UPDATE"],
+                    "answer": 2
+                },
+                {
+                    "question": "What is the purpose of the DEFAULT constraint in SQL?",
+                    "options": [
+                        "To ensure all values are unique",
+                        "To specify a default value if no value is provided",
+                        "To define a primary key",
+                        "To enforce a relationship between tables"
+                    ],
+                    "answer": 1
+                },
+
+                {
+                    "question": "Which SQL function is used to return the number of rows in a table?",
+                    "options": ["SUM", "COUNT", "ROWNUM", "LENGTH"],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the INNER JOIN operation do?",
+                    "options": [
+                        "Combines rows from two tables only when there is a match in both tables",
+                        "Returns all rows from the left table",
+                        "Returns all rows from the right table",
+                        "Returns all rows from both tables regardless of matching"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is a primary key in a database?",
+                    "options": [
+                        "A column with duplicate values",
+                        "A unique identifier for each record",
+                        "A link between two tables",
+                        "An index for fast retrieval"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL keyword is used to remove a table from the database?",
+                    "options": ["DELETE", "REMOVE", "DROP", "TRUNCATE"],
+                    "answer": 2
+                },
+                {
+                    "question": "What does the DISTINCT keyword do in a SELECT statement?",
+                    "options": [
+                        "Sorts the rows by a column",
+                        "Filters out duplicate rows",
+                        "Groups rows based on a condition",
+                        "Joins multiple tables"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL clause is used to filter rows after grouping data?",
+                    "options": ["WHERE", "HAVING", "GROUP BY", "ORDER BY"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of the ORDER BY clause in SQL?",
+                    "options": [
+                        "To group records with the same values",
+                        "To filter rows based on a condition",
+                        "To sort the result set in ascending or descending order",
+                        "To limit the number of rows returned"
+                    ],
+                    "answer": 2
+                },
+                {
+                    "question": "What does the BETWEEN operator do in SQL?",
+                    "options": [
+                        "Filters rows within a specific range",
+                        "Joins two tables",
+                        "Returns rows matching a specific pattern",
+                        "Adds a condition to the query"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL clause is used to specify the condition for filtering rows in a SELECT query?",
+                    "options": ["HAVING", "WHERE", "FROM", "GROUP BY"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the difference between DELETE and TRUNCATE commands?",
+                    "options": [
+                        "DELETE removes rows selectively; TRUNCATE removes all rows",
+                        "DELETE removes all rows; TRUNCATE is selective",
+                        "DELETE removes the table; TRUNCATE clears specific columns",
+                        "DELETE clears the table structure; TRUNCATE removes duplicates"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL function returns the maximum value in a column?",
+                    "options": ["MAX", "MIN", "SUM", "COUNT"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which command is used to add a new column to an existing table?",
+                    "options": ["ADD", "ALTER", "INSERT", "UPDATE"],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of a composite key?",
+                    "options": [
+                        "To link two tables together",
+                        "To enforce a unique identifier using multiple columns",
+                        "To store multiple rows in a single column",
+                        "To speed up query performance"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL command is used to combine rows from multiple tables based on a related column?",
+                    "options": ["JOIN", "UNION", "MERGE", "INTERSECT"],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL wildcard '%' represent in a LIKE statement?",
+                    "options": [
+                        "Zero or more characters",
+                        "A single character",
+                        "A digit only",
+                        "A range of characters"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of the UNIQUE constraint in SQL?",
+                    "options": [
+                        "To ensure all values in a column are different",
+                        "To specify a default value",
+                        "To allow duplicate values",
+                        "To define a primary key"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL clause is used to return rows with no NULL values in a specific column?",
+                    "options": ["NOT NULL", "IS NOT NULL", "NO NULL", "EXCLUDE NULL"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL aggregate function is used to find the total sum of a numeric column?",
+                    "options": ["SUM", "COUNT", "AVG", "MAX"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL keyword is used to check if a value is null?",
+                    "options": ["IS NULL", "IS EMPTY", "CHECK NULL", "NULL"],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of a FOREIGN KEY constraint?",
+                    "options": [
+                        "To link two tables together",
+                        "To enforce unique values in a column",
+                        "To define a default value",
+                        "To set a primary key"
+                    ],
+                    "answer": 0
+                },
+
+                {
+                    "question": "What is the purpose of the GROUP BY clause in SQL?",
+                    "options": [
+                        "To filter rows based on a condition",
+                        "To group rows with the same values in specified columns",
+                        "To sort the result set in ascending or descending order",
+                        "To combine rows from multiple tables"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the UNION operator do in SQL?",
+                    "options": [
+                        "Combines the results of two queries and removes duplicates",
+                        "Joins two tables based on a related column",
+                        "Combines rows within the same table",
+                        "Returns only matching rows from two queries"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL clause is used to limit the number of rows returned by a query?",
+                    "options": ["LIMIT", "WHERE", "OFFSET", "ROWNUM"],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the HAVING clause do in SQL?",
+                    "options": [
+                        "Filters grouped rows based on a condition",
+                        "Filters rows before grouping",
+                        "Sorts rows in the result set",
+                        "Combines results of two queries"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL keyword is used to update data in a table?",
+                    "options": ["MODIFY", "ALTER", "UPDATE", "REPLACE"],
+                    "answer": 2
+                },
+                {
+                    "question": "What is the purpose of the INDEX in a database?",
+                    "options": [
+                        "To enforce unique values in a column",
+                        "To improve the speed of data retrieval",
+                        "To define the structure of a table",
+                        "To remove duplicate rows"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of the DEFAULT constraint in SQL?",
+                    "options": [
+                        "To enforce unique values",
+                        "To provide a fallback value if none is specified",
+                        "To link tables together",
+                        "To set a primary key"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the SQL keyword IS NOT NULL do?",
+                    "options": [
+                        "Filters rows with non-NULL values",
+                        "Filters rows with NULL values",
+                        "Removes NULL values from the table",
+                        "Replaces NULL values with defaults"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of the SQL AVG function?",
+                    "options": [
+                        "To calculate the total sum of a column",
+                        "To find the average value of a numeric column",
+                        "To count the number of rows in a table",
+                        "To return the highest value in a column"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the TRUNCATE command do in SQL?",
+                    "options": [
+                        "Deletes all rows from a table without logging individual row deletions",
+                        "Removes specific rows based on a condition",
+                        "Deletes the table from the database",
+                        "Clears duplicate rows from a table"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL COUNT function do?",
+                    "options": [
+                        "Counts the number of rows in a table",
+                        "Counts the number of non-NULL values in a column",
+                        "Counts the distinct values in a column",
+                        "Counts the total number of columns"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which type of join returns all rows when there is a match in one of the tables?",
+                    "options": [
+                        "INNER JOIN",
+                        "LEFT JOIN",
+                        "RIGHT JOIN",
+                        "FULL OUTER JOIN"
+                    ],
+                    "answer": 3
+                },
+                {
+                    "question": "What is the main function of a foreign key in SQL?",
+                    "options": [
+                        "To ensure uniqueness of values in a column",
+                        "To link two tables together",
+                        "To ensure no NULL values in a column",
+                        "To store large amounts of data"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which of the following is a correct syntax for creating a new table in SQL?",
+                    "options": [
+                        "CREATE NEW TABLE table_name",
+                        "CREATE TABLE table_name ()",
+                        "TABLE CREATE table_name",
+                        "MAKE TABLE table_name"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which SQL keyword is used to remove a table from the database?",
+                    "options": [
+                        "REMOVE",
+                        "DROP",
+                        "DELETE",
+                        "CLEAR"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the purpose of the SQL UNION ALL operator?",
+                    "options": [
+                        "Combines the results of two queries, including duplicates",
+                        "Removes duplicates from the result set",
+                        "Joins multiple tables based on foreign keys",
+                        "Returns only matching rows from both queries"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of the SQL DISTINCT keyword?",
+                    "options": [
+                        "Filters out NULL values",
+                        "Ensures rows are unique",
+                        "Combines multiple rows",
+                        "Sorts rows in ascending order"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which clause is used to sort the results of a SQL query?",
+                    "options": [
+                        "ORDER BY",
+                        "GROUP BY",
+                        "SORT BY",
+                        "FILTER BY"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the function of the SQL SUBSTRING() function?",
+                    "options": [
+                        "Returns a specified portion of a string",
+                        "Replaces part of a string with another string",
+                        "Finds the length of a string",
+                        "Converts a string to uppercase"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which operator is used to find values that match a pattern in SQL?",
+                    "options": [
+                        "LIKE",
+                        "MATCH",
+                        "IN",
+                        "EXISTS"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL clause is used to group rows that have the same values?",
+                    "options": [
+                        "GROUP BY",
+                        "ORDER BY",
+                        "DISTINCT",
+                        "HAVING"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL AVG() function do?",
+                    "options": [
+                        "Calculates the average value of a column",
+                        "Calculates the sum of a column",
+                        "Counts the number of rows",
+                        "Finds the maximum value in a column"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which keyword is used to define a primary key in SQL?",
+                    "options": [
+                        "PRIMARY KEY",
+                        "FOREIGN KEY",
+                        "UNIQUE",
+                        "NOT NULL"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL command is used to remove all rows from a table without deleting the table?",
+                    "options": [
+                        "DELETE",
+                        "TRUNCATE",
+                        "REMOVE",
+                        "DROP"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the default sorting order for the ORDER BY clause in SQL?",
+                    "options": [
+                        "Ascending",
+                        "Descending",
+                        "Random",
+                        "No sorting"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL function is used to return the current date and time?",
+                    "options": [
+                        "GETDATE()",
+                        "CURRENT_DATE()",
+                        "NOW()",
+                        "SYSDATE()"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL INSERT INTO statement do?",
+                    "options": [
+                        "Inserts new data into a table",
+                        "Retrieves data from a table",
+                        "Updates existing data in a table",
+                        "Deletes data from a table"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of the SQL BETWEEN operator?",
+                    "options": [
+                        "Filters data within a specific range",
+                        "Joins two tables together",
+                        "Filters data based on multiple conditions",
+                        "Matches a specific pattern"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of the following is a valid SQL data type for storing text?",
+                    "options": [
+                        "VARCHAR",
+                        "TEXT",
+                        "CHAR",
+                        "STRING"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL LIMIT clause do?",
+                    "options": [
+                        "Limits the number of rows returned by a query",
+                        "Limits the size of data in a column",
+                        "Sets the maximum value of a column",
+                        "Restricts access to certain rows"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is a foreign key used for in SQL?",
+                    "options": [
+                        "To create a relationship between two tables",
+                        "To enforce uniqueness in a column",
+                        "To store duplicate values",
+                        "To optimize query performance"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which function is used to return the highest value in a column in SQL?",
+                    "options": [
+                        "MAX()",
+                        "MIN()",
+                        "COUNT()",
+                        "AVG()"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL DROP command do?",
+                    "options": [
+                        "Deletes a table or database",
+                        "Removes all rows from a table",
+                        "Deletes a column from a table",
+                        "Updates a table schema"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL statement is used to modify existing records in a table?",
+                    "options": [
+                        "UPDATE",
+                        "MODIFY",
+                        "EDIT",
+                        "ALTER"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the function of the SQL ISNULL() function?",
+                    "options": [
+                        "Replaces NULL values with a specified value",
+                        "Checks if a column value is NULL",
+                        "Counts the number of NULL values in a column",
+                        "Converts NULL values to zero"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of these is a valid SQL constraint to ensure that values in a column are unique?",
+                    "options": [
+                        "UNIQUE",
+                        "PRIMARY KEY",
+                        "NOT NULL",
+                        "FOREIGN KEY"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL clause is used to filter the records before applying aggregation?",
+                    "options": [
+                        "WHERE",
+                        "HAVING",
+                        "GROUP BY",
+                        "FILTER"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL operator is used to compare a value to a list of values?",
+                    "options": [
+                        "IN",
+                        "LIKE",
+                        "BETWEEN",
+                        "IS NULL"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL clause is used to sort the result set in a specific order?",
+                    "options": [
+                        "ORDER BY",
+                        "GROUP BY",
+                        "HAVING",
+                        "DISTINCT"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the use of the SQL EXCEPT operator?",
+                    "options": [
+                        "Returns the difference between two result sets",
+                        "Combines two result sets",
+                        "Returns records that match in both result sets",
+                        "Removes duplicates from a result set"
+                    ],
+                    "answer": 0
+                }
+
+            ];
+
+
+        const databaseQuestion6 = [
+            {
+                question: "What does DDL stand for?",
+                options: [
+                    "Data Definition Language",
+                    "Data Dynamic Language",
+                    "Data Description Language",
+                    "Data Deployment Language"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which of the following is not a DDL command?",
+                options: ["CREATE", "SELECT", "ALTER", "DROP"],
+                answer: 1
+            },
+            {
+                question: "What does the CREATE command do in SQL Server?",
+                options: [
+                    "Modifies an existing table",
+                    "Deletes a table",
+                    "Creates a new table or database",
+                    "Retrieves data"
+                ],
+                answer: 2
+            },
+            {
+                question: "How do you create a table in SQL Server?",
+                options: [
+                    "CREATE DATABASE myTable;",
+                    "CREATE TABLE myTable (Column1 INT, Column2 VARCHAR(50));",
+                    "ADD TABLE myTable;",
+                    "INSERT INTO myTable;"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does the ALTER command do?",
+                options: [
+                    "Adds or removes columns from a table",
+                    "Changes data in a table",
+                    "Deletes a database",
+                    "Creates a backup"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is the syntax to rename a column using ALTER?",
+                options: [
+                    "ALTER TABLE table_name RENAME COLUMN old_name TO new_name;",
+                    "ALTER TABLE table_name ALTER COLUMN old_name new_name;",
+                    "ALTER TABLE table_name RENAME new_name TO old_name;",
+                    "None of the above"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which command deletes a table from the database?",
+                options: ["ERASE", "REMOVE", "DROP", "DELETE"],
+                answer: 2
+            },
+            {
+                question: "What happens when a table is dropped?",
+                options: [
+                    "Only the data is deleted",
+                    "The table structure is preserved",
+                    "Both table structure and data are removed",
+                    "Nothing happens"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which command is used to delete all data from a table but keep the structure?",
+                options: ["TRUNCATE", "DROP", "DELETE", "REMOVE"],
+                answer: 0
+            },
+            {
+                question: "Which command is used to modify the structure of an existing table?",
+                options: ["CREATE", "UPDATE", "ALTER", "MODIFY"],
+                answer: 2
+            },
+            {
+                question: "What does the DROP DATABASE command do?",
+                options: [
+                    "Deletes all tables in the database",
+                    "Deletes the database and all its contents",
+                    "Deletes only the schema",
+                    "Only deletes empty databases"
+                ],
+                answer: 1
+            },
+            {
+                question: "How can you change the data type of a column in SQL Server?",
+                options: [
+                    "MODIFY COLUMN",
+                    "ALTER TABLE table_name ALTER COLUMN column_name new_data_type;",
+                    "CHANGE DATA TYPE",
+                    "ALTER TYPE column_name new_data_type;"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of the following is not true about the TRUNCATE command?",
+                options: [
+                    "It resets the identity column",
+                    "It removes all rows in a table",
+                    "It preserves table structure",
+                    "It can be rolled back"
+                ],
+                answer: 3
+            },
+            {
+                question: "What is a primary key in SQL Server?",
+                options: [
+                    "A column that holds unique values",
+                    "A column that allows duplicate values",
+                    "A column that can be NULL",
+                    "A foreign key column"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which command is used to add a new primary key?",
+                options: [
+                    "ALTER TABLE table_name ADD PRIMARY KEY (column_name);",
+                    "ADD PRIMARY KEY (column_name);",
+                    "MODIFY PRIMARY KEY;",
+                    "UPDATE PRIMARY KEY;"
+                ],
+                answer: 0
+            },
+            {
+                question: "What does the UNIQUE constraint do?",
+                options: [
+                    "Prevents duplicate values in a column",
+                    "Ensures that all rows are unique",
+                    "Allows NULL values in a primary key",
+                    "Prevents updates to the column"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is the default constraint in SQL Server?",
+                options: [
+                    "Allows duplicate values",
+                    "Provides a default value if none is specified",
+                    "Automatically updates values",
+                    "Prevents NULL values"
+                ],
+                answer: 1
+            },
+            {
+                question: "How do you remove a column from a table?",
+                options: [
+                    "DROP COLUMN column_name;",
+                    "ALTER TABLE table_name DROP COLUMN column_name;",
+                    "DELETE column_name FROM table_name;",
+                    "REMOVE COLUMN column_name;"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does the CHECK constraint do?",
+                options: [
+                    "Ensures column values meet a specific condition",
+                    "Checks for NULL values",
+                    "Ensures only unique values are allowed",
+                    "Prevents data from being updated"
+                ],
+                answer: 0
+            },
+            {
+                question: "How do you create a foreign key?",
+                options: [
+                    "ALTER TABLE table_name ADD FOREIGN KEY (column_name) REFERENCES parent_table (parent_column);",
+                    "CREATE FOREIGN KEY column_name;",
+                    "ADD FOREIGN KEY TO table_name;",
+                    "INSERT FOREIGN KEY;"],
+
+                answer: 0
+            },
+            {
+                question: "Which statement about the PRIMARY KEY is true?",
+                options: [
+                    "It allows NULL values",
+                    "A table can have multiple primary keys",
+                    "It ensures unique and non-null values",
+                    "It is optional in every table"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is a schema in SQL Server?",
+                options: [
+                    "A backup file",
+                    "A logical grouping of database objects",
+                    "A table data type",
+                    "A query result set"
+                ],
+                answer: 1
+            },
+            {
+                question: "How do you create a schema?",
+                options: [
+                    "CREATE TABLE schema_name;",
+                    "CREATE SCHEMA schema_name;",
+                    "ADD SCHEMA schema_name;",
+                    "INSERT INTO schema_name;"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which command is used to rename a table?",
+                options: [
+                    "RENAME TABLE old_name TO new_name;",
+                    "ALTER TABLE old_name RENAME TO new_name;",
+                    "EXEC sp_rename 'old_name', 'new_name';",
+                    "MODIFY TABLE old_name TO new_name;"
+                ],
+                answer: 2
+            },
+            {
+                question: "Can the TRUNCATE command be rolled back?",
+                options: [
+                    "Yes, always",
+                    "No, never",
+                    "Yes, if inside a transaction",
+                    "No, but only for specific cases"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which statement about indexes is true?",
+                options: [
+                    "They are part of DDL commands",
+                    "Indexes cannot be created on primary keys",
+                    "Indexes improve query performance",
+                    "Indexes are mandatory for all tables"
+                ],
+                answer: 2
+            },
+            {
+                question: "How do you delete a constraint?",
+                options: [
+                    "ALTER TABLE table_name DROP CONSTRAINT constraint_name;",
+                    "REMOVE CONSTRAINT constraint_name;",
+                    "DELETE CONSTRAINT constraint_name;",
+                    "ALTER TABLE DROP PRIMARY KEY constraint_name;"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is the difference between DROP and TRUNCATE?",
+                options: [
+                    "DROP removes only data, TRUNCATE removes structure",
+                    "DROP deletes structure, TRUNCATE deletes data only",
+                    "Both are identical",
+                    "DROP is slower than TRUNCATE"
+                ],
+                answer: 1
+            },
+            {
+                question: "How do you set a column as NOT NULL?",
+                options: [
+                    "ALTER TABLE table_name MODIFY COLUMN column_name NOT NULL;",
+                    "CREATE COLUMN column_name NOT NULL;",
+                    "ALTER TABLE table_name ALTER COLUMN column_name NOT NULL;",
+                    "UPDATE table_name SET NOT NULL;"
+                ],
+                answer: 2
+            },
+            {
+                question: "How do you create an index?",
+                options: [
+                    "CREATE INDEX index_name ON table_name(column_name);",
+                    "ADD INDEX ON table_name(column_name);",
+                    "INSERT INDEX table_name(column_name);",
+                    "INDEX column_name table_name;"
+                ],
+                answer: 0
+            },
+            {
+                question: "Can you rename a constraint in SQL Server?",
+                options: [
+                    "Yes, using ALTER TABLE RENAME CONSTRAINT",
+                    "Yes, using sp_rename",
+                    "No, constraints cannot be renamed",
+                    "Yes, by updating system tables"
+                ],
+                answer: 1
+            },
+            {
+                question: "What happens when you drop a column with foreign key references?",
+                options: [
+                    "The column is dropped",
+                    "The drop fails unless references are removed",
+                    "The foreign key constraint is automatically dropped",
+                    "Nothing happens"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is a composite key?",
+                options: [
+                    "A single primary key",
+                    "A combination of multiple foreign keys",
+                    "A primary key consisting of two or more columns",
+                    "A backup for the primary key"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is the default schema in SQL Server?",
+                options: ["System", "dbo", "master", "default_schema"],
+                answer: 1
+            },
+            {
+                question: "Which command creates a new database?",
+                options: [
+                    "CREATE DATABASE database_name;",
+                    "ADD DATABASE database_name;",
+                    "INSERT DATABASE database_name;",
+                    "ALTER DATABASE database_name;"
+                ],
+                answer: 0
+            },
+            {
+                question: "How do you delete a schema?",
+                options: [
+                    "DROP SCHEMA schema_name;",
+                    "DELETE SCHEMA schema_name;",
+                    "REMOVE SCHEMA schema_name;",
+                    "ALTER SCHEMA schema_name DELETE;"
+                ],
+                answer: 0
+            },
+            {
+                question: "Can a primary key column have duplicate values?",
+                options: [
+                    "Yes, always",
+                    "No, never",
+                    "Yes, if combined with UNIQUE constraint",
+                    "Yes, in some databases"
+                ],
+                answer: 1
+            },
+            {
+                question: "How do you list all tables in a schema?",
+                options: [
+                    "SELECT * FROM schema_name;",
+                    "SHOW TABLES;",
+                    "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'schema_name';",
+                    "EXEC SHOW TABLES;"
+                ],
+                answer: 2
+            },
+            {
+                question: "What is a clustered index?",
+                options: [
+                    "An index that allows duplicate values",
+                    "An index where rows are stored in physical order",
+                    "An index that exists only for primary keys",
+                    "A secondary index"
+                ],
+                answer: 1
+            },
+            {
+                question: "What does INFORMATION_SCHEMA store?",
+                options: [
+                    "Database metadata",
+                    "User data",
+                    "Index data",
+                    "Backup logs"
+                ],
+                answer: 0
+            }
+        ];
+
+
+
+        
+
+
+
+
+
+
+        const dataStructureQuestions = [
+            {
+                question: "Process of inserting an element in a stack is called:",
+                options: ["Create", "Push", "Evaluation", "Pop"],
+                answer: 1 
+            },
+            {
+                question: "Process of removing an element from a stack is called:",
+                options: ["Create", "Push", "Evaluation", "Pop"],
+                answer: 3 
+            },
+            {
+                question: "In a stack, if a user tries to remove an element from an empty stack, it is called:",
+                options: ["Underflow", "Empty collection", "Overflow", "Garbage Collection"],
+                answer: 0 
+            },
+            {
+                question: "Pushing an element into a stack already having five elements and a size limit of 5 will cause:",
+                options: ["Underflow", "User flow", "Overflow", "Crash"],
+                answer: 2 
+            },
+            {
+                question: "Which of the following is not an application of stack?",
+                options: ["A parentheses balancing program", "Tracking of local variables at run time", "Compiler Syntax Analyzer", "Data transfer between two asynchronous processes"],
+                answer: 3 
+            },
+            {
+                question: "The maximum number of parentheses that appear on the stack at any one time when analyzing (()(())(())) is:",
+                options: ["1", "2", "3", "4 or more"],
+                answer: 2
+            },
+            {
+                question: "What is the value of the postfix expression 6 3 2 4 + - * ?",
+                options: ["1", "40", "74", "-18"],
+                answer: 3 
+            },
+            {
+                question: "The maximum number of symbols that will appear on the stack at one time during the conversion of 4 + 3*(6*3-12) from infix to postfix notation is:",
+                options: ["1", "2", "3", "4"],
+                answer: 3
+            },
+            {
+                question: "The data structure required to check whether an expression contains balanced parentheses is:",
+                options: ["Stack", "Queue", "Array", "Tree"],
+                answer: 0 
+            },
+            {
+                question: "The postfix form of the expression (A+B)*(C*D-E)*F/G is:",
+                options: ["AB+CD*E-FG/**", "AB+CD*E-F**G/", "AB+CD*E-*F*G/", "AB+CDE*-*F*G/"],
+                answer: 2
+            },
+            {
+                question: "The process of accessing data stored in a serial access memory is similar to manipulating data on a:",
+                options: ["Heap", "Binary Tree", "Array", "Stack"],
+                answer: 3 
+            },
+            {
+                question: "The postfix form of A*B+C/D is:",
+                options: ["*AB/CD+", "AB*CD/+", "A*BC+/D", "ABCD+/*"],
+                answer: 1 
+            },
+            {
+                question: "Which data structure is needed to convert infix notation to postfix notation?",
+                options: ["Stack", "Queue", "Branch", "Tree"],
+                answer: 0 
+            },
+            {
+                question: "The prefix form of A-B/(C*D^E) is:",
+                options: ["-/*^ACBDE", "-ABCD*^DE", "-A/B*C^DE", "-A/BC*^DE"],
+                answer: 2 
+            },
+            {
+                question: "The prefix form of the infix expression (p + q) - (r * t) is:",
+                options: ["+ pq - *rt", "-+pqr*t", "-+pq*rt", "-+*pqrt"],
+                answer: 2 
+            },
+            {
+                question: "Which data structure is used for implementing recursion?",
+                options: ["List", "Queue", "Array", "Stack"],
+                answer: 3 
+            },
+            {
+                question: "The result of evaluating the postfix expression 5 4 6 + * 4 9 3 / + * is:",
+                options: ["600", "350", "650", "588"],
+                answer: 1
+            },
+            {
+                question: "Convert the infix expression (A+B^D)/(E-F)+G to postfix:",
+                options: ["(ABD^+EF-/G+)", "(ABD+^EF-/G+)", "(ABD^+EF/-G+)", "(ABDEF+^/-G+)"],
+                answer: 0 
+            },
+            {
+                question: "Convert the infix expression x+y*z+(p*q+r)*s to postfix form:",
+                options: ["xyz*+pq*r+s*+", "xyz*+pq*r+s+*", "xyz+*pq*r+s*+", "xyzp+**qr+s*+"],
+                answer: 0 
+            },
+            {
+                question: "Which of the following is not an inherent application of stack?",
+                options: ["Reversing a string", "Evaluation of postfix expression", "Implementation of recursion", "Job scheduling"],
+                answer: 3 
+            },
+            {
+                question: "The result of evaluating the postfix expression 10 5 +60 6 /*8- is:",
+                options: ["284", "213", "142", "71"],
+                answer: 2 
+            },
+            {
+                question: "If elements 'A', 'B', 'C', and 'D' are placed in a stack and are deleted one at a time, what is the order of removal?",
+                options: ["ABCD", "DCBA", "DCAB", "ABDC"],
+                answer: 1 
+            },
+            {
+                question: "Suppose a stack is implemented with a linked list instead of an array. What would be the time complexity of push and pop operations?",
+                options: ["O(1) for insertion and O(n) for deletion", "O(1) for insertion and O(1) for deletion", "O(n) for insertion and O(1) for deletion", "O(n) for insertion and O(n) for deletion"],
+                answer: 1 
+            },
+            {
+                question: "To evaluate an expression without any embedded function calls:",
+                options: ["As many stacks as the height of the expression tree are needed", "One stack is enough", "Two stacks are needed", "A Turing machine is needed in the general case"],
+                answer: 1 
+            }
+        ];
+
+        const dataStructureQuestions2 = [
+        ];
+
+        const dataStructureQuestions3 = [
+        ];
+
+
+
+
+
+        
+
+
+
+
+
+
+        const dcQuestions1 = [
+            {
+                question: "Communication between a computer and keyboard involves transmission.",
+                options: ["Simplex", "Automatic", "Full-duplex", "Half-duplex"],
+                answer: 0
+            },
+            {
+                question: "Which of the following isn’t a type of transmission mode?",
+                options: ["Half-duplex", "Full-duplex", "Simplex", "physical"],
+                answer: 3
+            },
+            {
+                question: "A transmission that generally involves dedicated circuits.",
+                options: ["Half-duplex", "Simplex", "Semi-duplex", "Full-duplex"],
+                answer: 1
+            },
+            {
+                question: "A transmission mode that can transmit data in both directions but transmits in only one direction at a time.",
+                options: ["Full-duplex", "Semi-duplex", "Simplex", "Half-duplex"],
+                answer: 3
+            },
+            {
+                question: "Telephone networks operate in this mode.",
+                options: ["Simplex", "Semi-duplex", "Full-duplex", "Half-duplex"],
+                answer: 2
+            },
+            {
+                question: "A walkie-talkie operates in ________.",
+                options: ["Half-duplex", "Full-duplex", "Simplex", "Semi-duplex"],
+                answer: 0
+            },
+            {
+                question: "Data can flow only in one direction all the time in a _____ mode.",
+                options: ["Half-duplex", "None of these", "Simplex", "Full-duplex"],
+                answer: 2
+            },
+            {
+                question: "Data can flow in both directions all the time in a _____ mode.",
+                options: ["Full-duplex", "None of these", "Simplex", "Half-duplex"],
+                answer: 0
+            },
+            {
+                question: "Both stations can transmit and receive data simultaneously in ______.",
+                options: ["Full-duplex mode", "Unicode", "Simplex mode", "Half-duplex mode"],
+                answer: 0
+            },
+            {
+                question: "A _____ is the physical path over which a message travels.",
+                options: ["path", "medium", "protocol", "route"],
+                answer: 1
+            },
+            {
+                question: "Which of these elements is not involved in the process of communication?",
+                options: ["pipe", "sender", "message", "channel"],
+                answer: 0
+            },
+            {
+                question: "A ______ set of rules that governs data communication is called ______.",
+                options: ["protocols", "standards", "RFCs", "Servers"],
+                answer: 0
+            },
+            {
+                question: "A ______ is the person who transmits a message.",
+                options: ["Receiver", "Sender", "Message", "Transmission medium"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is not one of the components of a data communication system?",
+                options: ["Medium", "Sender", "Message", "All of the choices are correct"],
+                answer: 3
+            },
+            {
+                question: "The function of the data transmission element is ______.",
+                options: ["To transfer data from one element to another", "To process the data", "To modify the data", "To separate the signal hidden in the noise"],
+                answer: 0
+            },
+            {
+                question: "Any set of digits or alphabets are generally referred to as ______.",
+                options: ["Characters", "Symbols", "Bits", "Bytes"],
+                answer: 0
+            },
+            {
+                question: "What is a pixel?",
+                options: ["Pixel is the element of a digital image", "Pixel is the cluster of a digital image", "Pixel is the element of an analog image", "Pixel is the cluster of an analog image"],
+                answer: 0
+            },
+            {
+                question: "Which color model is used for most computer model and video systems?",
+                options: ["RGB", "RYB", "CMU", "HSV"],
+                answer: 0
+            },
+            {
+                question: "What does ASCII stand for?",
+                options: ["American Standard Code for Information Interchange", "American Scientific Code for Information Interchange", "American Scientific Code for Interchanging Information", "American Standard Code for Interchanging Information"],
+                answer: 0
+            },
+            {
+                question: "The largest geographic area a wide area network (WAN) can span is ______.",
+                options: ["A town", "A state", "A country", "The world"],
+                answer: 3
+            },
+            {
+                question: "A data communication system spanning states, countries, or the whole world is a ______.",
+                options: ["WAN", "LAN", "MAN", "PAN"],
+                answer: 0
+            },
+            {
+                question: "WAN stands for ______.",
+                options: ["World area network", "Web area network", "Wide area network", "Web access network"],
+                answer: 2
+            },
+            {
+                question: "What is the purpose of a WAN?",
+                options: ["To allow computers to communicate with each other in the same area", "To allow computers to communicate with each other anywhere in the world", "To allow computers to communicate with each other in the same country", "To allow computers to communicate with each other in the home"],
+                answer: 1
+            },
+            {
+                question: "Wide Area Networks (WANs) ______.",
+                options: ["Cover a large geographical area", "Use cables, telephone lines, satellites, and radio waves to connect", "Are used by international organizations", "All 3 options"],
+                answer: 3
+            },
+            {
+                question: "The World Wide Web (WWW) is the largest ______.",
+                options: ["Local Area Network (LAN)", "Wide Area Network (WAN)", "Metropolitan Area Network (MAN)"],
+                answer: 1
+            },
+            {
+                question: "How is software reliability defined?",
+                options: ["Time", "Quality", "Efficiency", "Speed"],
+                answer: 0
+            },
+            {
+                question: "A local area network (LAN) is defined by ______.",
+                options: ["The geometric size of the network", "The maximum number of hosts in the network and/or the geometric size of the network", "The maximum number of hosts in the network", "The topology of the network"],
+                answer: 1
+            },
+            {
+                question: "WLAN stands for ______.",
+                options: ["Wireless Local Area Network", "Wire Lost Area Network", "Wired Local Area Network", "Wireless Local Ambiguity Network"],
+                answer: 0
+            },
+            {
+                question: "Which of the following is not one of the network criteria?",
+                options: ["Performance", "Reliability", "Security", "All of the choices are correct"],
+                answer: 3
+            },
+            {
+                question: "Which of the following is a small single-site network?",
+                options: ["LAN", "DSL", "MAN", "WAN"],
+                answer: 0
+            },
+            {
+                question: "A term that refers to the way in which the nodes of a network are linked together is called ______.",
+                options: ["Network", "Topology", "Connection", "Interconnection"],
+                answer: 1
+            },
+            {
+                question: "Three or more devices share a link in a ______ connection.",
+                options: ["Unipoint", "Multipoint", "Point to point", "Simplex"],
+                answer: 1
+            },
+            {
+                question: "______ topology requires multiple connections.",
+                options: ["Star", "Mesh", "Ring", "Bus"],
+                answer: 3
+            },
+            {
+                question: "The participating computers in a network are referred to as ______.",
+                options: ["Clients", "Servers", "Nodes", "CPUs"],
+                answer: 2
+            },
+            {
+                question: "A topology that is responsible for describing the geometric arrangement of components that make up the LAN is ______.",
+                options: ["Complex", "Physical", "Logical", "Incremental"],
+                answer: 1
+            },
+            {
+                question: "Which network topology requires a central controller or hub?",
+                options: ["Star", "Mesh", "Ring", "Bus"],
+                answer: 0
+            }
+        ];
+
+
+
+
+        const dcQuestions2 = [
+            {
+                question: "In TCP/IP, a message at the application layer is encapsulated in a packet at the ____ layer.",
+                options: ["network", "transport", "data-link", "physical"],
+                answer: 1
+            },
+            {
+                question: "In TCP/IP, a message at the transport layer is encapsulated in a packet at the ____ layer.",
+                options: ["network", "transport", "data-link", "physical"],
+                answer: 0
+            },
+            {
+                question: "In TCP/IP, a message belonging to the network layer is decapsulated from a packet at the ____ layer.",
+                options: ["network", "transport", "data-link", "physical"],
+                answer: 2
+            },
+            {
+                question: "In TCP/IP, a message belonging to the transport layer is decapsulated from a packet at the ____ layer.",
+                options: ["network", "transport", "data-link", "physical"],
+                answer: 1
+            },
+            {
+                question: "Which layer does the data link layer take packets from and encapsulate them into frames for transmission?",
+                options: ["transport layer", "application layer", "network layer", "physical layer"],
+                answer: 2
+            },
+            {
+                question: "How many levels of addressing is provided in TCP/IP protocol?",
+                options: ["One", "Two", "Three", "Four"],
+                answer: 3
+            },
+            {
+                question: "PROTOCOL LAYERING is applied when communication is ____.",
+                options: ["large", "simple", "complex", "complicated"],
+                answer: 2
+            },
+            {
+                question: "The network layer is concerned with........ of data.",
+                options: ["packets", "frames", "bits", "bytes"],
+                answer: 0
+            },
+            {
+                question: "The packet of information at the application layer is called........",
+                options: ["packets", "frames", "message", "segment"],
+                answer: 2
+            },
+            {
+                question: "The data link layer takes the packets from...... and encapsulates them into frames for transmission.",
+                options: ["network layer", "physical layer", "transport layer", "application layer"],
+                answer: 0
+            },
+            {
+                question: "The TCP/IP protocol suite consists of........ layers.",
+                options: ["two", "three", "five", "six"],
+                answer: 2
+            },
+            {
+                question: "A router is involved in........ layers of the TCP/IP protocol suite.",
+                options: ["two", "three", "five", "four"],
+                answer: 1
+            },
+            {
+                question: "A link-layer switch is involved in ......... layers of the TCP/IP protocol suite.",
+                options: ["two", "three", "five", "four"],
+                answer: 0
+            },
+            {
+                question: "The transport-layer packet in the TCP/IP protocol suite is called........",
+                options: ["a message", "a datagram", "a segment or a user datagram", "a frame"],
+                answer: 2
+            },
+            {
+                question: "The......... layer is responsible for the delivery of a message from one process to another.",
+                options: ["physical", "transport", "network", "application"],
+                answer: 1
+            },
+            {
+                question: "OSI stands for ______.",
+                options: ["open system interconnection", "operating system interface", "optical service implementation", "open service Internet"],
+                answer: 0
+            },
+            {
+                question: "The number of layers in ISO OSI reference model is ______.",
+                options: ["4", "5", "6", "7"],
+                answer: 3
+            },
+            {
+                question: "TCP/IP model does not have ____ layer but OSI model have this layer.",
+                options: ["session layer", "transport layer", "application layer", "network layer"],
+                answer: 0
+            },
+            {
+                question: "Which of the following layers is an addition to OSI model when compared with TCP IP model?",
+                options: ["session layer", "Presentation layer", "application layer", "Session and Presentation layer"],
+                answer: 3
+            },
+            {
+                question: "In OSI model, when data is sent from device A to device B, the 5th layer to receive data at B is ____.",
+                options: ["application layer", "Transport layer", "Session layer", "Link layer"],
+                answer: 2
+            },
+            {
+                question: "Which one of the following protocol delivers/stores mail to receiver server?",
+                options: ["simple mail transfer protocol", "post office protocol", "hypertext transfer protocol", "internet mail access protocol"],
+                answer: 0
+            },
+            {
+                question: "In the TCP/IP protocol suite, which of the following is an application layer protocol?",
+                options: ["The User Datagram Protocol (UDP)", "The Internet Protocol (IP)", "The Transmission Control Protocol(TCP)", "The File Transfer Protocol (FTP)"],
+                answer: 3
+            },
+            {
+                question: "In the TCP/IP protocol suite, which of the following is a transport-layer protocol?",
+                options: ["The Internet Protocol (IP)", "The Internet Control Message Protocol (ICMP)", "The Address Resolution Protocol (ARP)", "The Transmission Control Protocol (TCP)"],
+                answer: 3
+            },
+            {
+                question: "In the TCP/IP protocol suite, which of the following is a network layer protocol?",
+                options: ["The Stream Control Transmission Protocol (SCTP)", "The Internet Protocol (IP)", "The Secure Shell (SSH)", "User Datagram Protocol (UDP)"],
+                answer: 1
+            },
+            {
+                question: "In the TCP/IP protocol suite, the ...... layer is responsible for moving frames from one hop (node) to the next.",
+                options: ["physical", "data-link", "transport", "network"],
+                answer: 1
+            },
+            {
+                question: "In the TCP/IP protocol suite, the physical layer is concerned with the movement of ....... over the physical medium.",
+                options: ["programs", "dialogs", "protocols", "bits"],
+                answer: 3
+            },
+            {
+                question: "In the TCP/IP protocol suite, a port number is the identifier at the.........",
+                options: ["application layer", "network layer", "transport layer", "physical layer"],
+                answer: 2
+            },
+            {
+                question: "In the TCP/IP protocol suite, a logical address is the identifier at the........",
+                options: ["network layer", "transport layer", "data-link layer", "application layer"],
+                answer: 0
+            },
+            {
+                question: "The Internet Protocol (IP) is ...... protocol.",
+                options: ["a unreliable", "a connection-oriented", "a reliable and connection-oriented"],
+                answer: 0
+            },
+            {
+                question: "The application layer in the TCP/IP protocol suite is usually considered to be the combination of ....... layers in the OSI model.",
+                options: ["application, presentation, and session", "application, transport, and network", "application, data-link, and physical", "network, data-link, and physical"],
+                answer: 0
+            },
+            {
+                question: "In TCP/IP, a logical connection between an entity at the network layer can be made with another entity at the ............ layer.",
+                options: ["network", "transport", "data-link", "physical"],
+                answer: 0
+            },
+            {
+                question: "In TCP/IP, a logical connection between an entity at the data-link layer can be made with another entity at the ......... layer.",
+                options: ["network", "transport", "data-link", "physical"],
+                answer: 2
+            },
+            {
+                question: "Which is not a application layer protocol?",
+                options: ["HTTP", "SMTP", "FTP", "TCP"],
+                answer: 3
+            },
+            {
+                question: "Application layer offers ......... service.",
+                options: ["End to end", "Process to process", "None of the mentioned", "Both End to end and Process to process"],
+                answer: 3
+            },
+            {
+                question: "Which of the following is an application layer service?",
+                options: ["Network virtual terminal", "All of the mentioned", "File transfer, access, and management", "Mail service"],
+                answer: 1
+            },
+            {
+                question: "Electronic mail uses which Application layer protocol?",
+                options: ["HTTP", "SMTP", "FTP", "SIP"],
+                answer: 1
+            },
+            {
+                question: "The physical layer is concerned with.....",
+                options: ["bit-by-bit delivery", "process to process delivery", "application to application delivery", "port to port delivery"],
+                answer: 0
+            },
+            {
+                question: "HTTP is ...... protocol.",
+                options: ["application layer", "transport layer", "network layer", "data link layer"],
+                answer: 0
+            },
+            {
+                question: "Which level is the network layer in the OSI model?",
+                options: ["Third level", "Fourth level", "Second level", "Fifth layer"],
+                answer: 0
+            },
+            {
+                question: "ICMP stands for.......",
+                options: ["Internet Coordinate Message Protocol", "Internet Control Message Protocol", "Interconnect Control Message Protocol", "Interconnect Coordinate Message Protocol"],
+                answer: 1
+            }
+        ];
+
+
+
+
+
+
+        
+
+
+
+        const bigdataQuestions1 = [
+            {
+                "question": "What is a primary characteristic of big data?",
+                "options": ["Small volume", "Centralized storage", "Unchanging structure", "High diversity and distribution"],
+                "answer": 3
+            },
+            {
+                "question": "What feature does Apache Spark provide that MapReduce lacks?",
+                "options": ["Batch processing", "Iterative processing", "NoSQL capabilities", "Schema-on-read flexibility"],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following is NOT typically associated with Hadoop?",
+                "options": ["Low-latency real-time processing", "Distributed data storage", "Fault-tolerance", "Batch processing"],
+                "answer": 0
+            },
+            {
+                "question": "What does YARN enable in Hadoop 2?",
+                "options": ["Only MapReduce processing", "Management of cluster resources for various applications", "Exclusive access to storage nodes", "Limited scalability for big data"],
+                "answer": 1
+            },
+            {
+                "question": "Why is MapReduce still studied despite newer frameworks?",
+                "options": ["It is the only option for interactive queries.", "It provides foundational concepts in data processing.", "It cannot scale for large datasets.", "It requires complex configurations."],
+                "answer": 1
+            },
+            {
+                "question": "In Hadoop, what is 'schema-on-read' primarily designed for?",
+                "options": ["Structured data analysis", "Real-time data streaming", "Flexible interpretation of unstructured data", "Enforcing predefined data structures"],
+                "answer": 2
+            },
+            {
+                "question": "Which tool is commonly used for interactive SQL on Hadoop?",
+                "options": ["Spark Streaming", "Apache Tez", "MapReduce", "Apache Flink"],
+                "answer": 3
+            },
+            {
+                "question": "Which type of data processing requires low latency and is best achieved with stream processing?",
+                "options": ["Historical data analysis", "Log file analysis", "Credit card transaction validation", "Batch processing"],
+                "answer": 2
+            },
+            {
+                "question": "What is the role of the 'reduce' function in MapReduce?",
+                "options": ["To split datasets for faster processing", "To aggregate intermediate outputs", "To directly query the dataset", "To convert data into structured format"],
+                "answer": 1
+            },
+            {
+                "question": "Which platform can index and serve search queries on Hadoop clusters?",
+                "options": ["Spark SQL", "Apache Storm", "Solr", "Samza"],
+                "answer": 2
+            },
+            {
+                "question": "Which of the following is a primary advantage of data locality in Hadoop?",
+                "options": ["Increased storage capacity", "Reduced network bandwidth usage", "Enhanced data normalization", "Direct access to remote databases"],
+                "answer": 1
+            },
+            {
+                "question": "In a Hadoop ecosystem, how does Spark differ from MapReduce in handling data?",
+                "options": ["Spark is faster due to in-memory processing.", "MapReduce is faster due to disk-based processing.", "Spark cannot handle large datasets.", "MapReduce has built-in iterative processing."],
+                "answer": 0
+            },
+            {
+                "question": "What is the primary use of Apache Flink?",
+                "options": ["Batch processing only", "In-memory data analytics", "Real-time data processing and analysis", "Data storage management"],
+                "answer": 2
+            },
+            {
+                "question": "Which of these frameworks is specifically designed for real-time data stream processing?",
+                "options": ["Apache Tez", "Apache Samza", "Apache Hive", "Apache HDFS"],
+                "answer": 1
+            },
+            {
+                "question": "What is a key feature of the 'shared-nothing' architecture in MapReduce?",
+                "options": ["All tasks depend on each other.", "Tasks are independent with no dependencies.", "Tasks must be rerun in sequence.", "Only one task runs at a time."],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following types of data is NOT ideal for RDBMS?",
+                "options": ["Highly normalized data", "Frequently updated data", "Structured XML data", "Large-scale unstructured data"],
+                "answer": 3
+            },
+            {
+                "question": "In Hadoop, how does 'schema-on-read' differ from traditional RDBMS schema management?",
+                "options": ["Requires predefined schema at load time", "Allows data structure to be defined during read", "Involves static data definitions", "Processes data in a relational format only"],
+                "answer": 1
+            },
+            {
+                "question": "Which of these statements accurately describes 'grid computing' compared to Hadoop?",
+                "options": ["Focuses on low-level data flow control", "Only supports small datasets", "Prioritizes data over computational power", "Relies on data locality for efficiency"],
+                "answer": 3
+            },
+            {
+                "question": "Why is normalization challenging in a Hadoop environment?",
+                "options": ["It leads to data duplication.", "It complicates high-speed data access.", "It reduces data diversity.", "It limits schema flexibility."],
+                "answer": 1
+            },
+            {
+                "question": "Which is a key differentiator of Spark compared to MapReduce for machine learning tasks?",
+                "options": ["Spark uses disk storage exclusively.", "Spark allows data processing in real time.", "MapReduce is more memory-efficient.", "MapReduce supports continuous query updates."],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following is a key advantage of Apache Spark compared to MapReduce?",
+                "options": ["It relies solely on disk storage.", "It provides faster iterative processing due to in-memory processing.", "It focuses only on batch processing without interactive analysis support.", "It exclusively uses HDFS for data storage."],
+                "answer": 1
+            },
+            {
+                "question": "When comparing Flink to MapReduce, what is a main advantage of Flink in data processing?",
+                "options": ["It supports only batch processing.", "It supports real-time and interactive data processing.", "It does not handle large data sets effectively.", "It is not suitable for iterative processing."],
+                "answer": 1
+            },
+            {
+                "question": "What is the main difference between MapReduce and Spark in terms of data processing efficiency?",
+                "options": ["MapReduce is faster due to its interactive data processing.", "Spark is more efficient for iterative processing as it keeps data in memory.", "Spark is slower because all data is stored on disk.", "MapReduce is faster because it uses caching."],
+                "answer": 1
+            },
+            {
+                "question": "Why is Flink more suitable for applications that require quick response times compared to MapReduce?",
+                "options": ["It relies only on batch processing.", "It supports continuous data streaming with low latency.", "It primarily relies on HDFS for storage.", "It depends on non-interactive analysis."],
+                "answer": 1
+            },
+            {
+                "question": "When handling streaming data, which of the following distinguishes Apache Flink from Apache Spark?",
+                "options": ["Spark does not support continuous streaming.", "Flink offers native processing for unbounded data streams.", "MapReduce is faster than both Flink and Spark.", "Spark relies entirely on disk storage for data."],
+                "answer": 1
+            },
+            {
+                "question": "What is the key difference between MapReduce and Spark regarding storage and memory use?",
+                "options": ["MapReduce depends on in-memory processing to increase speed.", "Spark exclusively stores data on disk.", "MapReduce stores data on disk and reloads it with each iteration.", "Spark does not support large-scale data processing."],
+                "answer": 2
+            },
+            {
+                "question": "What is a major drawback of MapReduce compared to Spark in handling iterative algorithms?",
+                "options": ["MapReduce cannot process large data sets.", "It needs to load data from disk for each iteration, making it slower.", "It does not support disk-based storage.", "It is unsuitable for batch processing."],
+                "answer": 1
+            },
+            {
+                "question": "Which feature makes Spark more efficient for machine learning tasks compared to MapReduce?",
+                "options": ["Spark uses in-memory caching, reducing disk reads.", "MapReduce is more efficient in processing large files.", "Spark lacks support for iterative processing.", "MapReduce has in-built support for real-time analytics."],
+                "answer": 0
+            },
+            {
+                "question": "In which way does Flink outperform Spark for stateful stream processing?",
+                "options": ["Flink offers lower latency and supports stateful stream operations natively.", "Spark’s streaming capabilities are more advanced for continuous updates.", "Flink relies heavily on batch processing.", "Spark allows faster batch analysis in real-time applications."],
+                "answer": 0
+            },
+            {
+                "question": "What is a primary reason for using Spark over MapReduce in big data analytics?",
+                "options": ["Spark’s exclusive reliance on disk storage for faster retrieval.", "Spark’s ability to store intermediate data in memory for iterative tasks.", "MapReduce’s advantage in real-time processing.", "MapReduce’s native support for streaming operations."],
+                "answer": 1
+            },
+            {
+                "question": "HTML",
+                "options": ["Structured Data", "Semi-structured Data", "Unstructured Data", "Cannot be classified"],
+                "answer": 1
+            },
+            {
+                "question": "XML",
+                "options": ["Structured Data", "Semi-structured Data", "Unstructured Data", "Cannot be classified"],
+                "answer": 1
+            },
+            {
+                "question": "Excel",
+                "options": ["Structured Data", "Semi-structured Data", "Unstructured Data", "Cannot be classified"],
+                "answer": 0
+            },
+            {
+                "question": "JSON",
+                "options": ["Structured Data", "Semi-structured Data", "Unstructured Data", "Cannot be classified"],
+                "answer": 1
+            },
+            {
+                "question": "Images",
+                "options": ["Structured Data", "Semi-structured Data", "Unstructured Data", "Cannot be classified"],
+                "answer": 2
+            },
+            {
+                "question": "Python (for code)",
+                "options": ["Structured Data", "Semi-structured Data", "Unstructured Data", "All of this"],
+                "answer": 2
+            }
+        ];
+
+
+
+
+
+        const bigdataQuestions2 = [
+
+            {
+                question: "What is Hadoop primarily designed for?",
+                options: ["Web scraping", "Distributed processing of large data sets", "Database transactions", "Real-time data analysis"],
+                answer: 1
+            },
+            {
+                question: "Which programming language is Hadoop primarily written in?",
+                options: ["Python", "Java", "R", "C++"],
+                answer: 1
+            },
+            {
+                question: "The Hadoop Distributed File System (HDFS) primarily supports:",
+                options: ["Single-machine storage", "Distributed data storage", "Cloud-based storage only", "Local disk storage only"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a function of YARN in the Hadoop ecosystem?",
+                options: ["Data compression", "Job scheduling and resource management", "Data indexing", "File replication"],
+                answer: 1
+            },
+            {
+                question: "The MapReduce model is divided into which two main phases?",
+                options: ["Map and Split", "Map and Reduce", "Split and Aggregate", "Shuffle and Aggregate"],
+                answer: 1
+            },
+            {
+                question: "What is the purpose of the Mapper function in MapReduce?",
+                options: ["Aggregating results", "Reading and processing input data", "Managing data locality", "Scheduling tasks"],
+                answer: 1
+            },
+            {
+                question: "In MapReduce, which phase typically reduces the data volume by combining values?",
+                options: ["Map", "Combine", "Shuffle", "Reduce"],
+                answer: 3
+            },
+            {
+                question: "What does fault tolerance in Hadoop mean?",
+                options: ["The system stops when a node fails", "The system continues to operate even if some nodes fail", "Data is lost if a node fails", "Hadoop does not support fault tolerance"],
+                answer: 1
+            },
+            {
+                question: "Data locality in Hadoop refers to:",
+                options: ["Storing data only on a single server", "Processing data close to where it is stored", "Running tasks on remote servers", "Using cloud storage for data"],
+                answer: 1
+            },
+            {
+                question: "Why is the default HDFS block size 128 MB?",
+                options: ["To minimize file size", "To align with network bandwidth", "To ensure fault tolerance", "To optimize data processing efficiency"],
+                answer: 3
+            },
+            {
+                question: "Which component handles the scheduling and resource allocation in Hadoop?",
+                options: ["HDFS", "YARN", "Mapper", "Reducer"],
+                answer: 1
+            },
+            {
+                question: "Map tasks in MapReduce typically store output:",
+                options: ["Directly in HDFS", "On local disk", "In the cloud", "In the memory of the main node"],
+                answer: 1
+            },
+            {
+                question: "A good split size in MapReduce processing is often:",
+                options: ["512 bytes", "64 MB", "128 MB", "1 GB"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is an advantage of Hadoop’s data replication?",
+                options: ["Faster network transfer", "Reduced processing speed", "Improved reliability and availability", "Cost reduction"],
+                answer: 2
+            },
+            {
+                question: "The reduce phase in MapReduce aims to:",
+                options: ["Distribute data across nodes", "Aggregate and summarize data", "Duplicate data for redundancy", "Transform data into splits"],
+                answer: 1
+            },
+            {
+                question: "The MapReduce combiner function is used to:",
+                options: ["Filter data records", "Minimize data transferred between map and reduce tasks", "Split data into smaller blocks", "Replicate data for fault tolerance"],
+                answer: 1
+            },
+            {
+                question: "Which statement is true about the Shuffle phase in MapReduce?",
+                options: ["It occurs after the reduce phase", "It transfers data from mappers to reducers", "It happens before data is split", "It combines data into a single output"],
+                answer: 1
+            },
+            {
+                question: "What advantage does MapReduce’s use of 'key-value pairs' provide?",
+                options: ["Simple data sorting only", "Easy data partitioning and parallel processing", "Improved data security", "Enhanced real-time processing"],
+                answer: 1
+            },
+            {
+                question: "In a Hadoop cluster, if a node fails, Hadoop:",
+                options: ["Stops processing immediately", "Reschedules tasks to other nodes", "Reboots the entire system", "Deletes the data on that node"],
+                answer: 1
+            },
+            {
+                question: "Why does Hadoop emphasize using commodity hardware?",
+                options: ["To reduce costs", "For faster processing", "To minimize scalability", "To use high-performance machines"],
+                answer: 0
+            },
+            {
+                question: "What is the main function of the MapReduce framework?",
+                options: ["Compressing data for storage", "Parallel processing of large data sets", "Storing data in local nodes", "Managing cloud resources"],
+                answer: 1
+            },
+            {
+                question: "Map tasks run on nodes where:",
+                options: ["HDFS data blocks are located", "Job scheduling occurs", "Data backups are stored", "Cloud data is processed"],
+                answer: 0
+            },
+            {
+                question: "Why might a combiner function improve MapReduce performance?",
+                options: ["By eliminating map tasks", "By reducing data shuffled across the network", "By decreasing disk storage requirements", "By increasing the number of reduce tasks"],
+                answer: 1
+            },
+            {
+                question: "Data locality helps in minimizing:",
+                options: ["Network bandwidth usage", "Number of map tasks", "Reduce task load", "HDFS storage needs"],
+                answer: 0
+            },
+            {
+                question: "Which aspect of Hadoop ensures high availability of data?",
+                options: ["YARN’s job scheduling", "Data locality optimization", "Data replication in HDFS", "Using cloud storage"],
+                answer: 2
+            },
+            {
+                question: "The primary purpose of Hadoop is to process data in real-time.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "MapReduce divides data processing into the 'map' and 'reduce' phases.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Data is stored in HDFS as fixed-size blocks, typically 128 MB.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "YARN is responsible for data replication in Hadoop clusters.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Hadoop’s fault tolerance means that lost data cannot be recovered.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Map tasks in Hadoop are generally performed close to the data to reduce network traffic.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Reducers process data before Mappers in the MapReduce framework.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "HDFS writes the output of map tasks directly to cloud storage for redundancy.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Data locality in Hadoop aims to run tasks on the node where the data resides.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "The MapReduce combiner function can be used to minimize network data transfer between map and reduce phases.",
+                options: ["True", "False"],
+                answer: 0
+            }
+
+
+        ]
+
+
+
+
+
+        const bigdataQuestions3 = [
+            {
+                question: "Which component in Hadoop is responsible for reading data in MapReduce?",
+                options: ["InputSplitter", "RecordSplitter", "DataParser", "BlockReader"],
+                answer: 0
+            },
+            {
+                question: "What is the purpose of the RecordReader in MapReduce?",
+                options: ["To split input data into records", "To assign keys to data records", "To read and parse records", "To sort data records"],
+                answer: 2
+            },
+            {
+                question: "Which of the following InputFormats is used for processing binary data?",
+                options: ["TextInputFormat", "NLineInputFormat", "KeyValueInputFormat", "SequenceFileInputFormat"],
+                answer: 3
+            },
+            {
+                question: "The default separator in KeyValueTextInputFormat is:",
+                options: ["Space", "Tab", "Comma", "Colon"],
+                answer: 1
+            },
+            {
+                question: "NLineInputFormat ensures:",
+                options: ["Each line is processed individually", "Mappers receive a fixed number of lines as input", "Each line has a unique key", "Lines are skipped based on byte offsets"],
+                answer: 1
+            },
+            {
+                question: "What is the primary function of a Mapper in a word count example?",
+                options: ["Counts lines", "Counts words", "Sorts words", "Filters text"],
+                answer: 1
+            },
+            {
+                question: "In the Hadoop architecture, serialization is used for:",
+                options: ["Converting data into human-readable form", "Converting structured objects into byte streams", "Storing data locally", "Simplifying data structures"],
+                answer: 1
+            },
+            {
+                question: "Deserialization in Hadoop refers to:",
+                options: ["Converting byte streams back into structured objects", "Compressing data for storage", "Encrypting data for security", "Converting data to binary"],
+                answer: 0
+            },
+            {
+                question: "Why does Hadoop use classes like IntWritable instead of Java’s int?",
+                options: ["Java’s int is faster but heavier", "Writable classes are more efficient for Hadoop", "Java’s int is not compatible with Hadoop", "Writables make Hadoop slower"],
+                answer: 1
+            },
+            {
+                question: "Which of these is a disadvantage of Hadoop?",
+                options: ["Inexpensive hardware", "High latency in data access", "Supports multiple data types", "Efficient for small files"],
+                answer: 1
+            },
+            {
+                question: "A SequenceFile in Hadoop is designed to solve which problem?",
+                options: ["High memory usage for NameNode", "Block allocation issues", "Redundant data storage", "Difficulties in serialization"],
+                answer: 0
+            },
+            {
+                question: "To process a large file in parallel in MapReduce, you should:",
+                options: ["Use the default InputFormat", "Use a single mapper", "Avoid splitting the file", "Use SequenceFileInputFormat"],
+                answer: 3
+            },
+            {
+                question: "Which InputFormat is typically used for reading lines of text as key-value pairs?",
+                options: ["SequenceFileInputFormat", "KeyValueInputFormat", "TextInputFormat", "BinaryInputFormat"],
+                answer: 1
+            },
+            {
+                question: "In a word count program, the Reducer takes as input:",
+                options: ["Key-value pairs of words and counts", "Text-only data", "Binary data", "Map outputs without a key"],
+                answer: 0
+            },
+            {
+                question: "The default block size in HDFS is generally:",
+                options: ["64 KB", "128 MB", "256 KB", "512 MB"],
+                answer: 1
+            },
+            {
+                question: "Which format is best for storing small binary files?",
+                options: ["TextInputFormat", "SequenceFileInputFormat", "KeyValueTextInputFormat", "CSVInputFormat"],
+                answer: 1
+            },
+            {
+                question: "How does SequenceFile help manage memory in NameNode?",
+                options: ["Uses compression for small files", "Combines many small files into one large file", "Converts files into binary format", "Divides large files into smaller blocks"],
+                answer: 1
+            },
+            {
+                question: "When NLineInputFormat is set with N=2, each mapper receives:",
+                options: ["Two bytes of data", "Two lines of data", "Two files of data", "Two splits of data"],
+                answer: 1
+            },
+            {
+                question: "In MapReduce, a 'split' refers to:",
+                options: ["A method to divide processing", "A file divided by block size", "A file segment for mappers", "A line in the file"],
+                answer: 2
+            },
+            {
+                question: "The reduce method’s purpose in a word count program is to:",
+                options: ["Write data to HDFS", "Accumulate and output word counts", "Filter out duplicate words", "Assign keys to words"],
+                answer: 1
+            },
+            {
+                question: "True or False: Hadoop’s TextInputFormat is the default input format.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: KeyValueTextInputFormat is used when input records contain tab-separated key-value pairs.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: SequenceFile is ideal for handling large files with structured records only.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Serialization in Hadoop converts structured data into binary.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: NLineInputFormat allows each mapper to receive a variable number of lines.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: The Mapper and Reducer classes in Hadoop must use the same key and value types.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Hadoop is most efficient for processing a large number of small files.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Writable classes in Hadoop are used to enable lightweight serialization.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Hadoop’s HDFS is designed to have a large number of small blocks.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: In MapReduce, each mapper processes only one line of input by default.",
+                options: ["True", "False"],
+                answer: 1
+            }
+        ];
+
+
+
+        const bigdataQuestions4 = [
+            {
+                question: "What is the role of the InputSplitter class in Hadoop's MapReduce?",
+                options: ["Writing data to HDFS", "Splitting input data for processing", "Reading data in JSON format", "Managing cache memory"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT a component of reading data in MapReduce?",
+                options: ["InputSplitter", "RecordReader", "InputFormat", "DataMapper"],
+                answer: 3
+            },
+            {
+                question: "In MapReduce, what is 'side data'?",
+                options: ["Data stored on the server side", "Auxiliary data needed by a job for processing", "User-generated data", "Temporary data"],
+                answer: 1
+            },
+            {
+                question: "Which technique is used to pass small pieces of metadata in MapReduce?",
+                options: ["Distributed cache", "Job configuration", "HDFS replication", "File splitter"],
+                answer: 1
+            },
+            {
+                question: "Which of these is a method for managing side data in MapReduce?",
+                options: ["Job configuration and InputFormat", "Distributed cache and Job configuration", "HDFS replication and RecordReader", "Data nodes and RecordReader"],
+                answer: 1
+            },
+            {
+                question: "What is the default size of the Hadoop Distributed Cache?",
+                options: ["1 GB", "5 GB", "10 GB", "20 GB"],
+                answer: 2
+            },
+            {
+                question: "The distributed cache mechanism in Hadoop is primarily used for:",
+                options: ["Storing metadata", "Caching large datasets in memory", "Copying files to nodes for use in tasks", "Managing MapReduce jobs"],
+                answer: 2
+            },
+            {
+                question: "Which of the following classes in MapReduce helps with serializing objects?",
+                options: ["DistributedCache", "DefaultStringifier", "JobConf", "InputFormat"],
+                answer: 1
+            },
+            {
+                question: "What file format is typically used in the distributed cache for lookup tables?",
+                options: ["CSV", "JSON", "XML", "No specific format is required"],
+                answer: 3
+            },
+            {
+                question: "What is the purpose of the setup method in a MapReduce Reducer?",
+                options: ["To initialize resources before tasks begin", "To split data into blocks", "To send data to HDFS", "To finalize the MapReduce job"],
+                answer: 0
+            },
+            {
+                question: "Which method in MapReduce helps to manage the lifecycle and dependencies of cached files?",
+                options: ["DefaultStringifier", "Context Configuration", "DistributedCache", "InputFormat"],
+                answer: 2
+            },
+            {
+                question: "Which join operation in MapReduce is performed during the map phase?",
+                options: ["Reduce-side join", "Map-side join", "Shuffle join", "Output join"],
+                answer: 1
+            },
+            {
+                question: "Which join type in MapReduce requires input to be partitioned and sorted by key?",
+                options: ["Map-side join", "Reduce-side join", "Shuffle join", "Input join"],
+                answer: 0
+            },
+            {
+                question: "Which MapReduce feature supports joining large datasets without a predefined structure?",
+                options: ["Distributed cache", "Shuffle", "Reduce-side join", "Map-side join"],
+                answer: 2
+            },
+            {
+                question: "In a Reduce-side join, what is used as the map output key?",
+                options: ["Random number", "Data type", "Join key", "Input format"],
+                answer: 2
+            },
+            {
+                question: "In MapReduce, Distributed Cache files are copied to each data node only once per job.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "A Map-side join is generally more efficient than a Reduce-side join.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "The RecordReader class in MapReduce is responsible for writing data to HDFS.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The Hadoop Distributed Cache is used primarily for storing large, complex datasets permanently.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Reduce-side joins require both datasets to go through the shuffle phase in MapReduce.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Suppose we have two massive datasets, each containing billions of records, and we need to join them using a multi-column join condition. What is the most suitable approach for this scenario?",
+                options: ["Traditional database SQL", "Distributed cache", "MapReduce join with multiple parallel processes", "All of the above"],
+                answer: 2
+            },
+            {
+                question: "If we have a large dataset and a small reference dataset that we need to use to filter the large dataset, what is the most efficient technique to minimize response time and optimize performance?",
+                options: ["Join using traditional database SQL", "Use a distributed cache to store the reference data", "Perform the join using MapReduce with custom filters", "All of the above"],
+                answer: 1
+            },
+            {
+                question: "We have massive historical data that we want to join with real-time data to provide instant analytics. Which of the following methods is best suited to achieve real-time performance?",
+                options: ["Traditional SQL with temporary operations", "Distributed cache with real-time data handling", "MapReduce with periodic updates", "A combination of distributed caching and real-time analytics"],
+                answer: 3
+            },
+            {
+                question: "When we have multiple small datasets in different data sources and we need to perform a join while ensuring high data quality and accuracy, what is the optimal approach for this scenario?",
+                options: ["Traditional database SQL", "Use a distributed cache to perform the join", "Create data streams using MapReduce for small data processing", "All of the above"],
+                answer: 0
+            },
+            {
+                question: "If our data is distributed across multiple data centers around the world and we need to join this data while minimizing latency, which technique is best suited to achieve this goal?",
+                options: ["Traditional SQL on a single server", "Distributed cache across multiple locations", "MapReduce with data distribution management", "A combination of distributed caching and MapReduce operations"],
+                answer: 3
+            }
+        ]
+
+
+
+
+
+
+        const bigdataQuestions5 = [
+            {
+                question: "What is the primary function of HDFS in Hadoop?",
+                options: ["Data analysis", "File storage for large files", "Low-latency data access", "Hardware management"],
+                answer: 1
+            },
+            {
+                question: "Which component is NOT a core part of Hadoop?",
+                options: ["HDFS", "YARN", "MapReduce", "Spark"],
+                answer: 3
+            },
+            {
+                question: "In HDFS, how many default replicas are created for each data block?",
+                options: ["1", "2", "3", "4"],
+                answer: 2
+            },
+            {
+                question: "What type of hardware does HDFS operate on?",
+                options: ["Custom, high-performance hardware", "Commodity hardware", "Cloud-based hardware only", "Proprietary servers"],
+                answer: 1
+            },
+            {
+                question: "Which application is more suitable for low-latency data access instead of HDFS?",
+                options: ["YARN", "Spark", "HBase", "MapReduce"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is NOT suitable for HDFS?",
+                options: ["Large data files", "High throughput data access", "Low-latency applications", "Data replication"],
+                answer: 2
+            },
+            {
+                question: "The NameNode in HDFS is primarily responsible for:",
+                options: ["Storing data blocks", "Managing file system metadata", "Replicating data", "Node failure management"],
+                answer: 1
+            },
+            {
+                question: "Which scheduling policy is NOT used in YARN?",
+                options: ["FIFO Scheduler", "Priority Scheduler", "Capacity Scheduler", "Fair Scheduler"],
+                answer: 1
+            },
+            {
+                question: "Which component in YARN allocates resources to applications?",
+                options: ["Node Manager", "Application Manager", "Resource Manager", "NameNode"],
+                answer: 2
+            },
+            {
+                question: "What is a container in YARN?",
+                options: ["A single node in the cluster", "A physical storage unit for data", "A collection of resources such as RAM, CPU cores, and disks", "A redundant backup of a job"],
+                answer: 2
+            },
+            {
+                question: "What does YARN stand for?",
+                options: ["Yet Another Resource Network", "Yet Another Resource Negotiator", "Your Advanced Resource Network", "Your Algorithmic Resource Negotiator"],
+                answer: 1
+            },
+            {
+                question: "Which YARN component schedules applications according to policy?",
+                options: ["NameNode", "Node Manager", "Application Master", "Scheduler"],
+                answer: 3
+            },
+            {
+                question: "Which of these is NOT a function of the Node Manager in YARN?",
+                options: ["Reporting node health", "Allocating resources for tasks", "Managing the life cycle of containers", "Scheduling tasks in the cluster"],
+                answer: 3
+            },
+            {
+                question: "In the context of YARN, what is an Application Master responsible for?",
+                options: ["Storing file system metadata", "Scheduling jobs in the cluster", "Managing the execution of tasks within containers", "Monitoring cluster health"],
+                answer: 2
+            },
+            {
+                question: "Which YARN scheduling policy divides cluster resources into multiple queues?",
+                options: ["FIFO Scheduler", "Capacity Scheduler", "Fair Scheduler", "Priority Scheduler"],
+                answer: 1
+            },
+            {
+                question: "HDFS is designed to operate on high-cost, custom hardware only.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "YARN separates resource management from the data processing component.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "The NameNode in HDFS holds the actual data blocks.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "MapReduce in Hadoop 1 managed both job scheduling and task progress monitoring.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "In YARN, the equivalent of a TaskTracker from MapReduce 1 is a Node Manager.",
+                options: ["True", "False"],
+                answer: 0
+            }
+        ]
+
+
+
+
+
+
+        
+
+
+
+
+        const dmQuestions1 = [
+            {
+                "question": "Which of the following best defines data mining?",
+                "options": ["Extracting data directly from primary storage", "Discovering patterns in large datasets", "Archiving data systematically", "Organizing data into tables"],
+                "answer": 1
+            },
+            {
+                question: "What is an alternative term commonly used for data mining?",
+                options: ["Data structuring", "Knowledge Discovery in Databases (KDD)", "Systematic Data Archiving (SDA)", "Information Transformation"],
+                answer: 1
+            },
+            {
+                question: "In data mining, which term refers to data that is continuously generated in real-time?",
+                options: ["Static data", "Data streams", "Historical data", "Transactional data"],
+                answer: 1
+            },
+            {
+                question: "Which data mining task focuses on grouping objects based on similarities?",
+                options: ["Classification", "Association analysis", "Clustering", "Prediction"],
+                answer: 2
+            },
+            {
+                question: "What type of data is used to identify clusters in customer segmentation?",
+                options: ["Text data", "Spatiotemporal data", "Transactional data", "Multimedia data"],
+                answer: 2
+            },
+            {
+                question: "Which model is used to predict continuous variables based on other variable values?",
+                options: ["Regression", "Classification", "Clustering", "Association"],
+                answer: 0
+            },
+            {
+                question: "Which of these methods is NOT typically used in classification?",
+                options: ["Decision Trees", "Naïve Bayesian Classification", "Neural Networks", "Apriori Algorithm"],
+                answer: 3
+            },
+            {
+                question: "In association analysis, which metric reflects how often items appear together in transactions?",
+                options: ["Confidence", "Lift", "Association", "Support"],
+                answer: 3
+            },
+            {
+                question: "Which algorithm is commonly used for frequent pattern mining in association analysis?",
+                options: ["Support Vector Machine", "Apriori", "Decision Tree", "K-means"],
+                answer: 1
+            },
+            {
+                question: "What is a primary goal of data preprocessing in data mining?",
+                options: ["To model data for better prediction", "To remove noise and inconsistent data", "To visualize data clusters", "To apply association rules"],
+                answer: 1
+            },
+            {
+                question: "Which of these is an example of a supervised learning technique?",
+                options: ["Clustering", "Classification", "Anomaly Detection", "Data Transformation"],
+                answer: 1
+            },
+            {
+                question: "What do we call a data mining technique that predicts unknown or future values?",
+                options: ["Description", "Prediction", "Association", "Clustering"],
+                answer: 1
+            },
+            {
+                question: "Which of the following best describes 'outlier analysis'?",
+                options: ["Classifying normal data points", "Detecting deviations from expected behavior", "Identifying highly frequent data patterns", "Organizing data into clusters"],
+                answer: 1
+            },
+            {
+                question: "The Knowledge Discovery in Databases (KDD) process involves:",
+                options: ["Creating databases with specific queries", "Using neural networks to extract knowledge", "Identifying non-trivial patterns from large data sets", "Setting up transactional databases for e-commerce"],
+                answer: 2
+            },
+            {
+                question: "What is a major issue in data mining regarding privacy?",
+                options: ["Scalability", "Network efficiency", "Security and ethical concerns in data handling", "Format conversion of multimedia data"],
+                answer: 2
+            },
+            {
+                question: "What kind of data is typically used in social network analysis?",
+                options: ["Transactional data", "Graph data", "Textual data", "Multimedia data"],
+                answer: 1
+            },
+            {
+                question: "In clustering, maximizing intra-cluster similarity means:",
+                options: ["Minimizing distances within clusters", "Enhancing inter-cluster similarity", "Maximizing distances between clusters", "Ignoring similarities within clusters"],
+                answer: 0
+            },
+            {
+                question: "Which task would most likely use decision trees for analysis?",
+                options: ["Identifying outliers", "Transaction grouping", "Classification", "Frequent itemset discovery"],
+                answer: 2
+            },
+            {
+                question: "An example of an anomaly detection application is:",
+                options: ["Market segmentation", "Sales forecasting", "Credit card fraud detection", "Product recommendation"],
+                answer: 2
+            },
+            {
+                question: "In data mining, what is often the first step before any analysis?",
+                options: ["Visualization", "Data transformation", "Data cleaning and preprocessing", "Decision tree generation"],
+                answer: 2
+            },
+            {
+                question: "The efficiency of a data mining algorithm is mainly affected by:",
+                options: ["The amount of data", "User input", "Hardware constraints only", "The chosen database type"],
+                answer: 0
+            },
+            {
+                question: "Which data mining technique is most appropriate for categorizing news articles?",
+                options: ["Clustering", "Regression", "Classification", "Association Analysis"],
+                answer: 2
+            },
+            {
+                question: "What type of learning is clustering considered?",
+                options: ["Supervised learning", "Semi-supervised learning", "Unsupervised learning", "Rule-based learning"],
+                answer: 2
+            },
+            {
+                question: "Which data mining application involves determining correlations among customer buying patterns?",
+                options: ["Classification", "Clustering", "Association analysis", "Regression analysis"],
+                answer: 2
+            },
+            {
+                question: "In association rule mining, what does confidence represent?",
+                options: ["The probability of items appearing individually", "The probability of items appearing together", "The strength of a rule based on pattern occurrence", "The ability to classify data based on rules"],
+                answer: 1
+            },
+            {
+                question: "Data mining is only concerned with structured data from relational databases.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Anomaly detection is essential for identifying rare events in data mining.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Regression techniques are best suited for predicting discrete class labels.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Decision trees can be applied in both classification and regression tasks.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Privacy concerns in data mining only apply to personal data.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Clustering techniques require labeled data to group similar items.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "K-means is an example of a clustering algorithm that requires specifying the number of clusters.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Outliers in data are always errors that need to be removed.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Data preprocessing in data mining is primarily focused on visualizing data trends.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Data mining tasks can be either predictive or descriptive in nature.",
+                options: ["True", "False"],
+                answer: 0
+            }
+
+        ]
+
+
+
+        const dmQuestions2 = [
+            {
+                question: "What is a data object?",
+                options: ["A table column", "An entity in a dataset", "A unique attribute", "A categorical variable"],
+                answer: 1
+            },
+            {
+                question: "Which of these is an example of a nominal attribute?",
+                options: ["Temperature", "Height", "Hair color", "Salary"],
+                answer: 2
+            },
+            {
+                question: "Attributes in data can also be referred to as:",
+                options: ["Relations", "Variables", "Entities", "Rows"],
+                answer: 1
+            },
+            {
+                question: "A nominal attribute with only two states (0 and 1) is called:",
+                options: ["Binary", "Continuous", "Ordinal", "Ratio-scaled"],
+                answer: 0
+            },
+            {
+                question: "Which attribute type has a meaningful order but unknown magnitude between values?",
+                options: ["Nominal", "Ordinal", "Ratio", "Interval"],
+                answer: 1
+            },
+            {
+                question: "What is the main difference between interval and ratio-scaled attributes?",
+                options: ["Interval scales have a true zero point", "Ratio scales have a true zero point", "Interval scales measure categorical data", "Ratio scales cannot be used with binary data"],
+                answer: 1
+            },
+            {
+                question: "Attributes like temperature (Celsius) or calendar dates are examples of:",
+                options: ["Ratio-scaled attributes", "Interval-scaled attributes", "Nominal attributes", "Ordinal attributes"],
+                answer: 1
+            },
+            {
+                question: "Continuous attributes are typically represented as:",
+                options: ["Integer variables", "Binary variables", "Floating-point variables", "Ordinal values"],
+                answer: 2
+            },
+            {
+                question: "Measures like mean, median, and mode are used to describe:",
+                options: ["Dispersion of data", "Central tendency", "Proximity measures", "Data similarity"],
+                answer: 1
+            },
+            {
+                question: "Which statistic describes the spread of data values?",
+                options: ["Mode", "Mean", "Variance", "Median"],
+                answer: 2
+            },
+            {
+                question: "The measure of central tendency that is most affected by extreme values is:",
+                options: ["Median", "Mode", "Mean", "Range"],
+                answer: 2
+            },
+            {
+                question: "What is the Interquartile Range (IQR)?",
+                options: ["The difference between maximum and minimum values", "The range of the middle 50% of data", "The average of the data set", "The difference between the mean and median"],
+                answer: 1
+            },
+            {
+                question: "A data value that lies beyond 1.5 times the IQR from the quartiles is considered:",
+                options: ["A mode", "A boxplot value", "An outlier", "A median"],
+                answer: 2
+            },
+            {
+                question: "Which graphical tool is used to represent a five-number summary of data?",
+                options: ["Histogram", "Scatter plot", "Boxplot", "Line graph"],
+                answer: 2
+            },
+            {
+                question: "In a symmetric distribution, the mean, median, and mode are:",
+                options: ["Different", "Aligned", "Equal to the standard deviation", "Skewed to the left"],
+                answer: 1
+            },
+            {
+                question: "A measure that describes how different two data objects are is called:",
+                options: ["Similarity", "Dissimilarity", "Dispersion", "Central tendency"],
+                answer: 1
+            },
+            {
+                question: "Which is not a common measure of dissimilarity?",
+                options: ["Euclidean distance", "Manhattan distance", "Mode distance", "Jaccard coefficient"],
+                answer: 2
+            },
+            {
+                question: "The Manhattan distance is also known as:",
+                options: ["Euclidean distance", "Minkowski distance", "City block distance", "Ordinal distance"],
+                answer: 2
+            },
+            {
+                question: "What is the purpose of normalizing data before calculating distance?",
+                options: ["To reduce the data to binary form", "To assign higher weights to larger values", "To place data within a standard range", "To increase the data spread"],
+                answer: 2
+            },
+            {
+                question: "Cosine similarity is commonly used for comparing:",
+                options: ["Categorical data", "Nominal attributes", "Numeric matrices", "Document term-frequency vectors"],
+                answer: 3
+            },
+            {
+                question: "In proximity measures for binary attributes, the Jaccard coefficient is used for:",
+                options: ["Symmetric binary variables", "Ordinal data only", "Asymmetric binary variables", "Data normalization"],
+                answer: 2
+            },
+            {
+                question: "In a dataset with mixed attribute types, dissimilarity is often calculated by:",
+                options: ["Excluding non-numeric data", "Using the sum of all similarity values", "Applying a weighted formula", "Calculating the range of each variable"],
+                answer: 2
+            },
+            {
+                question: "The Euclidean distance between two points is equivalent to:",
+                options: ["The sum of their absolute differences", "The cosine of the angle between them", "The straight-line distance between them", "The difference in their ranks"],
+                answer: 2
+            },
+            {
+                question: "For ordinal data, what transformation is applied before measuring distance?",
+                options: ["Mapping to ranks", "Binarization", "Mean calculation", "Subtracting median"],
+                answer: 0
+            },
+            {
+                question: "In cosine similarity, a cosine value close to 1 indicates that the two vectors:",
+                options: ["Have no similarity", "Are closely matched", "Are perpendicular", "Have negative correlation"],
+                answer: 1
+            },
+            {
+                question: "True or False: In data mining, data objects are also known as tuples or instances.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: A binary attribute always represents an ordinal scale.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: An asymmetric binary attribute gives equal importance to both states.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: In interval-scaled attributes, there is no true zero point.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Continuous attributes can only have a finite number of values.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: The median is generally unaffected by extreme values.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Boxplots are graphical tools that display mean, range, and mode.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: A dissimilarity matrix records the distance between pairs of objects.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Euclidean distance is best used with binary attributes.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Cosine similarity measures the angle between two vectors to determine similarity.",
+                options: ["True", "False"],
+                answer: 0
+            }
+        ];
+
+
+
+
+
+        const dmQuestions3 = [
+            {
+                question: "What is a common issue with real-world databases?",
+                options: [
+                    "They are always complete",
+                    "They have perfect accuracy",
+                    "They often contain noisy, missing, or inconsistent data",
+                    "They are generally small in size"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which of the following is NOT a measure of data quality?",
+                options: ["Completeness", "Consistency", "Precision", "Believability"],
+                answer: 2
+            },
+            {
+                question: "Data cleaning in data preprocessing includes:",
+                options: [
+                    "Removing all data",
+                    "Adding duplicate data",
+                    "Identifying and removing outliers",
+                    "Ignoring all missing values"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which type of missing data occurs randomly without any pattern?",
+                options: [
+                    "Missing Completely at Random (MCAR)",
+                    "Missing at Random (MAR)",
+                    "Missing Not at Random (MNAR)",
+                    "None of the above"
+                ],
+                answer: 0
+            },
+            {
+                question: "What is one technique to handle missing data?",
+                options: [
+                    "Always ignore the data set",
+                    "Fill with a global constant or mean",
+                    "Randomly delete values",
+                    "Duplicate missing values"
+                ],
+                answer: 1
+            },
+            {
+                question: "In binning methods, 'equal-width binning' refers to:",
+                options: [
+                    "Dividing the data range into bins of equal element count",
+                    "Assigning each bin a different width",
+                    "Dividing the data range into intervals of equal size",
+                    "No division of data"
+                ],
+                answer: 2
+            },
+            {
+                question: "How does the clustering method help handle noisy data?",
+                options: [
+                    "By adding more noise",
+                    "By grouping data and removing outliers",
+                    "By transforming data into a single value",
+                    "By duplicating noisy values"
+                ],
+                answer: 1
+            },
+            {
+                question: "Data integration often faces the 'entity identification' problem, which involves:",
+                options: [
+                    "Removing all duplicate data",
+                    "Identifying different names for the same entity",
+                    "Ensuring every entity is unique",
+                    "Converting data into binary format"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of the following is an example of derived data?",
+                options: ["Customer ID", "Annual revenue", "Product name", "Birthdate"],
+                answer: 1
+            },
+            {
+                question: "A 'correlation coefficient' measures:",
+                options: [
+                    "The range of data",
+                    "The relationship strength between two variables",
+                    "The sum of all values",
+                    "Data accuracy"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which imputation method is commonly used for categorical data?",
+                options: ["Mean", "Mode", "Median", "Regression"],
+                answer: 1
+            },
+            {
+                question: "What does the term 'bin boundaries' refer to in binning?",
+                options: [
+                    "Binning by mean values",
+                    "Smoothing data by using closest boundary values",
+                    "Creating bins with random values",
+                    "Assigning bins based on central tendency"
+                ],
+                answer: 1
+            },
+            {
+                question: "Data scrubbing in data cleaning refers to:",
+                options: [
+                    "Detecting errors based on domain knowledge",
+                    "Ignoring all noisy data",
+                    "Grouping data with errors",
+                    "Adding duplicate records"
+                ],
+                answer: 0
+            },
+            {
+                question: "Which missing data type can be predicted based on other variables in the data set?",
+                options: ["MCAR", "MAR", "MNAR", "Imputed"],
+                answer: 1
+            },
+            {
+                question: "In equal-depth binning, each bin:",
+                options: [
+                    "Contains the same number of samples",
+                    "Has equal-sized intervals",
+                    "Has random values",
+                    "Contains only outliers"
+                ],
+                answer: 0
+            },
+            {
+                question: "The Chi-Square test is useful for:",
+                options: [
+                    "Analyzing correlation between numeric data only",
+                    "Testing relationships between nominal data",
+                    "Measuring missing data",
+                    "Data discretization"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is the purpose of correlation analysis in data preprocessing?",
+                options: [
+                    "To verify data redundancy",
+                    "To delete duplicated data",
+                    "To increase data variance",
+                    "To ignore irrelevant data"
+                ],
+                answer: 0
+            },
+            {
+                question: "The process of reducing the number of attributes in a data set is called:",
+                options: [
+                    "Data transformation",
+                    "Data compression",
+                    "Dimensionality reduction",
+                    "Data discretization"
+                ],
+                answer: 2
+            },
+            {
+                question: "Which data transformation technique involves scaling data to a smaller range?",
+                options: ["Imputation", "Normalization", "Binning", "Regression"],
+                answer: 1
+            },
+            {
+                question: "Consistency in data quality refers to:",
+                options: [
+                    "All data having the same accuracy",
+                    "Having uniform data across records",
+                    "Data containing outliers",
+                    "Missing data across multiple sources"
+                ],
+                answer: 1
+            },
+            {
+                question: "True or False: Data cleaning is an essential step to ensure data accuracy and consistency.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Missing Completely at Random (MCAR) data can be ignored without biasing the analysis.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: A correlation coefficient of 0 indicates no relationship between two variables.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Binning is only applicable to categorical data for smoothing.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Data integration involves combining data from multiple sources into a coherent data store.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Normalization is a method to handle missing values.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Data auditing is a process used to identify rules and relationships within data to detect violators.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Data discretization is the process of converting continuous data into categorical data.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Outliers are often removed to reduce noise in data preprocessing.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: In data reduction, data compression and dimensionality reduction are common techniques.",
+                options: ["True", "False"],
+                answer: 0
+            }
+        ];
+
+
+
+        
+
+
+
+
+        const db2Questions1 = [
+            {
+                question: "Which type of storage is typically the fastest in a storage hierarchy?",
+                options: ["Magnetic disks", "Primary storage", "Secondary storage", "Tertiary storage"],
+                answer: 1
+            },
+            {
+                question: "Which type of storage is volatile?",
+                options: ["Optical disk", "Flash memory", "Cache memory", "Magnetic tape"],
+                answer: 2
+            },
+            {
+                question: "What is the primary reason for using secondary storage for databases?",
+                options: ["Low cost", "Faster access time", "Large storage capacity", "Persistent storage requirements"],
+                answer: 3
+            },
+            {
+                question: "Which device must data be brought to before CPU processing?",
+                options: ["Magnetic tape", "Main memory", "Optical disk", "Hard disk"],
+                answer: 1
+            },
+            {
+                question: "Which of the following terms describes a circular track on a disk?",
+                options: ["Sector", "Cylinder", "Platter", "Track"],
+                answer: 3
+            },
+            {
+                question: "Which component is responsible for reading and writing on disk platters?",
+                options: ["Disk controller", "Read-write head", "Disk arm", "Block manager"],
+                answer: 1
+            },
+            {
+                question: "In a single-sided disk with one read-write head, data is:",
+                options: ["Stored on both sides of the platter", "Accessible only on a single side of the disk", "Divided into partitions", "Divided into sectors"],
+                answer: 1
+            },
+            {
+                question: "Which concept allows multiple concurrent processes to access a buffer?",
+                options: ["Single buffering", "Double buffering", "Buffering of blocks", "Interleaved buffering"],
+                answer: 3
+            },
+            {
+                question: "Buffer management uses which strategy to track page access?",
+                options: ["Pin-count", "Dirty bit", "Time-stamp", "Track marker"],
+                answer: 0
+            },
+            {
+                question: "What does 'cylinder' in disk terminology refer to?",
+                options: ["Single disk platter", "Disk with multiple tracks", "Group of tracks on different platters with the same radius", "Circular magnetic storage unit"],
+                answer: 2
+            },
+            {
+                question: "Which method of buffering is used to minimize rotational delay and seek time?",
+                options: ["Single buffering", "Cylinder caching", "Double buffering", "Sector linking"],
+                answer: 1
+            },
+            {
+                question: "Buffer replacement policies include all of the following except:",
+                options: ["FIFO", "LIFO", "LRU", "Clock policy"],
+                answer: 1
+            },
+            {
+                question: "When a page is unpinned, its pin-count becomes:",
+                options: ["1", "Negative", "Zero", "None of the above"],
+                answer: 2
+            },
+            {
+                question: "Which buffer replacement strategy tracks the least recently used page?",
+                options: ["FIFO", "LRU", "Clock", "Priority"],
+                answer: 1
+            },
+            {
+                question: "What is the usual unit for data transfer between main memory and disk?",
+                options: ["Sector", "Track", "Block", "Cylinder"],
+                answer: 2
+            },
+            {
+                question: "Which buffer replacement strategy uses a rotating hand to mark buffers?",
+                options: ["FIFO", "Clock policy", "LRU", "LIFO"],
+                answer: 1
+            },
+            {
+                question: "In the clock replacement policy, when the buffer’s flag is set to zero:",
+                options: ["The buffer is replaced immediately", "It is prioritized for replacement", "The flag resets all other buffers", "The buffer is locked for access"],
+                answer: 1
+            },
+            {
+                question: "Disk formatting organizes disk storage into:",
+                options: ["Equal-size sectors", "Disk packs", "Disk blocks", "Disk heads"],
+                answer: 0
+            },
+            {
+                question: "In which scenario is buffering most effective?",
+                options: ["When one process runs", "With parallel processes", "With single-threaded tasks", "On tertiary storage"],
+                answer: 1
+            },
+            {
+                question: "In buffer management, which condition necessitates a write-back operation?",
+                options: ["When dirty bit is off", "When page pin-count is zero", "When dirty bit is on", "When data is read-only"],
+                answer: 2
+            },
+            {
+                question: "If a block’s dirty bit is 1, it means the block:",
+                options: ["Is frequently accessed", "Has been modified", "Is ready for replacement", "Is not used often"],
+                answer: 1
+            },
+            {
+                question: "What is required for continuous data transfer between disk blocks?",
+                options: ["Sequential buffering", "Double buffering", "Cylinder caching", "Multi-disk reading"],
+                answer: 0
+            },
+            {
+                question: "The hardware address of a block does NOT contain:",
+                options: ["Cylinder number", "Track number", "Block number", "Sector frequency"],
+                answer: 3
+            },
+            {
+                question: "Which is not an advantage of secondary storage?",
+                options: ["High-speed access", "Large capacity", "Cost-effectiveness", "Durability"],
+                answer: 0
+            },
+            {
+                question: "In which buffer replacement policy is the oldest page replaced first?",
+                options: ["FIFO", "LRU", "Clock", "Time-priority"],
+                answer: 0
+            },
+            {
+                question: "The main purpose of secondary storage is to provide a persistent, long-term storage option.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Magnetic disks are considered non-volatile storage.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Data in main memory is slower to access than data on magnetic disks.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "Buffering can speed up the read and write processes on disk.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "A dirty bit of 0 means a block has not been modified.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Disk blocks are typically organized into cylinders for efficient data retrieval.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Double buffering eliminates rotational delay for all data transfers.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The FIFO policy replaces the page with the most recent access time.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "The pin-count in buffer management indicates the number of users currently accessing the page.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "In the clock buffer replacement policy, buffers with a flag of 1 are replaced first.",
+                options: ["True", "False"],
+                answer: 1
+            }
+
+        ];
+
+
+
+
+
+
+        const db2Questions2 = [
+            {
+                question: "What is the purpose of a file header in a database?",
+                options: ["Storing the data records", "Containing metadata about the file", "Indexing records", "Storing images"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT a common data type for records?",
+                options: ["Numeric", "String", "BLOBs", "Schema"],
+                answer: 3
+            },
+            {
+                question: "The blocking factor (bfr) represents:",
+                options: ["Total number of records in a file", "Average number of records per block", "Number of sectors per track", "Total size of each block"],
+                answer: 1
+            },
+            {
+                question: "In an unspanned record organization:",
+                options: ["Records cannot cross block boundaries", "Records can cross block boundaries", "All records are variable length", "Files are stored sequentially"],
+                answer: 0
+            },
+            {
+                question: "Which allocation type is fastest for reading an entire file?",
+                options: ["Linked", "Indexed", "Contiguous", "Random"],
+                answer: 2
+            },
+            {
+                question: "A spanned record organization is required when:",
+                options: ["Record size is smaller than block size", "Record size exceeds block size", "All records are of fixed length", "Disk blocks are indexed"],
+                answer: 1
+            },
+            {
+                question: "The term 'heap file' refers to:",
+                options: ["Unordered file organization", "Indexed file organization", "Sequential file organization", "BLOB file organization"],
+                answer: 0
+            },
+            {
+                question: "What is the advantage of indexed allocation?",
+                options: ["Simplicity", "High speed for sequential access", "Allows expansion without reorganization", "Eliminates the need for data pointers"],
+                answer: 2
+            },
+            {
+                question: "Which data structure is essential for sequential file organization?",
+                options: ["Stack", "Queue", "Linked List", "Array"],
+                answer: 2
+            },
+            {
+                question: "What operation is required to delete a record in a heap file?",
+                options: ["Sorting the records", "Marking it as deleted", "Removing the record physically", "Moving all records up"],
+                answer: 1
+            },
+            {
+                question: "A linear search is necessary for which type of file?",
+                options: ["Heap files", "Ordered files", "Hashed files", "Indexed files"],
+                answer: 0
+            },
+            {
+                question: "Which of the following would improve file insertion efficiency?",
+                options: ["Sorting the file continuously", "Using heap files", "Using overflow files", "Using a backup file"],
+                answer: 1
+            },
+            {
+                question: "The main disadvantage of linked allocation is:",
+                options: ["It uses more disk space", "It slows down file expansion", "It makes file reading slower", "It requires indexing"],
+                answer: 2
+            },
+            {
+                question: "What does a 'find' operation in a file system do?",
+                options: ["Deletes a record", "Points to a record in memory", "Sorts records", "Reads multiple records at once"],
+                answer: 1
+            },
+            {
+                question: "The correct blocking factor (bfr) for unspanned records with a block size of 512 bytes and record size of 101 bytes is:",
+                options: ["5", "6", "7", "8"],
+                answer: 0
+            },
+            {
+                question: "Why is binary search more efficient in ordered files?",
+                options: ["Records are unsorted", "Records are sorted", "It uses a hashing algorithm", "It reads all blocks at once"],
+                answer: 1
+            },
+            {
+                question: "To perform a scan operation, the system:",
+                options: ["Reads the file from the beginning", "Reads specific record data", "Inserts a new record", "Modifies a record"],
+                answer: 0
+            },
+            {
+                question: "Which of the following is used to store a variable number of fields in a record?",
+                options: ["Fixed-length fields", "Unspanned blocks", "Spanned blocks", "Blocking factor"],
+                answer: 2
+            },
+            {
+                question: "What happens during the 'close' operation on a file?",
+                options: ["The file pointer is reset", "Buffers are released", "Records are reorganized", "The file is saved"],
+                answer: 1
+            },
+            {
+                question: "Which file organization is ideal for records that need to be accessed in order?",
+                options: ["Heap file", "Ordered file", "Hashed file", "Sequential file"],
+                answer: 3
+            },
+            {
+                question: "True or False: Spanned records are used when records are larger than a single block.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: A heap file organization is also known as a sequential file.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Linked allocation makes file reading faster but makes it hard to expand files.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Contiguous allocation involves pointers to connect different blocks of a file.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: A blocking factor helps determine the average number of records per block.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: In unspanned records, a record can be split across multiple blocks.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Indexed allocation is usually slower for sequential file reading.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Inserting a record into an ordered file is generally time-consuming.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Record deletion in a heap file typically requires marking the record instead of moving all records.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Binary search can be used with unordered files for efficient searching.",
+                options: ["True", "False"],
+                answer: 1
+            }
+        ];
+
+
+
+        const db2Questions3 = [
+
+
+
+            {
+                question: "What is the primary purpose of using hash functions in a database?",
+                options: ["To compress data", "To organize records into specific memory locations", "To encrypt data", "To increase storage capacity"],
+                answer: 1
+            },
+            {
+                question: "In hashing, what condition is ideal for minimizing collisions?",
+                options: ["Using a large number of hash functions", "Distributing records uniformly across the address space", "Grouping similar records in the same location", "Reducing the number of records in each bucket"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is correct about collision handling with open addressing?",
+                options: ["Uses a linked list", "Searches sequentially for an empty slot", "Adds the record at the start of the table", "Deletes all colliding records"],
+                answer: 1
+            },
+            {
+                question: "In chaining, how are collisions handled?",
+                options: ["By creating a pointer to additional storage locations", "By dividing records into smaller parts", "By duplicating the record in another location", "By expanding memory size"],
+                answer: 0
+            },
+            {
+                question: "What is the benefit of using the function h(K) = K mod M in hashing?",
+                options: ["Speeds up computations", "Assigns unique addresses to each value", "Transforms values into a limited range", "Groups records in a single location"],
+                answer: 2
+            },
+            {
+                question: "What is an advantage of using dynamic hashing?",
+                options: ["Reduces memory usage", "Improves data access speed", "Reduces collisions as the file expands", "Supports multiple simultaneous users"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is true about internal hashing?",
+                options: ["It occurs in main memory", "Uses disks to store records", "Requires all collisions to direct to the same location", "Utilizes dynamic hashing"],
+                answer: 0
+            },
+            {
+                question: "When a new record causes a bucket to overflow, what is the appropriate collision resolution technique?",
+                options: ["Delete the oldest record", "Use open addressing", "Apply a secondary hash function", "Compress all records in the bucket"],
+                answer: 1
+            },
+            {
+                question: "Which statement best describes extendible hashing?",
+                options: ["It uses a fixed hash table size", "It creates overflow buckets for each collision", "It dynamically expands the directory when needed", "It uses two hash functions for each record"],
+                answer: 2
+            },
+            {
+                question: "What is a common issue with linear probing in open addressing?",
+                options: ["Increased memory cost", "High collision frequency", "Complexity in handling duplicates", "Unavailability of empty slots"],
+                answer: 1
+            },
+            {
+                question: "In chaining, where are overflow records stored?",
+                options: ["In a linked list attached to the original bucket", "In main memory only", "In a compressed format within the bucket", "Directly after the previous record"],
+                answer: 0
+            },
+            {
+                question: "What is the primary goal of a good hash function?",
+                options: ["To group similar records together", "To uniformly distribute records across address space", "To create long chains", "To double the available memory"],
+                answer: 1
+            },
+            {
+                question: "In extendible hashing, what does the 'global depth' represent?",
+                options: ["The number of records in a bucket", "The number of bits used for indexing", "The total memory available", "The count of buckets used"],
+                answer: 1
+            },
+            {
+                question: "Which technique allows hash tables to handle more records without restructuring the entire table?",
+                options: ["Linear probing", "Open addressing", "Extendible hashing", "Fixed-depth hashing"],
+                answer: 2
+            },
+            {
+                question: "In dynamic hashing, how is the hash table modified when more records are added?",
+                options: ["The directory size increases", "Existing records are deleted", "Buckets are split or merged", "A fixed limit is imposed on new entries"],
+                answer: 2
+            },
+            {
+                question: "What does a 'find' operation in a file system do?",
+                options: ["Deletes a record", "Points to a record in memory", "Sorts records", "Reads multiple records at once"],
+                answer: 1
+            },
+            {
+                question: "Why is binary search more efficient in ordered files?",
+                options: ["Records are unsorted", "Records are sorted", "It uses a hashing algorithm", "It reads all blocks at once"],
+                answer: 1
+            },
+            {
+                question: "To perform a scan operation, the system:",
+                options: ["Reads the file from the beginning", "Reads specific record data", "Inserts a new record", "Modifies a record"],
+                answer: 0
+            },
+            {
+                question: "Why can collisions occur in hashing?",
+                options: ["Because hash functions are designed to be unique", "Because address space is smaller than hash field space", "Due to high capacity of hash tables", "Hashing does not allow duplicate keys"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT a collision resolution technique?",
+                options: ["Open addressing", "Chaining", "Linear probing", "Mirroring"],
+                answer: 3
+            },
+            {
+                question: "What is chaining in hashing?",
+                options: ["It links multiple hash tables", "It creates overflow positions for colliding records", "It deletes repeated records", "It compresses keys into buckets"],
+                answer: 1
+            },
+            {
+                question: "Which statement is true about multiple hashing?",
+                options: ["Uses only one hash function", "Replaces open addressing", "Uses a secondary hash function after a collision", "Creates multiple copies of a record"],
+                answer: 2
+            },
+            {
+                question: "What is a bucket in external hashing?",
+                options: ["A group of hashed records", "A reserved memory space", "An independent record", "A series of empty slots"],
+                answer: 0
+            },
+            {
+                question: "In a bucket, what happens when it overflows?",
+                options: ["New data is discarded", "An additional linked list is created", "Data in the bucket is compressed", "Data is moved to main memory"],
+                answer: 1
+            },
+            {
+                question: "Static hashing is characterized by:",
+                options: ["Constantly changing number of buckets", "Fixed number of buckets", "Flexible address space", "Dynamic directory"],
+                answer: 1
+            },
+            {
+                question: "Which of these best describes open addressing?",
+                options: ["Uses separate slots for every collision", "Uses chaining for all records", "Searches for an empty position sequentially", "Hashes all records to the same position"],
+                answer: 2
+            },
+            {
+                question: "A common challenge in open addressing is:",
+                options: ["Lack of memory", "Inefficient use of buckets", "Deletion issues", "Too many chains"],
+                answer: 2
+            },
+            {
+                question: "What does the term 'local depth' in extendible hashing represent?",
+                options: ["Number of records in a bucket", "Bits used to index directory entries", "Overflow blocks needed", "Level of data compression"],
+                answer: 1
+            },
+            {
+                question: "When does the directory in extendible hashing double in size?",
+                options: ["After a bucket overflow", "During a memory read", "When memory is full", "With the addition of a new record"],
+                answer: 0
+            },
+            {
+                question: "In extendible hashing, reducing the directory size by half is called:",
+                options: ["Merging", "Halving", "Compaction", "Chaining"],
+                answer: 1
+            },
+            {
+                question: "What typically defines a 'key' in hashing?",
+                options: ["A record identifier", "Memory space", "A type of collision", "A bucket pointer"],
+                answer: 0
+            },
+            {
+                question: "A hash table's load factor is generally considered ideal between:",
+                options: ["0.3 and 0.5", "0.5 and 0.7", "0.7 and 0.9", "0.9 and 1.0"],
+                answer: 2
+            },
+            {
+                question: "Which hashing type dynamically expands with data?",
+                options: ["Extendible hashing", "Static hashing", "Linear hashing", "RAID hashing"],
+                answer: 0
+            },
+            {
+                question: "In linear probing, which issue is most common?",
+                options: ["Slow data access", "High collision frequency", "High memory cost", "Frequent expansion"],
+                answer: 1
+            },
+            {
+                question: "The difference between a primary and secondary hash function is:",
+                options: ["Purpose of addressing storage", "Speed of calculation", "Response to collisions", "Storage cost"],
+                answer: 2
+            }
+        ]
+
+
+
+
+
+        const db2Questions4 = [
+            {
+                question: "What is the primary storage in a computer system?",
+                options: ["Magnetic disks", "CPU main memory", "Flash memory", "Removable media"],
+                answer: 1
+            },
+            {
+                question: "Which type of storage is characterized as non-volatile?",
+                options: ["Cache memory", "Primary storage", "Secondary storage", "Tertiary storage"],
+                answer: 2
+            },
+            {
+                question: "What is the purpose of file organization in databases?",
+                options: ["To determine how records are accessed", "To increase storage capacity", "To encrypt data", "To improve network speed"],
+                answer: 0
+            },
+            {
+                question: "What does DBMS stand for?",
+                options: ["Database Management System", "Data Backup Management System", "Digital Backup Management Software", "Data Base Management Software"],
+                answer: 0
+            },
+            {
+                question: "Which of the following is NOT a type of secondary storage?",
+                options: ["Hard disk drive", "Flash memory", "Cache", "Magnetic tape"],
+                answer: 2
+            },
+            {
+                question: "What is a sector on a disk?",
+                options: ["A track divided into smaller blocks", "A collection of bytes", "The entire disk surface", "A fixed-size unit of data"],
+                answer: 3
+            },
+            {
+                question: "Which characteristic defines a block in the context of disk storage?",
+                options: ["It is a hardware-level abstraction", "It is managed by the CPU", "It consists of multiple sectors", "Both A and C"],
+                answer: 3
+            },
+            {
+                question: "What is the purpose of buffering in data management?",
+                options: ["To increase the size of data", "To speed up data transfer processes", "To reduce the number of records", "To encrypt data"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a buffer replacement strategy?",
+                options: ["First-in-first-out (FIFO)", "Last-in-first-out (LIFO)", "Random access", "Sequential access"],
+                answer: 0
+            },
+            {
+                question: "What does the term 'dirty bit' refer to in buffer management?",
+                options: ["A flag indicating that a page has been modified", "A method of data encryption", "A type of storage device", "A measure of access time"],
+                answer: 0
+            },
+            {
+                question: "What is the main reason most databases are stored on secondary storage?",
+                options: ["They can be easily accessed", "They are too large for main memory", "They need constant updates", "They are volatile"],
+                answer: 1
+            },
+            {
+                question: "How is data organized on a magnetic disk?",
+                options: ["In random order", "In concentric circles called tracks", "In a linear fashion", "In a three-dimensional array"],
+                answer: 1
+            },
+            {
+                question: "What is the main function of the read/write head in a disk drive?",
+                options: ["To format the disk", "To read and write data magnetically", "To manage the disk's physical layout", "To encrypt data"],
+                answer: 1
+            },
+            {
+                question: "Which of the following describes a cylinder in disk storage?",
+                options: ["A single track on one platter", "All tracks of the same diameter on all platters", "A collection of sectors", "A buffer in memory"],
+                answer: 1
+            },
+            {
+                question: "What is double buffering?",
+                options: ["Using two disks for redundancy", "Using two buffers to read and write data simultaneously", "A method for compressing data", "A technique for encrypting data"],
+                answer: 1
+            },
+            {
+                question: "What happens when a block is replaced in a buffer?",
+                options: ["It is deleted permanently", "It is written back to disk if modified", "It is stored in a cache", "It is encrypted"],
+                answer: 1
+            },
+            {
+                question: "What does the term 'seek time' refer to?",
+                options: ["The time taken for the CPU to process data", "The time taken to locate the correct track on a disk", "The time taken to read data from memory", "The time taken to transfer data over a network"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a characteristic of a hard disk drive?",
+                options: ["It is volatile", "It has low storage capacity", "It provides slow access to data", "It is primarily used for temporary data"],
+                answer: 2
+            },
+            {
+                question: "What is the main advantage of using cache memory?",
+                options: ["It is non-volatile", "It increases data transfer speeds", "It holds permanent data", "It is cheaper than secondary storage"],
+                answer: 1
+            },
+            {
+                question: "In disk storage, what does formatting do?",
+                options: ["Increases the storage capacity", "Divides tracks into equal-sized disk blocks", "Encrypts the data", "Compresses the data"],
+                answer: 1
+            },
+            {
+                question: "What is a common block size range for disk storage?",
+                options: ["128 bytes to 256 bytes", "512 bytes to 4096 bytes", "1024 bytes to 2048 bytes", "1 KB to 2 KB"],
+                answer: 1
+            },
+            {
+                question: "Which type of storage is typically used for long-term data retention?",
+                options: ["Cache memory", "Primary storage", "Secondary storage", "Tertiary storage"],
+                answer: 2
+            },
+            {
+                question: "What is the purpose of the buffer manager in a DBMS?",
+                options: ["To manage disk space", "To handle requests for data and manage buffers", "To encrypt data", "To increase processing speed"],
+                answer: 1
+            },
+            {
+                question: "What is the main function of a disk I/O controller?",
+                options: ["To manage CPU operations", "To control the transfer of data between memory and disk", "To encrypt data", "To format disks"],
+                answer: 1
+            },
+            {
+                question: "Which of the following strategies is efficient for buffer management?",
+                options: ["Random replacement", "Least recently used (LRU)", "Last-in-first-out (LIFO)", "Sequential access"],
+                answer: 1
+            },
+            {
+                question: "What does a 'pin-count' indicate in buffer management?",
+                options: ["The number of times a page has been accessed", "The size of the buffer", "The amount of data in a block", "The speed of the disk"],
+                answer: 0
+            },
+            {
+                question: "What is the result of a 'write-back' operation in buffer management?",
+                options: ["Data is deleted from the buffer", "Data is written from the buffer to the disk", "Data is compressed", "Data is encrypted"],
+                answer: 1
+            },
+            {
+                question: "What is the main disadvantage of using LRU as a buffer replacement strategy?",
+                options: ["It requires less memory", "It is simple to implement", "It requires maintaining a table of access times", "It has a high access speed"],
+                answer: 2
+            },
+            {
+                question: "What is the primary reason for using secondary storage in databases?",
+                options: ["It is faster than primary storage", "It is volatile and temporary", "It is less expensive and can store larger amounts of data", "It has a higher access speed"],
+                answer: 2
+            },
+            {
+                question: "How does double buffering improve data transfer?",
+                options: ["By reducing the size of data", "By allowing simultaneous reading and writing", "By compressing data during transfer", "By encrypting data"],
+                answer: 1
+            }
+        ]
+
+
+
+        const db2Questions5 = [
+            {
+                question: "What is a record?",
+                options: ["A single data value", "A collection of related data values", "A data type", "A file descriptor"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT a data type mentioned in the document?",
+                options: ["Numeric", "String", "Object", "Boolean"],
+                answer: 2
+            },
+            {
+                question: "What does BLOB stand for?",
+                options: ["Binary Large Object", "Basic Large Object", "Binary Local Object", "Basic Local Object"],
+                answer: 0
+            },
+            {
+                question: "What are variable-length records?",
+                options: ["Records with fixed sizes", "Records that can vary in size based on their fields", "Records that cannot be modified", "Records only containing numbers"],
+                answer: 1
+            },
+            {
+                question: "What is the blocking factor (bfr)?",
+                options: ["Number of records in a file", "Average number of file records stored in a disk block", "Size of a record", "Size of a block"],
+                answer: 1
+            },
+            {
+                question: "In which situation is record spanning mandatory?",
+                options: ["When records are of fixed length", "When the record size is less than the block size", "When record size is greater than block size", "When records are unstructured"],
+                answer: 2
+            },
+            {
+                question: "What is the purpose of a file header?",
+                options: ["To store data records", "To describe the file and its contents", "To store user permissions", "To define the file format"],
+                answer: 1
+            },
+            {
+                question: "Which allocation method allows file blocks to be allocated to consecutive disk blocks?",
+                options: ["Linked allocation", "Indexed allocation", "Contiguous allocation", "Random allocation"],
+                answer: 2
+            },
+            {
+                question: "What is a disadvantage of linked allocation?",
+                options: ["Files cannot be expanded", "Reading the whole file is slow", "Requires contiguous disk space", "Difficult to implement"],
+                answer: 1
+            },
+            {
+                question: "Which type of file organization allows for efficient searching but is expensive for insertion?",
+                options: ["Unordered file organization", "Ordered file organization", "Hashed file organization", "Sequential file organization"],
+                answer: 1
+            },
+            {
+                question: "What is the average access time for a file of b blocks under basic file organizations dependent on?",
+                options: ["The number of records", "The size of the blocks", "The type of file organization", "The block transfer rate"],
+                answer: 2
+            },
+            {
+                question: "What is the correct blocking factor for fixed-length records if the block size is 512 bytes and record size is 101 bytes?",
+                options: ["6", "5", "4", "7"],
+                answer: 1
+            },
+            {
+                question: "What happens during a linear search for a record?",
+                options: ["All records are searched simultaneously", "Records are sorted first", "Each file block is copied into a buffer and searched", "Only the first record is checked"],
+                answer: 2
+            },
+            {
+                question: "What does the term 'heap file' refer to?",
+                options: ["Files with sorted records", "Files with unordered records", "Files that use indexed allocation", "Files that are read-only"],
+                answer: 1
+            },
+            {
+                question: "Which operation is used to insert a new record in a file?",
+                options: ["Find", "Read", "Insert", "Delete"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is a characteristic of ordered files?",
+                options: ["Records are stored in random order", "Insertion is efficient", "Records are kept physically sorted", "They require no sorting for reading"],
+                answer: 2
+            },
+            {
+                question: "What is the capacity of a track if the sector size is 512 bytes and there are 16947 sectors per track?",
+                options: ["8 MB", "100 MB", "512 KB", "1 GB"],
+                answer: 0
+            },
+            {
+                question: "What does the term 'unspanned records' mean?",
+                options: ["Records that can span multiple blocks", "Records that cannot cross block boundaries", "Records that are stored in a heap", "Records that are indexed"],
+                answer: 1
+            },
+            {
+                question: "What is the effect of using deletion markers in ordered files?",
+                options: ["They improve access times", "They reduce the need for periodic reorganization", "They simplify record insertion", "They eliminate the need for a file header"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT a technique for allocating file blocks on disk?",
+                options: ["Contiguous allocation", "Linked allocation", "Indexed allocation", "Random allocation"],
+                answer: 3
+            },
+            {
+                question: "What is the primary advantage of indexed allocation?",
+                options: ["Fast insertion", "Efficient searching", "Requires less disk space", "Simplifies file management"],
+                answer: 1
+            },
+            {
+                question: "Which operation completes file access by releasing buffers?",
+                options: ["Open", "Close", "Read", "Find"],
+                answer: 1
+            },
+            {
+                question: "What is the disadvantage of using a heap file for searching?",
+                options: ["Fast insertion", "Requires sorting", "Expensive linear search", "Limited storage capacity"],
+                answer: 2
+            },
+            {
+                question: "In which file organization is a binary search used?",
+                options: ["Heap file", "Ordered file", "Hashed file", "Unordered file"],
+                answer: 1
+            },
+            {
+                question: "What is the main goal of good file organization?",
+                options: ["To maximize disk space usage", "To minimize access time", "To simplify record formats", "To allow for unlimited records"],
+                answer: 1
+            },
+            {
+                question: "Which type of file organization is best for random access?",
+                options: ["Ordered file", "Heap file", "Hashed file", "Sequential file"],
+                answer: 2
+            },
+            {
+                question: "What is the average number of records per block for variable-length records?",
+                options: ["Fixed", "Variable", "Constant", "None of the above"],
+                answer: 1
+            },
+            {
+                question: "What is a common issue with ordered files during deletion?",
+                options: ["They are difficult to read", "They require frequent reorganization", "They cannot be modified", "They are always full"],
+                answer: 1
+            },
+            {
+                question: "How does the blocking factor affect disk space utilization?",
+                options: ["Higher blocking factor leads to more unused space", "Lower blocking factor leads to better utilization", "It has no effect on utilization", "It determines the record size"],
+                answer: 1
+            },
+            {
+                question: "Which of the following statements about file headers is true?",
+                options: ["They contain only the file name", "They include information about the file format", "They are not necessary for file operations", "They can be ignored by the DBMS"],
+                answer: 1
+            }
+        ]
+
+
+
+        
+
+
+
+
+
+
+        const irQuestions1 = [
+
+            {
+                question: "In the Boolean retrieval model, documents are retrieved based on:",
+                options: ["Weighted relevance", "Boolean expressions", "Neural networks", "Probabilistic relevance"],
+                answer: 1
+            },
+            {
+                question: "The inverted index is used because:",
+                options: ["It reduces retrieval time by organizing term lists", "It prioritizes frequently used terms", "It discards irrelevant terms", "It duplicates document entries"],
+                answer: 0
+            },
+            {
+                question: "An inverted index stores:",
+                options: ["Only document titles", "A list of terms and their frequencies", "A list of terms with document IDs", "Document metadata only"],
+                answer: 2
+            },
+            {
+                question: "The process of breaking down a document into individual terms is called:",
+                options: ["Parsing", "Normalization", "Tokenization", "Aggregation"],
+                answer: 2
+            },
+            {
+                question: "The Boolean retrieval model considers each document as:",
+                options: ["A set of sentences", "A set of words", "A cluster of phrases", "A set of paragraphs"],
+                answer: 1
+            },
+            {
+                question: "Which IR system is based on Boolean logic and has been widely used commercially?",
+                options: ["Ranked retrieval", "Neural retrieval", "Boolean retrieval", "Fuzzy retrieval"],
+                answer: 2
+            },
+            {
+                question: "When combining search results, intersecting postings lists is essential for:",
+                options: ["OR queries", "AND queries", "NOT queries", "Complex searches"],
+                answer: 1
+            },
+            {
+                question: "In the Boolean model, 'OR' between terms indicates:",
+                options: ["Only one term must appear", "Both terms must appear", "Excluding both terms", "Grouping terms by category"],
+                answer: 0
+            },
+            {
+                question: "For optimization, queries should be processed in order of:",
+                options: ["Decreasing term frequency", "Random order", "Increasing document frequency", "No particular order"],
+                answer: 2
+            },
+            {
+                question: "The term frequency (tf) is important for:",
+                options: ["Exact Boolean matches", "Optimizing the search algorithm", "Weighting term relevance", "Generating token IDs"],
+                answer: 2
+            },
+            {
+                question: "In Boolean search, an extended query (like 'madding OR crowd') typically:",
+                options: ["Has no frequency limits", "Is organized by frequency to optimize processing", "Is processed faster than regular queries", "Uses tokenization to match exact phrases"],
+                answer: 1
+            },
+            {
+                question: "In WestLaw’s Boolean search, '/3' specifies:",
+                options: ["Within 3 paragraphs", "Within 3 words", "Exactly 3 times", "Excludes the term after it"],
+                answer: 1
+            },
+            {
+                question: "Inverted indexes are particularly effective because they:",
+                options: ["Reduce the memory needed for storage", "Simplify the process of intersecting postings", "Increase accuracy of results", "Provide predictive search capability"],
+                answer: 1
+            },
+            {
+                question: "The document frequency indicates:",
+                options: ["Number of words per document", "Frequency of a term across documents", "Total characters in a document", "Search relevance score"],
+                answer: 1
+            },
+            {
+                question: "The merging of postings lists is essential in Boolean retrieval to:",
+                options: ["Rank results", "Exclude stop words", "Match multiple terms in a query", "Organize terms alphabetically"],
+                answer: 2
+            },
+            {
+                question: "The term 'stopping' in Boolean retrieval often refers to:",
+                options: ["Storing important words", "Excluding common words", "Sorting search results", "Detecting errors"],
+                answer: 1
+            },
+            {
+                question: "An indexer processes documents by:",
+                options: ["Extracting metadata only", "Sorting them alphabetically", "Breaking down and storing terms", "Compiling a list of all document IDs"],
+                answer: 2
+            },
+            {
+                question: "The Boolean model is preferred in legal searches like WestLaw because:",
+                options: ["It provides approximate results", "It allows for precise control of search terms", "It is faster than other models", "It excludes proximity operators"],
+                answer: 1
+            },
+            {
+                question: "True or False: Boolean retrieval models rely solely on the terms 'AND' and 'OR.'",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: A Boolean retrieval model is considered precise since documents either match or do not.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: In Boolean retrieval, 'tokenization' refers to assigning documents unique IDs.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: The inverted index lists only the most frequent terms in each document.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Boolean operators are irrelevant in a term-document incidence matrix.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Stemming in text processing helps match different forms of a root word.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Query optimization in Boolean retrieval often starts with the highest-frequency terms.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Stop words like 'the' or 'and' are usually excluded from Boolean searches.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Variable-size posting lists in an inverted index improve flexibility and memory use.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Proximity operators ensure terms are adjacent in the search results.",
+                options: ["True", "False"],
+                answer: 1
+            }
+
+
+        ]
+
+
+
+
+        const irQuestions2 = [
+
+            {
+                "question": "True or False: Tokenization involves dividing text into individual units called tokens.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Stop words are commonly excluded from indexes due to their high informational content.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Stemming converts different forms of a word to a common base form.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: A term-document count matrix records only the presence or absence of terms.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: The 'bag-of-words' model preserves the order of words in a document.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Term frequency (tf) refers to the number of times a term appears in a document.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: The inverse document frequency (idf) increases for terms that appear frequently in the collection.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: tf-idf weighting combines both term frequency and document frequency to measure term importance.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Inverted indexes map terms to lists of documents containing those terms.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Zone indexes are only used for document titles.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Case folding converts all letters in a document to uppercase.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: In skip lists, pointers are used to speed up the search in postings lists.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Cosine similarity is used to compare vector representations of documents.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: A positional index only records the frequency of terms, not their positions.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: A document's length affects its vector representation in the vector space model.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: tf-idf weighting is unaffected by term frequency within the document.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: In ranked retrieval, documents are sorted based on their relevance to the query.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Document frequency is used to assign higher weights to commonly occurring terms.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Phrase queries are a feature that can be implemented using positional indexes.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Zone weighting allows specific document zones to impact the retrieval score differently.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Stemming algorithms, like Porter’s, reduce words to their grammatical roots.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Parametric search uses document metadata fields to refine queries.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: In the vector space model, each term is an axis in a high-dimensional space.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: Cosine similarity values range from -1 to 1.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Weighted zone scoring uses only Boolean values in calculations.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: High-frequency terms are usually assigned high weights to increase their impact.",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Normalization in IR can involve converting uppercase letters to lowercase.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: The use of stop lists reduces the size of postings lists.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "True or False: In tf-idf, 'tf' stands for 'total frequency.'",
+                "options": ["True", "False"],
+                "answer": 1
+            },
+            {
+                "question": "True or False: Vector similarity scores can help to filter irrelevant documents.",
+                "options": ["True", "False"],
+                "answer": 0
+            },
+            {
+                "question": "What is the purpose of tokenization in information retrieval?",
+                "options": ["To remove irrelevant words", "To break text into terms for indexing", "To count term frequency", "To calculate document relevance"],
+                "answer": 1
+            },
+            {
+                "question": "In tf-idf, what does 'idf' measure?",
+                "options": ["The frequency of terms in a document", "The importance of a term in the collection", "The overall length of a document", "The relevance of a document"],
+                "answer": 1
+            },
+            {
+                "question": "The primary function of an inverted index is to:",
+                "options": ["Match documents based on keyword frequencies", "Store metadata information for all documents", "Link each term to documents containing that term", "Order documents by relevance score"],
+                "answer": 2
+            },
+            {
+                "question": "Which model considers documents as vectors in high-dimensional space?",
+                "options": ["Binary Model", "Positional Model", "Boolean Model", "Vector Space Model"],
+                "answer": 3
+            },
+            {
+                "question": "What role do skip pointers play in postings lists?",
+                "options": ["They help in tokenizing text", "They improve search speed by skipping non-relevant postings", "They reduce document length", "They help with case folding"],
+                "answer": 1
+            },
+            {
+                "question": "Weighted zone scoring assigns weights to:",
+                "options": ["Each term in a document", "Each query term equally", "Different document zones", "Specific stop words"],
+                "answer": 2
+            },
+            {
+                "question": "A 'bag of words' approach treats documents as:",
+                "options": ["Ordered sequences of terms", "Unordered collections of terms", "A single vector representation", "A Boolean vector"],
+                "answer": 1
+            },
+            {
+                "question": "In the vector space model, document similarity is often measured using:",
+                "options": ["Jaccard Index", "Cosine Similarity", "Euclidean Distance", "Manhattan Distance"],
+                "answer": 1
+            },
+            {
+                "question": "Normalization in text processing can involve:",
+                "options": ["Tokenizing text", "Removing accents and punctuation", "Sorting terms alphabetically", "Applying a dictionary"],
+                "answer": 1
+            },
+            {
+                "question": "In zone-based indexing, which of the following might be a document zone?",
+                "options": ["Paragraph spacing", "Font style", "Author's name", "Text color"],
+                "answer": 2
+            },
+            {
+                "question": "What is a primary purpose of using tf-idf weighting?",
+                "options": ["To prioritize terms based on document length", "To increase relevance by considering term rarity", "To reduce overall indexing time", "To ensure uniform weighting for each document"],
+                "answer": 1
+            },
+            {
+                "question": "Which technique is commonly used to reduce inflectional forms of words?",
+                "options": ["Tokenization", "Stemming", "Stop-word filtering", "Zoning"],
+                "answer": 1
+            },
+            {
+                "question": "What is the 'tf' component in tf-idf?",
+                "options": ["Term frequency in a document", "Total frequency across documents", "Frequency of common terms only", "Frequency of rare terms only"],
+                "answer": 0
+            },
+            {
+                "question": "Which index type supports phrase queries effectively?",
+                "options": ["Biword Index", "Binary Index", "Positional Index", "Document Frequency Index"],
+                "answer": 2
+            },
+            {
+                "question": "Cosine similarity is used in IR because it compensates for differences in:",
+                "options": ["Term length", "Document length", "Term occurrence", "Metadata fields"],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following best defines 'term-document incidence'?",
+                "options": ["The presence of a term in all documents", "A matrix showing term occurrences in documents", "A list of documents sorted by length", "The frequency of terms in a given document"],
+                "answer": 1
+            },
+            {
+                "question": "In an IR system, 'stemming' is important for:",
+                "options": ["Matching related words in queries and documents", "Filtering high-frequency words", "Sorting documents by date", "Converting tokens into binary vectors"],
+                "answer": 0
+            },
+            {
+                "question": "Why are stop words often removed in indexing?",
+                "options": ["They are rarely used in queries", "They reduce indexing accuracy", "They consume indexing space without adding much meaning", "They affect tf-idf weighting directly"],
+                "answer": 2
+            },
+            {
+                "question": "Weighted zone scoring calculates a document's score based on:",
+                "options": ["The overall length of each document", "The contribution of various document zones", "The most common terms only", "The number of rare terms in the document"],
+                "answer": 1
+            },
+            {
+                "question": "Which of the following describes inverse document frequency (idf) best?",
+                "options": ["The count of terms in a document", "A measure of a term's rarity across documents", "The average frequency of a term", "The position of a term within documents"],
+                "answer": 1
+            }
+        ]
+
+
+
+
+
+
+
+
+        const irQuestions3 = [
+            {
+                question: "True or False: Tokenization is the process of breaking text into smaller units called tokens, which are often individual words.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Zone indexing only applies to metadata fields like author or date and does not consider the main body of the document.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Weighted zone scoring assigns each document a score between 0 and 1 based on Boolean matches in different zones.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: The bag-of-words model considers the order of words in a document when creating vectors.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: In ranked retrieval models, the system returns a ranked list of documents based on relevance to the query.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Which of the following best defines 'zone indexing'?",
+                options: [
+                    "Dividing documents by file type",
+                    "Creating separate indexes for specific parts of documents like title and abstract",
+                    "Assigning weights to words based on their frequency",
+                    "Sorting documents by date"
+                ],
+                answer: 1
+            },
+            {
+                question: "What is the purpose of using weighted zone scoring in information retrieval?",
+                options: [
+                    "To filter documents by metadata only",
+                    "To enhance scoring based on specific document regions like title or abstract",
+                    "To identify stop words",
+                    "To eliminate irrelevant documents"
+                ],
+                answer: 1
+            },
+            {
+                question: "In the context of ranked retrieval, which of these is true?",
+                options: [
+                    "The system returns a set of documents without a specific order",
+                    "The system ranks documents in order of relevance",
+                    "Only exact matches to the query are retrieved",
+                    "Documents are ranked based on document length alone"
+                ],
+                answer: 1
+            },
+            {
+                question: "The term 'bag-of-words model' refers to:",
+                options: [
+                    "A model that includes only unique words from each document",
+                    "A model that disregards word order but counts term frequency",
+                    "A model that segments documents into phrases",
+                    "A method that considers synonyms in retrieval"
+                ],
+                answer: 1
+            },
+            {
+                question: "Which of the following terms is used to refer to the frequency of a term in a document?",
+                options: [
+                    "Zone frequency",
+                    "Term Weight",
+                    "Term Frequency (tf)",
+                    "Log-frequency"
+                ],
+                answer: 2
+            }
+        ]
+
+
+
+
+
+        const irQuestions4 = [
+            {
+                question: "IR objective is to retrieve _______ the relevant documents.",
+                options: ["All", "Specified number", "Half", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "In information retrieval the term 'relevant' is used to represent an item",
+                options: ["Exactly match information needed", "Partially matches information needed", "Both a and b", "None of the above"],
+                answer: 2
+            },
+            {
+                question: "______ is an example of Information retrieval systems.",
+                options: ["Digital library", "Search engines", "Mail", "All of the above"],
+                answer: 3
+            },
+            {
+                question: "When having a document with identified zones it can be classified",
+                options: ["Structured", "Unstructured", "Semi-structured", "None of the above"],
+                answer: 2
+            },
+            {
+                question: "When deciding where the new document will be added to the existing topics.",
+                options: ["Clustering", "Classification", "Opinion mining", "All of the above"],
+                answer: 1
+            },
+            {
+                question: "Suggesting preferable restaurants is one of the tasks handled by information retrieval.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Which of the following are not handled by Information retrieval",
+                options: ["Documents", "Databases", "Text files", "None of the above"],
+                answer: 1
+            },
+            {
+                question: "What are the tokens of 'information, retrieval & database'?",
+                options: ["1) Information 2) retrieval 3) database", "1) Information 2) retrieval & database", "1) Information, retrieval & database", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "_______ is used for finding research information about specific topics.",
+                options: ["Library catalog", "Web search service", "Abstracting and indexing system", "All of the above"],
+                answer: 2
+            },
+            {
+                question: "_______ is an instance of a sequence of characters.",
+                options: ["Token", "Stop word", "Normalization", "All of the above"],
+                answer: 0
+            },
+            {
+                question: "The retrieved material of IR is usually _______.",
+                options: ["Documents", "Videos", "Data", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "The retrieved information in Database is ________ Data.",
+                options: ["Structured", "Unstructured", "Semi-structured", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "Finding a file on a computer is an example of search systems.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "Each word of the query is called ________.",
+                options: ["Keyword", "String", "Text", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "A data structure that improves the speed of word retrieval.",
+                options: ["Representation", "Indexing", "Comparison", "None of the above"],
+                answer: 1
+            },
+            {
+                question: "In Boolean search algorithm the default precedence ordering of operations is ________.",
+                options: ["OR then AND then NOT", "NOT then AND then OR", "AND then NOT then OR"],
+                answer: 1
+            },
+            {
+                question: "In Proximity searching algorithms the default direction of search is forward only.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "What is the retrieved result of 'Computer OR Information NOT Data'?",
+                options: ["Selects all items that discuss computer and/or information that do not discuss data", "Selects all items that discuss computer and information that do not discuss data", "Selects all items that discuss computer or information that do not discuss data"],
+                answer: 0
+            },
+            {
+                question: "What is the retrieved result of 'Information AND NOT (Retrieval AND Extraction)'?",
+                options: ["Selects all items that discuss information and/or retrieval that do not discuss extraction", "Selects all items that discuss information and do not discuss both of retrieval and extraction", "Selects all items that discuss information only"],
+                answer: 1
+            },
+            {
+                question: "___________ are typically short and focused on specific area of interest.",
+                options: ["Queries", "Profiles", "Token"],
+                answer: 0
+            },
+            {
+                question: "The objective of ________ is to allow for a mapping between a user's specified need and the items in the information database that will answer that need.",
+                options: ["Search capabilities", "Browse capabilities", "Miscellaneous capabilities"],
+                answer: 0
+            },
+            {
+                question: "What are the tokens of 'fish and chips'?",
+                options: ["1) fish 2) chips", "1) fish 2) and 3) chips", "1) fishandchips"],
+                answer: 0
+            },
+            {
+                question: "Document parsing may have ____ format in IR system.",
+                options: ["Multiple", "One", "Maximum 4", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "When applying Porter algorithm rules, what will the following word be stemmed to: Duplicatable would be ____________.",
+                options: ["Duplic", "Duplicate", "Duplicatable", "None of the above"],
+                answer: 0
+            },
+            {
+                question: "When applying Porter algorithm rules, what will the following word be stemmed to: applicable would be ____________.",
+                options: ["Application", "Applic", "Applicability", "None of the above"],
+                answer: 1
+            },
+            {
+                question: "When applying Porter algorithm rules, what will the following word be stemmed to: eating would be ____________.",
+                options: ["Eat", "Eats", "Eating", "None of the above"],
+                answer: 0
+            }
+        ]
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+        const biQuestions1 = [
+
+            {
+                question: "What is the main goal of Business Intelligence (BI)?",
+                options: ["Increase storage capacity", "Enable interactive access to data for analysis", "Reduce data redundancy", "Enhance transaction processing"],
+                answer: 1
+            },
+            {
+                question: "BI initially emerged from:",
+                options: ["CRM systems", "MIS reporting systems in the 1970s", "Online transaction processing", "Cloud computing"],
+                answer: 1
+            },
+            {
+                question: "Which component is not part of the BI architecture?",
+                options: ["Data Warehouse", "Business Analytics", "Customer Relationship Management", "Business Performance Management"],
+                answer: 2
+            },
+            {
+                question: "The main purpose of a data warehouse is to:",
+                options: ["Store transactional data", "Perform real-time updates", "Store and organize historical data", "Optimize inventory management"],
+                answer: 2
+            },
+            {
+                question: "OLTP stands for:",
+                options: ["On-Line Transaction Processing", "Operational Level Technology Processing", "On-Level Technology Performance", "Offline Transaction Process"],
+                answer: 0
+            },
+            {
+                question: "What does OLAP primarily support?",
+                options: ["Real-time updates", "Routine transaction processing", "Complex queries and data analysis", "Inventory management"],
+                answer: 2
+            },
+            {
+                question: "Which of the following describes Normalization?",
+                options: ["Merging data to reduce storage", "Arranging data to eliminate redundancy", "Combining multiple tables for faster retrieval", "Creating backup copies of data"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is NOT an identified style of BI by MicroStrategy, Corp.?",
+                options: ["Cube analysis", "Data mining", "Ad-hoc queries", "Enterprise resource planning"],
+                answer: 3
+            },
+            {
+                question: "Descriptive Analytics is primarily concerned with:",
+                options: ["Predicting future outcomes", "Optimizing current processes", "Understanding past and present trends", "Automating business operations"],
+                answer: 2
+            },
+            {
+                question: "Which analytics type aims to predict future customer behavior?",
+                options: ["Descriptive", "Predictive", "Prescriptive", "Diagnostic"],
+                answer: 1
+            },
+            {
+                question: "Which analytics type focuses on making decisions to improve system performance?",
+                options: ["Predictive", "Descriptive", "Prescriptive", "Diagnostic"],
+                answer: 2
+            },
+            {
+                question: "A BI dashboard is an example of which BI component?",
+                options: ["Data Warehouse", "Business Analytics", "User Interface", "Data Mining"],
+                answer: 2
+            },
+            {
+                question: "Which term describes the process of optimizing a database to remove redundancy?",
+                options: ["Denormalization", "Aggregation", "Normalization", "Fragmentation"],
+                answer: 2
+            },
+            {
+                question: "Which BI component measures and monitors Key Performance Indicators (KPIs)?",
+                options: ["Data Warehouse", "Business Analytics", "Business Performance Management (BPM)", "User Interface"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is a benefit of BI?",
+                options: ["Reduced data storage", "Faster, more accurate reporting", "Increased data redundancy", "Increased transaction processing speed"],
+                answer: 1
+            },
+            {
+                question: "In which decade was the term “Business Intelligence” (BI) coined?",
+                options: ["1970s", "1980s", "1990s", "2000s"],
+                answer: 1
+            },
+            {
+                question: "Which is primarily responsible for handling a company’s routine ongoing transactions?",
+                options: ["OLAP", "Data Warehouse", "OLTP", "CRM"],
+                answer: 2
+            },
+            {
+                question: "Which of these processes combines tables to make data retrieval faster?",
+                options: ["Normalization", "Denormalization", "Data Mining", "Aggregation"],
+                answer: 1
+            },
+            {
+                question: "Data Scientist skills often include:",
+                options: ["Business process automation", "Basic Excel and SQL skills", "Advanced statistics and machine learning", "Inventory management"],
+                answer: 2
+            },
+            {
+                question: "A data analyst primarily works with:",
+                options: ["Predictive analytics", "Business process management", "Data compilation and reporting", "Automated decision systems"],
+                answer: 2
+            },
+            {
+                question: "What does “DSS” stand for in BI terminology?",
+                options: ["Data Science Systems", "Decision Support Systems", "Data Service System", "Decision Security Service"],
+                answer: 1
+            },
+            {
+                question: "Which BI style allows for 'slice-and-dice' analysis?",
+                options: ["Cube analysis", "Enterprise reporting", "Ad-hoc queries", "Data mining"],
+                answer: 0
+            },
+            {
+                question: "In BI, “real-time view of corporate performance” is primarily provided by:",
+                options: ["Ad-hoc reporting", "OLAP systems", "Online Transaction Processing", "Dashboards and portals"],
+                answer: 3
+            },
+            {
+                question: "What technology became prominent in BI by 2005?",
+                options: ["Cloud storage", "Artificial Intelligence", "Data visualization", "Simple databases"],
+                answer: 2
+            },
+            {
+                question: "Data integrity is harder to maintain in:",
+                options: ["OLAP systems", "Normalized tables", "Denormalized structures", "Real-time dashboards"],
+                answer: 2
+            },
+            {
+                question: "True or False: BI helps decision-makers analyze both historical and current data.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: OLTP systems are primarily used for complex, ad-hoc analysis.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Denormalization reduces data redundancy.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Predictive analytics aims to optimize current business performance.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: The user interface in BI architecture is typically used for storage.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: Data scientists usually require programming skills in languages like Python or R.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Descriptive analytics helps in understanding trends and causes in data.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Data warehouses are used mainly for transaction processing.",
+                options: ["True", "False"],
+                answer: 1
+            },
+            {
+                question: "True or False: In normalization, data is structured to reduce redundancy and improve integrity.",
+                options: ["True", "False"],
+                answer: 0
+            },
+            {
+                question: "True or False: Dashboards provide a static view of business performance metrics.",
+                options: ["True", "False"],
+                answer: 1
+            }
+        ]
+
+
+
+
+
+        const biQuestions2 =
+
+
+            [
+                {
+                    "question": "What is a primary purpose of a data warehouse?",
+                    "options": ["Real-time processing", "Decision support", "Web browsing", "Transaction processing"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which term describes data structured for analysis in data warehousing?",
+                    "options": ["OLTP", "Metadata", "OLAP", "E-commerce"],
+                    "answer": 2
+                },
+                {
+                    "question": "A data warehouse’s 'subject-oriented' nature primarily refers to:",
+                    "options": ["Storing daily transactions", "Organizing data by topics like sales and customers", "Enabling frequent data updates", "Supporting marketing activities only"],
+                    "answer": 1
+                },
+                {
+                    "question": "In a data warehouse, integration ensures that:",
+                    "options": ["All data is in real-time", "Data is updated hourly", "Data from different sources have a consistent format", "All data is anonymized"],
+                    "answer": 2
+                },
+                {
+                    "question": "Time-variant data in a warehouse means:",
+                    "options": ["Data is always current", "Data shows historical trends", "Data changes every week", "Only current year data is stored"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which of the following is a characteristic of data warehousing?",
+                    "options": ["Nonvolatile data", "Real-time processing only", "High update frequency", "Unstructured data collection"],
+                    "answer": 0
+                },
+                {
+                    "question": "What is a dependent data mart?",
+                    "options": ["A data source external to the data warehouse", "A subset of the warehouse derived directly from it", "A data storage for real-time analytics", "A non-integrated collection of reports"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which ETL process involves converting data to fit the warehouse structure?",
+                    "options": ["Extraction", "Transformation", "Load", "Integration"],
+                    "answer": 1
+                },
+                {
+                    "question": "A key benefit of a data warehouse is:",
+                    "options": ["Increased data entry speeds", "Real-time data modifications", "Centralized data for decision-making", "Personalized data storage for each department"],
+                    "answer": 2
+                },
+                {
+                    "question": "Data in an Operational Data Store (ODS) is typically:",
+                    "options": ["Historical", "Updated in real-time", "Subject to regular archiving", "Deleted frequently"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which is a main component of a data warehouse?",
+                    "options": ["Database logs", "Middleware tools", "Social media plugins", "Data tables only"],
+                    "answer": 3
+                },
+                {
+                    "question": "Metadata in a data warehouse is used to:",
+                    "options": ["Store transaction data", "Describe the structure and rules for data use", "Automatically update all data", "Store unrelated information"],
+                    "answer": 1
+                },
+                {
+                    "question": "In ETL, the process of loading means:",
+                    "options": ["Gathering new data", "Storing transformed data in the warehouse", "Editing raw data", "Validating data changes"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which is NOT a characteristic of a data warehouse?",
+                    "options": ["Time-variant data", "Integration of sources", "Volatile data", "Nonvolatile data"],
+                    "answer": 2
+                },
+                {
+                    "question": "What is Dimensional Modeling used for?",
+                    "options": ["Data cleaning", "Enhancing OLTP databases", "Structuring data for BI analysis", "Reducing storage requirements"],
+                    "answer": 2
+                },
+                {
+                    "question": "In a dimensional model, a 'fact' represents:",
+                    "options": ["Historical records only", "Business measurements like sales or expenses", "A type of metadata", "Data structure only"],
+                    "answer": 1
+                },
+                {
+                    "question": "Dimensions in a data warehouse:",
+                    "options": ["Define the context for facts", "Are numerical measurements only", "Cannot be organized hierarchically", "Are temporary data only"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which component of the ETL process reads data from various sources?",
+                    "options": ["Extraction", "Transformation", "Load", "Cleansing"],
+                    "answer": 0
+                },
+                {
+                    "question": "In a data warehouse, 'granularity' refers to:",
+                    "options": ["Data type restrictions", "The level of detail in data", "Database size", "Update frequency"],
+                    "answer": 1
+                },
+                {
+                    "question": "A fact table typically consists of:",
+                    "options": ["Only primary keys", "Keys and measurements", "Metadata only", "Hierarchical dimensions"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: A data warehouse can change or update data once it is stored.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: Dimensional modeling is a logical design technique for organizing data in BI.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: Operational Data Stores (ODS) are used for short-term decision-making.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: Metadata in a data warehouse is unimportant for business intelligence applications.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: ETL stands for Extraction, Transaction, and Loading.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: A data mart is smaller than an enterprise data warehouse and focuses on a single subject.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: A nonvolatile data warehouse means data cannot be overwritten or changed after being added.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: An independent data mart is created from an existing enterprise data warehouse.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: Data granularity is the degree to which data can be aggregated.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: Real-time data processing is a characteristic of all data warehouses.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                }
+
+            ]
+
+
+
+
+
+
+
+
+
+        const biQuestions3 =
+            [
+                {
+                    "question": "Which schema type is known for having a central fact table connected to multiple dimension tables?",
+                    "options": ["Snowflake schema", "Star schema", "Galaxy schema", "Hybrid schema"],
+                    "answer": 1
+                },
+                {
+                    "question": "The main purpose of the fact table in a star schema is to:",
+                    "options": ["Store metadata about dimensions", "Contain measures and metrics for decision analysis", "Link dimension tables together", "Manage database transactions"],
+                    "answer": 1
+                },
+                {
+                    "question": "In a star schema, dimension tables are:",
+                    "options": ["Denormalized", "Normalized", "Linked to each other", "Used only for indexing"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which schema is more optimized for query performance and has simpler design requirements?",
+                    "options": ["Snowflake schema", "Hybrid schema", "Star schema", "Galaxy schema"],
+                    "answer": 2
+                },
+                {
+                    "question": "What is a characteristic of the snowflake schema?",
+                    "options": ["Denormalized dimension tables", "Dimension tables linked in a hierarchical structure", "Simpler design than the star schema", "High data redundancy"],
+                    "answer": 1
+                },
+                {
+                    "question": "A major advantage of the snowflake schema is:",
+                    "options": ["Lower disk space usage due to normalization", "Faster query response than star schema", "Reduced table complexity", "Direct links between fact tables"],
+                    "answer": 0
+                },
+                {
+                    "question": "In a star schema, the foreign keys in the fact table:",
+                    "options": ["Refer to other fact tables", "Link to the primary keys in dimension tables", "Are unused during queries", "Are only used for data integrity checks"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which of the following best describes 'data redundancy' in a star schema?",
+                    "options": ["All data is stored only once", "Duplicate data is minimized due to normalization", "Some data may be repeated across tables", "Tables contain only unique data entries"],
+                    "answer": 2
+                },
+                {
+                    "question": "The snowflake schema is considered more complex than the star schema because:",
+                    "options": ["It does not use foreign keys", "It normalizes dimensions, resulting in more tables", "It has no dimension tables", "It relies on real-time data updates"],
+                    "answer": 1
+                },
+                {
+                    "question": "What type of schema typically supports ad hoc querying and easy maintenance?",
+                    "options": ["Snowflake schema", "Star schema", "Hybrid schema", "ER schema"],
+                    "answer": 1
+                },
+                {
+                    "question": "In data warehousing, a 'conformed dimension' refers to:",
+                    "options": ["A unique dimension used in only one schema", "A dimension shared across multiple fact tables", "A measure in the fact table", "An index used to speed up queries"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which schema would be best suited for a data mart with simple one-to-many relationships?",
+                    "options": ["Star schema", "Snowflake schema", "Multidimensional schema", "ER schema"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of the following is a shared characteristic of both star and snowflake schemas?",
+                    "options": ["High data redundancy", "A central fact table surrounded by dimensions", "Use of normalized dimension tables only", "Faster updates for transactional systems"],
+                    "answer": 1
+                },
+                {
+                    "question": "In an enterprise setting, multiple fact tables connected to shared dimensions are typical of:",
+                    "options": ["A multi-fact star model", "A normalized schema", "An ER schema", "A hybrid snowflake model"],
+                    "answer": 0
+                },
+                {
+                    "question": "Entity-relationship (ER) modeling is generally more suited for:",
+                    "options": ["Analytical processing in data warehouses", "Transactional systems (OLTP)", "Dimensional modeling in BI", "Generating ad hoc reports"],
+                    "answer": 1
+                },
+                {
+                    "question": "Dimensional modeling is primarily used in:",
+                    "options": ["OLTP systems", "Business intelligence (BI) applications", "Real-time data processing", "Document databases"],
+                    "answer": 1
+                },
+                {
+                    "question": "In dimensional modeling, data redundancy is:",
+                    "options": ["Eliminated entirely", "Maintained to support complex analysis", "Considered an error to be corrected", "Caused by normalized dimension tables"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which type of schema would require the most joins during queries?",
+                    "options": ["Star schema", "Snowflake schema", "Hybrid schema", "Multi-fact schema"],
+                    "answer": 1
+                },
+                {
+                    "question": "The fact table in a dimensional model:",
+                    "options": ["Stores only unique keys", "Contains both foreign keys and measures", "Is only used for primary key data", "Uses only denormalized data"],
+                    "answer": 1
+                },
+                {
+                    "question": "In a snowflake schema, dimension tables:",
+                    "options": ["Are all denormalized", "Are split into multiple related tables", "Contain only foreign keys", "Must all link directly to the fact table"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: The snowflake schema has a simpler design than the star schema.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: In a star schema, dimension tables have a one-to-many relationship with the fact table.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: Dimensional modeling is best suited for transactional systems rather than business intelligence applications.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: The star schema is optimized for query performance by reducing the number of joins needed.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: Normalized dimension tables in a snowflake schema reduce data redundancy.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                }
+            ]
+
+
+
+
+
+
+
+        const biQuestions4 =
+            [
+                {
+                    "question": "Which term refers to the definition of what a single row in a fact table will represent?",
+                    "options": ["Dimension", "Measure", "Granularity", "Hierarchy"],
+                    "answer": 2
+                },
+                {
+                    "question": "In a fact table, what does the grain represent?",
+                    "options": ["Level of normalization", "Level of information detail", "Type of schema used", "Dimension hierarchy"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which type of fact table records data at each individual business event level?",
+                    "options": ["Periodic fact", "Transaction fact", "Accumulating fact", "Aggregate fact"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which fact table type is known for capturing the status of facts at regular time intervals?",
+                    "options": ["Transaction fact", "Periodic fact", "Accumulating fact", "Snapshot fact"],
+                    "answer": 3
+                },
+                {
+                    "question": "A transaction fact table typically grows very quickly because:",
+                    "options": ["It has a high level of granularity", "It stores data at a monthly level", "It only records totals", "It uses multiple dimensions"],
+                    "answer": 0
+                },
+                {
+                    "question": "An example of a periodic fact table would be:",
+                    "options": ["Recording each purchase at a store", "Summarizing daily account balances at month-end", "Calculating a final shipping date", "Tracking customer feedback scores"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which fact type captures all key events in a process from beginning to end, updating each step as it progresses?",
+                    "options": ["Transaction fact", "Periodic fact", "Accumulating fact", "Event fact"],
+                    "answer": 2
+                },
+                {
+                    "question": "Which of these characteristics applies to an accumulating fact table?",
+                    "options": ["Records one row per transaction", "Stores data for a defined process with multiple milestones", "Records only a snapshot at a single point in time", "Does not change once the row is created"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which of the following scenarios would most likely use an accumulating fact table?",
+                    "options": ["Tracking daily sales", "Monitoring insurance claim processing stages", "Logging website visits", "Recording monthly inventory"],
+                    "answer": 1
+                },
+                {
+                    "question": "Additive measures in fact tables allow for:",
+                    "options": ["Summing values across all dimensions", "Summing values across only some dimensions", "Dividing values across dimensions", "Storing non-numeric data"],
+                    "answer": 0
+                },
+                {
+                    "question": "A measure like 'account balance' that cannot be summed across time is known as:",
+                    "options": ["Additive", "Semi-additive", "Non-additive", "Derived"],
+                    "answer": 1
+                },
+                {
+                    "question": "Which type of fact cannot be added across any dimensions due to its nature, often involving ratios or percentages?",
+                    "options": ["Additive fact", "Semi-additive fact", "Non-additive fact", "Snapshot fact"],
+                    "answer": 2
+                },
+                {
+                    "question": "Which is a characteristic of derived facts in a fact table?",
+                    "options": ["Derived facts are always additive", "Derived facts require complex relationships", "Derived facts are calculated from other measures", "Derived facts are stored as textual data only"],
+                    "answer": 2
+                },
+                {
+                    "question": "An example of a derived fact could be:",
+                    "options": ["Profit margin percentage", "Total sales amount after applying a discount", "The transaction date", "Customer ID"],
+                    "answer": 0
+                },
+                {
+                    "question": "Textual facts in a fact table generally store:",
+                    "options": ["Dates only", "Quantitative data", "Descriptive data or flags", "Calculations of additive facts"],
+                    "answer": 2
+                },
+                {
+                    "question": "What type of measure can be summed across all dimensions?",
+                    "options": ["Additive", "Non-additive", "Semi-additive", "Derived"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which measure type is challenging to aggregate across all dimensions?",
+                    "options": ["Additive measure", "Semi-additive measure", "Derived measure", "Non-additive measure"],
+                    "answer": 1
+                },
+                {
+                    "question": "The grain of a fact table affects which of the following?",
+                    "options": ["Number of dimensions available", "Schema type used", "Querying speed only", "Reporting hierarchy only"],
+                    "answer": 0
+                },
+                {
+                    "question": "What does a transaction fact table primarily capture?",
+                    "options": ["The entire life cycle of a process", "Data snapshots over time", "Individual business events or transactions", "Summaries for each quarter"],
+                    "answer": 2
+                },
+                {
+                    "question": "Which of these fact types would you use to analyze monthly sales trends?",
+                    "options": ["Transaction fact", "Periodic fact", "Accumulating fact", "Snapshot fact"],
+                    "answer": 3
+                },
+                {
+                    "question": "Which type of fact table is often used to track event milestones such as 'order placed,' 'order shipped,' and 'order delivered'?",
+                    "options": ["Periodic fact", "Transaction fact", "Accumulating fact", "Snapshot fact"],
+                    "answer": 2
+                },
+                {
+                    "question": "In data warehousing, what does granularity refer to?",
+                    "options": ["Database storage format", "Level of data detail in the fact table", "Data redundancy in dimension tables", "Frequency of data updates"],
+                    "answer": 1
+                },
+                {
+                    "question": "In which fact table type is each new transaction represented by a single row?",
+                    "options": ["Transaction fact", "Periodic fact", "Accumulating fact", "Aggregate fact"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which fact type is best for representing the latest status of a fact as of a certain date?",
+                    "options": ["Transaction fact", "Periodic fact", "Accumulating fact", "Snapshot fact"],
+                    "answer": 3
+                },
+                {
+                    "question": "In data modeling, what term refers to facts created from performing calculations on other fact measures?",
+                    "options": ["Additive facts", "Derived facts", "Non-additive facts", "Semi-additive facts"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: Granularity in a fact table always refers to the amount of data in each column.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: A transaction fact table is known for storing a record for the entire process lifecycle.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: Periodic fact tables capture snapshots of data for specific time intervals.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "True or False: Semi-additive measures can be aggregated across all dimensions, including time.",
+                    "options": ["True", "False"],
+                    "answer": 1
+                },
+                {
+                    "question": "True or False: Accumulating fact tables are often used to analyze processes with clear stages or milestones.",
+                    "options": ["True", "False"],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL function is used to get the current date and time?",
+                    "options": [
+                        "GETDATE()",
+                        "NOW()",
+                        "CURDATE()",
+                        "SYSDATE()"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of the SQL UPDATE statement?",
+                    "options": [
+                        "To delete data from a table",
+                        "To modify existing data in a table",
+                        "To add new data to a table",
+                        "To retrieve data from a table"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the default sorting order used in the ORDER BY clause?",
+                    "options": [
+                        "Descending",
+                        "Ascending",
+                        "Alphabetical",
+                        "Random"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which of the following is true about a SQL Primary Key?",
+                    "options": [
+                        "It can contain NULL values",
+                        "It uniquely identifies each row in a table",
+                        "It can contain duplicate values",
+                        "It is an optional constraint"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the SQL HAVING clause do?",
+                    "options": [
+                        "Filters rows before grouping",
+                        "Groups rows based on a specified condition",
+                        "Filters groups after aggregation",
+                        "Sorts the rows"
+                    ],
+                    "answer": 2
+                },
+                {
+                    "question": "Which SQL command is used to add a new row of data to a table?",
+                    "options": [
+                        "INSERT",
+                        "ADD",
+                        "INSERT INTO",
+                        "PUT"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of the SQL BETWEEN operator?",
+                    "options": [
+                        "Filters the result set by matching a pattern",
+                        "Checks if a value falls within a given range",
+                        "Combines results from two queries",
+                        "Specifies conditions for joining tables"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "Which data type is used in SQL to store variable-length strings?",
+                    "options": [
+                        "CHAR",
+                        "VARCHAR",
+                        "TEXT",
+                        "STRING"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What is a subquery in SQL?",
+                    "options": [
+                        "A query that is embedded inside another query",
+                        "A query that runs in parallel to another query",
+                        "A query that returns only one column",
+                        "A query that modifies data in multiple tables"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL LIMIT clause do?",
+                    "options": [
+                        "Limits the number of rows returned in a query",
+                        "Limits the range of values returned in a column",
+                        "Limits the size of the database",
+                        "Limits the execution time of a query"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL function is used to return the total sum of a numeric column?",
+                    "options": [
+                        "SUM()",
+                        "TOTAL()",
+                        "COUNT()",
+                        "AVG()"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of the following SQL clauses is used to filter results after the GROUP BY operation?",
+                    "options": [
+                        "WHERE",
+                        "HAVING",
+                        "FILTER",
+                        "GROUP BY"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What does the SQL LIKE operator do?",
+                    "options": [
+                        "Matches exact values",
+                        "Matches patterns in a column",
+                        "Filters results by range",
+                        "Joins tables based on a condition"
+                    ],
+                    "answer": 1
+                },
+                {
+                    "question": "What is the function of the SQL DISTINCT keyword?",
+                    "options": [
+                        "Removes duplicate values from the result set",
+                        "Joins multiple tables",
+                        "Groups data by unique values",
+                        "Sorts results in ascending order"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of the following is a valid way to declare a column as a foreign key in SQL?",
+                    "options": [
+                        "FOREIGN KEY (column_name) REFERENCES table_name",
+                        "REFERENCES table_name (column_name)",
+                        "PRIMARY KEY (column_name)",
+                        "CONSTRAINT FOREIGN KEY table_name"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which of these SQL commands is used to remove a table from a database?",
+                    "options": [
+                        "DROP TABLE",
+                        "DELETE TABLE",
+                        "REMOVE TABLE",
+                        "CLEAR TABLE"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "Which SQL command is used to modify the structure of an existing table?",
+                    "options": [
+                        "ALTER TABLE",
+                        "MODIFY TABLE",
+                        "UPDATE TABLE",
+                        "CHANGE TABLE"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL UNION operator do?",
+                    "options": [
+                        "Combines the results of two queries, removing duplicates",
+                        "Combines results from two queries, keeping duplicates",
+                        "Joins tables based on a common column",
+                        "Filters results by multiple conditions"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What is the purpose of an index in a SQL database?",
+                    "options": [
+                        "To speed up query execution",
+                        "To ensure data integrity",
+                        "To store duplicate data",
+                        "To manage database backups"
+                    ],
+                    "answer": 0
+                },
+                {
+                    "question": "What does the SQL SELECT INTO statement do?",
+                    "options": [
+                        "Creates a new table and inserts selected data into it",
+                        "Retrieves data from a table",
+                        "Updates an existing table with new data",
+                        "Joins multiple tables together"
+                    ],
+                    "answer": 0
+                }
+            ]
+
+
+
+
+
+        
+
+
+
+
+
+        const iss1 = [
+  {
+    "question": "Which of the following is NOT one of the three main security principles?",
+    "options": ["Availability", "Integrity", "Confidentiality", "Efficiency"],
+    "answer": 3
+  },
+  {
+    "question": "Availability ensures that information and systems are accessible to authorized users when needed.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Integrity in information security primarily protects data from what?",
+    "options": ["Unauthorized modification", "Deletion by owner", "Backup loss", "System crash"],
+    "answer": 0
+  },
+  {
+    "question": "Which security principle ensures information is not disclosed to unauthorized individuals?",
+    "options": ["Integrity", "Availability", "Confidentiality", "Authentication"],
+    "answer": 2
+  },
+  {
+    "question": "Access controls manage what type of relationship?",
+    "options": ["Between subject and object", "Between users and administrators", "Between systems only", "Between passwords and encryption"],
+    "answer": 0
+  },
+  {
+    "question": "In security terminology, which term describes an active entity that requests access to resources?",
+    "options": ["Object", "Subject", "System", "Session"],
+    "answer": 1
+  },
+  {
+    "question": "An object in access control is a passive entity that contains information.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following best represents the CIA Triad?",
+    "options": ["Confidentiality, Integrity, Availability", "Control, Independence, Authentication", "Confidentiality, Integration, Access", "Classification, Isolation, Authorization"],
+    "answer": 0
+  },
+  {
+    "question": "Identification in access control refers to:",
+    "options": ["Verifying who you are", "Claiming an identity", "Granting permission", "Encrypting data"],
+    "answer": 1
+  },
+  {
+    "question": "Authentication verifies the identity of a subject.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is an example of 'something you know' authentication factor?",
+    "options": ["Password", "Smart card", "Fingerprint", "Face scan"],
+    "answer": 0
+  },
+  {
+    "question": "Which authentication factor type is based on physical characteristics of a person?",
+    "options": ["Type 1", "Type 2", "Type 3", "Type 4"],
+    "answer": 2
+  },
+  {
+    "question": "Two-factor authentication requires two different types of factors.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Authorization determines:",
+    "options": ["Who you are", "What you can do", "When you logged in", "Where you are located"],
+    "answer": 1
+  },
+  {
+    "question": "Accountability in access control is achieved mainly through:",
+    "options": ["Encryption", "Auditing and logging", "Firewalls", "Backup systems"],
+    "answer": 1
+  },
+  {
+    "question": "Passwords are considered the weakest form of authentication.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "A one-time password is classified as which type of factor?",
+    "options": ["Type 1", "Type 2", "Type 3", "Type 4"],
+    "answer": 1
+  },
+  {
+    "question": "Which password type changes every time it is used?",
+    "options": ["Static password", "Dynamic password", "Passphrase", "Cognitive password"],
+    "answer": 1
+  },
+  {
+    "question": "A passphrase is usually longer and harder to crack than a password.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which attack involves systematically trying all possible character combinations?",
+    "options": ["Dictionary attack", "Brute-force attack", "Hybrid attack", "Replay attack"],
+    "answer": 1
+  },
+  {
+    "question": "Social engineering attacks exploit human behavior rather than software vulnerabilities.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which biometric factor measures the colored area around the pupil?",
+    "options": ["Retina scan", "Iris scan", "Face scan", "Fingerprint"],
+    "answer": 1
+  },
+  {
+    "question": "Retina scans are more accurate than iris scans but less accepted by users.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "The biometric factor 'something you are' belongs to which authentication type?",
+    "options": ["Type 1", "Type 2", "Type 3", "Type 4"],
+    "answer": 2
+  },
+  {
+    "question": "In biometric systems, what does FAR stand for?",
+    "options": ["False Authentication Ratio", "False Acceptance Rate", "Failure Access Ratio", "Fault Accuracy Rate"],
+    "answer": 1
+  },
+  {
+    "question": "The point where FAR and FRR are equal is called:",
+    "options": ["Crossover Error Rate (CER)", "Authentication Accuracy Level", "Match Index", "Rejection Ratio"],
+    "answer": 0
+  },
+  {
+    "question": "Biometric enrollment refers to the process of capturing and storing a user’s biometric sample.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which biometric technique analyzes how a person types on a keyboard?",
+    "options": ["Voice recognition", "Keystroke dynamics", "Signature dynamics", "Face geometry"],
+    "answer": 1
+  },
+  {
+    "question": "Among biometric factors, which generally has the highest accuracy?",
+    "options": ["Palm scan", "Keystroke dynamics", "Voice verification", "Signature dynamics"],
+    "answer": 0
+  },
+  {
+    "question": "The Zephyr chart is used to compare different biometric technologies based on accuracy and acceptance.",
+    "options": ["True", "False"],
+    "answer": 0
+  }
+];
+
+
+
+
+
+const iss2 = [
+  {
+    "question": "Which of the following is NOT a type of token device?",
+    "options": ["Static token", "Dynamic token", "Challenge-response token", "Temporary session token"],
+    "answer": 3
+  },
+  {
+    "question": "A static token can store a cryptographic key such as a private key or digital signature.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which token type generates passwords at fixed time intervals?",
+    "options": ["Static token", "Synchronous dynamic password token", "Asynchronous dynamic password token", "Challenge-response token"],
+    "answer": 1
+  },
+  {
+    "question": "An asynchronous token generates passwords based on events rather than time.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "The main disadvantage of Single Sign-On (SSO) is:",
+    "options": ["Harder password management", "Higher user confusion", "Single point of failure if compromised", "Slower authentication"],
+    "answer": 2
+  },
+  {
+    "question": "Single Sign-On (SSO) allows a user to authenticate once and access multiple resources.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which access control type allows the owner of an object to decide who can access it?",
+    "options": ["Mandatory Access Control", "Role-Based Access Control", "Discretionary Access Control", "Rule-Based Access Control"],
+    "answer": 2
+  },
+  {
+    "question": "Discretionary Access Control (DAC) is usually implemented using:",
+    "options": ["Firewalls", "Access Control Lists (ACLs)", "Tokens", "Passwords"],
+    "answer": 1
+  },
+  {
+    "question": "In Discretionary Access Control, access decisions are made by the system administrator, not the owner.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which access control type is considered more secure but less flexible than DAC?",
+    "options": ["Mandatory Access Control (MAC)", "Role-Based Access Control", "Rule-Based Access Control", "Task-Based Access Control"],
+    "answer": 0
+  },
+  {
+    "question": "In a Mandatory Access Control (MAC) system, subjects can access objects with equal or lower classification levels.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "What does a rule-based access control system rely on?",
+    "options": ["Identity of users", "Static rules and filters", "Group membership only", "Time of day"],
+    "answer": 1
+  },
+  {
+    "question": "A firewall is an example of a rule-based access control system.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which access control type grants permissions based on a user’s job description?",
+    "options": ["DAC", "MAC", "RBAC", "Lattice-based"],
+    "answer": 2
+  },
+  {
+    "question": "In Role-Based Access Control (RBAC), access depends on the user’s identity rather than their role.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Task-Based Access Control (TBAC) assigns permissions based on:",
+    "options": ["Identity", "Role", "Specific tasks", "Access time"],
+    "answer": 2
+  },
+  {
+    "question": "A lattice-based access control defines upper and lower bounds of access for subjects and objects.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following access control types originated to address information flow and confidentiality?",
+    "options": ["Lattice-Based Access Control", "RBAC", "MAC", "DAC"],
+    "answer": 0
+  },
+  {
+    "question": "In lattice-based control, a subject can access resources up to its maximum classification level.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a main benefit of centralized access control?",
+    "options": ["Easier policy management", "More independence for departments", "Lower authentication accuracy", "Less security"],
+    "answer": 0
+  },
+  {
+    "question": "A disadvantage of centralized access control is having a single point of failure.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which protocols are examples of centralized access control systems?",
+    "options": ["RADIUS and TACACS", "LDAP and DNS", "HTTP and HTTPS", "FTP and SFTP"],
+    "answer": 0
+  },
+  {
+    "question": "Decentralized access control is also known as:",
+    "options": ["Role-based system", "Distributed access control", "Lattice-based control", "MAC system"],
+    "answer": 1
+  },
+  {
+    "question": "In decentralized access control, if one access point fails, the rest of the system continues to work normally.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Domains and trusts are common in which type of access control?",
+    "options": ["Centralized", "Decentralized", "Lattice-based", "Mandatory"],
+    "answer": 1
+  },
+  {
+    "question": "Which access control type is best suited for environments with frequent personnel changes?",
+    "options": ["MAC", "DAC", "RBAC", "TBAC"],
+    "answer": 2
+  },
+  {
+    "question": "Mandatory Access Control (MAC) classifications can include hierarchical, compartmentalized, and hybrid types.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "In a hierarchical MAC environment, classifications are organized from low to high security levels.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which access control model focuses on controlling access based on user tasks rather than identity or role?",
+    "options": ["MAC", "TBAC", "RBAC", "DAC"],
+    "answer": 1
+  },
+  {
+    "question": "Lattice-based models are mainly concerned with data confidentiality and information flow control.",
+    "options": ["True", "False"],
+    "answer": 0
+  }
+];
+
+
+
+const iss3 = [
+  {
+    "question": "Access control administration includes which of the following main responsibilities?",
+    "options": ["User account management, activity tracking, and access rights management", "System installation, auditing, and encryption", "Data modeling and networking", "Incident response and backup"],
+    "answer": 0
+  },
+  {
+    "question": "User account management is essential for a system to perform proper identification and authentication.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which department typically initiates the request for creating a new user account?",
+    "options": ["Finance", "IT Support", "Human Resources (HR)", "Operations"],
+    "answer": 2
+  },
+  {
+    "question": "Account creation should follow a formal approval process rather than administrator discretion.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "The process of creating a new user identity and authentication factors is known as:",
+    "options": ["Authentication", "Authorization", "Enrollment", "Provisioning"],
+    "answer": 2
+  },
+  {
+    "question": "During account maintenance, privileges and rights can be modified without any formal procedure.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "When an employee leaves the organization, their account should be:",
+    "options": ["Locked or deleted immediately", "Left active for a month", "Shared with another employee", "Ignored until next audit"],
+    "answer": 0
+  },
+  {
+    "question": "Temporary accounts should have an expiration date to enhance security.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Auditing and monitoring help establish what important security concept?",
+    "options": ["Availability", "Accountability", "Redundancy", "Encryption"],
+    "answer": 1
+  },
+  {
+    "question": "Audit logs and journals record events and user actions to support investigations.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which principle ensures users are granted only the access necessary to perform their job?",
+    "options": ["Least Privilege", "Full Access", "Selective Sharing", "Access Inheritance"],
+    "answer": 0
+  },
+  {
+    "question": "The principle of least privilege applies only to discretionary access control systems.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "In security terms, privilege usually refers to the ability to:",
+    "options": ["Write, modify, or delete data", "Read-only access", "Encrypt files", "Login remotely"],
+    "answer": 0
+  },
+  {
+    "question": "The 'Need-to-Know' principle restricts access even to users with proper clearance if the information is not required for their work.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following best describes 'Need-to-Know'?",
+    "options": ["Access based on clearance level only", "Access based on demonstrated necessity for a specific task", "Access granted to all in same department", "Access determined by the user’s role"],
+    "answer": 1
+  },
+  {
+    "question": "In access control, what is implied if access is not explicitly allowed?",
+    "options": ["Implicitly denied", "Temporarily granted", "Inherited automatically", "Ignored by the system"],
+    "answer": 0
+  },
+  {
+    "question": "Excessive privilege occurs when a user has more access than their role requires.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Creeping privilege happens when users accumulate privileges over time without removing old ones.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Who is responsible for classifying and labeling data objects in an organization?",
+    "options": ["User", "Owner", "Custodian", "Auditor"],
+    "answer": 1
+  },
+  {
+    "question": "A custodian is typically responsible for the daily protection and maintenance of information systems.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "In access control terminology, a user is defined as:",
+    "options": ["Any subject who accesses objects to perform a task", "The data owner only", "A system administrator", "A developer only"],
+    "answer": 0
+  },
+  {
+    "question": "The separation of duties principle is used to:",
+    "options": ["Prevent any one individual from bypassing security controls", "Simplify administrative tasks", "Grant all users equal privileges", "Enable shared accounts"],
+    "answer": 0
+  },
+  {
+    "question": "Separation of duties helps prevent fraud and unauthorized actions by requiring cooperation between multiple users.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following combinations could create a control weakness if held by the same person?",
+    "options": ["Security administrator and system administrator", "User and auditor", "Developer and tester", "Operator and user"],
+    "answer": 0
+  },
+  {
+    "question": "Static separation of duties relies on predefined policies that rarely change.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Dynamic separation of duties is used when:",
+    "options": ["Security requirements are determined at runtime", "Policies are never modified", "Only one person manages all systems", "The same user needs full system control"],
+    "answer": 0
+  },
+  {
+    "question": "Access control models help organizations formalize and implement their security policy requirements.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which principle helps ensure no user can perform conflicting duties or override security mechanisms?",
+    "options": ["Separation of Duties", "Least Privilege", "Need-to-Know", "Centralized Control"],
+    "answer": 0
+  },
+  {
+    "question": "A combination of proper auditing, need-to-know, and least privilege provides strong accountability and protection.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "The ultimate goal of access control administration is to:",
+    "options": ["Ensure accountability, integrity, and protection of resources", "Simplify system login", "Allow unlimited user access", "Eliminate authentication"],
+    "answer": 0
+  }
+];
+
+
+
+
+
+
+        
+
+        
+
+const pl1 = [
+  {
+    "question": "In F#, values are immutable by default.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a pure function?",
+    "options": [
+      "A function that reads from a global variable",
+      "A function that writes to a file",
+      "A function that returns the square of its input",
+      "A function that prints to the console"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "The `let` keyword in F# is used to define:",
+    "options": ["A mutable variable", "A function", "A constant or immutable binding", "A loop"],
+    "answer": 2
+  },
+  {
+    "question": "Which F# operator is used for piping the output of one function as the input to the next?",
+    "options": [">>", "|>", "->", "<<"],
+    "answer": 1
+  },
+  {
+    "question": "Pattern matching in F# can only be used with integers.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "What is the result of `List.fold (+) 0 [1;2;3]` in F#?",
+    "options": ["6", "[1;2;3]", "0", "Error"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a benefit of using recursion in F#?",
+    "options": [
+      "It always runs faster than loops",
+      "It avoids stack overflow in all cases",
+      "It aligns with functional programming principles",
+      "It requires less memory"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "The `lazy` keyword in F# is used for:",
+    "options": [
+      "Defining slow functions",
+      "Deferred computation",
+      "Asynchronous programming",
+      "Error handling"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which F# feature allows the compiler to determine the type of an expression without explicit annotation?",
+    "options": ["Type inference", "Dynamic typing", "Type casting", "Reflection"],
+    "answer": 0
+  },
+  {
+    "question": "In F#, the `match` expression must always include a default case (`_`).",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which of the following is a higher-order function?",
+    "options": [
+      "A function that takes another function as an argument",
+      "A function that returns an integer",
+      "A function with no parameters",
+      "A function that uses recursion"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "The `>>` operator in F# is used for:",
+    "options": [
+      "Right-to-left function composition",
+      "Left-to-right function composition",
+      "Pipe forwarding",
+      "Logical shift right"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of the following is NOT a functional programming principle?",
+    "options": [
+      "Immutability",
+      "Pure functions",
+      "Side effects",
+      "Declarative style"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "In F#, you can use `mutable` keyword to define a variable that can be changed.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "What does the `List.map` function do?",
+    "options": [
+      "Filters a list based on a condition",
+      "Applies a function to each element and returns a new list",
+      "Reduces a list to a single value",
+      "Sorts the list"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which of the following is an example of a side effect?",
+    "options": [
+      "Calculating the sum of two numbers",
+      "Printing to the console",
+      "Returning a value from a function",
+      "Defining a constant"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "F# is a purely functional language and does not support imperative programming.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "What is the output of `printfn \"%s\" (sprintf \"Hello %s\" \"World\")`?",
+    "options": ["Hello World", "Hello", "World", "Error"],
+    "answer": 0
+  },
+  {
+    "question": "Which keyword is used to define a recursive function in F#?",
+    "options": ["rec", "fun", "let rec", "function"],
+    "answer": 2
+  },
+  {
+    "question": "The `Option` type in F# is used for:",
+    "options": [
+      "Representing optional values",
+      "Defining functions",
+      "Looping constructs",
+      "Type casting"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a valid F# list?",
+    "options": ["[1,2,3]", "(1,2,3)", "[1;2;3]", "{1,2,3}"],
+    "answer": 2
+  },
+  {
+    "question": "F# does not support object-oriented programming.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "What is the purpose of the `async` computation expression in F#?",
+    "options": [
+      "To define lazy values",
+      "To handle asynchronous operations",
+      "To create immutable records",
+      "To perform pattern matching"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which function is used to force the evaluation of a lazy value?",
+    "options": [".Force()", ".Eval()", ".Run()", ".Value()"],
+    "answer": 0
+  },
+  {
+    "question": "In F#, all functions must explicitly declare their return type.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "What does the `List.filter` function do?",
+    "options": [
+      "Maps a function over a list",
+      "Removes duplicates from a list",
+      "Selects elements that satisfy a predicate",
+      "Sorts the list"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Which of the following is a discriminated union in F#?",
+    "options": [
+      "type Color = Red | Blue | Green",
+      "type Color = { Red: int; Blue: int }",
+      "type Color = class end",
+      "type Color = string"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "F# is part of which language family?",
+    "options": ["C family", "ML family", "Java family", "Lisp family"],
+    "answer": 1
+  },
+  {
+    "question": "The `fold` function is used to:",
+    "options": [
+      "Filter a list",
+      "Map a function over a list",
+      "Reduce a list to a single value",
+      "Sort a list"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "In F#, you can mix functional and object-oriented programming styles.",
+    "options": ["True", "False"],
+    "answer": 0
+  }
+];
+
+
+
+const pl2 = [
+  {
+    "question": "A type system assigns types to variables, expressions, and functions.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a statically typed language?",
+    "options": ["Python", "JavaScript", "Ruby", "Rust"],
+    "answer": 3
+  },
+  {
+    "question": "Strong typing allows implicit type coercion.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which polymorphism allows a function to work with arguments of different types using the same implementation?",
+    "options": [
+      "Ad-hoc polymorphism",
+      "Parametric polymorphism",
+      "Subtype polymorphism",
+      "Inclusion polymorphism"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The Hindley-Milner algorithm is used for:",
+    "options": [
+      "Garbage collection",
+      "Type inference",
+      "Memory allocation",
+      "Code optimization"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Dependent types allow types to depend on:",
+    "options": ["Other types", "Values", "Functions", "Modules"],
+    "answer": 1
+  },
+  {
+    "question": "Rust's ownership system ensures memory safety without a garbage collector.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language uses weak typing?",
+    "options": ["Rust", "Java", "Python", "JavaScript"],
+    "answer": 3
+  },
+  {
+    "question": "What is the main benefit of static typing?",
+    "options": [
+      "Faster development",
+      "Early error detection",
+      "Dynamic code execution",
+      "Simpler syntax"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "In Rust, once ownership of a value is moved, the original variable can no longer be used.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is an example of ad-hoc polymorphism?",
+    "options": [
+      "Function overloading",
+      "Generic functions",
+      "Inheritance",
+      "Interface implementation"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Type inference reduces the need for explicit type annotations.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is known for its dependent types?",
+    "options": ["Idris", "Rust", "Go", "Python"],
+    "answer": 0
+  },
+  {
+    "question": "Subtype polymorphism is typically achieved through:",
+    "options": [
+      "Function overloading",
+      "Generics",
+      "Inheritance",
+      "Type inference"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Rust prevents data races at compile time.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a disadvantage of dynamic typing?",
+    "options": [
+      "Slower development",
+      "Runtime type errors",
+      "More verbose code",
+      "Less flexibility"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The `Box<T>` type in Rust is used for:",
+    "options": [
+      "Storing integers",
+      "Heap allocation",
+      "Stack allocation",
+      "Function pointers"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Python is an example of a strongly typed language.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a benefit of dependent types?",
+    "options": [
+      "Faster execution",
+      "Compile-time verification of program properties",
+      "Easier syntax",
+      "Dynamic memory allocation"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "In Rust, the `borrow checker` enforces:",
+    "options": [
+      "Memory safety",
+      "Code formatting",
+      "Network security",
+      "Database access"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Generic programming is based on parametric polymorphism.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language does NOT use structural typing?",
+    "options": ["TypeScript", "Go", "Rust", "Java"],
+    "answer": 3
+  },
+  {
+    "question": "What is a key feature of Rust's type system?",
+    "options": [
+      "Dynamic dispatch",
+      "Ownership and borrowing",
+      "Garbage collection",
+      "Interpreted execution"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Type erasure occurs in Java generics.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a statically typed language with type inference?",
+    "options": ["Haskell", "Python", "JavaScript", "PHP"],
+    "answer": 0
+  },
+  {
+    "question": "What does HM stand for in Hindley-Milner?",
+    "options": ["Haskell-Milner", "Hindley-Milner", "Hoare-Milner", "Harper-Milner"],
+    "answer": 1
+  },
+  {
+    "question": "Rust's `Result<T, E>` type is used for:",
+    "options": [
+      "Error handling",
+      "Memory management",
+      "Concurrency",
+      "Data serialization"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Dynamic typing is always faster than static typing.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which of the following is a nominal type system?",
+    "options": ["TypeScript", "Go", "Rust", "Haskell"],
+    "answer": 2
+  },
+  {
+    "question": "What is the main goal of a type system?",
+    "options": [
+      "To make code run faster",
+      "To prevent type errors",
+      "To simplify syntax",
+      "To enable dynamic features"
+    ],
+    "answer": 1
+  }
+];
+
+
+
+const pl3 = [
+  {
+    "question": "Programming languages evolve to address new technological challenges.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language was designed for scientific computing in the 1950s?",
+    "options": ["COBOL", "FORTRAN", "C", "Java"],
+    "answer": 1
+  },
+  {
+    "question": "Readability is a key design goal for Python.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is known for its ownership model and memory safety?",
+    "options": ["Go", "Rust", "Python", "JavaScript"],
+    "answer": 1
+  },
+  {
+    "question": "The language design triangle includes Safety, Simplicity, and Performance.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language was designed for business data processing?",
+    "options": ["FORTRAN", "COBOL", "C", "Python"],
+    "answer": 1
+  },
+  {
+    "question": "Go was developed by Google.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is a trade-off in language design?",
+    "options": [
+      "Readability vs Performance",
+      "Safety vs Speed",
+      "Simplicity vs Expressiveness",
+      "All of the above"
+    ],
+    "answer": 3
+  },
+  {
+    "question": "JavaScript is primarily used for web development.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is built on the Erlang VM?",
+    "options": ["Elixir", "Rust", "Go", "Python"],
+    "answer": 0
+  },
+  {
+    "question": "The first high-level programming language was FORTRAN.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language prioritizes simplicity and fast compilation?",
+    "options": ["Rust", "Python", "Go", "C++"],
+    "answer": 2
+  },
+  {
+    "question": "Rust uses a garbage collector for memory management.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which language is known for its 'let it crash' philosophy?",
+    "options": ["Elixir", "Go", "Rust", "Python"],
+    "answer": 0
+  },
+  {
+    "question": "Python uses indentation to define code blocks.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language was designed for systems programming at Bell Labs?",
+    "options": ["Java", "C", "Python", "FORTRAN"],
+    "answer": 1
+  },
+  {
+    "question": "Go has built-in support for concurrency with goroutines.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is often used for data science and machine learning?",
+    "options": ["Rust", "Go", "Python", "Elixir"],
+    "answer": 2
+  },
+  {
+    "question": "JavaScript was originally developed in 10 days.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is known for its use in Android development?",
+    "options": ["Swift", "Kotlin", "Go", "Rust"],
+    "answer": 1
+  },
+  {
+    "question": "The V8 engine improved JavaScript's performance.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is statically typed and compiled?",
+    "options": ["Python", "JavaScript", "Ruby", "Rust"],
+    "answer": 3
+  },
+  {
+    "question": "COBOL stands for Common Business-Oriented Language.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is designed for iOS and macOS development?",
+    "options": ["Kotlin", "Swift", "Go", "Rust"],
+    "answer": 1
+  },
+  {
+    "question": "Elixir is a functional programming language.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is known for its use in building scalable network services?",
+    "options": ["Python", "Rust", "Go", "JavaScript"],
+    "answer": 2
+  },
+  {
+    "question": "Java's slogan is 'Write once, run anywhere'.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which language is dynamically typed and emphasizes developer productivity?",
+    "options": ["Rust", "Go", "Python", "C"],
+    "answer": 2
+  },
+  {
+    "question": "Rust's borrow checker ensures memory safety at runtime.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which language was designed by Yukihiro Matsumoto?",
+    "options": ["Python", "Ruby", "JavaScript", "Go"],
+    "answer": 1
+  }
+];
+
+ 
+
+
+
+
+
+const ethics1 = [
+  {
+    "question": "Ethics are strictly implemented laws that mandate what is right or wrong.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which of the following is NOT a common issue of computer ethics?",
+    "options": ["Privacy concerns", "Intellectual property rights", "Hardware specifications", "Data protection"],
+    "answer": 2
+  },
+  {
+    "question": "What is the main purpose of data protection?",
+    "options": [
+      "To delete all personal data",
+      "To balance individual privacy rights with business data usage",
+      "To share data with third parties",
+      "To encrypt all government files"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Hacking is defined as:",
+    "options": [
+      "Legal access to computer systems",
+      "Unlawful intrusion into a computer or network",
+      "Authorized software testing",
+      "Data backup process"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Copyright gives the author proprietary publication, distribution and usage rights.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "What is plagiarism?",
+    "options": [
+      "Creating original content",
+      "Citing sources properly",
+      "Copying and publishing another person's work without citation",
+      "Software licensing agreement"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Cracking involves:",
+    "options": [
+      "Proper software registration",
+      "Breaking into a system by bypassing security",
+      "Legal software installation",
+      "Data encryption"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Software license allows users to:",
+    "options": [
+      "Own the copyright permanently",
+      "Use digital material following license agreement",
+      "Distribute software without restrictions",
+      "Modify source code arbitrarily"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Computers have only created new jobs and made all existing jobs simpler.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which health concern is associated with prolonged computer use?",
+    "options": [
+      "Improved eyesight",
+      "Increased physical activity",
+      "Sickness from constant sitting and screen staring",
+      "Better posture"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "What environmental impact do computers have?",
+    "options": [
+      "Reduced energy consumption",
+      "Decreased greenhouse gas emissions",
+      "Increased energy usage and greenhouse gases",
+      "Improved air quality"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Energy Star labeled computers help:",
+    "options": [
+      "Increase energy usage",
+      "Save the environment through energy efficiency",
+      "Make computers faster",
+      "Reduce software costs"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Social media has no impact on how people stay in touch with family and friends.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which is a POSITIVE effect of computer gaming?",
+    "options": [
+      "Addiction",
+      "Isolation from real world",
+      "Improved hand-eye coordination",
+      "Exposure to violence"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Computer technology helps businesses by:",
+    "options": [
+      "Increasing manual processes",
+      "Automating processes, reports and analysis",
+      "Reducing efficiency",
+      "Eliminating all human workers"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Anonymity in computing means:",
+    "options": [
+      "Revealing user identity",
+      "Keeping user's identity masked",
+      "Sharing personal information publicly",
+      "Using real names online"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Malware is designed to:",
+    "options": [
+      "Improve computer performance",
+      "Protect against viruses",
+      "Impair a computer system",
+      "Update software automatically"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Common types of malware include:",
+    "options": [
+      "Antivirus software",
+      "Firewalls",
+      "Viruses, spyware, worms and trojan horses",
+      "Operating systems"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "The main benefit of computers in government is:",
+    "options": [
+      "Reducing services to citizens",
+      "Improving services through advanced databases",
+      "Eliminating all paperwork",
+      "Increasing bureaucratic processes"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Ethics are society's views about what is right and wrong.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "What percentage of the final grade is the report and attendance?",
+    "options": ["30%", "10%", "60%", "40%"],
+    "answer": 1
+  },
+  {
+    "question": "Which lecture covers SQL Injection?",
+    "options": ["Lecture 1", "Lecture 5", "Lecture 10", "Lecture 12"],
+    "answer": 2
+  },
+  {
+    "question": "The final exam constitutes what percentage of the total grade?",
+    "options": ["30%", "10%", "60%", "50%"],
+    "answer": 2
+  },
+  {
+    "question": "Computer ethics only cover software issues, not hardware.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which is a negative effect of computer gaming?",
+    "options": [
+      "Stress relief",
+      "Improved strategic thinking",
+      "Addiction and isolation",
+      "Better hand-eye coordination"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Data protection is also known as:",
+    "options": [
+      "Data destruction",
+      "Information privacy or data privacy",
+      "Data sharing",
+      "Public disclosure"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Intellectual property rights protect:",
+    "options": [
+      "Physical property only",
+      "Digital content and creations",
+      "Public domain works",
+      "Only software programs"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Plagiarism is considered ethical in academic work.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "What does a software license define?",
+    "options": [
+      "Hardware requirements",
+      "Terms of use for digital material",
+      "Programming languages to use",
+      "Internet speed requirements"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The course instructor is:",
+    "options": [
+      "Dr. Helal Ahmed",
+      "Dr. Islam Gamal", 
+      "Dr. Oriyano",
+      "Dr. Jesang"
+    ],
+    "answer": 0
+  }
+];
+
+
+
+const ethics2 = [
+  {
+    "question": "Ethical hackers use the same skills as malicious hackers but with permission from system owners.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which type of hacker has limited training and knows only basic techniques?",
+    "options": ["White-Hat Hackers", "Black-Hat Hackers", "Script Kiddies", "Gray-Hat Hackers"],
+    "answer": 2
+  },
+  {
+    "question": "White-Hat hackers are also known as:",
+    "options": ["Criminal hackers", "Penetration testers", "Suicide hackers", "Script kiddies"],
+    "answer": 1
+  },
+  {
+    "question": "Gray-Hat hackers:",
+    "options": [
+      "Always work within the law",
+      "Are completely trusted once reformed",
+      "Straddle the line between good and bad",
+      "Only work for government agencies"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Suicide hackers are very stealthy and careful not to get caught.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "According to the code of conduct, ethical hackers should:",
+    "options": [
+      "Share confidential information publicly",
+      "Keep private and confidential information gained in professional work",
+      "Use illegally obtained software",
+      "Associate with malicious hackers"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "What does 'Hack Value' describe?",
+    "options": [
+      "The cost of hacking tools",
+      "A target that attracts above-average attention from attackers",
+      "The ethical value of hacking",
+      "The price of security software"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "A 'Zero Day' vulnerability is:",
+    "options": [
+      "Well-known and patched",
+      "Unknown to developers and not addressed",
+      "Only found in old software",
+      "Not a security concern"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Footprinting is primarily an active method of information gathering.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which phase involves extracting detailed information like usernames and groups?",
+    "options": ["Footprinting", "Scanning", "Enumeration", "System Hacking"],
+    "answer": 2
+  },
+  {
+    "question": "What tool is used in the scanning phase to trace packet paths?",
+    "options": ["Ping", "Tracert", "Whois", "Google"],
+    "answer": 1
+  },
+  {
+    "question": "Escalation of privilege involves:",
+    "options": [
+      "Reducing user permissions",
+      "Obtaining higher privileged accounts",
+      "Deleting user accounts",
+      "Installing antivirus software"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Covering tracks means removing evidence of system presence.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "What is planted during the 'Planting backdoors' phase?",
+    "options": [
+      "Antivirus software",
+      "Security patches",
+      "Special accounts or Trojan horses",
+      "Firewall rules"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Google hacking uses:",
+    "options": [
+      "Only simple search queries",
+      "Special operators to find hidden information",
+      "Only cached data",
+      "Social media exclusively"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The 'site:' operator in Google hacking:",
+    "options": [
+      "Searches the entire internet",
+      "Restricts search to a specific location",
+      "Finds only images",
+      "Searches social media"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Pipl.com is used for:",
+    "options": [
+      "Finding computer vulnerabilities",
+      "Personal information and account searching",
+      "Software development",
+      "Network scanning"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Social engineering attacks often use:",
+    "options": [
+      "Only technical vulnerabilities",
+      "Private information from social media",
+      "Hardware failures",
+      "Operating system bugs"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "FOCA is a tool used to find:",
+    "options": [
+      "Only email addresses",
+      "Metadata and hidden information in documents",
+      "Social media profiles",
+      "Network speeds"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The 'cache:' operator in Google shows the current version of a webpage.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which Google operator returns pages with specific keywords in their title?",
+    "options": ["site:", "allintitle:", "link:", "cache:"],
+    "answer": 1
+  },
+  {
+    "question": "Information gathering should be:",
+    "options": [
+      "Random and unsystematic",
+      "Systematic with all information analyzed",
+      "Limited to only obvious information",
+      "Done only during attacks"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Enumeration typically gathers information like:",
+    "options": [
+      "Weather data",
+      "Usernames, groups, and passwords",
+      "Stock market prices",
+      "Sports scores"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Black-Hat hackers typically operate within the law.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "What is a 'Target of Evaluation' (TOE)?",
+    "options": [
+      "A hacker's personal computer",
+      "A system being evaluated for vulnerabilities",
+      "A type of malware",
+      "A security certification"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Daisy Chaining refers to:",
+    "options": [
+      "A single hacking attempt",
+      "Several hacking attacks performed in sequence",
+      "A type of flower arrangement",
+      "Network cabling"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Ethical hackers should never:",
+    "options": [
+      "Use authorized testing methods",
+      "Follow legal contracts",
+      "Engage in black-hat activities",
+      "Protect intellectual property"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "The 'link:' operator in Google shows:",
+    "options": [
+      "Pages that contain links to a specified site",
+      "Only broken links",
+      "Social media links",
+      "Download links"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Social media can be used to build:",
+    "options": [
+      "Only professional networks",
+      "Detailed personal profiles for social engineering",
+      "Hardware components",
+      "Security firewalls"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Wget and HTTrack are tools for:",
+    "options": [
+      "Downloading entire websites",
+      "Social media analysis",
+      "Password cracking",
+      "Network scanning"
+    ],
+    "answer": 0
+  }
+];
+
+
+const ethics3 = [
+  {
+    "question": "Cryptography's primary goal has remained the same throughout history.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which ancient civilization used hieroglyphics that involved cryptographic elements?",
+    "options": ["Romans", "Greeks", "Egyptians", "Chinese"],
+    "answer": 2
+  },
+  {
+    "question": "The Rosetta Stone helped decipher:",
+    "options": [
+      "Modern encryption algorithms",
+      "Egyptian hieroglyphics",
+      "Computer code",
+      "Digital signatures"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which is NOT a goal of modern cryptography?",
+    "options": ["Confidentiality", "Integrity", "Authentication", "Data destruction"],
+    "answer": 3
+  },
+  {
+    "question": "Confidentiality in cryptography means keeping information secret from unauthorized access.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "What does integrity ensure in cryptography?",
+    "options": [
+      "Data speed",
+      "Data remains unmodified",
+      "User anonymity",
+      "System availability"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Nonrepudiation prevents:",
+    "options": [
+      "Data encryption",
+      "Denial of involvement in communication",
+      "System hacking",
+      "Password sharing"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Plain text is:",
+    "options": [
+      "Encrypted message",
+      "Original unaltered message",
+      "Secret code",
+      "Digital signature"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Cipher text is the encrypted form of plain text.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Algorithms in cryptography are:",
+    "options": [
+      "Random number generators",
+      "Formulas that transform text between plain and cipher forms",
+      "Only used for decryption",
+      "Physical security devices"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Symmetric cryptography uses:",
+    "options": [
+      "Different keys for encryption and decryption",
+      "The same key for both encryption and decryption",
+      "No keys",
+      "Only public keys"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Which is an advantage of symmetric cryptography?",
+    "options": [
+      "Better key management",
+      "Increased speed",
+      "Built-in nonrepudiation",
+      "Easy key distribution"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Asymmetric cryptography is also known as:",
+    "options": [
+      "Private key cryptography",
+      "Public key cryptography",
+      "Secret key cryptography",
+      "Single key cryptography"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "In asymmetric cryptography, the public key is kept secret.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Digital signatures provide:",
+    "options": [
+      "Only encryption",
+      "Authentication and nonrepudiation",
+      "Faster data transmission",
+      "Data compression"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Hashing is:",
+    "options": [
+      "A two-way encryption process",
+      "A type of one-way encryption",
+      "Symmetric cryptography",
+      "Key distribution method"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Hash values are:",
+    "options": [
+      "Variable length based on input",
+      "Always the same length regardless of input",
+      "Only used for passwords",
+      "Reversible to original data"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Brute-force attacks try every possible key combination.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "According to the table, how long would it take a government to break a 56-bit key?",
+    "options": ["40 years", "19 days", "12 seconds", "6 minutes"],
+    "answer": 2
+  },
+  {
+    "question": "Cryptanalysis deals with:",
+    "options": [
+      "Creating encryption algorithms",
+      "Breaking or uncovering secrets in cryptography",
+      "Hardware security",
+      "Network cabling"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Keys in cryptography are:",
+    "options": [
+      "Always public information",
+      "Discrete pieces of information that determine cryptographic output",
+      "Physical keys for locks",
+      "Only used in symmetric systems"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "The main problem with symmetric key systems is:",
+    "options": [
+      "Slow speed",
+      "Key management issues",
+      "Lack of confidentiality",
+      "Easy to break"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Public key cryptography eliminates the need for shared symmetric keys.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Hashing is commonly used for:",
+    "options": [
+      "Data encryption",
+      "Validating data integrity",
+      "Key distribution",
+      "User authentication only"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "A message digest is another term for:",
+    "options": ["Plain text", "Cipher text", "Hash value", "Encryption key"],
+    "answer": 2
+  },
+  {
+    "question": "Which characteristic makes hashing useful for password storage?",
+    "options": [
+      "It's reversible",
+      "It's a one-way process",
+      "It uses symmetric keys",
+      "It requires no computation"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "For a corporation, breaking a 40-bit key takes:",
+    "options": ["1 week", "24 seconds", "556 days", "0.005 seconds"],
+    "answer": 1
+  },
+  {
+    "question": "Two-key authentication provides:",
+    "options": [
+      "Reduced security",
+      "Enhanced authentication confidence",
+      "Faster login times",
+      "Automatic encryption"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Encryption converts plain text to cipher text.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "The main vulnerability of all cryptographic systems is:",
+    "options": [
+      "Brute-force attacks",
+      "Being too fast",
+      "Using too much memory",
+      "Requiring internet connection"
+    ],
+    "answer": 0
+  }
+];
+
+
+
+const ethics4 = [
+  {
+    "question": "Malware is short for malicious software.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which of the following is NOT a category of malware?",
+    "options": ["Viruses", "Worms", "Antivirus software", "Trojan horses"],
+    "answer": 2
+  },
+  {
+    "question": "Rootkits are designed to:",
+    "options": [
+      "Improve system performance",
+      "Hide within core system components",
+      "Display advertisements",
+      "Protect against viruses"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Viruses typically require:",
+    "options": [
+      "No user interaction",
+      "User action to initiate infection",
+      "Only network connectivity",
+      "Physical hardware access"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Viruses can alter data and infect other programs.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "The first phase of virus development is:",
+    "options": ["Replication", "Design", "Launch", "Detection"],
+    "answer": 1
+  },
+  {
+    "question": "During the replication phase, viruses:",
+    "options": [
+      "Are detected by antivirus software",
+      "Spread and multiply to different systems",
+      "Perform their destructive tasks",
+      "Are eliminated from systems"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Antivirus makers incorporate virus identification into their products during which phase?",
+    "options": ["Design", "Replication", "Incorporation", "Elimination"],
+    "answer": 2
+  },
+  {
+    "question": "Creating viruses for educational purposes should be done on production systems.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Tools like JPS Virus Maker and Terabit Virus Maker are used to:",
+    "options": [
+      "Remove viruses",
+      "Create viruses through GUI options",
+      "Scan for malware",
+      "Protect systems"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Worms differ from viruses in that they:",
+    "options": [
+      "Require host applications",
+      "Need user interaction to function",
+      "Can replicate without user interaction",
+      "Are less dangerous"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "A characteristic of worms is:",
+    "options": [
+      "Slow replication",
+      "Consumption of bandwidth and resources",
+      "Requiring physical access",
+      "Only infecting individual files"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Spyware is designed to:",
+    "options": [
+      "Improve system speed",
+      "Collect and forward information without user knowledge",
+      "Protect privacy",
+      "Remove other malware"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Spyware can be delivered through email attachments.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Which method is NOT a common way spyware infects systems?",
+    "options": [
+      "Instant Messaging",
+      "Browser defects",
+      "Legitimate software updates",
+      "Physical access"
+    ],
+    "answer": 2
+  },
+  {
+    "question": "Adware typically:",
+    "options": [
+      "Steals passwords",
+      "Displays ads and pop-ups",
+      "Encrypts files",
+      "Improves security"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Trojans provide:",
+    "options": [
+      "Covert access to victim's system",
+      "System protection",
+      "Performance improvement",
+      "Legal software access"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "A computer's CD drawer opening and closing unexpectedly may indicate a Trojan infection.",
+    "options": ["True", "False"],
+    "answer": 0
+  },
+  {
+    "question": "Remote Access Trojans (RATs) are designed to:",
+    "options": [
+      "Give attackers remote control",
+      "Only steal data",
+      "Destroy hardware",
+      "Display advertisements"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "SubSeven and Back Orifice are examples of:",
+    "options": [
+      "Antivirus programs",
+      "Remote Access Trojans",
+      "Firewall software",
+      "Encryption tools"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Data sending Trojans often include:",
+    "options": [
+      "Keyloggers",
+      "Game software",
+      "Antivirus features",
+      "System optimizers"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "Destructive Trojans seek to:",
+    "options": [
+      "Improve system performance",
+      "Corrupt, erase, or destroy data",
+      "Protect user privacy",
+      "Create backups"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Malware can only affect software, not hardware.",
+    "options": ["True", "False"],
+    "answer": 1
+  },
+  {
+    "question": "Which behavior might indicate a Trojan infection?",
+    "options": [
+      "Faster computer performance",
+      "Browser redirected to unknown pages",
+      "Increased storage space",
+      "Better internet connection"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Spyware distribution through freeware typically involves:",
+    "options": [
+      "Downloading from trusted sources",
+      "Downloading from unknown or untrusted sources",
+      "Official app stores only",
+      "Physical installation only"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Worms consume bandwidth because they:",
+    "options": [
+      "Replicate rapidly across networks",
+      "Compress data",
+      "Improve network speed",
+      "Block internet access"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "The elimination phase of viruses involves:",
+    "options": [
+      "Virus creation",
+      "Users installing antivirus updates",
+      "Virus replication",
+      "System infection"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Logic bombs are a type of:",
+    "options": [
+      "Hardware device",
+      "Malware",
+      "Security software",
+      "Network protocol"
+    ],
+    "answer": 1
+  },
+  {
+    "question": "Adware is commonly spread through:",
+    "options": [
+      "Downloads with other software",
+      "Only physical media",
+      "Operating system updates",
+      "Antivirus software"
+    ],
+    "answer": 0
+  },
+  {
+    "question": "All types of malware require user interaction to infect systems.",
+    "options": ["True", "False"],
+    "answer": 1
+  }
+];
+
+
+
+
+
+
+        
+
+
+
+        function selectQuiz(quiz) {
+            selectedQuiz = quiz;
+            if (quiz === 'database') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('database-quiz-selection').classList.remove('hidden');
+            } else if (quiz === 'datastructures') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('data-structure-quiz-selection').classList.remove('hidden');
+            } else if (quiz === 'dc') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('datacommunction-quiz-selection').classList.remove('hidden');
+            }
+            else if (quiz === 'bigdata') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('bigdata-quiz-selection').classList.remove('hidden');
+            }
+            else if (quiz === 'dm') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('dm-quiz-selection').classList.remove('hidden');
+            }
+            else if (quiz === 'db2') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('db2-quiz-selection').classList.remove('hidden');
+            }
+            else if (quiz === 'ir') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('ir-quiz-selection').classList.remove('hidden');
+            }
+            else if (quiz === 'bi') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('bi-quiz-selection').classList.remove('hidden');
+            }
+              else if (quiz === 'iss') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('iss-quiz-selection').classList.remove('hidden');
+            }
+              else if (quiz === 'pl') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('pl-quiz-selection').classList.remove('hidden');
+            }
+               else if (quiz === 'ethics') {
+                document.getElementById('quiz-selection').classList.add('hidden');
+                document.getElementById('ethics-quiz-selection').classList.remove('hidden');
+            }
+        }
+
+
+
+
+        
+
+
+
+
+        function chooseDatabaseQuiz(variant) {
+            databaseQuizVariant = variant;
+            totalQuestions = getDatabaseQuestions().length;
+            document.getElementById('quiz-title').innerText = `Database Quiz ${variant}`;
+            document.getElementById('database-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+        }
+
+
+        function getDatabaseQuestions() {
+            if (databaseQuizVariant === 1) return databaseQuestions1;
+            if (databaseQuizVariant === 2) return databaseQuestions2;
+            if (databaseQuizVariant === 3) return databaseQuestions3;
+            if (databaseQuizVariant === 4) return databaseQuestions4;
+            if (databaseQuizVariant === 5) return databaseQuestion5;
+            if (databaseQuizVariant === 6) return databaseQuestion6;
+
+        }
+
+
+
+
+
+
+        
+
+
+
+
+
+        function chooseDataStructuresQuiz(variant) {
+            dataStructureQuizVariant = variant;
+            totalQuestions = getDataStructureQuestions().length;
+            document.getElementById('quiz-title').innerText = `Data Structures Quiz ${variant}`;
+            document.getElementById('data-structure-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+        }
+
+        function getDataStructureQuestions() {
+            if (dataStructureQuizVariant === 1) return dataStructureQuestions;
+            if (dataStructureQuizVariant === 2) return dataStructureQuestions2;
+            if (dataStructureQuizVariant === 3) return dataStructureQuestions3;
+        }
+
+
+
+
+
+        
+
+
+
+
+
+        function chooseDCQuiz(variant) {
+            dcQuizVariant = variant;
+            totalQuestions = getDCQuestions().length;
+            document.getElementById('quiz-title').innerText = `DC Quiz ${variant}`;
+            document.getElementById('datacommunction-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+
+        }
+
+        function getDCQuestions() {
+            if (dcQuizVariant === 1) return dcQuestions1;
+            if (dcQuizVariant === 2) return dcQuestions2;
+            
+        }
+
+
+
+
+
+        
+
+
+
+        function choosebigdataQuiz(variant) {
+            bigdataQuizVariant = variant;
+            totalQuestions = getbigdataQuestions().length;
+            document.getElementById('quiz-title').innerText = `bigdata Quiz ${variant}`;
+            document.getElementById('bigdata-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+
+        }
+
+        function getbigdataQuestions() {
+            if (bigdataQuizVariant === 1) return bigdataQuestions1;
+            if (bigdataQuizVariant === 2) return bigdataQuestions2;
+            if (bigdataQuizVariant === 3) return bigdataQuestions3;
+            if (bigdataQuizVariant === 4) return bigdataQuestions4;
+            if (bigdataQuizVariant === 5) return bigdataQuestions5;
+
+
+        }
+
+
+
+
+        
+
+
+        function choosedmQuiz(variant) {
+            dmQuizVariant = variant;
+            totalQuestions = getdmQuestions().length;
+            document.getElementById('quiz-title').innerText = `dm Quiz ${variant}`;
+            document.getElementById('dm-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+
+        }
+
+        function getdmQuestions() {
+            if (dmQuizVariant === 1) return dmQuestions1;
+            if (dmQuizVariant === 2) return dmQuestions2;
+            if (dmQuizVariant === 3) return dmQuestions3;
+        }
+
+
+        
+
+
+
+        function choosedb2Quiz(variant) {
+            db2QuizVariant = variant;
+            totalQuestions = getdb2Questions().length;
+            document.getElementById('quiz-title').innerText = `db2 Quiz ${variant}`;
+            document.getElementById('db2-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+
+        }
+
+        function getdb2Questions() {
+            if (db2QuizVariant === 1) return db2Questions1;
+            if (db2QuizVariant === 2) return db2Questions2;
+            if (db2QuizVariant === 3) return db2Questions3;
+            if (db2QuizVariant === 4) return db2Questions4;
+            if (db2QuizVariant === 5) return db2Questions5;
+        }
+
+
+
+
+        
+
+
+
+
+        function chooseirQuiz(variant) {
+            irQuizVariant = variant;
+            totalQuestions = getirQuestions().length;
+            document.getElementById('quiz-title').innerText = `ir Quiz ${variant}`;
+            document.getElementById('ir-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+
+        }
+
+        function getirQuestions() {
+            if (irQuizVariant === 1) return irQuestions1;
+            if (irQuizVariant === 2) return irQuestions2;
+            if (irQuizVariant === 3) return irQuestions3;
+            if (irQuizVariant === 4) return irQuestions4;
+            if (irQuizVariant === 5) return irQuestions5;
+
+        }
+
+
+
+
+
+        
+
+
+
+        function choosebiQuiz(variant) {
+            biQuizVariant = variant;
+            totalQuestions = getbiQuestions().length;
+            document.getElementById('quiz-title').innerText = `bi Quiz ${variant}`;
+            document.getElementById('bi-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+
+        }
+
+        function getbiQuestions() {
+            if (biQuizVariant === 1) return biQuestions1;
+            if (biQuizVariant === 2) return biQuestions2;
+            if (biQuizVariant === 3) return biQuestions3;
+            if (biQuizVariant === 4) return biQuestions4;
+
+        }
+
+
+
+        
+
+
+
+          function chooseissQuiz(variant) {
+            issQuizVariant = variant;
+            totalQuestions = getissQuestions().length;
+            document.getElementById('quiz-title').innerText = `iss Quiz ${variant}`;
+            document.getElementById('iss-quiz-selection').classList.add('hidden');
+            document.getElementById('time-options').classList.remove('hidden');
+        }
+
+
+        function getissQuestions() {
+            if (issQuizVariant === 1) return iss1;
+            if (issQuizVariant === 2) return iss2;
+            if (issQuizVariant === 3) return iss3;
+
+        }
+
+
+
+
+
+
+
+
+function chooseplQuiz(variant) {
+    plQuizVariant = variant;
+    totalQuestions = getplQuestions().length;
+    document.getElementById('quiz-title').innerText = `pl Quiz ${variant}`;
+    document.getElementById('pl-quiz-selection').classList.add('hidden');
+    document.getElementById('time-options').classList.remove('hidden');
+}
+
+function getplQuestions() {
+    if (plQuizVariant === 1) return pl1;
+    if (plQuizVariant === 2) return pl2;
+    if (plQuizVariant === 3) return pl3;
+}
+
+
+
+
+
+
+
+
+function chooseethicsQuiz(variant) {
+    ethicsQuizVariant = variant; 
+    totalQuestions = getethicsQuestions().length;
+    document.getElementById('quiz-title').innerText = `Ethics Quiz ${variant}`;
+    document.getElementById('ethics-quiz-selection').classList.add('hidden');
+    document.getElementById('time-options').classList.remove('hidden');
+}
+
+function getethicsQuestions() {
+    if (ethicsQuizVariant === 1) return ethics1; 
+    if (ethicsQuizVariant === 2) return ethics2;
+    if (ethicsQuizVariant === 3) return ethics3;
+    if (ethicsQuizVariant === 4) return ethics4;
+}
+
+
+
+
+
+
+        
+
+
+
+
+        function showTimeInput() {
+            document.getElementById('time-options').classList.add('hidden');
+            document.getElementById('time-input').classList.remove('hidden');
+        }
+
+        function setTimeLimit() {
+            const minutes = parseInt(document.getElementById('time-limit').value);
+            if (isNaN(minutes) || minutes < 1) {
+                alert("Please enter a valid number of minutes.");
+                return;
+            }
+            if (minutes > 120) {
+                alert("Please enter a number between 1-120 minutes.");
+                return false;
+            }
+            timeLimit = minutes * 60;
+            updateTimerDisplay(timeLimit);
+            document.getElementById('timer').style.visibility = "visible";
+            startQuizWithTimer();
+        }
+
+        function startQuizWithoutTime() {
+            startQuiz();
+        }
+
+        function startQuizWithTimer() {
+            startQuiz();
+            startTime = new Date();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        function startQuiz() {
+            document.getElementById('time-options').classList.add('hidden');
+            document.getElementById('time-input').classList.add('hidden');
+            document.getElementById('question-info').classList.remove('hidden');
+            document.getElementById('question-box').classList.remove('hidden');
+            document.getElementById('timer').classList.remove('hidden');
+
+            userAnswers = new Array(totalQuestions).fill(-1);
+            score = 0; 
+
+            loadQuestion();
+        }
+
+
+
+        
+
+
+
+
+
+        function loadQuestion() {
+            const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+
+            let quiz;
+            if (selectedQuiz === 'database') {
+                quiz = getDatabaseQuestions();
+            } else if (selectedQuiz === 'datastructures') {
+                quiz = getDataStructureQuestions();
+            } else if (selectedQuiz === 'dc') {
+                quiz = getDCQuestions();
+            }
+            else if (selectedQuiz === 'bigdata') {
+                quiz = getbigdataQuestions();
+            }
+            else if (selectedQuiz === 'dm') {
+                quiz = getdmQuestions();
+            }
+            else if (selectedQuiz === 'db2') {
+                quiz = getdb2Questions();
+            }
+            else if (selectedQuiz === 'ir') {
+                quiz = getirQuestions();
+            }
+            else if (selectedQuiz === 'bi') {
+                quiz = getbiQuestions();
+            }
+              else if (selectedQuiz === 'iss') {
+                quiz = getissQuestions();
+            }
+             else if (selectedQuiz === 'pl') {
+                quiz = getplQuestions();
+            }
+            else if (selectedQuiz === 'ethics') {
+                quiz = getethicsQuestions();
+            }
+
+
+
+            document.getElementById('current-question').innerText = currentQuestionIndex + 1;
+            document.getElementById('total-questions').innerText = totalQuestions;
+            document.getElementById('question').innerText = quiz[currentQuestionIndex].question;
+
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, index) => {
+                option.innerText = quiz[currentQuestionIndex].options[index];
+                option.classList.remove('correct', 'wrong');
+                option.disabled = false; 
+            });
+
+            showCurrentAnswer();
+        }
+
+
+
+
+
+        
+
+
+
+
+
+        function checkAnswer(selectedIndex) {
+            let quiz;
+
+            if (selectedQuiz === 'database') {
+                quiz = getDatabaseQuestions();
+            } else if (selectedQuiz === 'datastructures') {
+                quiz = getDataStructureQuestions();
+            } else if (selectedQuiz === 'dc') {
+                quiz = getDCQuestions();
+            }
+            else if (selectedQuiz === 'bigdata') {
+                quiz = getbigdataQuestions();
+            }
+            else if (selectedQuiz === 'dm') {
+                quiz = getdmQuestions();
+            }
+            else if (selectedQuiz === 'db2') {
+                quiz = getdb2Questions();
+            }
+            else if (selectedQuiz === 'ir') {
+                quiz = getirQuestions();
+            }
+            else if (selectedQuiz === 'bi') {
+                quiz = getbiQuestions();
+            }
+              else if (selectedQuiz === 'iss') {
+                quiz = getissQuestions();
+            }
+              else if (selectedQuiz === 'pl') {
+                quiz = getplQuestions();
+            }
+             else if (selectedQuiz === 'ethics') {
+                quiz = getethicsQuestions();
+            }
+
+
+            const correctIndex = quiz[currentQuestionIndex].answer;
+
+            userAnswers[currentQuestionIndex] = selectedIndex;
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, index) => {
+                option.classList.remove('correct', 'wrong');
+                if (index === correctIndex) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex) {
+                    option.classList.add('wrong');
+                }
+            });
+
+            if (selectedIndex === correctIndex) {
+                score++;
+            }
+
+            if (currentQuestionIndex < totalQuestions - 1) {
+                document.getElementById('next-btn').classList.remove('hidden');
+            } else {
+                document.getElementById('finish-btn').classList.remove('hidden');
+            }
+        }
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+                
+                showCurrentAnswer();
+            }
+        }
+
+  function showCurrentAnswer() {
+    if (userAnswers[currentQuestionIndex] !== -1) {
+        let quiz;
+
+        if (selectedQuiz === 'database') {
+            quiz = getDatabaseQuestions();
+        } else if (selectedQuiz === 'datastructures') {
+            quiz = getDataStructureQuestions();
+        } else if (selectedQuiz === 'dc') {
+            quiz = getDCQuestions();
+        } else if (selectedQuiz === 'bigdata') {
+            quiz = getbigdataQuestions(); 
+        } else if (selectedQuiz === 'dm') {
+            quiz = getdmQuestions(); 
+        } else if (selectedQuiz === 'db2') {
+            quiz = getdb2Questions(); 
+        } else if (selectedQuiz === 'ir') {
+            quiz = getirQuestions(); 
+        } else if (selectedQuiz === 'bi') {
+            quiz = getbiQuestions(); 
+        }
+         else if (selectedQuiz === 'iss') {
+            quiz = getissQuestions(); 
+        }
+         else if (selectedQuiz === 'pl') {
+            quiz = getplQuestions(); 
+        }
+         else if (selectedQuiz === 'ethics') {
+                quiz = getethicsQuestions();
+            }
+
+
+                const correctIndex = quiz[currentQuestionIndex].answer;
+                const userAnswerIndex = userAnswers[currentQuestionIndex];
+
+                const options = document.querySelectorAll('.option');
+                options.forEach((option, index) => {
+                    option.classList.remove('correct', 'wrong');
+                    if (index === correctIndex) {
+                        option.classList.add('correct');
+                    } else if (index === userAnswerIndex && userAnswerIndex !== correctIndex) {
+                        option.classList.add('wrong');
+                    }
+                });
+
+                
+                options.forEach(option => {
+                    option.disabled = true;
+                });
+            } else {
+                
+                const options = document.querySelectorAll('.option');
+                options.forEach(option => {
+                    option.disabled = false;
+                    option.classList.remove('correct', 'wrong');
+                });
+            }
+
+            
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prev-btn').classList.toggle('hidden', currentQuestionIndex === 0);
+            document.getElementById('next-btn').classList.toggle('hidden', currentQuestionIndex === totalQuestions - 1);
+            document.getElementById('finish-btn').classList.toggle('hidden', currentQuestionIndex !== totalQuestions - 1);
+        }
+
+        function showResult() {
+            clearInterval(timerInterval);
+
+            document.getElementById('question-info').classList.add('hidden');
+            document.getElementById('question-box').classList.add('hidden');
+            document.getElementById('result').classList.remove('hidden');
+
+            
+            document.getElementById('finish-btn').classList.add('hidden');
+            document.getElementById('prev-btn').classList.add('hidden');
+
+
+            const percentage = Math.round((score / totalQuestions) * 100);
+            document.getElementById('result').innerHTML = `<h3>Your Score: ${score} out of ${totalQuestions} (${percentage}%)</h3>`;
+
+            
+            document.getElementById('correct-answers').textContent = score;
+            document.getElementById('wrong-answers').textContent = totalQuestions - score;
+            document.getElementById('score-percentage').textContent = percentage + '%';
+
+            
+            const timeTaken = timeLimit ? Math.floor((new Date() - startTime) / 1000) : 0;
+            const minutes = Math.floor(timeTaken / 60);
+            const seconds = timeTaken % 60;
+            document.getElementById('time-taken-value').textContent = `${minutes}m ${seconds}s`;
+
+            
+            document.getElementById('result-details').classList.remove('hidden');
+            document.getElementById('post-quiz-buttons').classList.remove('hidden');
+
+            
+            let quizName = `${selectedQuiz} Quiz ${getQuizVariant()}`;
+            updateUserStats(quizName, percentage, timeTaken);
+        }
+        
+        function getQuizVariant() {
+            if (selectedQuiz === 'database') return databaseQuizVariant;
+            if (selectedQuiz === 'datastructures') return dataStructureQuizVariant;
+            if (selectedQuiz === 'dc') return dcQuizVariant;
+            if (selectedQuiz === 'bigdata') return bigdataQuizVariant;
+            if (selectedQuiz === 'dm') return dmQuizVariant;
+            if (selectedQuiz === 'db2') return db2QuizVariant;
+            if (selectedQuiz === 'ir') return irQuizVariant;
+            if (selectedQuiz === 'bi') return biQuizVariant;
+            if (selectedQuiz === 'iss') return issQuizVariant;
+            if (selectedQuiz === 'pl') return plQuizVariant;
+            if (selectedQuiz === 'ethics') return ethicsQuizVariant;
+
+            return 1;
+        }
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        function startNewQuiz() {
+            location.reload();
+        }
+
+        function updateTimer() {
+            timeLimit--;
+            if (timeLimit <= 0) {
+                clearInterval(timerInterval);
+                showResult();
+            }
+            updateTimerDisplay(timeLimit);
+        }
+
+        function updateTimerDisplay(timeLimit) {
+            const minutes = Math.floor(timeLimit / 60);
+            const seconds = timeLimit % 60;
+            document.getElementById('time-left').innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function backToHome() {
+            location.reload();
+        }
+        document.getElementById('review-btn').classList.remove('hidden');
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        function reviewAnswers() {
+            let quiz;
+            if (selectedQuiz === 'database') {
+                quiz = getDatabaseQuestions();
+            } else if (selectedQuiz === 'datastructures') {
+                quiz = getDataStructureQuestions();
+            } else if (selectedQuiz === 'dc') {
+                quiz = getDCQuestions();
+            }
+            else if (selectedQuiz === 'bigdata') {
+                quiz = getbigdataQuestions();
+            }
+            else if (selectedQuiz === 'dm') {
+                quiz = getdmQuestions();
+            }
+            else if (selectedQuiz === 'db2') {
+                quiz = getdb2Questions();
+            }
+            else if (selectedQuiz === 'ir') {
+                quiz = getirQuestions();
+            }
+            else if (selectedQuiz === 'bi') {
+                quiz = getbiQuestions();
+            }
+             else if (selectedQuiz === 'iss') {
+                quiz = getissQuestions();
+            }
+               else if (selectedQuiz === 'pl') {
+                quiz = getplQuestions();
+            }
+             else if (selectedQuiz === 'ethics') {
+                quiz = getethicsQuestions();
+            }
+
+            let reviewMessage = '<div class="review-container">';
+            for (let i = 0; i < totalQuestions; i++) {
+                let userAnswerIndex = userAnswers[i];
+                let correctAnswerIndex = quiz[i].answer;
+
+                reviewMessage += `
+            <div class="review-question">
+                <p><strong>Question ${i + 1}:</strong> ${quiz[i].question}</p>
+                <p><strong>Your Answer:</strong> ${userAnswerIndex !== -1 ? quiz[i].options[userAnswerIndex] : '<em>No answer</em>'}</p>
+                <p><strong>Correct Answer:</strong> ${quiz[i].options[correctAnswerIndex]}</p>
+                <p><strong>Status:</strong> ${userAnswerIndex === correctAnswerIndex ? '✅ Correct' : '❌ Wrong'}</p>
+            </div>
+        `;
+            }
+
+            reviewMessage += '</div>';
+
+            
+            document.getElementById('result').classList.add('hidden');
+            document.getElementById('result-details').classList.add('hidden');
+            document.getElementById('post-quiz-buttons').classList.add('hidden');
+
+            
+            document.getElementById('review-answers').innerHTML = reviewMessage;
+            document.getElementById('review-answers').classList.remove('hidden');
+
+            
+            const backButton = '<button class="action-btn" onclick="backToResults()" style="margin: 20px auto; display: block;"><i class="fas fa-arrow-left"></i> Back to Results</button>';
+            document.getElementById('review-answers').innerHTML += backButton;
+        }
+
+        
+        function backToResults() {
+            document.getElementById('review-answers').classList.add('hidden');
+            document.getElementById('review-answers').innerHTML = '';
+
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('result-details').classList.remove('hidden');
+            document.getElementById('post-quiz-buttons').classList.remove('hidden');
+        }
+
+
+
+
+        function confirmResetStats() {
+            
+            const modal = document.createElement('div');
+            modal.className = 'confirmation-modal';
+            modal.innerHTML = `
+        <div class="modal-content">
+            <h3>Confirm Reset</h3>
+            <p>Are you sure you want to delete all statistics? This action cannot be undone.</p>
+            <div class="modal-buttons">
+                <button class="confirm-btn" onclick="resetStats()">Yes, Delete All</button>
+                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    `;
+
+            document.body.appendChild(modal);
+        }
+
+
+
+
+
+        function closeModal() {
+            const modal = document.querySelector('.confirmation-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function resetStats() {
+            
+            userStats = {
+                totalQuizzes: 0,
+                totalScore: 0,
+                bestScore: 0,
+                totalTime: 0,
+                recentQuizzes: []
+            };
+
+            
+            localStorage.setItem('userStats', JSON.stringify(userStats));
+
+            
+            updateStatsDisplay();
+
+            
+            closeModal();
+
+            
+            alert('All statistics have been reset successfully!');
+        }
+
+        function showAllStatistics() {
+            const modal = document.createElement('div');
+            modal.className = 'stats-modal';
+            modal.innerHTML = `
+        <div class="stats-modal-content">
+            <div class="stats-modal-header">
+                <h2><i class="fas fa-chart-line"></i> Complete Quiz History</h2>
+                <button class="close-btn" onclick="closeStatsModal()">&times;</button>
+            </div>
+            ${generateStatsContent()}
+        </div>
+    `;
+
+            document.body.appendChild(modal);
+
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeStatsModal() {
+            const modal = document.querySelector('.stats-modal');
+            if (modal) {
+                modal.remove();
+            }
+            document.body.style.overflow = 'auto';
+        }
+
+        function generateStatsContent() {
+            if (userStats.recentQuizzes.length === 0) {
+                return '<div class="no-data"><i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 15px;"></i><p>No quiz data available yet. Start taking quizzes to see your statistics!</p></div>';
+            }
+
+            let html = `
+        <div class="stats-summary">
+            <div class="summary-card">
+                <div class="label">Total Quizzes</div>
+                <div class="value">${userStats.totalQuizzes}</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Average Score</div>
+                <div class="value">${userStats.totalQuizzes > 0 ? Math.round(userStats.totalScore / userStats.totalQuizzes) : 0}%</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Best Score</div>
+                <div class="value">${userStats.bestScore}%</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Total Time</div>
+                <div class="value">${Math.floor(userStats.totalTime / 60)}m ${userStats.totalTime % 60}s</div>
+            </div>
+        </div>
+        
+        <h3><i class="fas fa-history"></i> Quiz History</h3>
+        <table class="quiz-history-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Quiz Name</th>
+                    <th>Score</th>
+                    <th>Time Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+            userStats.recentQuizzes.forEach(quiz => {
+                const scoreClass = quiz.score >= 80 ? 'score-excellent' :
+                    quiz.score >= 60 ? 'score-good' : 'score-poor';
+
+                html += `
+            <tr>
+                <td>${quiz.date}</td>
+                <td>${quiz.name}</td>
+                <td class="${scoreClass}">${quiz.score}%</td>
+                <td>${quiz.timeTaken ? `${Math.floor(quiz.timeTaken / 60)}m ${quiz.timeTaken % 60}s` : 'N/A'}</td>
+            </tr>
+        `;
+            });
+
+            html += `
+            </tbody>
+        </table>
+    `;
+
+            return html;
+        }
+
+        
+        function updateUserStats(quizName, score, timeTaken) {
+            userStats.totalQuizzes++;
+            userStats.totalScore += score;
+            userStats.bestScore = Math.max(userStats.bestScore, score);
+            userStats.totalTime += timeTaken;
+
+            userStats.recentQuizzes.unshift({
+                name: quizName,
+                score: score,
+                date: new Date().toLocaleDateString(),
+                timeTaken: timeTaken 
+            });
+
+            if (userStats.recentQuizzes.length > 50) { 
+                userStats.recentQuizzes.pop();
+            }
+
+            localStorage.setItem('userStats', JSON.stringify(userStats));
+            updateStatsDisplay();
+        }

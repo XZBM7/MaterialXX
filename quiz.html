@@ -733,16 +733,126 @@
                 grid-template-columns: 1fr;
             }
         }
+
+      .back-to-main-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap; /* لمنع كسر الكلمات */
+    z-index: 1000;
+    max-width: 95vw; /* أقصى عرض 95% من عرض الشاشة */
+    box-sizing: border-box;
+}
+
+.back-to-main-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.back-to-main-btn i {
+    font-size: 12px;
+    flex-shrink: 0; /* منع الأيقونة من الانضغاط */
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 1024px) {
+    .back-to-main-btn {
+        top: 15px;
+        left: 15px;
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+/* للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .back-to-main-btn {
+        top: 12px;
+        left: 12px;
+        padding: 8px 14px;
+        font-size: 12px;
+        gap: 6px;
+    }
+    
+    .back-to-main-btn i {
+        font-size: 11px;
+    }
+}
+
+/* للهواتف المحمولة */
+@media (max-width: 480px) {
+    .back-to-main-btn {
+        top: 10px;
+        left: 10px;
+        padding: 6px 12px;
+        font-size: 11px;
+        gap: 4px;
+        max-width: 90vw; /* تقليل العرض في الشاشات الصغيرة */
+    }
+    
+    .back-to-main-btn i {
+        font-size: 10px;
+    }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 320px) {
+    .back-to-main-btn {
+        padding: 5px 10px;
+        font-size: 10px;
+        left: 5px;
+        top: 5px;
+    }
+    
+    .back-to-main-btn span {
+        display: none; /* إخفاء النص في الشاشات الصغيرة جداً */
+    }
+    
+    .back-to-main-btn i {
+        font-size: 12px;
+        margin: 0;
+    }
+}
+.quiz-container {
+    position: relative;
+    /* باقي التنسيقات */
+}
+.logo {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: #667eea;
+}
+
+.logo:active {
+    transform: scale(0.95);
+}
     </style>
 </head>
 
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <span> Quizzes</span>
-            </div>
+           <div class="logo" onclick="location.reload()" style="cursor: pointer;" title="Click to refresh">
+    <i class="fas fa-graduation-cap"></i>
+    <span> MaterialX | Quizzes </span>
+</div>
             <div class="theme-toggle">
                 <span class="toggle-text">Dark Mode</span>
                 <div class="custom-checkbox">
@@ -789,8 +899,10 @@
         </div>
 
         <div class="quiz-container">
-            <h1 class="quiz-title" id="quiz-title">Select Quiz Category</h1>
-
+    <button class="back-to-main-btn" onclick="location.reload()">
+        <i class="fas fa-arrow-left"></i> Back
+    </button>
+    <h1 class="quiz-title" id="quiz-title">Select Quiz Category</h1>
             <div id="quiz-selection">
                 <div class="quiz-categories">
                     <div class="category-card" onclick="selectQuiz('database')">
@@ -833,6 +945,23 @@
                         <h3>Business Intelligence</h3>
                         <p>Data analysis for business</p>
                     </div>
+                     <div class="category-card" onclick="selectQuiz('iss')">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Information Systems Security</h3>
+        <p>Accountability and Access Control quizzes</p>
+    </div>
+
+    <div class="category-card" onclick="selectQuiz('pl')">
+    <i class="fas fa-code"></i>
+    <h3>Programming Languages 3</h3>
+    <p>Functional Programming and Type Systems quizzes</p>
+</div>
+
+<div class="category-card" onclick="selectQuiz('ethics')">
+    <i class="fas fa-scale-balanced"></i>
+    <h3>Ethics</h3>
+    <p>Professional conduct and moral principles in technology</p>
+</div>
                 </div>
             </div>
 
@@ -1038,6 +1167,79 @@
             <i class="fas fa-lightbulb"></i>
             <h3>BI LEC 5</h3>
             <p>Lecture 5 concepts</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="iss-quiz-selection" class="hidden">
+    <h3>Select ISS Quiz:</h3>
+    <div class="quiz-categories">
+        <div class="category-card" onclick="chooseissQuiz(1)">
+            <i class="fas fa-shield-alt"></i>
+            <h3>ISS Lec1 (part 1)</h3>
+            <p>Accountability & Access Control (Pages 1–40)</p>
+        </div>
+        <div class="category-card" onclick="chooseissQuiz(2)">
+            <i class="fas fa-key"></i>
+            <h3>ISS Lec1 (part 2)</h3>
+            <p>Access Control Models (Pages 41–80)</p>
+        </div>
+        <div class="category-card" onclick="chooseissQuiz(3)">
+            <i class="fas fa-user-shield"></i>
+            <h3>ISS Lec1 (part 3)</h3>
+            <p>Access Control Administration (Pages 81–111)</p>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="pl-quiz-selection" class="hidden">
+    <h3>Select PL Quiz:</h3>
+    <div class="quiz-categories">
+        <div class="category-card" onclick="chooseplQuiz(1)">
+            <i class="fas fa-code"></i>
+            <h3>PL Lecture 1</h3>
+            <p>Functional Programming with F#</p>
+        </div>
+        <div class="category-card" onclick="chooseplQuiz(2)">
+            <i class="fas fa-cogs"></i>
+            <h3>PL Lecture 2</h3>
+            <p>Advanced Type Systems</p>
+        </div>
+        <div class="category-card" onclick="chooseplQuiz(3)">
+            <i class="fas fa-language"></i>
+            <h3>PL Lecture 3</h3>
+            <p>Language Design Principles</p>
+        </div>
+    </div>
+</div>
+
+
+<div id="ethics-quiz-selection" class="hidden">
+    <h3>Select Ethics Quiz:</h3>
+    <div class="quiz-categories">
+        <div class="category-card" onclick="chooseethicsQuiz(1)">
+            <i class="fas fa-balance-scale"></i>
+            <h3>Ethics Lecture 1</h3>
+            <p>Introduction to Ethics and Computer Ethics</p>
+        </div>
+        <div class="category-card" onclick="chooseethicsQuiz(2)">
+            <i class="fas fa-user-secret"></i>
+            <h3>Ethics Lecture 2&3</h3>
+            <p>Ethical Hacking and Methodologies</p>
+        </div>
+        <div class="category-card" onclick="chooseethicsQuiz(3)">
+            <i class="fas fa-lock"></i>
+            <h3>Ethics Lecture 4</h3>
+            <p>Cryptography Fundamentals</p>
+        </div>
+        <div class="category-card" onclick="chooseethicsQuiz(4)">
+            <i class="fas fa-bug"></i>
+            <h3>Ethics Lecture 5</h3>
+            <p>Malware Types and Behaviors</p>
         </div>
     </div>
 </div>

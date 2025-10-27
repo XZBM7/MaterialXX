@@ -138,7 +138,10 @@
             background: var(--card-bg);
             border-radius: 20px;
             padding: 30px 25px;
-            width: 220px;
+            /* MODIFICATION: Replaced fixed width with flex properties */
+            flex: 1 1 180px; /* Grow, Shrink, Basis */
+            max-width: 220px; /* Control max size */
+            /* END MODIFICATION */
             text-align: center;
             box-shadow: 0 8px 20px var(--shadow);
             transition: all 0.4s ease;
@@ -477,21 +480,14 @@
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
 
-            .department-card {
-                width: 200px;
-            }
+            /* MODIFICATION: Removed fixed width rule */
         }
 
         @media (max-width: 768px) {
-            .department-selection {
-                flex-direction: column;
-                align-items: center;
-            }
+            
+            /* MODIFICATION: Removed .department-selection rule that caused vertical stacking */
 
-            .department-card {
-                width: 100%;
-                max-width: 300px;
-            }
+            /* MODIFICATION: Removed .department-card rule that caused 100% width */
 
             .content-header {
                 flex-direction: column;
@@ -588,8 +584,7 @@
                 <h2 class="content-title"><i class="fas fa-graduation-cap"></i> Level 1 Courses</h2>
             </div>
             <div class="courses-container" id="level1-courses">
-                <!-- Level 1 courses will be added here dynamically -->
-            </div>
+                </div>
         </div>
 
         <div class="content-area level2-content" id="level2-content">
@@ -597,8 +592,7 @@
                 <h2 class="content-title"><i class="fas fa-book-open"></i> Level 2 Courses</h2>
             </div>
             <div class="courses-container" id="level2-courses">
-                <!-- Level 2 courses will be added here dynamically -->
-            </div>
+                </div>
         </div>
 
         <div class="content-area cs-content" id="cs-content">
@@ -606,8 +600,7 @@
                 <h2 class="content-title"><i class="fas fa-laptop-code"></i> Computer Science Courses</h2>
             </div>
             <div class="courses-container" id="cs-courses">
-                <!-- CS courses will be added here dynamically -->
-            </div>
+                </div>
         </div>
 
         <div class="content-area ai-content" id="ai-content">
@@ -615,8 +608,7 @@
                 <h2 class="content-title"><i class="fas fa-robot"></i> Artificial Intelligence Courses</h2>
             </div>
             <div class="courses-container" id="ai-courses">
-                <!-- AI courses will be added here dynamically -->
-            </div>
+                </div>
         </div>
 
         <div class="content-area is-content" id="is-content">
@@ -624,8 +616,7 @@
                 <h2 class="content-title"><i class="fas fa-database"></i> Information Systems Courses</h2>
             </div>
             <div class="courses-container" id="is-courses">
-                <!-- IS courses will be added here dynamically -->
-            </div>
+                </div>
         </div>
 
     </div>
@@ -789,7 +780,7 @@
                     {
                         title: "PL-3 (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0",
+                        link: "https://drive.google.com/drive/folders/1r1nzgmest05mHCP5oO93jzOt-1Rse4An",
                         playlist: "soon.html"
                     },
                     {
@@ -854,10 +845,12 @@
                         link: "https://drive.google.com/drive/u/0/mobile/folders/17hetmBb1gNQJeq7-eKpufx844VG4qL1T/1KsX_r2M5ALsCMJOEnREBdLOfrf11H9zn/1FtizAsRIcyAI4W7isl7QmQHl8wD7kTf-?sort=13&direction=a",
                         playlist: "soon.html"
                     },
+ 
+
                     {
                         title: "PL-3 (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0",
+                        link: "https://drive.google.com/drive/folders/1r1nzgmest05mHCP5oO93jzOt-1Rse4An",
                         playlist: "soon.html"
                     },
                     {
@@ -876,6 +869,12 @@
                         title: "Image Processing (Level 4)",
                         lecturer: "",
                         link: "https://drive.google.com/drive/u/0/folders/1DSOryFAh0rmmc4kwaHs787C4mKY6DS5x",
+                        playlist: "soon.html"
+                    },
+                    {
+                      title: "Digtal signal (Level 4)",
+                        lecturer: "",
+                        link: "soon.html",
                         playlist: "soon.html"
                     },
                     {
@@ -931,7 +930,7 @@
                     {
                         title: "PL-3 (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1h-ikFZtpOxvuInybtvppdOuEZLtx5TV0",
+                        link: "https://drive.google.com/drive/folders/1r1nzgmest05mHCP5oO93jzOt-1Rse4An",
                         playlist: "soon.html"
                     },
                     {
@@ -949,7 +948,7 @@
                     {
                         title: "Quality Testing (Level 4)",
                         lecturer: "",
-                        link: "https://drive.google.com/drive/u/0/folders/1xn-uDA4wopHMz38lhHTFyf3iTcPSHU-w?direction=a",
+                        link: "https://drive.google.com/drive/folders/1jUR1Zy_-QvBN0yj6RHKVtW7NXacWRfd5",
                         playlist: "soon.html"
                     }
                 ]
@@ -1035,6 +1034,7 @@
                     <h4 class="course-title">${course.title}</h4>
                     <div class="lecturer-info">
                         <i class="fas fa-chalkboard-teacher"></i>
+                        <span>${course.lecturer || 'N/A'}</span>
                     </div>
                     <p>Explore this course to learn more about ${course.title.toLowerCase()}.</p>
                     <div class="course-links">
@@ -1046,6 +1046,11 @@
                         </a>
                     </div>
                 `;
+                // Logic to hide lecturer if 'lecturer' field is empty
+                if (!course.lecturer) {
+                    courseCard.querySelector('.lecturer-info').style.display = 'none';
+                }
+
                 return courseCard;
             }
 
@@ -1053,10 +1058,12 @@
             function initializeCourses() {
                 for (const department in courseData) {
                     const coursesContainer = document.getElementById(`${department}-courses`);
-                    courseData[department].forEach((course, index) => {
-                        const courseCard = createCourseCard(course, index, department);
-                        coursesContainer.appendChild(courseCard);
-                    });
+                    if (coursesContainer) { // Check if container exists
+                        courseData[department].forEach((course, index) => {
+                            const courseCard = createCourseCard(course, index, department);
+                            coursesContainer.appendChild(courseCard);
+                        });
+                    }
                 }
             }
 
@@ -1064,7 +1071,9 @@
             initializeCourses();
 
             // Activate the first department by default
-            departmentCards[0].click();
+            if (departmentCards.length > 0) {
+                departmentCards[0].click();
+            }
         });
     </script>
 </body>

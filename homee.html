@@ -1181,19 +1181,19 @@
         <div class="popup-icon">
             <i class="fas fa-briefcase"></i>
         </div>
-        <h2>New Feature: Smart Portfolio Builder 🚀</h2>
-        <p>
-            We’re thrilled to introduce our latest update — the <strong>Portfolio Builder</strong>!  
-            Now you can easily create a professional portfolio in seconds —  
-            just write a few details about yourself, and our system will instantly generate  
-            a complete portfolio for you.  
-            You can <strong>save</strong>, <strong>download</strong>, and even <strong>upload it under your name</strong> or  
-            <strong>edit it anytime</strong> — total freedom to make it your own.
+      <h2>New Feature: </h2>
+        <p>
+                        We’re thrilled to introduce our latest update — the <strong>Smart Student Organizer</strong>!  
+            Now you can easily manage your academic schedule. Select your year and specialization to view your <strong>exam dates</strong>  
+            with <strong>live countdowns</strong>. Track your progress per subject, use the built-in <strong>study timer</strong>  
+            to log sessions, and generate a <strong>smart daily study plan</strong> based on your available hours and deadlines.  
+            Set <strong>custom reminders</strong> (1-24 hours before) via browser notifications, access <strong>material links</strong>,  
+            and view detailed <strong>study statistics</strong>.
         </p>
 
         <div class="popup-buttons">
-            <a href="proto.html" target="_blank" class="popup-button primary">
-                Try Portfolio Now <i class="fas fa-arrow-right"></i>
+            <a href="Exam.html" target="_blank" class="popup-button primary">
+                Try Smart Organizer Now   <i class="fas fa-arrow-right"></i>
             </a>
             <button class="popup-button secondary" id="closePopup">
                 Maybe Later
@@ -1295,6 +1295,12 @@
 </div>
 
 
+<div class="app-card">
+              <div class="app-icon">
+                  <i class="fas fa-calendar-alt"></i> </div>
+              <h3>Smart Student Organizer</h3> <p>Manage your exam schedule, track study progress per subject, use the study timer, set reminders, and generate smart study plans.</p>
+              <a href="Exam.html" class="app-link">Organize Now <i class="fas fa-arrow-right"></i></a> </div>
+
 
                  <div class="app-card">
     <div class="app-icon">
@@ -1363,6 +1369,8 @@
                 </div>
 
 
+
+
          <div class="app-card">
     <div class="app-icon">
         <i class="fas fa-briefcase"></i>
@@ -1377,7 +1385,7 @@
     <div class="app-icon">
         <i class="fas fa-route"></i> 
     </div>
-    <h3>Discover Your Track & Specialization (Beta)</h3>
+    <h3>Discover Your Track & Specialization </h3>
     <p>Answer a few questions to find out which track and specialization suits you best.</p>
     <a href="QA.html" target="_blank" class="app-link">
         Find Yor Track <i class="fas fa-arrow-right"></i>
@@ -1772,7 +1780,7 @@
     }
 
     // 🔹 رقم الإصدار الحالي (غيّره كل ما تعمل تحديث جديد)
-    const POPUP_VERSION = "3.5";
+    const POPUP_VERSION = "3.7";
 
     // 🔹 التحقق إذا المستخدم شاف الـ popup لهذا الإصدار
     function hasSeenPopup() {
@@ -1948,7 +1956,22 @@ title: "Track ",
   url: "QA.html", 
   icon: "fas fa-route", 
   category: "Learning" 
-}
+},
+{
+  title: "Smart Student Organizer", 
+  description: "Manage schedules, track progress, use timer & reminders, generate study plans.", 
+  url: "Exam.html", // Or the correct filename for your organizer
+  icon: "fas fa-calendar-alt", // Calendar icon
+  category: "Productivity" // Or "Planning", "Academic"
+},
+{
+  title: "Exam", 
+  description: "Manage schedules, track progress, use timer & reminders, generate study plans.", 
+  url: "Exam.html", // Or the correct filename for your organizer
+  icon: "fas fa-calendar-alt", // Calendar icon
+  category: "Productivity" // Or "Planning", "Academic"
+},
+
 
 
         ];
