@@ -4,17 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materialx | Smart Student Organizer</title>
+    <title>MaterialX | Smart Student Organizer</title>
     <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* * -------------------
-         * CSS Variables & Reset
-         * -------------------
-         */
-
+        /* CSS Variables & Reset */
         :root {
             --primary-blue: #4361ee;
             --primary-dark: #3a56d4;
@@ -92,7 +88,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -252,6 +247,14 @@
 
         .btn-delete:hover {
             background-color: #ed2e5d;
+        }
+
+        .btn-saved-plans {
+            background-color: var(--secondary-purple);
+        }
+
+        .btn-saved-plans:hover {
+            background-color: #651a9e;
         }
 
         /* Main Content Area */
@@ -434,7 +437,6 @@
             0% {
                 background-position: 0 0;
             }
-
             100% {
                 background-position: 30px 30px;
             }
@@ -696,7 +698,6 @@
         }
         /* --- END: Strikethrough style --- */
 
-
         /* --- MODAL STYLES --- */
         .modal-overlay {
             display: none;
@@ -734,7 +735,6 @@
                 opacity: 0;
                 transform: translateY(-50px) scale(0.9);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -1043,7 +1043,6 @@
                 transform: translateX(100%);
                 opacity: 0;
             }
-
             to {
                 transform: translateX(0);
                 opacity: 1;
@@ -1054,10 +1053,197 @@
             from {
                 opacity: 1;
             }
-
             to {
                 opacity: 0;
             }
+        }
+
+        /* --- Saved Plans Styles --- */
+        .saved-plans-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .saved-plan-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .saved-plan-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .saved-plan-item.completed {
+            background: #f0fff4;
+            border-left: 5px solid var(--success-green);
+        }
+
+        .saved-plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .saved-plan-title {
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .saved-plan-date {
+            font-size: 0.9rem;
+            color: var(--medium-text);
+        }
+
+        .saved-plan-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .saved-plan-content {
+            margin-bottom: 1rem;
+        }
+
+        .saved-plan-days {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .saved-plan-day {
+            position: relative;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .saved-plan-day.completed {
+            background: #e8f5e8;
+            border-left: 4px solid var(--success-green);
+        }
+
+        .saved-plan-day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .saved-plan-day-title {
+            font-weight: 600;
+            color: var(--dark-text);
+            margin: 0;
+            flex: 1;
+        }
+
+        .day-completion-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .day-completion-toggle input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            cursor: pointer;
+            accent-color: var(--success-green);
+        }
+
+        .saved-plan-day-tasks {
+            padding-left: 1rem;
+        }
+
+        .saved-plan-day-task {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .saved-plan-day-task input[type="checkbox"] {
+            width: 1.1rem;
+            height: 1.1rem;
+            cursor: pointer;
+            accent-color: var(--success-green);
+        }
+
+        .saved-plan-day-task.completed {
+            text-decoration: line-through;
+            color: var(--medium-text);
+        }
+
+        .no-plans-message {
+            text-align: center;
+            padding: 2rem;
+            color: var(--medium-text);
+            font-style: italic;
+        }
+
+        .plan-completion-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .plan-save-section {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .complete-all-days-btn {
+            background-color: var(--success-green);
+            margin-top: 0.5rem;
+        }
+
+        .complete-all-days-btn:hover {
+            background-color: #05c290;
+        }
+
+        /* زر العودة للأعلى */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 100;
+            border: none;
+        }
+
+        #back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
         }
 
         /* Responsive Design */
@@ -1130,6 +1316,24 @@
             .toast {
                 min-width: 250px;
             }
+
+            .saved-plan-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .saved-plan-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            #back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1183,13 +1387,128 @@
                 justify-content: space-between;
                 /* Ensure spacing on small screens */
             }
+
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
+        plan-save-section {
+    display: flex;
+    align-items: flex-end; /* محاذاة العناصر للأسفل */
+    gap: 16px; /* مسافة بين مربع الإدخال والزر */
+    background-color: #ffffff; /* خلفية بيضاء ناصعة */
+    padding: 24px; /* زيادة بسيطة في الحشو */
+    border-radius: 12px;
+    border: 1px solid #e0e0e0; /* حدود رمادية فاتحة جداً */
+    /* ظل ناعم جداً لإعطاء إحساس بالرفع */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); 
+    max-width: 700px;
+    margin: 20px auto;
+    flex-wrap: wrap; /* للسماح بالالتفاف في الشاشات الصغيرة */
+}
+
+.plan-input-group {
+    flex-grow: 1; /* لجعل حقل الإدخال يأخذ المساحة المتاحة */
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.plan-input-group label {
+    font-size: 0.85rem;
+    color: #555; /* لون رمادي داكن للعنوان */
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.plan-input-group input[type="text"] {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: #111; /* لون نص داكن */
+    background-color: #ffffff; /* خلفية بيضاء */
+    border: 1px solid #ccc; /* حدود رمادية واضحة */
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; 
+}
+
+.plan-input-group input[type="text"]::placeholder {
+    color: #999; /* لون رمادي متوسط للنص المؤقت */
+}
+
+.plan-input-group input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff; /* نفس اللون الأزرق المميز */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); /* توهج أزرق خفيف */
+}
+
+/* تصميم الزر (بنفس التدرج اللوني) */
+.btn#save-plan-btn {
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    /* ظل أزرق متناسب مع الزر */
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); 
+    flex-shrink: 0;
+}
+
+.btn#save-plan-btn:hover {
+    background: linear-gradient(90deg, #0069d9, #004a99);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn#save-plan-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* --- جزء التجاوب مع الأجهزة (Responsive) --- */
+/* (هذا الجزء لم يتغير، فهو يعتمد على التخطيط وليس الألوان) */
+
+@media (max-width: 600px) {
+    .plan-save-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .plan-input-group {
+        width: 100%;
+        margin-right: 0;
+        min-width: unset;
+    }
+
+    .btn#save-plan-btn {
+        width: 100%;
+        padding: 16px;
+    }
+}
     </style>
 </head>
 
 <body>
 
     <div id="toast-container"></div>
+
+    <!-- زر العودة للأعلى -->
+    <button id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <div class="app-container">
 
@@ -1230,8 +1549,8 @@
                 </div>
                 <div class="header-actions">
                     <button class="btn" id="show-stats-btn"><i class="fas fa-chart-bar"></i> View Stats</button>
-                    <button class="btn" id="generate-plan-btn"><i class="fas fa-calendar-check"></i> Generate Study
-                        Plan</button>
+                    <button class="btn btn-saved-plans" id="show-saved-plans-btn"><i class="fas fa-bookmark"></i> Saved Plans</button>
+                    <button class="btn" id="generate-plan-btn"><i class="fas fa-calendar-check"></i> Generate Study Plan</button>
                 </div>
             </header>
 
@@ -1252,8 +1571,7 @@
 
                 <div class="pomodoro-controls">
                     <button class="btn" id="pomodoro-start"><i class="fas fa-play"></i> Start</button>
-                    <button class="btn" id="pomodoro-pause" style="display:none;"><i class="fas fa-pause"></i>
-                        Pause</button>
+                    <button class="btn" id="pomodoro-pause" style="display:none;"><i class="fas fa-pause"></i> Pause</button>
                     <button class="btn" id="pomodoro-reset"><i class="fas fa-redo"></i> Reset</button>
                 </div>
             </div>
@@ -1271,6 +1589,23 @@
 
     </div>
 
+    <!-- نافذة الخطط المحفوظة -->
+    <div id="saved-plans-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-saved-plans-modal-btn" class="modal-close">&times;</button>
+            <h2><i class="fas fa-bookmark"></i> Saved Study Plans</h2>
+
+            <div class="saved-plans-container" id="saved-plans-list">
+                <!-- سيتم ملؤها ديناميكياً -->
+            </div>
+
+            <div class="plan-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                <button class="btn btn-delete" id="delete-all-plans-btn"><i class="fas fa-trash-alt"></i> Delete All Plans</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إنشاء الخطة (مع إضافة زر الحفظ) -->
     <div id="plan-modal" class="modal-overlay">
         <div class="modal-content">
             <button id="close-modal-btn" class="modal-close">&times;</button>
@@ -1281,13 +1616,21 @@
                     <label for="hours-per-day">How many hours can you realistically study per day? (2-12)</label>
                     <input type="number" id="hours-per-day" min="2" max="12" placeholder="e.g., 6">
                 </div>
-                <button class="btn" id="run-plan-generator-btn"><i class="fas fa-calculator"></i> Generate Daily
-                    Plan</button>
+                <button class="btn" id="run-plan-generator-btn"><i class="fas fa-calculator"></i> Generate Daily Plan</button>
             </div>
 
             <div id="plan-output-container">
                 <div id="plan-output">
                     <p>Enter your daily hours (between 2 and 12) to generate a plan.</p>
+                </div>
+                
+                <!-- زر حفظ الخطة -->
+                <div id="plan-save-section" class="plan-save-section">
+                    <div class="plan-input-group">
+                        <label for="plan-name">Plan Name (Optional)</label>
+                        <input type="text" id="plan-name" placeholder="e.g., Final Exam Prep Plan">
+                    </div>
+                    <button class="btn" id="save-plan-btn"><i class="fas fa-save"></i> Save This Plan</button>
                 </div>
             </div>
         </div>
@@ -1305,19 +1648,12 @@
                 <h3>Session Log</h3>
                 <div id="stats-log">
                 </div>
-                <button class="btn btn-delete" id="delete-all-stats-btn"><i class="fas fa-trash-alt"></i> Delete All
-                    Statistics</button>
+                <button class="btn btn-delete" id="delete-all-stats-btn"><i class="fas fa-trash-alt"></i> Delete All Statistics</button>
             </div>
         </div>
     </div>
 
-
     <script>
-        /* * -------------------
-        * JavaScript Logic
-        * -------------------
-        */
-
         document.addEventListener('DOMContentLoaded', () => {
             const scheduleData = {
                 '1': [
@@ -1385,9 +1721,6 @@
                     { id: 'y4ai_deep', subjectName: 'Deep and Neural', dateTime: '2025-11-06T14:00:00', materialUrl: 'material.html' }
                 ]
             };
-            // -----------------------------------------------------------------
-            // --- End of Data Section ---
-            // -----------------------------------------------------------------
 
             const motivationalQuotes = [
                 "The best way to predict the future is to create it.",
@@ -1404,6 +1737,14 @@
             const quoteElement = document.getElementById('motivational-quote');
             const globalProgressBar = document.getElementById('global-progress-bar');
             const globalSummaryText = document.getElementById('global-summary-text');
+            const savedPlansModal = document.getElementById('saved-plans-modal');
+            const showSavedPlansBtn = document.getElementById('show-saved-plans-btn');
+            const closeSavedPlansModalBtn = document.getElementById('close-saved-plans-modal-btn');
+            const savedPlansList = document.getElementById('saved-plans-list');
+            const deleteAllPlansBtn = document.getElementById('delete-all-plans-btn');
+            const planSaveSection = document.getElementById('plan-save-section');
+            const savePlanBtn = document.getElementById('save-plan-btn');
+            const planNameInput = document.getElementById('plan-name');
 
             // --- Back Buttons ---
             const backToYearBtn = document.getElementById('back-to-year');
@@ -1513,8 +1854,9 @@
             // --- Event Listeners for Modals ---
             generatePlanBtn.addEventListener('click', () => {
                 planModal.style.display = 'flex';
-                planOutput.innerHTML = '<p>Enter your daily hours (between 2 and 12) to generate a plan.</p>'; // Updated placeholder
+                planOutput.innerHTML = '<p>Enter your daily hours (between 2 and 12) to generate a plan.</p>';
                 hoursPerDayInput.value = '';
+                planSaveSection.style.display = 'none';
             });
             closePlanModalBtn.addEventListener('click', () => planModal.style.display = 'none');
             planModal.addEventListener('click', (e) => {
@@ -1543,7 +1885,7 @@
 
                 if (!data || data.length === 0) {
                     scheduleList.innerHTML = '<p>No schedule found for this selection.</p>';
-                    updateGlobalProgress(); // Update progress even if no schedule
+                    updateGlobalProgress();
                     return;
                 }
 
@@ -1553,7 +1895,7 @@
                     option.textContent = item.subjectName;
                     pomodoroSubjectSelect.appendChild(option);
 
-                    const trackerData = loadTrackerData(item.id); // Load data including chapterCompletion
+                    const trackerData = loadTrackerData(item.id);
 
                     const eventDate = new Date(item.dateTime);
                     const formattedDateTime = eventDate.toLocaleString('en-US', {
@@ -1608,10 +1950,9 @@
                     const distance = eventTime - now;
                     checkAndDisableIfPastDue(countdownEl, distance);
 
-                    // Generate inputs using loaded chapterCompletion data
                     generateChapterInputs(item.id, trackerData.totalChapters, trackerData.chapterPages, trackerData.chapterCompletion);
                 });
-                updateGlobalProgress(); // Initial progress calculation
+                updateGlobalProgress();
                 startLiveCountdowns();
                 updateTimerFromInput();
             }
@@ -1629,7 +1970,7 @@
                     const itemId = trackerSection.dataset.itemId;
                     saveTrackerData(itemId);
                     showToast("Progress saved!", 'success');
-                    updateGlobalProgress(); // Update progress on save
+                    updateGlobalProgress();
                 }
             });
             scheduleList.addEventListener('input', (e) => {
@@ -1638,71 +1979,60 @@
                     const itemId = totalChaptersInput.closest('.tracker-section').dataset.itemId;
                     const chapterCount = parseInt(totalChaptersInput.value, 10) || 0;
                     const existingData = loadTrackerData(itemId);
-                    // Generate inputs, preserving existing completion state length if possible
                     const currentCompletion = existingData.chapterCompletion || [];
                     generateChapterInputs(itemId, chapterCount, existingData.chapterPages, currentCompletion);
-                     // Save data immediately after regenerating inputs to capture potential length changes
-                     saveTrackerData(itemId);
-                     updateGlobalProgress(); // Update progress after potential chapter count change
+                    saveTrackerData(itemId);
+                    updateGlobalProgress();
                 }
             });
              scheduleList.addEventListener('change', (e) => {
                 const completionCheckbox = e.target.closest('.completion-tracker input[type="checkbox"]');
                 const chapterCheckbox = e.target.closest('.chapter-completion-checkbox');
 
-                if (completionCheckbox) { // Handling SUBJECT completion
+                if (completionCheckbox) {
                     const itemId = completionCheckbox.dataset.itemId;
                     const isComplete = completionCheckbox.checked;
                     updateCardCompletionState(itemId, isComplete);
-                     // If marking subject done, also mark all its chapters done visually & save
                     if (isComplete) {
                         const chapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
                         chapterCheckboxes.forEach(cb => cb.checked = true);
                     } else {
-                         // If unmarking subject, unmark all its chapters visually (save will handle data)
                          const chapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
                          chapterCheckboxes.forEach(cb => cb.checked = false);
                     }
-                    saveTrackerData(itemId); // Save changes (will update chapterCompletion based on subject state if needed)
+                    saveTrackerData(itemId);
                     updateGlobalProgress();
-                } else if (chapterCheckbox) { // Handling CHAPTER completion
+                } else if (chapterCheckbox) {
                     const itemId = chapterCheckbox.closest('.tracker-section').dataset.itemId;
-                    // Simply save the data. The save function reads all chapter checkboxes.
                     saveTrackerData(itemId);
 
-                    // Check if *all* chapters are now done, if so, mark subject done
-                     const allChapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
-                      // Check if there are actually any checkboxes before checking if all are checked
+                    const allChapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
                     const allChaptersDone = allChapterCheckboxes.length > 0 && Array.from(allChapterCheckboxes).every(cb => cb.checked);
                     const subjectCheckbox = document.getElementById(`done-${itemId}`);
 
-                     if (subjectCheckbox && !subjectCheckbox.disabled) { // Only update subject if not past-due
+                     if (subjectCheckbox && !subjectCheckbox.disabled) {
                          if (allChaptersDone) {
                              subjectCheckbox.checked = true;
                              updateCardCompletionState(itemId, true);
-                             saveTrackerData(itemId); // Save the auto-checked subject state
+                             saveTrackerData(itemId);
                          } else if (!chapterCheckbox.checked && subjectCheckbox.checked) {
-                             // If unchecking a chapter when subject was checked, uncheck subject
                              subjectCheckbox.checked = false;
                              updateCardCompletionState(itemId, false);
-                             saveTrackerData(itemId); // Save the auto-unchecked subject state
+                             saveTrackerData(itemId);
                          }
                      }
 
-                    updateGlobalProgress(); // Update progress bar based on subject completion
+                    updateGlobalProgress();
                 }
             });
 
-
-            // MODIFIED: Added savedCompletion parameter
             function generateChapterInputs(itemId, chapterCount, savedPages = [], savedCompletion = []) {
                 const container = document.getElementById(`chapter-pages-container-${itemId}`);
                 if (!container) return;
-                container.innerHTML = ''; // Clear previous inputs
+                container.innerHTML = '';
                 for (let i = 1; i <= chapterCount; i++) {
                     const pageCount = savedPages[i - 1] || '';
-                    // Ensure savedCompletion has an entry for this index, default to false
-                    const isChapterComplete = savedCompletion[i - 1] === true; // Explicitly check for true
+                    const isChapterComplete = savedCompletion[i - 1] === true;
                     const inputGroup = document.createElement('div');
                     inputGroup.className = 'chapter-page-input-group';
                     inputGroup.innerHTML = `
@@ -1721,7 +2051,7 @@
             }
 
             // --- Reminder function ---
-            async function setReminder(item) { /* ... same as before ... */
+            async function setReminder(item) {
                  const hoursBefore = prompt("How many hours before the exam to be notified? (Min: 1, Max: 24)", "2");
 
                 if (hoursBefore === null) return;
@@ -1759,7 +2089,7 @@
                     if (permission === 'granted') {
                         new Notification('Exam Reminder!', {
                             body: message,
-                            requireInteraction: true // Make it persistent
+                            requireInteraction: true
                         });
                     }
 
@@ -1769,7 +2099,7 @@
 
                 showToast(`Reminder set! You will be notified ${hours} hours before the ${item.subjectName} exam.`, 'success');
             }
-            function findItemById(id) { /* ... same as before ... */
+            function findItemById(id) {
                  for (const key in scheduleData) {
                     const found = scheduleData[key].find(item => item.id === id);
                     if (found) return found;
@@ -1778,107 +2108,84 @@
             }
 
             // --- LocalStorage Functions ---
-            function loadTrackerData(itemId) { /* ... same as before ... */
+            function loadTrackerData(itemId) {
                 const key = `tracker_${itemId}`;
                 const data = localStorage.getItem(key);
                 const defaults = { isComplete: false, totalChapters: 0, chapterPages: [], chapterCompletion: [] };
                 if (data) {
                     const parsed = JSON.parse(data);
-                     // Ensure chapterCompletion array exists and defaults to false if shorter
                     parsed.chapterCompletion = parsed.chapterCompletion || [];
-                     // Adjust length based on totalChapters, preserving existing values
                     const adjustedCompletion = new Array(parsed.totalChapters).fill(false);
                     for(let i=0; i<parsed.totalChapters; i++){
-                         if(parsed.chapterCompletion[i] === true) { // Explicitly check for true
+                         if(parsed.chapterCompletion[i] === true) {
                               adjustedCompletion[i] = true;
                          }
                     }
                     parsed.chapterCompletion = adjustedCompletion;
 
-                     // Ensure chapterPages matches length, padding with 0 or truncating
                     parsed.chapterPages = parsed.chapterPages || [];
                     const adjustedPages = new Array(parsed.totalChapters).fill(0);
                      for(let i=0; i<parsed.totalChapters; i++){
-                         // Use value from parsed.chapterPages if it exists, otherwise default to 0
                          adjustedPages[i] = (parsed.chapterPages[i] !== undefined && parsed.chapterPages[i] !== null) ? parsed.chapterPages[i] : 0;
                      }
                     parsed.chapterPages = adjustedPages;
 
-
-                    return { ...defaults, ...parsed }; // Merge defaults with parsed data
+                    return { ...defaults, ...parsed };
                 }
                 return defaults;
             }
 
-            function saveTrackerData(itemId) { /* ... same as before ... */
+            function saveTrackerData(itemId) {
                 const trackerSection = document.querySelector(`.tracker-section[data-item-id="${itemId}"]`);
-                if (!trackerSection) return; // Guard against missing elements
+                if (!trackerSection) return;
                 const completionCheckbox = document.getElementById(`done-${itemId}`);
 
-                // If subject marked done (past-due), don't allow saving over it
                 if (completionCheckbox && completionCheckbox.disabled) return;
 
-                const isSubjectComplete = completionCheckbox ? completionCheckbox.checked : false; // Overall subject done status
+                const isSubjectComplete = completionCheckbox ? completionCheckbox.checked : false;
                 const totalChaptersInput = trackerSection.querySelector('.tracker-total-chapters');
                 const totalChapters = totalChaptersInput ? parseInt(totalChaptersInput.value, 10) || 0 : 0;
 
                 const chapterPageInputs = trackerSection.querySelectorAll('.chapter-page-input');
-                // Ensure chapterPages array has the correct length, padding with 0
                 const chapterPages = new Array(totalChapters).fill(0);
                  Array.from(chapterPageInputs).forEach((input, index) => {
-                    if (index < totalChapters) { // Only save pages for existing chapters
+                    if (index < totalChapters) {
                         chapterPages[index] = parseInt(input.value, 10) || 0;
                     }
                  });
 
-
-                // Get chapter completion status
                 const chapterCheckboxes = trackerSection.querySelectorAll('.chapter-completion-checkbox');
-                 // Ensure chapterCompletion array has the correct length, padding with false
                  const chapterCompletion = new Array(totalChapters).fill(false);
                   Array.from(chapterCheckboxes).forEach((checkbox, index) => {
-                     if (index < totalChapters) { // Only save state for existing chapters
+                     if (index < totalChapters) {
                          chapterCompletion[index] = checkbox.checked;
                      }
                   });
 
-
-                // If subject is marked complete, force all chapter completions to true in saved data
                 const finalChapterCompletion = isSubjectComplete ? new Array(totalChapters).fill(true) : chapterCompletion;
-
 
                 const data = { isComplete: isSubjectComplete, totalChapters, chapterPages, chapterCompletion: finalChapterCompletion };
                 localStorage.setItem(`tracker_${itemId}`, JSON.stringify(data));
             }
 
-            function forceSaveCompletion(itemId) { /* ... same as before ... */
+            function forceSaveCompletion(itemId) {
                 const data = loadTrackerData(itemId);
-                // Only save if it wasn't already marked complete
                 if (!data.isComplete) {
                     data.isComplete = true;
-                    // Also mark all chapters as complete in data
                     data.chapterCompletion = new Array(data.totalChapters).fill(true);
                     localStorage.setItem(`tracker_${itemId}`, JSON.stringify(data));
-                    // Don't call updateGlobalProgress here, let checkAndDisableIfPastDue call it once after all checks
                 }
             }
-
-
-            // --- Function to get subject stats (no longer used for progress bar) ---
-            /* function getSubjectStats(item) { ... } */
 
             // --- MODIFIED: Global Progress Update (Based on SUBJECT completion) ---
              function updateGlobalProgress() {
                 const subjects = scheduleData[viewState.currentScheduleKey];
-                 // Ensure viewState.currentScheduleKey is valid before proceeding
                 if (!subjects) {
-                     console.warn("updateGlobalProgress called with invalid key:", viewState.currentScheduleKey);
                      globalProgressBar.style.width = `0%`;
                      globalProgressBar.textContent = `0%`;
                      globalSummaryText.textContent = `Select year/spec first.`;
                      return;
                  }
-
 
                 if (subjects.length === 0) {
                     globalProgressBar.style.width = `0%`;
@@ -1891,8 +2198,8 @@
                 const totalSubjects = subjects.length;
 
                 subjects.forEach(item => {
-                    const data = loadTrackerData(item.id); // Just load the basic data
-                    if (data.isComplete) { // Check the main 'isComplete' flag
+                    const data = loadTrackerData(item.id);
+                    if (data.isComplete) {
                         completedCount++;
                     }
                 });
@@ -1903,34 +2210,32 @@
                 }
 
                 globalProgressBar.style.width = `${progressPercent}%`;
-                globalProgressBar.textContent = `${progressPercent}%`; // Just percentage on bar
-                globalSummaryText.textContent = `You have completed ${completedCount} of ${totalSubjects} subjects.`; // Update summary text
+                globalProgressBar.textContent = `${progressPercent}%`;
+                globalSummaryText.textContent = `You have completed ${completedCount} of ${totalSubjects} subjects.`;
             }
-
 
             // --- Live Countdown Functions ---
-            function startLiveCountdowns() { /* ... same as before ... */
+            function startLiveCountdowns() {
                 stopLiveCountdowns();
-                updateAllCountdowns(); // Initial update
-                countdownInterval = setInterval(updateAllCountdowns, 1000); // Subsequent updates
+                updateAllCountdowns();
+                countdownInterval = setInterval(updateAllCountdowns, 1000);
              }
-            function stopLiveCountdowns() { /* ... same as before ... */
+            function stopLiveCountdowns() {
                 if (countdownInterval) clearInterval(countdownInterval);
-                 countdownInterval = null; // Clear interval ID
+                 countdownInterval = null;
             }
 
-            function checkAndDisableIfPastDue(countdownElement, distance) { /* ... same as before ... */
+            function checkAndDisableIfPastDue(countdownElement, distance) {
                  const card = countdownElement.closest('.schedule-item');
                 if (!card) return;
 
                 const itemId = card.querySelector('.tracker-section').dataset.itemId;
 
                 if (distance < 0) {
-                    // Check if already marked past-due to avoid repeated updates/saves
                     if (!card.classList.contains('past-due')) {
                         countdownElement.textContent = "Exam has passed.";
-                        card.classList.remove('completed'); // Remove manual faded style if present
-                        card.classList.add('past-due'); // Apply green past-due style
+                        card.classList.remove('completed');
+                        card.classList.add('past-due');
 
                         const checkbox = card.querySelector('.completion-tracker input[type="checkbox"]');
                         if (checkbox) {
@@ -1938,44 +2243,40 @@
                             checkbox.disabled = true;
                         }
 
-                        // Disable all tracker inputs and buttons within the card
                         card.querySelectorAll('.btn-reminder, .btn-tracker-save, .tracker-total-chapters, .chapter-page-input, .chapter-completion-checkbox')
                             .forEach(el => el.disabled = true);
 
-                        forceSaveCompletion(itemId); // Force save subject & all chapters as complete
-                        updateGlobalProgress(); // Explicitly update progress after forcing completion
+                        forceSaveCompletion(itemId);
+                        updateGlobalProgress();
                     }
                 } else {
-                     // Ensure past-due class is removed if the date somehow becomes valid again (unlikely)
                      if (card.classList.contains('past-due')) {
                           card.classList.remove('past-due');
-                           // Optionally re-enable elements if needed
                            const checkbox = card.querySelector('.completion-tracker input[type="checkbox"]');
                            if(checkbox) checkbox.disabled = false;
                            card.querySelectorAll('.btn-reminder, .btn-tracker-save, .tracker-total-chapters, .chapter-page-input, .chapter-completion-checkbox')
                            .forEach(el => el.disabled = false);
-                            saveTrackerData(itemId); // Save the 'un-past-due' state
-                            updateGlobalProgress(); // Update progress
+                            saveTrackerData(itemId);
+                            updateGlobalProgress();
                      }
                 }
              }
-            function updateAllCountdowns() { /* ... same as before ... */
-                const countdownElements = document.querySelectorAll('#schedule-list .countdown-timer'); // Target only within schedule-list
+            function updateAllCountdowns() {
+                const countdownElements = document.querySelectorAll('#schedule-list .countdown-timer');
                 const now = new Date().getTime();
                 countdownElements.forEach(el => {
                     const eventTime = new Date(el.dataset.datetime).getTime();
                     const distance = eventTime - now;
 
-                    checkAndDisableIfPastDue(el, distance); // Handle past-due status first
+                    checkAndDisableIfPastDue(el, distance);
 
-                    if (distance >= 0 && !el.closest('.schedule-item')?.classList.contains('past-due')) { // Only update timer if not past-due
+                    if (distance >= 0 && !el.closest('.schedule-item')?.classList.contains('past-due')) {
                         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                         el.textContent = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
                     } else if (distance < 0 && !el.closest('.schedule-item')?.classList.contains('past-due')) {
-                         // If checkAndDisable didn't catch it yet, set text
                          el.textContent = "Exam has passed.";
                     }
                 });
@@ -1987,11 +2288,11 @@
             pomodoroResetBtn.addEventListener('click', resetPomodoro);
             pomodoroTimeInput.addEventListener('input', updateTimerFromInput);
 
-            function updateTimerFromInput() { /* ... same as before ... */
+            function updateTimerFromInput() {
                  if (isPomodoroRunning) return;
                 let minutes = parseInt(pomodoroTimeInput.value, 10) || 0;
                  const minTime = 1;
-                const maxTime = 600; // 10 hours
+                const maxTime = 600;
                 if (minutes > maxTime) {
                     minutes = maxTime;
                     pomodoroTimeInput.value = maxTime;
@@ -1999,19 +2300,17 @@
                 }
 
                  if (minutes < minTime) {
-                    minutes = minTime; // Default to min if below
-                     // Don't change input value if user typed 0, let them start from 1 min
+                    minutes = minTime;
                      if (parseInt(pomodoroTimeInput.value, 10) < minTime) {
                           pomodoroTimeInput.value = minTime;
                      }
                 }
 
-
                 pomodoroTimeLeft = minutes * 60;
                 pomodoroInitialTime = pomodoroTimeLeft;
                 updatePomodoroDisplay();
              }
-            function startPomodoro() { /* ... same as before ... */
+            function startPomodoro() {
                  if (isPomodoroRunning) return;
 
                 const subject = pomodoroSubjectSelect.value;
@@ -2029,7 +2328,6 @@
                      return;
                  }
 
-
                 pomodoroTimeLeft = minutes * 60;
                 pomodoroInitialTime = pomodoroTimeLeft;
 
@@ -2042,26 +2340,25 @@
                 updatePomodoroDisplay();
                 pomodoroInterval = setInterval(updatePomodoro, 1000);
             }
-            function pausePomodoro() { /* ... same as before ... */
+            function pausePomodoro() {
                 clearInterval(pomodoroInterval);
-                 pomodoroInterval = null; // Clear interval ID
+                 pomodoroInterval = null;
                 isPomodoroRunning = false;
                 pomodoroStartBtn.style.display = 'inline-block';
                 pomodoroPauseBtn.style.display = 'none';
              }
-            function resetPomodoro() { /* ... same as before ... */
+            function resetPomodoro() {
                 pausePomodoro();
-                 // Reset timer based on the current value in the input field
                  updateTimerFromInput();
                  pomodoroTimeInput.disabled = false;
                  pomodoroSubjectSelect.disabled = false;
              }
-            function updatePomodoro() { /* ... same as before ... */
+            function updatePomodoro() {
                  pomodoroTimeLeft--;
 
                 if (pomodoroTimeLeft < 0) {
                     clearInterval(pomodoroInterval);
-                    pomodoroInterval = null; // Clear interval ID
+                    pomodoroInterval = null;
                     isPomodoroRunning = false;
 
                     const subject = pomodoroSubjectSelect.value;
@@ -2076,27 +2373,26 @@
                     pomodoroTimeInput.disabled = false;
                     pomodoroSubjectSelect.disabled = false;
 
-                    // Reset timer based on initial input for the next session
-                    updateTimerFromInput(); // Use this to reset based on the input field
-                     updatePomodoroDisplay(); // Update display immediately after reset
+                    updateTimerFromInput();
+                     updatePomodoroDisplay();
                 } else {
                     updatePomodoroDisplay();
                 }
              }
-            function updatePomodoroDisplay() { /* ... same as before ... */
+            function updatePomodoroDisplay() {
                  const m = Math.floor(pomodoroTimeLeft / 60);
                  const s = pomodoroTimeLeft % 60;
                  pomodoroTimerDisplay.textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
              }
 
             // --- Statistics Log Functions ---
-            function getStudyLogs() { /* ... same as before ... */
+            function getStudyLogs() {
                  return JSON.parse(localStorage.getItem('studyLogs') || '[]');
             }
-            function saveStudyLogs(logs) { /* ... same as before ... */
+            function saveStudyLogs(logs) {
                  localStorage.setItem('studyLogs', JSON.stringify(logs));
              }
-            function logStudySession(subject, durationMinutes) { /* ... same as before ... */
+            function logStudySession(subject, durationMinutes) {
                  if (!subject || durationMinutes <= 0) return;
                 const logs = getStudyLogs();
                 logs.push({
@@ -2107,7 +2403,7 @@
                 });
                 saveStudyLogs(logs);
             }
-            function displayStudyStats() { /* ... same as before ... */
+            function displayStudyStats() {
                  const logs = getStudyLogs();
                 let summary = {};
                 let totalTime = 0;
@@ -2145,7 +2441,7 @@
                 summaryHtml += `<hr><p><strong>Total Time:</strong> ${totalTime} minutes (${(totalTime / 60).toFixed(1)} hours)</p>`;
                 statsSummaryEl.innerHTML = summaryHtml;
              }
-            statsListContainer.addEventListener('click', (e) => { /* ... same as before ... */
+            statsListContainer.addEventListener('click', (e) => {
                  if (e.target.matches('.delete-stat-btn')) {
                     const logId = Number(e.target.dataset.id);
                     let logs = getStudyLogs();
@@ -2163,9 +2459,9 @@
              });
 
             // --- Helper function to get local date string ---
-            function getLocalDateString(date) { /* ... same as before ... */
+            function getLocalDateString(date) {
                 const y = date.getFullYear();
-                 const m = (date.getMonth() + 1).toString().padStart(2, '0'); // getMonth is 0-indexed
+                 const m = (date.getMonth() + 1).toString().padStart(2, '0');
                  const d = date.getDate().toString().padStart(2, '0');
                  return `${y}-${m}-${d}`;
             }
@@ -2183,10 +2479,9 @@
                     if (hours > 0) result += ' and ';
                     result += `${minutes} minute${minutes > 1 ? 's' : ''}`;
                 }
-                 if (result === '') return '0 minutes'; // Handle case where time is very small
+                 if (result === '') return '0 minutes';
                 return result;
             }
-
 
             // --- The Smart Daily Plan Generator (MODIFIED) ---
             function generateDailyStudyPlan() {
@@ -2207,13 +2502,13 @@
                 }
 
                 const now = new Date();
-                now.setHours(0, 0, 0, 0); // Start planning from today
+                now.setHours(0, 0, 0, 0);
 
                 // --- Calculate total remaining pages and prepare subjects ---
                 let totalRemainingPages = 0;
                 let subjectsWithRemaining = [];
-                let latestExamDate = new Date(0); // Initialize earliest possible date
-                let hasAtLeastOnePageEntered = false; // Flag to check if any pages were entered
+                let latestExamDate = new Date(0);
+                let hasAtLeastOnePageEntered = false;
 
                 subjects.forEach(item => {
                     const data = loadTrackerData(item.id);
@@ -2225,7 +2520,7 @@
 
                     let subjectRemainingPages = 0;
                     let chapterDetails = [];
-                    let subjectHasPages = false; // Flag for this specific subject
+                    let subjectHasPages = false;
                     for (let i = 0; i < data.totalChapters; i++) {
                         // Only consider chapters that are NOT marked complete
                         if (!data.chapterCompletion[i]) {
@@ -2237,8 +2532,8 @@
                                     pages: pagesInChapter,
                                     pagesRemainingForAllocation: pagesInChapter
                                 });
-                                subjectHasPages = true; // Mark that this subject has pages
-                                hasAtLeastOnePageEntered = true; // Mark globally that at least one subject has pages
+                                subjectHasPages = true;
+                                hasAtLeastOnePageEntered = true;
                             }
                         }
                     }
@@ -2256,8 +2551,6 @@
                             latestExamDate = new Date(item.dateTime);
                         }
                     } else if (data.totalChapters > 0 && !subjectHasPages && !data.isComplete){
-                         // If subject is incomplete, has chapters defined, but no pages entered in any incomplete chapter
-                         // We still need to track the latest exam date for totalAvailableDays calculation
                          if (new Date(item.dateTime) > latestExamDate) {
                               latestExamDate = new Date(item.dateTime);
                          }
@@ -2265,7 +2558,6 @@
                 });
 
                 // --- Handle edge cases ---
-                // MODIFICATION: Check if any pages were entered at all for *any* incomplete subject
                 if (!hasAtLeastOnePageEntered && subjects.some(s => !loadTrackerData(s.id).isComplete && new Date(s.dateTime) > now)) {
                      planOutput.innerHTML = '<p class="warning">Please add chapters and page counts for at least one subject to generate a plan.</p>';
                      return;
@@ -2275,12 +2567,11 @@
                     planOutput.innerHTML = '<h3>Congratulations! 🎉</h3><p class="success">You have completed all chapters/pages for upcoming exams!</p>';
                     return;
                 }
-                // This check might be redundant now due to hasAtLeastOnePageEntered, but keep as safety
+
                 if (totalRemainingPages === 0) {
                    planOutput.innerHTML = '<h3>Plan Ready!</h3><p class="success">All remaining subjects have 0 pages in their incomplete chapters. Mark chapters/subjects as done or add page counts.</p>';
                    return;
                }
-
 
                 subjectsWithRemaining.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
 
@@ -2376,20 +2667,20 @@
                                 pagesStillToAllocateOverall -= pagesToAllocateThisSession;
 
                                 if (dayPlanData.pagesLeftToday <= 0) {
-                                    break; // Break chapter loop if day is full
+                                    break;
                                 }
                                 if (chapter.pagesRemainingForAllocation <= 0) {
-                                    continue; // Continue to next chapter if current one is done
+                                    continue;
                                 }
-                                break; // Break chapter loop to try next subject or finish day
+                                break;
                             }
-                        } // End chapter loop
+                        }
 
                         if (dayPlanData.pagesLeftToday <= 0 || dayPlanData.tasks.length >= MAX_SUBJECTS_PER_DAY) {
-                            break; // Stop trying subjects for this day
+                            break;
                         }
-                    } // End subject loop
-                } // End day loop
+                    }
+                }
 
                 // --- Generate HTML Output ---
                 let outputHtml = `<h3>Your Daily Plan (${hoursPerDay} hours/day)</h3>`;
@@ -2397,15 +2688,12 @@
                 outputHtml += `<p>Calculated daily goal: ~<strong>${dailyPageCapacity} pages</strong>.</p>
                                <p class="plan-note">Plan prioritizes earlier deadlines. Max ${MAX_SUBJECTS_PER_DAY} subjects per day. Only includes pages from incomplete chapters.</p>`;
 
-
                  if (pagesStillToAllocateOverall > 0.1) {
                      outputHtml += `<p class="warning"><strong>Warning:</strong> Could not allocate all pages (${Math.ceil(pagesStillToAllocateOverall)} remaining). Your schedule might be too tight. Please review chapters, page counts, and consider increasing daily study hours (suggested: ${minRequiredHours} hours/day).</p>`;
                  } else if (totalRemainingPages > 0 ) {
                      outputHtml += `<p class="success">Great! This plan helps you cover all remaining pages. Stick to it! 💪</p>`;
                  }
 
-
-                //const sortedPlanDays = Array.from(dailyPlan.keys()).sort(); // Already sorted
                 let planHasTasks = false;
 
                 sortedDays.forEach(dateString => {
@@ -2413,14 +2701,13 @@
                     if (tasks.length > 0) {
                         planHasTasks = true;
                         const parts = dateString.split('-');
-                        const displayDate = new Date(parts[0], parts[1] - 1, parts[2]); // Create local date
+                        const displayDate = new Date(parts[0], parts[1] - 1, parts[2]);
                         const dateLocale = displayDate.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
                         outputHtml += `<div class="plan-day-group"><h3>${dateLocale}</h3><ul>`;
 
                         tasks.forEach(task => {
                              const chapterDetailsString = task.details.map(d => `Ch ${d.chapter} (${Math.round(d.pages)}p)`).join(', ');
-                             // MODIFICATION: Use formatHoursMinutes function
                              const totalHoursDecimal = task.totalPages / actualPacePagesPerHour;
                              const timeString = formatHoursMinutes(totalHoursDecimal);
 
@@ -2442,13 +2729,445 @@
                 }
 
                 planOutput.innerHTML = outputHtml;
+                
+                // Show save section after generating plan
+                planSaveSection.style.display = 'block';
             }
 
+            // --- Saved Plans Functions ---
+            showSavedPlansBtn.addEventListener('click', () => {
+                displaySavedPlans();
+                savedPlansModal.style.display = 'flex';
+            });
+            
+            closeSavedPlansModalBtn.addEventListener('click', () => savedPlansModal.style.display = 'none');
+            savedPlansModal.addEventListener('click', (e) => {
+                if (e.target === savedPlansModal) savedPlansModal.style.display = 'none';
+            });
+            
+            deleteAllPlansBtn.addEventListener('click', deleteAllSavedPlans);
+            savePlanBtn.addEventListener('click', saveCurrentPlan);
+
+            function getSavedPlans() {
+                return JSON.parse(localStorage.getItem('savedPlans') || '[]');
+            }
+
+            function savePlansToStorage(plans) {
+                localStorage.setItem('savedPlans', JSON.stringify(plans));
+            }
+
+            function saveCurrentPlan() {
+                const planContent = document.getElementById('plan-output').innerHTML;
+                const planName = planNameInput.value.trim() || `Study Plan ${new Date().toLocaleDateString()}`;
+                const hoursPerDay = document.getElementById('hours-per-day').value;
+                
+                if (!planContent || planContent.includes('Enter your daily hours')) {
+                    showToast('Please generate a plan first before saving.', 'error');
+                    return;
+                }
+                
+                const plans = getSavedPlans();
+                const newPlan = {
+                    id: Date.now(),
+                    name: planName,
+                    content: planContent,
+                    hoursPerDay: hoursPerDay,
+                    dateCreated: new Date().toISOString(),
+                    completed: false,
+                    daysCompleted: {} // سيتم تخزين حالة إنجاز كل يوم هنا
+                };
+                
+                plans.unshift(newPlan);
+                savePlansToStorage(plans);
+                
+                showToast(`Plan "${planName}" saved successfully!`, 'success');
+                planModal.style.display = 'none';
+            }
+
+            function displaySavedPlans() {
+                const plans = getSavedPlans();
+                savedPlansList.innerHTML = '';
+                
+                if (plans.length === 0) {
+                    savedPlansList.innerHTML = '<div class="no-plans-message">You have no saved plans yet.</div>';
+                    return;
+                }
+                
+                plans.forEach(plan => {
+                    const planElement = document.createElement('div');
+                    planElement.className = `saved-plan-item ${plan.completed ? 'completed' : ''}`;
+                    
+                    // استخراج الأيام من محتوى الخطة
+                    const daysContent = extractDaysFromPlan(plan.content);
+                    
+                    planElement.innerHTML = `
+                        <div class="saved-plan-header">
+                            <div>
+                                <h3 class="saved-plan-title">${plan.name}</h3>
+                                <div class="saved-plan-date">Created: ${new Date(plan.dateCreated).toLocaleDateString()} | Hours/Day: ${plan.hoursPerDay}</div>
+                            </div>
+                            <div class="saved-plan-actions">
+                                <button class="btn btn-delete delete-plan-btn" data-plan-id="${plan.id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="saved-plan-content">
+                            ${plan.content}
+                        </div>
+                        <div class="saved-plan-days" id="days-container-${plan.id}">
+                            ${generateDaysHTML(plan.id, daysContent, plan.daysCompleted)}
+                        </div>
+                        <div class="plan-completion-toggle">
+                            <input type="checkbox" id="plan-complete-${plan.id}" class="plan-completion-checkbox" ${plan.completed ? 'checked' : ''}>
+                            <label for="plan-complete-${plan.id}">Mark this plan as completed</label>
+                        </div>
+                        <button class="btn complete-all-days-btn" data-plan-id="${plan.id}">
+                            <i class="fas fa-check-double"></i> Mark All Days as Completed
+                        </button>
+                    `;
+                    
+                    savedPlansList.appendChild(planElement);
+                    
+                    // إضافة مستمعي الأحداث
+                    const deleteBtn = planElement.querySelector('.delete-plan-btn');
+                    deleteBtn.addEventListener('click', () => deleteSavedPlan(plan.id));
+                    
+                    const completionCheckbox = planElement.querySelector('.plan-completion-checkbox');
+                    completionCheckbox.addEventListener('change', () => togglePlanCompletion(plan.id, completionCheckbox.checked));
+                    
+                    const completeAllBtn = planElement.querySelector('.complete-all-days-btn');
+                    completeAllBtn.addEventListener('click', () => completeAllDays(plan.id));
+                    
+                    // إضافة مستمعي الأحداث لمربعات اختيار الأيام
+                    const dayCheckboxes = planElement.querySelectorAll('.day-completion-checkbox');
+                    dayCheckboxes.forEach(checkbox => {
+                        checkbox.addEventListener('change', (e) => {
+                            const dayIndex = e.target.dataset.dayIndex;
+                            toggleDayCompletion(plan.id, dayIndex, e.target.checked);
+                        });
+                    });
+                    
+                    // إضافة مستمعي الأحداث لمهام الأيام
+                    const taskCheckboxes = planElement.querySelectorAll('.task-completion-checkbox');
+                    taskCheckboxes.forEach(checkbox => {
+                        checkbox.addEventListener('change', (e) => {
+                            const dayIndex = e.target.dataset.dayIndex;
+                            const taskIndex = e.target.dataset.taskIndex;
+                            toggleTaskCompletion(plan.id, dayIndex, taskIndex, e.target.checked);
+                        });
+                    });
+                });
+            }
+
+            // دالة استخراج الأيام من محتوى الخطة
+            function extractDaysFromPlan(planContent) {
+                const days = [];
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = planContent;
+                
+                const dayGroups = tempDiv.querySelectorAll('.plan-day-group');
+                dayGroups.forEach((dayGroup, index) => {
+                    const dayTitle = dayGroup.querySelector('h3').textContent;
+                    const tasks = [];
+                    
+                    const taskItems = dayGroup.querySelectorAll('li');
+                    taskItems.forEach((taskItem, taskIndex) => {
+                        tasks.push({
+                            index: taskIndex,
+                            content: taskItem.innerHTML,
+                            completed: false
+                        });
+                    });
+                    
+                    days.push({
+                        index: index,
+                        title: dayTitle,
+                        tasks: tasks,
+                        completed: false
+                    });
+                });
+                
+                return days;
+            }
+
+            // دالة إنشاء HTML للأيام
+            function generateDaysHTML(planId, days, daysCompleted = {}) {
+                if (days.length === 0) return '';
+                
+                let daysHTML = '<h4 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary-blue);"><i class="fas fa-calendar-day"></i> Daily Progress</h4>';
+                
+                days.forEach((day, index) => {
+                    const isDayCompleted = daysCompleted[day.index]?.completed || false;
+                    const dayTasksCompleted = daysCompleted[day.index]?.tasks || {};
+                    
+                    daysHTML += `
+                        <div class="saved-plan-day ${isDayCompleted ? 'completed' : ''}" id="day-${planId}-${day.index}">
+                            <div class="saved-plan-day-header">
+                                <h4 class="saved-plan-day-title">${day.title}</h4>
+                                <div class="day-completion-toggle">
+                                    <input type="checkbox" id="day-complete-${planId}-${day.index}" 
+                                           class="day-completion-checkbox" 
+                                           data-day-index="${day.index}"
+                                           ${isDayCompleted ? 'checked' : ''}>
+                                    <label for="day-complete-${planId}-${day.index}">Day Completed</label>
+                                </div>
+                            </div>
+                            <div class="saved-plan-day-tasks">
+                                ${generateTasksHTML(planId, day.index, day.tasks, dayTasksCompleted)}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                return daysHTML;
+            }
+
+            // دالة إنشاء HTML للمهام
+            function generateTasksHTML(planId, dayIndex, tasks, tasksCompleted = {}) {
+                if (tasks.length === 0) return '';
+                
+                let tasksHTML = '';
+                tasks.forEach((task, taskIndex) => {
+                    const isTaskCompleted = tasksCompleted[taskIndex] || false;
+                    
+                    tasksHTML += `
+                        <div class="saved-plan-day-task ${isTaskCompleted ? 'completed' : ''}">
+                            <input type="checkbox" id="task-${planId}-${dayIndex}-${taskIndex}" 
+                                   class="task-completion-checkbox"
+                                   data-day-index="${dayIndex}"
+                                   data-task-index="${taskIndex}"
+                                   ${isTaskCompleted ? 'checked' : ''}>
+                            <label for="task-${planId}-${dayIndex}-${taskIndex}">${task.content}</label>
+                        </div>
+                    `;
+                });
+                
+                return tasksHTML;
+            }
+
+            // دالة تبديل إنجاز اليوم
+            function toggleDayCompletion(planId, dayIndex, isCompleted) {
+                const plans = getSavedPlans();
+                const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
+                
+                if (planIndex !== -1) {
+                    // تهيئة daysCompleted إذا لم تكن موجودة
+                    if (!plans[planIndex].daysCompleted) {
+                        plans[planIndex].daysCompleted = {};
+                    }
+                    
+                    // تهيئة اليوم إذا لم يكن موجوداً
+                    if (!plans[planIndex].daysCompleted[dayIndex]) {
+                        plans[planIndex].daysCompleted[dayIndex] = {
+                            completed: false,
+                            tasks: {}
+                        };
+                    }
+                    
+                    // تحديث حالة إنجاز اليوم
+                    plans[planIndex].daysCompleted[dayIndex].completed = isCompleted;
+                    
+                    // إذا تم تحديد إنجاز اليوم، حدد جميع مهامه
+                    if (isCompleted) {
+                        const dayElement = document.getElementById(`day-${planId}-${dayIndex}`);
+                        if (dayElement) {
+                            const taskCheckboxes = dayElement.querySelectorAll('.task-completion-checkbox');
+                            taskCheckboxes.forEach(checkbox => {
+                                checkbox.checked = true;
+                                const taskIndex = checkbox.dataset.taskIndex;
+                                plans[planIndex].daysCompleted[dayIndex].tasks[taskIndex] = true;
+                            });
+                        }
+                    }
+                    
+                    savePlansToStorage(plans);
+                    
+                    // التحقق مما إذا كانت جميع الأيام مكتملة لتحديد إنجاز الخطة
+                    checkAndUpdatePlanCompletion(planId);
+                    
+                    showToast(`Day ${parseInt(dayIndex) + 1} ${isCompleted ? 'marked as completed' : 'marked as not completed'}.`, 'success');
+                }
+            }
+
+            // دالة تبديل إنجاز المهمة
+            function toggleTaskCompletion(planId, dayIndex, taskIndex, isCompleted) {
+                const plans = getSavedPlans();
+                const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
+                
+                if (planIndex !== -1) {
+                    // تهيئة daysCompleted إذا لم تكن موجودة
+                    if (!plans[planIndex].daysCompleted) {
+                        plans[planIndex].daysCompleted = {};
+                    }
+                    
+                    // تهيئة اليوم إذا لم يكن موجوداً
+                    if (!plans[planIndex].daysCompleted[dayIndex]) {
+                        plans[planIndex].daysCompleted[dayIndex] = {
+                            completed: false,
+                            tasks: {}
+                        };
+                    }
+                    
+                    // تحديث حالة إنجاز المهمة
+                    plans[planIndex].daysCompleted[dayIndex].tasks[taskIndex] = isCompleted;
+                    
+                    // التحقق مما إذا كانت جميع مهام اليوم مكتملة لتحديد إنجاز اليوم
+                    const dayElement = document.getElementById(`day-${planId}-${dayIndex}`);
+                    if (dayElement) {
+                        const taskCheckboxes = dayElement.querySelectorAll('.task-completion-checkbox');
+                        const allTasksCompleted = Array.from(taskCheckboxes).every(checkbox => checkbox.checked);
+                        
+                        if (allTasksCompleted) {
+                            const dayCheckbox = dayElement.querySelector('.day-completion-checkbox');
+                            if (dayCheckbox && !dayCheckbox.checked) {
+                                dayCheckbox.checked = true;
+                                plans[planIndex].daysCompleted[dayIndex].completed = true;
+                            }
+                        } else {
+                            const dayCheckbox = dayElement.querySelector('.day-completion-checkbox');
+                            if (dayCheckbox && dayCheckbox.checked) {
+                                dayCheckbox.checked = false;
+                                plans[planIndex].daysCompleted[dayIndex].completed = false;
+                            }
+                        }
+                    }
+                    
+                    savePlansToStorage(plans);
+                    
+                    // التحقق مما إذا كانت جميع الأيام مكتملة لتحديد إنجاز الخطة
+                    checkAndUpdatePlanCompletion(planId);
+                    
+                    showToast(`Task ${parseInt(taskIndex) + 1} ${isCompleted ? 'marked as completed' : 'marked as not completed'}.`, 'success');
+                }
+            }
+
+            // دالة إكمال جميع الأيام
+            function completeAllDays(planId) {
+                const plans = getSavedPlans();
+                const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
+                
+                if (planIndex !== -1) {
+                    // الحصول على جميع عناصر الأيام
+                    const dayElements = document.querySelectorAll(`#days-container-${planId} .saved-plan-day`);
+                    
+                    dayElements.forEach(dayElement => {
+                        const dayIndex = dayElement.querySelector('.day-completion-checkbox').dataset.dayIndex;
+                        
+                        // تحديث حالة اليوم
+                        if (!plans[planIndex].daysCompleted) {
+                            plans[planIndex].daysCompleted = {};
+                        }
+                        
+                        if (!plans[planIndex].daysCompleted[dayIndex]) {
+                            plans[planIndex].daysCompleted[dayIndex] = {
+                                completed: true,
+                                tasks: {}
+                            };
+                        } else {
+                            plans[planIndex].daysCompleted[dayIndex].completed = true;
+                        }
+                        
+                        // تحديث جميع مهام اليوم
+                        const taskCheckboxes = dayElement.querySelectorAll('.task-completion-checkbox');
+                        taskCheckboxes.forEach(checkbox => {
+                            checkbox.checked = true;
+                            const taskIndex = checkbox.dataset.taskIndex;
+                            plans[planIndex].daysCompleted[dayIndex].tasks[taskIndex] = true;
+                        });
+                    });
+                    
+                    savePlansToStorage(plans);
+                    
+                    // تحديث واجهة المستخدم
+                    displaySavedPlans();
+                    
+                    showToast('All days marked as completed!', 'success');
+                }
+            }
+
+            // دالة التحقق وتحديث إنجاز الخطة
+            function checkAndUpdatePlanCompletion(planId) {
+                const plans = getSavedPlans();
+                const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
+                
+                if (planIndex !== -1 && plans[planIndex].daysCompleted) {
+                    const allDays = Object.values(plans[planIndex].daysCompleted);
+                    const allDaysCompleted = allDays.length > 0 && allDays.every(day => day.completed);
+                    
+                    if (allDaysCompleted && !plans[planIndex].completed) {
+                        plans[planIndex].completed = true;
+                        savePlansToStorage(plans);
+                        
+                        const completionCheckbox = document.getElementById(`plan-complete-${planId}`);
+                        if (completionCheckbox) {
+                            completionCheckbox.checked = true;
+                        }
+                        
+                        showToast('Plan completed! All days are finished!', 'success');
+                    }
+                }
+            }
+
+            // دالة حذف خطة محددة
+            function deleteSavedPlan(planId) {
+                if (confirm('Are you sure you want to delete this plan?')) {
+                    const plans = getSavedPlans();
+                    const updatedPlans = plans.filter(plan => plan.id !== parseInt(planId));
+                    savePlansToStorage(updatedPlans);
+                    displaySavedPlans();
+                    showToast('Plan deleted successfully.', 'info');
+                }
+            }
+
+            // دالة حذف جميع الخطط
+            function deleteAllSavedPlans() {
+                const plans = getSavedPlans();
+                if (plans.length === 0) {
+                    showToast('No plans to delete.', 'info');
+                    return;
+                }
+                
+                if (confirm('Are you sure you want to delete ALL saved plans? This cannot be undone.')) {
+                    savePlansToStorage([]);
+                    displaySavedPlans();
+                    showToast('All plans deleted.', 'info');
+                }
+            }
+
+            // دالة تحديد/إلغاء تحديد إنجاز الخطة
+            function togglePlanCompletion(planId, isCompleted) {
+                const plans = getSavedPlans();
+                const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
+                
+                if (planIndex !== -1) {
+                    plans[planIndex].completed = isCompleted;
+                    savePlansToStorage(plans);
+                    displaySavedPlans();
+                    showToast(`Plan ${isCompleted ? 'marked as completed' : 'marked as not completed'}.`, 'success');
+                }
+            }
+
+            // --- زر العودة للأعلى ---
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            // إظهار/إخفاء زر العودة للأعلى
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+
+            // حدث النقر على زر العودة للأعلى
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
 
             // --- Initialize ---
             updateTimerFromInput(); // Initialize timer display on load
-
-
         }); // End of DOMContentLoaded
     </script>
 </body>
