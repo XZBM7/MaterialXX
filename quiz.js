@@ -90,7 +90,13 @@ function updateUserStats(quizName, score, timeTaken) {
 document.addEventListener('DOMContentLoaded', function () {
     updateStatsDisplay();
 
-
+const savedGlassMode = localStorage.getItem('glassMode') === 'true';
+    const glassToggleCheckbox = document.getElementById('glass-status');
+    
+    if (glassToggleCheckbox) {
+        glassToggleCheckbox.checked = savedGlassMode;
+        document.body.classList.toggle('glass-mode-on', savedGlassMode);
+    }
     const checkbox = document.getElementById("status");
     if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
@@ -7230,7 +7236,7 @@ const pl1 = [
     {
         question: "FORTRAN was the first programming language to introduce object-oriented programming.",
         options: ["True", "False"],
-        answer: 0,
+        answer: 1,
         explanation: "FALSE — FORTRAN was procedural; Simula introduced OOP."
     }
 ];
@@ -12128,7 +12134,7 @@ function restartSameQuiz() {
 
 function resetOverlay() {
     const overlay = document.getElementById('theme-transition-overlay');
-    const isGlass = document.getElementById('glass-status').checked;
+    const isGlass = localStorage.getItem('glassMode') === 'true';
 
     if (isGlass) {
         overlay.style.backgroundColor = 'transparent';
@@ -12138,7 +12144,6 @@ function resetOverlay() {
         overlay.style.backdropFilter = 'none';
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -12185,25 +12190,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         setGlassMode(glassToggleCheckbox.checked);
 
-        glassToggleCheckbox.addEventListener('change', (e) => {
-            const isChecked = e.target.checked;
-            const rect = glassToggleLabel.getBoundingClientRect();
-            const x = rect.left + rect.width / 2;
-            const y = rect.top + rect.height / 2;
+      glassToggleCheckbox.addEventListener('change', (e) => {
+    const isChecked = e.target.checked;
+    const rect = glassToggleLabel.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
-            overlay.style.backgroundColor = 'transparent';
-            overlay.style.backdropFilter = 'blur(10px)';
-            overlay.style.setProperty('--clip-x', `${x}px`);
-            overlay.style.setProperty('--clip-y', `${y}px`);
+    overlay.style.backgroundColor = 'transparent';
+    overlay.style.backdropFilter = 'blur(10px)';
+    overlay.style.setProperty('--clip-x', `${x}px`);
+    overlay.style.setProperty('--clip-y', `${y}px`);
 
-            setGlassMode(isChecked);
-            overlay.style.clipPath = `circle(150% at ${x}px ${y}px)`;
+    setGlassMode(isChecked);
+    
+    // ✅ حفظ الحالة في Local Storage
+    localStorage.setItem('glassMode', isChecked.toString());
+    
+    overlay.style.clipPath = `circle(150% at ${x}px ${y}px)`;
 
-            setTimeout(() => {
-                overlay.style.clipPath = 'circle(0% at var(--clip-x) var(--clip-y))';
-                resetOverlay(); 
-            }, 600);
-        });
+    setTimeout(() => {
+        overlay.style.clipPath = 'circle(0% at var(--clip-x) var(--clip-y))';
+        resetOverlay();
+    }, 600);
+});
     }
 
 
@@ -12212,7 +12221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollTopBtn = document.getElementById('scrollToTopBtn');
     const scrollableElement = document.querySelector('.main-content');
 
-    S
+    
     if (scrollTopBtn && scrollableElement) {
         
         window.addEventListener('scroll', () => {
