@@ -120,14 +120,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const databaseQuestions1 = [
 
-    {
-        "question": "True or False: On non-separable data, the standard PLA algorithm is guaranteed to eventually stop and return the best $w$.",
-        "options": [
-            "True",
-            "False"
-        ],
-        "answer": 1,
-        "explanation": "The standard Perceptron Learning Algorithm (PLA) is only guaranteed to converge on linearly separable data. On non-separable data, it may never stop or may not find the optimal solution."
+      {
+        question: "What is a database?",
+        options: ["A collection of unrelated data", "A collection of related data", "A program that retrieves data", "A storage medium for documents"],
+        answer: 1
     },
     {
         question: "Which of the following is a function of a DBMS?",
