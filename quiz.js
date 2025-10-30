@@ -7208,37 +7208,37 @@ const pl1 = [
         answer: 0,
         explanation: "Pascal used 'begin' and 'end' to define blocks clearly."
     },
-    
-    {
-        question: "Readability is one of the core principles in programming language design.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "TRUE — Readability helps developers understand and maintain code easily."
-    },
-    {
-        question: "Portability ensures that a program can run on multiple platforms without change.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "TRUE — Portability minimizes platform-specific dependencies."
-    },
-    {
-        question: "Efficiency and readability are always directly proportional in language design.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "FALSE — Improving readability can sometimes reduce raw performance."
-    },
-    {
-        question: "Orthogonality in design means independent features can be combined freely.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "TRUE — Orthogonal features behave predictably when combined."
-    },
-    {
-        question: "FORTRAN was the first programming language to introduce object-oriented programming.",
-        options: ["True", "False"],
-        answer: 1,
-        explanation: "FALSE — FORTRAN was procedural; Simula introduced OOP."
-    }
+  {
+    question: "Readability is one of the core principles in programming language design.",
+    options: ["True", "False"],
+    answer: 0,
+    explanation: "TRUE — Readability helps developers understand and maintain code easily."
+},
+{
+    question: "Portability ensures that a program can run on multiple platforms without change.",
+    options: ["True", "False"],
+    answer: 0,
+    explanation: "TRUE — Portability minimizes platform-specific dependencies."
+},
+{
+    question: "Efficiency and readability are always directly proportional in language design.",
+    options: ["True", "False"],
+    answer: 1,
+    explanation: "FALSE — Improving readability can sometimes reduce raw performance."
+},
+{
+    question: "Orthogonality in design means independent features can be combined freely.",
+    options: ["True", "False"],
+    answer: 0,
+    explanation: "TRUE — Orthogonal features behave predictably when combined."
+},
+{
+    question: "FORTRAN was the first programming language to introduce object-oriented programming.",
+    options: ["True", "False"],
+    answer: 1,
+    explanation: "FALSE — FORTRAN was procedural; Simula introduced OOP."
+}
+
 ];
 
 
@@ -7490,36 +7490,37 @@ const pl2 = [
         explanation: "Variance annotations control subtype relationships for generics safely."
     },
     
-    {
-        question: "Static typing detects type errors during program execution.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "FALSE — Static typing detects type errors at compile time, not at runtime."
-    },
-    {
-        question: "Dependent types allow types to depend on runtime values.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "TRUE — Dependent types express constraints based on values."
-    },
-    {
-        question: "Strong typing allows implicit conversions between unrelated types.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "FALSE — Strong typing forbids unsafe or implicit conversions."
-    },
-    {
-        question: "Type inference reduces verbosity without losing type safety.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "TRUE — Inference deduces types while keeping the code type-safe."
-    },
-    {
-        question: "Covariant arrays are fully type-safe in all contexts.",
-        options: ["True", "False"],
-        answer: 0,
-        explanation: "FALSE — Covariant arrays can violate type safety in some cases."
-    }
+   {
+    question: "Static typing detects type errors during program execution.",
+    options: ["True", "False"],
+    answer: 1,
+    explanation: "FALSE — Static typing detects type errors at compile time, not at runtime."
+},
+{
+    question: "Dependent types allow types to depend on runtime values.",
+    options: ["True", "False"],
+    answer: 0,
+    explanation: "TRUE — Dependent types express constraints based on values."
+},
+{
+    question: "Strong typing allows implicit conversions between unrelated types.",
+    options: ["True", "False"],
+    answer: 1,
+    explanation: "FALSE — Strong typing forbids unsafe or implicit conversions."
+},
+{
+    question: "Type inference reduces verbosity without losing type safety.",
+    options: ["True", "False"],
+    answer: 0,
+    explanation: "TRUE — Inference deduces types while keeping the code type-safe."
+},
+{
+    question: "Covariant arrays are fully type-safe in all contexts.",
+    options: ["True", "False"],
+    answer: 1,
+    explanation: "FALSE — Covariant arrays can violate type safety in some cases."
+}
+
 ];
 
 
