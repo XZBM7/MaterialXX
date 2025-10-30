@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Systems Department | Materialx</title>
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollreveal/4.0.0/scrollreveal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    :root {
+        --primary-color: #1a237e;
+        --secondary-color: #283593;
+        --accent-color: #3949ab;
+        --light-color: #e8eaf6;
+        --dark-color: #0d1440;
+        --text-color: #333;
+        --text-light: #f5f5f5;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1500px;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: var(--shadow);
+        position: relative;
+    }
+
+    /* Header Styles */
+    header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+    }
+
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23000" fill-opacity="0.1" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,202.7C672,203,768,181,864,165.3C960,149,1056,139,1152,149.3C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+        background-size: cover;
+        background-position: bottom;
+        opacity: 0.3;
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    header img {
+        width: 180px;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        transition: var(--transition);
+    }
+
+    header img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+
+    header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+
+    /* Navigation Styles */
+    nav {
+        background: var(--secondary-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }
+
+    .nav-logo {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        display: none;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 18px 25px;
+        display: block;
+        transition: var(--transition);
+        font-size: 1rem;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+
+    nav ul li a::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--light-color);
+        transition: var(--transition);
+    }
+
+    nav ul li a:hover::before {
+        width: 100%;
+    }
+
+    nav ul li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .hamburger {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: 10px;
+        color: white;
+        background: none;
+        border: none;
+    }
+
+    /* Section Styles */
+    section {
+        padding: 80px 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-align: center;
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        border-radius: 2px;
+    }
+
+    /* About Section */
+    #about {
+        background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
+    }
+
+    .about-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .about-text {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .about-text p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .about-image {
+        flex: 1;
+        min-width: 300px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+    }
+
+    .about-image:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Focus Areas Section */
+    #focus {
+        background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+    }
+
+    .courses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 25px;
+    }
+
+    .course-item {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border-left: 5px solid var(--accent-color);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .course-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(57, 73, 171, 0.1), transparent);
+        transition: var(--transition);
+    }
+
+    .course-item:hover::before {
+        left: 100%;
+    }
+
+    .course-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-icon {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 15px;
+    }
+
+    .course-item h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        color: var(--primary-color);
+    }
+
+    /* Careers Section */
+    #careers {
+        background: linear-gradient(135deg, #fff 0%, #f0f4ff 100%);
+    }
+
+    .career-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .career-text {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .career-text p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+    }
+
+    .career-list {
+        flex: 1;
+        min-width: 300px;
+        background: var(--light-color);
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+    }
+
+    .career-list ul {
+        list-style: none;
+    }
+
+    .career-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .career-list li:last-child {
+        border-bottom: none;
+    }
+
+    .career-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .stat-item {
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        min-width: 150px;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: block;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+
+    /* Gallery Section */
+    #gallery {
+        background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .gallery-item {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        height: 250px;
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        transform: translateY(100%);
+        transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+        background: linear-gradient(135deg, var(--dark-color) 0%, #000 100%);
+        color: white;
+        padding: 50px 20px 20px;
+        text-align: center;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px;
+        margin-bottom: 30px;
+    }
+
+    .footer-section {
+        flex: 1;
+        min-width: 250px;
+        text-align: left;
+    }
+
+    .footer-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .footer-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--accent-color);
+    }
+
+    .footer-section p {
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+
+    .footer-links {
+        list-style: none;
+    }
+
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        transition: var(--transition);
+        opacity: 0.8;
+    }
+
+    .footer-links a:hover {
+        opacity: 1;
+        padding-left: 5px;
+    }
+
+    .social-media {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        transition: var(--transition);
+    }
+
+    .social-icon:hover {
+        background: var(--accent-color);
+        transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+
+    /* Scroll to Top Button */
+    .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--accent-color);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: none;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        line-height: 50px;
+        font-size: 1.2rem;
+        transition: var(--transition);
+        z-index: 1000;
+    }
+
+    .scroll-to-top:hover {
+        background: var(--primary-color);
+        transform: translateY(-5px);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+        }
+        
+        .courses-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hamburger {
+            display: block;
+        }
+
+        .nav-logo {
+            display: block;
+        }
+
+        nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--secondary-color);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul.active {
+            display: flex;
+        }
+
+        nav ul li {
+            width: 100%;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+        
+        header p {
+            font-size: 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .courses-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .gallery {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+        
+        .footer-content {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .footer-section {
+            text-align: center;
+        }
+        
+        .footer-section h3::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    @media (max-width: 480px) {
+        section {
+            padding: 50px 15px;
+        }
+        
+        header img {
+            width: 120px;
+        }
+        
+        .gallery {
+            grid-template-columns: 1fr;
+        }
+        
+        .stat-item {
+            min-width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="img/photo_2024-11-16_17-45-40.jpg" alt="Department Logo">
+                </div>
+                <h1>Information Systems Department</h1>
+                <p>Bridging Technology and Business for a Digital Future</p>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-container">
+                <div class="nav-logo">IS Department</div>
+                <button class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="nav-menu">
+                     <li><a href="homee.html">Home</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#focus"><i class="fas fa-book"></i> Courses</a></li>
+                    <li><a href="#careers"><i class="fas fa-briefcase"></i> Careers</a></li>
+                    <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="about">
+            <div class="section-title">About the Department</div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Our Information Systems department is committed to providing an education that bridges the gap between technology and business. We focus on equipping students with the skills required to analyze, design, and implement innovative IT solutions that solve real-world business problems.</p>
+                    <p>With a strong emphasis on both theory and practice, our faculty members are experts in their respective fields, providing students with the latest tools and knowledge to thrive in a rapidly changing digital world.</p>
+                    <p>Our curriculum is designed to prepare students for the challenges of the digital economy, with courses that cover everything from fundamental programming concepts to advanced data analytics and cybersecurity.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="IS Department">
+                </div>
+            </div>
+        </section>
+
+        <section id="focus">
+            <div class="section-title">Focus Areas & Courses</div>
+            <div class="courses-grid">
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Information Systems Security</h3>
+                    <p>Learn the principles of information systems security and how to protect sensitive data and secure systems from cyber threats.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Systems Analysis and Design</h3>
+                    <p>Explore methodologies for effectively analyzing and designing IT systems throughout the system development life cycle.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Big Data & Analytics</h3>
+                    <p>Learn techniques for handling large datasets and how to analyze and leverage them for strategic decision-making in organizations.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Database Management</h3>
+                    <p>Understand the fundamentals of database design, management, and administration to organize and retrieve business data efficiently.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Analysis & Visualization</h3>
+                    <p>Master data analysis skills using modern tools and techniques to turn data into actionable insights.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Data Mining</h3>
+                    <p>Learn the techniques and tools used to extract patterns and valuable information from large datasets to support business intelligence.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Computing</h3>
+                    <p>Discover the core concepts of cloud computing, its architecture, and how it enhances business efficiency and flexibility.</p>
+                </div>
+                <div class="course-item">
+                    <div class="course-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Application Development</h3>
+                    <p>Learn to design and develop mobile applications for various platforms with a focus on user experience and business requirements.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="careers">
+            <div class="section-title">Career Opportunities</div>
+            <div class="career-content">
+                <div class="career-text">
+                    <p>Graduates from the IS department are in high demand due to their expertise in technology and business. Our alumni work in various industries including finance, healthcare, technology, and government.</p>
+                    <p>According to recent industry reports, the demand for IS professionals is expected to grow by over 15% in the next 5 years, with competitive salaries starting from $60,000 annually for entry-level positions.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Employment Rate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$72K</span>
+                            <span class="stat-label">Average Salary</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15%</span>
+                            <span class="stat-label">Job Growth</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="career-list">
+                    <h3>Popular Career Paths</h3>
+                    <ul>
+                        <li>Systems Analyst</li>
+                        <li>Big Data Engineer</li>
+                        <li>Database Administrator</li>
+                        <li>Business Intelligence Analyst</li>
+                        <li>IT Project Manager</li>
+                        <li>Software Tester</li>
+                        <li>Cloud Solutions Architect</li>
+                        <li>Information Security Analyst</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="section-title">Department Gallery</div>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="img/0d7e93e7f4fe3381f7bd4d1b2b3b2d56.jpg" alt="Department Event">
+                    <div class="gallery-caption">Annual Tech Conference 2023</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/ISD_Org_Aug2019.jpg" alt="Student Project">
+                    <div class="gallery-caption">Student Project Exhibition</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/230601113344-852.webp" alt="Lab Session">
+                    <div class="gallery-caption">Advanced Database Lab</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/bi-business-intelligence-and-data-warehouse.png" alt="Industry Visit">
+                    <div class="gallery-caption">Industry Collaboration Workshop</div>
+                </div>
+            </div>
+        </section>
+
+    
+        <div class="scroll-to-top" onclick="scrollToTop()">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+    </div>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("active");
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            if (window.scrollY > 300) {
+                scrollToTopBtn.style.display = 'block';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        // ScrollReveal animations
+        ScrollReveal().reveal('.section-title', { 
+            delay: 200,
+            duration: 1000,
+            distance: '50px',
+            origin: 'top',
+            easing: 'ease-in-out'
+        });
+
+        ScrollReveal().reveal('.about-text, .about-image', { 
+            delay: 300,
+            duration: 1000,
+            distance: '50px',
+            origin: 'bottom',
+            easing: 'ease-in-out',
+            interval: 200
+        });
+
+        ScrollReveal().reveal('.course-item', { 
+            delay: 300,
+            duration: 1000,
+            distance: '50px',
+            origin: 'bottom',
+            easing: 'ease-in-out',
+            interval: 200
+        });
+
+        ScrollReveal().reveal('.career-text, .career-list', { 
+            delay: 300,
+            duration: 1000,
+            distance: '50px',
+            origin: 'bottom',
+            easing: 'ease-in-out',
+            interval: 200
+        });
+
+        ScrollReveal().reveal('.gallery-item', { 
+            delay: 300,
+            duration: 1000,
+            distance: '50px',
+            origin: 'bottom',
+            easing: 'ease-in-out',
+            interval: 200
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu after clicking a link
+                if (window.innerWidth <= 768) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
