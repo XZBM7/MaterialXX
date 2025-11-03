@@ -7908,1000 +7908,1846 @@ const pl4 = [
 
 
 const ethics1 = [
+    // Multiple Choice Questions (20 questions)
     {
-        "question": "Ethics are strictly implemented laws that mandate what is right or wrong.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which of the following is NOT a common issue of computer ethics?",
-        "options": ["Privacy concerns", "Intellectual property rights", "Hardware specifications", "Data protection"],
-        "answer": 2
-    },
-    {
-        "question": "What is the main purpose of data protection?",
-        "options": [
-            "To delete all personal data",
-            "To balance individual privacy rights with business data usage",
-            "To share data with third parties",
-            "To encrypt all government files"
+        question: "What are Ethics?",
+        options: [
+            "Laws that legally mandate what is right or wrong",
+            "A structure of standards and practices that influence how people lead their lives",
+            "Strictly implemented rules for everyone to follow",
+            "Technical guidelines for computer use"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Ethics are a structure of standards and practices that influence how people lead their lives, not strictly implemented laws."
     },
     {
-        "question": "Hacking is defined as:",
-        "options": [
-            "Legal access to computer systems",
-            "Unlawful intrusion into a computer or network",
-            "Authorized software testing",
-            "Data backup process"
+        question: "How do Ethics differ from laws?",
+        options: [
+            "Ethics are legally binding while laws are not",
+            "Ethics illustrate society's views about what is right and wrong",
+            "Laws are optional while ethics are mandatory",
+            "There is no difference between them"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Ethics illustrate society's views about what is right and wrong, unlike laws that legally mandate what is right or wrong."
     },
     {
-        "question": "Copyright gives the author proprietary publication, distribution and usage rights.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "What is plagiarism?",
-        "options": [
-            "Creating original content",
-            "Citing sources properly",
-            "Copying and publishing another person's work without citation",
-            "Software licensing agreement"
+        question: "What are Computer Ethics?",
+        options: [
+            "Rules for using hardware only",
+            "Technical specifications for software development",
+            "A set of moral standards that govern the use of computers",
+            "Laws about internet usage"
         ],
-        "answer": 2
+        answer: 2,
+        explanation: "Computer ethics are a set of moral standards that govern the use of computers, including both hardware and software."
     },
     {
-        "question": "Cracking involves:",
-        "options": [
-            "Proper software registration",
-            "Breaking into a system by bypassing security",
-            "Legal software installation",
-            "Data encryption"
+        question: "Which of the following is a privacy concern in computer ethics?",
+        options: [
+            "Software licensing",
+            "Hacking",
+            "Programming languages",
+            "Hardware design"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Hacking is unlawful intrusion into a computer or network and is a major privacy concern."
     },
     {
-        "question": "Software license allows users to:",
-        "options": [
-            "Own the copyright permanently",
-            "Use digital material following license agreement",
-            "Distribute software without restrictions",
-            "Modify source code arbitrarily"
+        question: "What is Malware?",
+        options: [
+            "Software that improves computer performance",
+            "Malicious software created to impair a computer system",
+            "Security protection software",
+            "Entertainment software"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Malware means malicious software which is created to impair a computer system, including viruses, spyware, worms and trojan horses."
     },
     {
-        "question": "Computers have only created new jobs and made all existing jobs simpler.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which health concern is associated with prolonged computer use?",
-        "options": [
-            "Improved eyesight",
-            "Increased physical activity",
-            "Sickness from constant sitting and screen staring",
-            "Better posture"
+        question: "What is Data Protection?",
+        options: [
+            "Deleting all personal data",
+            "Collecting as much data as possible",
+            "The process of safeguarding data while balancing privacy rights and business needs",
+            "Sharing data with everyone"
         ],
-        "answer": 2
+        answer: 2,
+        explanation: "Data protection is the process of safeguarding data which intends to influence a balance between individual privacy rights while still authorizing data to be used for business purposes."
     },
     {
-        "question": "What environmental impact do computers have?",
-        "options": [
-            "Reduced energy consumption",
-            "Decreased greenhouse gas emissions",
-            "Increased energy usage and greenhouse gases",
-            "Improved air quality"
+        question: "What is the purpose of Anonymity?",
+        options: [
+            "To reveal user identity",
+            "To improve internet speed",
+            "To keep a user's identity masked",
+            "To increase physical security"
         ],
-        "answer": 2
+        answer: 2,
+        explanation: "Anonymity is a way of keeping a user's identity masked through various applications."
     },
     {
-        "question": "Energy Star labeled computers help:",
-        "options": [
-            "Increase energy usage",
-            "Save the environment through energy efficiency",
-            "Make computers faster",
-            "Reduce software costs"
+        question: "What is Copyright?",
+        options: [
+            "The right for anyone to use creative works freely",
+            "A form of intellectual property that gives proprietary rights to the author",
+            "A method for stealing intellectual property",
+            "Free licensing for all content"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Copyright is a form of intellectual property that gives proprietary publication, distribution and usage rights for the author."
     },
     {
-        "question": "Social media has no impact on how people stay in touch with family and friends.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which is a POSITIVE effect of computer gaming?",
-        "options": [
-            "Addiction",
-            "Isolation from real world",
-            "Improved hand-eye coordination",
-            "Exposure to violence"
+        question: "What is Plagiarism?",
+        options: [
+            "Proper citation of sources",
+            "Creating original work",
+            "Copying and publishing another person's work without proper citation",
+            "Buying copyrights legally"
         ],
-        "answer": 2
+        answer: 2,
+        explanation: "Plagiarism is an act of copying and publishing another person's work without proper citation, like stealing someone else's work."
     },
     {
-        "question": "Computer technology helps businesses by:",
-        "options": [
-            "Increasing manual processes",
-            "Automating processes, reports and analysis",
-            "Reducing efficiency",
-            "Eliminating all human workers"
+        question: "What is Cracking?",
+        options: [
+            "Installing software legally",
+            "Security enhancement process",
+            "Breaking into a system by getting past security features",
+            "Software performance optimization"
         ],
-        "answer": 1
+        answer: 2,
+        explanation: "Cracking is a way of breaking into a system by getting past the security features of the system, skipping registration and authentication steps."
     },
     {
-        "question": "Anonymity in computing means:",
-        "options": [
-            "Revealing user identity",
-            "Keeping user's identity masked",
-            "Sharing personal information publicly",
-            "Using real names online"
+        question: "What is a Software License?",
+        options: [
+            "Transfer of ownership to the user",
+            "Permission to use digital material based on license agreement",
+            "A method for software theft",
+            "Destruction of software rights"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Software license allows the use of digital material by following the license agreement while ownership remains with the copyright owner."
     },
     {
-        "question": "Malware is designed to:",
-        "options": [
-            "Improve computer performance",
-            "Protect against viruses",
-            "Impair a computer system",
-            "Update software automatically"
+        question: "How have computers affected jobs according to the lecture?",
+        options: [
+            "All jobs have been abolished",
+            "No jobs have been affected",
+            "Some jobs abolished while others became simpler",
+            "All jobs have become more complex"
         ],
-        "answer": 2
+        answer: 2,
+        explanation: "Some jobs have been abolished while some jobs have become simpler as computers have taken over companies and businesses."
     },
     {
-        "question": "Common types of malware include:",
-        "options": [
-            "Antivirus software",
-            "Firewalls",
-            "Viruses, spyware, worms and trojan horses",
-            "Operating systems"
+        question: "What is an ethical concern regarding employee health and safety?",
+        options: [
+            "Employees getting sick from constant sitting and screen time",
+            "Employees working less hours",
+            "Improved employee skills",
+            "Increased productivity only"
         ],
-        "answer": 2
+        answer: 0,
+        explanation: "There are ethical concerns on health and safety of employees getting sick from constant sitting, staring at computer screens and typing."
     },
     {
-        "question": "The main benefit of computers in government is:",
-        "options": [
-            "Reducing services to citizens",
-            "Improving services through advanced databases",
-            "Eliminating all paperwork",
-            "Increasing bureaucratic processes"
+        question: "How do computers affect the environment?",
+        options: [
+            "Reduce energy consumption",
+            "Increase greenhouse gas emissions",
+            "Improve air quality",
+            "Have no environmental impact"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Environment has been affected by computers since increased computer usage increases energy usage and greenhouse gas emissions."
     },
     {
-        "question": "Ethics are society's views about what is right and wrong.",
-        "options": ["True", "False"],
-        "answer": 0
+        question: "What is one way to save energy with computers?",
+        options: [
+            "Use computers 24/7",
+            "Limit computer time and use sleep mode",
+            "Always keep monitors at maximum brightness",
+            "Use outdated, inefficient computers"
+        ],
+        answer: 1,
+        explanation: "Limiting computer time and turning off computers or using sleep mode when not in use can save energy."
     },
     {
-        "question": "What percentage of the final grade is the report and attendance?",
-        "options": ["30%", "10%", "60%", "40%"],
-        "answer": 1
+        question: "What positive social impact do computers have?",
+        options: [
+            "Helping people stay in touch with family and friends",
+            "Complete isolation from society",
+            "Only negative impacts on society",
+            "Reducing communication between people"
+        ],
+        answer: 0,
+        explanation: "Computers and the internet help people stay in touch with family and friends through social media and other means."
     },
     {
-        "question": "Which lecture covers SQL Injection?",
-        "options": ["Lecture 1", "Lecture 5", "Lecture 10", "Lecture 12"],
-        "answer": 2
-    },
-    {
-        "question": "The final exam constitutes what percentage of the total grade?",
-        "options": ["30%", "10%", "60%", "50%"],
-        "answer": 2
-    },
-    {
-        "question": "Computer ethics only cover software issues, not hardware.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which is a negative effect of computer gaming?",
-        "options": [
-            "Stress relief",
-            "Improved strategic thinking",
+        question: "What is a positive effect of computer gaming?",
+        options: [
             "Addiction and isolation",
-            "Better hand-eye coordination"
+            "Exposure to violence",
+            "Improved hand-eye coordination and strategic thinking",
+            "Only negative effects on players"
         ],
-        "answer": 2
+        answer: 2,
+        explanation: "Positive effects of computer gaming include improved hand-eye coordination, stress relief and improved strategic thinking."
     },
     {
-        "question": "Data protection is also known as:",
-        "options": [
-            "Data destruction",
-            "Information privacy or data privacy",
-            "Data sharing",
-            "Public disclosure"
+        question: "How does computer technology help governments?",
+        options: [
+            "By reducing services to citizens",
+            "By holding and analyzing huge amounts of data",
+            "By eliminating all paperwork",
+            "By making services more complicated"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Computer technology helps the government in improving services through advanced databases that can hold huge data for collection and analysis."
     },
     {
-        "question": "Intellectual property rights protect:",
-        "options": [
-            "Physical property only",
-            "Digital content and creations",
-            "Public domain works",
-            "Only software programs"
+        question: "How do computers aid businesses?",
+        options: [
+            "By making all processes manual",
+            "By automating processes, reports and analysis",
+            "By increasing paperwork",
+            "By reducing efficiency"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Computer technology aids businesses by automating processes, reports and analysis."
     },
     {
-        "question": "Plagiarism is considered ethical in academic work.",
-        "options": ["True", "False"],
-        "answer": 1
+        question: "What does the Energy Star label indicate?",
+        options: [
+            "High energy consumption",
+            "Energy inefficient computers",
+            "Energy efficient computers",
+            "Outdated technology"
+        ],
+        answer: 2,
+        explanation: "Buying energy efficient computers with Energy Star label can help save the environment by reducing energy consumption."
+    },
+
+    // True/False Questions (10 questions)
+    {
+        question: "Ethics are strictly implemented laws that everyone must follow.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Ethics are not strictly implemented to follow, unlike laws that legally mandate what is right or wrong."
     },
     {
-        "question": "What does a software license define?",
-        "options": [
-            "Hardware requirements",
-            "Terms of use for digital material",
-            "Programming languages to use",
-            "Internet speed requirements"
-        ],
-        "answer": 1
+        question: "Computer ethics only concern the use of computer hardware, not software.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Computer ethics govern the use of computers, both hardware and software."
     },
     {
-        "question": "The course instructor is:",
-        "options": [
-            "Dr. Helal Ahmed",
-            "Dr. Islam Gamal",
-            "Dr. Oriyano",
-            "Dr. Jesang"
-        ],
-        "answer": 0
+        question: "Hacking is defined as lawful access to computer systems.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Hacking is unlawful intrusion into a computer or a network."
+    },
+    {
+        question: "Malware includes viruses, spyware, worms and trojan horses.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "True. Common malware are viruses, spyware, worms and trojan horses."
+    },
+    {
+        question: "Data protection means deleting all personal information immediately.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Data protection is about safeguarding data while balancing privacy and business needs."
+    },
+    {
+        question: "Copyright gives anyone the right to use an author's work without permission.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Copyright gives proprietary rights to the author, and others cannot use the work without permission."
+    },
+    {
+        question: "Plagiarism is the proper citation of another person's work.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Plagiarism is copying and publishing another's work without proper citation."
+    },
+    {
+        question: "Computers have only created new jobs and haven't abolished any.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Some jobs have been abolished while some have become simpler due to computers."
+    },
+    {
+        question: "Increased computer usage can lead to higher energy consumption and greenhouse gas emissions.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "True. Increased computer time increases energy usage which increases greenhouse gas emissions."
+    },
+    {
+        question: "Computer gaming has only negative effects on society with no positive impacts.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Computer gaming has both positive effects (improved coordination, strategic thinking) and negative effects."
     }
 ];
 
-
-
 const ethics2 = [
-    {
-        "question": "Ethical hackers use the same skills as malicious hackers but with permission from system owners.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "Which type of hacker has limited training and knows only basic techniques?",
-        "options": ["White-Hat Hackers", "Black-Hat Hackers", "Script Kiddies", "Gray-Hat Hackers"],
-        "answer": 2
-    },
-    {
-        "question": "White-Hat hackers are also known as:",
-        "options": ["Criminal hackers", "Penetration testers", "Suicide hackers", "Script kiddies"],
-        "answer": 1
-    },
-    {
-        "question": "Gray-Hat hackers:",
-        "options": [
-            "Always work within the law",
-            "Are completely trusted once reformed",
-            "Straddle the line between good and bad",
-            "Only work for government agencies"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Suicide hackers are very stealthy and careful not to get caught.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "According to the code of conduct, ethical hackers should:",
-        "options": [
-            "Share confidential information publicly",
-            "Keep private and confidential information gained in professional work",
-            "Use illegally obtained software",
-            "Associate with malicious hackers"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What does 'Hack Value' describe?",
-        "options": [
-            "The cost of hacking tools",
-            "A target that attracts above-average attention from attackers",
-            "The ethical value of hacking",
-            "The price of security software"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "A 'Zero Day' vulnerability is:",
-        "options": [
-            "Well-known and patched",
-            "Unknown to developers and not addressed",
-            "Only found in old software",
-            "Not a security concern"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Footprinting is primarily an active method of information gathering.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which phase involves extracting detailed information like usernames and groups?",
-        "options": ["Footprinting", "Scanning", "Enumeration", "System Hacking"],
-        "answer": 2
-    },
-    {
-        "question": "What tool is used in the scanning phase to trace packet paths?",
-        "options": ["Ping", "Tracert", "Whois", "Google"],
-        "answer": 1
-    },
-    {
-        "question": "Escalation of privilege involves:",
-        "options": [
-            "Reducing user permissions",
-            "Obtaining higher privileged accounts",
-            "Deleting user accounts",
-            "Installing antivirus software"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Covering tracks means removing evidence of system presence.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "What is planted during the 'Planting backdoors' phase?",
-        "options": [
-            "Antivirus software",
-            "Security patches",
-            "Special accounts or Trojan horses",
-            "Firewall rules"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Google hacking uses:",
-        "options": [
-            "Only simple search queries",
-            "Special operators to find hidden information",
-            "Only cached data",
-            "Social media exclusively"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "The 'site:' operator in Google hacking:",
-        "options": [
-            "Searches the entire internet",
-            "Restricts search to a specific location",
-            "Finds only images",
-            "Searches social media"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Pipl.com is used for:",
-        "options": [
-            "Finding computer vulnerabilities",
-            "Personal information and account searching",
-            "Software development",
-            "Network scanning"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Social engineering attacks often use:",
-        "options": [
-            "Only technical vulnerabilities",
-            "Private information from social media",
-            "Hardware failures",
-            "Operating system bugs"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "FOCA is a tool used to find:",
-        "options": [
-            "Only email addresses",
-            "Metadata and hidden information in documents",
-            "Social media profiles",
-            "Network speeds"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "The 'cache:' operator in Google shows the current version of a webpage.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which Google operator returns pages with specific keywords in their title?",
-        "options": ["site:", "allintitle:", "link:", "cache:"],
-        "answer": 1
-    },
-    {
-        "question": "Information gathering should be:",
-        "options": [
-            "Random and unsystematic",
-            "Systematic with all information analyzed",
-            "Limited to only obvious information",
-            "Done only during attacks"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Enumeration typically gathers information like:",
-        "options": [
-            "Weather data",
-            "Usernames, groups, and passwords",
-            "Stock market prices",
-            "Sports scores"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Black-Hat hackers typically operate within the law.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "What is a 'Target of Evaluation' (TOE)?",
-        "options": [
-            "A hacker's personal computer",
-            "A system being evaluated for vulnerabilities",
-            "A type of malware",
-            "A security certification"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Daisy Chaining refers to:",
-        "options": [
-            "A single hacking attempt",
-            "Several hacking attacks performed in sequence",
-            "A type of flower arrangement",
-            "Network cabling"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Ethical hackers should never:",
-        "options": [
-            "Use authorized testing methods",
-            "Follow legal contracts",
-            "Engage in black-hat activities",
-            "Protect intellectual property"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "The 'link:' operator in Google shows:",
-        "options": [
-            "Pages that contain links to a specified site",
-            "Only broken links",
-            "Social media links",
-            "Download links"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Social media can be used to build:",
-        "options": [
-            "Only professional networks",
-            "Detailed personal profiles for social engineering",
-            "Hardware components",
-            "Security firewalls"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Wget and HTTrack are tools for:",
-        "options": [
-            "Downloading entire websites",
-            "Social media analysis",
-            "Password cracking",
-            "Network scanning"
-        ],
-        "answer": 0
-    }
+  // Multiple Choice Questions (25 questions) - Answers varied
+  {
+    "question": "What is the primary role of ethical hackers?",
+    "options": [
+      "To test the security of an organization with permission", // A
+      "To steal sensitive data for personal gain",
+      "To create malware for cyber attacks",
+      "To help black-hat hackers improve their skills"
+    ],
+    "answer": 0,
+    "explanation": "Ethical hackers are employed to test the security of an organization using the same skills as hackers but with permission from the system owner."
+  },
+  {
+    "question": "Which type of hacker has limited training and uses basic tools without full understanding?",
+    "options": [
+      "White-Hat Hackers",
+      "Black-Hat Hackers",
+      "Script Kiddies", // C
+      "Gray-Hat Hackers"
+    ],
+    "answer": 2,
+    "explanation": "Script Kiddies have limited or no training and know how to use only basic techniques or tools without understanding what they are doing."
+  },
+  {
+    "question": "What characterizes White-Hat hackers?",
+    "options": [
+      "They have a code of ethics to cause no harm", // A
+      "They operate outside the law",
+      "They work for personal financial gain",
+      "They don't care about getting caught"
+    ],
+    "answer": 0,
+    "explanation": "White-Hat hackers think like attackers but work for the good guys with a code of ethics that says they will cause no harm."
+  },
+  {
+    "question": "Which hacker type straddles the line between good and bad and may not be fully trusted even after reforming?",
+    "options": [
+      "White-Hat Hackers",
+      "Black-Hat Hackers",
+      "Suicide Hackers",
+      "Gray-Hat Hackers" // D
+    ],
+    "answer": 3,
+    "explanation": "Gray-Hat Hackers straddle the line between good and bad and may not be fully trusted even after deciding to reform."
+  },
+  {
+    "question": "What is a key principle in the ethical hacker's code of conduct?",
+    "options": [
+      "Share confidential information with other hackers",
+      "Use illegally obtained software whenever possible",
+      "Associate with malicious hackers to learn their techniques",
+      "Keep private and confidential information gained in professional work" // D
+    ],
+    "answer": 3,
+    "explanation": "Ethical hackers must keep private and confidential information gained in their professional work secure."
+  },
+  {
+    "question": "According to the code of ethics, what should ethical hackers do with potential dangers they discover?",
+    "options": [
+      "Keep them secret to avoid panic",
+      "Sell the information to the highest bidder",
+      "Disclose to appropriate persons or authorities", // C
+      "Use them for personal advantage"
+    ],
+    "answer": 2,
+    "explanation": "Ethical hackers should disclose to appropriate persons or authorities potential dangers to e-commerce clients, the Internet community, or the public."
+  },
+  {
+    "question": "What does 'Hack Value' refer to in hacking language?",
+    "options": [
+      "A target that attracts above-average attention from attackers", // A
+      "The cost of hacking tools",
+      "The ethical value of hacking",
+      "The monetary value of stolen data"
+    ],
+    "answer": 0,
+    "explanation": "Hack Value describes a target that may attract an above-average level of attention from an attacker."
+  },
+  {
+    "question": "What is a 'Zero Day' vulnerability?",
+    "options": [
+      "A vulnerability that has been known for years",
+      "A completely harmless security flaw",
+      "A threat unknown to developers and not addressed", // C
+      "A vulnerability that only appears at midnight"
+    ],
+    "answer": 2,
+    "explanation": "Zero Day describes a threat or vulnerability that is unknown to developers and has not been addressed, considered a serious problem."
+  },
+  {
+    "question": "What is the definition of a 'Vulnerability' in hacking terminology?",
+    "options": [
+      "A strong security feature",
+      "A type of malware",
+      "A weakness in a system that can be attacked", // C
+      "A security protocol"
+    ],
+    "answer": 2,
+    "explanation": "Vulnerability is a weakness in a system that can be attacked and used as an entry point into an environment."
+  },
+  {
+    "question": "What is 'Daisy Chaining' in the context of hacking?",
+    "options": [
+      "Creating flower-themed malware",
+      "A defensive security technique",
+      "A type of network cable",
+      "Performing several hacking attacks in sequence" // D
+    ],
+    "answer": 3,
+    "explanation": "Daisy Chaining is the act of performing several hacking attacks in sequence with each building on the results of the previous action."
+  },
+  {
+    "question": "Which phase involves using passive methods to gather information about a target?",
+    "options": [
+      "Scanning",
+      "Enumeration",
+      "Footprinting", // C
+      "System Hacking"
+    ],
+    "answer": 2,
+    "explanation": "Footprinting involves using primarily passive methods of gaining information from a target prior to performing active methods."
+  },
+  {
+    "question": "What is the main goal of the Footprinting phase?",
+    "options": [
+      "To attack the system directly",
+      "To cover tracks after an attack",
+      "To plant backdoors in the system",
+      "To gather as much information as possible about the target" // D
+    ],
+    "answer": 3,
+    "explanation": "The goal of Footprinting is to gather as much information as is reasonable and useful about a potential target."
+  },
+  {
+    "question": "Which tool is used in the Scanning phase to trace the path of IP packets?",
+    "options": [
+      "Tracert", // A
+      "Ping",
+      "Port scans",
+      "Ping sweeps"
+    ],
+    "answer": 0,
+    "explanation": "Tracert (Trace Route) is a command-line utility used to trace the path that an IP packet takes to its destination."
+  },
+  {
+    "question": "What type of information is gathered during the Enumeration phase?",
+    "options": [
+      "User lists, routing tables, and protocols", // A
+      "Only IP addresses",
+      "Only physical location data",
+      "Only employee phone numbers"
+    ],
+    "answer": 0,
+    "explanation": "Enumeration involves systematic probing to obtain user lists, routing tables, and protocols from the system."
+  },
+  {
+    "question": "What does 'Escalation of privilege' involve?",
+    "options": [
+      "Reducing user privileges",
+      "Creating new user accounts",
+      "Obtaining higher privileged accounts than originally accessed", // C
+      "Deleting administrator accounts"
+    ],
+    "answer": 2,
+    "explanation": "Escalation of privilege involves obtaining privileges granted to higher privileged accounts than originally broken into."
+  },
+  {
+    "question": "What is the purpose of 'Covering tracks'?",
+    "options": [
+      "To leave evidence of the attack",
+      "To document the attack process",
+      "To announce the successful attack",
+      "To remove evidence of presence in a system" // D
+    ],
+    "answer": 3,
+    "explanation": "Covering tracks involves attempting to remove evidence of presence in a system by purging log files and destroying other evidence."
+  },
+  {
+    "question": "What does 'Planting backdoors' enable attackers to do?",
+    "options": [
+      "Lock themselves out of the system",
+      "Improve system security",
+      "Remove all access points",
+      "Return to the system later if desired" // D
+    ],
+    "answer": 3,
+    "explanation": "Planting backdoors means leaving something behind that would enable returning to the system later, such as special accounts or Trojan horses."
+  },
+  {
+    "question": "Which Google operator displays the cached version of a web page?",
+    "options": [
+      "link:",
+      "info:",
+      "cache:", // C
+      "site:"
+    ],
+    "answer": 2,
+    "explanation": "The cache: operator displays the version of a web page that Google contains in its cache instead of the current version."
+  },
+  {
+    "question": "What does the 'site:' operator do in Google hacking?",
+    "options": [
+      "Restricts search to a specific website location", // A
+      "Searches the entire internet without restrictions",
+      "Finds only images from a site",
+      "Shows websites that link to a specific site"
+    ],
+    "answer": 0,
+    "explanation": "The site: operator restricts the search to the location specified in the query."
+  },
+  {
+    "question": "Which tool is mentioned for downloading static information from webpages?",
+    "options": [
+      "wget or HTTrack", // A
+      "FOCA",
+      "Tracert",
+      "Ping"
+    ],
+    "answer": 0,
+    "explanation": "Tools like wget or HTTrack can download all static information from webpages at once."
+  },
+  {
+    "question": "What is FOCA primarily used for?",
+    "options": [
+      "Finding metadata and hidden information in documents", // A
+      "Network scanning",
+      "Password cracking",
+      "Social engineering attacks"
+    ],
+    "answer": 0,
+    "explanation": "FOCA is a tool used mainly to find metadata and hidden information in documents that may be on web pages."
+  },
+  {
+    "question": "In the social engineering example, how did the attacker target Isak?",
+    "options": [
+      "By calling him directly",
+      "By sending a fake hotel email offering a gift", // B
+      "By hacking his social media password",
+      "By installing malware on his computer"
+    ],
+    "answer": 1,
+    "explanation": "The attacker sent a fake email from the hotel offering a gift after Isak posted about his hotel stay on social media."
+  },
+  {
+    "question": "How was Stine's password discovered in the social media example?",
+    "options": [
+      "She told the attacker directly",
+      "The password was written on her social media profile",
+      "The hotel provided the password",
+      "The attacker used brute-forcing" // D
+    ],
+    "answer": 3,
+    "explanation": "The attacker brute-forced Stine's password after learning about her favorite singer from her social media profile."
+  },
+  {
+    "question": "What information can be gathered from social media to build personal profiles?",
+    "options": [
+      "Only current location",
+      "Work, education, contact info, family relationships, and more", // B
+      "Only email addresses",
+      "Only photos"
+    ],
+    "answer": 1,
+    "explanation": "Social media can provide work and education, places of living, contact info, family relationships, details, life events, photos, favorites, friends, and timeline data."
+  },
+  {
+    "question": "What does the 'allinurl:' Google operator do?",
+    "options": [
+      "Searches for keywords in page titles",
+      "Shows cached versions of pages",
+      "Returns results with specific query in the URL", // C
+      "Finds pages linking to a specific site"
+    ],
+    "answer": 2,
+    "explanation": "The allinurl: operator returns only results with the specific query in the URL."
+  },
+  
+  // True/False Questions (15 questions) - Unchanged as they are correct
+  {
+    "question": "Ethical hackers always work without any contracts or permission from system owners.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Ethical hackers work under contract with permission from the system owner, and their contracts specify what they are allowed to do."
+  },
+  {
+    "question": "Script Kiddies are highly trained professionals with deep understanding of hacking techniques.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Script Kiddies have limited or no training and may not understand what they are doing."
+  },
+  {
+    "question": "Black-Hat hackers always have a specific agenda when conducting attacks.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Black-Hat hackers may or may not have an agenda when operating on the opposite side of the law."
+  },
+  {
+    "question": "Suicide Hackers are very stealthy and careful not to get caught.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Suicide Hackers are not stealthy because they are not worried about getting caught or doing prison time."
+  },
+  {
+    "question": "Ethical hackers should protect the intellectual property of others.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Ethical hackers should protect the intellectual property of others by relying on their own innovation and efforts."
+  },
+  {
+    "question": "It is acceptable for ethical hackers to use illegally obtained software if it helps their testing.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Ethical hackers should never knowingly use software or a process that is obtained or retained either illegally or unethically."
+  },
+  {
+    "question": "Ethical hackers can associate with malicious hackers to learn about new techniques.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Ethical hackers should not associate with malicious hackers nor engage in any malicious activities."
+  },
+  {
+    "question": "Footprinting involves active engagement with the target system.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Footprinting uses primarily passive methods of gaining information prior to active engagement."
+  },
+  {
+    "question": "Scanning determines which hosts are active and what the network looks like.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Scanning focuses on active engagement to determine active hosts and network structure."
+  },
+  {
+    "question": "Enumeration is the final phase of ethical hacking before reporting.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Enumeration is an intermediate phase that occurs after scanning and before system hacking."
+  },
+  {
+    "question": "Google hacking operators can only be used on special Google pages designed for security professionals.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Google hacking operators are entered directly into the regular Google search box and don't require special pages."
+  },
+  {
+    "question": "The 'link:' operator in Google shows websites that are linked to by a specific site.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. The 'link:' operator lists web pages that contain links to the page or site specified, not websites linked to by that site."
+  },
+  {
+    "question": "Social media cannot be used for building detailed personal profiles for social engineering.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Social media can provide extensive personal information that can be used to build detailed profiles for social engineering attacks."
+  },
+  {
+    "question": "FOCA is mainly used for network speed testing and optimization.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. FOCA is used mainly to find metadata and hidden information in documents."
+  },
+  {
+    "question": "Every piece of information gathered about a target can be potentially useful for hackers.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Hackers collect all available information and systemize it before planning attacks, as even seemingly unimportant information can be valuable."
+  }
 ];
 
 
 const ethics3 = [
-    {
-        "question": "Cryptography's primary goal has remained the same throughout history.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "Which ancient civilization used hieroglyphics that involved cryptographic elements?",
-        "options": ["Romans", "Greeks", "Egyptians", "Chinese"],
-        "answer": 2
-    },
-    {
-        "question": "The Rosetta Stone helped decipher:",
-        "options": [
-            "Modern encryption algorithms",
-            "Egyptian hieroglyphics",
-            "Computer code",
-            "Digital signatures"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which is NOT a goal of modern cryptography?",
-        "options": ["Confidentiality", "Integrity", "Authentication", "Data destruction"],
-        "answer": 3
-    },
-    {
-        "question": "Confidentiality in cryptography means keeping information secret from unauthorized access.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "What does integrity ensure in cryptography?",
-        "options": [
-            "Data speed",
-            "Data remains unmodified",
-            "User anonymity",
-            "System availability"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Nonrepudiation prevents:",
-        "options": [
-            "Data encryption",
-            "Denial of involvement in communication",
-            "System hacking",
-            "Password sharing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Plain text is:",
-        "options": [
-            "Encrypted message",
-            "Original unaltered message",
-            "Secret code",
-            "Digital signature"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Cipher text is the encrypted form of plain text.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "Algorithms in cryptography are:",
-        "options": [
-            "Random number generators",
-            "Formulas that transform text between plain and cipher forms",
-            "Only used for decryption",
-            "Physical security devices"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Symmetric cryptography uses:",
-        "options": [
-            "Different keys for encryption and decryption",
-            "The same key for both encryption and decryption",
-            "No keys",
-            "Only public keys"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which is an advantage of symmetric cryptography?",
-        "options": [
-            "Better key management",
-            "Increased speed",
-            "Built-in nonrepudiation",
-            "Easy key distribution"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Asymmetric cryptography is also known as:",
-        "options": [
-            "Private key cryptography",
-            "Public key cryptography",
-            "Secret key cryptography",
-            "Single key cryptography"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "In asymmetric cryptography, the public key is kept secret.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Digital signatures provide:",
-        "options": [
-            "Only encryption",
-            "Authentication and nonrepudiation",
-            "Faster data transmission",
-            "Data compression"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Hashing is:",
-        "options": [
-            "A two-way encryption process",
-            "A type of one-way encryption",
-            "Symmetric cryptography",
-            "Key distribution method"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Hash values are:",
-        "options": [
-            "Variable length based on input",
-            "Always the same length regardless of input",
-            "Only used for passwords",
-            "Reversible to original data"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Brute-force attacks try every possible key combination.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "According to the table, how long would it take a government to break a 56-bit key?",
-        "options": ["40 years", "19 days", "12 seconds", "6 minutes"],
-        "answer": 2
-    },
-    {
-        "question": "Cryptanalysis deals with:",
-        "options": [
-            "Creating encryption algorithms",
-            "Breaking or uncovering secrets in cryptography",
-            "Hardware security",
-            "Network cabling"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Keys in cryptography are:",
-        "options": [
-            "Always public information",
-            "Discrete pieces of information that determine cryptographic output",
-            "Physical keys for locks",
-            "Only used in symmetric systems"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "The main problem with symmetric key systems is:",
-        "options": [
-            "Slow speed",
-            "Key management issues",
-            "Lack of confidentiality",
-            "Easy to break"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Public key cryptography eliminates the need for shared symmetric keys.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "Hashing is commonly used for:",
-        "options": [
-            "Data encryption",
-            "Validating data integrity",
-            "Key distribution",
-            "User authentication only"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "A message digest is another term for:",
-        "options": ["Plain text", "Cipher text", "Hash value", "Encryption key"],
-        "answer": 2
-    },
-    {
-        "question": "Which characteristic makes hashing useful for password storage?",
-        "options": [
-            "It's reversible",
-            "It's a one-way process",
-            "It uses symmetric keys",
-            "It requires no computation"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "For a corporation, breaking a 40-bit key takes:",
-        "options": ["1 week", "24 seconds", "556 days", "0.005 seconds"],
-        "answer": 1
-    },
-    {
-        "question": "Two-key authentication provides:",
-        "options": [
-            "Reduced security",
-            "Enhanced authentication confidence",
-            "Faster login times",
-            "Automatic encryption"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Encryption converts plain text to cipher text.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "The main vulnerability of all cryptographic systems is:",
-        "options": [
-            "Brute-force attacks",
-            "Being too fast",
-            "Using too much memory",
-            "Requiring internet connection"
-        ],
-        "answer": 0
-    }
+  // Multiple Choice Questions (20 questions) - Answers varied
+  {
+    "question": "What is the primary goal of cryptography?",
+    "options": [
+      "To make information transmission slower",
+      "To increase the size of data",
+      "To protect and preserve information in all its forms", // C
+      "To replace all communication methods"
+    ],
+    "answer": 2,
+    "explanation": "Cryptography deals with protection and preservation of information in all its forms, with encryption getting the most attention for manipulating and protecting information."
+  },
+  {
+    "question": "What is cryptanalysis?",
+    "options": [
+      "Creating new encryption algorithms",
+      "Writing secret messages",
+      "Distributing cryptographic keys",
+      "Unlocking or uncovering secrets that others try to hide" // D
+    ],
+    "answer": 3,
+    "explanation": "Cryptanalysis deals with unlocking or uncovering the secrets that others try so hard to hide or obscure."
+  },
+  {
+    "question": "What was the original purpose of Egyptian hieroglyphics according to the lecture?",
+    "options": [
+      "Military communications",
+      "Special writing system to commune with gods", // B
+      "Business transactions",
+      "Personal diaries"
+    ],
+    "answer": 1,
+    "explanation": "The ancient Egyptians used hieroglyphics not so much to withhold secrets but because they wanted a special writing system to commune with their gods."
+  },
+  {
+    "question": "What was the significance of the Rosetta Stone?",
+    "options": [
+      "It contained gold and precious stones",
+      "It was the first computer encryption device",
+      "It was used for military strategy",
+      "It allowed modern civilization to understand ancient Egyptian language" // D
+    ],
+    "answer": 3,
+    "explanation": "The Rosetta Stone was the key that allowed modern civilization to understand a language that was nearly lost, taking over 20 years of effort to reveal the language."
+  },
+  {
+    "question": "Which of these is NOT a goal of modern cryptography?",
+    "options": [
+      "Confidentiality",
+      "Making information larger", // B
+      "Integrity",
+      "Authentication"
+    ],
+    "answer": 1,
+    "explanation": "Modern cryptography seeks to achieve confidentiality, integrity, authentication, nonrepudiation, and key distribution - not making information larger."
+  },
+  {
+    "question": "What does confidentiality ensure in cryptography?",
+    "options": [
+      "That secret information is kept from disclosure", // A
+      "That data cannot be modified",
+      "That the sender's identity is verified",
+      "That keys are properly distributed"
+    ],
+    "answer": 0,
+    "explanation": "Confidentiality is the primary goal that encryption seeks to achieve - keeping secret information from disclosure, away from prying eyes."
+  },
+  {
+    "question": "What is the purpose of integrity in cryptography?",
+    "options": [
+      "To hide the content of messages",
+      "To verify the identity of users",
+      "To detect changes in information", // C
+      "To create digital signatures"
+    ],
+    "answer": 2,
+    "explanation": "Cryptography can detect changes in information and thus prove its integrity or original unmodified state."
+  },
+  {
+    "question": "What does nonrepudiation provide?",
+    "options": [
+      "Fast encryption speed",
+      "One-way encryption",
+      "Key management solutions",
+      "Positive identification of the source or originator" // D
+    ],
+    "answer": 3,
+    "explanation": "Nonrepudiation provides positive identification of the source or originator of an event, preventing someone from denying their involvement."
+  },
+  {
+    "question": "What is plain text?",
+    "options": [
+      "Encrypted message",
+      "A type of cipher",
+      "A cryptographic key",
+      "The original unaltered message" // D
+    ],
+    "answer": 3,
+    "explanation": "Plain text is the original message that has not been altered; it is the usable information before encryption."
+  },
+  {
+    "question": "What is cipher text?",
+    "options": [
+      "A transformed message using an algorithm", // A
+      "The original message",
+      "A type of plain text",
+      "An encryption key"
+    ],
+    "answer": 0,
+    "explanation": "Cipher text is a message or data that has been transformed into a different format using an algorithm, and can be reversed using an algorithm and key."
+  },
+  {
+    "question": "What determines the output of a cryptographic operation?",
+    "options": [
+      "The algorithm only",
+      "The key only",
+      "The plain text length",
+      "Both the algorithm and key" // D
+    ],
+    "answer": 3,
+    "explanation": "A key is a discrete piece of information that determines the result or output of a given cryptographic operation, used with algorithms."
+  },
+  {
+    "question": "What is the main characteristic of symmetric cryptography?",
+    "options": [
+      "Uses different keys for encryption and decryption",
+      "Does not use keys at all",
+      "Uses the same key for both encryption and decryption", // C
+      "Uses only public keys"
+    ],
+    "answer": 2,
+    "explanation": "In symmetric cryptography, the same key is used for both encryption and decryption and must be kept secret."
+  },
+  {
+    "question": "Which is an advantage of symmetric cryptography?",
+    "options": [
+      "Increased speed over asymmetric systems", // A
+      "Excellent key management",
+      "Built-in nonrepudiation",
+      "No key distribution issues"
+    ],
+    "answer": 0,
+    "explanation": "Symmetric algorithms provide increased speed over many non-symmetric systems along with preserving confidentiality and ensuring simplicity."
+  },
+  {
+    "question": "What problem does asymmetric cryptography solve?",
+    "options": [
+      "Slow encryption speed",
+      "Lack of confidentiality",
+      "Large key sizes",
+      "Key management problems" // D
+    ],
+    "answer": 3,
+    "explanation": "Public key cryptography was intended to overcome the key management problems inherent in previous symmetric systems."
+  },
+  {
+    "question": "In asymmetric cryptography, which key is kept secret?",
+    "options": [
+      "Public key",
+      "Both keys",
+      "Private key", // C
+      "Neither key"
+    ],
+    "answer": 2,
+    "explanation": "Each user receives a pair of keys - the public key is published, whereas the private key is kept secret."
+  },
+  {
+    "question": "What provides nonrepudiation in asymmetric cryptography?",
+    "options": [
+      "The use of digital signatures with private keys", // A
+      "The speed of encryption",
+      "The key length",
+      "The algorithm complexity"
+    ],
+    "answer": 0,
+    "explanation": "Since anything encrypted with the private key can be reversed only with the corresponding public key, digital signatures provide nonrepudiation."
+  },
+  {
+    "question": "What is hashing?",
+    "options": [
+      "A type of two-way encryption",
+      "A key distribution method",
+      "A process that creates a scrambled output that cannot be reversed", // C
+      "A symmetric encryption technique"
+    ],
+    "answer": 2,
+    "explanation": "Hashing is a type of one-way encryption that creates a scrambled output that cannot be reversed, used to validate integrity of information."
+  },
+  {
+    "question": "What is a hash value also known as?",
+    "options": [
+      "Plain text",
+      "Message digest", // B
+      "Cipher text",
+      "Digital signature"
+    ],
+    "answer": 1,
+    "explanation": "The process of hashing outputs what is known as a hash, hash value, or message digest."
+  },
+  {
+    "question": "What is the main use of hashing?",
+    "options": [
+      "To validate the integrity of information", // A
+      "To encrypt messages for confidentiality",
+      "To create digital signatures",
+      "To manage key distribution"
+    ],
+    "answer": 0,
+    "explanation": "Hashing is commonly used to validate the integrity of information and detect changes in data."
+  },
+  {
+    "question": "What vulnerability affects all cryptographic systems?",
+    "options": [
+      "Social engineering",
+      "Brute-force attacks", // B
+      "Phishing attacks",
+      "Malware infection"
+    ],
+    "answer": 1,
+    "explanation": "Cryptographic systems are all vulnerable to brute-force attacks where every possible combination of characters is tried to uncover a valid key."
+  },
+
+  // True/False Questions (5 questions) - Unchanged as they are correct
+  {
+    "question": "Cryptography was only concerned with protecting information in its early generations.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. In the first few generations of cryptography, the primary concern was only protecting information, but this has changed over time."
+  },
+  {
+    "question": "Symmetric cryptography provides better nonrepudiation than asymmetric cryptography.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Symmetric algorithms lack nonrepudiation features, which is a drawback that asymmetric cryptography solves."
+  },
+  {
+    "question": "In asymmetric cryptography, the public key is kept secret while the private key is published.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. In asymmetric cryptography, the public key is published while the private key is kept secret."
+  },
+  {
+    "question": "Hashing is a reversible process that can decrypt encrypted data.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Hashing is designed to be a one-way process that creates a scrambled output which cannot be reversed."
+  },
+  {
+    "question": "Brute-force attacks become less effective as key length increases.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Longer keys exponentially increase the time and resources needed for successful brute-force attacks, making them less effective."
+  }
 ];
 
 
 
 const ethics4 = [
-    {
-        "question": "Malware is short for malicious software.",
-        "options": ["True", "False"],
-        "answer": 0
+  // Multiple Choice Questions (20 questions) - Answers and option counts varied
+  {
+    "question": "What does the term 'malware' stand for?",
+    "options": [
+      "Malicious Software", // A
+      "Malicious Advertising",
+      "Malfunctioning Software",
+      "Managed Security",
+      "Multiple Applications"
+    ],
+    "answer": 0,
+    "explanation": "The term 'malware' is short for 'malicious software' and covers viruses, worms, Trojans, and other harmful software."
+  },
+  {
+    "question": "Which of the following is NOT typically considered a category of malware?",
+    "options": [
+      "Viruses",
+      "Worms",
+      "Firewalls", // C
+      "Spyware"
+    ],
+    "answer": 2,
+    "explanation": "Firewalls are security systems that protect against malware, not a type of malware itself."
+  },
+  {
+    "question": "What is a key characteristic of rootkits?",
+    "options": [
+      "They are always visible to antivirus software",
+      "They only affect web browsers",
+      "They are easy to detect and remove",
+      "They hide within core system components", // D
+      "They only target mobile devices"
+    ],
+    "answer": 3,
+    "explanation": "Rootkits are a modern form of malware that can hide within the core components of a system and stay undetected by modern scanners."
+  },
+  {
+    "question": "What typically initiates a virus's infectious activities?",
+    "options": [
+      "Automatic system updates",
+      "Hardware failure",
+      "Network disconnection",
+      "Some sort of user action" // D
+    ],
+    "answer": 3,
+    "explanation": "Typically, viruses require some sort of user action to initiate their infectious activities."
+  },
+  {
+    "question": "Which of the following actions can a virus perform?",
+    "options": [
+      "Altering data",
+      "Infecting other programs",
+      "Destroying data",
+      "Corrupting hardware",
+      "All of the above" // E
+    ],
+    "answer": 4,
+    "explanation": "Viruses can perform multiple harmful actions including altering data, infecting programs, destroying data, and corrupting hardware."
+  },
+  {
+    "question": "What is the first step in the virus development process?",
+    "options": [
+      "Design", // A
+      "Replication",
+      "Detection",
+      "Elimination",
+      "Launch"
+    ],
+    "answer": 0,
+    "explanation": "The first step is Design, where the author envisions and creates the virus, either from scratch or using construction kits."
+  },
+  {
+    "question": "During which phase do antivirus makers begin researching how to eradicate a virus?",
+    "options": [
+      "Design",
+      "Detection", // B
+      "Replication",
+      "Launch",
+      "Incorporation"
+    ],
+    "answer": 1,
+    "explanation": "During the Detection phase, the virus is recognized and reported to antivirus makers who begin research into how it works and how to eradicate it."
+  },
+  {
+    "question": "What tool is mentioned for converting batch files to COM files in virus creation?",
+    "options": [
+      "VirusMaker Pro",
+      "bat2com", // B
+      "EXE Converter",
+      "Code Transformer"
+    ],
+    "answer": 1,
+    "explanation": "The lecture mentions using 'bat2com' to convert virus.bat into virus.com for creating a simple virus."
+  },
+  {
+    "question": "Which virus creation utility is shown in the lecture with a GUI interface?",
+    "options": [
+      "Virus Studio",
+      "Malware Maker Pro",
+      "Virus Creator Plus",
+      "JPS Virus Maker", // D
+      "Trojan Generator"
+    ],
+    "answer": 3,
+    "explanation": "The lecture mentions using utilities such as JPS Virus Maker or Terabit virus maker which provide GUI interfaces for virus creation."
+  },
+  {
+    "question": "What is a key difference between worms and viruses?",
+    "options": [
+      "Worms require user interaction",
+      "Worms need host applications",
+      "Worms are slower to spread",
+      "Worms do not require host applications" // D
+    ],
+    "answer": 3,
+    "explanation": "Unlike viruses, worms do not require a host application to perform their activities and can spread independently."
+  },
+  {
+    "question": "Which characteristic is typical of worms?",
+    "options": [
+      "Rapid replication across networks", // A
+      "Slow replication across networks",
+      "Requirement of user interaction",
+      "Dependence on host files",
+      "Easy detection and removal"
+    ],
+    "answer": 0,
+    "explanation": "One of the main characteristics of worms is their inherent ability to replicate and spread across networks extremely quickly."
+  },
+  {
+    "question": "What is the primary purpose of spyware?",
+    "options": [
+      "To improve system performance",
+      "To protect against other malware",
+      "To collect and forward information about victim's activities", // C
+      "To encrypt user files",
+      "To create backup copies"
+    ],
+    "answer": 2,
+    "explanation": "Spyware is designed to collect and forward information regarding a victim's activities to an interested party without the user's consent or knowledge."
+  },
+  {
+    "question": "Which method is NOT mentioned as a way spyware can infect systems?",
+    "options": [
+      "Instant Messaging (IM)",
+      "Internet Relay Chat (IRC)",
+      "Email Attachments",
+      "Automatic Windows updates", // D
+      "Physical Access"
+    ],
+    "answer": 3,
+    "explanation": "Automatic Windows updates are a security measure, not a method for spyware infection. The lecture mentions IM, IRC, email, physical access, browser defects, freeware, and websites."
+  },
+  {
+    "question": "What is a common characteristic of adware?",
+    "options": [
+      "It encrypts user files for ransom",
+      "It improves browser security",
+      "It removes other malware",
+      "It displays ads, pop-ups, and nag screens" // D
+    ],
+    "answer": 3,
+    "explanation": "Adware displays ads, pop-ups, and nag screens and may change the browser's start page to advertise products or services."
+  },
+  {
+    "question": "How is adware typically spread?",
+    "options": [
+      "Through hardware failures",
+      "Through downloads with other software", // B
+      "Via operating system updates",
+      "By antivirus software",
+      "Through system backups"
+    ],
+    "answer": 1,
+    "explanation": "Adware is typically spread either through a download with other software or when the victim visits a website that deploys it stealthily."
+  },
+  {
+    "question": "What is the defining characteristic of a Trojan?",
+    "options": [
+      "It replicates rapidly across networks",
+      "It appears legitimate but provides covert access", // B
+      "It only affects mobile devices",
+      "It improves system performance"
+    ],
+    "answer": 1,
+    "explanation": "A Trojan is a software application that provides covert access to a victim's system while appearing to look like a legitimate program."
+  },
+  {
+    "question": "Which behavior might indicate a Trojan infection?",
+    "options": [
+      "CD drawer opening and closing unexpectedly", // A
+      "Improved system performance",
+      "Faster internet speed",
+      "Automatic security updates",
+      "Better battery life"
+    ],
+    "answer": 0,
+    "explanation": "Unexpected behaviors like CD drawer opening/closing, screen changes, or mouse button reversals can indicate Trojan infection."
+  },
+  {
+    "question": "What can a hacker do with a Remote Access Trojan (RAT)?",
+    "options": [
+      "Only view files but not modify them",
+      "Improve system security",
+      "Gain remote control over the victim's system", // C
+      "Speed up internet connection",
+      "Create system backups"
+    ],
+    "answer": 2,
+    "explanation": "Remote Access Trojans (RATs) are designed to give an attacker remote control over a victim's system."
+  },
+  {
+    "question": "Which type of Trojan captures and transmits data like keystrokes?",
+    "options": [
+      "Destructive Trojan",
+      "Remote Access Trojan",
+      "Data Sending Trojan", // C
+      "System Optimizer Trojan"
+    ],
+    "answer": 2,
+    "explanation": "Data Sending Trojans capture data from the victim's system, including files and keystrokes, and transmit this data to the attacker."
+  },
+  {
+    "question": "What is the primary goal of destructive Trojans?",
+    "options": [
+      "To improve system performance",
+      "To create backup copies of files",
+      "To protect against other malware",
+      "To corrupt, erase, or destroy data", // D
+      "To monitor user activities"
+    ],
+    "answer": 3,
+    "explanation": "Destructive Trojans seek to corrupt, erase, or destroy data outright on a system, and in extreme cases may affect hardware."
+  },
+  
+  // True/False Questions (5 questions) - Unchanged
+  {
+    "question": "Malware can only steal information but cannot damage hardware.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Malware has evolved to include the ability to damage hardware in some cases, not just steal information."
+  },
+  {
+    "question": "Worms require user interaction to spread across networks.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Worms do not necessarily require any user interaction, direct or otherwise, to function and can spread automatically."
+  },
+  {
+    "question": "Spyware operates with the user's full knowledge and consent.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Spyware acts behind the scenes to gather information without the user's consent or knowledge."
+  },
+  {
+    "question": "Trojans always appear as obvious malicious programs to the user.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Trojans appear to look like legitimate programs while providing covert access to the system."
+  },
+  {
+    "question": "Rootkits are easily detected by all modern antivirus scanners.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Rootkits can hide within core system components and stay undetected by modern scanners."
+  }
+];
+
+
+
+const ethics5 = [
+  // Multiple Choice Questions (30 questions)
+  {
+    "question": "What is the main difference between ethics and laws?",
+    "options": [
+      "Ethics are legally binding while laws are optional",
+      "Ethics are enforced by police while laws are not",
+      "Laws legally mandate right/wrong while ethics reflect society's views", // C
+      "Laws are only for businesses while ethics are for individuals"
+    ],
+    "answer": 2,
+    "explanation": "Unlike laws that legally mandate what is right or wrong, ethics illustrate society's views about what is right and what is wrong."
+  },
+  {
+    "question": "Which of the following is NOT considered a privacy concern in computer ethics?",
+    "options": [
+      "Hacking",
+      "Software Licensing", // B
+      "Malware",
+      "Data Protection",
+      "Anonymity"
+    ],
+    "answer": 1,
+    "explanation": "Software licensing is related to intellectual property rights, not privacy concerns. Privacy concerns include hacking, malware, data protection, and anonymity."
+  },
+  {
+    "question": "What does copyright protect?",
+    "options": [
+      "The right to use anyone's work freely",
+      "The ability to crack software security",
+      "The right to plagiarize content",
+      "An author's exclusive publication and distribution rights", // D
+      "Free software distribution"
+    ],
+    "answer": 3,
+    "explanation": "Copyright is a form of intellectual property that gives proprietary publication, distribution and usage rights for the author."
+  },
+  {
+    "question": "Which environmental concern is associated with increased computer usage?",
+    "options": [
+      "Increased energy usage and emissions", // A
+      "Reduced energy consumption",
+      "Decreased greenhouse gas emissions",
+      "Improved air quality",
+      "Reduced electronic waste"
+    ],
+    "answer": 0,
+    "explanation": "Environment has been affected by computers since increased computer usage increases energy usage which increases greenhouse gas emissions."
+  },
+  {
+    "question": "What is the primary characteristic that distinguishes ethical hackers from malicious hackers?",
+    "options": [
+      "They use different tools",
+      "They have better technical skills",
+      "They only work during business hours",
+      "They work with system owner's permission" // D
+    ],
+    "answer": 3,
+    "explanation": "Ethical hackers use the same skills and tactics as malicious hackers but operate with the system owner's explicit permission."
+  },
+  {
+    "question": "Which type of hacker has limited training and uses basic tools without full understanding?",
+    "options": [
+      "White-Hat Hackers",
+      "Black-Hat Hackers",
+      "Gray-Hat Hackers",
+      "Script Kiddies", // D
+      "Suicide Hackers"
+    ],
+    "answer": 3,
+    "explanation": "Script Kiddies have limited or no training and know how to use only basic techniques or tools without understanding what they are doing."
+  },
+  {
+    "question": "According to the code of conduct, what should ethical hackers do with confidential information?",
+    "options": [
+      "Keep it private and confidential", // A
+      "Share it with other security professionals",
+      "Sell it to the highest bidder",
+      "Publish it online for educational purposes"
+    ],
+    "answer": 0,
+    "explanation": "Ethical hackers must keep private and confidential information gained in their professional work secure."
+  },
+  {
+    "question": "What is a 'Zero Day' vulnerability?",
+    "options": [
+      "A vulnerability that has been known for zero days",
+      "A security patch released within 24 hours",
+      "A threat unknown to developers and not addressed", // C
+      "A vulnerability that automatically fixes itself",
+      "A type of malware that activates at midnight"
+    ],
+    "answer": 2,
+    "explanation": "Zero Day describes a threat or vulnerability that is unknown to developers and has not been addressed, considered a serious problem."
+  },
+  {
+    "question": "Which hacking phase involves passive information gathering?",
+    "options": [
+      "Scanning",
+      "Enumeration",
+      "System Hacking",
+      "Covering Tracks",
+      "Footprinting" // E
+    ],
+    "answer": 4,
+    "explanation": "Footprinting involves using primarily passive methods of gaining information from a target prior to performing active methods."
+  },
+  {
+    "question": "What is the main goal of the 'Covering tracks' phase?",
+    "options": [
+      "To leave evidence of the attack",
+      "To document the attack process",
+      "To remove evidence of presence in a system", // C
+      "To improve system security"
+    ],
+    "answer": 2,
+    "explanation": "Covering tracks involves attempting to remove evidence of presence in a system by purging log files and destroying other evidence."
+  },
+  {
+    "question": "Which tool is used for tracing the path of IP packets?",
+    "options": [
+      "Tracert", // A
+      "Ping",
+      "Port Scanner",
+      "Whois",
+      "Nmap"
+    ],
+    "answer": 0,
+    "explanation": "Tracert (Trace Route) is a command-line utility used to trace the path that an IP packet takes to its destination."
+  },
+  {
+    "question": "What type of information is gathered during the Enumeration phase?",
+    "options": [
+      "Only IP addresses",
+      "Physical location data",
+      "Social media profiles only",
+      "User lists, routing tables, and protocols" // D
+    ],
+    "answer": 3,
+    "explanation": "Enumeration involves systematic probing to obtain user lists, routing tables, and protocols from the system."
+  },
+  {
+    "question": "Which Google operator restricts search to a specific website?",
+    "options": [
+      "cache:",
+      "site:", // B
+      "link:",
+      "info:",
+      "allinurl:"
+    ],
+    "answer": 1,
+    "explanation": "The site: operator restricts the search to the location specified in the query."
+  },
+  {
+    "question": "What is FOCA primarily used for?",
+    "options": [
+      "Network scanning",
+      "Password cracking",
+      "Social engineering attacks",
+      "Finding metadata in documents", // D
+      "Email tracking"
+    ],
+    "answer": 3,
+    "explanation": "FOCA is a tool used mainly to find metadata and hidden information in documents that may be on web pages."
+  },
+  {
+    "question": "What was the original purpose of Egyptian hieroglyphics?",
+    "options": [
+      "Sacred communication with gods", // A
+      "Military communications",
+      "Business records",
+      "Personal diaries",
+      "Educational purposes"
+    ],
+    "answer": 0,
+    "explanation": "The ancient Egyptians used hieroglyphics as a special writing system to commune with their gods, not primarily to hide secrets."
+  },
+  {
+    "question": "Which of these is NOT a goal of modern cryptography?",
+    "options": [
+      "Confidentiality",
+      "Integrity",
+      "Authentication",
+      "Nonrepudiation",
+      "Making information larger" // E
+    ],
+    "answer": 4,
+    "explanation": "Modern cryptography seeks to achieve confidentiality, integrity, authentication, nonrepudiation, and key distribution - not making information larger."
+  },
+  {
+    "question": "What does nonrepudiation provide in cryptography?",
+    "options": [
+      "Fast encryption speed",
+      "One-way encryption",
+      "Proof of message origin", // C
+      "Key management solutions"
+    ],
+    "answer": 2,
+    "explanation": "Nonrepudiation provides positive identification of the source or originator of an event, preventing denial of involvement."
+  },
+  {
+    "question": "What is the main characteristic of symmetric cryptography?",
+    "options": [
+      "Uses the same key for both encryption and decryption", // A
+      "Uses different keys for encryption and decryption",
+      "Does not use keys at all",
+      "Uses only public keys",
+      "Is slower than asymmetric cryptography"
+    ],
+    "answer": 0,
+    "explanation": "In symmetric cryptography, the same key is used for both encryption and decryption and must be kept secret."
+  },
+  {
+    "question": "What problem does asymmetric cryptography solve?",
+    "options": [
+      "Slow encryption speed",
+      "Lack of confidentiality",
+      "Key management problems", // C
+      "Large key sizes",
+      "Complex algorithms"
+    ],
+    "answer": 2,
+    "explanation": "Public key cryptography was intended to overcome the key management problems inherent in previous symmetric systems."
+  },
+  {
+    "question": "What is hashing primarily used for?",
+    "options": [
+      "Encrypting messages for confidentiality",
+      "Creating digital signatures",
+      "Managing key distribution",
+      "Validating data integrity" // D
+    ],
+    "answer": 3,
+    "explanation": "Hashing is commonly used to validate the integrity of information and detect changes in data."
+  },
+  {
+    "question": "What makes rootkits particularly dangerous?",
+    "options": [
+      "They spread very slowly",
+      "They hide within core system components", // B
+      "They are easy to detect and remove",
+      "They only affect web browsers",
+      "They are harmless to systems"
+    ],
+    "answer": 1,
+    "explanation": "Rootkits are dangerous because they hide deep within the core components of a system, making them undetected by modern scanners."
+  },
+  {
+    "question": "What typically initiates a virus's infectious activities?",
+    "options": [
+      "Automatic system updates",
+      "Hardware failure",
+      "Network disconnection",
+      "User action" // D
+    ],
+    "answer": 3,
+    "explanation": "Typically, viruses require some sort of user action to initiate their infectious activities."
+  },
+  {
+    "question": "During which virus phase do antivirus makers develop detection signatures?",
+    "options": [
+      "Design",
+      "Replication",
+      "Incorporation", // C
+      "Launch",
+      "Elimination"
+    ],
+    "answer": 2,
+    "explanation": "During the Incorporation phase, antivirus makers develop a way to identify the virus and include this signature in their software updates."
+  },
+  {
+    "question": "What is a key difference between worms and viruses?",
+    "options": [
+      "Worms do not require host applications", // A
+      "Worms require user interaction",
+      "Worms need host applications",
+      "Worms are slower to spread",
+      "Worms only affect hardware"
+    ],
+    "answer": 0,
+    "explanation": "Unlike viruses, worms do not require a host application to perform their activities and can spread independently."
+  },
+  {
+    "question": "What is the primary purpose of spyware?",
+    "options": [
+      "To improve system performance",
+      "To protect against other malware",
+      "To encrypt user files",
+      "To collect information about victim's activities" // D
+    ],
+    "answer": 3,
+    "explanation": "Spyware is designed to secretly collect and forward information about a victim's activities to another party."
+  },
+  {
+    "question": "Which method is NOT mentioned as a way spyware can infect systems?",
+    "options": [
+      "Instant Messaging",
+      "Automatic Windows updates", // B
+      "Email Attachments",
+      "Physical Access",
+      "Malicious Websites"
+    ],
+    "answer": 1,
+    "explanation": "Automatic Windows updates are a security measure, not a method for spyware infection."
+  },
+  {
+    "question": "What is a common characteristic of adware?",
+    "options": [
+      "It encrypts user files for ransom",
+      "It removes other malware",
+      "It displays unwanted advertisements", // C
+      "It improves browser security",
+      "It speeds up internet connection"
+    ],
+    "answer": 2,
+    "explanation": "Adware works by displaying unwanted advertisements, such as pop-ups, replacing the browser's home page, or installing other items to advertise products."
+  },
+  {
+    "question": "What is the defining characteristic of a Trojan?",
+    "options": [
+      "It appears legitimate but provides covert access", // A
+      "It replicates rapidly across networks",
+      "It only affects mobile devices",
+      "It improves system performance"
+    ],
+    "answer": 0,
+    "explanation": "A Trojan is a type of malware that disguises itself as a legitimate program to gain covert access to a victim's system and cause harm."
+  },
+  {
+    "question": "Which behavior might indicate a Trojan infection?",
+    "options": [
+      "Improved system performance",
+      "CD drawer opening randomly", // B
+      "Faster internet speed",
+      "Automatic security updates",
+      "Better battery life"
+    ],
+    "answer": 1,
+    "explanation": "Unexpected behaviors like CD drawer opening randomly, screen settings changing, or mouse button reversals can indicate Trojan infection."
+  },
+  {
+    "question": "What can a hacker do with a Remote Access Trojan (RAT)?",
+    "options": [
+      "Only view files but not modify them",
+      "Improve system security",
+      "Speed up internet connection",
+      "Gain complete remote control over the system" // D
+    ],
+    "answer": 3,
+    "explanation": "Remote Access Trojans (RATs) are designed to give an attacker complete remote control over the victim's system."
+  },
+   {
+        question: "API stands for application programming interface",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "True. API stands for Application Programming Interface."
     },
     {
-        "question": "Which of the following is NOT a category of malware?",
-        "options": ["Viruses", "Worms", "Antivirus software", "Trojan horses"],
-        "answer": 2
+        question: "Encryption key is like physical key in real world",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "True. A key can be thought of in the same way a key in the physical world is, as a special item used to open or unlock something—in this case, a piece of information."
     },
     {
-        "question": "Rootkits are designed to:",
-        "options": [
-            "Improve system performance",
-            "Hide within core system components",
-            "Display advertisements",
-            "Protect against viruses"
+        question: "What is the ethics behind training how to hack a system",
+        options: [
+            "to think like hackers and know how to defend such attacks",
+            "to hack a system without permission",
+            "to hack a network that is vulnerable",
+            "to corrupt software or service using malware"
         ],
-        "answer": 1
+        answer: 0,
+        explanation: "Ethical hackers use the same skills and tactics as hackers but with permission from the system owner to test security defenses."
     },
     {
-        "question": "Viruses typically require:",
-        "options": [
-            "No user interaction",
-            "User action to initiate infection",
-            "Only network connectivity",
-            "Physical hardware access"
+        question: "Digital signatures can easily be achieved through",
+        options: [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "both",
+            "none"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Digital signatures are achieved through asymmetric cryptography since anything encrypted with the private key can be reversed only with the corresponding public key."
     },
     {
-        "question": "Viruses can alter data and infect other programs.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "The first phase of virus development is:",
-        "options": ["Replication", "Design", "Launch", "Detection"],
-        "answer": 1
-    },
-    {
-        "question": "During the replication phase, viruses:",
-        "options": [
-            "Are detected by antivirus software",
-            "Spread and multiply to different systems",
-            "Perform their destructive tasks",
-            "Are eliminated from systems"
+        question: "Lack of nonrepudiation features is one of the drawbacks of ____",
+        options: [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "both",
+            "none"
         ],
-        "answer": 1
+        answer: 0,
+        explanation: "Symmetric algorithms lack nonrepudiation features because both parties share the same key."
     },
     {
-        "question": "Antivirus makers incorporate virus identification into their products during which phase?",
-        "options": ["Design", "Replication", "Incorporation", "Elimination"],
-        "answer": 2
-    },
-    {
-        "question": "Creating viruses for educational purposes should be done on production systems.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Tools like JPS Virus Maker and Terabit Virus Maker are used to:",
-        "options": [
-            "Remove viruses",
-            "Create viruses through GUI options",
-            "Scan for malware",
-            "Protect systems"
+        question: "Since anything encrypted with the private key can be reversed only with the corresponding ____",
+        options: [
+            "private key",
+            "public key",
+            "both",
+            "none"
         ],
-        "answer": 1
+        answer: 1,
+        explanation: "Since anything encrypted with the private key can be reversed only with the corresponding public key and only one person holds the private key, then the identity of the encrypting party can be assured."
     },
     {
-        "question": "Worms differ from viruses in that they:",
-        "options": [
-            "Require host applications",
-            "Need user interaction to function",
-            "Can replicate without user interaction",
-            "Are less dangerous"
+        question: "During this phase tools such as these are used: Pings, sweeps, Port scans, Tracert",
+        options: [
+            "Scanning",
+            "Foot printing",
+            "Enumeration",
+            "System hacking"
         ],
-        "answer": 2
+        answer: 0,
+        explanation: "Scanning phase uses tools such as Pings, Ping sweeps, Port scans, and Tracert."
     },
     {
-        "question": "A characteristic of worms is:",
-        "options": [
-            "Slow replication",
-            "Consumption of bandwidth and resources",
-            "Requiring physical access",
-            "Only infecting individual files"
+        question: "Leaking an information outside network without permission of senior leader is a crime",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "True. Leaking confidential information without permission violates ethical codes and can be criminal."
+    },
+    {
+        question: "Ethics are like laws that legally mandate what is right or wrong.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Ethics are unlike laws that legally mandate what is right or wrong. Ethics illustrate society's views about what is right and what is wrong."
+    },
+    {
+        question: "Ethics are a structure of nonstandards and practices that influence how people lead their lives.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "False. Ethics are a structure of standards and practices that influence how people lead their lives."
+    },
+    {
+        question: "These hackers try to knock out a target to prove a point. They are not stealthy, because they are not worried about getting caught or doing prison time.",
+        options: [
+            "Suicide Hackers",
+            "Black-Hat Hackers",
+            "Gray-Hat Hackers",
+            "White-Hat Hackers"
         ],
-        "answer": 1
+        answer: 0,
+        explanation: "Suicide Hackers try to knock out a target to prove a point and are not worried about getting caught."
     },
     {
-        "question": "Spyware is designed to:",
-        "options": [
-            "Improve system speed",
-            "Collect and forward information without user knowledge",
-            "Protect privacy",
-            "Remove other malware"
+        question: "Phase come after foot printing",
+        options: [
+            "Scanning",
+            "Enumeration",
+            "System hacking",
+            "none of the above"
         ],
-        "answer": 1
+        answer: 0,
+        explanation: "Scanning is the phase that comes after footprinting, where you take the information gleaned from the footprinting phase."
     },
     {
-        "question": "Spyware can be delivered through email attachments.",
-        "options": ["True", "False"],
-        "answer": 0
+        question: "___ Is a way of keeping a user identity masked through various applications",
+        options: ["Anonymity", "Encryption", "Authentication", "Privacy"],
+        answer: 0,
+        explanation: "Anonymity is a way of keeping a user's identity masked through various applications."
     },
     {
-        "question": "Which method is NOT a common way spyware infects systems?",
-        "options": [
-            "Instant Messaging",
-            "Browser defects",
-            "Legitimate software updates",
-            "Physical access"
+        question: "If you have been contracted to perform an attack against a target system, you are what type of hacker?",
+        options: [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
         ],
-        "answer": 2
+        answer: 0,
+        explanation: "White-hat hackers are employed through contracts to test the security of an organization with permission."
     },
     {
-        "question": "Adware typically:",
-        "options": [
-            "Steals passwords",
-            "Displays ads and pop-ups",
-            "Encrypts files",
-            "Improves security"
+        question: "These hackers have limited or no training and know how to use only basic techniques or tools",
+        options: [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
         ],
-        "answer": 1
+        answer: 2,
+        explanation: "Script Kiddies have limited or no training and know how to use only basic techniques or tools."
     },
     {
-        "question": "Trojans provide:",
-        "options": [
-            "Covert access to victim's system",
-            "System protection",
-            "Performance improvement",
-            "Legal software access"
+        question: "Script kiddies have limited or no training and know how to use only basic techniques or tools",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "True. Script Kiddies have limited or no training and know how to use only basic techniques or tools."
+    },
+    {
+        question: "These hackers are the bad guys who operate on the opposite side of the law.",
+        options: [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
         ],
-        "answer": 0
+        answer: 1,
+        explanation: "Black-Hat Hackers are the bad guys who operate on the opposite side of the law."
     },
     {
-        "question": "A computer's CD drawer opening and closing unexpectedly may indicate a Trojan infection.",
-        "options": ["True", "False"],
-        "answer": 0
-    },
-    {
-        "question": "Remote Access Trojans (RATs) are designed to:",
-        "options": [
-            "Give attackers remote control",
-            "Only steal data",
-            "Destroy hardware",
-            "Display advertisements"
+        question: "Hackers may use their skills for both benign and malicious goals at different times",
+        options: [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
         ],
-        "answer": 0
+        answer: 3,
+        explanation: "Gray-Hat Hackers straddle the line between good and bad and may use their skills for both purposes."
     },
     {
-        "question": "SubSeven and Back Orifice are examples of:",
-        "options": [
-            "Antivirus programs",
-            "Remote Access Trojans",
-            "Firewall software",
-            "Encryption tools"
+        question: "Do not necessarily require any user interaction",
+        options: [
+            "Worms",
+            "Viruses",
+            "Spyware",
+            "Adware"
         ],
-        "answer": 1
+        answer: 0,
+        explanation: "Worms do not necessarily require any user interaction, direct or otherwise, to function."
     },
     {
-        "question": "Data sending Trojans often include:",
-        "options": [
-            "Keyloggers",
-            "Game software",
-            "Antivirus features",
-            "System optimizers"
+        question: "a special type of malware that infects a system and causing harm while appearing to look like a legitimate program.",
+        options: [
+            "Trojan",
+            "Viruses",
+            "Spyware",
+            "Adware"
         ],
-        "answer": 0
+        answer: 0,
+        explanation: "Trojan is a special type of malware that infects a system and causes harm while appearing to look like a legitimate program."
     },
     {
-        "question": "Destructive Trojans seek to:",
-        "options": [
-            "Improve system performance",
-            "Corrupt, erase, or destroy data",
-            "Protect user privacy",
-            "Create backups"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Malware can only affect software, not hardware.",
-        "options": ["True", "False"],
-        "answer": 1
-    },
-    {
-        "question": "Which behavior might indicate a Trojan infection?",
-        "options": [
-            "Faster computer performance",
-            "Browser redirected to unknown pages",
-            "Increased storage space",
-            "Better internet connection"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Spyware distribution through freeware typically involves:",
-        "options": [
-            "Downloading from trusted sources",
-            "Downloading from unknown or untrusted sources",
-            "Official app stores only",
-            "Physical installation only"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Worms consume bandwidth because they:",
-        "options": [
-            "Replicate rapidly across networks",
-            "Compress data",
-            "Improve network speed",
-            "Block internet access"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "The elimination phase of viruses involves:",
-        "options": [
-            "Virus creation",
-            "Users installing antivirus updates",
-            "Virus replication",
-            "System infection"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Logic bombs are a type of:",
-        "options": [
-            "Hardware device",
+        question: "is a term that covers: viruses, worms, Trojans, Logic bombs, and adware and spyware.",
+        options: [
             "Malware",
-            "Security software",
-            "Network protocol"
+            "Viruses",
+            "Spyware",
+            "Adware"
         ],
-        "answer": 1
+        answer: 0,
+        explanation: "Malware is a term that covers: viruses, worms, Trojans, Logic bombs, and adware and spyware."
     },
     {
-        "question": "Adware is commonly spread through:",
-        "options": [
-            "Downloads with other software",
-            "Only physical media",
-            "Operating system updates",
-            "Antivirus software"
-        ],
-        "answer": 0
+        question: "are a modern form of malware that can hide within the core components of a system and stay undetected by modern scanners",
+        options: ["Rootkits", "Viruses", "Worms", "Trojans"],
+        answer: 0,
+        explanation: "Rootkits are a modern form of malware that can hide within the core components of a system and stay undetected by modern scanners."
     },
     {
-        "question": "All types of malware require user interaction to infect systems.",
-        "options": ["True", "False"],
-        "answer": 1
-    }
+        question: "means malicious software which is created to impair a computer system.",
+        options: [
+            "Malware",
+            "Viruses",
+            "Spyware",
+            "Adware"
+        ],
+        answer: 0,
+        explanation: "Malware means malicious software which is created to impair a computer system."
+    },
+    {
+        question: "transform clear text into cipher text",
+        options: ["Algorithm", "Key", "Encryption", "Hash"],
+        answer: 2,
+        explanation: "Encryption is the process that transforms clear text into cipher text using an algorithm and a key."
+    },
+    {
+        question: "We achieve Authentication through",
+        options: [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "both",
+            "none of the above"
+        ],
+        answer: 1,
+        explanation: "Authentication is primarily achieved through asymmetric cryptography, where a private key is used to prove identity."
+    },
+    {
+        question: "The goal is to gather as much information as is reasonable and useful about a potential Target.",
+        options: [
+            "Scanning",
+            "Foot printing",
+            "Enumeration",
+            "System hacking"
+        ],
+        answer: 1,
+        explanation: "Footprinting is the first phase with the goal to gather as much information as is reasonable and useful about a potential target."
+    },
+
+  // True/False Questions (10 questions) - Varied
+  {
+    "question": "Computer ethics only concern the use of computer software, not hardware.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Computer ethics are a set of moral standards that govern the use of computers, both hardware and software."
+  },
+  {
+    "question": "Plagiarism is the proper citation of another person's work with permission.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Plagiarism is the act of copying and publishing someone else's work without proper citation, essentially stealing it."
+  },
+  {
+    "question": "Gray-Hat hackers are always fully trusted after they reform from malicious activities.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Gray-Hat Hackers may not be fully trusted even after deciding to reform from previous malicious activities."
+  },
+  {
+    "question": "Footprinting involves active engagement with the target system.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Footprinting uses primarily passive methods of gaining information prior to active engagement."
+  },
+  {
+    "question": "Ethical hackers should protect the intellectual property of others.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Ethical hackers should protect the intellectual property of others by relying on their own innovation and efforts."
+  },
+  {
+    "question": "Symmetric cryptography provides better nonrepudiation than asymmetric cryptography.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Symmetric algorithms lack nonrepudiation features, which is a strength of asymmetric cryptography."
+  },
+  {
+    "question": "Hashing is a reversible process that can decrypt encrypted data.",
+    "options": ["True", "False"],
+    "answer": 1,
+    "explanation": "False. Hashing is designed to be a one-way process that creates a scrambled output which cannot be reversed."
+  },
+  {
+    "question": "Scanning determines which hosts are active and what the network looks like.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Scanning focuses on active engagement to determine active hosts and network structure."
+  },
+  {
+    "question": "Brute-force attacks become less effective as key length increases.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. Longer keys exponentially increase the time and resources needed for successful brute-force attacks, making them less effective."
+  },
+  {
+    "question": "Cryptography was only concerned with protecting information in its early generations.",
+    "options": ["True", "False"],
+    "answer": 0,
+    "explanation": "True. In the first few generations of cryptography, the primary concern was only protecting information, but this has changed over time."
+  }
 ];
 
 
@@ -10878,6 +11724,8 @@ function getethicsQuestions() {
     if (ethicsQuizVariant === 2) return ethics2;
     if (ethicsQuizVariant === 3) return ethics3;
     if (ethicsQuizVariant === 4) return ethics4;
+        if (ethicsQuizVariant === 5) return ethics5;
+
 }
 
 
@@ -10965,7 +11813,7 @@ function startQuiz() {
     userAnswers = new Array(totalQuestions).fill(-1);
     score = 0;
 
-    // ✅ تحديث العنوان عند بداية الكويز
+    
     let quizTitleText = '';
     if (selectedQuiz === 'pl') quizTitleText = `Programming Languages Quiz ${plQuizVariant}`;
     else if (selectedQuiz === 'database') quizTitleText = `Database Quiz ${databaseQuizVariant}`;
@@ -10981,7 +11829,7 @@ function startQuiz() {
     else if (selectedQuiz === 'sq') quizTitleText = `Software Quality Quiz ${sqQuizVariant}`;
     else if (selectedQuiz === 'ds') quizTitleText = `Data Science Quiz ${dsQuizVariant}`;
 
-    // ✅ عرض العنوان الصحيح
+    
     if (quizTitleText) {
         document.getElementById('quiz-title').innerText = quizTitleText;
     }
@@ -11269,10 +12117,10 @@ function showResult() {
     clearInterval(timerInterval);
     quizInProgress = false; 
 
-    // ✅ إخفاء العناصر غير الضرورية
+    
     document.getElementById('question-info').classList.add('hidden');
     document.getElementById('question-box').classList.add('hidden');
-    document.getElementById('timer').style.visibility = 'hidden'; // ⏱️ إخفاء العداد
+    document.getElementById('timer').style.visibility = 'hidden'; 
 
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('finish-btn').classList.add('hidden');
@@ -11293,11 +12141,11 @@ function showResult() {
     document.getElementById('result-details').classList.remove('hidden');
     document.getElementById('post-quiz-buttons').classList.remove('hidden');
 
-    // ✅ تحديث العنوان
+    
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()} - Result`;
     document.getElementById('quiz-title').innerText = quizName;
 
-    // ✅ إخفاء زر الـ Back تمامًا
+    
     const backButton = document.querySelector('.back-to-main-btn');
     if (backButton) backButton.classList.add('hidden');
 
@@ -11526,7 +12374,7 @@ function reviewAnswers() {
     else if (selectedQuiz === 'sq') quiz = getsqQuestions();
     else if (selectedQuiz === 'ds') quiz = getdsQuestions();
 
-    // ✅ تحديث العنوان وإخفاء التايمر والباك
+    
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()} - Review`;
     document.getElementById('quiz-title').innerText = quizName;
     document.getElementById('timer').style.visibility = 'hidden';
@@ -11551,7 +12399,7 @@ function reviewAnswers() {
                 <p><strong>Status:</strong> ${isCorrect ? '✅ Correct' : '❌ Wrong'}</p>
         `;
 
-        // ✅ لو صح → زر Show Explanation
+        
         if (isCorrect) {
             reviewMessage += `
                 <button class="show-explanation-btn" onclick="toggleExplanation(${i})" data-question="${i}">
@@ -11562,7 +12410,7 @@ function reviewAnswers() {
                 </div>
             `;
         } else {
-            // ❌ لو غلط → الشرح يظهر تلقائيًا
+            
             reviewMessage += `
                 <div class="explanation">
                     <strong>Explanation:</strong> ${explanation}
@@ -11591,11 +12439,11 @@ function reviewAnswers() {
 
 
 function backToResults() {
-    // ✅ أخفي صفحة المراجعة
+    
     document.getElementById('review-answers').classList.add('hidden');
     document.getElementById('review-answers').innerHTML = '';
 
-    // ✅ أظهر صفحة النتيجة بالكامل تاني
+    
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('result-details').classList.remove('hidden');
     document.getElementById('post-quiz-buttons').classList.remove('hidden');
@@ -11616,14 +12464,14 @@ function backToResults() {
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()} - Result`;
     document.getElementById('quiz-title').innerText = quizName;
 
-    // ✅ إخفاء زر الباك نهائيًا في صفحة النتيجة
+    
     const backButton = document.querySelector('.back-to-main-btn');
     if (backButton) {
         backButton.classList.add('hidden');
-        backButton.style.display = "none";  // تأكيد الإخفاء القوي
+        backButton.style.display = "none";  
     }
 
-    // ✅ تحديث الواجهة
+    
     navigationStack = navigationStack.filter(item => item.view !== 'review-answers');
 }
 
@@ -12101,33 +12949,33 @@ function hideAllViews() {
 }
 
 function restartSameQuiz() {
-    // 🧹 Reset quiz state
+    
     currentQuestionIndex = 0;
     score = 0;
     userAnswers = new Array(totalQuestions).fill(-1);
     quizInProgress = false;
 
-    // ⏱️ Stop any running timer
+    
     if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
     }
 
-    // 🎯 Return to time selection screen
+    
     pushView('time-options', 'Select Time Option');
 
-    // 🧭 Update the quiz title dynamically
+    
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()}`;
     document.getElementById('quiz-title').innerText = `Select Time Option for ${quizName}`;
 
-    // 🔙 Ensure Back button is visible
+    
     const backButton = document.querySelector('.back-to-main-btn');
     if (backButton) {
         backButton.classList.remove('hidden');
         backButton.style.display = 'flex';
     }
 
-    // 🔄 Update navigation state
+    
     updateBackButton();
 }
 
@@ -12204,7 +13052,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setGlassMode(isChecked);
     
-    // ✅ حفظ الحالة في Local Storage
+    
     localStorage.setItem('glassMode', isChecked.toString());
     
     overlay.style.clipPath = `circle(150% at ${x}px ${y}px)`;
