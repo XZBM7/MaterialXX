@@ -1178,6 +1178,175 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
                 display: flex !important;
             }
         }
+
+    
+       /* Base container */
+.popup-video-container{
+  width: 100%;
+  max-width: 1400px;         /* قابل للتعديل حسب التصميم */
+  margin: 1.25rem auto;      /* مركّز أفقياً + مسافة من فوق وتحت */
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  background: #000;
+  position: relative;
+  /* عصري: يحافظ على نسبة 16:9 إن كان مدعومًا */
+  aspect-ratio: 16/9;
+  /* fallback للمتصفحات القديمة: يخلق صندوق بنسبة 16:9 */
+  min-height: 180px;
+}
+
+/* Fallback: إذا المتصفح ما يدعم aspect-ratio، نستعمل هذه الحيلة */
+@supports not (aspect-ratio: 16/9) {
+  .popup-video-container{
+    height: 0;
+    padding-top: 56.25%; /* 9/16 = 56.25% */
+  }
+  .popup-video{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+/* الفيديو نفسه — نعمل cover عشان يملأ الصندوق بدون تشوه */
+.popup-video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;      /* مهم: يغطّي المساحة ويقص على الحواف لو لازم */
+  object-position: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform; /* أداء أفضل للانتقالات إن وُجِدَت */
+}
+
+/* Overlay: مثلاً تدرّج داكن لقراءة نص فوق الفيديو */
+.video-overlay{
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  pointer-events: none; /* حتى لا يمنع تفاعل المستخدم مع الفيديو */
+  display: flex;
+  align-items: flex-end; /* لو عايز تحط نص في الأسفل */
+  justify-content: center;
+}
+
+/* تدرج بسيط من الأسفل شفاف لأسود */
+.overlay-gradient{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 75%, rgba(0,0,0,0.65) 100%);
+  mix-blend-mode: multiply;
+}
+
+/* Responsive tweaks: ارتفاع مناسب على شاشات صغيرة */
+@media (max-width: 900px){
+  .popup-video-container{
+    max-width: 100%;
+    border-radius: 10px;
+    margin: 1rem 0.75rem;
+    /* height مناسب للموبايل لو حابب تجاوز الـ aspect-ratio */
+    height: clamp(220px, 36vw, 360px);
+    aspect-ratio: auto; /* نسمح للheight بالتحكم لو احتجنا */
+  }
+}
+
+/* شاشة صغيرة جداً */
+@media (max-width: 420px){
+  .popup-video-container{
+    height: clamp(180px, 44vw, 260px);
+    border-radius: 8px;
+    margin: 0.6rem;
+  }
+}
+
+/* يقلّل الحركة لو المستخدم طلب reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .popup-video{ transition: none; animation: none; }
+}
+
+/* مثال لزرار play/mute ظاهر فوق الفيديو (اختياري) */
+.popup-video-controls{
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  bottom: 12px;
+  pointer-events: auto; /* نريد أن يكون قابل للنقر */
+  display: flex;
+  gap: 8px;
+}
+.popup-video-controls button{
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+/* تحسين تجربة على شاشات ذات كثافة منخفضة */
+@media (pointer: coarse){
+  .popup-video-controls button{ padding: 10px 12px; font-size: 1rem; }
+}
+
+.popup-video-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 1.5rem auto;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  background: #000;
+  aspect-ratio: 16/9;
+}
+
+/* ✅ الفيديو */
+.popup-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ✅ زر الصوت */
+.mute-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.mute-btn:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
+
+/* ✅ responsive adjustments */
+@media (max-width: 768px) {
+  .mute-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
     </style>
 </head>
 
@@ -1188,23 +1357,49 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
         <div class="popup-icon">
             <i class="fas fa-briefcase"></i>
         </div>
+       <div class="popup-video-container">
+  <video class="popup-video" id="mainVideo"
+         src="img/IMG_8282.MP4"
+         autoplay loop muted playsinline>
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- زر التحكم بالصوت -->
+  <button class="mute-btn" id="muteBtn" aria-pressed="true" aria-label="Mute video">
+    🔇
+  </button>
+</div>
       <h2>New Feature: </h2>
         <p>
-                        We’re thrilled to introduce our latest update — the <strong>Smart Student Organizer</strong>!  
-            Now you can easily manage your academic schedule. Select your year and specialization to view your <strong>exam dates</strong>  
-            with <strong>live countdowns</strong>. Track your progress per subject, use the built-in <strong>study timer</strong>  
-            to log sessions, and generate a <strong>smart daily study plan</strong> based on your available hours and deadlines.  
-            Set <strong>custom reminders</strong> (1-24 hours before) via browser notifications, access <strong>material links</strong>,  
-            and view detailed <strong>study statistics</strong>.
-        </p>
+<strong>اكتشف ليالي الميد العظيمه </strong>
+</p>
 
         <div class="popup-buttons">
-            <a href="Exam.html" target="_blank" class="popup-button primary">
-                Try Smart Organizer Now   <i class="fas fa-arrow-right"></i>
-            </a>
-            <button class="popup-button secondary" id="closePopup">
-                Maybe Later
-            </button>
+         <a href="Exam.html" target="_blank" class="popup-button primary" id="tryNowBtn">
+    Try Smart Organizer Now <i class="fas fa-arrow-right"></i>
+</a>
+<button class="popup-button secondary" id="closePopup">
+    Maybe Later
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const tryNowBtn = document.getElementById('tryNowBtn');
+    const closePopup = document.getElementById('closePopup');
+
+    // عند الضغط على أي زر يتم تحديث الصفحة
+    tryNowBtn.addEventListener('click', () => {
+        setTimeout(() => {
+            location.reload();
+        }, 500); // تأخير بسيط عشان الرابط يفتح الأول
+    });
+
+    closePopup.addEventListener('click', () => {
+        location.reload();
+    });
+});
+</script>
+
         </div>
     </div>
 </div>
@@ -1757,6 +1952,63 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
     </div>
 
     <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const video = document.getElementById('mainVideo');
+  const muteBtn = document.getElementById('muteBtn');
+
+  if (!video || !muteBtn) {
+    console.warn('Video or mute button not found (id mismatch).');
+    return;
+  }
+
+  // Set initial state based on video.muted
+  const updateButton = () => {
+    if (video.muted) {
+      muteBtn.textContent = '🔇';
+      muteBtn.setAttribute('aria-pressed', 'true');
+      muteBtn.setAttribute('aria-label', 'Muted — اضغط لتشغيل الصوت');
+    } else {
+      muteBtn.textContent = '🔊';
+      muteBtn.setAttribute('aria-pressed', 'false');
+      muteBtn.setAttribute('aria-label', 'Unmuted — اضغط لكتم الصوت');
+    }
+  };
+
+  updateButton();
+
+  // عند الضغط: نحاول نبدّل الحالة
+  muteBtn.addEventListener('click', async (e) => {
+    // بعض المتصفحات تحظر تغيير الصوت قبل تفاعل المستخدم — لكن الضغط هنا هو تفاعل => مفروض ينجح
+    try {
+      // لو الفيديو ميوت حالياً، نُحاول إلغاء الـmuted ثم نلعب الفيديو لو محتاج
+      if (video.muted) {
+        video.muted = false;
+        // بعض المتصفحات تطلب استدعاء play() بعد إلغاء الكتم
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          await playPromise.catch(err => {
+            // لو رفض، نعيد الفيديو لكتم ونشرح السبب في الكونسل
+            console.warn('Play rejected after unmute:', err);
+          });
+        }
+      } else {
+        video.muted = true;
+      }
+    } catch (err) {
+      console.error('Error toggling mute:', err);
+      // كحل بديل: ضبط مستوى الصوت بدل الميوت (قد يساعد في بعض البيئات)
+      video.volume = video.volume > 0 ? 0 : 1;
+      video.muted = video.volume === 0;
+    }
+
+    updateButton();
+  });
+
+  // لو حصل تغيير خارجي بالحالة (مثلاً من كود تاني)، نحدّث الزر
+  video.addEventListener('volumechange', updateButton);
+});
+
+/////////////////////////////
   function sendToTelegram() {
     const messageField = document.getElementById("messageInput");
     const message = messageField.value.trim();
@@ -2154,6 +2406,8 @@ title: "Track ",
         searchInput.addEventListener('focus', function () {
             this.setAttribute('title', 'Press Ctrl+K to quickly search');
         });
+        
+
         
     </script>
 </body>
