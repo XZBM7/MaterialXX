@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaterialX | Articles</title>
+     <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --gray: #6c757d;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            --bg-color: #f5f7fa;
+            --surface-color: #ffffff;
+            --text-color: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #e9ecef;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-color: #e9ecef;
+            --text-secondary: #adb5bd;
+            --border-color: #343a40;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            --light: #2d3748;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: var(--bg-color); color: var(--text-color); line-height: 1.6; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 25px; }
+        
+        /* Header */
+        header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 1.5rem 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 100; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; font-size: 1.8rem; font-weight: 700; cursor: pointer; }
+        .logo i { margin-right: 10px; font-size: 2rem; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 1.8rem; position: relative; }
+        nav ul li a { color: white; text-decoration: none; font-weight: 500; transition: all 0.3s; padding: 8px 0; display: block; cursor: pointer; }
+        nav ul li a:hover { transform: translateY(-2px); color: var(--success); }
+        
+        /* Theme Toggle */
+        .theme-toggle { background: rgba(255, 255, 255, 0.2); border: none; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; color: white; }
+        .theme-toggle:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
+        
+        /* Hero */
+        .hero { padding: 4rem 0; text-align: center; background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234361ee"/><path d="M0 0L100 100M100 0L0 100" stroke="%233a0ca3" stroke-width="2"/></svg>'); background-size: cover; color: white; border-radius: 0 0 30px 30px; margin-bottom: 3rem; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
+        
+        /* Controls */
+        .search-container { margin: 2rem auto; position: relative; max-width: 700px; }
+        .search-box { width: 100%; padding: 18px 25px; border: none; border-radius: 50px; font-size: 1.1rem; box-shadow: var(--card-shadow); transition: all 0.3s ease; background: var(--surface-color); color: var(--text-color); padding-right: 60px; }
+        .search-box:focus { outline: none; box-shadow: var(--hover-shadow); transform: translateY(-3px); }
+        .search-icon { position: absolute; right: 25px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1.2rem; }
+        .filter-section { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 15px; }
+        .filter-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { background: var(--surface-color); border: none; padding: 10px 20px; border-radius: 30px; font-weight: 500; cursor: pointer; transition: all 0.3s; box-shadow: var(--card-shadow); color: var(--text-color); }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+        .sort-options select { padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--surface-color); font-weight: 500; box-shadow: var(--card-shadow); color: var(--text-color); }
+        
+        /* Grid & Cards */
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-bottom: 4rem; }
+        .article-card { background: var(--surface-color); border-radius: 16px; overflow: hidden; box-shadow: var(--card-shadow); transition: all 0.4s ease; cursor: pointer; position: relative; display: flex; flex-direction: column; }
+        .article-card:hover { transform: translateY(-10px); box-shadow: var(--hover-shadow); }
+        .article-image { height: 200px; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; position: relative; overflow: hidden; }
+        .article-image img { width: 100%; height: 100%; object-fit: cover; }
+        .article-image::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent); }
+        .article-image i { font-size: 3.5rem; z-index: 1; }
+        .article-category { position: absolute; top: 15px; left: 15px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .article-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .article-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: var(--text-color); line-height: 1.4; }
+        .article-excerpt { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1; }
+        .article-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 15px; }
+        .article-meta span { display: flex; align-items: center; }
+        .article-meta i { margin-right: 5px; }
+        
+        /* Article View */
+        .article-view { background: var(--surface-color); border-radius: 20px; padding: 40px; box-shadow: var(--card-shadow); margin-bottom: 4rem; display: none; animation: fadeIn 0.5s ease; }
+        .article-view.active { display: block; }
+        .article-header { margin-bottom: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 25px; }
+        .article-view-title { font-size: 2.2rem; color: var(--text-color); margin-bottom: 15px; line-height: 1.3; }
+        .article-view-meta { display: flex; color: var(--text-secondary); font-size: 1rem; gap: 20px; flex-wrap: wrap; }
+        .article-view-meta span { display: flex; align-items: center; }
+        .article-view-meta i { margin-right: 8px; }
+        .article-body { line-height: 1.8; font-size: 1.1rem; color: var(--text-color); }
+        .article-body p { margin-bottom: 20px; }
+        .article-actions { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
+        .action-btn { display: flex; align-items: center; background: var(--light); border: none; padding: 10px 20px; border-radius: 8px; font-weight: 500; cursor: pointer; transition: all 0.3s; position: relative; color: var(--text-color); }
+        .action-btn:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+        .action-btn i { margin-right: 8px; }
+        .action-btn.liked { color: #e63946; background: rgba(230, 57, 70, 0.1); }
+        .action-btn.liked:hover { background: #e63946; color: white; }
+        .action-btn.saved { color: var(--primary); background: rgba(67, 97, 238, 0.1); }
+        .action-btn.saved:hover { background: var(--primary); color: white; }
+        .back-button { display: inline-flex; align-items: center; background: var(--primary); color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; margin-top: 25px; transition: all 0.3s; font-weight: 500; cursor: pointer; }
+        .back-button:hover { background: var(--secondary); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3); }
+        .back-button i { margin-right: 8px; }
+
+        /* Image Gallery Styles */
+        .article-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 25px 0; }
+        .gallery-image { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+        .gallery-image:hover { transform: scale(1.03); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+        
+        /* Image Modal */
+        .image-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 2000; align-items: center; justify-content: center; }
+        .image-modal.active { display: flex; }
+        .modal-content { max-width: 90%; max-height: 90%; position: relative; }
+        .modal-image { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; }
+        .modal-close { position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+        .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.2); border: none; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.5rem; transition: background 0.3s; }
+        .modal-nav:hover { background: rgba(255, 255, 255, 0.3); }
+        .modal-prev { left: 20px; }
+        .modal-next { right: 20px; }
+        .modal-counter { position: absolute; bottom: -40px; left: 0; width: 100%; text-align: center; color: white; font-size: 1.1rem; }
+
+        /* Comments System */
+        .comments-section { margin-top: 30px; border-top: 2px solid var(--border-color); padding-top: 30px; display: none; animation: slideDown 0.4s ease; }
+        .comments-section.show { display: block; }
+        .comments-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .comment-input-wrapper { background: var(--bg-color); padding: 20px; border-radius: 12px; margin-bottom: 30px; }
+        .comment-user-badge { font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-bottom: 10px; display: block; }
+        .comment-textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; font-family: inherit; resize: vertical; min-height: 80px; transition: border 0.3s; background: var(--surface-color); color: var(--text-color); }
+        .comment-textarea:focus { outline: none; border-color: var(--primary); }
+        .char-count { text-align: right; font-size: 0.8rem; color: var(--text-secondary); margin-top: 5px; }
+        .comment-submit-btn { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; margin-top: 10px; font-weight: 500; }
+        .comment-submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .comments-list { display: flex; flex-direction: column; gap: 20px; }
+        .comment-item { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; animation: fadeIn 0.3s; }
+        .comment-head { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .comment-author { font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--text-color); }
+        .comment-avatar { width: 30px; height: 30px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
+        .comment-time { font-size: 0.8rem; color: var(--text-secondary); }
+        .comment-text { font-size: 0.95rem; color: var(--text-color); line-height: 1.5; word-wrap: break-word; }
+        .comment-actions { display: flex; gap: 15px; margin-top: 15px; font-size: 0.85rem; color: var(--text-secondary); }
+        .c-action { cursor: pointer; display: flex; align-items: center; gap: 5px; transition: 0.2s; background: none; border: none; font-size: inherit; color: inherit; }
+        .c-action:hover { color: var(--primary); }
+        .c-action.liked { color: #e63946; }
+        .c-action.delete:hover { color: #ff4757; }
+        .replies-container { margin-top: 15px; padding-left: 20px; border-left: 2px solid var(--border-color); display: flex; flex-direction: column; gap: 15px; }
+        .reply-item { background: var(--bg-color); padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .reply-input-area { margin-top: 15px; display: none; }
+        .reply-input-area.active { display: block; animation: fadeIn 0.3s; }
+        .toggle-replies { display: flex; align-items: center; gap: 5px; margin-top: 10px; font-size: 0.85rem; color: var(--primary); cursor: pointer; background: none; border: none; }
+        .toggle-replies i { transition: transform 0.3s; }
+        .toggle-replies.collapsed i { transform: rotate(-90deg); }
+
+        /* Custom Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; display: none; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: var(--surface-color); border-radius: 12px; padding: 25px; max-width: 500px; width: 90%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); color: var(--text-color); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-title { font-size: 1.3rem; font-weight: 600; }
+        .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); }
+        .modal-body { margin-bottom: 20px; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+        .modal-btn { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-weight: 500; }
+        .modal-btn.cancel { background: var(--bg-color); color: var(--text-secondary); }
+        .modal-btn.confirm { background: #ff4757; color: white; }
+
+        /* Generic */
+        .user-list-section { display: none; animation: fadeIn 0.5s ease; margin-bottom: 4rem; }
+        .user-list-section.active { display: block; }
+        .section-header { margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; }
+        .clear-btn { background: #ff4757; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
+        .remove-card-btn { position: absolute; top: 10px; right: 10px; background: rgba(255, 0, 0, 0.8); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+        .remove-card-btn:hover { transform: scale(1.1); }
+        .share-menu { position: absolute; bottom: 100%; left: 0; background: var(--surface-color); box-shadow: var(--card-shadow); border-radius: 8px; padding: 10px; display: none; flex-direction: column; gap: 5px; min-width: 150px; z-index: 10; }
+        .share-menu.show { display: flex; }
+        .share-option { background: none; border: none; padding: 8px; text-align: left; cursor: pointer; border-radius: 4px; font-size: 0.9rem; display: flex; align-items: center; color: var(--text-color); }
+        .share-option:hover { background: var(--bg-color); }
+        .share-option i { margin-right: 8px; width: 20px; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(33, 37, 41, 0.9); color: white; padding: 12px 24px; border-radius: 30px; font-size: 0.9rem; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 1000; }
+        .toast.show { opacity: 1; visibility: visible; bottom: 50px; }
+        .no-results { text-align: center; padding: 60px 40px; color: var(--text-secondary); display: none; }
+        .no-results.active { display: block; }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--primary); color: white; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s; opacity: 0; visibility: hidden; z-index: 99; }
+        .scroll-to-top.visible { opacity: 1; visibility: visible; }
+        .scroll-to-top:hover { background: var(--secondary); transform: translateY(-3px); }
+        
+        /* Animations */
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+        .pop-anim i { animation: pop 0.3s ease-out; }
+
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 3rem 0 2rem; margin-top: 4rem; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 2rem; }
+        .footer-column h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-column h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--primary); }
+        .footer-column ul { list-style: none; display: block; }
+        .footer-column ul li { margin-bottom: 12px; margin-left: 0; }
+        .footer-column ul li a { color: #bbb; text-decoration: none; transition: color 0.3s; }
+        .footer-column ul li a:hover { color: white; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; color: white; transition: all 0.3s; text-decoration: none; }
+        .social-links a:hover { background: var(--primary); transform: translateY(-3px); }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1); color: #bbb; font-size: 0.9rem; }
+        
+        /* New Styles */
+        .image-upload-container { margin: 15px 0; }
+        .image-upload-btn { background: var(--light); border: 1px dashed var(--border-color); padding: 10px 15px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; color: var(--text-color); }
+        .image-upload-btn:hover { background: var(--bg-color); }
+        .image-preview { max-width: 100%; max-height: 300px; margin: 15px 0; border-radius: 8px; display: none; }
+        .image-preview.show { display: block; }
+        .my-comments-section { display: none; animation: fadeIn 0.5s ease; margin-bottom: 4rem; }
+        .my-comments-section.active { display: block; }
+        .comment-with-article { border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+        .comment-article-link { background: var(--bg-color); padding: 15px; border-bottom: 1px solid var(--border-color); cursor: pointer; transition: background 0.3s; }
+        .comment-article-link:hover { background: var(--surface-color); }
+        .comment-article-title { font-weight: 600; color: var(--primary); margin-bottom: 5px; }
+        .comment-article-excerpt { font-size: 0.9rem; color: var(--text-secondary); }
+        .comment-content { padding: 15px; }
+        
+        /* Search in My Comments */
+        .comments-search-container { margin: 1rem 0; position: relative; max-width: 500px; }
+        .comments-search-box { width: 100%; padding: 12px 20px; border: 1px solid var(--border-color); border-radius: 30px; font-size: 1rem; transition: all 0.3s ease; background: var(--surface-color); color: var(--text-color); padding-right: 45px; }
+        .comments-search-box:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2); }
+        .comments-search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: var(--primary); font-size: 1rem; }
+        
+        @media (max-width: 992px) { .hero h1 { font-size: 2.5rem; } .articles-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); } }
+        @media (max-width: 768px) { .header-content { flex-direction: column; text-align: center; } .logo { margin-bottom: 15px; } nav ul { margin-top: 15px; flex-wrap: wrap; justify-content: center; } nav ul li { margin: 0 10px 10px; } .hero { padding: 3rem 0; } .hero h1 { font-size: 2rem; } .filter-section { flex-direction: column; align-items: flex-start; } .articles-grid { grid-template-columns: 1fr; } .article-view { padding: 25px; } .article-view-title { font-size: 1.8rem; } .article-gallery { grid-template-columns: 1fr; } }
+        .modal-indicators {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.modal-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal-indicator.active {
+    background: white;
+    transform: scale(1.2);
+}
+        @media (max-width: 576px) { .container { padding: 0 15px; } .hero h1 { font-size: 1.8rem; } .article-view { padding: 20px; } .article-view-title { font-size: 1.5rem; } .article-view-meta { flex-direction: column; gap: 10px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="goHome()">
+                    <i class="fas fa-newspaper"></i>
+                    MaterialX-Articles
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="homee.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a onclick="goHome()"><i class="fas fa-layer-group"></i> All articles</a></li>
+                        <li><a onclick="showUserList('saved')"><i class="fas fa-bookmark"></i> Saved</a></li>
+                        <li><a onclick="showUserList('liked')"><i class="fas fa-heart"></i> Liked</a></li>
+                        <li><a onclick="showMyComments()"><i class="fas fa-comments"></i> My Comments</a></li>
+                    </ul>
+                </nav>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Explore Tech Knowledge</h1>
+            <p>Discover the latest articles about software development, AI, cybersecurity and more</p>
+        </div>
+    </section>
+    
+    <main class="container">
+        <div id="homeView">
+            <div class="search-container">
+                <input type="text" class="search-box" id="searchInput" placeholder="Search for articles...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Careers">Careers</button>
+                    <button class="filter-btn" data-filter="AI">AI</button>
+                    <button class="filter-btn" data-filter="Security">Security</button>
+                    <button class="filter-btn" data-filter="Development">Development</button>
+                    <button class="filter-btn" data-filter="Databases">Databases</button>
+                    <button class="filter-btn" data-filter="Mobile">Mobile</button>
+                    <button class="filter-btn" data-filter="mostLiked">Most Liked</button>
+                </div>
+                <div class="sort-options">
+                    <select id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="title">By Title</option>
+                        <option value="likes">Most Likes</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="articles-grid" id="articlesGrid"></div>
+            
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search"></i>
+                <h3>No articles found</h3>
+                <p>Try using different search terms or filters</p>
+            </div>
+        </div>
+
+        <div class="user-list-section" id="userListView">
+            <div class="section-header">
+                <h2 id="listTitle">Saved Articles</h2>
+                <button class="clear-btn" id="clearListBtn" style="display:none">Clear All</button>
+            </div>
+            <div class="articles-grid" id="userListGrid"></div>
+            <div class="no-results" id="emptyListMsg">
+                <i class="far fa-folder-open"></i>
+                <h3 id="emptyListText">Your list is empty</h3>
+                <button class="back-button" onclick="goHome()">Browse Articles</button>
+            </div>
+        </div>
+        
+        <div class="my-comments-section" id="myCommentsView">
+            <div class="section-header">
+                <h2>My Comments</h2>
+                <div class="comments-search-container">
+                    <input type="text" class="comments-search-box" id="commentsSearchInput" placeholder="Search in my comments...">
+                    <i class="fas fa-search comments-search-icon"></i>
+                </div>
+            </div>
+            <div id="myCommentsList"></div>
+            <div class="no-results" id="noCommentsMsg">
+                <i class="far fa-comment"></i>
+                <h3>No comments yet</h3>
+                <p>Start commenting on articles to see them here</p>
+                <button class="back-button" onclick="goHome()">Browse Articles</button>
+            </div>
+        </div>
+        
+        <div class="article-view" id="articleView"></div>
+    </main>
+    
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <button class="modal-nav modal-prev" id="modalPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="modal-nav modal-next" id="modalNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="modal-content">
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-counter" id="modalCounter"></div>
+        </div>
+    </div>
+    
+    <!-- Custom Modal for Confirmations -->
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Confirm Action</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                Are you sure you want to proceed?
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn cancel" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn confirm" id="modalConfirmBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <button class="scroll-to-top" id="scrollToTopBtn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <div id="toast" class="toast">Action Successful</div>
+
+    <script>
+        // import lib
+      const _0x250900=_0x1087;function _0x1087(_0x5300a4,_0x30f7d4){const _0x5ce666=_0x5ce6();return _0x1087=function(_0x108765,_0x3a441d){_0x108765=_0x108765-0x1d6;let _0x3d8454=_0x5ce666[_0x108765];return _0x3d8454;},_0x1087(_0x5300a4,_0x30f7d4);}function _0x5ce6(){const _0x53d7c5=['706868FvlPIk','6451785WjyfXt','856521LecdwJ','12TJcwRz','$2a$10$alpsDEcrWDC4jFCnUhJ1w.uDMo1mBH.61aia.Mr5RWvUTQC5xkG3O','1120420hFpiUu','156SWwQNC','17220hGiLYc','498616TzTaKi','692a32e2d0ea881f4006aac0','8180656CPEkwq'];_0x5ce6=function(){return _0x53d7c5;};return _0x5ce6();}(function(_0x2eca4d,_0x11ac28){const _0x2ba371=_0x1087,_0x5d32da=_0x2eca4d();while(!![]){try{const _0x5481cf=-parseInt(_0x2ba371(0x1d8))/0x1+-parseInt(_0x2ba371(0x1db))/0x2+-parseInt(_0x2ba371(0x1dd))/0x3*(-parseInt(_0x2ba371(0x1de))/0x4)+parseInt(_0x2ba371(0x1e0))/0x5+-parseInt(_0x2ba371(0x1d6))/0x6*(-parseInt(_0x2ba371(0x1d7))/0x7)+parseInt(_0x2ba371(0x1da))/0x8+-parseInt(_0x2ba371(0x1dc))/0x9;if(_0x5481cf===_0x11ac28)break;else _0x5d32da['push'](_0x5d32da['shift']());}catch(_0x2603ee){_0x5d32da['push'](_0x5d32da['shift']());}}}(_0x5ce6,0x920d8));const BIN_ID=_0x250900(0x1d9),API_KEY=_0x250900(0x1df);
+
+        const now = new Date();
+        const oneHour = 60 * 60 * 1000;
+        const oneDay = 24 * oneHour;
+        let currentUser = null; 
+
+        let globalBinData = { articleLikes: {}, comments: [], articleImages: {} };
+
+        const articles = [
+         { 
+    id: 1, 
+    title: "Iterative vs. Incremental Development", 
+    excerpt: "Understanding the key differences between Iterative and Incremental approaches in Agile methodology.", 
+    content: `
+        <div dir="rtl" style="text-align: right; font-family: 'Tahoma', 'Segoe UI', sans-serif; line-height: 1.8;">
+            <p>الناس كتير بتتلخبط بين الاتنين، مع إنهم في الحقيقة قريبين من بعض، وبيستخدموهم مع بعض في الـ Agile طول الوقت.</p>
+            <p>خليني أشرحهم بطريقة بسيطة كده وواقعية:</p>
+
+            <h3 style="color: var(--primary); margin-top: 20px;">1) الـ Iterative</h3>
+            <p>ده باختصار إنك تبدأ بحاجة بسيطة… نسخة أولى من الـ Feature…<br>
+            وبعد كده تفضل تطوّر وتحدّث وتظبط فيها واحدة واحدة.</p>
+            <p><strong>يعني كل Iteration بتطلع نسخة محسّنة من اللي قبلها.</strong></p>
+
+         <p><strong>مثال بسيط:</strong><br>
+            بتعمل صفحة Login:<br>
+            • أول Round تعمل UI بس.<br>
+            • بعدين تزود Validation.<br>
+            • بعدين تربطها بالـ API.<br>
+            • بعدين تزود Security وزيادات.</p>
+            <p>إنت هنا مش بتبني حاجة جديدة، إنت بتعالج وتحسّن نفس الحاجة كل مرة.</p>
+
+            <h3 style="color: var(--primary); margin-top: 20px;">2) الـ Incremental</h3>
+            <p>هنا بقى الموضوع مختلف…<br>
+            إنت كل شوية بتضيف جزء جديد للسيستم. Feature كاملة تعمل من أولها لآخرها.</p>
+            <p><strong>كل Increment بيكون وظيفة جديدة بتدخل على المنتج.</strong></p>
+
+            <p><strong>مثال:</strong><br>
+            لو بتعمل موقع E-Commerce:<br>
+            • أول Increment: صفحة عرض المنتجات.<br>
+            • اللي بعده: سلة المشتريات.<br>
+            • اللي بعده: الدفع.<br>
+            • اللي بعده: حساب المستخدم.</p>
+            <p>كل مرحلة بتضيف جزء جديد شغال.</p>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary);">هل ينفع نستخدم الاتنين؟</h3>
+            <p>أكيد طبعا، ودي أصلًا طريقة الـ Agile اللي معظم الشركات شغالة بيها.</p>
+            <ul style="padding-right: 20px;">
+                <li><strong>Incremental:</strong> عشان تكبر المنتج وتزود Features.</li>
+                <li><strong>Iterative:</strong> عشان تحسّن اللي موجود وتظبط الجودة.</li>
+            </ul>
+
+            <h4 style="margin-top: 20px;">الفرق بالصور والتشبيهات:</h4>
+            <p><strong>Incremental:</strong> لو عندي ٥٠٠ شقه هعملهم نفس الديزاين، فـ أعمل وحدة كاملة أوريها للعميل، عجبته؟ أكمل على باقي الشقق نفس التنسيق.<br>
+            <span style="color: var(--gray); font-size: 0.9em;">(في الصورة الـ Incremental ملهاش معنى الرسمة او ممكن مفهمهاش الا لما تكتمل كلها).</span></p>
+
+            <p><strong>Iterative:</strong> عكسه في الـ Iterative، كل حاجة بيكون لها معنى وبتتفهم (أه مش ) بس ممكن نبص عليها نقول أه حلو كده كمل، لو جزء مش حلو لا عدل لحد ما نوصل للمنتج النهائي.</p>
+            
+            <p><em>كأنك بتقارن تقريباً الـ Agile بالـ Waterfall.</em></p>
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 20px;">
+                <img src="img/photo_2025-11-29_06-06-18.jpg" alt="Planning" class="gallery-image">
+                <img src="img/photo_2025-11-29_06-06-14.jpg" alt="Sketching" class="gallery-image">
+                <img src="img/photo_2025-11-29_06-06-11.jpg" alt="Building" class="gallery-image">
+            </div>
+        </div>
+    `, 
+    date: new Date().toISOString(), 
+    category: "Development", 
+    likes: 0, 
+    commentCount: 0,
+    image: "https://www.biztechcs.com/wp-content/uploads/2023/04/What-is-Iterative-and-Incremental-Development-jpg-webp.webp"
+},
+            // { 
+            //     id: 2, 
+            //     title: "Introduction to Artificial Intelligence", 
+            //     excerpt: "Learn the basics of artificial intelligence, its real-world applications, and its impact on various industries.", 
+            //     content: `
+            //         <p>Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn like humans.</p>
+                    
+            //         <div class="article-gallery">
+            //             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AI Concept" class="gallery-image">
+            //             <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Machine Learning" class="gallery-image">
+            //             <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Neural Networks" class="gallery-image">
+            //             <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AI in Robotics" class="gallery-image">
+            //         </div>
+                    
+            //         <p>The term may also be applied to any machine that exhibits traits associated with a human mind such as learning and problem-solving.</p>
+            //         <p>AI technologies are transforming industries including healthcare, finance, transportation, and entertainment. From virtual assistants to self-driving cars, AI applications are becoming increasingly prevalent in our daily lives.</p>
+            //         <p>Key branches of AI include machine learning, natural language processing, computer vision, and robotics. Each of these areas focuses on different aspects of creating intelligent systems.</p>
+            //     `, 
+            //     date: new Date(now - 45 * 60 * 1000).toISOString(), 
+            //     category: "AI", 
+            //     likes: 0, 
+            //     commentCount: 0,
+            //     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            // },
+            // { 
+            //     id: 3, 
+            //     title: "Best Practices for Information Security", 
+            //     excerpt: "Discover the most important practices and tips for protecting your data and systems from growing cyber threats.", 
+            //     content: `
+            //         <p>Information security is crucial in today's digital world where data breaches and cyber attacks are increasingly common.</p>
+                    
+            //         <div class="article-gallery">
+            //             <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Cybersecurity" class="gallery-image">
+            //             <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Data Encryption" class="gallery-image">
+            //             <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Network Security" class="gallery-image">
+            //             <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Security Protocols" class="gallery-image">
+            //         </div>
+                    
+            //         <p>Implementing strong password policies is one of the most basic yet effective security measures. This includes using complex passwords, enabling multi-factor authentication, and regularly updating credentials.</p>
+            //         <p>Regular software updates are essential as they often contain security patches for vulnerabilities that could be exploited by attackers.</p>
+            //         <p>Employee training is another critical aspect of information security. Many security breaches occur due to human error, so educating staff about phishing scams and safe online practices is vital.</p>
+            //         <p>Data encryption, both at rest and in transit, ensures that even if data is intercepted, it remains unreadable without the proper decryption keys.</p>
+            //     `, 
+            //     date: new Date(now - 2 * oneHour).toISOString(), 
+            //     category: "Security", 
+            //     likes: 0, 
+            //     commentCount: 0,
+            //     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            // }
+        ];
+
+        const articlesGrid = document.getElementById('articlesGrid');
+        const articleView = document.getElementById('articleView');
+        const homeView = document.getElementById('homeView');
+        const userListView = document.getElementById('userListView');
+        const myCommentsView = document.getElementById('myCommentsView');
+        const searchInput = document.getElementById('searchInput');
+        const commentsSearchInput = document.getElementById('commentsSearchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const sortSelect = document.getElementById('sortSelect');
+        const toast = document.getElementById('toast');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Image Modal Elements
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+        const modalCounter = document.getElementById('modalCounter');
+
+        let currentFilter = 'all';
+        let currentSort = 'newest';
+        let currentView = 'home';
+        let pendingAction = null;
+        
+        // Image Gallery Variables
+        let currentGalleryImages = [];
+        let currentImageIndex = 0;
+
+        // Theme Management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('techHub_theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('techHub_theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        function initUser() {
+            let user = localStorage.getItem('techHub_user');
+            if(!user) {
+                user = 'User ' + Math.floor(Math.random() * 10000);
+                localStorage.setItem('techHub_user', user);
+            }
+            currentUser = user;
+        }
+      (function(_0x2d82b1,_0x2c30bf){const _0x494a32=_0x354f,_0x2c6223=_0x2d82b1();while(!![]){try{const _0x4d8804=-parseInt(_0x494a32(0x17c))/0x1*(parseInt(_0x494a32(0x194))/0x2)+-parseInt(_0x494a32(0x181))/0x3*(parseInt(_0x494a32(0x191))/0x4)+parseInt(_0x494a32(0x187))/0x5+parseInt(_0x494a32(0x185))/0x6+-parseInt(_0x494a32(0x18e))/0x7*(-parseInt(_0x494a32(0x195))/0x8)+-parseInt(_0x494a32(0x182))/0x9*(-parseInt(_0x494a32(0x17d))/0xa)+-parseInt(_0x494a32(0x188))/0xb*(parseInt(_0x494a32(0x196))/0xc);if(_0x4d8804===_0x2c30bf)break;else _0x2c6223['push'](_0x2c6223['shift']());}catch(_0x374feb){_0x2c6223['push'](_0x2c6223['shift']());}}}(_0x4886,0xc08ea));function _0x4886(){const _0x2b2fc1=['record','likes','1656354QpRnZQ','articleLikes','5603525JdOwXK','8142618YSBzvS','json','stringify','forEach','error','warn','71470dSzRJC','application/json','articleImages','1610996eyhBNS','comments','API\x20Key\x20Missing','2FykiZP','944cCDuCO','12NOIuvo','replies','filter','935693WQIxcP','250xxxuGq','commentCount','https://api.jsonbin.io/v3/b/','/latest','3XWfuIW','95706YzPRQI'];_0x4886=function(){return _0x2b2fc1;};return _0x4886();}function _0x354f(_0x2bf7c0,_0x217093){const _0x4886d7=_0x4886();return _0x354f=function(_0x354f56,_0x206ae9){_0x354f56=_0x354f56-0x17c;let _0x3bfd2a=_0x4886d7[_0x354f56];return _0x3bfd2a;},_0x354f(_0x2bf7c0,_0x217093);}async function fetchBinData(){const _0x368e0d=_0x354f;if(API_KEY===''){console[_0x368e0d(0x18d)](_0x368e0d(0x193));return;}try{const _0xdf5a6=await fetch(_0x368e0d(0x17f)+BIN_ID+_0x368e0d(0x180),{'headers':{'X-Master-Key':API_KEY}}),_0x38e5fd=await _0xdf5a6[_0x368e0d(0x189)]();globalBinData=_0x38e5fd[_0x368e0d(0x183)];if(!globalBinData[_0x368e0d(0x186)])globalBinData[_0x368e0d(0x186)]={};if(!globalBinData['comments'])globalBinData[_0x368e0d(0x192)]=[];if(!globalBinData[_0x368e0d(0x190)])globalBinData['articleImages']={};articles[_0x368e0d(0x18b)](_0x426e52=>{const _0x30239a=_0x368e0d;_0x426e52[_0x30239a(0x184)]=globalBinData['articleLikes'][_0x426e52['id']]||0x0;const _0x244a1b=globalBinData[_0x30239a(0x192)][_0x30239a(0x198)](_0x4ab5dd=>_0x4ab5dd['articleId']===_0x426e52['id'])['length'],_0x4cea9d=globalBinData['comments'][_0x30239a(0x198)](_0xa1e735=>_0xa1e735['articleId']===_0x426e52['id'])['reduce']((_0x4f7029,_0x166197)=>_0x4f7029+(_0x166197[_0x30239a(0x197)]?_0x166197['replies']['length']:0x0),0x0);_0x426e52[_0x30239a(0x17e)]=_0x244a1b+_0x4cea9d;}),refreshCurrentView();}catch(_0x44ae9e){console[_0x368e0d(0x18c)]('Fetch\x20Error:',_0x44ae9e);}}async function updateBin(){const _0x5a9367=_0x354f;try{return await fetch(_0x5a9367(0x17f)+BIN_ID,{'method':'PUT','headers':{'Content-Type':_0x5a9367(0x18f),'X-Master-Key':API_KEY},'body':JSON[_0x5a9367(0x18a)](globalBinData)}),!![];}catch(_0x229d4b){return console[_0x5a9367(0x18c)]('Update\x20Error:',_0x229d4b),![];}}
+        function refreshCurrentView() {
+            if (currentView === 'home') filterAndSortArticles();
+            else if (currentView === 'saved' || currentView === 'liked') showUserList(currentView);
+            else if (currentView === 'myComments') showMyComments();
+        }
+
+        function timeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const seconds = Math.floor((now - date) / 1000);
+            
+            if (seconds < 60) return "Just now";
+            const intervals = [
+                { l: 31536000, n: "years" }, { l: 2592000, n: "months" }, { l: 604800, n: "weeks" },
+                { l: 86400, n: "days" }, { l: 3600, n: "hours" }, { l: 60, n: "minutes" }
+            ];
+            for (let i of intervals) {
+                const k = seconds / i.l;
+                if (k >= 1) return Math.floor(k) + " " + i.n + " ago";
+            }
+            return Math.floor(seconds) + " seconds ago";
+        }
+
+        function calculateReadTime(content) {
+            const cleanText = content.replace(/<[^>]*>/g, '');
+            const words = cleanText.trim().split(/\s+/).length;
+            const minutes = Math.ceil(words / 200);
+            return `${minutes} min read`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initUser();
+            initTheme();
+            displayArticles(articles);
+            setupEventListeners();
+            fetchBinData();
+            setupScrollToTop();
+            setupImageModal();
+        });
+
+        function setupScrollToTop() {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+      function setupImageModal() {
+    // Close modal when clicking close button or outside the image
+    modalClose.addEventListener('click', closeImageModal);
+    imageModal.addEventListener('click', function(e) {
+        if (e.target === imageModal) closeImageModal();
+    });
+    
+    // Navigation between images
+    modalPrev.addEventListener('click', showPrevImage);
+    modalNext.addEventListener('click', showNextImage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (imageModal.classList.contains('active')) {
+            if (e.key === 'Escape') closeImageModal();
+            if (e.key === 'ArrowLeft') showPrevImage();
+            if (e.key === 'ArrowRight') showNextImage();
+            
+            // منع السلوك الافتراضي للأسهم
+            if (['ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
+                e.preventDefault();
+            }
+        }
+    });
+    
+    // Touch/Swipe navigation
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    modalImage.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    });
+    
+    modalImage.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50; 
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+        
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+            if (diffX > 0) {
+                showNextImage();
+            } else {
+                showPrevImage();
+            }
+        }
+    }
+}
+
+        function openImageModal(images, startIndex) {
+            currentGalleryImages = images;
+            currentImageIndex = startIndex;
+            updateModalImage();
+            imageModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeImageModal() {
+            imageModal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentGalleryImages = [];
+            currentImageIndex = 0;
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length;
+            updateModalImage();
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentGalleryImages.length;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            modalImage.src = currentGalleryImages[currentImageIndex];
+            modalCounter.textContent = `${currentImageIndex + 1} / ${currentGalleryImages.length}`;
+        }
+
+        function createCardHTML(article, isRemovable = false, listType = '') {
+            const card = document.createElement('div');
+            card.className = 'article-card';
+            const timeString = timeAgo(article.date);
+            const readTime = calculateReadTime(article.content);
+            
+            let removeBtnHTML = isRemovable ? `<button class="remove-card-btn" onclick="event.stopPropagation(); showConfirmation('removeFromList', ${article.id}, '${listType}')"><i class="fas fa-times"></i></button>` : '';
+
+            card.innerHTML = `
+                ${removeBtnHTML}
+                <div class="article-image">
+                    <div class="article-category">${article.category}</div>
+                    ${article.image ? `<img src="${article.image}" alt="${article.title}">` : `<i class="fas fa-newspaper"></i>`}
+                </div>
+                <div class="article-content">
+                    <h3 class="article-title">${article.title}</h3>
+                    <p class="article-excerpt">${article.excerpt}</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> ${timeString}</span>
+                        <span><i class="fas fa-book-open"></i> ${readTime}</span>
+                        <span><i class="fas fa-heart" style="color: ${article.likes > 0 ? '#e63946' : 'inherit'}"></i> ${article.likes}</span>
+                    </div>
+                    <div style="margin-top:10px; font-size:0.85rem; color:var(--text-secondary)"><i class="fas fa-comment"></i> ${article.commentCount} comments</div>
+                </div>
+            `;
+            card.addEventListener('click', () => showArticle(article));
+            return card;
+        }
+
+        function displayArticles(list) {
+            articlesGrid.innerHTML = '';
+            if (list.length === 0) { document.getElementById('noResults').classList.add('active'); return; }
+            document.getElementById('noResults').classList.remove('active');
+            list.forEach(article => articlesGrid.appendChild(createCardHTML(article)));
+        }
+
+        function showArticle(article) {
+            const isSaved = getStorage('saved').includes(article.id);
+            const isLiked = getStorage('liked').includes(article.id);
+            const readTime = calculateReadTime(article.content);
+
+            articleView.innerHTML = `
+                <div class="article-header">
+                    <h2 class="article-view-title">${article.title}</h2>
+                    <div class="article-view-meta">
+                        <span><i class="far fa-clock"></i> ${timeAgo(article.date)}</span>
+                        <span><i class="fas fa-book-open"></i> ${readTime}</span>
+                        <span><i class="fas fa-tag"></i> ${article.category}</span>
+                    </div>
+                </div>
+                
+                ${article.image ? `<div style="margin-bottom:30px"><img src="${article.image}" alt="${article.title}" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px;"></div>` : ''}
+                
+                <div class="article-body">${article.content}</div>
+                
+                <div class="article-actions">
+                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${article.id}, this)">
+                        <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i> <span id="viewLikeCount">${article.likes}</span> Likes
+                    </button>
+                    <button class="action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave(${article.id}, this)">
+                        <i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i> <span>${isSaved ? 'Saved' : 'Save'}</span>
+                    </button>
+                    
+                    <button class="action-btn" onclick="toggleCommentsSection()">
+                        <i class="fas fa-comment"></i> <span id="viewCommentCount">${article.commentCount}</span> Comments
+                    </button>
+
+                    <div style="position:relative;">
+                        <button class="action-btn" onclick="toggleShareMenu(event)"><i class="fas fa-share-alt"></i> Share</button>
+                        <div class="share-menu" id="shareMenu">
+                            <button class="share-option" onclick="shareToWhatsApp('${article.title}')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                            <button class="share-option" onclick="copyLink()"><i class="fas fa-link"></i> Copy Link</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comments-section" id="commentsSection">
+                    <div class="comments-header">
+                        <h3>Comments</h3>
+                    </div>
+                    
+                    <div class="comment-input-wrapper">
+                        <span class="comment-user-badge">Posting as: ${currentUser}</span>
+                        <textarea class="comment-textarea" id="newCommentText" maxlength="150" placeholder="Write a comment... (Max 150 chars)"></textarea>
+                        <div class="char-count" id="charCount">0/150</div>
+                        <button class="comment-submit-btn" id="submitCommentBtn">Post Comment</button>
+                    </div>
+
+                    <div class="comments-list" id="commentsList">
+                        </div>
+                </div>
+
+                <div class="back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</div>
+            `;
+
+            homeView.style.display = 'none';
+            userListView.classList.remove('active');
+            myCommentsView.classList.remove('active');
+            document.querySelector('.hero').style.display = 'none';
+            articleView.classList.add('active');
+            window.scrollTo(0, 0);
+
+            // Logic for Input
+            const textArea = document.getElementById('newCommentText');
+            const charCount = document.getElementById('charCount');
+            const submitBtn = document.getElementById('submitCommentBtn');
+
+            textArea.addEventListener('input', () => {
+                charCount.textContent = `${textArea.value.length}/150`;
+            });
+
+            submitBtn.addEventListener('click', () => {
+                const text = textArea.value.trim();
+                if(text) postComment(article.id, text, null);
+            });
+
+            // Setup gallery image click events
+            setTimeout(() => {
+                const galleryImages = document.querySelectorAll('.gallery-image');
+                const imageUrls = Array.from(galleryImages).map(img => img.src);
+                
+                galleryImages.forEach((img, index) => {
+                    img.addEventListener('click', () => {
+                        openImageModal(imageUrls, index);
+                    });
+                });
+            }, 100);
+
+            renderComments(article.id);
+        }
+
+
+        // --- TOGGLE UI FUNCTIONS ---
+        function toggleCommentsSection() {
+            const section = document.getElementById('commentsSection');
+            section.classList.toggle('show');
+            if(section.classList.contains('show')) {
+                section.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+
+        function toggleShareMenu(e) {
+            e.stopPropagation();
+            document.getElementById('shareMenu').classList.toggle('show');
+        }
+        
+        document.addEventListener('click', () => {
+            const menu = document.getElementById('shareMenu');
+            if(menu) menu.classList.remove('show');
+        });
+
+        // --- COMMENT LOGIC ---
+        async function postComment(articleId, text, parentId) {
+            const btn = document.getElementById('submitCommentBtn');
+            if(btn) btn.disabled = true;
+
+            await fetchBinData();
+
+            const newComment = {
+                id: 'c_' + Date.now(),
+                articleId: articleId,
+                userId: currentUser,
+                text: text,
+                timestamp: new Date().toISOString(),
+                likes: [],
+                replies: []
+            };
+
+            if (parentId) {
+                const parent = globalBinData.comments.find(c => c.id === parentId);
+                if(parent) {
+                    if(!parent.replies) parent.replies = [];
+                    parent.replies.push(newComment);
+                }
+            } else {
+                // Put user's comment at the top
+                globalBinData.comments.unshift(newComment);
+            }
+
+            await updateBin();
+            
+            const textArea = document.getElementById('newCommentText');
+            if(textArea) { textArea.value = ''; document.getElementById('charCount').textContent = '0/150'; }
+            if(btn) btn.disabled = false;
+            
+            const art = articles.find(a => a.id === articleId);
+            art.commentCount++; 
+            document.getElementById('viewCommentCount').textContent = art.commentCount;
+            
+            renderComments(articleId);
+        }
+
+        function renderComments(articleId) {
+            const listContainer = document.getElementById('commentsList');
+            if(!listContainer) return;
+            
+            listContainer.innerHTML = '';
+            const articleComments = globalBinData.comments.filter(c => c.articleId === articleId);
+            
+            // Sort comments - user's comments first, then by timestamp
+            articleComments.sort((a, b) => {
+                if (a.userId === currentUser && b.userId !== currentUser) return -1;
+                if (a.userId !== currentUser && b.userId === currentUser) return 1;
+                return new Date(b.timestamp) - new Date(a.timestamp);
+            });
+
+            articleComments.forEach(comment => {
+                const isOwner = comment.userId === currentUser;
+                const likesCount = comment.likes ? comment.likes.length : 0;
+                const userLiked = comment.likes && comment.likes.includes(currentUser);
+                const repliesCount = comment.replies ? comment.replies.length : 0;
+
+                const commentEl = document.createElement('div');
+                commentEl.className = 'comment-item';
+                commentEl.innerHTML = `
+                    <div class="comment-head">
+                        <div class="comment-author">
+                            <div class="comment-avatar"><i class="fas fa-user"></i></div>
+                            ${comment.userId} ${comment.userId === currentUser ? '<span style="color:var(--primary); font-size:0.7rem">(You)</span>' : ''}
+                        </div>
+                        <div class="comment-time">${timeAgo(comment.timestamp)}</div>
+                    </div>
+                    <div class="comment-text">${comment.text}</div>
+                    <div class="comment-actions">
+                        <button class="c-action ${userLiked ? 'liked' : ''}" onclick="likeComment('${comment.id}', null, ${articleId})">
+                            <i class="${userLiked ? 'fas' : 'far'} fa-thumbs-up"></i> ${likesCount}
+                        </button>
+                        <button class="c-action" onclick="toggleReplyForm('${comment.id}')">
+                            <i class="fas fa-reply"></i> Reply
+                        </button>
+                        ${isOwner ? `
+                        <button class="c-action" onclick="editComment('${comment.id}', null, ${articleId})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="c-action delete" onclick="showConfirmation('deleteComment', '${comment.id}', null, ${articleId})"><i class="fas fa-trash"></i> Delete</button>
+                        ` : ''}
+                    </div>
+                    <div class="reply-input-area" id="replyForm_${comment.id}">
+                         <textarea class="comment-textarea" id="replyInput_${comment.id}" maxlength="150" placeholder="Reply to ${comment.userId}..."></textarea>
+                         <button class="comment-submit-btn" onclick="submitReply('${comment.id}', ${articleId})">Post Reply</button>
+                    </div>
+                    ${repliesCount > 0 ? `
+                    <button class="toggle-replies" id="toggle_${comment.id}" onclick="toggleReplies('${comment.id}')">
+                        <i class="fas fa-chevron-down"></i> ${repliesCount} ${repliesCount === 1 ? 'reply' : 'replies'}
+                    </button>
+                    ` : ''}
+                    <div class="replies-container" id="replies_${comment.id}">
+                        ${renderReplies(comment.replies, comment.id, articleId)}
+                    </div>
+                `;
+                listContainer.appendChild(commentEl);
+            });
+        }
+
+        function renderReplies(replies, parentId, articleId) {
+            if(!replies || replies.length === 0) return '';
+            
+            // Sort replies - user's replies first, then by timestamp
+            replies.sort((a, b) => {
+                if (a.userId === currentUser && b.userId !== currentUser) return -1;
+                if (a.userId !== currentUser && b.userId === currentUser) return 1;
+                return new Date(b.timestamp) - new Date(a.timestamp);
+            });
+            
+            return replies.map(reply => {
+                const isOwner = reply.userId === currentUser;
+                const likesCount = reply.likes ? reply.likes.length : 0;
+                const userLiked = reply.likes && reply.likes.includes(currentUser);
+                
+                return `
+                <div class="reply-item">
+                    <div class="comment-head">
+                        <div class="comment-author">
+                            <div class="comment-avatar" style="width:25px;height:25px;font-size:0.7rem"><i class="fas fa-user"></i></div>
+                            ${reply.userId} ${reply.userId === currentUser ? '<span style="color:var(--primary); font-size:0.7rem">(You)</span>' : ''}
+                        </div>
+                        <div class="comment-time">${timeAgo(reply.timestamp)}</div>
+                    </div>
+                    <div class="comment-text">${reply.text}</div>
+                    <div class="comment-actions">
+                        <button class="c-action ${userLiked ? 'liked' : ''}" onclick="likeComment('${reply.id}', '${parentId}', ${articleId})">
+                            <i class="${userLiked ? 'fas' : 'far'} fa-thumbs-up"></i> ${likesCount}
+                        </button>
+                        ${isOwner ? `
+                        <button class="c-action" onclick="editComment('${reply.id}', '${parentId}', ${articleId})"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="c-action delete" onclick="showConfirmation('deleteComment', '${reply.id}', '${parentId}', ${articleId})"><i class="fas fa-trash"></i> Delete</button>
+                        ` : ''}
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function toggleReplies(commentId) {
+            const repliesContainer = document.getElementById(`replies_${commentId}`);
+            const toggleBtn = document.getElementById(`toggle_${commentId}`);
+            
+            if (repliesContainer.style.display === 'none') {
+                repliesContainer.style.display = 'flex';
+                toggleBtn.classList.remove('collapsed');
+                toggleBtn.querySelector('i').style.transform = 'rotate(0deg)';
+            } else {
+                repliesContainer.style.display = 'none';
+                toggleBtn.classList.add('collapsed');
+                toggleBtn.querySelector('i').style.transform = 'rotate(-90deg)';
+            }
+        }
+
+        function toggleReplyForm(commentId) {
+            document.getElementById(`replyForm_${commentId}`).classList.toggle('active');
+        }
+
+        function submitReply(parentId, articleId) {
+            const input = document.getElementById(`replyInput_${parentId}`);
+            const text = input.value.trim();
+            if(text) postComment(articleId, text, parentId);
+        }
+
+        async function deleteComment(commentId, parentId, articleId) {
+            await fetchBinData();
+            if(parentId) {
+                const parent = globalBinData.comments.find(c => c.id === parentId);
+                if(parent && parent.replies) parent.replies = parent.replies.filter(r => r.id !== commentId);
+            } else {
+                globalBinData.comments = globalBinData.comments.filter(c => c.id !== commentId);
+            }
+            await updateBin();
+            const art = articles.find(a => a.id === articleId);
+            art.commentCount--;
+            document.getElementById('viewCommentCount').textContent = art.commentCount;
+            renderComments(articleId);
+            closeModal();
+        }
+
+        async function editComment(commentId, parentId, articleId) {
+            await fetchBinData();
+            let target;
+            if(parentId) {
+                const parent = globalBinData.comments.find(c => c.id === parentId);
+                if(parent && parent.replies) target = parent.replies.find(r => r.id === commentId);
+            } else {
+                target = globalBinData.comments.find(c => c.id === commentId);
+            }
+            
+            if(target && target.userId === currentUser) {
+                const newText = prompt("Edit your comment (Max 150 chars):", target.text);
+                if(newText === null || newText.trim() === "") return;
+                if(newText.length > 150) { alert("Too long!"); return; }
+                target.text = newText;
+                await updateBin();
+                renderComments(articleId);
+            } else { alert("Cannot edit."); }
+        }
+
+        async function likeComment(commentId, parentId, articleId) {
+            await fetchBinData();
+            let target;
+            if(parentId) {
+                const parent = globalBinData.comments.find(c => c.id === parentId);
+                if(parent) target = parent.replies.find(r => r.id === commentId);
+            } else {
+                target = globalBinData.comments.find(c => c.id === commentId);
+            }
+            if(target) {
+                if(!target.likes) target.likes = [];
+                const idx = target.likes.indexOf(currentUser);
+                if(idx === -1) target.likes.push(currentUser); else target.likes.splice(idx, 1);
+                await updateBin();
+                renderComments(articleId);
+            }
+        }
+
+        // --- ARTICLE ACTIONS ---
+        async function toggleLike(articleId, btn) {
+            if(btn.classList.contains('loading')) return;
+            btn.classList.add('loading', 'pop-anim');
+            const wasAdded = toggleStorageItem('liked', articleId);
+            await fetchBinData();
+            let currentLikes = globalBinData.articleLikes[articleId] || 0;
+            if(wasAdded) currentLikes++; else currentLikes--;
+            if(currentLikes < 0) currentLikes = 0;
+            globalBinData.articleLikes[articleId] = currentLikes;
+            await updateBin();
+            btn.classList.remove('loading');
+            setTimeout(() => btn.classList.remove('pop-anim'), 300);
+            const icon = btn.querySelector('i');
+            document.getElementById('viewLikeCount').textContent = currentLikes;
+            if (wasAdded) { btn.classList.add('liked'); icon.classList.remove('far'); icon.classList.add('fas'); }
+            else { btn.classList.remove('liked'); icon.classList.remove('fas'); icon.classList.add('far'); }
+            const art = articles.find(a => a.id === articleId);
+            art.likes = currentLikes;
+        }
+
+        function toggleSave(articleId, btn) {
+            const wasAdded = toggleStorageItem('saved', articleId);
+            const icon = btn.querySelector('i');
+            const span = btn.querySelector('span');
+            btn.classList.add('pop-anim');
+            setTimeout(() => btn.classList.remove('pop-anim'), 300);
+            if(wasAdded) { btn.classList.add('saved'); icon.classList.remove('far'); icon.classList.add('fas'); span.textContent = "Saved"; showToast("Saved"); }
+            else { btn.classList.remove('saved'); icon.classList.remove('fas'); icon.classList.add('far'); span.textContent = "Save"; showToast("Removed"); }
+        }
+
+        function shareToWhatsApp(title) { window.open(`https://wa.me/?text=${encodeURIComponent(title + " " + window.location.href)}`, '_blank'); }
+        function copyLink() { navigator.clipboard.writeText(window.location.href).then(() => showToast("Link copied!")); }
+
+        // --- MODAL FUNCTIONS ---
+        function showConfirmation(action, id, listType, articleId = null) {
+            pendingAction = { action, id, listType, articleId };
+            
+            if (action === 'removeFromList') {
+                modalTitle.textContent = 'Remove Article';
+                modalBody.textContent = 'Are you sure you want to remove this article from your list?';
+            } else if (action === 'deleteComment') {
+                modalTitle.textContent = 'Delete Comment';
+                modalBody.textContent = 'Are you sure you want to delete this comment? This action cannot be undone.';
+            } else if (action === 'clearList') {
+                modalTitle.textContent = 'Clear List';
+                modalBody.textContent = 'Are you sure you want to clear your entire list? This action cannot be undone.';
+            }
+            
+            confirmationModal.classList.add('active');
+        }
+
+        function closeModal() {
+            confirmationModal.classList.remove('active');
+            pendingAction = null;
+        }
+
+        modalConfirmBtn.addEventListener('click', function() {
+            if (pendingAction) {
+                const { action, id, listType, articleId } = pendingAction;
+                
+                if (action === 'removeFromList') {
+                    removeFromList(id, listType);
+                } else if (action === 'deleteComment') {
+                    deleteComment(id, listType, articleId);
+                } else if (action === 'clearList') {
+                    clearList(listType);
+                }
+                
+                closeModal();
+            }
+        });
+
+        // --- HELPERS ---
+        function getStorage(key) { return JSON.parse(localStorage.getItem('techHub_' + key)) || []; }
+        function setStorage(key, value) { localStorage.setItem('techHub_' + key, JSON.stringify(value)); }
+        function toggleStorageItem(key, id) {
+            let list = getStorage(key);
+            const index = list.indexOf(id);
+            let added = false;
+            if (index === -1) { list.push(id); added = true; } 
+            else { list.splice(index, 1); added = false; }
+            setStorage(key, list);
+            return added;
+        }
+        
+        function removeFromList(articleId, listType) {
+            let list = getStorage(listType);
+            list = list.filter(id => id !== articleId);
+            setStorage(listType, list);
+            showUserList(listType);
+            showToast("Article removed");
+        }
+        
+        function clearList(listType) {
+            setStorage(listType, []);
+            showUserList(listType);
+            showToast("List cleared");
+        }
+        
+        function goBack() { 
+            if (currentView === 'saved' || currentView === 'liked') showUserList(currentView);
+            else if (currentView === 'myComments') showMyComments();
+            else goHome(); 
+        }
+        
+        function goHome() { 
+            currentView = 'home'; 
+            homeView.style.display = 'block'; 
+            articleView.classList.remove('active'); 
+            userListView.classList.remove('active'); 
+            myCommentsView.classList.remove('active');
+            document.querySelector('.hero').style.display = 'block'; 
+            window.scrollTo(0,0); 
+            filterAndSortArticles(); 
+        }
+        
+        function showUserList(type) {
+            currentView = type;
+            homeView.style.display = 'none'; 
+            articleView.classList.remove('active'); 
+            userListView.classList.add('active'); 
+            myCommentsView.classList.remove('active');
+            document.querySelector('.hero').style.display = 'none';
+            
+            const listIds = getStorage(type);
+            document.getElementById('listTitle').textContent = type === 'saved' ? 'Saved Articles' : 'Liked Articles';
+            const listGrid = document.getElementById('userListGrid');
+            listGrid.innerHTML = '';
+            const userArticles = articles.filter(a => listIds.includes(a.id));
+            
+            if(userArticles.length === 0) { 
+                document.getElementById('emptyListMsg').classList.add('active'); 
+                document.getElementById('clearListBtn').style.display='none'; 
+                document.getElementById('emptyListText').textContent = type === 'saved' ? 'No saved articles yet' : 'No liked articles yet';
+            } else { 
+                document.getElementById('emptyListMsg').classList.remove('active'); 
+                // Show Clear All button only in Saved section, not in Liked section
+                document.getElementById('clearListBtn').style.display = type === 'saved' ? 'block' : 'none'; 
+                userArticles.forEach(a => listGrid.appendChild(createCardHTML(a, type === 'saved', type))); 
+            }
+            document.getElementById('clearListBtn').onclick = () => showConfirmation('clearList', null, type);
+        }
+
+        function showMyComments() {
+            currentView = 'myComments';
+            homeView.style.display = 'none'; 
+            articleView.classList.remove('active'); 
+            userListView.classList.remove('active'); 
+            myCommentsView.classList.add('active');
+            document.querySelector('.hero').style.display = 'none';
+            
+            const myCommentsList = document.getElementById('myCommentsList');
+            myCommentsList.innerHTML = '';
+            
+            // Get all comments by current user
+            const userComments = globalBinData.comments.filter(c => c.userId === currentUser);
+            const userReplies = globalBinData.comments.flatMap(c => 
+                (c.replies || []).filter(r => r.userId === currentUser).map(r => ({...r, parentComment: c}))
+            );
+            
+            const allUserComments = [...userComments, ...userReplies];
+            
+            if (allUserComments.length === 0) {
+                document.getElementById('noCommentsMsg').classList.add('active');
+            } else {
+                document.getElementById('noCommentsMsg').classList.remove('active');
+                
+                // Group comments by article
+                const commentsByArticle = {};
+                allUserComments.forEach(comment => {
+                    const articleId = comment.articleId;
+                    if (!commentsByArticle[articleId]) {
+                        commentsByArticle[articleId] = [];
+                    }
+                    commentsByArticle[articleId].push(comment);
+                });
+                
+                // Display comments grouped by article
+                Object.keys(commentsByArticle).forEach(articleId => {
+                    const article = articles.find(a => a.id == articleId);
+                    if (!article) return;
+                    
+                    const articleComments = commentsByArticle[articleId];
+                    
+                    articleComments.forEach(comment => {
+                        const commentEl = document.createElement('div');
+                        commentEl.className = 'comment-with-article';
+                        
+                        commentEl.innerHTML = `
+                            <div class="comment-article-link" onclick="showArticle(${JSON.stringify(article).replace(/"/g, '&quot;')})">
+                                <div class="comment-article-title">${article.title}</div>
+                                <div class="comment-article-excerpt">${article.excerpt}</div>
+                            </div>
+                            <div class="comment-content">
+                                <div class="comment-head">
+                                    <div class="comment-author">
+                                        <div class="comment-avatar"><i class="fas fa-user"></i></div>
+                                        ${comment.userId} <span style="color:var(--primary); font-size:0.7rem">(You)</span>
+                                    </div>
+                                    <div class="comment-time">${timeAgo(comment.timestamp)}</div>
+                                </div>
+                                <div class="comment-text">${comment.text}</div>
+                                <div class="comment-actions">
+                                    <span class="c-action"><i class="far fa-thumbs-up"></i> ${comment.likes ? comment.likes.length : 0}</span>
+                                    ${comment.parentComment ? `<span class="c-action"><i class="fas fa-reply"></i> Reply to ${comment.parentComment.userId}</span>` : ''}
+                                </div>
+                            </div>
+                        `;
+                        
+                        myCommentsList.appendChild(commentEl);
+                    });
+                });
+            }
+        }
+
+        function setupEventListeners() {
+            searchInput.addEventListener('input', filterAndSortArticles);
+            commentsSearchInput.addEventListener('input', filterMyComments);
+            filterButtons.forEach(btn => btn.addEventListener('click', function() { 
+                filterButtons.forEach(b => b.classList.remove('active')); 
+                this.classList.add('active'); 
+                currentFilter = this.getAttribute('data-filter'); 
+                filterAndSortArticles(); 
+            }));
+            sortSelect.addEventListener('change', function() { currentSort = this.value; filterAndSortArticles(); });
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        function filterAndSortArticles() {
+            const term = searchInput.value.toLowerCase();
+            let filtered = articles.filter(a => 
+                (a.title.toLowerCase().includes(term) || a.category.toLowerCase().includes(term)) && 
+                (currentFilter === 'all' || a.category === currentFilter || 
+                 (currentFilter === 'mostLiked' && a.likes > 0))
+            );
+            
+            if (currentFilter === 'mostLiked') {
+                filtered = filtered.filter(a => a.likes > 0);
+            }
+            
+            if(currentSort === 'newest') filtered.sort((a,b) => new Date(b.date) - new Date(a.date));
+            else if(currentSort === 'oldest') filtered.sort((a,b) => new Date(a.date) - new Date(b.date));
+            else if(currentSort === 'likes') filtered.sort((a,b) => b.likes - a.likes);
+            else filtered.sort((a,b) => a.title.localeCompare(b.title));
+            
+            displayArticles(filtered);
+        }
+
+        function filterMyComments() {
+            const term = commentsSearchInput.value.toLowerCase();
+            const myCommentsList = document.getElementById('myCommentsList');
+            const commentItems = myCommentsList.querySelectorAll('.comment-with-article');
+            
+            if (term === '') {
+                commentItems.forEach(item => item.style.display = 'block');
+                return;
+            }
+            
+            commentItems.forEach(item => {
+                const commentText = item.querySelector('.comment-text').textContent.toLowerCase();
+                const articleTitle = item.querySelector('.comment-article-title').textContent.toLowerCase();
+                
+                if (commentText.includes(term) || articleTitle.includes(term)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        function showToast(message) { toast.textContent = message; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
+    </script>
+</body>
+</html>

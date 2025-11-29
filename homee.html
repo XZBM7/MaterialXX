@@ -1336,7 +1336,6 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
   transform: scale(1.1);
 }
 
-/* ✅ responsive adjustments */
 @media (max-width: 768px) {
   .mute-btn {
     width: 40px;
@@ -1351,32 +1350,30 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
 </head>
 
 <body>
-    <!-- Welcome Popup -->
    <div class="welcome-popup" id="welcomePopup">
     <div class="popup-content">
         <div class="popup-icon">
-            <i class="fas fa-briefcase"></i>
+            <i class="fas fa-newspaper"></i>
         </div>
-       <div class="popup-video-container">
+       <!-- <div class="popup-video-container">
   <video class="popup-video" id="mainVideo"
          src="img/IMG_8282.MP4"
          autoplay loop muted playsinline>
     Your browser does not support the video tag.
   </video>
 
-  <!-- زر التحكم بالصوت -->
   <button class="mute-btn" id="muteBtn" aria-pressed="true" aria-label="Mute video">
     🔇
   </button>
-</div>
-      <h2>New Feature: </h2>
+</div> -->
+      <h2>New Feature: Programming articles  </h2>
         <p>
-<strong>اكتشف ليالي الميد العظيمه </strong>
+<strong>You can now browse programming articles and read them anytime, save them, and interact with the community through comments and likes.</strong>
 </p>
 
         <div class="popup-buttons">
-         <a href="Exam.html" target="_blank" class="popup-button primary" id="tryNowBtn">
-    Try Smart Organizer Now <i class="fas fa-arrow-right"></i>
+         <a href="Articles.html" target="_blank" class="popup-button primary" id="tryNowBtn">
+    Try Programming articles Now <i class="fas fa-arrow-right"></i>
 </a>
 <button class="popup-button secondary" id="closePopup">
     Maybe Later
@@ -1387,11 +1384,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tryNowBtn = document.getElementById('tryNowBtn');
     const closePopup = document.getElementById('closePopup');
 
-    // عند الضغط على أي زر يتم تحديث الصفحة
     tryNowBtn.addEventListener('click', () => {
         setTimeout(() => {
             location.reload();
-        }, 500); // تأخير بسيط عشان الرابط يفتح الأول
+        }, 500);
     });
 
     closePopup.addEventListener('click', () => {
@@ -1437,9 +1433,10 @@ document.addEventListener('DOMContentLoaded', () => {
                              Student Organizer</a></li>
 
                         <li><a href="quiz.html" target="_blank"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+
                        <li>
-  <a href="Track.html" target="_blank">
-    <i class="fas fa-route"></i> Track
+  <a href="Articles.html" target="_blank">
+    <i class="fas fa-newspaper"></i> Articles
   </a>
 </li>
                         <li><a href="play.html" target="_blank"><i class="fas fa-gamepad"></i> Games</a></li>
@@ -1496,6 +1493,16 @@ document.addEventListener('DOMContentLoaded', () => {
     <h3>Quizzes</h3>
     <p>Test your knowledge with fun and interactive quizzes designed to challenge and improve your skills.</p>
     <a href="quiz.html" class="app-link">Start Quiz <i class="fas fa-arrow-right"></i></a>
+</div>
+
+
+  <div class="app-card">
+    <div class="app-icon">
+        <i class="fas fa-newspaper"></i>
+    </div>
+    <h3>Articles</h3>
+    <p>browse programming articles and read them anytime, save them, and interact with the community through comments and likes.</p>
+    <a href="Articles.html" class="app-link">Read Articles <i class="fas fa-arrow-right"></i></a>
 </div>
 
 
@@ -1814,7 +1821,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         color: #007bff;
                     }
 
-                    /* 🎨 ستايل خاص بحقل الكتابة فقط */
                     .contact-form {
                         display: flex;
                         gap: 8px;
@@ -1946,7 +1952,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </footer>
 
 
-    <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-chevron-up"></i>
     </div>
@@ -1961,7 +1966,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Set initial state based on video.muted
   const updateButton = () => {
     if (video.muted) {
       muteBtn.textContent = '🔇';
@@ -1976,18 +1980,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateButton();
 
-  // عند الضغط: نحاول نبدّل الحالة
   muteBtn.addEventListener('click', async (e) => {
-    // بعض المتصفحات تحظر تغيير الصوت قبل تفاعل المستخدم — لكن الضغط هنا هو تفاعل => مفروض ينجح
     try {
-      // لو الفيديو ميوت حالياً، نُحاول إلغاء الـmuted ثم نلعب الفيديو لو محتاج
       if (video.muted) {
         video.muted = false;
-        // بعض المتصفحات تطلب استدعاء play() بعد إلغاء الكتم
         const playPromise = video.play();
         if (playPromise !== undefined) {
           await playPromise.catch(err => {
-            // لو رفض، نعيد الفيديو لكتم ونشرح السبب في الكونسل
             console.warn('Play rejected after unmute:', err);
           });
         }
@@ -1996,7 +1995,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (err) {
       console.error('Error toggling mute:', err);
-      // كحل بديل: ضبط مستوى الصوت بدل الميوت (قد يساعد في بعض البيئات)
       video.volume = video.volume > 0 ? 0 : 1;
       video.muted = video.volume === 0;
     }
@@ -2004,7 +2002,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateButton();
   });
 
-  // لو حصل تغيير خارجي بالحالة (مثلاً من كود تاني)، نحدّث الزر
   video.addEventListener('volumechange', updateButton);
 });
 
@@ -2018,20 +2015,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // افتح التليجرام في تبويب جديد
     const telegramURL = `https://t.me/B_X_Z7?text=${encodeURIComponent(message)}`;
     window.open(telegramURL, "_blank");
 
-    // أظهر رسالة نجاح
     alert("✅ Your message has been successfully sent to Telegram!");
 
-    // مسح الرسالة من الحقل
     messageField.value = "";
 
-    // تحديث الصفحة بعد ثانية واحدة
     setTimeout(() => {
-        location.reload(); // Reload الصفحة
-        history.pushState(null, "", location.href); // منع الرجوع للخلف
+        location.reload(); 
+        history.pushState(null, "", location.href);
         window.onpopstate = () => history.go(1);
     }, 1000);
 }
@@ -2040,31 +2033,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return localStorage.getItem('materialxPopupSeen') === 'true';
     }
 
-    // 🔹 رقم الإصدار الحالي (غيّره كل ما تعمل تحديث جديد)
-    const POPUP_VERSION = "3.9";
+    const POPUP_VERSION = "3.8";
 
-    // 🔹 التحقق إذا المستخدم شاف الـ popup لهذا الإصدار
     function hasSeenPopup() {
         return localStorage.getItem('materialxPopupVersion') === POPUP_VERSION;
     }
 
-    // 🔹 تعليم أنه شافها لهذا الإصدار
     function markPopupAsSeen() {
         localStorage.setItem('materialxPopupVersion', POPUP_VERSION);
     }
 
-    // 🔹 عرضها مرة واحدة فقط لكل إصدار جديد
     window.addEventListener('DOMContentLoaded', function () {
         if (!hasSeenPopup()) {
             setTimeout(function () {
                 const popup = document.getElementById('welcomePopup');
                 if (popup) popup.classList.add('active');
-                markPopupAsSeen(); // ← نحفظ أنه شافها لهذا الإصدار
+                markPopupAsSeen(); 
             }, 1000);
         }
     });
 
-    // 🔹 إغلاق الـ popup عند الضغط على الزر
     document.addEventListener('click', function (e) {
         if (e.target && e.target.id === 'closePopup') {
             const popup = document.getElementById('welcomePopup');
@@ -2072,7 +2060,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-        // Hamburger Menu Toggle
         document.getElementById('hamburger').addEventListener('click', function (e) {
             e.stopPropagation();
             const navMenu = document.getElementById('nav-menu');
@@ -2082,7 +2069,6 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.toggle('active');
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', function (e) {
             const navMenu = document.getElementById('nav-menu');
             const hamburger = document.getElementById('hamburger');
@@ -2093,7 +2079,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu when clicking on a link
         document.querySelectorAll('#nav-menu a').forEach(link => {
             link.addEventListener('click', function () {
                 document.getElementById('nav-menu').classList.remove('active');
@@ -2101,7 +2086,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Back to Top Button
         window.addEventListener('scroll', function () {
             const backToTop = document.getElementById('backToTop');
             if (window.scrollY > 300) {
@@ -2176,10 +2160,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
 
-        // Change testimonial every 5 seconds
         setInterval(changeTestimonial, 5000);
 
-        // Enhanced Search Functionality
         const searchData = [
             { title: "Calculator", description: "Advanced calculator for mathematical operations", url: "Calculator.html", icon: "fas fa-calculator", category: "Apps" },
             { title: "Find a Team", description: "Connect and collaborate with others", url: "post.html", icon: "fas fa-users", category: "Apps" },
@@ -2221,16 +2203,23 @@ title: "Track ",
 {
   title: "Smart Student Organizer", 
   description: "Manage schedules, track progress, use timer & reminders, generate study plans.", 
-  url: "Exam.html", // Or the correct filename for your organizer
-  icon: "fas fa-calendar-alt", // Calendar icon
-  category: "Productivity" // Or "Planning", "Academic"
+  url: "Exam.html", 
+  icon: "fas fa-calendar-alt", 
+  category: "Productivity" 
 },
 {
   title: "Exam", 
   description: "Manage schedules, track progress, use timer & reminders, generate study plans.", 
-  url: "Exam.html", // Or the correct filename for your organizer
-  icon: "fas fa-calendar-alt", // Calendar icon
-  category: "Productivity" // Or "Planning", "Academic"
+  url: "Exam.html", 
+  icon: "fas fa-calendar-alt", 
+  category: "Productivity" 
+},
+{
+  title: "Articles",
+  description: "Explore tech knowledge, read latest articles, save favorites, and join discussions.",
+  url: "Articles.html",
+  icon: "fas fa-newspaper",
+  category: "Learning"
 },
 
 
@@ -2241,7 +2230,6 @@ title: "Track ",
         const searchButton = document.getElementById('searchButton');
         const searchResults = document.getElementById('searchResults');
 
-        // Function to highlight matching text
         function highlightText(text, query) {
             if (!query) return text;
 
@@ -2249,14 +2237,12 @@ title: "Track ",
             return text.replace(regex, '<mark>$1</mark>');
         }
 
-        // Enhanced search function
         function performSearch(query) {
             if (query.length === 0) {
                 searchResults.classList.remove('active');
                 return;
             }
 
-            // Show all items that contain the query in title, description, or category
             const filteredResults = searchData.filter(item => {
                 const searchableText = `${item.title} ${item.description} ${item.category}`.toLowerCase();
                 return searchableText.includes(query.toLowerCase());
@@ -2265,7 +2251,6 @@ title: "Track ",
             displayResults(filteredResults, query);
         }
 
-        // Improved results display with highlighting
         function displayResults(results, query) {
     if (results.length === 0) {
         searchResults.innerHTML = `
@@ -2277,7 +2262,6 @@ title: "Track ",
             </div>
         `;
 
-        // إزالة أي event listeners سابقة
         searchResults.querySelectorAll('.search-result-item').forEach(item => {
             item.replaceWith(item.cloneNode(true));
         });
@@ -2296,23 +2280,19 @@ title: "Track ",
             </div>
         `).join('');
 
-        // ✅ تعديل الجزء هنا:
         document.querySelectorAll('.search-result-item[data-url]').forEach(item => {
             item.addEventListener('click', function () {
                 const targetUrl = this.getAttribute('data-url');
 
-                // إغلاق نتائج البحث وتنظيف الحقل
                 searchResults.classList.remove('active');
                 searchInput.value = "";
 
-                // لو الرابط داخل الصفحة (anchor link)
-                if (targetUrl.startsWith("#")) {
+              if (targetUrl.startsWith("#")) {
                     const section = document.querySelector(targetUrl);
                     if (section) {
                         section.scrollIntoView({ behavior: "smooth" });
                     }
                 } else {
-                    // لو رابط خارجي — انتقل إليه
                     window.location.href = targetUrl;
                 }
             });
@@ -2323,7 +2303,6 @@ title: "Track ",
 }
 
 
-        // Event listeners
         searchInput.addEventListener('input', function () {
             performSearch(this.value.trim());
         });
@@ -2332,22 +2311,19 @@ title: "Track ",
             performSearch(searchInput.value.trim());
         });
 
-        // Close search results when clicking outside
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.search-container')) {
                 searchResults.classList.remove('active');
             }
         });
 
-        // Handle Enter key
         searchInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 performSearch(this.value.trim());
-                this.blur(); // Remove focus after search
+                this.blur(); 
             }
         });
 
-        // Add style for highlighted text
         const style = document.createElement('style');
         style.textContent = `
     mark {
@@ -2394,7 +2370,6 @@ title: "Track ",
 `;
         document.head.appendChild(style);
 
-        // Focus on search input when pressing Ctrl+K
         document.addEventListener('keydown', function (e) {
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
@@ -2402,7 +2377,6 @@ title: "Track ",
             }
         });
 
-        // Show search shortcut hint
         searchInput.addEventListener('focus', function () {
             this.setAttribute('title', 'Press Ctrl+K to quickly search');
         });
