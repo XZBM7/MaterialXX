@@ -302,13 +302,13 @@
             <div class="filter-section">
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="Software">Software</button>
                     <button class="filter-btn" data-filter="Careers">Careers</button>
                     <button class="filter-btn" data-filter="AI">AI</button>
                     <button class="filter-btn" data-filter="Security">Security</button>
                     <button class="filter-btn" data-filter="Development">Development</button>
                     <button class="filter-btn" data-filter="Databases">Databases</button>
                     <button class="filter-btn" data-filter="Mobile">Mobile</button>
-                    <button class="filter-btn" data-filter="mostLiked">Most Liked</button>
                 </div>
                 <div class="sort-options">
                     <select id="sortSelect">
@@ -467,61 +467,199 @@
             </div>
         </div>
     `, 
-    date: new Date().toISOString(), 
-    category: "Development", 
+
+    date: "2025-11-30T18:00:00.000Z",   
+     category: "Development", 
     likes: 0, 
     commentCount: 0,
     image: "https://www.biztechcs.com/wp-content/uploads/2023/04/What-is-Iterative-and-Incremental-Development-jpg-webp.webp"
 },
-            // { 
-            //     id: 2, 
-            //     title: "Introduction to Artificial Intelligence", 
-            //     excerpt: "Learn the basics of artificial intelligence, its real-world applications, and its impact on various industries.", 
-            //     content: `
-            //         <p>Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn like humans.</p>
-                    
-            //         <div class="article-gallery">
-            //             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AI Concept" class="gallery-image">
-            //             <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Machine Learning" class="gallery-image">
-            //             <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Neural Networks" class="gallery-image">
-            //             <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="AI in Robotics" class="gallery-image">
-            //         </div>
-                    
-            //         <p>The term may also be applied to any machine that exhibits traits associated with a human mind such as learning and problem-solving.</p>
-            //         <p>AI technologies are transforming industries including healthcare, finance, transportation, and entertainment. From virtual assistants to self-driving cars, AI applications are becoming increasingly prevalent in our daily lives.</p>
-            //         <p>Key branches of AI include machine learning, natural language processing, computer vision, and robotics. Each of these areas focuses on different aspects of creating intelligent systems.</p>
-            //     `, 
-            //     date: new Date(now - 45 * 60 * 1000).toISOString(), 
-            //     category: "AI", 
-            //     likes: 0, 
-            //     commentCount: 0,
-            //     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-            // },
-            // { 
-            //     id: 3, 
-            //     title: "Best Practices for Information Security", 
-            //     excerpt: "Discover the most important practices and tips for protecting your data and systems from growing cyber threats.", 
-            //     content: `
-            //         <p>Information security is crucial in today's digital world where data breaches and cyber attacks are increasingly common.</p>
-                    
-            //         <div class="article-gallery">
-            //             <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Cybersecurity" class="gallery-image">
-            //             <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Data Encryption" class="gallery-image">
-            //             <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Network Security" class="gallery-image">
-            //             <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Security Protocols" class="gallery-image">
-            //         </div>
-                    
-            //         <p>Implementing strong password policies is one of the most basic yet effective security measures. This includes using complex passwords, enabling multi-factor authentication, and regularly updating credentials.</p>
-            //         <p>Regular software updates are essential as they often contain security patches for vulnerabilities that could be exploited by attackers.</p>
-            //         <p>Employee training is another critical aspect of information security. Many security breaches occur due to human error, so educating staff about phishing scams and safe online practices is vital.</p>
-            //         <p>Data encryption, both at rest and in transit, ensures that even if data is intercepted, it remains unreadable without the proper decryption keys.</p>
-            //     `, 
-            //     date: new Date(now - 2 * oneHour).toISOString(), 
-            //     category: "Security", 
-            //     likes: 0, 
-            //     commentCount: 0,
-            //     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-            // }
+         { 
+    id: 2, 
+    title: "Agile vs. Waterfall:", 
+    excerpt: "مقارنة تفصيلية بين الـ Agile والـ Waterfall. هنفهم الفلسفة وراء كل واحدة، إدارة المخاطر، وإمتى بالظبط تستخدم كل منهجية عشان مشروعك مينهارش.", 
+    content: `
+        <div dir="rtl" style="text-align: right; font-family: 'Tahoma', 'Segoe UI', sans-serif; line-height: 1.8;">
+            <p>سيبك بقى من الكلام النظري بتاع الكتب، وخلينا نتكلم "بيزنس" وشغل عملي. الخناقة بين الـ Agile والـ Waterfall مش مجرد "موضة قديمة وجديدة"، دي خناقة "فلسفة إدارة مخاطر".</p>
+            <p>عشان تفهم الفرق بجد، لازم نبص تحت الغطاء ونشوف الموتور بتاع كل منهجية شغال إزاي.</p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">1) الـ Waterfall (منهجية التتابع الصارم)</h3>
+            <p>الاسم شارح نفسه، "شلال" مياه بينزل من فوق لتحت ومستحيل يرجع تاني. الفكرة كلها قائمة على مبدأ <strong>"التخطيط الكامل قبل التنفيذ"</strong>.</p>
+            
+            <p><strong>السيناريو بيمشي كده:</strong></p>
+            <ul style="padding-right: 20px;">
+                <li><strong>Requirements:</strong> بنقعد مع العميل نكتب وثيقة 200 صفحة فيها "كل تفصيلة" (حرفياً) قبل ما نكتب سطر كود.</li>
+                <li><strong>Design:</strong> المهندسين يرسموا الـ Architecture والـ Database بالكامل.</li>
+                <li><strong>Implementation:</strong> المبرمجين يشتغلوا شهور وهم منعزلين عن العميل.</li>
+                <li><strong>Testing & Deployment:</strong> اللحظة الحاسمة في آخر المشروع.</li>
+            </ul>
+
+            <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border-right: 4px solid #ffc107; margin: 15px 0;">
+                <strong>💡 المشكلة القاتلة (The Risk):</strong>
+                حاجة بنسميها "تأثير النفق". إنت بتدخل النفق في أول المشروع، ومبتشوفش النور غير في آخره. لو العميل اكتشف إن اللي طلبه مش هو اللي محتاجه فعلاً، المشروع كله "Labanese" (باظ يعني) وتكلفة التعديل بتبقى مرعبة.
+            </div>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">2) الـ Agile (المنهجية التكرارية المرنة)</h3>
+            <p>الـ Agile مش مجرد "Scrum" و "Standup meeting"، دي عقلية بتقول: <strong>"إحنا مستحيل نعرف كل حاجة في أول المشروع"</strong>.</p>
+            <p>بدل ما نبني "عربية" كاملة ونسلمها بعد سنة، إحنا بنمشي بمبدأ الـ MVP (Minimum Viable Product):</p>
+            <ul style="padding-right: 20px;">
+                <li>نعمل "سكوتر" الأول (حاجة بتمشي وتؤدي الغرض).</li>
+                <li>العميل يجرب ويقول ملاحظاته (Feedback Loop).</li>
+                <li>نطور السكوتر لعجلة، ثم موتوسيكل، ثم عربية.</li>
+            </ul>
+            <p><strong>الميزة القاتلة:</strong> الفشل هنا رخيص (Cheap Failure). لو اكتشفنا غلطة، بنخسر شغل أسبوعين بس (Sprint)، مش شغل سنة.</p>
+
+            <h3 style="color: var(--primary); margin-top: 30px;">المقارنة "على بلاطة":</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <tr style="background: var(--light);">
+                    <th style="padding: 10px; border: 1px solid #ddd;">وجه المقارنة</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Waterfall</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Agile</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>النطاق (Scope)</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">ثابت ومقدس (ممنوع التغيير)</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">مرن وقابل للتغيير</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>الوقت والتكلفة</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">غالباً بيزيدوا عن المحدد</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">محددين بـ Sprints (Time-boxed)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>العميل</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">بيشوف المنتج في الآخر بس</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">جزء من الفريق يومياً</td>
+                </tr>
+            </table>
+
+            <h3 style="color: var(--warning); margin-top: 30px;">الزتونة: أختار مين فيهم؟</h3>
+            <p>عشان نكون منصفين، الـ Waterfall مش "شر مطلق"، والـ Agile مش "سحر".</p>
+            
+            <p><strong>استخدم Waterfall لو:</strong></p>
+            <ul style="padding-right: 20px; margin-bottom: 15px;">
+                <li>المتطلبات واضحة وضوح الشمس ومش هتتغير (زي مشاريع البناء، أو برمجيات طبية حرجة).</li>
+                <li>العميل مش فاضي يتابع معاك كل أسبوع.</li>
+                <li>التكنولوجيا المستخدمة قديمة ومحفوظة ومفيش فيها مفاجآت.</li>
+            </ul>
+
+            <p><strong>استخدم Agile لو:</strong></p>
+            <ul style="padding-right: 20px;">
+                <li>بتعمل Startup أو منتج جديد في السوق (المتطلبات غامضة).</li>
+                <li>عايز تنزل السوق بسرعة (Time to Market) وتحدث بعدين.</li>
+                <li>العميل عايز يغير رأيه كل شوية بناءً على المنافسين.</li>
+            </ul>
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 30px;">
+                <img src="https://blog.iil.com/wp-content/uploads/2021/12/GettyImages-1287536166-1200x600.jpg" alt="Agile Planning" class="gallery-image">
+                <img src="https://jdmeier.com/wp-content/uploads/2023/03/Waterfall-vs.-Agile.jpg" alt="Code Review" class="gallery-image">
+                <img src="https://th.bing.com/th/id/R.bbdb1cfe7ec472be0cd400e10fa805b2?rik=Y5lBu%2f%2f7bOnOxw&riu=http%3a%2f%2f2.bp.blogspot.com%2f-cNN5-kOWlOo%2fUhSDH5TEa1I%2fAAAAAAAAAAs%2fVQVCXZbf4HE%2fs1600%2fagile-vs-waterfall-1.jpg&ehk=0eYgGw2PcV0vxuqjHc2TnAIHlelUW1jEe6F640amKmo%3d&risl=&pid=ImgRaw&r=0" alt="Waterfall Blueprint" class="gallery-image">
+            </div>
+        </div>
+    `, 
+    
+    date: "2025-11-28T14:30:00.000Z",   
+    category: "Software", 
+    likes: 0, 
+    commentCount: 0,
+    image: "https://tse2.mm.bing.net/th/id/OIP.arXKiQ5AhzUykGihfyeK8wHaD3?rs=1&pid=ImgDetMain&o=7&rm=3"
+},
+
+{ 
+    id: 3, 
+    title: "Data Science vs. Machine Learning: The Deep Dive & The Real Difference", 
+    excerpt: "بعيداً عن التعريفات السطحية، إيه الفرق الحقيقي في الـ Mindset، الـ Maths، والـ Daily Tasks؟ مقالة بتشرح الصراع الأزلي بين 'التفسير' و 'التوقع'.", 
+    content: `
+        <div dir="rtl" style="text-align: right; font-family: 'Tahoma', 'Segoe UI', sans-serif; line-height: 1.8;">
+            <p>ناس كتير فاكرة إن الفرق بين المجالين دول مجرد مسميات وظيفية (Titles) بتتحط عشان البريستيج، أو إن الـ ML هو مجرد "تطور طبيعي" للـ Data Science. الحقيقة إنهم مجالين متقاطعين جداً، بس كل واحد فيهم ليه "قبلة" (Direction) بيصلي ناحيتها مختلفة تماماً.</p>
+            <p>عشان تفهم العمق، لازم نسأل: <strong>إحنا بنعمل ده ليه؟</strong></p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">1. The Goal: Inference vs. Prediction</h3>
+            <p>ده "أعمق" فرق جوهري بينهم:</p>
+            
+            <p><strong>Data Science (علم الاستدلال - Inference):</strong></p>
+            <p>الـ Data Scientist عامل زي "محقق المباحث". هدفه يفهم <em>العلاقة</em> بين المتغيرات.
+            <br>يعني مش كفاية تقولي "المبيعات هتنزل"، لازم تقولي <strong>ليه؟</strong> هل بسبب السعر؟ ولا الإعلانات؟ ولا المنافسين؟
+            <br>هنا بنهتم جداً بالـ <em>Causality</em> (السببية) والـ <em>Explainability</em>. الموديل لو أسود (Black Box) ومحدش فاهم هو طلع النتيجة دي ليه، الـ Data Scientist بيرفضه.</p>
+
+            <p><strong>Machine Learning (علم التنبؤ - Prediction):</strong></p>
+            <p>الـ ML Engineer عامل زي "سواق الفورمولا 1". هدفه يوصل لأعلى دقة (Accuracy) في أسرع وقت.
+            <br>لو الموديل (Neural Network) معقد جداً ومحدش فاهم شغال إزاي من جوه، بس بيتوقع سعر السهم صح بنسبة 99%.. <strong>قشطة جداً، شغله!</strong>
+            <br>التركيز هنا على الـ <em>Performance</em> والـ <em>Generalization</em> على داتا جديدة.</p>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">2. The Math: Statistics vs. Optimization</h3>
+            <p>تحت الكبوت، الرياضيات اللي بتحرك المجالين مختلفة شوية:</p>
+
+            <ul style="padding-right: 20px;">
+                <li><strong>في الـ Data Science:</strong>
+                    اللعبه كلها <em>Statistics</em>. بنلعب بـ Hypothesis Testing، Confidence Intervals، و Distributions. إحنا عايزين نتأكد إن النتيجة دي مش "صدفة" (Statistically Significant).
+                </li>
+                <li><strong>في الـ Machine Learning:</strong>
+                    اللعبة كلها <em>Calculus & Linear Algebra</em>. إحنا بنحاول نلاقي الـ "Global Minima" لدالة الخطأ (Loss Function). يعني بنعمل Optimization عشان نقلل الفرق بين "توقع الموديل" و "الحقيقة".
+                </li>
+            </ul>
+
+             
+
+[Image of Data Science Lifecycle diagram]
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 20px;">
+                <img src="https://7wdata.be/wp-content/uploads/2016/05/data-scientist-venn-diagram1.jpg" alt="Data Science Lifecycle" class="gallery-image">
+            </div>
+
+            <h3 style="color: var(--primary); margin-top: 30px;">جدول المقارنة "للناس التقيلة":</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em;">
+                <tr style="background: var(--light);">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Point of View</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Data Science</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Machine Learning</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>البيانات (Data)</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">بينظر للداتا كـ "مصدر للحقيقة" (human-readable).</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">بينظر للداتا كـ "Vectors & Matrices" عشان الموديل يتدرب.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>التحدي الأكبر</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Data Cleaning & Dirty Data (الداتا الزبالة).</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Overfitting & Deployment (الموديل الحفيظ والتشغيل).</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>الأدوات (Tools)</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Pandas, SQL, Tableau, R.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">TensorFlow, PyTorch, Docker, Kubernetes.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>النتيجة (Output)</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">PowerPoint, PDF Report, Dashboard.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">API Endpoint, Running Software.</td>
+                </tr>
+            </table>
+
+            <h3 style="color: var(--warning); margin-top: 30px;">الخلاصة (The Verdict)</h3>
+            <p>الـ Data Scientist هو "المهندس المعماري" اللي بيخطط وبيفهم الأرض والبيئة واحتياجات السكان.</p>
+            <p>الـ ML Engineer هو "مهندس الإنشاءات" اللي بيحسب الأحمال وبيصب الخرسانة وبيخلي المبنى يقف وميقعش.</p>
+            <p><strong>إنت محتاج الاتنين، بس ابدأ بتحديد "مشكلتك" الأول: عايز "تفهم" ولا عايز "تتوقع"؟</strong></p>
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 30px;">
+                <img src="https://miro.medium.com/v2/resize:fit:686/1*CYWu0xizXIzY1FF6PZOclg.png" alt="Statistics Math" class="gallery-image">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.-ReX0JqHbUOkCYB-JQxplwHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Neural Networks" class="gallery-image">
+                <img src="https://images.ctfassets.net/wp1lcwdav1p1/3KsRz6gDJhJiw39LhjlsKJ/efa6a39ff85c49cbe4d8b815068cab53/Data_Science_vs._Machine_Learning.png?w=1500&q=60" alt="Coding" class="gallery-image">
+                <img src="https://www.datasciencecentral.com/wp-content/uploads/2021/10/2808328601.jpeg" alt="Analysis" class="gallery-image">
+            </div>
+        </div>
+    `, 
+    
+date: "2025-12-01T01:15:00.000Z",
+    category: "AI", 
+    likes: 0, 
+    commentCount: 0,
+    image: "https://blogs.skillovilla.com/wp-content/uploads/2022/03/What-is-the-scope-of-Data-Science-1.jpg"
+},
         ];
 
         const articlesGrid = document.getElementById('articlesGrid');
@@ -790,16 +928,16 @@
                 <div class="article-body">${article.content}</div>
                 
                 <div class="article-actions">
-                    <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${article.id}, this)">
-                        <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i> <span id="viewLikeCount">${article.likes}</span> Likes
-                    </button>
+                   <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="toggleLike(${article.id}, this)">
+    <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i> <span id="viewLikeCount">${article.likes}</span>&nbsp;Likes
+</button>
                     <button class="action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave(${article.id}, this)">
                         <i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i> <span>${isSaved ? 'Saved' : 'Save'}</span>
                     </button>
                     
-                    <button class="action-btn" onclick="toggleCommentsSection()">
-                        <i class="fas fa-comment"></i> <span id="viewCommentCount">${article.commentCount}</span> Comments
-                    </button>
+                   <button class="action-btn" onclick="toggleCommentsSection()">
+    <i class="fas fa-comment"></i> <span id="viewCommentCount">${article.commentCount}</span>&nbsp;Comments
+</button>
 
                     <div style="position:relative;">
                         <button class="action-btn" onclick="toggleShareMenu(event)"><i class="fas fa-share-alt"></i> Share</button>
