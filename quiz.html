@@ -92,10 +92,7 @@
             overflow-x: hidden;
         }
 
-        /* ================================================
-        ==    ✨ 1. التصميم الهيكلي الجديد (Sidebar)      ==
-        ================================================
-        */
+     
         .app-layout {
             display: grid;
             grid-template-columns: 320px 1fr;
@@ -2487,11 +2484,28 @@
     <div class="category-card"
         onclick="chooseplQuiz(4); pushView('time-options', 'Select Time Option');">
         <i class="fas fa-book"></i>
-        <h3>PL Lecture 4</h3>
+        <h3>PL Lecture 1,2,3 </h3>
         <p>Comprehensive Review (Ch. 1–3)</p>
     </div>
+
+      <div class="category-card"
+        onclick="chooseplQuiz(5); pushView('time-options', 'Select Time Option');">
+        <i class="fas fa-code-branch"></i>
+        <h3>PL3 - Lecture 4</h3>
+        <p>Concurrency & Parallel Models</p>
+    </div>
+
+    <div class="category-card"
+        onclick="chooseplQuiz(6); pushView('time-options', 'Select Time Option');">
+        <i class="fas fa-project-diagram"></i>
+        <h3>PL3 - Lecture 6</h3>
+        <p>Parsing, ASTs & Interpreters</p>
+    </div>
+
   </div>
 </div>
+
+
 
                 <div id="ethics-quiz-selection" class="hidden">
                     <h3>Select Ethics Quiz:</h3>

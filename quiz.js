@@ -7907,6 +7907,750 @@ const pl4 = [
 ];
 
 
+const pl5 = [
+    {
+        question: "Concurrency requires multiple CPU cores to be achieved.",
+        options: ["False", "True"],
+        answer: 0,
+        explanation: "Concurrency can be achieved on a single CPU core through interleaved execution."
+    },
+    {
+        question: "Parallelism improves system responsiveness by sharing time on a single core.",
+        options: ["False", "True"],
+        answer: 0,
+        explanation: "Parallelism increases computation speed by executing tasks simultaneously on multiple cores."
+    },
+    {
+        question: "Threads within the same process share the same memory space.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "Threads share the process's memory space but have their own stack and program counter."
+    },
+    {
+        question: "Race conditions occur when only one thread accesses a critical section.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Race conditions occur when multiple threads access shared data without synchronization."
+    },
+    {
+        question: "CSP (Communicating Sequential Processes) uses shared memory for communication.",
+        options: ["False", "True"],
+        answer: 0,
+        explanation: "CSP uses explicit message passing over channels, not shared memory."
+    },
+    {
+        question: "The Actor Model allows actors to directly modify each other's state.",
+        options: ["False", "True"],
+        answer: 0,
+        explanation: "Actors have private state and communicate only through messages."
+    },
+    {
+        question: "Async/Await is ideal for CPU-bound tasks that require raw performance.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Async/Await is best for I/O-bound tasks, not CPU-bound ones."
+    },
+    {
+        question: "Deadlocks occur when threads are blocked indefinitely waiting for each other.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "Deadlocks happen when two or more threads are stuck waiting for resources held by each other."
+    },
+    {
+        question: "MailboxProcessor in F# implements the CSP model directly with channels.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "MailboxProcessor simulates CSP-like behavior but does not provide direct CSP channels."
+    },
+    {
+        question: "Go's goroutines are an implementation of the Thread-Based concurrency model.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Go's goroutines are based on CSP principles, not traditional threads."
+    },
+    {
+        question: "Which of the following is NOT a concurrency model discussed in Lecture 4?",
+        options: ["Actor Model", "Promise/Future", "Thread-Based", "Async/Await"],
+        answer: 1,
+        explanation: "Promise/Future is a related pattern but not listed as a primary model in this lecture."
+    },
+    {
+        question: "What is the main goal of parallelism?",
+        options: ["Manage multiple tasks", "Increase computation speed", "Improve responsiveness", "Avoid deadlocks"],
+        answer: 1,
+        explanation: "Parallelism aims to execute multiple computations simultaneously to increase speed."
+    },
+    {
+        question: "Which tool in F# ensures mutual exclusion to prevent race conditions?",
+        options: ["MailboxProcessor", "async", "lock", "let!"],
+        answer: 2,
+        explanation: "The lock keyword ensures only one thread can access a critical section at a time."
+    },
+    {
+        question: "In CSP, communication between processes is:",
+        options: ["Direct state access", "Shared memory", "Broadcast", "Synchronous"],
+        answer: 3,
+        explanation: "CSP uses synchronous message passing over channels."
+    },
+    {
+        question: "Which language is most associated with the Actor Model?",
+        options: ["Go", "C#", "Erlang", "Java"],
+        answer: 2,
+        explanation: "Erlang is built around the Actor Model for fault-tolerant systems."
+    },
+    {
+        question: "What is a key benefit of Async/Await in F#?",
+        options: ["Synchronous communication", "Lightweight concurrency", "Direct memory sharing", "Automatic parallelization"],
+        answer: 1,
+        explanation: "Async workflows are lightweight and non-blocking, ideal for I/O operations."
+    },
+    {
+        question: "Which problem is NOT typically associated with thread-based concurrency?",
+        options: ["Starvation", "Deadlocks", "Deterministic execution", "Race conditions"],
+        answer: 2,
+        explanation: "Thread-based execution is non-deterministic, making deterministic execution a challenge."
+    },
+    {
+        question: "What does the MailboxProcessor in F# simulate?",
+        options: ["Synchronous I/O", "Thread pools", "CSP-like behavior", "Shared memory"],
+        answer: 2,
+        explanation: "MailboxProcessor provides actor-like message processing, simulating CSP principles."
+    },
+    {
+        question: "Which model is best suited for distributed systems with high fault tolerance?",
+        options: ["CSP", "Thread-Based", "Async/Await", "Actor Model"],
+        answer: 3,
+        explanation: "The Actor Model provides isolation, scalability, and built-in fault tolerance."
+    },
+    {
+        question: "What is a 'critical section' in concurrency?",
+        options: [
+            "A message queue in CSP",
+            "A function that runs asynchronously",
+            "A section that accesses shared resources and must be thread-safe",
+            "A part of code that must be executed by all threads"
+        ],
+        answer: 2,
+        explanation: "A critical section accesses shared resources and must be protected from concurrent access."
+    },
+    {
+        question: "Which synchronization tool works across process boundaries?",
+        options: ["Monitor", "Semaphore", "lock", "Mutex"],
+        answer: 3,
+        explanation: "Mutex can synchronize access across different processes."
+    },
+    {
+        question: "In the Actor Model, how do actors communicate?",
+        options: ["Direct method calls", "Global state", "Shared variables", "Message passing"],
+        answer: 3,
+        explanation: "Actors communicate exclusively through asynchronous message passing."
+    },
+    {
+        question: "What is the main disadvantage of thread-based concurrency?",
+        options: ["Low overhead", "Easy debugging", "Non-deterministic execution", "High safety"],
+        answer: 2,
+        explanation: "Thread execution order is unpredictable, leading to hard-to-reproduce bugs."
+    },
+    {
+        question: "Which keyword in F# async workflows allows non-blocking awaits?",
+        options: ["let", "use", "return", "let!"],
+        answer: 3,
+        explanation: "let! awaits an async operation without blocking the thread."
+    },
+    {
+        question: "What is 'starvation' in concurrency?",
+        options: [
+            "A deadlock resolved automatically",
+            "All threads run simultaneously",
+            "A thread is denied access to resources repeatedly",
+            "A thread finishes too quickly"
+        ],
+        answer: 2,
+        explanation: "Starvation occurs when a thread cannot gain access to needed resources."
+    },
+    {
+        question: "Which real-world system uses the Actor Model?",
+        options: ["Go runtime", "Apache Web Server", "WhatsApp", "Node.js"],
+        answer: 2,
+        explanation: "WhatsApp uses Erlang's Actor Model for massive scalability."
+    },
+    {
+        question: "What does CSP stand for?",
+        options: [
+            "Cooperative Synchronous Programming",
+            "Concurrent Shared Processes",
+            "Concurrent State Passing",
+            "Communicating Sequential Processes"
+        ],
+        answer: 3,
+        explanation: "CSP stands for Communicating Sequential Processes."
+    },
+    {
+        question: "Which model is recommended for I/O-bound web applications?",
+        options: ["Actor Model", "CSP", "Thread-Based", "Async/Await"],
+        answer: 3,
+        explanation: "Async/Await is lightweight and efficient for I/O-bound tasks like web requests."
+    },
+    {
+        question: "What is a 'livelock'?",
+        options: [
+            "A race condition with predictable outcome",
+            "A deadlock that resolves itself",
+            "A thread that runs indefinitely",
+            "Threads make no progress but keep changing state"
+        ],
+        answer: 3,
+        explanation: "Livelock occurs when threads change state but don't make real progress."
+    },
+    {
+        question: "In F#, what does the 'use' keyword ensure in async workflows?",
+        options: [
+            "Message passing",
+            "State immutability",
+            "Thread safety",
+            "Resource disposal"
+        ],
+        answer: 3,
+        explanation: "use ensures resources are disposed of properly, even on exceptions."
+    },
+    {
+        question: "Which concurrency model is built into Go's language design?",
+        options: ["Async/Await", "Thread-Based", "CSP", "Actor Model"],
+        answer: 2,
+        explanation: "Go uses goroutines and channels, which are based on CSP."
+    },
+    {
+        question: "What is the primary advantage of message-passing models over shared memory?",
+        options: ["Faster execution", "Lower memory usage", "Easier debugging", "Avoidance of race conditions"],
+        answer: 3,
+        explanation: "Message passing avoids shared memory, reducing race conditions and deadlocks."
+    },
+    {
+        question: "Which of these is a real implementation of the Actor Model in .NET?",
+        options: ["async/await", "Task Parallel Library", "Akka.NET", "MailboxProcessor"],
+        answer: 2,
+        explanation: "Akka.NET is a .NET port of the Akka actor framework."
+    },
+    {
+        question: "What does 'cooperative multitasking' mean in async workflows?",
+        options: [
+            "The OS forcibly switches tasks",
+            "Tasks share memory directly",
+            "Tasks voluntarily yield control",
+            "Tasks run in parallel on multiple cores"
+        ],
+        answer: 2,
+        explanation: "In cooperative multitasking, tasks yield control voluntarily."
+    },
+    {
+        question: "Which of the following is a problem unique to shared-memory concurrency?",
+        options: ["Channel deadlock", "Actor starvation", "Message serialization", "Race conditions"],
+        answer: 3,
+        explanation: "Race conditions arise from unsynchronized access to shared memory."
+    },
+    {
+        question: "What is the role of a 'channel' in CSP?",
+        options: [
+            "Manage critical sections",
+            "Schedule threads",
+            "Pass messages between processes",
+            "Share memory between processes"
+        ],
+        answer: 2,
+        explanation: "Channels are used for synchronous message passing between processes."
+    },
+    {
+        question: "Which F# construct is used to build async workflows?",
+        options: ["task { ... }", "channel { ... }", "async { ... }", "actor { ... }"],
+        answer: 2,
+        explanation: "async { ... } defines an asynchronous computation expression in F#."
+    },
+    {
+        question: "What is a key limitation of Async/Await?",
+        options: ["High memory usage", "Complex debugging", "Lack of composability", "Poor I/O performance"],
+        answer: 1,
+        explanation: "Async code can be harder to debug due to non-linear execution flow."
+    },
+    {
+        question: "Which model would you choose for a CPU-intensive scientific computation that needs fine control?",
+        options: ["Async/Await", "Actor Model", "Thread-Based", "CSP"],
+        answer: 2,
+        explanation: "Threads offer direct control and are good for CPU-intensive work."
+    },
+    {
+        question: "In the Actor Model, where are incoming messages stored before processing?",
+        options: ["Database table", "Shared heap", "Channel buffer", "Mailbox queue"],
+        answer: 3,
+        explanation: "Each actor has a mailbox where messages are queued for processing."
+    },
+    {
+        question: "What does 'context switching' refer to in concurrency?",
+        options: [
+            "Switching between CPU cores",
+            "Passing messages between actors",
+            "Saving and restoring thread state",
+            "Changing async workflow state"
+        ],
+        answer: 2,
+        explanation: "Context switching is the process of saving one task's state and loading another's."
+    }
+];
+
+const pl6 = [
+    {
+        question: "The lexical analysis phase is responsible for building the Abstract Syntax Tree.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Lexical analysis tokenizes source code, while parsing builds the AST."
+    },
+    {
+        question: "Abstract Syntax Trees preserve all syntactic details from the source code.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "ASTs remove unnecessary syntactic details and focus on semantic structure."
+    },
+    {
+        question: "FParsec is an imperative parsing library that requires separate grammar files.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "FParsec is a functional parsing library that uses parser combinators and doesn't require separate grammar files."
+    },
+    {
+        question: "In F#, discriminated unions are not suitable for representing AST nodes.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Discriminated unions are ideal for ASTs due to type safety and pattern matching capabilities."
+    },
+    {
+        question: "The between combinator in FParsec is used to parse expressions between delimiters like parentheses.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "Correct! between parses content between opening and closing delimiters."
+    },
+    {
+        question: "A stack-based virtual machine uses named registers for storing intermediate values.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Stack-based VMs use a stack, while register-based VMs use named registers."
+    },
+    {
+        question: "JIT compilation occurs at runtime, while AOT compilation happens before execution.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "Correct! JIT = Just-In-Time (runtime), AOT = Ahead-Of-Time (before execution)."
+    },
+    {
+        question: "Lazy evaluation computes expressions immediately when they are bound to variables.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Lazy evaluation defers computation until the result is actually needed."
+    },
+    {
+        question: "The OperatorPrecedenceParser in FParsec cannot handle left-associative operators.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "OperatorPrecedenceParser can handle different associativities including left, right, and non-associative."
+    },
+    {
+        question: "Interpreters typically execute code faster than virtual machines for the same program.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "Virtual machines usually execute faster due to bytecode compilation and optimization."
+    },
+    {
+        question: "What is the primary purpose of the lexer in the language processing pipeline?",
+        options: ["A. Build AST", "B. Execute code", "C. Tokenize source", "D. Optimize bytecode"],
+        answer: 2,
+        explanation: "The lexer tokenizes source code into meaningful tokens like identifiers, numbers, and operators."
+    },
+    {
+        question: "Which of these is NOT a typical token category in lexical analysis?",
+        options: ["A. Identifiers", "B. Literals", "C. Comments", "D. Delimiters"],
+        answer: 2,
+        explanation: "Comments are usually stripped during lexical analysis and not included as tokens."
+    },
+    {
+        question: "Given this F# code: type Token = INT of int | IDENT of string | PLUS, what does this represent?",
+        options: [
+            "A. Abstract Syntax Tree",
+            "B. Virtual Machine instruction",
+            "C. Token discriminated union",
+            "D. Parser combinator"
+        ],
+        answer: 2,
+        explanation: "This is a discriminated union definition for tokens used in lexical analysis."
+    },
+    {
+        question: "What does BNF (Backus-Naur Form) primarily describe?",
+        options: [
+            "A. Runtime behavior",
+            "B. Memory allocation",
+            "C. Formal grammars",
+            "D. Optimization strategies"
+        ],
+        answer: 2,
+        explanation: "BNF is a notation technique for describing formal grammars of programming languages."
+    },
+    {
+        question: "Which operator in EBNF indicates 'zero or more repetitions'?",
+        options: ["A. +", "B. *", "C. ?", "D. |"],
+        answer: 1,
+        explanation: "* indicates zero or more repetitions, + indicates one or more, ? indicates optional, | indicates alternatives."
+    },
+    {
+        question: "Consider this AST: Add(Number(5), Mul(Number(3), Number(2))). What expression does it represent?",
+        options: [
+            "A. 5 + 3 * 2",
+            "B. (5 + 3) * 2", 
+            "C. 5 * 3 + 2",
+            "D. 5 * (3 + 2)"
+        ],
+        answer: 0,
+        explanation: "The AST shows 5 + (3 * 2) which is 5 + 3 * 2 with multiplication having higher precedence."
+    },
+    {
+        question: "What is a key advantage of using discriminated unions for ASTs in F#?",
+        options: [
+            "A. Automatic memory management",
+            "B. Compile-time exhaustiveness checking",
+            "C. Faster execution speed",
+            "D. Built-in serialization"
+        ],
+        answer: 1,
+        explanation: "The compiler ensures all cases are handled when pattern matching, preventing missed scenarios."
+    },
+    {
+        question: "Which FParsec function would you use to parse one or more letter characters?",
+        options: [
+            "A. pchar",
+            "B. manySatisfy",
+            "C. many1SatisfyL", 
+            "D. between"
+        ],
+        answer: 2,
+        explanation: "many1SatisfyL parses one or more characters satisfying a predicate, with 'L' providing error labels."
+    },
+    {
+        question: "In the expression 'x = (5 + 3) * 2', which part would the 'between' combinator handle?",
+        options: [
+            "A. Parsing 'x'",
+            "B. Parsing '='", 
+            "C. Parsing '(5 + 3)'",
+            "D. Parsing '* 2'"
+        ],
+        answer: 2,
+        explanation: "between handles delimited expressions like those in parentheses."
+    },
+    {
+        question: "Which precedence value would make an operator evaluate first?",
+        options: [
+            "A. Lower number",
+            "B. Higher number",
+            "C. It doesn't matter",
+            "D. Zero"
+        ],
+        answer: 1,
+        explanation: "Higher precedence values mean operators are evaluated first (e.g., multiplication before addition)."
+    },
+    {
+        question: "Given this parser: let assignment = identifier .>> spaces .>> pchar '=' .>> spaces .>>. expr, what does '.>>.' do?",
+        options: [
+            "A. Discards left result",
+            "B. Discards right result", 
+            "C. Combines both results",
+            "D. Applies a function"
+        ],
+        answer: 2,
+    explanation: "`.>>.` combines the results of two parsers into a tuple."
+    },
+    {
+        question: "What is the primary role of the environment in an interpreter?",
+        options: [
+            "A. Tokenize source code",
+            "B. Parse grammar rules",
+            "C. Track variable bindings", 
+            "D. Generate bytecode"
+        ],
+        answer: 2,
+        explanation: "The environment maintains variable names and their values during execution."
+    },
+    {
+        question: "Consider this eval function: | Add(a,b) -> eval env a + eval env b. What evaluation strategy is this?",
+        options: [
+            "A. Lazy evaluation",
+            "B. Eager evaluation",
+            "C. Parallel evaluation",
+            "D. Just-in-time evaluation"
+        ],
+        answer: 1,
+        explanation: "Both operands are evaluated immediately before the addition, characteristic of eager evaluation."
+    },
+    {
+        question: "Which of these is a key difference between interpreters and virtual machines?",
+        options: [
+            "A. Interpreters use tokens, VMs use ASTs",
+            "B. Interpreters walk ASTs, VMs execute bytecode",
+            "C. Interpreters are faster than VMs",
+            "D. VMs cannot handle variables"
+        ],
+        answer: 1,
+        explanation: "Interpreters directly evaluate ASTs while VMs compile to bytecode first for execution."
+    },
+    {
+        question: "In a stack-based VM, what would the instruction sequence for '5 + 3' be?",
+        options: [
+            "A. PUSH 5; ADD; PUSH 3",
+            "B. PUSH 5; PUSH 3; ADD", 
+            "C. ADD 5 3",
+            "D. STORE 5; LOAD 3; ADD"
+        ],
+        answer: 1,
+        explanation: "Push both operands then apply the ADD operation to the top two stack values."
+    },
+    {
+        question: "Which virtual machine is specifically designed for Erlang and Elixir?",
+        options: [
+            "A. JVM",
+            "B. BEAM", 
+            "C. CLR",
+            "D. WebAssembly"
+        ],
+        answer: 1,
+        explanation: "BEAM (Bogdan/Björn's Erlang Abstract Machine) is Erlang's VM, also used by Elixir."
+    },
+    {
+        question: "What is a key advantage of JIT compilation over AOT compilation?",
+        options: [
+            "A. Faster startup time",
+            "B. Profile-guided optimization", 
+            "C. Smaller binary size",
+            "D. Better cross-platform compatibility"
+        ],
+        answer: 1,
+        explanation: "JIT can optimize based on actual runtime profiling information."
+    },
+    {
+        question: "In lazy evaluation, when is the expression 'lazy (printfn \"run\"; 5 + 5)' evaluated?",
+        options: [
+            "A. When defined",
+            "B. When first used", 
+            "C. At compile time",
+            "D. Never"
+        ],
+        answer: 1,
+        explanation: "Lazy expressions are evaluated only when their value is actually needed."
+    },
+    {
+        question: "What does this EBNF rule represent: expr = term ((\"+\" | \"-\") term)*?",
+        options: [
+            "A. A single term",
+            "B. Terms separated by + or -", 
+            "C. Only multiplication",
+            "D. Variable assignment"
+        ],
+        answer: 1,
+        explanation: "This describes one or more terms separated by + or - operators."
+    },
+    {
+        question: "Which parsing approach uses functions that take parsers and return new parsers?",
+        options: [
+            "A. Recursive descent",
+            "B. LR parsing",
+            "C. Parser combinators", 
+            "D. Table-driven parsing"
+        ],
+        answer: 2,
+        explanation: "Parser combinators are higher-order functions that combine parsers to create new ones."
+    },
+    {
+        question: "What is the purpose of the 'many1' in 'many1SatisfyL isLetter \"id\"'?",
+        options: [
+            "A. Match zero or more",
+            "B. Match exactly one",
+            "C. Match one or more", 
+            "D. Match any character"
+        ],
+        answer: 2,
+        explanation: "'many1' means one or more occurrences (at least one)."
+    },
+    {
+        question: "In the AST node Assign(\"x\", Add(Number(5), Number(3))), what type of operation is 'Assign'?",
+        options: [
+            "A. Arithmetic operation",
+            "B. Comparison operation", 
+            "C. Variable declaration",
+            "D. Assignment operation"
+        ],
+        answer: 3,
+        explanation: "Assign represents an assignment operation storing a value in a variable."
+    },
+    {
+        question: "Which of these languages primarily uses eager evaluation?",
+        options: [
+            "A. Haskell",
+            "B. F# (by default)", 
+            "C. Both use lazy",
+            "D. Neither"
+        ],
+        answer: 1,
+        explanation: "F# uses eager evaluation by default, though it supports lazy evaluation explicitly."
+    },
+    {
+        question: "What problem does the OperatorPrecedenceParser in FParsec solve?",
+        options: [
+            "A. Memory management",
+            "B. Error reporting",
+            "C. Operator precedence handling", 
+            "D. Token generation"
+        ],
+        answer: 2,
+        explanation: "It handles operator precedence and associativity in expression parsing."
+    },
+    {
+        question: "Given this code: let parens p = between (pchar '(') (pchar ')') p, what does 'p' represent?",
+        options: [
+            "A. A parser for the opening parenthesis",
+            "B. A parser for the closing parenthesis",
+            "C. A parser for the content inside", 
+            "D. The result type"
+        ],
+        answer: 2,
+        explanation: "'p' is the parser for the expression inside the parentheses."
+    },
+    {
+        question: "Which component is responsible for checking syntax against grammar rules?",
+        options: [
+            "A. Lexer",
+            "B. Parser", 
+            "C. Interpreter",
+            "D. Virtual Machine"
+        ],
+        answer: 1,
+        explanation: "The parser validates token sequences against grammar rules."
+    },
+    {
+        question: "What is a key difference between parse trees and abstract syntax trees?",
+        options: [
+            "A. Parse trees are smaller",
+            "B. ASTs include all syntactic details",
+            "C. ASTs focus on semantics", 
+            "D. Parse trees are used for execution"
+        ],
+        answer: 2,
+        explanation: "ASTs remove unnecessary syntactic details and focus on semantic meaning."
+    },
+    {
+        question: "In FParsec, what does the '|>' operator typically do?",
+        options: [
+            "A. Alternative choice",
+            "B. Sequence parsers",
+            "C. Transform results", 
+            "D. Handle errors"
+        ],
+        answer: 2,
+        explanation: "The pipe-forward operator is often used to transform parser results."
+    },
+    {
+        question: "Which of these would be a valid extension to the lab exercises?",
+        options: [
+            "A. Adding garbage collection",
+            "B. Implementing boolean operations", 
+            "C. Creating a GUI interface",
+            "D. Network communication"
+        ],
+        answer: 1,
+        explanation: "Adding boolean operations is mentioned as a lab exercise for extending the interpreter."
+    },
+    {
+        question: "What does the 'L' in 'many1SatisfyL' provide?",
+        options: [
+            "A. Lazy evaluation",
+            "B. Line number tracking",
+            "C. Error message label", 
+            "D. Left associativity"
+        ],
+        answer: 2,
+        explanation: "The 'L' suffix provides an error message label for better error reporting."
+    },
+    {
+        question: "In the evaluation function pattern: | Var v -> env.[v], what happens if 'v' is not in env?",
+        options: [
+            "A. Returns 0",
+            "B. Creates the variable",
+            "C. Throws an exception", 
+            "D. Returns null"
+        ],
+        answer: 2,
+        explanation: "Dictionary lookup with env.[v] would throw a KeyNotFoundException if v is not found."
+    },
+    {
+        question: "Which of these is an advantage of register-based VMs over stack-based VMs?",
+        options: [
+            "A. Simpler implementation",
+            "B. Fewer instructions for complex ops", 
+            "C. Better memory usage",
+            "D. Easier debugging"
+        ],
+        answer: 1,
+        explanation: "Register machines can perform complex operations with fewer instructions by using named registers."
+    },
+    {
+        question: "What does EBNF add to basic BNF notation?",
+        options: [
+            "A. Semantic rules",
+            "B. Additional notations for clarity", 
+            "C. Runtime behavior",
+            "D. Optimization hints"
+        ],
+        answer: 1,
+        explanation: "EBNF (Extended BNF) adds notations like repetition operators (*, +, ?) for clearer grammar specifications."
+    },
+    {
+        question: "In the pipeline: Source → Lexer → Parser → AST → ?, what comes next for an interpreter?",
+        options: [
+            "A. Bytecode",
+            "B. Machine code",
+            "C. Interpreter", 
+            "D. Optimizer"
+        ],
+        answer: 2,
+        explanation: "For an interpreter, the AST is directly evaluated by the interpreter component."
+    },
+    {
+        question: "Which F# feature makes discriminated unions particularly suitable for AST traversal?",
+        options: [
+            "A. Type inference",
+            "B. Pattern matching", 
+            "C. Mutable variables",
+            "D. Async workflows"
+        ],
+        answer: 1,
+        explanation: "Pattern matching allows elegant and exhaustive handling of different AST node types."
+    },
+    {
+        question: "What is the purpose of 'createParserForwardedToRef()' in FParsec?",
+        options: [
+            "A. Create recursive parsers", 
+            "B. Optimize parsing speed",
+            "C. Handle errors",
+            "D. Generate tokens"
+        ],
+        answer: 0,
+        explanation: "It's used to create forward references for parsing recursive grammar structures."
+    },
+    {
+        question: "In lazy evaluation, what is a potential benefit?",
+        options: [
+            "A. Faster startup",
+            "B. Avoiding unnecessary computations", 
+            "C. Simpler debugging",
+            "D. Better memory locality"
+        ],
+        answer: 1,
+        explanation: "Lazy evaluation can avoid computing values that are never actually used."
+    }
+];
+
 const ethics1 = [
     // Multiple Choice Questions (20 questions)
     {
@@ -9687,7 +10431,6 @@ const ethics5 = [
         explanation: "Footprinting is the first phase with the goal to gather as much information as is reasonable and useful about a potential target."
     },
 
-  // True/False Questions (10 questions) - Varied
   {
     "question": "Computer ethics only concern the use of computer software, not hardware.",
     "options": ["True", "False"],
@@ -11701,6 +12444,9 @@ function getplQuestions() {
     if (plQuizVariant === 2) return pl2;
     if (plQuizVariant === 3) return pl3;
     if (plQuizVariant === 4) return pl4;
+    if (plQuizVariant === 5) return pl5;
+    if (plQuizVariant === 6) return pl6;
+
 
 }
 
