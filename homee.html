@@ -1346,15 +1346,130 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
   }
 }
 
+
+
+  #ad-overlay {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100vw;
+       height: 100vh;
+       background: #000;
+       z-index: 999999;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+   }
+
+   #ad-video {
+       width: 95%;
+       max-width: 900px;
+       height: auto;
+       max-height: 85vh;
+       border-radius: 10px;
+       box-shadow: 0 0 30px rgba(255,255,255,0.1);
+       background: #000;
+   }
+
+   .ad-countdown {
+       color: white;
+       font-size: 1.2rem;
+       margin-top: 20px;
+       background: rgba(0,0,0,0.7);
+       padding: 10px 20px;
+       border-radius: 20px;
+       text-align: center;
+   }
+
+   .ad-message {
+       color: #aaa;
+       margin-top: 10px;
+       font-size: 0.9rem;
+       text-align: center;
+       padding: 0 10px;
+   }
+
+   @media (max-width: 768px) {
+       #ad-video {
+           width: 98%;
+           max-height: 70vh;
+           border-radius: 5px;
+       }
+       
+       .ad-countdown {
+           font-size: 1rem;
+           padding: 8px 15px;
+           margin-top: 15px;
+       }
+       
+       .ad-message {
+           font-size: 0.8rem;
+           margin-top: 8px;
+       }
+   }
+
+   @media (max-width: 480px) {
+       #ad-video {
+           max-height: 60vh;
+       }
+       
+       .ad-countdown {
+           font-size: 0.9rem;
+           padding: 6px 12px;
+           margin-top: 10px;
+       }
+       
+       .ad-message {
+           font-size: 0.75rem;
+       }
+   }
+
+   @media (min-width: 1200px) {
+       #ad-video {
+           max-width: 1000px;
+       }
+   }
+
+   @media (max-height: 600px) and (orientation: landscape) {
+       #ad-video {
+           max-height: 90vh;
+           max-width: 95vw;
+       }
+       
+       .ad-countdown, .ad-message {
+           margin-top: 10px;
+       }
+   }
+
+   body.ad-active {
+       overflow: hidden !important;
+       height: 100vh !important;
+   }
+
+
+
+
     </style>
 </head>
 
 <body>
-   <div class="welcome-popup" id="welcomePopup">
+
+    <div id="ad-overlay">
+    <video id="ad-video" controls autoplay muted playsinline>
+        <source src="img/video_2025-12-25_22-01-00.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="ad-countdown" id="countdown-text">V 4.0 Coming soon in MaterialX</div>
+    <div class="ad-message" id="message-text">Video will close automatically when finished</div>
+</div>
+
+   <!-- <div class="welcome-popup" id="welcomePopup">
     <div class="popup-content">
         <div class="popup-icon">
             <i class="fas fa-newspaper"></i>
-        </div>
+        </div> -->
+
        <!-- <div class="popup-video-container">
   <video class="popup-video" id="mainVideo"
          src="img/IMG_8282.MP4"
@@ -1366,7 +1481,7 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
     🔇
   </button>
 </div> -->
-      <h2>New Feature: Programming articles  </h2>
+      <!-- <h2>New Feature: Programming articles  </h2>
         <p>
 <strong>You can now browse programming articles and read them anytime, save them, and interact with the community through comments and likes.</strong>
 </p>
@@ -1377,9 +1492,9 @@ background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url
 </a>
 <button class="popup-button secondary" id="closePopup">
     Maybe Later
-</button>
+</button> -->
 
-<script>
+<!-- <script>
 document.addEventListener('DOMContentLoaded', () => {
     const tryNowBtn = document.getElementById('tryNowBtn');
     const closePopup = document.getElementById('closePopup');
@@ -1394,11 +1509,11 @@ document.addEventListener('DOMContentLoaded', () => {
         location.reload();
     });
 });
-</script>
+</script> -->
 
-        </div>
+        <!-- </div>
     </div>
-</div>
+</div> -->
 
 
     <header>
@@ -2382,6 +2497,139 @@ title: "Track ",
         });
         
 
+
+
+
+
+
+
+
+
+
+    // التحكم في إعلان الفيديو - الكود الكامل
+document.addEventListener('DOMContentLoaded', function() {
+    const adOverlay = document.getElementById('ad-overlay');
+    const adVideo = document.getElementById('ad-video');
+    const appLayout = document.querySelector('.app-layout') || document.querySelector('.container');
+    const header = document.querySelector('header');
+    
+    // تحقق إذا كان المستخدم قد شاهد الإعلان من قبل
+    if (localStorage.getItem('adWatched') === 'true') {
+        if (adOverlay) adOverlay.style.display = 'none';
+        return;
+    }
+    
+    if (!adOverlay || !adVideo) {
+        console.log('Ad elements not found');
+        return;
+    }
+    
+    // إضافة كلاس للجسم لمنع التمرير
+    document.body.classList.add('ad-active');
+    
+    // إخفاء كل المحتوى أثناء عرض الإعلان
+    if (appLayout) appLayout.style.display = 'none';
+    if (header) header.style.display = 'none';
+    
+    // تحسين تجربة الفيديو للأجهزة المحمولة
+    adVideo.setAttribute('playsinline', '');
+    adVideo.setAttribute('webkit-playsinline', '');
+    
+    // محاولة تشغيل الفيديو
+    setTimeout(function() {
+        try {
+            adVideo.play().catch(function(error) {
+                console.log('Auto-play failed:', error);
+                // طريقة بديلة
+                adOverlay.style.cursor = 'pointer';
+                adOverlay.addEventListener('click', function startVideo() {
+                    adVideo.play();
+                    adOverlay.removeEventListener('click', startVideo);
+                });
+                document.getElementById('countdown-text').textContent = 'Tap to start video';
+            });
+        } catch (e) {
+            console.log('Video play error:', e);
+        }
+    }, 1000);
+    
+    // عند انتهاء الفيديو
+    adVideo.addEventListener('ended', function() {
+        closeAd();
+    });
+    
+    // عند خطأ في الفيديو
+    adVideo.addEventListener('error', function() {
+        console.log('Video error, closing ad');
+        closeAd();
+    });
+    
+    // تحقق بعد 10 ثواني إذا كان الفيديو لا يزال عالقاً
+    setTimeout(function() {
+        if (adVideo.readyState < 3 && !adVideo.ended) { // لم يبدأ أو لم يكمل
+            console.log('Video stuck, closing ad');
+            closeAd();
+        }
+    }, 10000);
+    
+    function closeAd() {
+        // حفظ أن المستخدم شاهد الإعلان
+        localStorage.setItem('adWatched', 'true');
+        
+        // إخفاء الإعلان مع animation
+        adOverlay.style.opacity = '0';
+        adOverlay.style.transition = 'opacity 0.5s ease';
+        
+        setTimeout(function() {
+            adOverlay.style.display = 'none';
+            // إزالة كلاس منع التمرير
+            document.body.classList.remove('ad-active');
+            
+            // إظهار المحتوى الرئيسي
+            if (appLayout) {
+                appLayout.style.display = 'block';
+                appLayout.style.opacity = '0';
+                setTimeout(function() {
+                    appLayout.style.transition = 'opacity 0.5s ease';
+                    appLayout.style.opacity = '1';
+                }, 10);
+            }
+            
+            if (header) {
+                header.style.display = 'block';
+            }
+        }, 500);
+    }
+    
+    // منع محاولات التخطي
+    let skipAttempts = 0;
+    
+    adVideo.addEventListener('pause', function(e) {
+        if (!adVideo.ended && adVideo.currentTime < adVideo.duration - 2) {
+            skipAttempts++;
+            if (skipAttempts < 3) {
+                adVideo.play();
+                showSkipWarning();
+            } else {
+                // إذا حاول تخطي أكثر من 3 مرات، أظهر رسالة
+                document.getElementById('countdown-text').textContent = 'Please watch the full video';
+                document.getElementById('countdown-text').style.color = '#ff0000';
+            }
+        }
+    });
+    
+    function showSkipWarning() {
+        const countdown = document.getElementById('countdown-text');
+        const originalText = countdown.textContent;
+        countdown.textContent = 'Please watch to continue...';
+        countdown.style.color = '#ff6b6b';
+        
+        setTimeout(function() {
+            countdown.textContent = originalText;
+            countdown.style.color = '';
+        }, 2000);
+    }
+});
         
     </script>
 </body>
