@@ -1959,11 +1959,126 @@
                 /* تكبير إضافي للشاشات الصغيرة */
             }
         }
+
+
+
+
+  #ad-overlay {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100vw;
+       height: 100vh;
+       background: #000;
+       z-index: 999999;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+   }
+
+   #ad-video {
+       width: 95%;
+       max-width: 900px;
+       height: auto;
+       max-height: 85vh;
+       border-radius: 10px;
+       box-shadow: 0 0 30px rgba(255,255,255,0.1);
+       background: #000;
+   }
+
+   .ad-countdown {
+       color: white;
+       font-size: 1.2rem;
+       margin-top: 20px;
+       background: rgba(0,0,0,0.7);
+       padding: 10px 20px;
+       border-radius: 20px;
+       text-align: center;
+   }
+
+   .ad-message {
+       color: #aaa;
+       margin-top: 10px;
+       font-size: 0.9rem;
+       text-align: center;
+       padding: 0 10px;
+   }
+
+   @media (max-width: 768px) {
+       #ad-video {
+           width: 98%;
+           max-height: 70vh;
+           border-radius: 5px;
+       }
+       
+       .ad-countdown {
+           font-size: 1rem;
+           padding: 8px 15px;
+           margin-top: 15px;
+       }
+       
+       .ad-message {
+           font-size: 0.8rem;
+           margin-top: 8px;
+       }
+   }
+
+   @media (max-width: 480px) {
+       #ad-video {
+           max-height: 60vh;
+       }
+       
+       .ad-countdown {
+           font-size: 0.9rem;
+           padding: 6px 12px;
+           margin-top: 10px;
+       }
+       
+       .ad-message {
+           font-size: 0.75rem;
+       }
+   }
+
+   @media (min-width: 1200px) {
+       #ad-video {
+           max-width: 1000px;
+       }
+   }
+
+   @media (max-height: 600px) and (orientation: landscape) {
+       #ad-video {
+           max-height: 90vh;
+           max-width: 95vw;
+       }
+       
+       .ad-countdown, .ad-message {
+           margin-top: 10px;
+       }
+   }
+
+   body.ad-active {
+       overflow: hidden !important;
+       height: 100vh !important;
+   }
+
         
     </style>
 </head>
 
 <body class="dark-mode">
+
+
+<div id="ad-overlay">
+    <video id="ad-video" controls autoplay muted playsinline>
+        <source src="img/video_2025-12-25_22-01-00.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="ad-countdown" id="countdown-text">V 4.0 Coming soon in MaterialX</div>
+    <div class="ad-message" id="message-text">Video will close automatically when finished</div>
+</div>
+
+
 
     <div id="theme-transition-overlay"></div>
 
@@ -2540,6 +2655,37 @@
                             <h3> Lecture 1,2,3,4,5 (شنب الجمبري للمنهج المفتري)</h3>
                             <p>ALL lec (شنب الجمبري للمنهج المفتري)</p>
                         </div>
+
+                        <div class="category-card"
+     onclick="chooseethicsQuiz(6); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-database"></i>
+    <h3>Ethics Lecture 6</h3>
+    <p>SQL Injection Attacks</p>
+</div>
+
+<div class="category-card"
+     onclick="chooseethicsQuiz(7); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-user-secret"></i>
+    <h3>Ethics Lecture 7</h3>
+    <p>System Hacking & Password Cracking</p>
+</div>
+
+<div class="category-card"
+     onclick="chooseethicsQuiz(8); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-users"></i>
+    <h3>Ethics Lecture 8</h3>
+    <p>Social Engineering Techniques</p>
+</div>
+
+
+<div class="category-card"
+     onclick="chooseethicsQuiz(9); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-seedling"></i>
+    <h3>شهقة الملوخية للمادة المفترية </h3>
+    <p>كل المنهج من 1 الى 8 </p>
+</div>
+
+
                     </div>
                 </div>
 
@@ -2594,6 +2740,26 @@
                             <h3>Lec-3</h3>
                             <p>Six classes of SQA components, infrastructure, and implementation strategies</p>
                         </div>
+                        <div class="category-card"
+     onclick="choosesqQuiz(4); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-chart-line"></i>
+    <h3>Lec-4</h3>
+    <p>Software Quality Standards and Models (ISO, IEEE, CMMI, Six Sigma, Lean)</p>
+</div>
+
+<div class="category-card"
+     onclick="choosesqQuiz(5); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-check-double"></i>
+    <h3>Lec-5</h3>
+    <p>SQA Processes, Testing Strategies, Verification & Validation, Defect Management</p>
+</div>
+
+<div class="category-card"
+     onclick="choosesqQuiz(6); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-robot"></i>
+    <h3>Lec-6</h3>
+    <p>Advanced Testing Techniques, Automation, CI/CD, AI in Testing</p>
+</div>
                     </div>
                 </div>
 

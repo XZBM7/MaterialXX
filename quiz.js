@@ -90,9 +90,9 @@ function updateUserStats(quizName, score, timeTaken) {
 document.addEventListener('DOMContentLoaded', function () {
     updateStatsDisplay();
 
-const savedGlassMode = localStorage.getItem('glassMode') === 'true';
+    const savedGlassMode = localStorage.getItem('glassMode') === 'true';
     const glassToggleCheckbox = document.getElementById('glass-status');
-    
+
     if (glassToggleCheckbox) {
         glassToggleCheckbox.checked = savedGlassMode;
         document.body.classList.toggle('glass-mode-on', savedGlassMode);
@@ -126,7 +126,7 @@ const savedGlassMode = localStorage.getItem('glassMode') === 'true';
 
 const databaseQuestions1 = [
 
-      {
+    {
         question: "What is a database?",
         options: ["A collection of unrelated data", "A collection of related data", "A program that retrieves data", "A storage medium for documents"],
         answer: 1
@@ -7208,36 +7208,36 @@ const pl1 = [
         answer: 0,
         explanation: "Pascal used 'begin' and 'end' to define blocks clearly."
     },
-  {
-    question: "Readability is one of the core principles in programming language design.",
-    options: ["True", "False"],
-    answer: 0,
-    explanation: "TRUE — Readability helps developers understand and maintain code easily."
-},
-{
-    question: "Portability ensures that a program can run on multiple platforms without change.",
-    options: ["True", "False"],
-    answer: 0,
-    explanation: "TRUE — Portability minimizes platform-specific dependencies."
-},
-{
-    question: "Efficiency and readability are always directly proportional in language design.",
-    options: ["True", "False"],
-    answer: 1,
-    explanation: "FALSE — Improving readability can sometimes reduce raw performance."
-},
-{
-    question: "Orthogonality in design means independent features can be combined freely.",
-    options: ["True", "False"],
-    answer: 0,
-    explanation: "TRUE — Orthogonal features behave predictably when combined."
-},
-{
-    question: "FORTRAN was the first programming language to introduce object-oriented programming.",
-    options: ["True", "False"],
-    answer: 1,
-    explanation: "FALSE — FORTRAN was procedural; Simula introduced OOP."
-}
+    {
+        question: "Readability is one of the core principles in programming language design.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "TRUE — Readability helps developers understand and maintain code easily."
+    },
+    {
+        question: "Portability ensures that a program can run on multiple platforms without change.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "TRUE — Portability minimizes platform-specific dependencies."
+    },
+    {
+        question: "Efficiency and readability are always directly proportional in language design.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "FALSE — Improving readability can sometimes reduce raw performance."
+    },
+    {
+        question: "Orthogonality in design means independent features can be combined freely.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "TRUE — Orthogonal features behave predictably when combined."
+    },
+    {
+        question: "FORTRAN was the first programming language to introduce object-oriented programming.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "FALSE — FORTRAN was procedural; Simula introduced OOP."
+    }
 
 ];
 
@@ -7489,37 +7489,37 @@ const pl2 = [
         answer: 0,
         explanation: "Variance annotations control subtype relationships for generics safely."
     },
-    
-   {
-    question: "Static typing detects type errors during program execution.",
-    options: ["True", "False"],
-    answer: 1,
-    explanation: "FALSE — Static typing detects type errors at compile time, not at runtime."
-},
-{
-    question: "Dependent types allow types to depend on runtime values.",
-    options: ["True", "False"],
-    answer: 0,
-    explanation: "TRUE — Dependent types express constraints based on values."
-},
-{
-    question: "Strong typing allows implicit conversions between unrelated types.",
-    options: ["True", "False"],
-    answer: 1,
-    explanation: "FALSE — Strong typing forbids unsafe or implicit conversions."
-},
-{
-    question: "Type inference reduces verbosity without losing type safety.",
-    options: ["True", "False"],
-    answer: 0,
-    explanation: "TRUE — Inference deduces types while keeping the code type-safe."
-},
-{
-    question: "Covariant arrays are fully type-safe in all contexts.",
-    options: ["True", "False"],
-    answer: 1,
-    explanation: "FALSE — Covariant arrays can violate type safety in some cases."
-}
+
+    {
+        question: "Static typing detects type errors during program execution.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "FALSE — Static typing detects type errors at compile time, not at runtime."
+    },
+    {
+        question: "Dependent types allow types to depend on runtime values.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "TRUE — Dependent types express constraints based on values."
+    },
+    {
+        question: "Strong typing allows implicit conversions between unrelated types.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "FALSE — Strong typing forbids unsafe or implicit conversions."
+    },
+    {
+        question: "Type inference reduces verbosity without losing type safety.",
+        options: ["True", "False"],
+        answer: 0,
+        explanation: "TRUE — Inference deduces types while keeping the code type-safe."
+    },
+    {
+        question: "Covariant arrays are fully type-safe in all contexts.",
+        options: ["True", "False"],
+        answer: 1,
+        explanation: "FALSE — Covariant arrays can violate type safety in some cases."
+    }
 
 ];
 
@@ -7747,7 +7747,7 @@ const pl3 = [
         answer: 0,
         explanation: "Partial application fixes some arguments, returning a new function awaiting the rest."
     },
-    
+
     {
         question: "In F#, values defined with 'let' are mutable by default.",
         options: ["True", "False"],
@@ -8301,7 +8301,7 @@ const pl6 = [
         question: "Consider this AST: Add(Number(5), Mul(Number(3), Number(2))). What expression does it represent?",
         options: [
             "A. 5 + 3 * 2",
-            "B. (5 + 3) * 2", 
+            "B. (5 + 3) * 2",
             "C. 5 * 3 + 2",
             "D. 5 * (3 + 2)"
         ],
@@ -8324,7 +8324,7 @@ const pl6 = [
         options: [
             "A. pchar",
             "B. manySatisfy",
-            "C. many1SatisfyL", 
+            "C. many1SatisfyL",
             "D. between"
         ],
         answer: 2,
@@ -8334,7 +8334,7 @@ const pl6 = [
         question: "In the expression 'x = (5 + 3) * 2', which part would the 'between' combinator handle?",
         options: [
             "A. Parsing 'x'",
-            "B. Parsing '='", 
+            "B. Parsing '='",
             "C. Parsing '(5 + 3)'",
             "D. Parsing '* 2'"
         ],
@@ -8356,19 +8356,19 @@ const pl6 = [
         question: "Given this parser: let assignment = identifier .>> spaces .>> pchar '=' .>> spaces .>>. expr, what does '.>>.' do?",
         options: [
             "A. Discards left result",
-            "B. Discards right result", 
+            "B. Discards right result",
             "C. Combines both results",
             "D. Applies a function"
         ],
         answer: 2,
-    explanation: "`.>>.` combines the results of two parsers into a tuple."
+        explanation: "`.>>.` combines the results of two parsers into a tuple."
     },
     {
         question: "What is the primary role of the environment in an interpreter?",
         options: [
             "A. Tokenize source code",
             "B. Parse grammar rules",
-            "C. Track variable bindings", 
+            "C. Track variable bindings",
             "D. Generate bytecode"
         ],
         answer: 2,
@@ -8400,7 +8400,7 @@ const pl6 = [
         question: "In a stack-based VM, what would the instruction sequence for '5 + 3' be?",
         options: [
             "A. PUSH 5; ADD; PUSH 3",
-            "B. PUSH 5; PUSH 3; ADD", 
+            "B. PUSH 5; PUSH 3; ADD",
             "C. ADD 5 3",
             "D. STORE 5; LOAD 3; ADD"
         ],
@@ -8411,7 +8411,7 @@ const pl6 = [
         question: "Which virtual machine is specifically designed for Erlang and Elixir?",
         options: [
             "A. JVM",
-            "B. BEAM", 
+            "B. BEAM",
             "C. CLR",
             "D. WebAssembly"
         ],
@@ -8422,7 +8422,7 @@ const pl6 = [
         question: "What is a key advantage of JIT compilation over AOT compilation?",
         options: [
             "A. Faster startup time",
-            "B. Profile-guided optimization", 
+            "B. Profile-guided optimization",
             "C. Smaller binary size",
             "D. Better cross-platform compatibility"
         ],
@@ -8433,7 +8433,7 @@ const pl6 = [
         question: "In lazy evaluation, when is the expression 'lazy (printfn \"run\"; 5 + 5)' evaluated?",
         options: [
             "A. When defined",
-            "B. When first used", 
+            "B. When first used",
             "C. At compile time",
             "D. Never"
         ],
@@ -8444,7 +8444,7 @@ const pl6 = [
         question: "What does this EBNF rule represent: expr = term ((\"+\" | \"-\") term)*?",
         options: [
             "A. A single term",
-            "B. Terms separated by + or -", 
+            "B. Terms separated by + or -",
             "C. Only multiplication",
             "D. Variable assignment"
         ],
@@ -8456,7 +8456,7 @@ const pl6 = [
         options: [
             "A. Recursive descent",
             "B. LR parsing",
-            "C. Parser combinators", 
+            "C. Parser combinators",
             "D. Table-driven parsing"
         ],
         answer: 2,
@@ -8467,7 +8467,7 @@ const pl6 = [
         options: [
             "A. Match zero or more",
             "B. Match exactly one",
-            "C. Match one or more", 
+            "C. Match one or more",
             "D. Match any character"
         ],
         answer: 2,
@@ -8477,7 +8477,7 @@ const pl6 = [
         question: "In the AST node Assign(\"x\", Add(Number(5), Number(3))), what type of operation is 'Assign'?",
         options: [
             "A. Arithmetic operation",
-            "B. Comparison operation", 
+            "B. Comparison operation",
             "C. Variable declaration",
             "D. Assignment operation"
         ],
@@ -8488,7 +8488,7 @@ const pl6 = [
         question: "Which of these languages primarily uses eager evaluation?",
         options: [
             "A. Haskell",
-            "B. F# (by default)", 
+            "B. F# (by default)",
             "C. Both use lazy",
             "D. Neither"
         ],
@@ -8500,7 +8500,7 @@ const pl6 = [
         options: [
             "A. Memory management",
             "B. Error reporting",
-            "C. Operator precedence handling", 
+            "C. Operator precedence handling",
             "D. Token generation"
         ],
         answer: 2,
@@ -8511,7 +8511,7 @@ const pl6 = [
         options: [
             "A. A parser for the opening parenthesis",
             "B. A parser for the closing parenthesis",
-            "C. A parser for the content inside", 
+            "C. A parser for the content inside",
             "D. The result type"
         ],
         answer: 2,
@@ -8521,7 +8521,7 @@ const pl6 = [
         question: "Which component is responsible for checking syntax against grammar rules?",
         options: [
             "A. Lexer",
-            "B. Parser", 
+            "B. Parser",
             "C. Interpreter",
             "D. Virtual Machine"
         ],
@@ -8533,7 +8533,7 @@ const pl6 = [
         options: [
             "A. Parse trees are smaller",
             "B. ASTs include all syntactic details",
-            "C. ASTs focus on semantics", 
+            "C. ASTs focus on semantics",
             "D. Parse trees are used for execution"
         ],
         answer: 2,
@@ -8544,7 +8544,7 @@ const pl6 = [
         options: [
             "A. Alternative choice",
             "B. Sequence parsers",
-            "C. Transform results", 
+            "C. Transform results",
             "D. Handle errors"
         ],
         answer: 2,
@@ -8554,7 +8554,7 @@ const pl6 = [
         question: "Which of these would be a valid extension to the lab exercises?",
         options: [
             "A. Adding garbage collection",
-            "B. Implementing boolean operations", 
+            "B. Implementing boolean operations",
             "C. Creating a GUI interface",
             "D. Network communication"
         ],
@@ -8566,7 +8566,7 @@ const pl6 = [
         options: [
             "A. Lazy evaluation",
             "B. Line number tracking",
-            "C. Error message label", 
+            "C. Error message label",
             "D. Left associativity"
         ],
         answer: 2,
@@ -8577,7 +8577,7 @@ const pl6 = [
         options: [
             "A. Returns 0",
             "B. Creates the variable",
-            "C. Throws an exception", 
+            "C. Throws an exception",
             "D. Returns null"
         ],
         answer: 2,
@@ -8587,7 +8587,7 @@ const pl6 = [
         question: "Which of these is an advantage of register-based VMs over stack-based VMs?",
         options: [
             "A. Simpler implementation",
-            "B. Fewer instructions for complex ops", 
+            "B. Fewer instructions for complex ops",
             "C. Better memory usage",
             "D. Easier debugging"
         ],
@@ -8598,7 +8598,7 @@ const pl6 = [
         question: "What does EBNF add to basic BNF notation?",
         options: [
             "A. Semantic rules",
-            "B. Additional notations for clarity", 
+            "B. Additional notations for clarity",
             "C. Runtime behavior",
             "D. Optimization hints"
         ],
@@ -8610,7 +8610,7 @@ const pl6 = [
         options: [
             "A. Bytecode",
             "B. Machine code",
-            "C. Interpreter", 
+            "C. Interpreter",
             "D. Optimizer"
         ],
         answer: 2,
@@ -8620,7 +8620,7 @@ const pl6 = [
         question: "Which F# feature makes discriminated unions particularly suitable for AST traversal?",
         options: [
             "A. Type inference",
-            "B. Pattern matching", 
+            "B. Pattern matching",
             "C. Mutable variables",
             "D. Async workflows"
         ],
@@ -8630,7 +8630,7 @@ const pl6 = [
     {
         question: "What is the purpose of 'createParserForwardedToRef()' in FParsec?",
         options: [
-            "A. Create recursive parsers", 
+            "A. Create recursive parsers",
             "B. Optimize parsing speed",
             "C. Handle errors",
             "D. Generate tokens"
@@ -8642,7 +8642,7 @@ const pl6 = [
         question: "In lazy evaluation, what is a potential benefit?",
         options: [
             "A. Faster startup",
-            "B. Avoiding unnecessary computations", 
+            "B. Avoiding unnecessary computations",
             "C. Simpler debugging",
             "D. Better memory locality"
         ],
@@ -8652,7 +8652,6 @@ const pl6 = [
 ];
 
 const ethics1 = [
-    // Multiple Choice Questions (20 questions)
     {
         question: "What are Ethics?",
         options: [
@@ -8938,1258 +8937,1257 @@ const ethics1 = [
 ];
 
 const ethics2 = [
-  // Multiple Choice Questions (25 questions) - Answers varied
-  {
-    "question": "What is the primary role of ethical hackers?",
-    "options": [
-      "To test the security of an organization with permission", // A
-      "To steal sensitive data for personal gain",
-      "To create malware for cyber attacks",
-      "To help black-hat hackers improve their skills"
-    ],
-    "answer": 0,
-    "explanation": "Ethical hackers are employed to test the security of an organization using the same skills as hackers but with permission from the system owner."
-  },
-  {
-    "question": "Which type of hacker has limited training and uses basic tools without full understanding?",
-    "options": [
-      "White-Hat Hackers",
-      "Black-Hat Hackers",
-      "Script Kiddies", // C
-      "Gray-Hat Hackers"
-    ],
-    "answer": 2,
-    "explanation": "Script Kiddies have limited or no training and know how to use only basic techniques or tools without understanding what they are doing."
-  },
-  {
-    "question": "What characterizes White-Hat hackers?",
-    "options": [
-      "They have a code of ethics to cause no harm", // A
-      "They operate outside the law",
-      "They work for personal financial gain",
-      "They don't care about getting caught"
-    ],
-    "answer": 0,
-    "explanation": "White-Hat hackers think like attackers but work for the good guys with a code of ethics that says they will cause no harm."
-  },
-  {
-    "question": "Which hacker type straddles the line between good and bad and may not be fully trusted even after reforming?",
-    "options": [
-      "White-Hat Hackers",
-      "Black-Hat Hackers",
-      "Suicide Hackers",
-      "Gray-Hat Hackers" // D
-    ],
-    "answer": 3,
-    "explanation": "Gray-Hat Hackers straddle the line between good and bad and may not be fully trusted even after deciding to reform."
-  },
-  {
-    "question": "What is a key principle in the ethical hacker's code of conduct?",
-    "options": [
-      "Share confidential information with other hackers",
-      "Use illegally obtained software whenever possible",
-      "Associate with malicious hackers to learn their techniques",
-      "Keep private and confidential information gained in professional work" // D
-    ],
-    "answer": 3,
-    "explanation": "Ethical hackers must keep private and confidential information gained in their professional work secure."
-  },
-  {
-    "question": "According to the code of ethics, what should ethical hackers do with potential dangers they discover?",
-    "options": [
-      "Keep them secret to avoid panic",
-      "Sell the information to the highest bidder",
-      "Disclose to appropriate persons or authorities", // C
-      "Use them for personal advantage"
-    ],
-    "answer": 2,
-    "explanation": "Ethical hackers should disclose to appropriate persons or authorities potential dangers to e-commerce clients, the Internet community, or the public."
-  },
-  {
-    "question": "What does 'Hack Value' refer to in hacking language?",
-    "options": [
-      "A target that attracts above-average attention from attackers", // A
-      "The cost of hacking tools",
-      "The ethical value of hacking",
-      "The monetary value of stolen data"
-    ],
-    "answer": 0,
-    "explanation": "Hack Value describes a target that may attract an above-average level of attention from an attacker."
-  },
-  {
-    "question": "What is a 'Zero Day' vulnerability?",
-    "options": [
-      "A vulnerability that has been known for years",
-      "A completely harmless security flaw",
-      "A threat unknown to developers and not addressed", // C
-      "A vulnerability that only appears at midnight"
-    ],
-    "answer": 2,
-    "explanation": "Zero Day describes a threat or vulnerability that is unknown to developers and has not been addressed, considered a serious problem."
-  },
-  {
-    "question": "What is the definition of a 'Vulnerability' in hacking terminology?",
-    "options": [
-      "A strong security feature",
-      "A type of malware",
-      "A weakness in a system that can be attacked", // C
-      "A security protocol"
-    ],
-    "answer": 2,
-    "explanation": "Vulnerability is a weakness in a system that can be attacked and used as an entry point into an environment."
-  },
-  {
-    "question": "What is 'Daisy Chaining' in the context of hacking?",
-    "options": [
-      "Creating flower-themed malware",
-      "A defensive security technique",
-      "A type of network cable",
-      "Performing several hacking attacks in sequence" // D
-    ],
-    "answer": 3,
-    "explanation": "Daisy Chaining is the act of performing several hacking attacks in sequence with each building on the results of the previous action."
-  },
-  {
-    "question": "Which phase involves using passive methods to gather information about a target?",
-    "options": [
-      "Scanning",
-      "Enumeration",
-      "Footprinting", // C
-      "System Hacking"
-    ],
-    "answer": 2,
-    "explanation": "Footprinting involves using primarily passive methods of gaining information from a target prior to performing active methods."
-  },
-  {
-    "question": "What is the main goal of the Footprinting phase?",
-    "options": [
-      "To attack the system directly",
-      "To cover tracks after an attack",
-      "To plant backdoors in the system",
-      "To gather as much information as possible about the target" // D
-    ],
-    "answer": 3,
-    "explanation": "The goal of Footprinting is to gather as much information as is reasonable and useful about a potential target."
-  },
-  {
-    "question": "Which tool is used in the Scanning phase to trace the path of IP packets?",
-    "options": [
-      "Tracert", // A
-      "Ping",
-      "Port scans",
-      "Ping sweeps"
-    ],
-    "answer": 0,
-    "explanation": "Tracert (Trace Route) is a command-line utility used to trace the path that an IP packet takes to its destination."
-  },
-  {
-    "question": "What type of information is gathered during the Enumeration phase?",
-    "options": [
-      "User lists, routing tables, and protocols", // A
-      "Only IP addresses",
-      "Only physical location data",
-      "Only employee phone numbers"
-    ],
-    "answer": 0,
-    "explanation": "Enumeration involves systematic probing to obtain user lists, routing tables, and protocols from the system."
-  },
-  {
-    "question": "What does 'Escalation of privilege' involve?",
-    "options": [
-      "Reducing user privileges",
-      "Creating new user accounts",
-      "Obtaining higher privileged accounts than originally accessed", // C
-      "Deleting administrator accounts"
-    ],
-    "answer": 2,
-    "explanation": "Escalation of privilege involves obtaining privileges granted to higher privileged accounts than originally broken into."
-  },
-  {
-    "question": "What is the purpose of 'Covering tracks'?",
-    "options": [
-      "To leave evidence of the attack",
-      "To document the attack process",
-      "To announce the successful attack",
-      "To remove evidence of presence in a system" // D
-    ],
-    "answer": 3,
-    "explanation": "Covering tracks involves attempting to remove evidence of presence in a system by purging log files and destroying other evidence."
-  },
-  {
-    "question": "What does 'Planting backdoors' enable attackers to do?",
-    "options": [
-      "Lock themselves out of the system",
-      "Improve system security",
-      "Remove all access points",
-      "Return to the system later if desired" // D
-    ],
-    "answer": 3,
-    "explanation": "Planting backdoors means leaving something behind that would enable returning to the system later, such as special accounts or Trojan horses."
-  },
-  {
-    "question": "Which Google operator displays the cached version of a web page?",
-    "options": [
-      "link:",
-      "info:",
-      "cache:", // C
-      "site:"
-    ],
-    "answer": 2,
-    "explanation": "The cache: operator displays the version of a web page that Google contains in its cache instead of the current version."
-  },
-  {
-    "question": "What does the 'site:' operator do in Google hacking?",
-    "options": [
-      "Restricts search to a specific website location", // A
-      "Searches the entire internet without restrictions",
-      "Finds only images from a site",
-      "Shows websites that link to a specific site"
-    ],
-    "answer": 0,
-    "explanation": "The site: operator restricts the search to the location specified in the query."
-  },
-  {
-    "question": "Which tool is mentioned for downloading static information from webpages?",
-    "options": [
-      "wget or HTTrack", // A
-      "FOCA",
-      "Tracert",
-      "Ping"
-    ],
-    "answer": 0,
-    "explanation": "Tools like wget or HTTrack can download all static information from webpages at once."
-  },
-  {
-    "question": "What is FOCA primarily used for?",
-    "options": [
-      "Finding metadata and hidden information in documents", // A
-      "Network scanning",
-      "Password cracking",
-      "Social engineering attacks"
-    ],
-    "answer": 0,
-    "explanation": "FOCA is a tool used mainly to find metadata and hidden information in documents that may be on web pages."
-  },
-  {
-    "question": "In the social engineering example, how did the attacker target Isak?",
-    "options": [
-      "By calling him directly",
-      "By sending a fake hotel email offering a gift", // B
-      "By hacking his social media password",
-      "By installing malware on his computer"
-    ],
-    "answer": 1,
-    "explanation": "The attacker sent a fake email from the hotel offering a gift after Isak posted about his hotel stay on social media."
-  },
-  {
-    "question": "How was Stine's password discovered in the social media example?",
-    "options": [
-      "She told the attacker directly",
-      "The password was written on her social media profile",
-      "The hotel provided the password",
-      "The attacker used brute-forcing" // D
-    ],
-    "answer": 3,
-    "explanation": "The attacker brute-forced Stine's password after learning about her favorite singer from her social media profile."
-  },
-  {
-    "question": "What information can be gathered from social media to build personal profiles?",
-    "options": [
-      "Only current location",
-      "Work, education, contact info, family relationships, and more", // B
-      "Only email addresses",
-      "Only photos"
-    ],
-    "answer": 1,
-    "explanation": "Social media can provide work and education, places of living, contact info, family relationships, details, life events, photos, favorites, friends, and timeline data."
-  },
-  {
-    "question": "What does the 'allinurl:' Google operator do?",
-    "options": [
-      "Searches for keywords in page titles",
-      "Shows cached versions of pages",
-      "Returns results with specific query in the URL", // C
-      "Finds pages linking to a specific site"
-    ],
-    "answer": 2,
-    "explanation": "The allinurl: operator returns only results with the specific query in the URL."
-  },
-  
-  // True/False Questions (15 questions) - Unchanged as they are correct
-  {
-    "question": "Ethical hackers always work without any contracts or permission from system owners.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Ethical hackers work under contract with permission from the system owner, and their contracts specify what they are allowed to do."
-  },
-  {
-    "question": "Script Kiddies are highly trained professionals with deep understanding of hacking techniques.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Script Kiddies have limited or no training and may not understand what they are doing."
-  },
-  {
-    "question": "Black-Hat hackers always have a specific agenda when conducting attacks.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Black-Hat hackers may or may not have an agenda when operating on the opposite side of the law."
-  },
-  {
-    "question": "Suicide Hackers are very stealthy and careful not to get caught.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Suicide Hackers are not stealthy because they are not worried about getting caught or doing prison time."
-  },
-  {
-    "question": "Ethical hackers should protect the intellectual property of others.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Ethical hackers should protect the intellectual property of others by relying on their own innovation and efforts."
-  },
-  {
-    "question": "It is acceptable for ethical hackers to use illegally obtained software if it helps their testing.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Ethical hackers should never knowingly use software or a process that is obtained or retained either illegally or unethically."
-  },
-  {
-    "question": "Ethical hackers can associate with malicious hackers to learn about new techniques.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Ethical hackers should not associate with malicious hackers nor engage in any malicious activities."
-  },
-  {
-    "question": "Footprinting involves active engagement with the target system.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Footprinting uses primarily passive methods of gaining information prior to active engagement."
-  },
-  {
-    "question": "Scanning determines which hosts are active and what the network looks like.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Scanning focuses on active engagement to determine active hosts and network structure."
-  },
-  {
-    "question": "Enumeration is the final phase of ethical hacking before reporting.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Enumeration is an intermediate phase that occurs after scanning and before system hacking."
-  },
-  {
-    "question": "Google hacking operators can only be used on special Google pages designed for security professionals.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Google hacking operators are entered directly into the regular Google search box and don't require special pages."
-  },
-  {
-    "question": "The 'link:' operator in Google shows websites that are linked to by a specific site.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. The 'link:' operator lists web pages that contain links to the page or site specified, not websites linked to by that site."
-  },
-  {
-    "question": "Social media cannot be used for building detailed personal profiles for social engineering.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Social media can provide extensive personal information that can be used to build detailed profiles for social engineering attacks."
-  },
-  {
-    "question": "FOCA is mainly used for network speed testing and optimization.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. FOCA is used mainly to find metadata and hidden information in documents."
-  },
-  {
-    "question": "Every piece of information gathered about a target can be potentially useful for hackers.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Hackers collect all available information and systemize it before planning attacks, as even seemingly unimportant information can be valuable."
-  }
+    {
+        "question": "What is the primary role of ethical hackers?",
+        "options": [
+            "To test the security of an organization with permission", // A
+            "To steal sensitive data for personal gain",
+            "To create malware for cyber attacks",
+            "To help black-hat hackers improve their skills"
+        ],
+        "answer": 0,
+        "explanation": "Ethical hackers are employed to test the security of an organization using the same skills as hackers but with permission from the system owner."
+    },
+    {
+        "question": "Which type of hacker has limited training and uses basic tools without full understanding?",
+        "options": [
+            "White-Hat Hackers",
+            "Black-Hat Hackers",
+            "Script Kiddies", // C
+            "Gray-Hat Hackers"
+        ],
+        "answer": 2,
+        "explanation": "Script Kiddies have limited or no training and know how to use only basic techniques or tools without understanding what they are doing."
+    },
+    {
+        "question": "What characterizes White-Hat hackers?",
+        "options": [
+            "They have a code of ethics to cause no harm", // A
+            "They operate outside the law",
+            "They work for personal financial gain",
+            "They don't care about getting caught"
+        ],
+        "answer": 0,
+        "explanation": "White-Hat hackers think like attackers but work for the good guys with a code of ethics that says they will cause no harm."
+    },
+    {
+        "question": "Which hacker type straddles the line between good and bad and may not be fully trusted even after reforming?",
+        "options": [
+            "White-Hat Hackers",
+            "Black-Hat Hackers",
+            "Suicide Hackers",
+            "Gray-Hat Hackers" // D
+        ],
+        "answer": 3,
+        "explanation": "Gray-Hat Hackers straddle the line between good and bad and may not be fully trusted even after deciding to reform."
+    },
+    {
+        "question": "What is a key principle in the ethical hacker's code of conduct?",
+        "options": [
+            "Share confidential information with other hackers",
+            "Use illegally obtained software whenever possible",
+            "Associate with malicious hackers to learn their techniques",
+            "Keep private and confidential information gained in professional work" // D
+        ],
+        "answer": 3,
+        "explanation": "Ethical hackers must keep private and confidential information gained in their professional work secure."
+    },
+    {
+        "question": "According to the code of ethics, what should ethical hackers do with potential dangers they discover?",
+        "options": [
+            "Keep them secret to avoid panic",
+            "Sell the information to the highest bidder",
+            "Disclose to appropriate persons or authorities", // C
+            "Use them for personal advantage"
+        ],
+        "answer": 2,
+        "explanation": "Ethical hackers should disclose to appropriate persons or authorities potential dangers to e-commerce clients, the Internet community, or the public."
+    },
+    {
+        "question": "What does 'Hack Value' refer to in hacking language?",
+        "options": [
+            "A target that attracts above-average attention from attackers", // A
+            "The cost of hacking tools",
+            "The ethical value of hacking",
+            "The monetary value of stolen data"
+        ],
+        "answer": 0,
+        "explanation": "Hack Value describes a target that may attract an above-average level of attention from an attacker."
+    },
+    {
+        "question": "What is a 'Zero Day' vulnerability?",
+        "options": [
+            "A vulnerability that has been known for years",
+            "A completely harmless security flaw",
+            "A threat unknown to developers and not addressed", // C
+            "A vulnerability that only appears at midnight"
+        ],
+        "answer": 2,
+        "explanation": "Zero Day describes a threat or vulnerability that is unknown to developers and has not been addressed, considered a serious problem."
+    },
+    {
+        "question": "What is the definition of a 'Vulnerability' in hacking terminology?",
+        "options": [
+            "A strong security feature",
+            "A type of malware",
+            "A weakness in a system that can be attacked", // C
+            "A security protocol"
+        ],
+        "answer": 2,
+        "explanation": "Vulnerability is a weakness in a system that can be attacked and used as an entry point into an environment."
+    },
+    {
+        "question": "What is 'Daisy Chaining' in the context of hacking?",
+        "options": [
+            "Creating flower-themed malware",
+            "A defensive security technique",
+            "A type of network cable",
+            "Performing several hacking attacks in sequence" // D
+        ],
+        "answer": 3,
+        "explanation": "Daisy Chaining is the act of performing several hacking attacks in sequence with each building on the results of the previous action."
+    },
+    {
+        "question": "Which phase involves using passive methods to gather information about a target?",
+        "options": [
+            "Scanning",
+            "Enumeration",
+            "Footprinting", // C
+            "System Hacking"
+        ],
+        "answer": 2,
+        "explanation": "Footprinting involves using primarily passive methods of gaining information from a target prior to performing active methods."
+    },
+    {
+        "question": "What is the main goal of the Footprinting phase?",
+        "options": [
+            "To attack the system directly",
+            "To cover tracks after an attack",
+            "To plant backdoors in the system",
+            "To gather as much information as possible about the target" // D
+        ],
+        "answer": 3,
+        "explanation": "The goal of Footprinting is to gather as much information as is reasonable and useful about a potential target."
+    },
+    {
+        "question": "Which tool is used in the Scanning phase to trace the path of IP packets?",
+        "options": [
+            "Tracert", // A
+            "Ping",
+            "Port scans",
+            "Ping sweeps"
+        ],
+        "answer": 0,
+        "explanation": "Tracert (Trace Route) is a command-line utility used to trace the path that an IP packet takes to its destination."
+    },
+    {
+        "question": "What type of information is gathered during the Enumeration phase?",
+        "options": [
+            "User lists, routing tables, and protocols", // A
+            "Only IP addresses",
+            "Only physical location data",
+            "Only employee phone numbers"
+        ],
+        "answer": 0,
+        "explanation": "Enumeration involves systematic probing to obtain user lists, routing tables, and protocols from the system."
+    },
+    {
+        "question": "What does 'Escalation of privilege' involve?",
+        "options": [
+            "Reducing user privileges",
+            "Creating new user accounts",
+            "Obtaining higher privileged accounts than originally accessed", // C
+            "Deleting administrator accounts"
+        ],
+        "answer": 2,
+        "explanation": "Escalation of privilege involves obtaining privileges granted to higher privileged accounts than originally broken into."
+    },
+    {
+        "question": "What is the purpose of 'Covering tracks'?",
+        "options": [
+            "To leave evidence of the attack",
+            "To document the attack process",
+            "To announce the successful attack",
+            "To remove evidence of presence in a system" // D
+        ],
+        "answer": 3,
+        "explanation": "Covering tracks involves attempting to remove evidence of presence in a system by purging log files and destroying other evidence."
+    },
+    {
+        "question": "What does 'Planting backdoors' enable attackers to do?",
+        "options": [
+            "Lock themselves out of the system",
+            "Improve system security",
+            "Remove all access points",
+            "Return to the system later if desired" // D
+        ],
+        "answer": 3,
+        "explanation": "Planting backdoors means leaving something behind that would enable returning to the system later, such as special accounts or Trojan horses."
+    },
+    {
+        "question": "Which Google operator displays the cached version of a web page?",
+        "options": [
+            "link:",
+            "info:",
+            "cache:", // C
+            "site:"
+        ],
+        "answer": 2,
+        "explanation": "The cache: operator displays the version of a web page that Google contains in its cache instead of the current version."
+    },
+    {
+        "question": "What does the 'site:' operator do in Google hacking?",
+        "options": [
+            "Restricts search to a specific website location", // A
+            "Searches the entire internet without restrictions",
+            "Finds only images from a site",
+            "Shows websites that link to a specific site"
+        ],
+        "answer": 0,
+        "explanation": "The site: operator restricts the search to the location specified in the query."
+    },
+    {
+        "question": "Which tool is mentioned for downloading static information from webpages?",
+        "options": [
+            "wget or HTTrack", // A
+            "FOCA",
+            "Tracert",
+            "Ping"
+        ],
+        "answer": 0,
+        "explanation": "Tools like wget or HTTrack can download all static information from webpages at once."
+    },
+    {
+        "question": "What is FOCA primarily used for?",
+        "options": [
+            "Finding metadata and hidden information in documents", // A
+            "Network scanning",
+            "Password cracking",
+            "Social engineering attacks"
+        ],
+        "answer": 0,
+        "explanation": "FOCA is a tool used mainly to find metadata and hidden information in documents that may be on web pages."
+    },
+    {
+        "question": "In the social engineering example, how did the attacker target Isak?",
+        "options": [
+            "By calling him directly",
+            "By sending a fake hotel email offering a gift", // B
+            "By hacking his social media password",
+            "By installing malware on his computer"
+        ],
+        "answer": 1,
+        "explanation": "The attacker sent a fake email from the hotel offering a gift after Isak posted about his hotel stay on social media."
+    },
+    {
+        "question": "How was Stine's password discovered in the social media example?",
+        "options": [
+            "She told the attacker directly",
+            "The password was written on her social media profile",
+            "The hotel provided the password",
+            "The attacker used brute-forcing" // D
+        ],
+        "answer": 3,
+        "explanation": "The attacker brute-forced Stine's password after learning about her favorite singer from her social media profile."
+    },
+    {
+        "question": "What information can be gathered from social media to build personal profiles?",
+        "options": [
+            "Only current location",
+            "Work, education, contact info, family relationships, and more", // B
+            "Only email addresses",
+            "Only photos"
+        ],
+        "answer": 1,
+        "explanation": "Social media can provide work and education, places of living, contact info, family relationships, details, life events, photos, favorites, friends, and timeline data."
+    },
+    {
+        "question": "What does the 'allinurl:' Google operator do?",
+        "options": [
+            "Searches for keywords in page titles",
+            "Shows cached versions of pages",
+            "Returns results with specific query in the URL", // C
+            "Finds pages linking to a specific site"
+        ],
+        "answer": 2,
+        "explanation": "The allinurl: operator returns only results with the specific query in the URL."
+    },
+
+    // True/False Questions (15 questions) - Unchanged as they are correct
+    {
+        "question": "Ethical hackers always work without any contracts or permission from system owners.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Ethical hackers work under contract with permission from the system owner, and their contracts specify what they are allowed to do."
+    },
+    {
+        "question": "Script Kiddies are highly trained professionals with deep understanding of hacking techniques.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Script Kiddies have limited or no training and may not understand what they are doing."
+    },
+    {
+        "question": "Black-Hat hackers always have a specific agenda when conducting attacks.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Black-Hat hackers may or may not have an agenda when operating on the opposite side of the law."
+    },
+    {
+        "question": "Suicide Hackers are very stealthy and careful not to get caught.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Suicide Hackers are not stealthy because they are not worried about getting caught or doing prison time."
+    },
+    {
+        "question": "Ethical hackers should protect the intellectual property of others.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Ethical hackers should protect the intellectual property of others by relying on their own innovation and efforts."
+    },
+    {
+        "question": "It is acceptable for ethical hackers to use illegally obtained software if it helps their testing.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Ethical hackers should never knowingly use software or a process that is obtained or retained either illegally or unethically."
+    },
+    {
+        "question": "Ethical hackers can associate with malicious hackers to learn about new techniques.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Ethical hackers should not associate with malicious hackers nor engage in any malicious activities."
+    },
+    {
+        "question": "Footprinting involves active engagement with the target system.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Footprinting uses primarily passive methods of gaining information prior to active engagement."
+    },
+    {
+        "question": "Scanning determines which hosts are active and what the network looks like.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Scanning focuses on active engagement to determine active hosts and network structure."
+    },
+    {
+        "question": "Enumeration is the final phase of ethical hacking before reporting.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Enumeration is an intermediate phase that occurs after scanning and before system hacking."
+    },
+    {
+        "question": "Google hacking operators can only be used on special Google pages designed for security professionals.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Google hacking operators are entered directly into the regular Google search box and don't require special pages."
+    },
+    {
+        "question": "The 'link:' operator in Google shows websites that are linked to by a specific site.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. The 'link:' operator lists web pages that contain links to the page or site specified, not websites linked to by that site."
+    },
+    {
+        "question": "Social media cannot be used for building detailed personal profiles for social engineering.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Social media can provide extensive personal information that can be used to build detailed profiles for social engineering attacks."
+    },
+    {
+        "question": "FOCA is mainly used for network speed testing and optimization.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. FOCA is used mainly to find metadata and hidden information in documents."
+    },
+    {
+        "question": "Every piece of information gathered about a target can be potentially useful for hackers.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Hackers collect all available information and systemize it before planning attacks, as even seemingly unimportant information can be valuable."
+    }
 ];
 
 
 const ethics3 = [
-  // Multiple Choice Questions (20 questions) - Answers varied
-  {
-    "question": "What is the primary goal of cryptography?",
-    "options": [
-      "To make information transmission slower",
-      "To increase the size of data",
-      "To protect and preserve information in all its forms", // C
-      "To replace all communication methods"
-    ],
-    "answer": 2,
-    "explanation": "Cryptography deals with protection and preservation of information in all its forms, with encryption getting the most attention for manipulating and protecting information."
-  },
-  {
-    "question": "What is cryptanalysis?",
-    "options": [
-      "Creating new encryption algorithms",
-      "Writing secret messages",
-      "Distributing cryptographic keys",
-      "Unlocking or uncovering secrets that others try to hide" // D
-    ],
-    "answer": 3,
-    "explanation": "Cryptanalysis deals with unlocking or uncovering the secrets that others try so hard to hide or obscure."
-  },
-  {
-    "question": "What was the original purpose of Egyptian hieroglyphics according to the lecture?",
-    "options": [
-      "Military communications",
-      "Special writing system to commune with gods", // B
-      "Business transactions",
-      "Personal diaries"
-    ],
-    "answer": 1,
-    "explanation": "The ancient Egyptians used hieroglyphics not so much to withhold secrets but because they wanted a special writing system to commune with their gods."
-  },
-  {
-    "question": "What was the significance of the Rosetta Stone?",
-    "options": [
-      "It contained gold and precious stones",
-      "It was the first computer encryption device",
-      "It was used for military strategy",
-      "It allowed modern civilization to understand ancient Egyptian language" // D
-    ],
-    "answer": 3,
-    "explanation": "The Rosetta Stone was the key that allowed modern civilization to understand a language that was nearly lost, taking over 20 years of effort to reveal the language."
-  },
-  {
-    "question": "Which of these is NOT a goal of modern cryptography?",
-    "options": [
-      "Confidentiality",
-      "Making information larger", // B
-      "Integrity",
-      "Authentication"
-    ],
-    "answer": 1,
-    "explanation": "Modern cryptography seeks to achieve confidentiality, integrity, authentication, nonrepudiation, and key distribution - not making information larger."
-  },
-  {
-    "question": "What does confidentiality ensure in cryptography?",
-    "options": [
-      "That secret information is kept from disclosure", // A
-      "That data cannot be modified",
-      "That the sender's identity is verified",
-      "That keys are properly distributed"
-    ],
-    "answer": 0,
-    "explanation": "Confidentiality is the primary goal that encryption seeks to achieve - keeping secret information from disclosure, away from prying eyes."
-  },
-  {
-    "question": "What is the purpose of integrity in cryptography?",
-    "options": [
-      "To hide the content of messages",
-      "To verify the identity of users",
-      "To detect changes in information", // C
-      "To create digital signatures"
-    ],
-    "answer": 2,
-    "explanation": "Cryptography can detect changes in information and thus prove its integrity or original unmodified state."
-  },
-  {
-    "question": "What does nonrepudiation provide?",
-    "options": [
-      "Fast encryption speed",
-      "One-way encryption",
-      "Key management solutions",
-      "Positive identification of the source or originator" // D
-    ],
-    "answer": 3,
-    "explanation": "Nonrepudiation provides positive identification of the source or originator of an event, preventing someone from denying their involvement."
-  },
-  {
-    "question": "What is plain text?",
-    "options": [
-      "Encrypted message",
-      "A type of cipher",
-      "A cryptographic key",
-      "The original unaltered message" // D
-    ],
-    "answer": 3,
-    "explanation": "Plain text is the original message that has not been altered; it is the usable information before encryption."
-  },
-  {
-    "question": "What is cipher text?",
-    "options": [
-      "A transformed message using an algorithm", // A
-      "The original message",
-      "A type of plain text",
-      "An encryption key"
-    ],
-    "answer": 0,
-    "explanation": "Cipher text is a message or data that has been transformed into a different format using an algorithm, and can be reversed using an algorithm and key."
-  },
-  {
-    "question": "What determines the output of a cryptographic operation?",
-    "options": [
-      "The algorithm only",
-      "The key only",
-      "The plain text length",
-      "Both the algorithm and key" // D
-    ],
-    "answer": 3,
-    "explanation": "A key is a discrete piece of information that determines the result or output of a given cryptographic operation, used with algorithms."
-  },
-  {
-    "question": "What is the main characteristic of symmetric cryptography?",
-    "options": [
-      "Uses different keys for encryption and decryption",
-      "Does not use keys at all",
-      "Uses the same key for both encryption and decryption", // C
-      "Uses only public keys"
-    ],
-    "answer": 2,
-    "explanation": "In symmetric cryptography, the same key is used for both encryption and decryption and must be kept secret."
-  },
-  {
-    "question": "Which is an advantage of symmetric cryptography?",
-    "options": [
-      "Increased speed over asymmetric systems", // A
-      "Excellent key management",
-      "Built-in nonrepudiation",
-      "No key distribution issues"
-    ],
-    "answer": 0,
-    "explanation": "Symmetric algorithms provide increased speed over many non-symmetric systems along with preserving confidentiality and ensuring simplicity."
-  },
-  {
-    "question": "What problem does asymmetric cryptography solve?",
-    "options": [
-      "Slow encryption speed",
-      "Lack of confidentiality",
-      "Large key sizes",
-      "Key management problems" // D
-    ],
-    "answer": 3,
-    "explanation": "Public key cryptography was intended to overcome the key management problems inherent in previous symmetric systems."
-  },
-  {
-    "question": "In asymmetric cryptography, which key is kept secret?",
-    "options": [
-      "Public key",
-      "Both keys",
-      "Private key", // C
-      "Neither key"
-    ],
-    "answer": 2,
-    "explanation": "Each user receives a pair of keys - the public key is published, whereas the private key is kept secret."
-  },
-  {
-    "question": "What provides nonrepudiation in asymmetric cryptography?",
-    "options": [
-      "The use of digital signatures with private keys", // A
-      "The speed of encryption",
-      "The key length",
-      "The algorithm complexity"
-    ],
-    "answer": 0,
-    "explanation": "Since anything encrypted with the private key can be reversed only with the corresponding public key, digital signatures provide nonrepudiation."
-  },
-  {
-    "question": "What is hashing?",
-    "options": [
-      "A type of two-way encryption",
-      "A key distribution method",
-      "A process that creates a scrambled output that cannot be reversed", // C
-      "A symmetric encryption technique"
-    ],
-    "answer": 2,
-    "explanation": "Hashing is a type of one-way encryption that creates a scrambled output that cannot be reversed, used to validate integrity of information."
-  },
-  {
-    "question": "What is a hash value also known as?",
-    "options": [
-      "Plain text",
-      "Message digest", // B
-      "Cipher text",
-      "Digital signature"
-    ],
-    "answer": 1,
-    "explanation": "The process of hashing outputs what is known as a hash, hash value, or message digest."
-  },
-  {
-    "question": "What is the main use of hashing?",
-    "options": [
-      "To validate the integrity of information", // A
-      "To encrypt messages for confidentiality",
-      "To create digital signatures",
-      "To manage key distribution"
-    ],
-    "answer": 0,
-    "explanation": "Hashing is commonly used to validate the integrity of information and detect changes in data."
-  },
-  {
-    "question": "What vulnerability affects all cryptographic systems?",
-    "options": [
-      "Social engineering",
-      "Brute-force attacks", // B
-      "Phishing attacks",
-      "Malware infection"
-    ],
-    "answer": 1,
-    "explanation": "Cryptographic systems are all vulnerable to brute-force attacks where every possible combination of characters is tried to uncover a valid key."
-  },
+    // Multiple Choice Questions (20 questions) - Answers varied
+    {
+        "question": "What is the primary goal of cryptography?",
+        "options": [
+            "To make information transmission slower",
+            "To increase the size of data",
+            "To protect and preserve information in all its forms", // C
+            "To replace all communication methods"
+        ],
+        "answer": 2,
+        "explanation": "Cryptography deals with protection and preservation of information in all its forms, with encryption getting the most attention for manipulating and protecting information."
+    },
+    {
+        "question": "What is cryptanalysis?",
+        "options": [
+            "Creating new encryption algorithms",
+            "Writing secret messages",
+            "Distributing cryptographic keys",
+            "Unlocking or uncovering secrets that others try to hide" // D
+        ],
+        "answer": 3,
+        "explanation": "Cryptanalysis deals with unlocking or uncovering the secrets that others try so hard to hide or obscure."
+    },
+    {
+        "question": "What was the original purpose of Egyptian hieroglyphics according to the lecture?",
+        "options": [
+            "Military communications",
+            "Special writing system to commune with gods", // B
+            "Business transactions",
+            "Personal diaries"
+        ],
+        "answer": 1,
+        "explanation": "The ancient Egyptians used hieroglyphics not so much to withhold secrets but because they wanted a special writing system to commune with their gods."
+    },
+    {
+        "question": "What was the significance of the Rosetta Stone?",
+        "options": [
+            "It contained gold and precious stones",
+            "It was the first computer encryption device",
+            "It was used for military strategy",
+            "It allowed modern civilization to understand ancient Egyptian language" // D
+        ],
+        "answer": 3,
+        "explanation": "The Rosetta Stone was the key that allowed modern civilization to understand a language that was nearly lost, taking over 20 years of effort to reveal the language."
+    },
+    {
+        "question": "Which of these is NOT a goal of modern cryptography?",
+        "options": [
+            "Confidentiality",
+            "Making information larger", // B
+            "Integrity",
+            "Authentication"
+        ],
+        "answer": 1,
+        "explanation": "Modern cryptography seeks to achieve confidentiality, integrity, authentication, nonrepudiation, and key distribution - not making information larger."
+    },
+    {
+        "question": "What does confidentiality ensure in cryptography?",
+        "options": [
+            "That secret information is kept from disclosure", // A
+            "That data cannot be modified",
+            "That the sender's identity is verified",
+            "That keys are properly distributed"
+        ],
+        "answer": 0,
+        "explanation": "Confidentiality is the primary goal that encryption seeks to achieve - keeping secret information from disclosure, away from prying eyes."
+    },
+    {
+        "question": "What is the purpose of integrity in cryptography?",
+        "options": [
+            "To hide the content of messages",
+            "To verify the identity of users",
+            "To detect changes in information", // C
+            "To create digital signatures"
+        ],
+        "answer": 2,
+        "explanation": "Cryptography can detect changes in information and thus prove its integrity or original unmodified state."
+    },
+    {
+        "question": "What does nonrepudiation provide?",
+        "options": [
+            "Fast encryption speed",
+            "One-way encryption",
+            "Key management solutions",
+            "Positive identification of the source or originator" // D
+        ],
+        "answer": 3,
+        "explanation": "Nonrepudiation provides positive identification of the source or originator of an event, preventing someone from denying their involvement."
+    },
+    {
+        "question": "What is plain text?",
+        "options": [
+            "Encrypted message",
+            "A type of cipher",
+            "A cryptographic key",
+            "The original unaltered message" // D
+        ],
+        "answer": 3,
+        "explanation": "Plain text is the original message that has not been altered; it is the usable information before encryption."
+    },
+    {
+        "question": "What is cipher text?",
+        "options": [
+            "A transformed message using an algorithm", // A
+            "The original message",
+            "A type of plain text",
+            "An encryption key"
+        ],
+        "answer": 0,
+        "explanation": "Cipher text is a message or data that has been transformed into a different format using an algorithm, and can be reversed using an algorithm and key."
+    },
+    {
+        "question": "What determines the output of a cryptographic operation?",
+        "options": [
+            "The algorithm only",
+            "The key only",
+            "The plain text length",
+            "Both the algorithm and key" // D
+        ],
+        "answer": 3,
+        "explanation": "A key is a discrete piece of information that determines the result or output of a given cryptographic operation, used with algorithms."
+    },
+    {
+        "question": "What is the main characteristic of symmetric cryptography?",
+        "options": [
+            "Uses different keys for encryption and decryption",
+            "Does not use keys at all",
+            "Uses the same key for both encryption and decryption", // C
+            "Uses only public keys"
+        ],
+        "answer": 2,
+        "explanation": "In symmetric cryptography, the same key is used for both encryption and decryption and must be kept secret."
+    },
+    {
+        "question": "Which is an advantage of symmetric cryptography?",
+        "options": [
+            "Increased speed over asymmetric systems", // A
+            "Excellent key management",
+            "Built-in nonrepudiation",
+            "No key distribution issues"
+        ],
+        "answer": 0,
+        "explanation": "Symmetric algorithms provide increased speed over many non-symmetric systems along with preserving confidentiality and ensuring simplicity."
+    },
+    {
+        "question": "What problem does asymmetric cryptography solve?",
+        "options": [
+            "Slow encryption speed",
+            "Lack of confidentiality",
+            "Large key sizes",
+            "Key management problems" // D
+        ],
+        "answer": 3,
+        "explanation": "Public key cryptography was intended to overcome the key management problems inherent in previous symmetric systems."
+    },
+    {
+        "question": "In asymmetric cryptography, which key is kept secret?",
+        "options": [
+            "Public key",
+            "Both keys",
+            "Private key", // C
+            "Neither key"
+        ],
+        "answer": 2,
+        "explanation": "Each user receives a pair of keys - the public key is published, whereas the private key is kept secret."
+    },
+    {
+        "question": "What provides nonrepudiation in asymmetric cryptography?",
+        "options": [
+            "The use of digital signatures with private keys", // A
+            "The speed of encryption",
+            "The key length",
+            "The algorithm complexity"
+        ],
+        "answer": 0,
+        "explanation": "Since anything encrypted with the private key can be reversed only with the corresponding public key, digital signatures provide nonrepudiation."
+    },
+    {
+        "question": "What is hashing?",
+        "options": [
+            "A type of two-way encryption",
+            "A key distribution method",
+            "A process that creates a scrambled output that cannot be reversed", // C
+            "A symmetric encryption technique"
+        ],
+        "answer": 2,
+        "explanation": "Hashing is a type of one-way encryption that creates a scrambled output that cannot be reversed, used to validate integrity of information."
+    },
+    {
+        "question": "What is a hash value also known as?",
+        "options": [
+            "Plain text",
+            "Message digest", // B
+            "Cipher text",
+            "Digital signature"
+        ],
+        "answer": 1,
+        "explanation": "The process of hashing outputs what is known as a hash, hash value, or message digest."
+    },
+    {
+        "question": "What is the main use of hashing?",
+        "options": [
+            "To validate the integrity of information", // A
+            "To encrypt messages for confidentiality",
+            "To create digital signatures",
+            "To manage key distribution"
+        ],
+        "answer": 0,
+        "explanation": "Hashing is commonly used to validate the integrity of information and detect changes in data."
+    },
+    {
+        "question": "What vulnerability affects all cryptographic systems?",
+        "options": [
+            "Social engineering",
+            "Brute-force attacks", // B
+            "Phishing attacks",
+            "Malware infection"
+        ],
+        "answer": 1,
+        "explanation": "Cryptographic systems are all vulnerable to brute-force attacks where every possible combination of characters is tried to uncover a valid key."
+    },
 
-  // True/False Questions (5 questions) - Unchanged as they are correct
-  {
-    "question": "Cryptography was only concerned with protecting information in its early generations.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. In the first few generations of cryptography, the primary concern was only protecting information, but this has changed over time."
-  },
-  {
-    "question": "Symmetric cryptography provides better nonrepudiation than asymmetric cryptography.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Symmetric algorithms lack nonrepudiation features, which is a drawback that asymmetric cryptography solves."
-  },
-  {
-    "question": "In asymmetric cryptography, the public key is kept secret while the private key is published.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. In asymmetric cryptography, the public key is published while the private key is kept secret."
-  },
-  {
-    "question": "Hashing is a reversible process that can decrypt encrypted data.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Hashing is designed to be a one-way process that creates a scrambled output which cannot be reversed."
-  },
-  {
-    "question": "Brute-force attacks become less effective as key length increases.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Longer keys exponentially increase the time and resources needed for successful brute-force attacks, making them less effective."
-  }
+    // True/False Questions (5 questions) - Unchanged as they are correct
+    {
+        "question": "Cryptography was only concerned with protecting information in its early generations.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. In the first few generations of cryptography, the primary concern was only protecting information, but this has changed over time."
+    },
+    {
+        "question": "Symmetric cryptography provides better nonrepudiation than asymmetric cryptography.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Symmetric algorithms lack nonrepudiation features, which is a drawback that asymmetric cryptography solves."
+    },
+    {
+        "question": "In asymmetric cryptography, the public key is kept secret while the private key is published.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. In asymmetric cryptography, the public key is published while the private key is kept secret."
+    },
+    {
+        "question": "Hashing is a reversible process that can decrypt encrypted data.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Hashing is designed to be a one-way process that creates a scrambled output which cannot be reversed."
+    },
+    {
+        "question": "Brute-force attacks become less effective as key length increases.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Longer keys exponentially increase the time and resources needed for successful brute-force attacks, making them less effective."
+    }
 ];
 
 
 
 const ethics4 = [
-  // Multiple Choice Questions (20 questions) - Answers and option counts varied
-  {
-    "question": "What does the term 'malware' stand for?",
-    "options": [
-      "Malicious Software", // A
-      "Malicious Advertising",
-      "Malfunctioning Software",
-      "Managed Security",
-      "Multiple Applications"
-    ],
-    "answer": 0,
-    "explanation": "The term 'malware' is short for 'malicious software' and covers viruses, worms, Trojans, and other harmful software."
-  },
-  {
-    "question": "Which of the following is NOT typically considered a category of malware?",
-    "options": [
-      "Viruses",
-      "Worms",
-      "Firewalls", // C
-      "Spyware"
-    ],
-    "answer": 2,
-    "explanation": "Firewalls are security systems that protect against malware, not a type of malware itself."
-  },
-  {
-    "question": "What is a key characteristic of rootkits?",
-    "options": [
-      "They are always visible to antivirus software",
-      "They only affect web browsers",
-      "They are easy to detect and remove",
-      "They hide within core system components", // D
-      "They only target mobile devices"
-    ],
-    "answer": 3,
-    "explanation": "Rootkits are a modern form of malware that can hide within the core components of a system and stay undetected by modern scanners."
-  },
-  {
-    "question": "What typically initiates a virus's infectious activities?",
-    "options": [
-      "Automatic system updates",
-      "Hardware failure",
-      "Network disconnection",
-      "Some sort of user action" // D
-    ],
-    "answer": 3,
-    "explanation": "Typically, viruses require some sort of user action to initiate their infectious activities."
-  },
-  {
-    "question": "Which of the following actions can a virus perform?",
-    "options": [
-      "Altering data",
-      "Infecting other programs",
-      "Destroying data",
-      "Corrupting hardware",
-      "All of the above" // E
-    ],
-    "answer": 4,
-    "explanation": "Viruses can perform multiple harmful actions including altering data, infecting programs, destroying data, and corrupting hardware."
-  },
-  {
-    "question": "What is the first step in the virus development process?",
-    "options": [
-      "Design", // A
-      "Replication",
-      "Detection",
-      "Elimination",
-      "Launch"
-    ],
-    "answer": 0,
-    "explanation": "The first step is Design, where the author envisions and creates the virus, either from scratch or using construction kits."
-  },
-  {
-    "question": "During which phase do antivirus makers begin researching how to eradicate a virus?",
-    "options": [
-      "Design",
-      "Detection", // B
-      "Replication",
-      "Launch",
-      "Incorporation"
-    ],
-    "answer": 1,
-    "explanation": "During the Detection phase, the virus is recognized and reported to antivirus makers who begin research into how it works and how to eradicate it."
-  },
-  {
-    "question": "What tool is mentioned for converting batch files to COM files in virus creation?",
-    "options": [
-      "VirusMaker Pro",
-      "bat2com", // B
-      "EXE Converter",
-      "Code Transformer"
-    ],
-    "answer": 1,
-    "explanation": "The lecture mentions using 'bat2com' to convert virus.bat into virus.com for creating a simple virus."
-  },
-  {
-    "question": "Which virus creation utility is shown in the lecture with a GUI interface?",
-    "options": [
-      "Virus Studio",
-      "Malware Maker Pro",
-      "Virus Creator Plus",
-      "JPS Virus Maker", // D
-      "Trojan Generator"
-    ],
-    "answer": 3,
-    "explanation": "The lecture mentions using utilities such as JPS Virus Maker or Terabit virus maker which provide GUI interfaces for virus creation."
-  },
-  {
-    "question": "What is a key difference between worms and viruses?",
-    "options": [
-      "Worms require user interaction",
-      "Worms need host applications",
-      "Worms are slower to spread",
-      "Worms do not require host applications" // D
-    ],
-    "answer": 3,
-    "explanation": "Unlike viruses, worms do not require a host application to perform their activities and can spread independently."
-  },
-  {
-    "question": "Which characteristic is typical of worms?",
-    "options": [
-      "Rapid replication across networks", // A
-      "Slow replication across networks",
-      "Requirement of user interaction",
-      "Dependence on host files",
-      "Easy detection and removal"
-    ],
-    "answer": 0,
-    "explanation": "One of the main characteristics of worms is their inherent ability to replicate and spread across networks extremely quickly."
-  },
-  {
-    "question": "What is the primary purpose of spyware?",
-    "options": [
-      "To improve system performance",
-      "To protect against other malware",
-      "To collect and forward information about victim's activities", // C
-      "To encrypt user files",
-      "To create backup copies"
-    ],
-    "answer": 2,
-    "explanation": "Spyware is designed to collect and forward information regarding a victim's activities to an interested party without the user's consent or knowledge."
-  },
-  {
-    "question": "Which method is NOT mentioned as a way spyware can infect systems?",
-    "options": [
-      "Instant Messaging (IM)",
-      "Internet Relay Chat (IRC)",
-      "Email Attachments",
-      "Automatic Windows updates", // D
-      "Physical Access"
-    ],
-    "answer": 3,
-    "explanation": "Automatic Windows updates are a security measure, not a method for spyware infection. The lecture mentions IM, IRC, email, physical access, browser defects, freeware, and websites."
-  },
-  {
-    "question": "What is a common characteristic of adware?",
-    "options": [
-      "It encrypts user files for ransom",
-      "It improves browser security",
-      "It removes other malware",
-      "It displays ads, pop-ups, and nag screens" // D
-    ],
-    "answer": 3,
-    "explanation": "Adware displays ads, pop-ups, and nag screens and may change the browser's start page to advertise products or services."
-  },
-  {
-    "question": "How is adware typically spread?",
-    "options": [
-      "Through hardware failures",
-      "Through downloads with other software", // B
-      "Via operating system updates",
-      "By antivirus software",
-      "Through system backups"
-    ],
-    "answer": 1,
-    "explanation": "Adware is typically spread either through a download with other software or when the victim visits a website that deploys it stealthily."
-  },
-  {
-    "question": "What is the defining characteristic of a Trojan?",
-    "options": [
-      "It replicates rapidly across networks",
-      "It appears legitimate but provides covert access", // B
-      "It only affects mobile devices",
-      "It improves system performance"
-    ],
-    "answer": 1,
-    "explanation": "A Trojan is a software application that provides covert access to a victim's system while appearing to look like a legitimate program."
-  },
-  {
-    "question": "Which behavior might indicate a Trojan infection?",
-    "options": [
-      "CD drawer opening and closing unexpectedly", // A
-      "Improved system performance",
-      "Faster internet speed",
-      "Automatic security updates",
-      "Better battery life"
-    ],
-    "answer": 0,
-    "explanation": "Unexpected behaviors like CD drawer opening/closing, screen changes, or mouse button reversals can indicate Trojan infection."
-  },
-  {
-    "question": "What can a hacker do with a Remote Access Trojan (RAT)?",
-    "options": [
-      "Only view files but not modify them",
-      "Improve system security",
-      "Gain remote control over the victim's system", // C
-      "Speed up internet connection",
-      "Create system backups"
-    ],
-    "answer": 2,
-    "explanation": "Remote Access Trojans (RATs) are designed to give an attacker remote control over a victim's system."
-  },
-  {
-    "question": "Which type of Trojan captures and transmits data like keystrokes?",
-    "options": [
-      "Destructive Trojan",
-      "Remote Access Trojan",
-      "Data Sending Trojan", // C
-      "System Optimizer Trojan"
-    ],
-    "answer": 2,
-    "explanation": "Data Sending Trojans capture data from the victim's system, including files and keystrokes, and transmit this data to the attacker."
-  },
-  {
-    "question": "What is the primary goal of destructive Trojans?",
-    "options": [
-      "To improve system performance",
-      "To create backup copies of files",
-      "To protect against other malware",
-      "To corrupt, erase, or destroy data", // D
-      "To monitor user activities"
-    ],
-    "answer": 3,
-    "explanation": "Destructive Trojans seek to corrupt, erase, or destroy data outright on a system, and in extreme cases may affect hardware."
-  },
-  
-  // True/False Questions (5 questions) - Unchanged
-  {
-    "question": "Malware can only steal information but cannot damage hardware.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Malware has evolved to include the ability to damage hardware in some cases, not just steal information."
-  },
-  {
-    "question": "Worms require user interaction to spread across networks.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Worms do not necessarily require any user interaction, direct or otherwise, to function and can spread automatically."
-  },
-  {
-    "question": "Spyware operates with the user's full knowledge and consent.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Spyware acts behind the scenes to gather information without the user's consent or knowledge."
-  },
-  {
-    "question": "Trojans always appear as obvious malicious programs to the user.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Trojans appear to look like legitimate programs while providing covert access to the system."
-  },
-  {
-    "question": "Rootkits are easily detected by all modern antivirus scanners.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Rootkits can hide within core system components and stay undetected by modern scanners."
-  }
+    // Multiple Choice Questions (20 questions) - Answers and option counts varied
+    {
+        "question": "What does the term 'malware' stand for?",
+        "options": [
+            "Malicious Software", // A
+            "Malicious Advertising",
+            "Malfunctioning Software",
+            "Managed Security",
+            "Multiple Applications"
+        ],
+        "answer": 0,
+        "explanation": "The term 'malware' is short for 'malicious software' and covers viruses, worms, Trojans, and other harmful software."
+    },
+    {
+        "question": "Which of the following is NOT typically considered a category of malware?",
+        "options": [
+            "Viruses",
+            "Worms",
+            "Firewalls", // C
+            "Spyware"
+        ],
+        "answer": 2,
+        "explanation": "Firewalls are security systems that protect against malware, not a type of malware itself."
+    },
+    {
+        "question": "What is a key characteristic of rootkits?",
+        "options": [
+            "They are always visible to antivirus software",
+            "They only affect web browsers",
+            "They are easy to detect and remove",
+            "They hide within core system components", // D
+            "They only target mobile devices"
+        ],
+        "answer": 3,
+        "explanation": "Rootkits are a modern form of malware that can hide within the core components of a system and stay undetected by modern scanners."
+    },
+    {
+        "question": "What typically initiates a virus's infectious activities?",
+        "options": [
+            "Automatic system updates",
+            "Hardware failure",
+            "Network disconnection",
+            "Some sort of user action" // D
+        ],
+        "answer": 3,
+        "explanation": "Typically, viruses require some sort of user action to initiate their infectious activities."
+    },
+    {
+        "question": "Which of the following actions can a virus perform?",
+        "options": [
+            "Altering data",
+            "Infecting other programs",
+            "Destroying data",
+            "Corrupting hardware",
+            "All of the above" // E
+        ],
+        "answer": 4,
+        "explanation": "Viruses can perform multiple harmful actions including altering data, infecting programs, destroying data, and corrupting hardware."
+    },
+    {
+        "question": "What is the first step in the virus development process?",
+        "options": [
+            "Design", // A
+            "Replication",
+            "Detection",
+            "Elimination",
+            "Launch"
+        ],
+        "answer": 0,
+        "explanation": "The first step is Design, where the author envisions and creates the virus, either from scratch or using construction kits."
+    },
+    {
+        "question": "During which phase do antivirus makers begin researching how to eradicate a virus?",
+        "options": [
+            "Design",
+            "Detection", // B
+            "Replication",
+            "Launch",
+            "Incorporation"
+        ],
+        "answer": 1,
+        "explanation": "During the Detection phase, the virus is recognized and reported to antivirus makers who begin research into how it works and how to eradicate it."
+    },
+    {
+        "question": "What tool is mentioned for converting batch files to COM files in virus creation?",
+        "options": [
+            "VirusMaker Pro",
+            "bat2com", // B
+            "EXE Converter",
+            "Code Transformer"
+        ],
+        "answer": 1,
+        "explanation": "The lecture mentions using 'bat2com' to convert virus.bat into virus.com for creating a simple virus."
+    },
+    {
+        "question": "Which virus creation utility is shown in the lecture with a GUI interface?",
+        "options": [
+            "Virus Studio",
+            "Malware Maker Pro",
+            "Virus Creator Plus",
+            "JPS Virus Maker", // D
+            "Trojan Generator"
+        ],
+        "answer": 3,
+        "explanation": "The lecture mentions using utilities such as JPS Virus Maker or Terabit virus maker which provide GUI interfaces for virus creation."
+    },
+    {
+        "question": "What is a key difference between worms and viruses?",
+        "options": [
+            "Worms require user interaction",
+            "Worms need host applications",
+            "Worms are slower to spread",
+            "Worms do not require host applications" // D
+        ],
+        "answer": 3,
+        "explanation": "Unlike viruses, worms do not require a host application to perform their activities and can spread independently."
+    },
+    {
+        "question": "Which characteristic is typical of worms?",
+        "options": [
+            "Rapid replication across networks", // A
+            "Slow replication across networks",
+            "Requirement of user interaction",
+            "Dependence on host files",
+            "Easy detection and removal"
+        ],
+        "answer": 0,
+        "explanation": "One of the main characteristics of worms is their inherent ability to replicate and spread across networks extremely quickly."
+    },
+    {
+        "question": "What is the primary purpose of spyware?",
+        "options": [
+            "To improve system performance",
+            "To protect against other malware",
+            "To collect and forward information about victim's activities", // C
+            "To encrypt user files",
+            "To create backup copies"
+        ],
+        "answer": 2,
+        "explanation": "Spyware is designed to collect and forward information regarding a victim's activities to an interested party without the user's consent or knowledge."
+    },
+    {
+        "question": "Which method is NOT mentioned as a way spyware can infect systems?",
+        "options": [
+            "Instant Messaging (IM)",
+            "Internet Relay Chat (IRC)",
+            "Email Attachments",
+            "Automatic Windows updates", // D
+            "Physical Access"
+        ],
+        "answer": 3,
+        "explanation": "Automatic Windows updates are a security measure, not a method for spyware infection. The lecture mentions IM, IRC, email, physical access, browser defects, freeware, and websites."
+    },
+    {
+        "question": "What is a common characteristic of adware?",
+        "options": [
+            "It encrypts user files for ransom",
+            "It improves browser security",
+            "It removes other malware",
+            "It displays ads, pop-ups, and nag screens" // D
+        ],
+        "answer": 3,
+        "explanation": "Adware displays ads, pop-ups, and nag screens and may change the browser's start page to advertise products or services."
+    },
+    {
+        "question": "How is adware typically spread?",
+        "options": [
+            "Through hardware failures",
+            "Through downloads with other software", // B
+            "Via operating system updates",
+            "By antivirus software",
+            "Through system backups"
+        ],
+        "answer": 1,
+        "explanation": "Adware is typically spread either through a download with other software or when the victim visits a website that deploys it stealthily."
+    },
+    {
+        "question": "What is the defining characteristic of a Trojan?",
+        "options": [
+            "It replicates rapidly across networks",
+            "It appears legitimate but provides covert access", // B
+            "It only affects mobile devices",
+            "It improves system performance"
+        ],
+        "answer": 1,
+        "explanation": "A Trojan is a software application that provides covert access to a victim's system while appearing to look like a legitimate program."
+    },
+    {
+        "question": "Which behavior might indicate a Trojan infection?",
+        "options": [
+            "CD drawer opening and closing unexpectedly", // A
+            "Improved system performance",
+            "Faster internet speed",
+            "Automatic security updates",
+            "Better battery life"
+        ],
+        "answer": 0,
+        "explanation": "Unexpected behaviors like CD drawer opening/closing, screen changes, or mouse button reversals can indicate Trojan infection."
+    },
+    {
+        "question": "What can a hacker do with a Remote Access Trojan (RAT)?",
+        "options": [
+            "Only view files but not modify them",
+            "Improve system security",
+            "Gain remote control over the victim's system", // C
+            "Speed up internet connection",
+            "Create system backups"
+        ],
+        "answer": 2,
+        "explanation": "Remote Access Trojans (RATs) are designed to give an attacker remote control over a victim's system."
+    },
+    {
+        "question": "Which type of Trojan captures and transmits data like keystrokes?",
+        "options": [
+            "Destructive Trojan",
+            "Remote Access Trojan",
+            "Data Sending Trojan", // C
+            "System Optimizer Trojan"
+        ],
+        "answer": 2,
+        "explanation": "Data Sending Trojans capture data from the victim's system, including files and keystrokes, and transmit this data to the attacker."
+    },
+    {
+        "question": "What is the primary goal of destructive Trojans?",
+        "options": [
+            "To improve system performance",
+            "To create backup copies of files",
+            "To protect against other malware",
+            "To corrupt, erase, or destroy data", // D
+            "To monitor user activities"
+        ],
+        "answer": 3,
+        "explanation": "Destructive Trojans seek to corrupt, erase, or destroy data outright on a system, and in extreme cases may affect hardware."
+    },
+
+    // True/False Questions (5 questions) - Unchanged
+    {
+        "question": "Malware can only steal information but cannot damage hardware.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Malware has evolved to include the ability to damage hardware in some cases, not just steal information."
+    },
+    {
+        "question": "Worms require user interaction to spread across networks.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Worms do not necessarily require any user interaction, direct or otherwise, to function and can spread automatically."
+    },
+    {
+        "question": "Spyware operates with the user's full knowledge and consent.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Spyware acts behind the scenes to gather information without the user's consent or knowledge."
+    },
+    {
+        "question": "Trojans always appear as obvious malicious programs to the user.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Trojans appear to look like legitimate programs while providing covert access to the system."
+    },
+    {
+        "question": "Rootkits are easily detected by all modern antivirus scanners.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Rootkits can hide within core system components and stay undetected by modern scanners."
+    }
 ];
 
 
 
 const ethics5 = [
-  // Multiple Choice Questions (30 questions)
-  {
-    "question": "What is the main difference between ethics and laws?",
-    "options": [
-      "Ethics are legally binding while laws are optional",
-      "Ethics are enforced by police while laws are not",
-      "Laws legally mandate right/wrong while ethics reflect society's views", // C
-      "Laws are only for businesses while ethics are for individuals"
-    ],
-    "answer": 2,
-    "explanation": "Unlike laws that legally mandate what is right or wrong, ethics illustrate society's views about what is right and what is wrong."
-  },
-  {
-    "question": "Which of the following is NOT considered a privacy concern in computer ethics?",
-    "options": [
-      "Hacking",
-      "Software Licensing", // B
-      "Malware",
-      "Data Protection",
-      "Anonymity"
-    ],
-    "answer": 1,
-    "explanation": "Software licensing is related to intellectual property rights, not privacy concerns. Privacy concerns include hacking, malware, data protection, and anonymity."
-  },
-  {
-    "question": "What does copyright protect?",
-    "options": [
-      "The right to use anyone's work freely",
-      "The ability to crack software security",
-      "The right to plagiarize content",
-      "An author's exclusive publication and distribution rights", // D
-      "Free software distribution"
-    ],
-    "answer": 3,
-    "explanation": "Copyright is a form of intellectual property that gives proprietary publication, distribution and usage rights for the author."
-  },
-  {
-    "question": "Which environmental concern is associated with increased computer usage?",
-    "options": [
-      "Increased energy usage and emissions", // A
-      "Reduced energy consumption",
-      "Decreased greenhouse gas emissions",
-      "Improved air quality",
-      "Reduced electronic waste"
-    ],
-    "answer": 0,
-    "explanation": "Environment has been affected by computers since increased computer usage increases energy usage which increases greenhouse gas emissions."
-  },
-  {
-    "question": "What is the primary characteristic that distinguishes ethical hackers from malicious hackers?",
-    "options": [
-      "They use different tools",
-      "They have better technical skills",
-      "They only work during business hours",
-      "They work with system owner's permission" // D
-    ],
-    "answer": 3,
-    "explanation": "Ethical hackers use the same skills and tactics as malicious hackers but operate with the system owner's explicit permission."
-  },
-  {
-    "question": "Which type of hacker has limited training and uses basic tools without full understanding?",
-    "options": [
-      "White-Hat Hackers",
-      "Black-Hat Hackers",
-      "Gray-Hat Hackers",
-      "Script Kiddies", // D
-      "Suicide Hackers"
-    ],
-    "answer": 3,
-    "explanation": "Script Kiddies have limited or no training and know how to use only basic techniques or tools without understanding what they are doing."
-  },
-  {
-    "question": "According to the code of conduct, what should ethical hackers do with confidential information?",
-    "options": [
-      "Keep it private and confidential", // A
-      "Share it with other security professionals",
-      "Sell it to the highest bidder",
-      "Publish it online for educational purposes"
-    ],
-    "answer": 0,
-    "explanation": "Ethical hackers must keep private and confidential information gained in their professional work secure."
-  },
-  {
-    "question": "What is a 'Zero Day' vulnerability?",
-    "options": [
-      "A vulnerability that has been known for zero days",
-      "A security patch released within 24 hours",
-      "A threat unknown to developers and not addressed", // C
-      "A vulnerability that automatically fixes itself",
-      "A type of malware that activates at midnight"
-    ],
-    "answer": 2,
-    "explanation": "Zero Day describes a threat or vulnerability that is unknown to developers and has not been addressed, considered a serious problem."
-  },
-  {
-    "question": "Which hacking phase involves passive information gathering?",
-    "options": [
-      "Scanning",
-      "Enumeration",
-      "System Hacking",
-      "Covering Tracks",
-      "Footprinting" // E
-    ],
-    "answer": 4,
-    "explanation": "Footprinting involves using primarily passive methods of gaining information from a target prior to performing active methods."
-  },
-  {
-    "question": "What is the main goal of the 'Covering tracks' phase?",
-    "options": [
-      "To leave evidence of the attack",
-      "To document the attack process",
-      "To remove evidence of presence in a system", // C
-      "To improve system security"
-    ],
-    "answer": 2,
-    "explanation": "Covering tracks involves attempting to remove evidence of presence in a system by purging log files and destroying other evidence."
-  },
-  {
-    "question": "Which tool is used for tracing the path of IP packets?",
-    "options": [
-      "Tracert", // A
-      "Ping",
-      "Port Scanner",
-      "Whois",
-      "Nmap"
-    ],
-    "answer": 0,
-    "explanation": "Tracert (Trace Route) is a command-line utility used to trace the path that an IP packet takes to its destination."
-  },
-  {
-    "question": "What type of information is gathered during the Enumeration phase?",
-    "options": [
-      "Only IP addresses",
-      "Physical location data",
-      "Social media profiles only",
-      "User lists, routing tables, and protocols" // D
-    ],
-    "answer": 3,
-    "explanation": "Enumeration involves systematic probing to obtain user lists, routing tables, and protocols from the system."
-  },
-  {
-    "question": "Which Google operator restricts search to a specific website?",
-    "options": [
-      "cache:",
-      "site:", // B
-      "link:",
-      "info:",
-      "allinurl:"
-    ],
-    "answer": 1,
-    "explanation": "The site: operator restricts the search to the location specified in the query."
-  },
-  {
-    "question": "What is FOCA primarily used for?",
-    "options": [
-      "Network scanning",
-      "Password cracking",
-      "Social engineering attacks",
-      "Finding metadata in documents", // D
-      "Email tracking"
-    ],
-    "answer": 3,
-    "explanation": "FOCA is a tool used mainly to find metadata and hidden information in documents that may be on web pages."
-  },
-  {
-    "question": "What was the original purpose of Egyptian hieroglyphics?",
-    "options": [
-      "Sacred communication with gods", // A
-      "Military communications",
-      "Business records",
-      "Personal diaries",
-      "Educational purposes"
-    ],
-    "answer": 0,
-    "explanation": "The ancient Egyptians used hieroglyphics as a special writing system to commune with their gods, not primarily to hide secrets."
-  },
-  {
-    "question": "Which of these is NOT a goal of modern cryptography?",
-    "options": [
-      "Confidentiality",
-      "Integrity",
-      "Authentication",
-      "Nonrepudiation",
-      "Making information larger" // E
-    ],
-    "answer": 4,
-    "explanation": "Modern cryptography seeks to achieve confidentiality, integrity, authentication, nonrepudiation, and key distribution - not making information larger."
-  },
-  {
-    "question": "What does nonrepudiation provide in cryptography?",
-    "options": [
-      "Fast encryption speed",
-      "One-way encryption",
-      "Proof of message origin", // C
-      "Key management solutions"
-    ],
-    "answer": 2,
-    "explanation": "Nonrepudiation provides positive identification of the source or originator of an event, preventing denial of involvement."
-  },
-  {
-    "question": "What is the main characteristic of symmetric cryptography?",
-    "options": [
-      "Uses the same key for both encryption and decryption", // A
-      "Uses different keys for encryption and decryption",
-      "Does not use keys at all",
-      "Uses only public keys",
-      "Is slower than asymmetric cryptography"
-    ],
-    "answer": 0,
-    "explanation": "In symmetric cryptography, the same key is used for both encryption and decryption and must be kept secret."
-  },
-  {
-    "question": "What problem does asymmetric cryptography solve?",
-    "options": [
-      "Slow encryption speed",
-      "Lack of confidentiality",
-      "Key management problems", // C
-      "Large key sizes",
-      "Complex algorithms"
-    ],
-    "answer": 2,
-    "explanation": "Public key cryptography was intended to overcome the key management problems inherent in previous symmetric systems."
-  },
-  {
-    "question": "What is hashing primarily used for?",
-    "options": [
-      "Encrypting messages for confidentiality",
-      "Creating digital signatures",
-      "Managing key distribution",
-      "Validating data integrity" // D
-    ],
-    "answer": 3,
-    "explanation": "Hashing is commonly used to validate the integrity of information and detect changes in data."
-  },
-  {
-    "question": "What makes rootkits particularly dangerous?",
-    "options": [
-      "They spread very slowly",
-      "They hide within core system components", // B
-      "They are easy to detect and remove",
-      "They only affect web browsers",
-      "They are harmless to systems"
-    ],
-    "answer": 1,
-    "explanation": "Rootkits are dangerous because they hide deep within the core components of a system, making them undetected by modern scanners."
-  },
-  {
-    "question": "What typically initiates a virus's infectious activities?",
-    "options": [
-      "Automatic system updates",
-      "Hardware failure",
-      "Network disconnection",
-      "User action" // D
-    ],
-    "answer": 3,
-    "explanation": "Typically, viruses require some sort of user action to initiate their infectious activities."
-  },
-  {
-    "question": "During which virus phase do antivirus makers develop detection signatures?",
-    "options": [
-      "Design",
-      "Replication",
-      "Incorporation", // C
-      "Launch",
-      "Elimination"
-    ],
-    "answer": 2,
-    "explanation": "During the Incorporation phase, antivirus makers develop a way to identify the virus and include this signature in their software updates."
-  },
-  {
-    "question": "What is a key difference between worms and viruses?",
-    "options": [
-      "Worms do not require host applications", // A
-      "Worms require user interaction",
-      "Worms need host applications",
-      "Worms are slower to spread",
-      "Worms only affect hardware"
-    ],
-    "answer": 0,
-    "explanation": "Unlike viruses, worms do not require a host application to perform their activities and can spread independently."
-  },
-  {
-    "question": "What is the primary purpose of spyware?",
-    "options": [
-      "To improve system performance",
-      "To protect against other malware",
-      "To encrypt user files",
-      "To collect information about victim's activities" // D
-    ],
-    "answer": 3,
-    "explanation": "Spyware is designed to secretly collect and forward information about a victim's activities to another party."
-  },
-  {
-    "question": "Which method is NOT mentioned as a way spyware can infect systems?",
-    "options": [
-      "Instant Messaging",
-      "Automatic Windows updates", // B
-      "Email Attachments",
-      "Physical Access",
-      "Malicious Websites"
-    ],
-    "answer": 1,
-    "explanation": "Automatic Windows updates are a security measure, not a method for spyware infection."
-  },
-  {
-    "question": "What is a common characteristic of adware?",
-    "options": [
-      "It encrypts user files for ransom",
-      "It removes other malware",
-      "It displays unwanted advertisements", // C
-      "It improves browser security",
-      "It speeds up internet connection"
-    ],
-    "answer": 2,
-    "explanation": "Adware works by displaying unwanted advertisements, such as pop-ups, replacing the browser's home page, or installing other items to advertise products."
-  },
-  {
-    "question": "What is the defining characteristic of a Trojan?",
-    "options": [
-      "It appears legitimate but provides covert access", // A
-      "It replicates rapidly across networks",
-      "It only affects mobile devices",
-      "It improves system performance"
-    ],
-    "answer": 0,
-    "explanation": "A Trojan is a type of malware that disguises itself as a legitimate program to gain covert access to a victim's system and cause harm."
-  },
-  {
-    "question": "Which behavior might indicate a Trojan infection?",
-    "options": [
-      "Improved system performance",
-      "CD drawer opening randomly", // B
-      "Faster internet speed",
-      "Automatic security updates",
-      "Better battery life"
-    ],
-    "answer": 1,
-    "explanation": "Unexpected behaviors like CD drawer opening randomly, screen settings changing, or mouse button reversals can indicate Trojan infection."
-  },
-  {
-    "question": "What can a hacker do with a Remote Access Trojan (RAT)?",
-    "options": [
-      "Only view files but not modify them",
-      "Improve system security",
-      "Speed up internet connection",
-      "Gain complete remote control over the system" // D
-    ],
-    "answer": 3,
-    "explanation": "Remote Access Trojans (RATs) are designed to give an attacker complete remote control over the victim's system."
-  },
-   {
+    // Multiple Choice Questions (30 questions)
+    {
+        "question": "What is the main difference between ethics and laws?",
+        "options": [
+            "Ethics are legally binding while laws are optional",
+            "Ethics are enforced by police while laws are not",
+            "Laws legally mandate right/wrong while ethics reflect society's views", // C
+            "Laws are only for businesses while ethics are for individuals"
+        ],
+        "answer": 2,
+        "explanation": "Unlike laws that legally mandate what is right or wrong, ethics illustrate society's views about what is right and what is wrong."
+    },
+    {
+        "question": "Which of the following is NOT considered a privacy concern in computer ethics?",
+        "options": [
+            "Hacking",
+            "Software Licensing", // B
+            "Malware",
+            "Data Protection",
+            "Anonymity"
+        ],
+        "answer": 1,
+        "explanation": "Software licensing is related to intellectual property rights, not privacy concerns. Privacy concerns include hacking, malware, data protection, and anonymity."
+    },
+    {
+        "question": "What does copyright protect?",
+        "options": [
+            "The right to use anyone's work freely",
+            "The ability to crack software security",
+            "The right to plagiarize content",
+            "An author's exclusive publication and distribution rights", // D
+            "Free software distribution"
+        ],
+        "answer": 3,
+        "explanation": "Copyright is a form of intellectual property that gives proprietary publication, distribution and usage rights for the author."
+    },
+    {
+        "question": "Which environmental concern is associated with increased computer usage?",
+        "options": [
+            "Increased energy usage and emissions", // A
+            "Reduced energy consumption",
+            "Decreased greenhouse gas emissions",
+            "Improved air quality",
+            "Reduced electronic waste"
+        ],
+        "answer": 0,
+        "explanation": "Environment has been affected by computers since increased computer usage increases energy usage which increases greenhouse gas emissions."
+    },
+    {
+        "question": "What is the primary characteristic that distinguishes ethical hackers from malicious hackers?",
+        "options": [
+            "They use different tools",
+            "They have better technical skills",
+            "They only work during business hours",
+            "They work with system owner's permission" // D
+        ],
+        "answer": 3,
+        "explanation": "Ethical hackers use the same skills and tactics as malicious hackers but operate with the system owner's explicit permission."
+    },
+    {
+        "question": "Which type of hacker has limited training and uses basic tools without full understanding?",
+        "options": [
+            "White-Hat Hackers",
+            "Black-Hat Hackers",
+            "Gray-Hat Hackers",
+            "Script Kiddies", // D
+            "Suicide Hackers"
+        ],
+        "answer": 3,
+        "explanation": "Script Kiddies have limited or no training and know how to use only basic techniques or tools without understanding what they are doing."
+    },
+    {
+        "question": "According to the code of conduct, what should ethical hackers do with confidential information?",
+        "options": [
+            "Keep it private and confidential", // A
+            "Share it with other security professionals",
+            "Sell it to the highest bidder",
+            "Publish it online for educational purposes"
+        ],
+        "answer": 0,
+        "explanation": "Ethical hackers must keep private and confidential information gained in their professional work secure."
+    },
+    {
+        "question": "What is a 'Zero Day' vulnerability?",
+        "options": [
+            "A vulnerability that has been known for zero days",
+            "A security patch released within 24 hours",
+            "A threat unknown to developers and not addressed", // C
+            "A vulnerability that automatically fixes itself",
+            "A type of malware that activates at midnight"
+        ],
+        "answer": 2,
+        "explanation": "Zero Day describes a threat or vulnerability that is unknown to developers and has not been addressed, considered a serious problem."
+    },
+    {
+        "question": "Which hacking phase involves passive information gathering?",
+        "options": [
+            "Scanning",
+            "Enumeration",
+            "System Hacking",
+            "Covering Tracks",
+            "Footprinting" // E
+        ],
+        "answer": 4,
+        "explanation": "Footprinting involves using primarily passive methods of gaining information from a target prior to performing active methods."
+    },
+    {
+        "question": "What is the main goal of the 'Covering tracks' phase?",
+        "options": [
+            "To leave evidence of the attack",
+            "To document the attack process",
+            "To remove evidence of presence in a system", // C
+            "To improve system security"
+        ],
+        "answer": 2,
+        "explanation": "Covering tracks involves attempting to remove evidence of presence in a system by purging log files and destroying other evidence."
+    },
+    {
+        "question": "Which tool is used for tracing the path of IP packets?",
+        "options": [
+            "Tracert", // A
+            "Ping",
+            "Port Scanner",
+            "Whois",
+            "Nmap"
+        ],
+        "answer": 0,
+        "explanation": "Tracert (Trace Route) is a command-line utility used to trace the path that an IP packet takes to its destination."
+    },
+    {
+        "question": "What type of information is gathered during the Enumeration phase?",
+        "options": [
+            "Only IP addresses",
+            "Physical location data",
+            "Social media profiles only",
+            "User lists, routing tables, and protocols" // D
+        ],
+        "answer": 3,
+        "explanation": "Enumeration involves systematic probing to obtain user lists, routing tables, and protocols from the system."
+    },
+    {
+        "question": "Which Google operator restricts search to a specific website?",
+        "options": [
+            "cache:",
+            "site:", // B
+            "link:",
+            "info:",
+            "allinurl:"
+        ],
+        "answer": 1,
+        "explanation": "The site: operator restricts the search to the location specified in the query."
+    },
+    {
+        "question": "What is FOCA primarily used for?",
+        "options": [
+            "Network scanning",
+            "Password cracking",
+            "Social engineering attacks",
+            "Finding metadata in documents", // D
+            "Email tracking"
+        ],
+        "answer": 3,
+        "explanation": "FOCA is a tool used mainly to find metadata and hidden information in documents that may be on web pages."
+    },
+    {
+        "question": "What was the original purpose of Egyptian hieroglyphics?",
+        "options": [
+            "Sacred communication with gods", // A
+            "Military communications",
+            "Business records",
+            "Personal diaries",
+            "Educational purposes"
+        ],
+        "answer": 0,
+        "explanation": "The ancient Egyptians used hieroglyphics as a special writing system to commune with their gods, not primarily to hide secrets."
+    },
+    {
+        "question": "Which of these is NOT a goal of modern cryptography?",
+        "options": [
+            "Confidentiality",
+            "Integrity",
+            "Authentication",
+            "Nonrepudiation",
+            "Making information larger" // E
+        ],
+        "answer": 4,
+        "explanation": "Modern cryptography seeks to achieve confidentiality, integrity, authentication, nonrepudiation, and key distribution - not making information larger."
+    },
+    {
+        "question": "What does nonrepudiation provide in cryptography?",
+        "options": [
+            "Fast encryption speed",
+            "One-way encryption",
+            "Proof of message origin", // C
+            "Key management solutions"
+        ],
+        "answer": 2,
+        "explanation": "Nonrepudiation provides positive identification of the source or originator of an event, preventing denial of involvement."
+    },
+    {
+        "question": "What is the main characteristic of symmetric cryptography?",
+        "options": [
+            "Uses the same key for both encryption and decryption", // A
+            "Uses different keys for encryption and decryption",
+            "Does not use keys at all",
+            "Uses only public keys",
+            "Is slower than asymmetric cryptography"
+        ],
+        "answer": 0,
+        "explanation": "In symmetric cryptography, the same key is used for both encryption and decryption and must be kept secret."
+    },
+    {
+        "question": "What problem does asymmetric cryptography solve?",
+        "options": [
+            "Slow encryption speed",
+            "Lack of confidentiality",
+            "Key management problems", // C
+            "Large key sizes",
+            "Complex algorithms"
+        ],
+        "answer": 2,
+        "explanation": "Public key cryptography was intended to overcome the key management problems inherent in previous symmetric systems."
+    },
+    {
+        "question": "What is hashing primarily used for?",
+        "options": [
+            "Encrypting messages for confidentiality",
+            "Creating digital signatures",
+            "Managing key distribution",
+            "Validating data integrity" // D
+        ],
+        "answer": 3,
+        "explanation": "Hashing is commonly used to validate the integrity of information and detect changes in data."
+    },
+    {
+        "question": "What makes rootkits particularly dangerous?",
+        "options": [
+            "They spread very slowly",
+            "They hide within core system components", // B
+            "They are easy to detect and remove",
+            "They only affect web browsers",
+            "They are harmless to systems"
+        ],
+        "answer": 1,
+        "explanation": "Rootkits are dangerous because they hide deep within the core components of a system, making them undetected by modern scanners."
+    },
+    {
+        "question": "What typically initiates a virus's infectious activities?",
+        "options": [
+            "Automatic system updates",
+            "Hardware failure",
+            "Network disconnection",
+            "User action" // D
+        ],
+        "answer": 3,
+        "explanation": "Typically, viruses require some sort of user action to initiate their infectious activities."
+    },
+    {
+        "question": "During which virus phase do antivirus makers develop detection signatures?",
+        "options": [
+            "Design",
+            "Replication",
+            "Incorporation", // C
+            "Launch",
+            "Elimination"
+        ],
+        "answer": 2,
+        "explanation": "During the Incorporation phase, antivirus makers develop a way to identify the virus and include this signature in their software updates."
+    },
+    {
+        "question": "What is a key difference between worms and viruses?",
+        "options": [
+            "Worms do not require host applications", // A
+            "Worms require user interaction",
+            "Worms need host applications",
+            "Worms are slower to spread",
+            "Worms only affect hardware"
+        ],
+        "answer": 0,
+        "explanation": "Unlike viruses, worms do not require a host application to perform their activities and can spread independently."
+    },
+    {
+        "question": "What is the primary purpose of spyware?",
+        "options": [
+            "To improve system performance",
+            "To protect against other malware",
+            "To encrypt user files",
+            "To collect information about victim's activities" // D
+        ],
+        "answer": 3,
+        "explanation": "Spyware is designed to secretly collect and forward information about a victim's activities to another party."
+    },
+    {
+        "question": "Which method is NOT mentioned as a way spyware can infect systems?",
+        "options": [
+            "Instant Messaging",
+            "Automatic Windows updates", // B
+            "Email Attachments",
+            "Physical Access",
+            "Malicious Websites"
+        ],
+        "answer": 1,
+        "explanation": "Automatic Windows updates are a security measure, not a method for spyware infection."
+    },
+    {
+        "question": "What is a common characteristic of adware?",
+        "options": [
+            "It encrypts user files for ransom",
+            "It removes other malware",
+            "It displays unwanted advertisements", // C
+            "It improves browser security",
+            "It speeds up internet connection"
+        ],
+        "answer": 2,
+        "explanation": "Adware works by displaying unwanted advertisements, such as pop-ups, replacing the browser's home page, or installing other items to advertise products."
+    },
+    {
+        "question": "What is the defining characteristic of a Trojan?",
+        "options": [
+            "It appears legitimate but provides covert access", // A
+            "It replicates rapidly across networks",
+            "It only affects mobile devices",
+            "It improves system performance"
+        ],
+        "answer": 0,
+        "explanation": "A Trojan is a type of malware that disguises itself as a legitimate program to gain covert access to a victim's system and cause harm."
+    },
+    {
+        "question": "Which behavior might indicate a Trojan infection?",
+        "options": [
+            "Improved system performance",
+            "CD drawer opening randomly", // B
+            "Faster internet speed",
+            "Automatic security updates",
+            "Better battery life"
+        ],
+        "answer": 1,
+        "explanation": "Unexpected behaviors like CD drawer opening randomly, screen settings changing, or mouse button reversals can indicate Trojan infection."
+    },
+    {
+        "question": "What can a hacker do with a Remote Access Trojan (RAT)?",
+        "options": [
+            "Only view files but not modify them",
+            "Improve system security",
+            "Speed up internet connection",
+            "Gain complete remote control over the system" // D
+        ],
+        "answer": 3,
+        "explanation": "Remote Access Trojans (RATs) are designed to give an attacker complete remote control over the victim's system."
+    },
+    {
         question: "API stands for application programming interface",
         options: ["True", "False"],
         answer: 0,
@@ -10431,68 +10429,1575 @@ const ethics5 = [
         explanation: "Footprinting is the first phase with the goal to gather as much information as is reasonable and useful about a potential target."
     },
 
-  {
-    "question": "Computer ethics only concern the use of computer software, not hardware.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Computer ethics are a set of moral standards that govern the use of computers, both hardware and software."
-  },
-  {
-    "question": "Plagiarism is the proper citation of another person's work with permission.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Plagiarism is the act of copying and publishing someone else's work without proper citation, essentially stealing it."
-  },
-  {
-    "question": "Gray-Hat hackers are always fully trusted after they reform from malicious activities.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Gray-Hat Hackers may not be fully trusted even after deciding to reform from previous malicious activities."
-  },
-  {
-    "question": "Footprinting involves active engagement with the target system.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Footprinting uses primarily passive methods of gaining information prior to active engagement."
-  },
-  {
-    "question": "Ethical hackers should protect the intellectual property of others.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Ethical hackers should protect the intellectual property of others by relying on their own innovation and efforts."
-  },
-  {
-    "question": "Symmetric cryptography provides better nonrepudiation than asymmetric cryptography.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Symmetric algorithms lack nonrepudiation features, which is a strength of asymmetric cryptography."
-  },
-  {
-    "question": "Hashing is a reversible process that can decrypt encrypted data.",
-    "options": ["True", "False"],
-    "answer": 1,
-    "explanation": "False. Hashing is designed to be a one-way process that creates a scrambled output which cannot be reversed."
-  },
-  {
-    "question": "Scanning determines which hosts are active and what the network looks like.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Scanning focuses on active engagement to determine active hosts and network structure."
-  },
-  {
-    "question": "Brute-force attacks become less effective as key length increases.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. Longer keys exponentially increase the time and resources needed for successful brute-force attacks, making them less effective."
-  },
-  {
-    "question": "Cryptography was only concerned with protecting information in its early generations.",
-    "options": ["True", "False"],
-    "answer": 0,
-    "explanation": "True. In the first few generations of cryptography, the primary concern was only protecting information, but this has changed over time."
-  }
+    {
+        "question": "Computer ethics only concern the use of computer software, not hardware.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Computer ethics are a set of moral standards that govern the use of computers, both hardware and software."
+    },
+    {
+        "question": "Plagiarism is the proper citation of another person's work with permission.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Plagiarism is the act of copying and publishing someone else's work without proper citation, essentially stealing it."
+    },
+    {
+        "question": "Gray-Hat hackers are always fully trusted after they reform from malicious activities.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Gray-Hat Hackers may not be fully trusted even after deciding to reform from previous malicious activities."
+    },
+    {
+        "question": "Footprinting involves active engagement with the target system.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Footprinting uses primarily passive methods of gaining information prior to active engagement."
+    },
+    {
+        "question": "Ethical hackers should protect the intellectual property of others.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Ethical hackers should protect the intellectual property of others by relying on their own innovation and efforts."
+    },
+    {
+        "question": "Symmetric cryptography provides better nonrepudiation than asymmetric cryptography.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Symmetric algorithms lack nonrepudiation features, which is a strength of asymmetric cryptography."
+    },
+    {
+        "question": "Hashing is a reversible process that can decrypt encrypted data.",
+        "options": ["True", "False"],
+        "answer": 1,
+        "explanation": "False. Hashing is designed to be a one-way process that creates a scrambled output which cannot be reversed."
+    },
+    {
+        "question": "Scanning determines which hosts are active and what the network looks like.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Scanning focuses on active engagement to determine active hosts and network structure."
+    },
+    {
+        "question": "Brute-force attacks become less effective as key length increases.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. Longer keys exponentially increase the time and resources needed for successful brute-force attacks, making them less effective."
+    },
+    {
+        "question": "Cryptography was only concerned with protecting information in its early generations.",
+        "options": ["True", "False"],
+        "answer": 0,
+        "explanation": "True. In the first few generations of cryptography, the primary concern was only protecting information, but this has changed over time."
+    }
 ];
 
+
+
+
+const ethics6 = [
+    {
+        "question": "What does SQL injection typically target?",
+        "options": [
+            "The operating system of a server",
+            "Websites or web applications powered by a back-end database",
+            "The client's web browser directly",
+            "Network hardware like routers and switches"
+        ],
+        "answer": 1,
+        "explanation": "SQL injection attacks target websites or web applications that use a back-end database to manipulate or extract data."
+    },
+    {
+        "question": "What is the usual root cause of SQL injection vulnerabilities?",
+        "options": [
+            "Weak database passwords",
+            "Improper or absent input validation",
+            "Outdated web browser versions",
+            "Lack of encryption in transit"
+        ],
+        "answer": 1,
+        "explanation": "SQL injection is usually caused by improper or absent input validation, allowing malicious code to reach the database."
+    },
+    {
+        "question": "Which of the following is a common sign that a field may be vulnerable to SQL injection?",
+        "options": [
+            "The page loads faster than usual",
+            "An 'Internal Server Error' is returned",
+            "The field automatically corrects input",
+            "A CAPTCHA appears"
+        ],
+        "answer": 1,
+        "explanation": "If input like a quote causes an 'Internal Server Error' or similar error, it may indicate SQL injection vulnerability."
+    },
+    {
+        "question": "What does '--' (double hyphen) represent in a SQL injection attack?",
+        "options": [
+            "It concatenates two queries",
+            "It starts a new transaction",
+            "It comments out the rest of the SQL line",
+            "It deletes the entire table"
+        ],
+        "answer": 2,
+        "explanation": "In many databases, '--' is used to comment out the remainder of a SQL query, allowing attackers to bypass conditions."
+    },
+    {
+        "question": "Which tool is mentioned for locating SQL Server installations on a network?",
+        "options": [
+            "Wireshark",
+            "Nmap",
+            "SQLPing 3.0",
+            "Metasploit"
+        ],
+        "answer": 2,
+        "explanation": "SQLPing 3.0 is a tool that performs active and passive scans to identify SQL Server installations."
+    },
+    {
+        "question": "What is 'Google hacking' in the context of SQL injection?",
+        "options": [
+            "Hacking Google's servers",
+            "Using advanced search queries to find vulnerable sites",
+            "Stealing Google search history",
+            "Injecting SQL into Google Forms"
+        ],
+        "answer": 1,
+        "explanation": "Google hacking refers to using advanced search queries to uncover websites vulnerable to SQL injection."
+    },
+    {
+        "question": "How can an attacker determine the number of columns in a database using SQL injection?",
+        "options": [
+            "By using 'UNION SELECT NULL' repeatedly",
+            "By appending 'ORDER BY n' and incrementing until an error occurs",
+            "By sending 'DELETE FROM table' commands",
+            "By analyzing HTTP headers"
+        ],
+        "answer": 1,
+        "explanation": "Appending 'ORDER BY n' and incrementing n until an error occurs reveals the number of columns in the database."
+    },
+    {
+        "question": "Which of the following is NOT a typical result of SQL injection?",
+        "options": [
+            "Identity spoofing",
+            "Alteration of e-commerce prices",
+            "Encryption of database files",
+            "Data destruction or corruption"
+        ],
+        "answer": 2,
+        "explanation": "SQL injection is used to manipulate, extract, or destroy data, not to encrypt database files."
+    },
+    {
+        "question": "What does a 'blind SQL injection' attack rely on?",
+        "options": [
+            "Visible error messages from the database",
+            "Time delays or conditional responses",
+            "Direct access to server logs",
+            "Physical access to the database server"
+        ],
+        "answer": 1,
+        "explanation": "Blind SQL injection does not rely on error messages; it uses time delays or boolean-based responses to infer data."
+    },
+    {
+        "question": "Which SQL statement is often used in conjunction with semicolons to execute multiple commands?",
+        "options": [
+            "COMMIT",
+            "ROLLBACK",
+            "UPDATE",
+            "UNION"
+        ],
+        "answer": 2,
+        "explanation": "UPDATE can be used with semicolons to execute multiple SQL statements in one injection, altering data."
+    },
+    {
+        "question": "What is the purpose of using 'WAITFOR DELAY' in blind SQL injection?",
+        "options": [
+            "To speed up query execution",
+            "To create a time-based inference channel",
+            "To lock the database temporarily",
+            "To log out the current user"
+        ],
+        "answer": 1,
+        "explanation": "'WAITFOR DELAY' introduces a time delay, allowing attackers to infer information based on response times."
+    },
+    {
+        "question": "Which type of form is most vulnerable to SQL injection?",
+        "options": [
+            "Forms with CAPTCHA",
+            "Forms that solicit data connected to a database",
+            "Forms with client-side validation only",
+            "Forms that require file uploads"
+        ],
+        "answer": 1,
+        "explanation": "Any form that collects data and interacts with a database can be vulnerable if input is not sanitized."
+    },
+    {
+        "question": "What does the error 'Internal Server Error' often indicate in SQL injection testing?",
+        "options": [
+            "The server is offline",
+            "The database is encrypted",
+            "Potential SQL injection vulnerability",
+            "The user is banned"
+        ],
+        "answer": 2,
+        "explanation": "Such errors can indicate that malformed SQL was executed, suggesting a possible SQL injection flaw."
+    },
+    {
+        "question": "Which of the following is a preventive measure against SQL injection?",
+        "options": [
+            "Using longer database table names",
+            "Input validation and sanitization",
+            "Disabling JavaScript",
+            "Hiding error messages from users"
+        ],
+        "answer": 1,
+        "explanation": "Proper input validation and sanitization are primary defenses against SQL injection."
+    },
+    {
+        "question": "What does SQLRecon provide beyond SQLPing?",
+        "options": [
+            "Graphical user interface",
+            "Additional techniques to discover hidden SQL Servers",
+            "Automated exploitation",
+            "Database encryption"
+        ],
+        "answer": 1,
+        "explanation": "SQLRecon provides extra methods to discover SQL Server installations that may be hidden on the network."
+    },
+    {
+        "question": "What is the primary goal of SQL injection attacks?",
+        "options": [
+            "To deface the website's homepage",
+            "To submit commands through a web app to a database",
+            "To steal SSL certificates",
+            "To overload the network bandwidth"
+        ],
+        "answer": 1,
+        "explanation": "SQL injection aims to submit malicious SQL commands through a web application to the underlying database."
+    },
+    {
+        "question": "Which character is commonly used to test for SQL injection vulnerability?",
+        "options": [
+            "@",
+            "#",
+            "' (single quote)",
+            "&"
+        ],
+        "answer": 2,
+        "explanation": "A single quote (') is often used to break SQL syntax and test for injection vulnerabilities."
+    },
+    {
+        "question": "What is 'identity spoofing' in SQL injection?",
+        "options": [
+            "Creating fake user profiles on social media",
+            "Manipulating databases to insert bogus information",
+            "Stealing someone's physical ID card",
+            "Impersonating a network administrator"
+        ],
+        "answer": 1,
+        "explanation": "Identity spoofing involves manipulating a database to insert false or misleading identity information."
+    },
+    {
+        "question": "Which database product allows multiple SQL statements separated by semicolons?",
+        "options": [
+            "MySQL only",
+            "SQLite only",
+            "Microsoft SQL Server and Oracle Siebel",
+            "MongoDB"
+        ],
+        "answer": 2,
+        "explanation": "Microsoft SQL Server and Oracle Siebel allow batch execution of SQL statements separated by semicolons."
+    },
+    {
+        "question": "What might a 'blank page' response indicate in SQL injection testing?",
+        "options": [
+            "The site is well-protected",
+            "Possible SQL injection vulnerability",
+            "The internet connection is lost",
+            "The browser is outdated"
+        ],
+        "answer": 1,
+        "explanation": "A blank page can indicate that the SQL query caused an error or unexpected behavior, suggesting vulnerability."
+    },
+    {
+        "question": "How can SQL injection lead to privilege escalation?",
+        "options": [
+            "By deleting user accounts",
+            "By manipulating queries to grant higher access rights",
+            "By encrypting admin passwords",
+            "By changing the server's IP address"
+        ],
+        "answer": 1,
+        "explanation": "Attackers can craft SQL queries to modify permissions or access admin features, escalating privileges."
+    },
+    {
+        "question": "Which search query could help find SQL injection targets?",
+        "options": [
+            "inurl:index.php?id=",
+            "site:.gov",
+            "intitle:login",
+            "filetype:pdf"
+        ],
+        "answer": 0,
+        "explanation": "Searching for 'inurl:index.php?id=' can reveal sites with dynamic parameters potentially vulnerable to SQL injection."
+    },
+    {
+        "question": "What is a key difference between active and passive scanning in SQLPing?",
+        "options": [
+            "Active scanning is slower",
+            "Passive scanning sends queries to the database",
+            "Active scanning sends probes, passive listens",
+            "Passive scanning requires physical access"
+        ],
+        "answer": 2,
+        "explanation": "Active scanning sends probes to detect SQL servers, while passive scanning listens for network traffic."
+    },
+    {
+        "question": "Why is input sanitization important?",
+        "options": [
+            "To improve website aesthetics",
+            "To prevent malicious SQL execution",
+            "To increase page load speed",
+            "To comply with copyright laws"
+        ],
+        "answer": 1,
+        "explanation": "Sanitization removes or neutralizes malicious input, preventing SQL injection and other attacks."
+    },
+    {
+        "question": "What does the 'UNION' operator allow in SQL injection?",
+        "options": [
+            "Combining results of two or more SELECT statements",
+            "Deleting multiple rows at once",
+            "Encrypting table data",
+            "Creating new database users"
+        ],
+        "answer": 0,
+        "explanation": "UNION allows combining results from multiple SELECT queries, useful for data extraction in SQL injection."
+    },
+    {
+        "question": "Which of the following is a real-world consequence of SQL injection?",
+        "options": [
+            "Improved database performance",
+            "Data extraction and disclosure",
+            "Automatic software updates",
+            "Increased server storage"
+        ],
+        "answer": 1,
+        "explanation": "SQL injection can lead to extraction and disclosure of sensitive data stored in the database."
+    },
+    {
+        "question": "What is 'error-based SQL injection'?",
+        "options": [
+            "An attack that relies on database error messages",
+            "An attack that corrupts error logs",
+            "A method to fix SQL errors",
+            "A type of blind injection"
+        ],
+        "answer": 0,
+        "explanation": "Error-based SQL injection uses error messages from the database to gather information about its structure."
+    },
+    {
+        "question": "How can SQL injection affect e-commerce applications?",
+        "options": [
+            "By altering product prices",
+            "By changing the website's theme",
+            "By increasing server costs",
+            "By disabling HTTPS"
+        ],
+        "answer": 0,
+        "explanation": "Attackers can manipulate SQL queries to alter prices, inventory, or orders in e-commerce databases."
+    },
+    {
+        "question": "What is the role of 'input validation' in preventing SQL injection?",
+        "options": [
+            "It ensures only expected data types and formats are accepted",
+            "It encrypts all user inputs",
+            "It logs all database queries",
+            "It hides database schema"
+        ],
+        "answer": 0,
+        "explanation": "Input validation checks that user input matches expected patterns, rejecting potentially malicious data."
+    },
+    {
+        "question": "Which SQL clause is commonly manipulated in login bypass attacks?",
+        "options": [
+            "GROUP BY",
+            "HAVING",
+            "WHERE",
+            "ORDER BY"
+        ],
+        "answer": 2,
+        "explanation": "The WHERE clause in login queries is often targeted to alter logic and bypass authentication."
+    }
+];
+
+
+const ethics7 = [
+    {
+        "question": "What is the primary goal of password cracking in system hacking?",
+        "options": [
+            "To delete user accounts",
+            "To obtain credentials and gain unauthorized access",
+            "To improve system performance",
+            "To encrypt stored passwords"
+        ],
+        "answer": 1,
+        "explanation": "Password cracking is used to obtain account credentials to gain unauthorized access while appearing as a legitimate user."
+    },
+    {
+        "question": "Why do human-chosen passwords often become a security liability?",
+        "options": [
+            "They are always too long",
+            "They are randomly generated",
+            "They are easy to remember but also easy to guess",
+            "They are automatically changed frequently"
+        ],
+        "answer": 2,
+        "explanation": "People tend to choose passwords that are easy to remember, which often makes them predictable and easy to guess."
+    },
+    {
+        "question": "Which of the following is an example of an easily cracked password?",
+        "options": [
+            "P@ssw0rd!2024",
+            "A short dictionary word",
+            "12-character random alphanumeric with symbols",
+            "Biometric fingerprint"
+        ],
+        "answer": 1,
+        "explanation": "Short dictionary words are vulnerable to dictionary attacks and are considered weak passwords."
+    },
+    {
+        "question": "What is a common solution to the weaknesses of passwords alone?",
+        "options": [
+            "Using longer passwords only",
+            "Multifactor authentication",
+            "Disabling user accounts",
+            "Using default passwords"
+        ],
+        "answer": 1,
+        "explanation": "Many companies are moving to multifactor authentication (smart cards, biometrics, tokens) to strengthen security."
+    },
+    {
+        "question": "What is a dictionary attack?",
+        "options": [
+            "Trying every possible character combination",
+            "Using a list of known words to guess passwords",
+            "Stealing passwords from a database",
+            "Intercepting passwords over the network"
+        ],
+        "answer": 1,
+        "explanation": "A dictionary attack uses a preloaded list of words (dictionary file) to test against user passwords."
+    },
+    {
+        "question": "Which attack tries every possible character combination?",
+        "options": [
+            "Dictionary attack",
+            "Brute-force attack",
+            "Hybrid attack",
+            "Replay attack"
+        ],
+        "answer": 1,
+        "explanation": "Brute-force attacks attempt every possible combination of characters until the correct password is found."
+    },
+    {
+        "question": "What is a hybrid attack?",
+        "options": [
+            "A combination of online and offline attacks",
+            "A dictionary attack with character substitution",
+            "An attack using biometric data",
+            "A phishing attack combined with keylogging"
+        ],
+        "answer": 1,
+        "explanation": "Hybrid attacks modify dictionary words by adding numbers or special characters (e.g., P@ssw0rd)."
+    },
+    {
+        "question": "Which attack assumes prior knowledge of user password habits?",
+        "options": [
+            "Syllable attack",
+            "Rule-based attack",
+            "Passive online attack",
+            "Rainbow table attack"
+        ],
+        "answer": 1,
+        "explanation": "Rule-based attacks use known information about user tendencies (e.g., common phrases, digits)."
+    },
+    {
+        "question": "What is a passive online attack?",
+        "options": [
+            "Guessing passwords repeatedly",
+            "Installing keyloggers",
+            "Intercepting passwords via packet sniffing",
+            "Using rainbow tables"
+        ],
+        "answer": 2,
+        "explanation": "Passive online attacks involve listening to network traffic (e.g., packet sniffing) to capture credentials."
+    },
+    {
+        "question": "What tool is commonly used for packet sniffing?",
+        "options": [
+            "Nmap",
+            "Wireshark",
+            "Metasploit",
+            "John the Ripper"
+        ],
+        "answer": 1,
+        "explanation": "Wireshark is a widely used packet analyzer (sniffer) for capturing and analyzing network traffic."
+    },
+    {
+        "question": "What is a replay attack?",
+        "options": [
+            "Guessing old passwords",
+            "Reusing captured network packets to gain access",
+            "Resetting passwords via email",
+            "Copying biometric data"
+        ],
+        "answer": 1,
+        "explanation": "A replay attack involves capturing valid credentials (packets) and re-injecting them into the network to gain access."
+    },
+    {
+        "question": "Which is an example of an active online attack?",
+        "options": [
+            "Packet sniffing",
+            "Password guessing",
+            "Rainbow table lookup",
+            "Default password lookup"
+        ],
+        "answer": 1,
+        "explanation": "Active online attacks involve direct interaction with the target, such as password guessing or using keyloggers."
+    },
+    {
+        "question": "What do offline attacks target?",
+        "options": [
+            "Network traffic",
+            "User behavior",
+            "The way passwords are stored",
+            "Firewall configurations"
+        ],
+        "answer": 2,
+        "explanation": "Offline attacks exploit weaknesses in how passwords are stored (e.g., in hashed or plaintext files)."
+    },
+    {
+        "question": "What is a rainbow table?",
+        "options": [
+            "A list of default passwords",
+            "Precomputed hashes for all possible passwords",
+            "A table of user biometric data",
+            "A network intrusion detection system"
+        ],
+        "answer": 1,
+        "explanation": "Rainbow tables contain precomputed hashes for all possible character combinations to quickly crack password hashes."
+    },
+    {
+        "question": "Why are default passwords a major vulnerability?",
+        "options": [
+            "They are always complex",
+            "They are often unchanged and publicly known",
+            "They are encrypted by default",
+            "They expire frequently"
+        ],
+        "answer": 1,
+        "explanation": "Default passwords are set by manufacturers and are often left unchanged, making them easy targets for attackers."
+    },
+    {
+        "question": "Which website is listed as a source for default passwords?",
+        "options": [
+            "https://github.com",
+            "http://cirt.net",
+            "https://stackoverflow.com",
+            "http://passwordmanager.com"
+        ],
+        "answer": 1,
+        "explanation": "cirt.net is one of the sites mentioned where default passwords can be looked up."
+    },
+    {
+        "question": "What is the 'old school' method of obtaining passwords?",
+        "options": [
+            "Phishing",
+            "Guessing",
+            "Brute-forcing",
+            "Sniffing"
+        ],
+        "answer": 1,
+        "explanation": "Guessing is described as an old-school method where attackers try likely passwords based on known user information."
+    },
+    {
+        "question": "How does USB password theft typically work?",
+        "options": [
+            "By stealing the USB hardware",
+            "By embedding password-stealing software on a USB drive",
+            "By encrypting USB contents",
+            "By cloning USB firmware"
+        ],
+        "answer": 1,
+        "explanation": "Attackers place password-stealing malware on a USB drive and physically plug it into a target system."
+    },
+    {
+        "question": "What makes passwords sent in encrypted format still vulnerable?",
+        "options": [
+            "They can be read directly",
+            "They can be intercepted but not easily read",
+            "Encryption is always weak",
+            "They are stored in plaintext after receipt"
+        ],
+        "answer": 1,
+        "explanation": "Encrypted passwords can be intercepted but are not readable without decryption; however, they may still be replayed or cracked."
+    },
+    {
+        "question": "What is keylogging?",
+        "options": [
+            "Recording network packets",
+            "Intercepting keystrokes as a user types",
+            "Stealing password hashes",
+            "Guessing passwords via dictionary"
+        ],
+        "answer": 1,
+        "explanation": "Keylogging captures keystrokes, including passwords, as they are typed by the user."
+    },
+    {
+        "question": "Which attack is a combination of brute-force and dictionary attacks?",
+        "options": [
+            "Hybrid attack",
+            "Syllable attack",
+            "Rule-based attack",
+            "Replay attack"
+        ],
+        "answer": 1,
+        "explanation": "A syllable attack combines brute-force and dictionary methods, useful for non-standard passwords."
+    },
+    {
+        "question": "What is the main weakness exploited in offline attacks?",
+        "options": [
+            "Poor network encryption",
+            "Weak user passwords",
+            "Insecure password storage",
+            "Lack of firewalls"
+        ],
+        "answer": 2,
+        "explanation": "Offline attacks target how passwords are stored (e.g., plaintext files, weakly hashed databases)."
+    },
+    {
+        "question": "What is the purpose of precomputed hashes?",
+        "options": [
+            "To speed up password cracking by comparing hashes",
+            "To encrypt user passwords",
+            "To protect against replay attacks",
+            "To generate random passwords"
+        ],
+        "answer": 0,
+        "explanation": "Precomputed hashes (rainbow tables) allow quick comparison with captured hashes to reveal passwords."
+    },
+    {
+        "question": "Which of the following is NOT a password-cracking technique?",
+        "options": [
+            "Dictionary attack",
+            "Brute-force attack",
+            "Packet sniffing attack",
+            "Firewall bypass attack"
+        ],
+        "answer": 3,
+        "explanation": "Firewall bypass is not a password-cracking technique; it's a network security evasion method."
+    },
+    {
+        "question": "What is a common characteristic of effective passwords?",
+        "options": [
+            "Short length",
+            "Use of dictionary words",
+            "Mix of letters, numbers, and symbols",
+            "Personal names"
+        ],
+        "answer": 2,
+        "explanation": "Strong passwords typically include a mix of uppercase, lowercase, numbers, and special characters."
+    },
+    {
+        "question": "Why are passwords shorter than eight characters considered weak?",
+        "options": [
+            "They are harder to remember",
+            "They are easier to brute-force",
+            "They cannot contain symbols",
+            "They are always dictionary words"
+        ],
+        "answer": 1,
+        "explanation": "Shorter passwords have fewer possible combinations, making them faster to crack via brute-force."
+    },
+    {
+        "question": "What additional mechanism strengthens authentication beyond passwords?",
+        "options": [
+            "Longer passwords",
+            "Biometrics or tokens",
+            "Frequent password changes",
+            "Password hints"
+        ],
+        "answer": 1,
+        "explanation": "Multifactor authentication (e.g., biometrics, tokens) adds layers of security beyond passwords."
+    },
+    {
+        "question": "What type of attack intercepts passwords as they are typed?",
+        "options": [
+            "Packet sniffing",
+            "Keylogging",
+            "Phishing",
+            "Rainbow table"
+        ],
+        "answer": 1,
+        "explanation": "Keylogging software captures keystrokes in real-time, including passwords during entry."
+    },
+    {
+        "question": "What is the first step in the old-school password guessing method?",
+        "options": [
+            "Try common passwords",
+            "Locate a valid user",
+            "Rank passwords by likelihood",
+            "Exhaust all options"
+        ],
+        "answer": 1,
+        "explanation": "The first step is to identify a valid user account to target for password guessing."
+    },
+    {
+        "question": "Where might users store passwords that make USB theft effective?",
+        "options": [
+            "On remote servers only",
+            "In encrypted cloud storage",
+            "Locally on their machines",
+            "In physical notebooks"
+        ],
+        "answer": 2,
+        "explanation": "Many users store passwords locally (in browsers, files), making them vulnerable to USB-based malware."
+    }
+];
+
+
+const ethics8 = [
+    {
+        "question": "What is the primary goal of social engineering?",
+        "options": [
+            "To exploit software vulnerabilities",
+            "To trick humans into revealing information or violating security",
+            "To overload network servers",
+            "To encrypt sensitive data"
+        ],
+        "answer": 1,
+        "explanation": "Social engineering involves human interaction to deceive victims into revealing information or bypassing security."
+    },
+    {
+        "question": "Which human trait is most commonly exploited in social engineering?",
+        "options": [
+            "Trust",
+            "Curiosity",
+            "Impatience",
+            "Greed"
+        ],
+        "answer": 0,
+        "explanation": "Humans have an inherent tendency to trust, which social engineers exploit using uniforms, buzzwords, or authority."
+    },
+    {
+        "question": "Why is social engineering difficult to detect?",
+        "options": [
+            "It uses advanced encryption",
+            "It leaves no digital logs like technical attacks",
+            "It only targets low-level employees",
+            "It is always performed remotely"
+        ],
+        "answer": 1,
+        "explanation": "Social engineering attacks often leave no traces in log files or intrusion detection systems, unlike technical attacks."
+    },
+    {
+        "question": "What is the first phase in the social engineering process?",
+        "options": [
+            "Exploiting the relationship",
+            "Gathering details through research",
+            "Selecting a target individual",
+            "Forging a relationship"
+        ],
+        "answer": 1,
+        "explanation": "The first phase involves footprinting and gathering information about the target through research and observation."
+    },
+    {
+        "question": "Which group is mentioned as a common target for social engineering?",
+        "options": [
+            "Security guards only",
+            "Receptionists and help desk personnel",
+            "External contractors only",
+            "Former employees only"
+        ],
+        "answer": 1,
+        "explanation": "Receptionists and help desk personnel are common targets because they are helpful and may lack security focus."
+    },
+    {
+        "question": "What makes system administrators attractive targets?",
+        "options": [
+            "They have low-level access",
+            "They rarely interact with others",
+            "They possess high-level knowledge of infrastructure",
+            "They work only with hardware"
+        ],
+        "answer": 2,
+        "explanation": "System administrators have extensive knowledge of network infrastructure and future plans, making them valuable targets."
+    },
+    {
+        "question": "What is a common reason why social engineering succeeds?",
+        "options": [
+            "Strong security policies",
+            "Excessive training",
+            "Lack of technological fixes",
+            "Advanced intrusion detection"
+        ],
+        "answer": 2,
+        "explanation": "Technology alone cannot prevent social engineering; human factors and lack of policies contribute to its success."
+    },
+    {
+        "question": "Which social engineering tactic preys on a victim's sense of duty?",
+        "options": [
+            "Threats",
+            "Something for nothing",
+            "Moral obligation",
+            "Ignorance"
+        ],
+        "answer": 2,
+        "explanation": "Attackers exploit a victim's moral obligation to help, making them feel compelled to assist."
+    },
+    {
+        "question": "What type of information is risky to share on social networks?",
+        "options": [
+            "Public news articles",
+            "General opinions",
+            "Location and personal data",
+            "Weather updates"
+        ],
+        "answer": 2,
+        "explanation": "Sharing location, personal details, photos, and plans can help attackers gather intelligence for social engineering."
+    },
+    {
+        "question": "Which scam preys on curiosity about celebrities?",
+        "options": [
+            "\"I'm stranded abroad\" scam",
+            "\"Test your IQ\" scam",
+            "\"Fake login\" scam",
+            "\"Secret celebrity death details\" scam"
+        ],
+        "answer": 3,
+        "explanation": "Posts about celebrity secrets exploit people's curiosity and desire for insider information."
+    },
+    {
+        "question": "What should users avoid to reduce social engineering risk on social networks?",
+        "options": [
+            "Using strong passwords only",
+            "Mixing personal and professional information",
+            "Posting frequently",
+            "Using privacy settings"
+        ],
+        "answer": 1,
+        "explanation": "Mixing personal and professional information online increases exposure to social engineering attacks."
+    },
+    {
+        "question": "Why are executives considered targets?",
+        "options": [
+            "They handle daily technical tasks",
+            "They have limited access to data",
+            "They are highly security-trained",
+            "They focus on business, not security"
+        ],
+        "answer": 3,
+        "explanation": "Executives often focus on business processes rather than security, making them susceptible to manipulation."
+    },
+    {
+        "question": "What is a key countermeasure against social engineering?",
+        "options": [
+            "Using complex firewalls",
+            "Disabling all social media",
+            "Training and awareness",
+            "Encrypting all communications"
+        ],
+        "answer": 2,
+        "explanation": "Training users to recognize and respond to social engineering attempts is a critical defense."
+    },
+    {
+        "question": "How do attackers use 'buzzwords' in social engineering?",
+        "options": [
+            "To appear knowledgeable and gain trust",
+            "To confuse the victim",
+            "To trigger automated systems",
+            "To encrypt messages"
+        ],
+        "answer": 0,
+        "explanation": "Using familiar terms or jargon makes the attacker seem like an insider, increasing victim trust."
+    },
+    {
+        "question": "What is 'dumpster diving' in social engineering?",
+        "options": [
+            "Hacking into waste management systems",
+            "A type of phishing attack",
+            "Physically searching trash for information",
+            "Stealing digital files"
+        ],
+        "answer": 2,
+        "explanation": "Dumpster diving involves searching physical trash for documents, notes, or devices that contain sensitive information."
+    },
+    {
+        "question": "Which phase involves building a relationship with the victim?",
+        "options": [
+            "Research",
+            "Development",
+            "Exploitation",
+            "Footprinting"
+        ],
+        "answer": 1,
+        "explanation": "The development phase includes forging a relationship through conversation, email, or other interaction."
+    },
+    {
+        "question": "What human habit do social engineers observe and exploit?",
+        "options": [
+            "Random password generation",
+            "Frequent security updates",
+            "Daily routines and predictable behaviors",
+            "Use of encrypted messaging"
+        ],
+        "answer": 2,
+        "explanation": "People tend to follow routines, which attackers observe to predict movements or gain physical access."
+    },
+    {
+        "question": "What is a common method to gather information via social networking?",
+        "options": [
+            "Port scanning",
+            "Brute-force attacks",
+            "SQL injection",
+            "Analyzing public posts and photos"
+        ],
+        "answer": 3,
+        "explanation": "Attackers analyze public posts, photos, location data, and friend lists to gather intelligence."
+    },
+    {
+        "question": "Which emotion does the 'something for nothing' tactic exploit?",
+        "options": [
+            "Fear",
+            "Greed",
+            "Anger",
+            "Sadness"
+        ],
+        "answer": 1,
+        "explanation": "This tactic promises high rewards for little effort, appealing to human greed."
+    },
+    {
+        "question": "What should you do before posting information online?",
+        "options": [
+            "Assume it will be private forever",
+            "Share everything to build your online presence",
+            "Only post encrypted content",
+            "Consider if it could be used against you"
+        ],
+        "answer": 3,
+        "explanation": "Always consider the sensitivity and potential misuse of information before posting online."
+    }
+];
+
+
+const ethics9 = [
+    {
+        "question": "API stands for application programming interface.",
+        "options": ["True", "False"],
+        "answer": 0
+    },
+    {
+        "question": "Encryption key is like physical key in real world.",
+        "options": ["True", "False"],
+        "answer": 0
+    },
+    {
+        "question": "What is the ethics behind training how to hack a system?",
+        "options": [
+            "To think like hackers and know how to defend such attacks",
+            "To hack a system without permission",
+            "To hack a network that is vulnerable",
+            "To corrupt software or service using malware"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Digital signatures can easily be achieved through ...",
+        "options": [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "Both",
+            "None"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Lack of non-repudiation features is one of the drawbacks of ...",
+        "options": [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "Both",
+            "None"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Since anything encrypted with the private key can be reversed only with the corresponding ...",
+        "options": [
+            "Private key",
+            "Public key",
+            "Both",
+            "None"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "During this phase tools such as these are used: Pings, sweeps, Port scans, Tracert.",
+        "options": [
+            "Scanning",
+            "Foot printing",
+            "Enumeration",
+            "System hacking"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Leaking information outside network without permission of senior leader is a crime.",
+        "options": ["True", "False"],
+        "answer": 0
+    },
+    {
+        "question": "Ethics are like laws that legally mandate what is right or wrong.",
+        "options": ["True", "False"],
+        "answer": 1
+    },
+    {
+        "question": "Ethics are a structure of nonstandards and practices that influence how people lead their lives.",
+        "options": ["True", "False"],
+        "answer": 0
+    },
+    {
+        "question": "These hackers try to knock out a target to prove a point. They are not stealthy, because they are not worried about getting caught or doing prison time.",
+        "options": [
+            "Suicide Hackers",
+            "Black-Hat Hackers",
+            "Gray-Hat Hackers",
+            "White-Hat Hackers"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Phase comes after foot printing",
+        "options": [
+            "Scanning",
+            "Enumeration",
+            "System hacking",
+            "None of the above"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Is a way of keeping a user identity masked through various applications.",
+        "options": [
+            "Encryption",
+            "Anonymity",
+            "Authentication",
+            "Pseudonymity"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "If you have been contracted to perform an attack against a target system, what type of hacker are you?",
+        "options": [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "These hackers have limited or no training and know how to use only basic techniques or tools",
+        "options": [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Script kiddies have limited or no training and know how to use only basic techniques or tools.",
+        "options": ["True", "False"],
+        "answer": 0
+    },
+    {
+        "question": "These hackers are the bad guys who operate on the opposite side of the law.",
+        "options": [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Hackers may use their skills for both benign and malicious goals at different time",
+        "options": [
+            "White-hat hackers",
+            "Black-hat hackers",
+            "Script kiddies",
+            "Gray-hat hackers"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "do not necessarily require any user interaction.",
+        "options": [
+            "Worms",
+            "Viruses",
+            "Spyware",
+            "Adware"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "a special type of malware that infects a system and causing harm while appearing to look like a legitimate program.",
+        "options": [
+            "Trojan",
+            "Viruses",
+            "Spyware",
+            "Adware"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "is a term that covers: viruses, worms, Trojans, Logic bombs, and adware and spyware.",
+        "options": [
+            "Malware",
+            "Viruses",
+            "Spyware",
+            "Adware"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "are a modern form of malware that can hide within the core components of a system and stay undetected by modern scanners.",
+        "options": [
+            "Rootkits",
+            "Worms",
+            "Spyware",
+            "Adware"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "means malicious software which is created to impair a computer system.",
+        "options": [
+            "Malware",
+            "Viruses",
+            "Spyware",
+            "Adware"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "transform clear text into cipher text.",
+        "options": [
+            "Algorithm",
+            "Protocol",
+            "Firewall",
+            "Antivirus"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "We achieve Authentication through: ... .",
+        "options": [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "Both",
+            "None of the above"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "The goal is to gather as much information as is reasonable and useful about a potential Target.",
+        "options": [
+            "Scanning",
+            "Foot printing",
+            "Enumeration",
+            "System hacking"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "The one security measure that can NOT be achieved with private key cryptography is ... .",
+        "options": [
+            "Authentication",
+            "Confidentiality",
+            "Non-repudiation",
+            "None"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Symmetric Cryptography is also known as ... .",
+        "options": [
+            "Public key cryptography",
+            "Private Key Cryptography",
+            "Hashing",
+            "None"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Conducting a search on the web about a potential target for hacking is considered part of which of the following hacking’s phases?",
+        "options": [
+            "Foot Printing",
+            "scanning",
+            "Enumeration",
+            "None"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "When plain text is converted to unreadable format, it is termed as ...",
+        "options": [
+            "rotten text",
+            "raw text",
+            "cipher-text or cypher-text",
+            "cipher-text"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which of the following is not the primary objective of cryptography?",
+        "options": [
+            "Confidentiality",
+            "Data Redundancy",
+            "Integrity",
+            "Authentication"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What type of program exists primarily to propagate and spread itself to other systems and can do so without interaction from users?",
+        "options": [
+            "Virus",
+            "Trojan horse",
+            "Worm",
+            "Logic bomb"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "In .... 2 different keys are implemented for encrypting as well as decrypting that information.",
+        "options": [
+            "Symmetric Key Encryption",
+            "Asymmetric Key Encryption",
+            "Hash-based Key Encryption",
+            "None"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "is a component of the reconnaissance stage that is used to gather possible information for a target computer system or network.",
+        "options": [
+            "Fingerprinting",
+            "3D printing",
+            "Foot printing",
+            "Data printing"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which type of hacker represents the highest risk to your network?",
+        "options": [
+            "Black hat hackers",
+            "Gray hat hackers",
+            "White hat hackers",
+            "Script kiddies"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Hackers who are typically characterized by having a code of ethics that says essentially, they will cause no harm are ... .",
+        "options": [
+            "Script kiddies",
+            "White hackers",
+            "Grey hat hackers",
+            "Suicide hackers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Pings and Pings Sweeps in which active hosts are identified is conducted in which of the following hacking’s phases?",
+        "options": [
+            "Foot Printing",
+            "Scanning",
+            "Enumeration",
+            "None"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "To provide nomenclation for email, which algorithm would you choose to implement?",
+        "options": [
+            "Asymmetric Encryption Algorithms",
+            "Symmetric Encryption Algorithm",
+            "Hashing function",
+            "None"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Authentication can easily be achieved through ... .",
+        "options": [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "Both",
+            "None"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What is the first phase in an ethical hacking process?",
+        "options": [
+            "Enumeration",
+            "Foot printing",
+            "Covering tracks",
+            "Exploitation"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following cryptography techniques assures the identity of the encrypting party?",
+        "options": [
+            "Symmetric Cryptography",
+            "Asymmetric Cryptography",
+            "Digital signatures",
+            "None"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What is the primary goal of encryption in cryptography?",
+        "options": [
+            "Speed",
+            "Accessibility",
+            "Complexity",
+            "Confidentiality"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Which attack attempts all possible combinations to crack an encryption?",
+        "options": [
+            "Brute Force attack",
+            "SQL injection",
+            "DDOS attacks",
+            "None"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which of the following is NOT a cryptographic goal?",
+        "options": [
+            "Authentication",
+            "Integrity",
+            "Confidentiality",
+            "Performance"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Which of the following is used to convert plaintext into ciphertext?",
+        "options": [
+            "Algorithm",
+            "Protocol",
+            "Firewall",
+            "Antivirus"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which of the following is a drawback of symmetric cryptography?",
+        "options": [
+            "Lack of authentication",
+            "Lack of integrity",
+            "Lack of non-repudiation",
+            "Lack of simplicity"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which of the following is considered a privacy concern in computer ethics?",
+        "options": [
+            "Writing research papers",
+            "Data protection",
+            "Using social media",
+            "Following copyright laws"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does the term “hack value” refer to?",
+        "options": [
+            "The worth of a stolen password",
+            "The cost of cybersecurity",
+            "The attractiveness of a target to hackers",
+            "The complexity of an attack"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "is a weakness in a system that can be used as an attacking point into a system.",
+        "options": [
+            "Threat",
+            "Malware",
+            "Security",
+            "Vulnerability"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Which of the following is an example of unethical computer behavior?",
+        "options": [
+            "Using licensed software",
+            "Citing sources properly",
+            "Plagiarism",
+            "Following security guidelines"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which type of hacker may use their skills for benign and malicious goals simultaneously?",
+        "options": [
+            "White hat",
+            "Gray hat",
+            "Black hat",
+            "Suicide hackers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "TOE stands for",
+        "options": [
+            "Time of evaluation",
+            "Target of Evaluation",
+            "Type of evaluation",
+            "Term of Evaluation"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is a “Zero Day” attack?",
+        "options": [
+            "A well-known vulnerability that has a fix",
+            "An attack that targets an unknown vulnerability",
+            "An attack that happens after a security patch",
+            "A beginner-level attack"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the primary purpose of intellectual property rights?",
+        "options": [
+            "Limit software usage",
+            "Improve software efficiency",
+            "Protect the ownership of creative work",
+            "Prevent hacking"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which of the following describes a hacker who attacks without regard for being caught or punished?",
+        "options": [
+            "Hacktivist",
+            "Terrorist",
+            "Criminal",
+            "Suicide Hacker"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "What do ethics primarily deal with?",
+        "options": [
+            "Legal rules",
+            "Programming language",
+            "Company policies",
+            "Moral standards"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "What is the original, unencrypted message in cryptography called?",
+        "options": [
+            "Ciphertext",
+            "Cleartext",
+            "Encoded text",
+            "Hash"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does asymmetric cryptography solve compared to symmetric cryptography?",
+        "options": [
+            "Speed issues",
+            "Key management problems",
+            "Increased data redundancy",
+            "Lack of confidentiality"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following is a good example of a strong password?",
+        "options": [
+            "Your favorite band name",
+            "Your date of birth",
+            "Your kid’s name",
+            "None"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Which term refers to illegal access to a computer system?",
+        "options": [
+            "Software licensing",
+            "Hacking",
+            "Cracking",
+            "Hashing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the function of hashing in cryptography?",
+        "options": [
+            "Encrypt data for transmission",
+            "Authenticate users",
+            "Increase processing speed",
+            "Provide one-way encryption"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "What is the term for an attack where multiple hacking techniques are used in sequence?",
+        "options": [
+            "Brute-force attack",
+            "Social engineering",
+            "Daisy chaining",
+            "Hashing"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "In Asymmetric cryptography, which key must remain secret?",
+        "options": [
+            "Public key",
+            "Private key",
+            "Symmetric key",
+            "Encryption key"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which hacking methodology is used when removing evidence of your presence in a system?",
+        "options": [
+            "Covering Tracks",
+            "Planting backdoors",
+            "Escalation of privileges",
+            "None"
+        ],
+        "answer": 0
+    }
+];
 
 
 
@@ -11053,6 +12558,1366 @@ const sq3 = [
 ];
 
 
+const sq4 = [
+    {
+        "question": "What is the primary purpose of software quality standards and models?",
+        "options": [
+            "To increase software development costs",
+            "To provide frameworks for meeting quality criteria",
+            "To replace software testing entirely",
+            "To focus only on code optimization"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which ISO standard provides a general framework for quality management systems?",
+        "options": [
+            "ISO/IEC 25010",
+            "ISO 9001",
+            "ISO 27001",
+            "ISO 14001"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "ISO 9001 emphasizes which of the following principles?",
+        "options": [
+            "Technology-first approach",
+            "Customer focus and continuous improvement",
+            "Maximum documentation requirements",
+            "Hardware optimization"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "How many key quality characteristics does ISO/IEC 25010 define for software products?",
+        "options": [
+            "5",
+            "6",
+            "8",
+            "10"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which ISO/IEC 25010 characteristic covers data protection and authentication?",
+        "options": [
+            "Functional Suitability",
+            "Performance Efficiency",
+            "Security",
+            "Portability"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "IEEE 730 standard specifically addresses:",
+        "options": [
+            "Software Quality Assurance Plans",
+            "Software Test Documentation",
+            "Software Verification and Validation",
+            "Software Life Cycle Processes"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "What does IEEE 829 standard define?",
+        "options": [
+            "Quality management systems",
+            "Software test documentation",
+            "Security protocols",
+            "Hardware interfaces"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "CMMI was developed by which organization?",
+        "options": [
+            "International Organization for Standardization",
+            "Software Engineering Institute",
+            "Institute of Electrical and Electronics Engineers",
+            "International Electrotechnical Commission"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the primary goal of CMMI?",
+        "options": [
+            "To replace all other quality standards",
+            "To provide a process improvement framework",
+            "To focus only on software testing",
+            "To eliminate documentation requirements"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "How many maturity levels does CMMI typically include?",
+        "options": [
+            "3",
+            "5",
+            "7",
+            "10"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which CMMI level is described as 'Initial' where processes are unpredictable?",
+        "options": [
+            "Level 1",
+            "Level 2",
+            "Level 3",
+            "Level 4"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "At which CMMI level are processes quantitatively managed using statistical techniques?",
+        "options": [
+            "Level 2",
+            "Level 3",
+            "Level 4",
+            "Level 5"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which CMMI maturity level focuses on continuous process improvement?",
+        "options": [
+            "Level 2",
+            "Level 3",
+            "Level 4",
+            "Level 5"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "What does the acronym DMAIC stand for in Six Sigma?",
+        "options": [
+            "Define, Monitor, Analyze, Improve, Control",
+            "Define, Measure, Analyze, Improve, Control",
+            "Design, Measure, Analyze, Implement, Check",
+            "Develop, Measure, Assess, Improve, Control"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which phase of DMAIC involves identifying root causes of defects?",
+        "options": [
+            "Define",
+            "Measure",
+            "Analyze",
+            "Improve"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Six Sigma originated from which industry?",
+        "options": [
+            "Software Development",
+            "Manufacturing",
+            "Healthcare",
+            "Construction"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the primary focus of Lean software development?",
+        "options": [
+            "Maximum documentation",
+            "Eliminating waste and maximizing value",
+            "Following rigid processes",
+            "Extensive planning phases"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following is NOT a key Lean principle mentioned in the chapter?",
+        "options": [
+            "Eliminate waste",
+            "Build quality in",
+            "Deliver fast",
+            "Maximize documentation"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Lean principles were originally inspired by:",
+        "options": [
+            "Microsoft development practices",
+            "Toyota's production system",
+            "IBM's management style",
+            "Google's innovation culture"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which quality model specifically defines attributes like functionality, performance, and security?",
+        "options": [
+            "ISO 9001",
+            "CMMI",
+            "ISO/IEC 25010",
+            "Six Sigma"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "IEEE 1012 standard focuses on:",
+        "options": [
+            "Software Quality Assurance Plans",
+            "Software Verification and Validation",
+            "Software Test Documentation",
+            "Software Life Cycle Processes"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does ISO/IEC 25010's 'Usability' characteristic assess?",
+        "options": [
+            "Data protection measures",
+            "Ease of use and accessibility",
+            "System interoperability",
+            "Code modularity"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which standard is described as 'a globally recognized standard for quality management systems'?",
+        "options": [
+            "IEEE 730",
+            "CMMI",
+            "ISO 9001",
+            "ISO/IEC 25010"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "In CMMI, Level 2 is characterized by:",
+        "options": [
+            "Ad-hoc processes",
+            "Standard project management processes",
+            "Quantitatively managed processes",
+            "Continuously optimized processes"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which phase of Six Sigma's DMAIC involves collecting baseline performance data?",
+        "options": [
+            "Define",
+            "Measure",
+            "Analyze",
+            "Control"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "The 'Control' phase in DMAIC focuses on:",
+        "options": [
+            "Identifying problems",
+            "Collecting data",
+            "Maintaining improvements",
+            "Implementing solutions"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which Lean principle emphasizes 'ensuring quality at every stage of development'?",
+        "options": [
+            "Eliminate waste",
+            "Build quality in",
+            "Deliver fast",
+            "Empower teams"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does CMMI stand for?",
+        "options": [
+            "Capability Maturity Model Integration",
+            "Computer Management Model Institute",
+            "Code Maturity Measurement Index",
+            "Comprehensive Management Methodology Integration"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which organization develops IEEE standards?",
+        "options": [
+            "International Organization for Standardization",
+            "Software Engineering Institute",
+            "Institute of Electrical and Electronics Engineers",
+            "International Software Quality Institute"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "ISO/IEC 25010's 'Performance Efficiency' characteristic measures:",
+        "options": [
+            "Security features",
+            "Response time and scalability",
+            "Code maintainability",
+            "System portability"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following is a benefit of implementing Six Sigma in software development?",
+        "options": [
+            "Increased process variation",
+            "Higher defect rates",
+            "Better decision-making through data",
+            "Reduced customer satisfaction"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "The 'Optimize the whole' Lean principle refers to:",
+        "options": [
+            "Focusing only on coding tasks",
+            "Looking at the entire development lifecycle",
+            "Maximizing individual productivity",
+            "Minimizing team collaboration"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which CMMI level is also called 'Defined'?",
+        "options": [
+            "Level 1",
+            "Level 2",
+            "Level 3",
+            "Level 4"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "In the context of software quality, what does 'Maintainability' refer to?",
+        "options": [
+            "System security features",
+            "Ease of modifying and updating code",
+            "User interface design",
+            "Hardware compatibility"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which standard is specifically mentioned for 'Software Life Cycle Processes'?",
+        "options": [
+            "IEEE 730",
+            "IEEE 829",
+            "IEEE 1012",
+            "IEEE 12207"
+        ],
+        "answer": 3
+    }
+];
+
+const sq5 = [
+    {
+        "question": "In the V-Model, what is the primary focus?",
+        "options": [
+            "Continuous integration and continuous delivery",
+            "Parallel testing at each development stage",
+            "Iterative development and rapid cycles",
+            "Extensive documentation only in the final phase"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following is considered static testing?",
+        "options": [
+            "Performance testing",
+            "Code review",
+            "Functional testing",
+            "Security testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the main difference between Verification and Validation?",
+        "options": [
+            "Verification deals with internal code, Validation deals with user interface",
+            "Verification checks if we're building the product right, Validation checks if we're building the right product",
+            "Verification is done after release, Validation is done during development",
+            "No difference, they mean the same thing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Given a function that accepts age between 18 and 60, which values would you test using Boundary Value Analysis?",
+        "options": [
+            "18, 30, 60",
+            "17, 18, 19, 59, 60, 61",
+            "0, 10, 18, 60, 70, 100",
+            "All integer values from 18 to 60"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which white-box testing technique ensures that each executable statement in the code is executed at least once?",
+        "options": [
+            "Branch Coverage",
+            "Path Coverage",
+            "Statement Coverage",
+            "Mutation Testing"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What does Branch Coverage require?",
+        "options": [
+            "Every statement executed at least once",
+            "Every possible outcome of each decision point executed at least once",
+            "Every possible path through the code executed",
+            "Testing with mutated code versions"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "If you have a function that categorizes scores: >=90 = 'Excellent', >=75 = 'Good', otherwise = 'Needs Improvement'. How many paths need testing for 100% path coverage?",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "In Mutation Testing, what does it mean when a test case 'kills' a mutant?",
+        "options": [
+            "The mutant causes the system to crash",
+            "The test case fails when run against the mutant",
+            "The mutant improves code performance",
+            "The test case passes with the mutant"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "For email validation, using Equivalence Partitioning, which of these would be in the same equivalence class?",
+        "options": [
+            "test@example.com and test.com",
+            "user@domain.co.uk and @domain.com",
+            "valid@email.com and another@valid.com",
+            "test@example and test@example."
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which black-box testing technique is best for systems with workflow-based behavior like ATMs?",
+        "options": [
+            "Equivalence Partitioning",
+            "Boundary Value Analysis",
+            "Decision Table Testing",
+            "State Transition Testing"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "Consider this discount logic: Members get 10% discount, and purchases over $100 get additional 5% discount. Using Decision Table Testing, how many test cases are needed for full coverage?",
+        "options": [
+            "2",
+            "3",
+            "4",
+            "6"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "In Big Bang Integration Testing, when is it most appropriate to use?",
+        "options": [
+            "When modules are developed sequentially",
+            "When all modules are ready at once and system is small",
+            "When high-level modules are ready first",
+            "When low-level modules are ready first"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the main disadvantage of Big Bang Integration Testing?",
+        "options": [
+            "Requires extensive planning",
+            "Bugs are harder to isolate",
+            "Needs many stubs and drivers",
+            "Delays UI testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Top-Down Integration Testing starts with:",
+        "options": [
+            "Lowest level modules",
+            "Main module with stubs for lower levels",
+            "All modules integrated at once",
+            "Database layer first"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which integration strategy would be best for an API-first development approach?",
+        "options": [
+            "Big Bang",
+            "Top-Down",
+            "Bottom-Up",
+            "Sandwich"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Sandwich (Hybrid) Integration Testing combines:",
+        "options": [
+            "Static and Dynamic testing",
+            "White-box and Black-box testing",
+            "Top-Down and Bottom-Up testing",
+            "Functional and Non-functional testing"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Stress testing is primarily concerned with:",
+        "options": [
+            "Testing under expected workload",
+            "Testing under extreme conditions",
+            "Testing basic functionality",
+            "Testing recovery from failures"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Load testing versus Stress testing: What's the key difference?",
+        "options": [
+            "Load testing uses more testers",
+            "Stress testing pushes beyond expected capacity",
+            "Load testing is only for web applications",
+            "Stress testing is faster to execute"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Spike testing involves:",
+        "options": [
+            "Gradual increase in load",
+            "Constant load over long period",
+            "Sudden, dramatic changes in load",
+            "Testing with corrupted data"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which testing verifies basic functionality after a new build?",
+        "options": [
+            "Sanity Testing",
+            "Smoke Testing",
+            "Regression Testing",
+            "Recovery Testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the purpose of Recovery Testing?",
+        "options": [
+            "To test how fast the system runs",
+            "To test how the system recovers from failures",
+            "To test security vulnerabilities",
+            "To test user interface responsiveness"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which tool is mentioned for security testing?",
+        "options": [
+            "Jira",
+            "Selenium",
+            "OWASP ZAP",
+            "LoadRunner"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Scalability testing measures:",
+        "options": [
+            "How well the system handles increasing workloads",
+            "How secure the system is",
+            "How easy the system is to use",
+            "How compatible the system is with different browsers"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Usability testing primarily focuses on:",
+        "options": [
+            "Code efficiency",
+            "System security",
+            "User satisfaction and ease of use",
+            "Network performance"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Regression testing is important because:",
+        "options": [
+            "It finds new features to add",
+            "It ensures new changes don't break existing functionality",
+            "It tests the system under extreme load",
+            "It verifies initial requirements"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Alpha testing is performed by:",
+        "options": [
+            "End users in real environment",
+            "Developers and internal QA team",
+            "Only the development team",
+            "External security experts"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Exploratory testing is most useful when:",
+        "options": [
+            "Requirements are well-defined and stable",
+            "Test cases are already documented",
+            "Requirements are vague or rapidly changing",
+            "Testing needs to be fully automated"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "The first phase of defect management is:",
+        "options": [
+            "Defect Logging",
+            "Defect Analysis",
+            "Defect Identification",
+            "Defect Resolution"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "When logging a defect, which of these is LEAST important?",
+        "options": [
+            "Steps to reproduce",
+            "Expected vs actual behavior",
+            "The tester's salary",
+            "Environment information"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Severity versus Priority: A system crash would typically have:",
+        "options": [
+            "High severity, low priority",
+            "Low severity, high priority",
+            "High severity, high priority",
+            "Low severity, low priority"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Root Cause Analysis helps to:",
+        "options": [
+            "Assign blame to developers",
+            "Prevent similar defects in the future",
+            "Increase testing time",
+            "Reduce documentation requirements"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Defect Density is calculated as:",
+        "options": [
+            "Defects found / Time taken to find them",
+            "Defects found / Size of software",
+            "Defects reopened / Total defects fixed",
+            "Defects leaked / Total defects"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "A module has 5000 lines of code and 25 defects. What is its defect density?",
+        "options": [
+            "0.005 defects per line",
+            "5 defects per 1000 lines",
+            "0.2 defects per line",
+            "25 defects total"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Defect Discovery Rate measures:",
+        "options": [
+            "How quickly defects are fixed",
+            "How many defects are found per time period",
+            "How many defects escape to production",
+            "How old the defects are"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "If 40 defects were found over 10 days of testing, what is the defect discovery rate?",
+        "options": [
+            "4 defects per day",
+            "0.25 days per defect",
+            "40 defects total",
+            "10 days testing period"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Defect Resolution Time is important because:",
+        "options": [
+            "It measures testing effectiveness",
+            "It shows how responsive the team is to fixing issues",
+            "It counts total defects found",
+            "It tracks defect patterns"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "A high Defect Reopen Rate indicates:",
+        "options": [
+            "Excellent testing coverage",
+            "Poor quality fixes or insufficient testing",
+            "Rapid development pace",
+            "Good defect management"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Defect Leakage refers to defects found:",
+        "options": [
+            "During unit testing",
+            "After release to production",
+            "During code review",
+            "In documentation"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "If 15 defects were found after release out of 150 total defects, what is the defect leakage percentage?",
+        "options": [
+            "10%",
+            "15%",
+            "90%",
+            "100%"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Defect Aging measures:",
+        "options": [
+            "How complex a defect is",
+            "How long defects remain open",
+            "How many developers worked on a defect",
+            "How many times a defect was reopened"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which metric helps identify bottlenecks in defect resolution?",
+        "options": [
+            "Defect Density",
+            "Defect Aging",
+            "Defect Discovery Rate",
+            "Defect Leakage"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Code review is most effective for finding which type of defects?",
+        "options": [
+            "Performance issues under load",
+            "Coding errors and standards violations",
+            "Usability problems",
+            "Compatibility issues with specific browsers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "In Agile development, SQA activities are:",
+        "options": [
+            "Done only at the end of the project",
+            "Integrated into each iteration",
+            "Handled by a separate QA team only",
+            "Not necessary due to frequent releases"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which testing level verifies that different modules work together correctly?",
+        "options": [
+            "Unit Testing",
+            "Integration Testing",
+            "System Testing",
+            "Acceptance Testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Acceptance Testing is typically performed by:",
+        "options": [
+            "Developers",
+            "QA Engineers",
+            "End Users",
+            "Project Managers"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Consider this Python function:\ndef calculate_discount(member, amount):\n    discount = 0\n    if member:\n        discount += 10\n    if amount > 100:\n        discount += 5\n    return discount\nWhat is the minimum number of test cases needed for branch coverage?",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "For the same discount function, how many test cases for 100% path coverage?",
+        "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "A password field accepts 8-20 characters. Using BVA, which values should be tested?",
+        "options": [
+            "7, 8, 9, 19, 20, 21",
+            "8, 15, 20",
+            "0, 8, 20, 30",
+            "All values from 8 to 20"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which integration testing strategy would be best for testing a microservices architecture?",
+        "options": [
+            "Big Bang",
+            "Top-Down",
+            "Bottom-Up",
+            "Sandwich"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Smoke testing is also known as:",
+        "options": [
+            "Build Verification Testing",
+            "Exploratory Testing",
+            "Stress Testing",
+            "Compatibility Testing"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Sanity testing is performed when:",
+        "options": [
+            "A new build is received",
+            "Specific functionality is fixed or changed",
+            "Testing for the first time",
+            "Under extreme load conditions"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which is NOT a common defect tracking tool?",
+        "options": [
+            "Jira",
+            "Bugzilla",
+            "Selenium",
+            "Redmine"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "A defect marked as 'Critical' severity would typically:",
+        "options": [
+            "Be a cosmetic issue only",
+            "Cause system failure or data loss",
+            "Have a workaround available",
+            "Be fixed in a future release"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Traceability Matrix ensures:",
+        "options": [
+            "All requirements are mapped to test cases",
+            "All code is commented properly",
+            "All defects are fixed quickly",
+            "All tests are automated"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "In DevOps, SQA emphasizes:",
+        "options": [
+            "Manual testing only",
+            "Testing at the end of development",
+            "Continuous testing and automation",
+            "Eliminating all testing activities"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Pair programming is a form of:",
+        "options": [
+            "Performance testing",
+            "Code review",
+            "Security testing",
+            "User acceptance testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Technical reviews focus on:",
+        "options": [
+            "User interface design",
+            "System architecture and design patterns",
+            "Business requirements",
+            "Project timelines"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Walkthroughs are typically:",
+        "options": [
+            "Formal inspection meetings",
+            "Semi-formal presentation sessions",
+            "Fully automated processes",
+            "Done only by managers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which testing type would you use to verify a login form is not vulnerable to SQL injection?",
+        "options": [
+            "Performance Testing",
+            "Security Testing",
+            "Usability Testing",
+            "Compatibility Testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Compatibility testing checks:",
+        "options": [
+            "How fast the system runs",
+            "How secure the system is",
+            "How the system works on different platforms/browsers",
+            "How easy the system is to use"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Ad-hoc testing is:",
+        "options": [
+            "Formal and structured",
+            "Informal without predefined test cases",
+            "Always automated",
+            "Only done by developers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which metric would help identify if testing was thorough enough?",
+        "options": [
+            "Defect Leakage",
+            "Defect Density",
+            "Defect Resolution Time",
+            "Defect Aging"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "If out of 200 fixed defects, 12 were reopened, what is the defect reopen rate?",
+        "options": [
+            "6%",
+            "12%",
+            "94%",
+            "88%"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which is a benefit of tracking defect metrics?",
+        "options": [
+            "Increased paperwork",
+            "Data-driven decision making",
+            "Longer development cycles",
+            "Less time for actual testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "In the Waterfall model, SQA activities are:",
+        "options": [
+            "Applied sequentially at each phase",
+            "Integrated into every sprint",
+            "Done only at the end",
+            "Not formally defined"
+        ],
+        "answer": 0
+    }
+];
+
+
+const sq6 = [
+    {
+        "question": "What is the primary purpose of test automation in modern software development?",
+        "options": [
+            "To eliminate all manual testing",
+            "To improve efficiency, accuracy, and coverage in testing",
+            "To reduce development costs by 50%",
+            "To replace software developers with testers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which of the following is NOT mentioned as a reason why manual testing struggles with modern software development?",
+        "options": [
+            "Frequent releases (e.g., weekly updates)",
+            "Complex systems with many integrations",
+            "Diverse environments (different browsers/devices)",
+            "Lack of skilled manual testers"
+        ],
+        "answer": 3
+    },
+    {
+        "question": "What advantage of automation specifically helps in CI/CD pipelines?",
+        "options": [
+            "Reusability of test scripts",
+            "Speed and efficiency for rapid feedback",
+            "Accuracy in test execution",
+            "Scalability across multiple platforms"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "How does test automation improve test coverage?",
+        "options": [
+            "By eliminating all manual testers",
+            "By executing a large number of test cases including complex scenarios",
+            "By reducing test documentation",
+            "By focusing only on critical paths"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which type of testing focuses on individual components or functions in isolation?",
+        "options": [
+            "Integration Testing",
+            "Functional/UI Testing",
+            "Unit Testing",
+            "Performance Testing"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What do unit tests typically check according to the chapter?",
+        "options": [
+            "Only user interface elements",
+            "Functional correctness, exception handling, and boundary conditions",
+            "Database performance only",
+            "Network latency issues"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What characteristic should good automated unit tests have?",
+        "options": [
+            "Slow but thorough",
+            "Dependent on external systems",
+            "Isolated, fast, and repeatable",
+            "Non-deterministic for better coverage"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "Which tool is mentioned for API testing in integration testing?",
+        "options": [
+            "Selenium",
+            "Postman",
+            "JMeter",
+            "Cypress"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the key objective of integration testing?",
+        "options": [
+            "To test individual functions in isolation",
+            "To verify module-to-module interaction and communication",
+            "To measure user interface responsiveness",
+            "To check code formatting standards"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which automation tool is specifically designed for mobile application testing?",
+        "options": [
+            "Selenium",
+            "Appium",
+            "JUnit",
+            "Cypress"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Selenium supports testing across which of the following?",
+        "options": [
+            "Only Chrome browser",
+            "Multiple browsers and programming languages",
+            "Only Java applications",
+            "Mobile apps only"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What makes Cypress different from Selenium according to the chapter?",
+        "options": [
+            "Cypress only works with Java",
+            "Cypress runs directly in the browser with faster execution",
+            "Cypress doesn't support JavaScript",
+            "Cypress is only for backend testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which framework uses a keyword-driven, human-readable syntax?",
+        "options": [
+            "JUnit",
+            "TestNG",
+            "Robot Framework",
+            "Cypress"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What is NOT mentioned as a factor when selecting an automation tool?",
+        "options": [
+            "Application type (web, mobile, desktop)",
+            "Programming language compatibility",
+            "Tool's popularity on social media",
+            "Integration support with CI/CD pipelines"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What does CI (Continuous Integration) involve?",
+        "options": [
+            "Only deploying code to production",
+            "Regularly merging code changes into a shared repository",
+            "Manual code reviews only",
+            "Testing after the project is complete"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What happens during each integration in CI?",
+        "options": [
+            "Manual deployment only",
+            "Automated builds and tests are triggered",
+            "Code is reviewed by managers only",
+            "No testing occurs"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "How does CI help development teams?",
+        "options": [
+            "By delaying feedback until the end",
+            "By identifying issues early through immediate feedback",
+            "By eliminating all testing",
+            "By increasing manual intervention"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does Continuous Deployment (CD) automate?",
+        "options": [
+            "Only code writing",
+            "The release of tested code into production",
+            "Manual test case creation",
+            "Project management meetings"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is a key benefit of CI/CD in testing mentioned in the chapter?",
+        "options": [
+            "Early bug detection",
+            "Elimination of all bugs",
+            "Reduction in code quality",
+            "Increase in manual testing"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which CI/CD tool is described as an open-source automation server?",
+        "options": [
+            "GitHub Actions",
+            "Jenkins",
+            "GitLab CI/CD",
+            "CircleCI"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Where is code typically pushed to trigger a CI/CD pipeline?",
+        "options": [
+            "Email attachment",
+            "Version control system like GitHub",
+            "Shared network drive",
+            "Physical USB drive"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What happens if tests fail in a CI/CD pipeline?",
+        "options": [
+            "Deployment proceeds anyway",
+            "Issues are flagged and deployment stops",
+            "Tests are ignored",
+            "Code is automatically rewritten"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which type of testing evaluates application speed, stability, and scalability?",
+        "options": [
+            "Unit Testing",
+            "Integration Testing",
+            "Performance Testing",
+            "Functional Testing"
+        ],
+        "answer": 2
+    },
+    {
+        "question": "What does automated testing eliminate that manual testing is prone to?",
+        "options": [
+            "All software bugs",
+            "Human errors in test execution",
+            "The need for test planning",
+            "Code documentation"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Why is scalability important in test automation?",
+        "options": [
+            "It allows tests to run on multiple devices/browsers without additional manual effort",
+            "It makes tests run slower but more thorough",
+            "It reduces the number of test cases needed",
+            "It eliminates the need for test environments"
+        ],
+        "answer": 0
+    },
+    {
+        "question": "Which cloud-based testing platforms are mentioned for enhancing scalability?",
+        "options": [
+            "AWS and Azure only",
+            "Sauce Labs and BrowserStack",
+            "Google Cloud only",
+            "IBM Cloud only"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does JUnit primarily focus on?",
+        "options": [
+            "Mobile application testing",
+            "Testing individual components of Java applications",
+            "Web UI testing only",
+            "Performance testing only"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "How does TestNG extend JUnit's capabilities?",
+        "options": [
+            "By only supporting Python",
+            "By introducing parallel execution and data-driven testing",
+            "By eliminating all assertions",
+            "By focusing only on mobile testing"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What advantage does automation provide for regression testing?",
+        "options": [
+            "It makes regression testing unnecessary",
+            "It ensures consistent and frequent validation of small code changes",
+            "It only tests new features",
+            "It slows down the testing process"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is a long-term benefit of test automation despite high initial investment?",
+        "options": [
+            "Increased manual testing requirements",
+            "Reduced testing costs due to decreased manual effort",
+            "More complex test documentation",
+            "Slower release cycles"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What does CI encourage in terms of code updates?",
+        "options": [
+            "Large, infrequent updates",
+            "Small, incremental updates",
+            "No updates after initial release",
+            "Updates only from senior developers"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "Which programming languages does Selenium support according to the chapter?",
+        "options": [
+            "Only Java",
+            "Java, Python, C#, and JavaScript",
+            "Only Python",
+            "Only JavaScript"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What type of applications does Appium support testing?",
+        "options": [
+            "Only web applications",
+            "Native, hybrid, and web-based mobile applications",
+            "Only desktop applications",
+            "Only backend services"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What benefit does CI/CD provide for deployment according to the chapter?",
+        "options": [
+            "Makes deployments more risky",
+            "Reduces human intervention and minimizes deployment risks",
+            "Eliminates all deployment processes",
+            "Requires more manual approvals"
+        ],
+        "answer": 1
+    },
+    {
+        "question": "What is the final step in a typical CI/CD pipeline if tests pass?",
+        "options": [
+            "Code is deleted",
+            "Deployment proceeds",
+            "Pipeline stops completely",
+            "Manual review begins"
+        ],
+        "answer": 1
+    }
+];
+
 const ds1 = [
     {
         "question": "Tesla's Autopilot system uses camera and sensor data to detect obstacles and make driving decisions without explicit instructions for every possible scenario. What type(s) of learning is this?",
@@ -11062,7 +13927,7 @@ const ds1 = [
             "Reinforcement Learning only",
             "Unsupervised Learning only"
         ],
-        "answer": 1 
+        "answer": 1
     },
     {
         "question": "According to the learning problem formulation, the target function f is known to the learning algorithm during training.",
@@ -11070,7 +13935,7 @@ const ds1 = [
             "False",
             "True"
         ],
-        "answer": 0 
+        "answer": 0
     },
     {
         "question": "Netflix analyzes your viewing history and compares it with millions of other users to recommend movies you might like, without knowing your exact preferences beforehand. This is an example of:",
@@ -11080,7 +13945,7 @@ const ds1 = [
             "Both Unsupervised and Reinforcement Learning",
             "Unsupervised Learning"
         ],
-        "answer": 3 
+        "answer": 3
     },
     {
         "question": "In the perceptron model, what is the role of the artificial coordinate x₀ = 1?",
@@ -11090,7 +13955,7 @@ const ds1 = [
             "To incorporate the threshold as part of the weight vector",
             "To handle categorical variables"
         ],
-        "answer": 2 
+        "answer": 2
     },
     {
         "question": "A spam filter is trained on thousands of emails that are manually labeled as 'spam' or 'not spam' by humans. When a new email arrives, it classifies it based on patterns learned from the labeled data. This uses:",
@@ -11100,7 +13965,7 @@ const ds1 = [
             "Unsupervised Learning",
             "Both Supervised and Unsupervised Learning"
         ],
-        "answer": 0 
+        "answer": 0
     },
     {
         "question": "The PLA algorithm updates weights only when a training example is correctly classified.",
@@ -11108,7 +13973,7 @@ const ds1 = [
             "True",
             "False"
         ],
-        "answer": 1 
+        "answer": 1
     },
     {
         "question": "Given a perceptron with weights w = [2, -1, 3] and input x = [1, 4, -2], what is the output h(x)?",
@@ -11118,7 +13983,7 @@ const ds1 = [
             "Undefined",
             "-1"
         ],
-        "answer": 3 
+        "answer": 3
     },
     {
         "question": "Unsupervised learning answers a given question using an answer that is ……… .",
@@ -11128,7 +13993,7 @@ const ds1 = [
             "from sample output",
             "random"
         ],
-        "answer": 1 
+        "answer": 1
     },
     {
         "question": "Which of the following best describes the fundamental premise of machine learning according to the lecture?",
@@ -11138,7 +14003,7 @@ const ds1 = [
             "A pattern exists, we cannot pin it down mathematically, but we have data on it",
             "Machine learning replaces the need for data with theoretical models"
         ],
-        "answer": 2 
+        "answer": 2
     },
     {
         "question": "In reinforcement learning, the training data consists of (input, correct output) pairs.",
@@ -11146,7 +14011,7 @@ const ds1 = [
             "False",
             "True"
         ],
-        "answer": 0 
+        "answer": 0
     },
     {
         "question": "Given a dataset of 50 examples, a threshold ε of 0.17, and 20 hypotheses; calculate the RHS of the Hoeffding inequality",
@@ -11156,7 +14021,7 @@ const ds1 = [
             "1.87",
             "3.42"
         ],
-        "answer": 1 
+        "answer": 1
     },
     {
         "question": "Consider a credit approval problem with 10 features. After adding the artificial coordinate, what is the dimension of the weight vector w in the perceptron model?",
@@ -11166,7 +14031,7 @@ const ds1 = [
             "12",
             "11"
         ],
-        "answer": 3 
+        "answer": 3
     },
     {
         "question": "The hypothesis set H in the learning diagram represents:",
@@ -11176,7 +14041,7 @@ const ds1 = [
             "The learning algorithm parameters",
             "The target function family"
         ],
-        "answer": 0 
+        "answer": 0
     },
     {
         "question": "If the PLA algorithm converges, it guarantees that the final hypothesis g will achieve zero error on future unseen data.",
@@ -11184,7 +14049,7 @@ const ds1 = [
             "False",
             "True"
         ],
-        "answer": 0 
+        "answer": 0
     },
     {
         "question": "In the movie rating prediction example, what type of learning problem is being solved?",
@@ -11194,7 +14059,7 @@ const ds1 = [
             "Supervised learning",
             "Semi-supervised learning"
         ],
-        "answer": 2 
+        "answer": 2
     },
     {
         "question": "Given the weight update rule w ← w + yx in PLA, if y = +1 and the point is misclassified, what effect does this update have?",
@@ -11204,7 +14069,7 @@ const ds1 = [
             "It rotates w away from x",
             "It normalizes the weight vector"
         ],
-        "answer": 1 
+        "answer": 1
     },
     {
         "question": "The learning model consists of both the hypothesis set and the learning algorithm.",
@@ -11212,7 +14077,7 @@ const ds1 = [
             "True",
             "False"
         ],
-        "answer": 0 
+        "answer": 0
     },
     {
         "question": "In unsupervised learning, the training data provides:",
@@ -11222,7 +14087,7 @@ const ds1 = [
             "Complete mathematical specification of the target",
             "Only input data without explicit outputs"
         ],
-        "answer": 3 
+        "answer": 3
     },
     {
         "question": "A perceptron with weights w = [-1, 2, 0] is applied to input x = [1, 3, 1]. What is the value of wᵀx before applying the sign function?",
@@ -11232,7 +14097,7 @@ const ds1 = [
             "5",
             "-7"
         ],
-        "answer": 2 
+        "answer": 2
     },
     {
         "question": "The final hypothesis g is chosen from the hypothesis set H based on the training examples.",
@@ -11240,7 +14105,7 @@ const ds1 = [
             "False",
             "True"
         ],
-        "answer": 1 
+        "answer": 1
     }
 ];
 
@@ -12201,7 +15066,7 @@ function selectQuiz(quiz) {
         title = 'Select Data Science Quiz';
     }
 
-    
+
     pushView(targetView, title);
 }
 
@@ -12470,7 +15335,13 @@ function getethicsQuestions() {
     if (ethicsQuizVariant === 2) return ethics2;
     if (ethicsQuizVariant === 3) return ethics3;
     if (ethicsQuizVariant === 4) return ethics4;
-        if (ethicsQuizVariant === 5) return ethics5;
+    if (ethicsQuizVariant === 5) return ethics5;
+    if (ethicsQuizVariant === 6) return ethics6;
+    if (ethicsQuizVariant === 7) return ethics7;
+    if (ethicsQuizVariant === 8) return ethics8;
+    if (ethicsQuizVariant === 9) return ethics9;
+
+
 
 }
 
@@ -12493,6 +15364,10 @@ function getsqQuestions() {
     if (sqQuizVariant === 1) return sq1;
     if (sqQuizVariant === 2) return sq2;
     if (sqQuizVariant === 3) return sq3;
+        if (sqQuizVariant === 4) return sq4;
+    if (sqQuizVariant === 5) return sq5;
+    if (sqQuizVariant === 6) return sq6;
+
 }
 
 
@@ -12559,7 +15434,7 @@ function startQuiz() {
     userAnswers = new Array(totalQuestions).fill(-1);
     score = 0;
 
-    
+
     let quizTitleText = '';
     if (selectedQuiz === 'pl') quizTitleText = `Programming Languages Quiz ${plQuizVariant}`;
     else if (selectedQuiz === 'database') quizTitleText = `Database Quiz ${databaseQuizVariant}`;
@@ -12575,7 +15450,7 @@ function startQuiz() {
     else if (selectedQuiz === 'sq') quizTitleText = `Software Quality Quiz ${sqQuizVariant}`;
     else if (selectedQuiz === 'ds') quizTitleText = `Data Science Quiz ${dsQuizVariant}`;
 
-    
+
     if (quizTitleText) {
         document.getElementById('quiz-title').innerText = quizTitleText;
     }
@@ -12643,14 +15518,14 @@ function loadQuestion() {
     const currentQuestionOptions = quiz[currentQuestionIndex].options;
     const numOptions = currentQuestionOptions.length;
 
-    
+
     options.forEach(option => {
         option.style.display = 'none';
         option.classList.remove('correct', 'wrong');
         option.disabled = false;
     });
 
-    
+
     for (let i = 0; i < numOptions && i < 5; i++) {
         options[i].style.display = 'block';
         options[i].innerText = currentQuestionOptions[i];
@@ -12716,13 +15591,13 @@ function checkAnswer(selectedIndex) {
 
     userAnswers[currentQuestionIndex] = selectedIndex;
 
-    
+
     options.forEach(option => {
         option.style.display = 'none';
         option.classList.remove('correct', 'wrong');
     });
 
-    
+
     for (let i = 0; i < numOptions && i < 5; i++) {
         options[i].style.display = 'block';
         options[i].classList.remove('correct', 'wrong');
@@ -12816,12 +15691,12 @@ function showCurrentAnswer() {
         const correctIndex = quiz[currentQuestionIndex].answer;
         const userAnswerIndex = userAnswers[currentQuestionIndex];
 
-        
+
         options.forEach(option => {
             option.style.display = 'none';
         });
 
-        
+
         for (let i = 0; i < numOptions && i < 5; i++) {
             options[i].style.display = 'block';
             options[i].classList.remove('correct', 'wrong');
@@ -12835,13 +15710,13 @@ function showCurrentAnswer() {
             options[i].disabled = true;
         }
     } else {
-        
+
         options.forEach(option => {
             option.style.display = 'none';
             option.classList.remove('correct', 'wrong');
         });
 
-        
+
         for (let i = 0; i < numOptions && i < 5; i++) {
             options[i].style.display = 'block';
             options[i].disabled = false;
@@ -12861,12 +15736,12 @@ function updateNavigationButtons() {
 
 function showResult() {
     clearInterval(timerInterval);
-    quizInProgress = false; 
+    quizInProgress = false;
 
-    
+
     document.getElementById('question-info').classList.add('hidden');
     document.getElementById('question-box').classList.add('hidden');
-    document.getElementById('timer').style.visibility = 'hidden'; 
+    document.getElementById('timer').style.visibility = 'hidden';
 
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('finish-btn').classList.add('hidden');
@@ -12887,11 +15762,11 @@ function showResult() {
     document.getElementById('result-details').classList.remove('hidden');
     document.getElementById('post-quiz-buttons').classList.remove('hidden');
 
-    
+
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()} - Result`;
     document.getElementById('quiz-title').innerText = quizName;
 
-    
+
     const backButton = document.querySelector('.back-to-main-btn');
     if (backButton) backButton.classList.add('hidden');
 
@@ -12906,28 +15781,28 @@ function showResult() {
 
 
 function pushView(viewId, title) {
-    
+
     hideAllViews();
 
-    
+
     const view = document.getElementById(viewId);
     if (view) {
         view.classList.remove('hidden');
     }
 
-    
+
     document.getElementById('quiz-title').textContent = title;
 
-    
+
     const searchContainer = document.querySelector('.search-container');
     if (searchContainer) {
         searchContainer.classList.toggle('hidden', viewId !== 'quiz-selection');
     }
 
-    
+
     navigationStack.push({ view: viewId, title: title });
 
-    
+
     updateBackButton();
 }
 
@@ -12935,36 +15810,36 @@ function pushView(viewId, title) {
 function navigateBack() {
     if (navigationStack.length <= 1) return;
 
-    
+
     navigationStack.pop();
 
-    
+
     if (quizInProgress && navigationStack[navigationStack.length - 1].view === 'time-options') {
-        
+
         return;
     }
 
     const previousView = navigationStack[navigationStack.length - 1];
 
-    
+
     hideAllViews();
 
-    
+
     const view = document.getElementById(previousView.view);
     if (view) {
         view.classList.remove('hidden');
     }
 
-    
+
     document.getElementById('quiz-title').textContent = previousView.title;
 
-    
+
     const searchContainer = document.querySelector('.search-container');
     if (searchContainer) {
         searchContainer.classList.toggle('hidden', previousView.view !== 'quiz-selection');
     }
 
-    
+
     updateBackButton();
 }
 
@@ -12975,17 +15850,17 @@ function updateBackButton() {
 
     const currentView = navigationStack[navigationStack.length - 1].view;
 
-    
+
     const hideBackButtonPages = [
-        'quiz-selection',        
-        'review-answers',        
+        'quiz-selection',
+        'review-answers',
     ];
 
     const shouldHide = hideBackButtonPages.includes(currentView);
 
     backButton.classList.toggle('hidden', shouldHide);
 
-    
+
     if (!shouldHide) {
         backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Back';
         backButton.onclick = navigateBack;
@@ -12994,7 +15869,7 @@ function updateBackButton() {
 }
 
 function hideAllViews() {
-    
+
     const allViews = [
         'quiz-selection',
         'database-quiz-selection', 'data-structure-quiz-selection', 'datacommunction-quiz-selection',
@@ -13012,7 +15887,7 @@ function hideAllViews() {
         }
     });
 
-    
+
     const timer = document.getElementById('timer');
     if (timer) {
         timer.style.visibility = 'hidden';
@@ -13120,7 +15995,7 @@ function reviewAnswers() {
     else if (selectedQuiz === 'sq') quiz = getsqQuestions();
     else if (selectedQuiz === 'ds') quiz = getdsQuestions();
 
-    
+
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()} - Review`;
     document.getElementById('quiz-title').innerText = quizName;
     document.getElementById('timer').style.visibility = 'hidden';
@@ -13145,7 +16020,7 @@ function reviewAnswers() {
                 <p><strong>Status:</strong> ${isCorrect ? '✅ Correct' : '❌ Wrong'}</p>
         `;
 
-        
+
         if (isCorrect) {
             reviewMessage += `
                 <button class="show-explanation-btn" onclick="toggleExplanation(${i})" data-question="${i}">
@@ -13156,7 +16031,7 @@ function reviewAnswers() {
                 </div>
             `;
         } else {
-            
+
             reviewMessage += `
                 <div class="explanation">
                     <strong>Explanation:</strong> ${explanation}
@@ -13185,11 +16060,11 @@ function reviewAnswers() {
 
 
 function backToResults() {
-    
+
     document.getElementById('review-answers').classList.add('hidden');
     document.getElementById('review-answers').innerHTML = '';
 
-    
+
     document.getElementById('result').classList.remove('hidden');
     document.getElementById('result-details').classList.remove('hidden');
     document.getElementById('post-quiz-buttons').classList.remove('hidden');
@@ -13210,14 +16085,14 @@ function backToResults() {
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()} - Result`;
     document.getElementById('quiz-title').innerText = quizName;
 
-    
+
     const backButton = document.querySelector('.back-to-main-btn');
     if (backButton) {
         backButton.classList.add('hidden');
-        backButton.style.display = "none";  
+        backButton.style.display = "none";
     }
 
-    
+
     navigationStack = navigationStack.filter(item => item.view !== 'review-answers');
 }
 
@@ -13404,10 +16279,10 @@ function initializeSearch() {
         { id: 'ds', name: 'Data Science', keywords: ['ds', 'data science', 'science', 'machine learning'] }
     ];
 
-    
+
     let noResultsMessage = document.querySelector('.no-results-message');
 
-    
+
     if (!noResultsMessage) {
         noResultsMessage = document.createElement('div');
         noResultsMessage.className = 'no-results-message hidden';
@@ -13417,7 +16292,7 @@ function initializeSearch() {
             <p>Try searching for a different term.</p>
         `;
 
-        
+
         const quizSelection = document.getElementById('quiz-selection');
         if (quizSelection) {
             quizSelection.appendChild(noResultsMessage);
@@ -13431,7 +16306,7 @@ function initializeSearch() {
         let visibleCount = 0;
 
         if (searchTerm === '') {
-            
+
             categoryCards.forEach(card => {
                 card.style.display = 'flex';
             });
@@ -13447,21 +16322,21 @@ function initializeSearch() {
 
             let shouldShow = false;
 
-            
+
             if (cardTitle.includes(searchTerm)) {
                 shouldShow = true;
             }
-            
+
             else if (cardDesc.includes(searchTerm)) {
                 shouldShow = true;
             }
-            
+
             else if (quiz) {
                 shouldShow = quiz.keywords.some(keyword =>
                     keyword.includes(searchTerm) || searchTerm.includes(keyword)
                 );
             }
-            
+
             else if (quizId && quizId.includes(searchTerm)) {
                 shouldShow = true;
             }
@@ -13474,7 +16349,7 @@ function initializeSearch() {
             }
         });
 
-        
+
         if (visibleCount === 0 && searchTerm !== '') {
             noResultsMessage.classList.remove('hidden');
         } else {
@@ -13505,17 +16380,17 @@ const backButton = document.querySelector('.back-to-main-btn');
 
 
 function updateBackButtonVisibility() {
-    
+
     const currentView = navigationStack[navigationStack.length - 1].view;
     const quizInProgress = !document.getElementById('question-box').classList.contains('hidden');
     const showingResult = !document.getElementById('result').classList.contains('hidden');
     const showingReview = !document.getElementById('review-answers').classList.contains('hidden');
 
-    
-    
+
+
     let showButton = navigationStack.length > 1;
 
-    
+
     if (showingResult || showingReview) {
         showButton = false;
     }
@@ -13526,17 +16401,17 @@ function updateBackButtonVisibility() {
 
 
 function pushView(viewId, title) {
-    
+
     hideAllViews();
 
-    
+
     const view = document.getElementById(viewId);
     if (view) {
         view.classList.remove('hidden');
     }
 
 
-    
+
     function updatePageTitle(viewId, customTitle = '') {
         const titleElement = document.getElementById('quiz-title');
 
@@ -13554,7 +16429,7 @@ function pushView(viewId, title) {
                 break;
 
             case 'question-box':
-                
+
                 titleElement.textContent = customTitle || document.getElementById('quiz-title').textContent;
                 break;
 
@@ -13567,7 +16442,7 @@ function pushView(viewId, title) {
                 break;
 
             default:
-                
+
                 if (viewId.includes('-quiz-selection')) {
                     titleElement.textContent = customTitle || 'Select Quiz Variant';
                 } else {
@@ -13575,51 +16450,51 @@ function pushView(viewId, title) {
                 }
         }
     }
-    
+
     updatePageTitle(viewId, title);
 
-    
+
     const searchContainer = document.querySelector('.search-container');
     if (searchContainer) {
         searchContainer.classList.toggle('hidden', viewId !== 'quiz-selection');
     }
 
-    
+
     navigationStack.push({ view: viewId, title: title });
 
-    
+
     managePageState(viewId);
 
-    
+
     updateBackButton();
 }
 
 
 function showView(viewInfo) {
-    
+
     hideAllViews();
 
     const { view, title } = viewInfo;
 
-    
+
     const viewElement = document.getElementById(view);
     if (viewElement) {
         viewElement.classList.remove('hidden');
     }
 
-    
+
     document.getElementById('quiz-title').textContent = title;
 
-    
+
     const searchContainer = document.querySelector('.search-container');
     if (searchContainer) {
         searchContainer.classList.toggle('hidden', view !== 'quiz-selection');
     }
 
-    
+
     managePageState(view);
 
-    
+
     updateBackButton();
 }
 
@@ -13629,14 +16504,14 @@ function managePageState(currentView) {
     const timer = document.getElementById('timer');
 
     if (currentView === 'time-options' || currentView === 'time-input') {
-        
+
         if (timer) timer.style.visibility = 'hidden';
         document.getElementById('question-info').classList.add('hidden');
         document.getElementById('question-box').classList.add('hidden');
         document.getElementById('result').classList.add('hidden');
     }
     else if (currentView.includes('question') && quizInProgress) {
-        
+
         document.getElementById('question-info').classList.remove('hidden');
         document.getElementById('question-box').classList.remove('hidden');
         if (timer && timeLimit > 0) {
@@ -13644,7 +16519,7 @@ function managePageState(currentView) {
         }
     }
     else if (currentView === 'result') {
-        
+
         document.getElementById('result').classList.remove('hidden');
         document.getElementById('result-details').classList.remove('hidden');
         document.getElementById('post-quiz-buttons').classList.remove('hidden');
@@ -13657,31 +16532,31 @@ function navigateBack() {
 
     const currentView = navigationStack[navigationStack.length - 1].view;
 
-    
+
     if (quizInProgress && currentView.includes('question')) {
-        
+
         const timeOptionsIndex = navigationStack.findIndex(item => item.view === 'time-options');
         if (timeOptionsIndex !== -1) {
-            
+
             navigationStack = navigationStack.slice(0, timeOptionsIndex + 1);
             showView(navigationStack[navigationStack.length - 1]);
             return;
         }
     }
 
-    
+
     navigationStack.pop();
     showView(navigationStack[navigationStack.length - 1]);
 }
 
 function hideAllViews() {
-    
+
     document.getElementById('quiz-selection').classList.add('hidden');
     document.querySelectorAll('[id$="-quiz-selection"]').forEach(el => el.classList.add('hidden'));
     document.getElementById('time-options').classList.add('hidden');
     document.getElementById('time-input').classList.add('hidden');
 
-    
+
     document.getElementById('timer').style.visibility = 'hidden';
     document.getElementById('question-info').classList.add('hidden');
     document.getElementById('question-box').classList.add('hidden');
@@ -13695,33 +16570,33 @@ function hideAllViews() {
 }
 
 function restartSameQuiz() {
-    
+
     currentQuestionIndex = 0;
     score = 0;
     userAnswers = new Array(totalQuestions).fill(-1);
     quizInProgress = false;
 
-    
+
     if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
     }
 
-    
+
     pushView('time-options', 'Select Time Option');
 
-    
+
     const quizName = `${selectedQuiz.toUpperCase()} Quiz ${getQuizVariant()}`;
     document.getElementById('quiz-title').innerText = `Select Time Option for ${quizName}`;
 
-    
+
     const backButton = document.querySelector('.back-to-main-btn');
     if (backButton) {
         backButton.classList.remove('hidden');
         backButton.style.display = 'flex';
     }
 
-    
+
     updateBackButton();
 }
 
@@ -13742,10 +16617,10 @@ function resetOverlay() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    updateBackButtonVisibility(); 
+    updateBackButtonVisibility();
     const overlay = document.getElementById('theme-transition-overlay');
 
-    
+
     const themeToggle = document.getElementById('status');
     const toggleLabel = document.querySelector('label[for="status"]');
 
@@ -13767,15 +16642,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 overlay.style.clipPath = 'circle(0% at var(--clip-x) var(--clip-y))';
-                resetOverlay(); 
+                resetOverlay();
             }, 600);
         });
     }
 
-    
-    
 
-    
+
+
+
     const glassToggleCheckbox = document.getElementById('glass-status');
     const glassToggleLabel = document.querySelector('label[for="glass-status"]');
 
@@ -13785,40 +16660,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         setGlassMode(glassToggleCheckbox.checked);
 
-      glassToggleCheckbox.addEventListener('change', (e) => {
-    const isChecked = e.target.checked;
-    const rect = glassToggleLabel.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+        glassToggleCheckbox.addEventListener('change', (e) => {
+            const isChecked = e.target.checked;
+            const rect = glassToggleLabel.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
 
-    overlay.style.backgroundColor = 'transparent';
-    overlay.style.backdropFilter = 'blur(10px)';
-    overlay.style.setProperty('--clip-x', `${x}px`);
-    overlay.style.setProperty('--clip-y', `${y}px`);
+            overlay.style.backgroundColor = 'transparent';
+            overlay.style.backdropFilter = 'blur(10px)';
+            overlay.style.setProperty('--clip-x', `${x}px`);
+            overlay.style.setProperty('--clip-y', `${y}px`);
 
-    setGlassMode(isChecked);
-    
-    
-    localStorage.setItem('glassMode', isChecked.toString());
-    
-    overlay.style.clipPath = `circle(150% at ${x}px ${y}px)`;
+            setGlassMode(isChecked);
 
-    setTimeout(() => {
-        overlay.style.clipPath = 'circle(0% at var(--clip-x) var(--clip-y))';
-        resetOverlay();
-    }, 600);
-});
+
+            localStorage.setItem('glassMode', isChecked.toString());
+
+            overlay.style.clipPath = `circle(150% at ${x}px ${y}px)`;
+
+            setTimeout(() => {
+                overlay.style.clipPath = 'circle(0% at var(--clip-x) var(--clip-y))';
+                resetOverlay();
+            }, 600);
+        });
     }
 
 
 
-    
+
     const scrollTopBtn = document.getElementById('scrollToTopBtn');
     const scrollableElement = document.querySelector('.main-content');
 
-    
+
     if (scrollTopBtn && scrollableElement) {
-        
+
         window.addEventListener('scroll', () => {
             const mainScroll = scrollableElement.scrollTop;
             const windowScroll = document.body.scrollTop || document.documentElement.scrollTop;
@@ -13830,7 +16705,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        
+
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             scrollableElement.scrollTo({ top: 0, behavior: 'smooth' });
@@ -13844,4 +16719,87 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function () {
     updateBackButton();
     initializeSearch();
+});
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const adOverlay = document.getElementById('ad-overlay');
+    const adVideo = document.getElementById('ad-video');
+    const appLayout = document.querySelector('.app-layout');
+    
+    if (localStorage.getItem('adWatched') === 'true') {
+        adOverlay.style.display = 'none';
+        return;
+    }
+    
+    document.body.classList.add('ad-active');
+    appLayout.style.display = 'none';
+    
+    adVideo.setAttribute('playsinline', '');
+    adVideo.setAttribute('webkit-playsinline', '');
+    
+    adVideo.addEventListener('ended', function() {
+        setTimeout(function() {
+            closeAd();
+        }, 2000); 
+    });
+    
+    adVideo.addEventListener('error', function() {
+        console.log('Video error, skipping ad');
+        closeAd();
+    });
+    
+    setTimeout(function() {
+        if (adVideo.readyState === 0) { 
+            closeAd();
+        }
+    }, 5000);
+    
+    function closeAd() {
+        localStorage.setItem('adWatched', 'true');
+        
+        adOverlay.style.opacity = '0';
+        setTimeout(function() {
+            adOverlay.style.display = 'none';
+        }, 500);
+        
+        document.body.classList.remove('ad-active');
+        
+        setTimeout(function() {
+            appLayout.style.display = 'grid'; 
+        }, 100);
+    }
+
+    let skipAttempts = 0;
+    adVideo.addEventListener('pause', function(e) {
+        if (!adVideo.ended && adVideo.currentTime < adVideo.duration - 2) {
+            skipAttempts++;
+            if (skipAttempts < 3) {
+                adVideo.play();
+                showSkipWarning();
+            }
+        }
+    });
+
+    adVideo.addEventListener('seeking', function(e) {
+        if (adVideo.currentTime > 0) { 
+        }
+    });
+
+    function showSkipWarning() {
+        const countdown = document.querySelector('.ad-countdown');
+        const originalText = countdown.textContent;
+        countdown.textContent = 'Please watch the full ad to continue...';
+        countdown.style.color = '#ff6b6b';
+        
+        setTimeout(function() {
+            countdown.textContent = originalText;
+            countdown.style.color = 'white';
+        }, 2000);
+    }
 });
