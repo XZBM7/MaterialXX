@@ -3614,11 +3614,906 @@ const bigdataQuestions5 = [
 
 
 
+const bigdataQuestions6 = [
+
+    {
+        question: "What is the primary purpose of Apache Hive?",
+        options: ["Real-time transaction processing", "Big data warehousing and analytics on Hadoop", "Stream processing of IoT data", "Graph database management"],
+        answer: 1,
+        explanation: "Hive was built by Facebook for data warehousing on top of Hadoop, enabling SQL-like querying of large datasets stored in HDFS."
+    },
+
+    {
+        question: "Which company originally created Apache Hive?",
+        options: ["Google", "Amazon", "Facebook", "Microsoft"],
+        answer: 2,
+        explanation: "Facebook created Hive to allow analysts with SQL skills to query huge volumes of data stored in Hadoop."
+    },
+
+    {
+        question: "What is the key difference between Hive's 'schema on read' and traditional databases' 'schema on write'?",
+        options: ["Hive validates data when loaded, traditional DBs when queried", "Traditional DBs validate data when loaded, Hive when queried", "Both validate data at query time", "Both validate data at load time"],
+        answer: 1,
+        explanation: "Traditional databases enforce schema at load time (schema on write), while Hive validates data when queried (schema on read)."
+    },
+
+    {
+        question: "Which execution engine is NOT supported by Hive?",
+        options: ["MapReduce", "Apache Tez", "Apache Spark", "Apache Kafka"],
+        answer: 3,
+        explanation: "Hive supports MapReduce (default), Tez, and Spark as execution engines, but not Kafka (which is for stream processing)."
+    },
+
+    {
+        question: "What type of updates does traditional Hive primarily support?",
+        options: ["Fine-grained cell updates", "Coarse-grained row/partition updates", "Real-time streaming updates", "In-place file updates"],
+        answer: 1,
+        explanation: "Traditional Hive uses coarse-grained updates, rewriting entire rows or partitions rather than updating individual cells."
+    },
+
+    {
+        question: "From which version did Hive introduce ACID transactions?",
+        options: ["Hive 0.10", "Hive 0.13", "Hive 0.14", "Hive 1.0"],
+        answer: 2,
+        explanation: "ACID transactions were introduced in Hive 0.13, with finer-grained updates becoming possible from version 0.14."
+    },
+
+    {
+        question: "What is the default Metastore configuration in Hive?",
+        options: ["Remote Metastore", "Local Metastore with MySQL", "Embedded Metastore with Derby", "Cloud Metastore"],
+        answer: 2,
+        explanation: "The default embedded Metastore uses Derby database running in the same JVM as Hive service."
+    },
+
+    {
+        question: "Which file format is optimized for columnar storage and used with Hive ACID tables?",
+        options: ["CSV", "JSON", "ORC (Optimized Row Columnar)", "Parquet"],
+        answer: 2,
+        explanation: "ORC file format is optimized for columnar storage and works well with Hive's ACID transactional features."
+    },
+
+    {
+        question: "What is Beeline in Hive?",
+        options: ["A web interface", "A JDBC-based command line interface", "A visualization tool", "A data ingestion tool"],
+        answer: 1,
+        explanation: "Beeline is a JDBC-based CLI that can connect to HiveServer2, serving as an alternative to the traditional CLI."
+    },
+
+    {
+        question: "Which component of Hive architecture is responsible for converting HiveQL to execution plans?",
+        options: ["Metastore", "Driver", "Compiler", "Execution Engine"],
+        answer: 2,
+        explanation: "The Query Compiler parses HiveQL, performs semantic analysis, and converts queries into execution plans (MapReduce/Tez/Spark jobs)."
+    },
+
+    {
+        question: "What is the main advantage of 'schema on read'?",
+        options: ["Faster query performance", "Faster initial data load", "Better data consistency", "Automatic indexing"],
+        answer: 1,
+        explanation: "Schema on read enables faster initial data loading since data is simply copied/moved without validation or transformation."
+    },
+
+    {
+        question: "Which of these is a Hive alternative that uses HBase as its underlying storage?",
+        options: ["Apache Drill", "Presto", "Apache Phoenix", "Spark SQL"],
+        answer: 2,
+        explanation: "Apache Phoenix provides SQL access to HBase, converting queries into HBase scans."
+    },
+
+    {
+        question: "What limitation does the embedded Metastore configuration have?",
+        options: ["It requires MySQL", "It only works with HDFS", "It allows only one Hive session at a time", "It doesn't support ACID"],
+        answer: 2,
+        explanation: "The embedded Derby database in default Metastore allows only one session at a time to access the Metastore."
+    },
+
+    {
+        question: "How does Hive handle data in managed tables?",
+        options: ["Leaves data in original location", "Moves data to Hive warehouse directory", "Stores data in memory only", "Encrypts data in transit"],
+        answer: 1,
+        explanation: "For managed tables, Hive moves data into its warehouse directory (hdfs://user/hive/warehouse/)."
+    },
+
+    {
+        question: "What is HiveServer2's improvement over the original HiveServer?",
+        options: ["Supports only MapReduce", "Adds authentication and multi-user concurrency", "Eliminates need for Metastore", "Uses only embedded Derby"],
+        answer: 1,
+        explanation: "HiveServer2 added authentication and better support for multiple concurrent users compared to the original HiveServer."
+    },
+
+    {
+        question: "Which optimization technique does Hive's query optimizer apply?",
+        options: ["Predicate pushdown", "Data encryption", "Automatic partitioning", "Real-time indexing"],
+        answer: 0,
+        explanation: "Hive's optimizer uses predicate pushdown (filtering data early) and join optimization to improve query performance."
+    },
+
+    {
+        question: "What does Hive use for its metadata storage?",
+        options: ["HDFS", "Local file system", "Relational database", "In-memory cache"],
+        answer: 2,
+        explanation: "Hive stores metadata (table schemas, partitions, etc.) in a relational database (Metastore), not in HDFS."
+    },
+
+    {
+        question: "Which client allows programming language interaction via Thrift?",
+        options: ["JDBC Driver", "ODBC Driver", "Thrift Client", "CLI"],
+        answer: 2,
+        explanation: "The Thrift Client allows applications in various languages to interact with HiveServer via Thrift protocol."
+    },
+
+    {
+        question: "What is the main trade-off with coarse-grained updates in Hive?",
+        options: ["Better ACID compliance", "Higher performance for small changes", "Performance overhead for large datasets", "Automatic indexing"],
+        answer: 2,
+        explanation: "Coarse-grained updates rewrite entire rows/partitions, causing performance overhead when updating large datasets."
+    },
+
+    {
+        question: "Which Hive alternative was created by Facebook and uses a DAG execution engine?",
+        options: ["Apache Drill", "Presto", "Impala", "Apache Phoenix"],
+        answer: 1,
+        explanation: "Presto is Facebook's distributed SQL query engine that uses a custom DAG execution model."
+    },
+
+    {
+        question: "How does Hive handle DELETE operations in ACID tables?",
+        options: ["Physical deletion from files", "Marks rows as deleted in delta files", "Moves data to trash directory", "Archives old partitions"],
+        answer: 1,
+        explanation: "With ACID, deletes are stored as markers in delta files, which are later merged by compaction jobs."
+    },
+
+    {
+        question: "What is the purpose of the Hive Driver?",
+        options: ["Stores metadata", "Executes MapReduce jobs", "Receives queries and initiates processing", "Manages HDFS storage"],
+        answer: 2,
+        explanation: "The Driver receives queries from clients and coordinates the compilation, optimization, and execution process."
+    },
+
+    {
+        question: "Which statement about external tables is true?",
+        options: ["Hive manages data location", "Data is moved to warehouse directory", "Hive only references external data location", "Cannot be partitioned"],
+        answer: 2,
+        explanation: "External tables point to data outside Hive's warehouse directory; Hive doesn't manage or move this data."
+    },
+
+    {
+        question: "What problem does remote Metastore configuration solve?",
+        options: ["Eliminates need for database", "Allows multiple Hive services to share Metastore", "Makes Hive faster than Impala", "Enables schema on write"],
+        answer: 1,
+        explanation: "Remote Metastore allows multiple Hive services to access a shared Metastore, enabling better concurrency and management."
+    },
+
+    {
+        question: "Which Hive component monitors query execution progress?",
+        options: ["Metastore", "Compiler", "Execution Engine", "Driver"],
+        answer: 2,
+        explanation: "The Execution Engine monitors job progress when queries are submitted to Hadoop/Tez/Spark."
+    },
+
+    {
+        question: "What is Impala's key advantage over Hive on MapReduce?",
+        options: ["Better ACID support", "Interactive query performance", "More SQL features", "Built-in machine learning"],
+        answer: 1,
+        explanation: "Impala provides much faster interactive query performance by using dedicated daemons instead of MapReduce batch jobs."
+    },
+
+    {
+        question: "How can you switch Hive's execution engine to Spark?",
+        options: ["SET hive.execution.engine=spark;", "USE spark;", "CONFIGURE engine spark;", "ALTER SESSION SET engine=spark;"],
+        answer: 0,
+        explanation: "The command 'SET hive.execution.engine=spark;' switches Hive's execution engine to Spark."
+    },
+
+    {
+        question: "What does Hive use for authentication in HiveServer2?",
+        options: ["Kerberos", "LDAP only", "No authentication", "Built-in user database"],
+        answer: 0,
+        explanation: "HiveServer2 supports various authentication methods including Kerberos for secure access."
+    },
+
+    {
+        question: "Which is NOT a Hive service?",
+        options: ["CLI", "HiveServer2", "Beeline", "HDFS"],
+        answer: 3,
+        explanation: "HDFS is Hadoop's file system, not a Hive service. CLI, HiveServer2, and Beeline are Hive services."
+    },
+
+    {
+        question: "What happens when you load data into a managed table?",
+        options: ["Data is copied to HDFS", "Data is moved to warehouse directory", "Data remains in place", "Data is compressed automatically"],
+        answer: 1,
+        explanation: "Loading data into managed tables moves the data files into Hive's warehouse directory for that table."
+    },
+
+    {
+        question: "Which database is commonly used with local Metastore?",
+        options: ["Derby", "SQLite", "MySQL", "PostgreSQL"],
+        answer: 2,
+        explanation: "MySQL is a popular choice for local Metastore configuration, running separately from Hive service."
+    },
+
+    {
+        question: "What type of operations does Hive's traditional architecture optimize for?",
+        options: ["Real-time updates", "Full-table scans and batch processing", "Transactional consistency", "Graph traversals"],
+        answer: 1,
+        explanation: "Hive was designed for batch processing with full-table scans, not real-time transactions."
+    },
+
+    {
+        question: "Which component allows BI tools to connect to Hive?",
+        options: ["Thrift Client", "JDBC Driver", "ODBC Driver", "CLI"],
+        answer: 2,
+        explanation: "ODBC Driver enables Business Intelligence tools that support ODBC protocol to connect to Hive."
+    },
+
+    {
+        question: "What is the benefit of predicate pushdown?",
+        options: ["Reduces network traffic", "Increases data redundancy", "Simplifies query syntax", "Enables real-time processing"],
+        answer: 0,
+        explanation: "Predicate pushdown applies filters early in processing, reducing data movement and improving performance."
+    },
+
+    {
+        question: "How does Hive handle concurrent writes with ACID?",
+        options: ["Uses table/partition level locking", "Allows unlimited concurrent writes", "Uses optimistic locking only", "Doesn't support concurrent writes"],
+        answer: 0,
+        explanation: "Hive ACID tables support table and partition level locking to manage concurrent write operations."
+    },
+
+    {
+        question: "What makes external tables useful?",
+        options: ["Better performance", "Data ownership remains outside Hive", "Automatic compression", "Built-in indexing"],
+        answer: 1,
+        explanation: "External tables allow querying data in place without Hive taking ownership, useful for shared datasets."
+    },
+
+];
 
 
+const bigdataQuestions7 = [
+
+    {
+        question: "Where does Hive typically store table metadata?",
+        options: ["In HDFS", "In a relational database (Metastore)", "In local file system only", "In memory cache"],
+        answer: 1,
+        explanation: "Hive stores metadata (schema, partitions, etc.) in a relational database called the Metastore, not in HDFS."
+    },
+
+    {
+        question: "What happens to data when it is loaded into a managed table in Hive?",
+        options: ["It remains in its original location", "It is moved to Hive's warehouse directory", "It is deleted from HDFS", "It is compressed automatically"],
+        answer: 1,
+        explanation: "For managed tables, Hive moves data into its warehouse directory (e.g., hdfs://user/hive/warehouse/)."
+    },
+
+    {
+        question: "When you drop an external table in Hive, what happens to the data?",
+        options: ["Data is deleted", "Data is moved to trash", "Data remains untouched; only metadata is removed", "Data is archived"],
+        answer: 2,
+        explanation: "Dropping an external table only removes metadata from Hive; the actual data files remain in their original location."
+    },
+
+    {
+        question: "Which clause is used to create an external table in Hive?",
+        options: ["MANAGED TABLE", "EXTERNAL TABLE", "TEMPORARY TABLE", "LOCAL TABLE"],
+        answer: 1,
+        explanation: "The 'EXTERNAL' keyword is used to create an external table, e.g., CREATE EXTERNAL TABLE ..."
+    },
+
+    {
+        question: "What is the default storage format in Hive?",
+        options: ["ORC", "Parquet", "Text format", "Sequence file"],
+        answer: 2,
+        explanation: "Text format is Hive's default storage format, with fields delimited by specified characters."
+    },
+
+    {
+        question: "Which storage format is binary and column-oriented?",
+        options: ["CSV", "JSON", "ORC", "Avro (row-oriented)"],
+        answer: 2,
+        explanation: "ORC (Optimized Row Columnar) is a binary, column-oriented storage format optimized for Hive."
+    },
+
+    {
+        question: "What is the main benefit of partitioning in Hive?",
+        options: ["Reduces storage space", "Improves query performance by scanning only relevant partitions", "Automatically compresses data", "Enables real-time updates"],
+        answer: 1,
+        explanation: "Partitioning allows queries to scan only relevant partitions instead of the entire table, improving performance."
+    },
+
+    {
+        question: "Which command enables dynamic partitioning in Hive?",
+        options: ["SET hive.exec.dynamic.partition=true", "SET hive.exec.dynamic.partition.mode=nonstrict", "ENABLE PARTITIONING", "ALTER TABLE ... PARTITION BY"],
+        answer: 1,
+        explanation: "Setting 'hive.exec.dynamic.partition.mode=nonstrict' allows dynamic partitioning during INSERT operations."
+    },
+
+    {
+        question: "What is bucketing in Hive?",
+        options: ["Splitting data into directories based on column values", "Dividing data into files based on hash function of a column", "Compressing data into blocks", "Replicating data across nodes"],
+        answer: 1,
+        explanation: "Bucketing divides data into a fixed number of files (buckets) based on a hash function on a column."
+    },
+
+    {
+        question: "Which property must be set to enforce bucketing during data insertion?",
+        options: ["hive.enforce.bucketing=true", "hive.bucketing.enabled=yes", "SET bucketing=on", "ENFORCE BUCKETS"],
+        answer: 0,
+        explanation: "Setting 'hive.enforce.bucketing=true' ensures data is physically bucketed according to the bucket definition."
+    },
+
+    {
+        question: "What is a key advantage of bucketing over partitioning?",
+        options: ["Unlimited number of buckets", "Better compression", "Controlled number of files (buckets) regardless of distinct values", "Automatic indexing"],
+        answer: 2,
+        explanation: "Bucketing allows you to specify a fixed number of buckets, avoiding the 'too many directories' problem of partitioning."
+    },
+
+    {
+        question: "Which clause is used to define bucketing in a CREATE TABLE statement?",
+        options: ["PARTITIONED BY", "CLUSTERED BY ... INTO ... BUCKETS", "BUCKETED BY", "HASHED BY"],
+        answer: 1,
+        explanation: "The CLUSTERED BY ... INTO ... BUCKETS clause defines bucketing columns and the number of buckets."
+    },
+
+    {
+        question: "When should you use managed tables in Hive?",
+        options: ["When data is shared with other tools", "When you want Hive to manage the data lifecycle", "When data must remain in original location", "When using external storage like S3"],
+        answer: 1,
+        explanation: "Managed tables are best when Hive is the sole tool managing the data (creation, deletion, storage)."
+    },
+
+    {
+        question: "What is the purpose of the LOCATION clause in an external table?",
+        options: ["Specifies Hive's warehouse directory", "Specifies where Hive should store metadata", "Specifies the external data path in HDFS or other filesystems", "Defines the Metastore location"],
+        answer: 2,
+        explanation: "The LOCATION clause points to the external data path; Hive does not move or manage data there."
+    },
+
+    {
+        question: "Which storage format is human-readable?",
+        options: ["ORC", "Parquet", "Text format", "Sequence file"],
+        answer: 2,
+        explanation: "Text format (e.g., CSV, TSV) is human-readable, unlike binary formats like ORC or Parquet."
+    },
+
+    {
+        question: "What happens if you drop a managed table?",
+        options: ["Only metadata is deleted", "Data and metadata are both deleted", "Data is moved to external location", "Table is archived"],
+        answer: 1,
+        explanation: "Dropping a managed table removes both metadata (from Metastore) and data (from warehouse directory)."
+    },
+
+    {
+        question: "Which of these is a row-oriented binary format?",
+        options: ["ORC", "Parquet", "Avro", "RCFile"],
+        answer: 2,
+        explanation: "Avro is a row-oriented binary format, while ORC and Parquet are column-oriented."
+    },
+
+    {
+        question: "What is the main benefit of column-oriented formats?",
+        options: ["Faster for reading entire rows", "Better for queries that access few columns", "Easier schema evolution", "Smaller memory footprint"],
+        answer: 1,
+        explanation: "Column-oriented formats are efficient when queries access only a subset of columns, reducing I/O."
+    },
+
+    {
+        question: "How does Hive determine which bucket a row belongs to?",
+        options: ["Random distribution", "Round-robin", "Hash function on the bucketed column", "Alphabetical order"],
+        answer: 2,
+        explanation: "Hive uses a hash function on the bucketed column to assign each row to a specific bucket."
+    },
+
+    {
+        question: "What is a common use case for external tables?",
+        options: ["When Hive should manage data deletion", "When multiple tools need to access the same dataset", "When data must be compressed automatically", "When using only HiveQL for processing"],
+        answer: 1,
+        explanation: "External tables are ideal when data is shared across multiple tools (e.g., Pig, Spark, Hive)."
+    },
+
+    {
+        question: "Which statement is true about partitioning and bucketing?",
+        options: ["Both control the number of output files", "Partitioning uses hash function, bucketing uses column values", "Bucketing can be applied on partitioned tables", "Partitioning always improves performance more than bucketing"],
+        answer: 2,
+        explanation: "Bucketing can be applied on partitioned tables to further organize data within each partition."
+    },
+
+    {
+        question: "What is the effect of SET hive.exec.dynamic.partition.mode=nonstrict?",
+        options: ["Disables partitioning", "Allows dynamic partitioning without specifying all partition columns", "Forces strict schema validation", "Enables automatic bucket merging"],
+        answer: 1,
+        explanation: "This setting allows dynamic partitioning where partition column values are determined at runtime from the data."
+    },
+
+    {
+        question: "Which format typically offers better compression: text or binary?",
+        options: ["Text format", "Binary format (e.g., ORC)", "Both are similar", "Depends on data type"],
+        answer: 1,
+        explanation: "Binary formats like ORC/Parquet provide better compression due to columnar storage and encoding schemes."
+    },
+
+    {
+        question: "In bucketing, records with the same bucketed column value will:",
+        options: ["Be randomly distributed", "Always be in the same bucket", "Be stored in different partitions", "Be deleted"],
+        answer: 1,
+        explanation: "Hive's hash function ensures that identical values in the bucketed column always land in the same bucket."
+    },
+
+    {
+        question: "What is a disadvantage of partitioning with high-cardinality columns?",
+        options: ["Too few directories", "Too many small files/directories, straining NameNode", "Data duplication", "Slower hash computation"],
+        answer: 1,
+        explanation: "High-cardinality partitioning creates many small partitions, leading to many HDFS directories and NameNode overhead."
+    },
+
+];
 
 
+const bigdataQuestions8 = [
 
+    {
+        question: "What is Apache Spark primarily designed to be?",
+        options: ["A database management system", "A cluster computing platform that is fast and general-purpose", "A web server framework", "A virtualization tool"],
+        answer: 1,
+        explanation: "Apache Spark is a fast, general-purpose cluster computing platform designed for large-scale data processing."
+    },
+
+    {
+        question: "Which of the following is NOT a key characteristic of Spark?",
+        options: ["Speed (in-memory computation)", "Generality (supports multiple workloads)", "Ease of use (multiple APIs)", "Requires Hadoop to run"],
+        answer: 3,
+        explanation: "Spark can run independently without Hadoop; it simply supports Hadoop data sources and YARN/Mesos cluster managers."
+    },
+
+    {
+        question: "What is the core abstraction in Spark?",
+        options: ["DataFrame", "Dataset", "Resilient Distributed Dataset (RDD)", "Graph"],
+        answer: 2,
+        explanation: "RDD (Resilient Distributed Dataset) is Spark's fundamental data structure—an immutable, distributed collection of objects."
+    },
+
+    {
+        question: "Which Spark component is used for structured data processing?",
+        options: ["Spark Streaming", "Spark SQL", "MLlib", "GraphX"],
+        answer: 1,
+        explanation: "Spark SQL is Spark's module for structured data processing, supporting SQL and HiveQL queries."
+    },
+
+    {
+        question: "What type of processing does Spark Streaming handle?",
+        options: ["Batch processing", "Real-time stream processing", "Graph processing", "Machine learning only"],
+        answer: 1,
+        explanation: "Spark Streaming processes live data streams in real-time, such as log files or message queues."
+    },
+
+    {
+        question: "Which library provides machine learning functionality in Spark?",
+        options: ["Spark SQL", "Spark Streaming", "MLlib", "GraphX"],
+        answer: 2,
+        explanation: "MLlib is Spark's scalable machine learning library offering algorithms like classification, regression, and clustering."
+    },
+
+    {
+        question: "What does GraphX specialize in?",
+        options: ["Stream processing", "Graph processing and parallel computations", "SQL queries", "Data ingestion"],
+        answer: 1,
+        explanation: "GraphX is a library for graph processing (e.g., social networks) and graph-parallel computations."
+    },
+
+    {
+        question: "Which cluster manager is included with Spark itself?",
+        options: ["YARN", "Mesos", "Standalone Scheduler", "Kubernetes"],
+        answer: 2,
+        explanation: "Spark includes its own simple cluster manager called the Standalone Scheduler."
+    },
+
+    {
+        question: "What is a key feature of RDDs?",
+        options: ["Mutable", "Immutable", "Single-partition only", "Stored only on disk"],
+        answer: 1,
+        explanation: "RDDs are immutable; once created, they cannot be changed. Transformations create new RDDs."
+    },
+
+    {
+        question: "What are the two types of operations on RDDs?",
+        options: ["Input and Output", "Transformations and Actions", "Read and Write", "Map and Reduce"],
+        answer: 1,
+        explanation: "RDDs support Transformations (create new RDDs) and Actions (return results to driver or save data)."
+    },
+
+    {
+        question: "What is lazy evaluation in Spark?",
+        options: ["Immediate execution of transformations", "Transformations are executed only when an action is called", "Actions are delayed until transformations complete", "Only narrow transformations are lazy"],
+        answer: 1,
+        explanation: "Spark uses lazy evaluation: transformations are not executed until an action is triggered."
+    },
+
+    {
+        question: "Which transformation is considered 'narrow'?",
+        options: ["groupByKey", "reduceByKey", "map", "join"],
+        answer: 2,
+        explanation: "map() is a narrow transformation; it processes data within a single partition without shuffling."
+    },
+
+    {
+        question: "Which transformation is considered 'wide'?",
+        options: ["filter", "map", "union", "reduceByKey"],
+        answer: 3,
+        explanation: "reduceByKey is a wide transformation requiring data shuffling across partitions."
+    },
+
+    {
+        question: "What does the filter(func) transformation do?",
+        options: ["Applies a function to each element", "Selects elements where func returns true", "Flattens nested structures", "Samples data randomly"],
+        answer: 1,
+        explanation: "filter(func) returns a new RDD containing only elements for which func returns true."
+    },
+
+    {
+        question: "Which action returns all elements to the driver program?",
+        options: ["count()", "collect()", "take(n)", "first()"],
+        answer: 1,
+        explanation: "collect() returns all elements of the RDD as an array to the driver program."
+    },
+
+    {
+        question: "What does countByKey() action do?",
+        options: ["Counts total elements", "Counts elements per key in (K,V) RDDs", "Returns first key", "Samples by key"],
+        answer: 1,
+        explanation: "countByKey() returns a hash map of (K, Int) pairs counting occurrences of each key."
+    },
+
+    {
+        question: "Which storage system is NOT natively supported by Spark?",
+        options: ["HDFS", "Amazon S3", "Local filesystem", "Microsoft SQL Server (without connector)"],
+        answer: 3,
+        explanation: "Spark supports Hadoop-compatible systems (HDFS, S3, local FS) but needs connectors for databases like SQL Server."
+    },
+
+    {
+        question: "What is the benefit of tight integration in Spark's stack?",
+        options: ["Each component runs independently", "Improvements in core engine benefit all components", "Requires separate deployment for each library", "Limited functionality per component"],
+        answer: 1,
+        explanation: "Tight integration means optimizations in Spark Core improve SQL, MLlib, Streaming, etc., automatically."
+    },
+
+    {
+        question: "Which language is NOT supported by Spark APIs?",
+        options: ["Python", "Java", "Scala", "C++"],
+        answer: 3,
+        explanation: "Spark provides APIs for Python, Java, Scala, R, and SQL, but not for C++."
+    },
+
+    {
+        question: "What is the purpose of coalesce(numPartitions)?",
+        options: ["Increase partitions with shuffling", "Decrease partitions without full shuffle", "Sort partitions", "Join two RDDs"],
+        answer: 1,
+        explanation: "coalesce() reduces the number of partitions without a full shuffle, optimizing data locality."
+    },
+
+    {
+        question: "Which transformation performs a Cartesian product?",
+        options: ["join", "union", "cartesian", "intersection"],
+        answer: 2,
+        explanation: "cartesian() returns all possible pairs between elements of two RDDs."
+    },
+
+    {
+        question: "What does saveAsTextFile(path) do?",
+        options: ["Saves RDD as binary sequence file", "Saves RDD as text lines", "Saves RDD as Java objects", "Collects RDD to driver"],
+        answer: 1,
+        explanation: "saveAsTextFile() writes each RDD element as a text line, calling toString() on each."
+    },
+
+    {
+        question: "What is a partition in Spark?",
+        options: ["A subset of nodes in cluster", "A logical division of an RDD distributed across nodes", "A type of transformation", "A storage format"],
+        answer: 1,
+        explanation: "Partitions are chunks of an RDD distributed across cluster nodes for parallel processing."
+    },
+
+    {
+        question: "Which action returns the first element of an RDD?",
+        options: ["take(1)", "first()", "Both first() and take(1)", "collect()[0]"],
+        answer: 2,
+        explanation: "Both first() and take(1) return the first element, but first() is semantically clearer."
+    },
+
+    {
+        question: "What is the difference between repartition() and coalesce()?",
+        options: ["coalesce() always shuffles, repartition() doesn't", "repartition() can increase partitions with shuffle, coalesce() reduces without full shuffle", "They are identical", "repartition() is for sorting only"],
+        answer: 1,
+        explanation: "repartition() reshuffles data to increase/decrease partitions; coalesce() reduces partitions minimizing shuffle."
+    },
+
+    {
+        question: "Which transformation is used to remove duplicates?",
+        options: ["distinct()", "unique()", "dropDuplicates()", "filterDuplicates()"],
+        answer: 0,
+        explanation: "distinct() returns a new RDD with duplicate elements removed."
+    },
+
+    {
+        question: "What does the flatMap(func) transformation do?",
+        options: ["Maps each element to one output", "Maps each element to 0 or more outputs (returns a sequence)", "Flattens partitions only", "Maps keys only"],
+        answer: 1,
+        explanation: "flatMap() applies a function that returns a sequence for each element, flattening the results."
+    },
+
+    {
+        question: "Which component enables combining SQL with complex analytics in Spark?",
+        options: ["Spark Core", "Spark SQL", "Spark Streaming", "GraphX"],
+        answer: 1,
+        explanation: "Spark SQL allows mixing SQL queries with programmatic RDD operations in a single application."
+    },
+
+    {
+        question: "What is the primary advantage of in-memory computation in Spark?",
+        options: ["Lower cost", "Faster processing for iterative algorithms", "Better compression", "Easier debugging"],
+        answer: 1,
+        explanation: "In-memory computation significantly speeds up iterative algorithms and interactive queries."
+    },
+
+    {
+        question: "Which transformation is used to combine two RDDs by key?",
+        options: ["union", "join", "cogroup", "cartesian"],
+        answer: 1,
+        explanation: "join() combines two (K,V) and (K,W) RDDs into (K, (V,W)) pairs."
+    },
+
+    {
+        question: "What does foreach(func) action do?",
+        options: ["Returns a result to driver", "Applies func to each element for side effects", "Counts elements", "Saves RDD to file"],
+        answer: 1,
+        explanation: "foreach() applies a function to each element, typically for side effects like writing to external storage."
+    },
+
+    {
+        question: "Which of these is a wide transformation?",
+        options: ["map", "filter", "sample", "groupByKey"],
+        answer: 3,
+        explanation: "groupByKey is a wide transformation requiring data shuffling across partitions."
+    },
+
+    {
+        question: "What is the role of the Driver program in Spark?",
+        options: ["Stores RDD partitions", "Runs tasks on worker nodes", "Manages job execution and coordination", "Acts as a cluster manager"],
+        answer: 2,
+        explanation: "The Driver program runs the main() function, creates SparkContext, and coordinates job execution."
+    },
+
+    {
+        question: "Which file format is NOT directly supported by Spark?",
+        options: ["Text files", "SequenceFiles", "Parquet", "Excel files (.xlsx)"],
+        answer: 3,
+        explanation: "Spark supports text, SequenceFiles, Parquet, Avro, etc., but not Excel files without additional libraries."
+    },
+
+    {
+        question: "What is the purpose of takeSample() action?",
+        options: ["Takes first n elements", "Takes a random sample of elements", "Takes ordered elements", "Takes elements by key"],
+        answer: 1,
+        explanation: "takeSample() returns a random sample of elements from the RDD, with or without replacement."
+    },
+
+];
+
+
+const bigdataQuestions9 = [
+
+    {
+        question: "What is the primary purpose of broadcast variables in Spark?",
+        options: ["To distribute large read-only data efficiently to all worker nodes", "To store mutable variables across tasks", "To perform reductions across partitions", "To cache RDDs in memory"],
+        answer: 0,
+        explanation: "Broadcast variables allow efficient distribution of large, read-only data to all nodes in the cluster, reducing network overhead."
+    },
+
+    {
+        question: "How are broadcast variables created in Spark?",
+        options: ["SparkContext.broadcast(v)", "SparkSession.broadcast(v)", "Broadcast.create(v)", "sc.createBroadcast(v)"],
+        answer: 0,
+        explanation: "Broadcast variables are created using SparkContext.broadcast(v), where 'v' is the variable to be broadcast."
+    },
+
+    {
+        question: "What is the main benefit of caching/persisting an RDD in Spark?",
+        options: ["Reduces storage space", "Speeds up future actions on the same data", "Encrypts data", "Compresses data automatically"],
+        answer: 1,
+        explanation: "Caching stores RDD partitions in memory or disk, allowing faster access for subsequent operations, especially in iterative algorithms."
+    },
+
+    {
+        question: "Which storage level stores RDD as deserialized Java objects in memory only?",
+        options: ["MEMORY_ONLY", "MEMORY_AND_DISK", "DISK_ONLY", "MEMORY_ONLY_SER"],
+        answer: 0,
+        explanation: "MEMORY_ONLY stores RDD as deserialized Java objects in JVM memory; if memory is insufficient, some partitions are recomputed."
+    },
+
+    {
+        question: "Which storage level replicates each partition on two cluster nodes?",
+        options: ["MEMORY_ONLY_2", "MEMORY_AND_DISK_SER", "DISK_ONLY", "MEMORY_ONLY_SER"],
+        answer: 0,
+        explanation: "Levels ending with '_2' (e.g., MEMORY_ONLY_2) replicate each partition on two nodes for fault tolerance."
+    },
+
+    {
+        question: "What is a DataFrame in Spark?",
+        options: ["A low-level distributed collection of Java objects", "A distributed collection of data organized into named columns", "A strongly-typed collection of Scala/Java objects", "A graph structure for social networks"],
+        answer: 1,
+        explanation: "DataFrame is a distributed collection of data organized into named columns, similar to a table in a relational database."
+    },
+
+    {
+        question: "What is a key advantage of Datasets over DataFrames?",
+        options: ["Support for Python and R", "Compile-time type safety", "No schema required", "Lazy evaluation"],
+        answer: 1,
+        explanation: "Datasets provide compile-time type safety, catching errors early in development, unlike DataFrames which are schema-based at runtime."
+    },
+
+    {
+        question: "Which API is optimized with Catalyst optimizer in Spark?",
+        options: ["RDD only", "DataFrame and Dataset", "GraphX only", "Spark Streaming"],
+        answer: 1,
+        explanation: "DataFrame and Dataset APIs use Catalyst optimizer for query optimization and performance improvements."
+    },
+
+    {
+        question: "Which of the following is NOT a valid save mode in Spark SQL?",
+        options: ["ErrorIfExists", "Append", "Overwrite", "Skip"],
+        answer: 3,
+        explanation: "Valid save modes are ErrorIfExists (default), Append, Overwrite, and Ignore (not Skip)."
+    },
+
+    {
+        question: "What is the role of the driver process in Spark architecture?",
+        options: ["Executes tasks on worker nodes", "Manages cluster resources", "Runs the main() function, schedules tasks, and coordinates executors", "Stores cached data"],
+        answer: 2,
+        explanation: "The driver process executes the main program, schedules tasks across executors, and manages the Spark application."
+    },
+
+    {
+        question: "Which component is responsible for actually executing tasks in Spark?",
+        options: ["Driver", "Cluster Manager", "Executor", "Spark Session"],
+        answer: 2,
+        explanation: "Executors run on worker nodes and execute tasks assigned by the driver, reporting back results."
+    },
+
+    {
+        question: "What is SparkSession in Spark 2.0+?",
+        options: ["A low-level API for RDDs", "The unified entry point for working with structured data", "A cluster manager", "A storage level"],
+        answer: 1,
+        explanation: "SparkSession is the unified entry point for DataFrame/Dataset APIs, replacing SQLContext and HiveContext."
+    },
+
+    {
+        question: "How is SparkSession typically created?",
+        options: ["SparkSession.create()", "SparkSession.builder().appName().getOrCreate()", "new SparkSession()", "SparkContext.createSession()"],
+        answer: 1,
+        explanation: "SparkSession is built using the builder pattern: SparkSession.builder().appName('name').getOrCreate()."
+    },
+
+    {
+        question: "What is the relationship between SparkContext and SparkSession in Spark 2.0+?",
+        options: ["They are the same", "SparkSession contains SparkContext", "SparkContext replaces SparkSession", "They are independent"],
+        answer: 1,
+        explanation: "In Spark 2.x, SparkSession encapsulates SparkContext, SQLContext, and HiveContext for unified access."
+    },
+
+    {
+        question: "Which language does NOT support Dataset API?",
+        options: ["Scala", "Java", "Python", "R"],
+        answer: 2,
+        explanation: "Dataset API is only available in Scala and Java due to its compile-time type safety; Python and R support DataFrames only."
+    },
+
+    {
+        question: "What is the default save mode in Spark SQL?",
+        options: ["Append", "Overwrite", "ErrorIfExists", "Ignore"],
+        answer: 2,
+        explanation: "ErrorIfExists is the default save mode; it throws an error if data already exists at the target location."
+    },
+
+    {
+        question: "Which storage level is most CPU-intensive to read due to serialization?",
+        options: ["MEMORY_ONLY", "MEMORY_ONLY_SER", "DISK_ONLY", "MEMORY_AND_DISK"],
+        answer: 1,
+        explanation: "MEMORY_ONLY_SER stores serialized objects, saving space but requiring CPU for deserialization when reading."
+    },
+
+    {
+        question: "What is a key difference between RDD and DataFrame?",
+        options: ["RDD has schema, DataFrame does not", "DataFrame has schema, RDD does not", "RDD is faster for SQL queries", "DataFrame is lower-level"],
+        answer: 1,
+        explanation: "DataFrame has a schema (column names and types), while RDD is an unstructured collection of objects."
+    },
+
+    {
+        question: "Which cluster manager is built into Spark?",
+        options: ["YARN", "Mesos", "Standalone Scheduler", "Kubernetes"],
+        answer: 2,
+        explanation: "Spark includes its own built-in cluster manager called Standalone Scheduler."
+    },
+
+    {
+        question: "What does SaveMode.Ignore do?",
+        options: ["Overwrites existing data", "Appends new data", "Throws an error if data exists", "Does nothing if data exists"],
+        answer: 3,
+        explanation: "SaveMode.Ignore skips saving if data already exists, similar to 'CREATE TABLE IF NOT EXISTS' in SQL."
+    },
+
+    {
+        question: "Which component serializes objects in Datasets efficiently?",
+        options: ["Java Serializer", "Kryo", "Encoder", "Parquet"],
+        answer: 2,
+        explanation: "Datasets use specialized Encoders for efficient serialization, enabling operations without full deserialization."
+    },
+
+    {
+        question: "What is the purpose of the Catalyst optimizer?",
+        options: ["Manage cluster resources", "Optimize query execution plans for DataFrames/Datasets", "Schedule tasks", "Broadcast variables"],
+        answer: 1,
+        explanation: "Catalyst optimizer optimizes query plans for DataFrames/Datasets, improving performance through transformations like predicate pushdown."
+    },
+
+    {
+        question: "Which of these is a valid deployment mode for Spark?",
+        options: ["Local", "Standalone", "YARN", "All of the above"],
+        answer: 3,
+        explanation: "Spark supports local mode, standalone cluster mode, and cluster managers like YARN and Mesos."
+    },
+
+    {
+        question: "What is broadcast variable's .value() method used for?",
+        options: ["To update the variable", "To retrieve the broadcasted data", "To delete the variable", "To serialize the variable"],
+        answer: 1,
+        explanation: "broadcastVar.value() returns the broadcasted data on worker nodes."
+    },
+
+    {
+        question: "Which storage level spills excess partitions to disk?",
+        options: ["MEMORY_ONLY", "MEMORY_AND_DISK", "DISK_ONLY", "MEMORY_ONLY_SER"],
+        answer: 1,
+        explanation: "MEMORY_AND_DISK stores partitions in memory; if memory is full, spills remaining partitions to disk."
+    },
+
+    {
+        question: "What does the driver submit to the cluster manager?",
+        options: ["Serialized RDD graph/tasks", "Raw data files", "Executable binaries", "SQL queries only"],
+        answer: 0,
+        explanation: "The driver submits a serialized representation of the computation (RDD graph) to the cluster manager for task scheduling."
+    },
+
+    {
+        question: "Which is true about SparkContext?",
+        options: ["It is the entry point for RDDs, accumulators, and broadcast variables", "It replaces SparkSession in Spark 2.0", "It is only used for SQL queries", "It runs on worker nodes"],
+        answer: 0,
+        explanation: "SparkContext is the legacy entry point for low-level operations like creating RDDs, accumulators, and broadcast variables."
+    },
+
+    {
+        question: "What is a limitation of using RDDs compared to DataFrames?",
+        options: ["No support for caching", "No schema or built-in optimization", "Cannot be distributed", "Limited to Java only"],
+        answer: 1,
+        explanation: "RDDs lack schema and do not benefit from Catalyst optimizer, making them less efficient for structured data processing."
+    },
+
+    {
+        question: "When is data deleted in Overwrite save mode?",
+        options: ["After writing new data", "Before writing new data", "Never", "Only if new data is larger"],
+        answer: 1,
+        explanation: "In Overwrite mode, existing data is deleted before writing new data; note that this is not atomic."
+    },
+
+    {
+        question: "What does SaveMode.Append do?",
+        options: ["Replaces existing data", "Adds new data to existing data", "Ignores new data", "Throws an error"],
+        answer: 1,
+        explanation: "Append mode adds the contents of the DataFrame to existing data without deleting anything."
+    },
+
+];
 
 
 const dmQuestions1 = [
@@ -5054,7 +5949,1352 @@ const db2Questions5 = [
 
 
 
+const db2Questions6 = [
 
+    {
+        question: "Which search algorithm checks each element sequentially until a match is found?",
+        options: ["Binary search", "Sequential search", "Index search", "Hash search"],
+        answer: 1,
+        explanation: "Sequential search (linear search) examines each element one by one from the beginning until it finds the target or reaches the end."
+    },
+
+    {
+        question: "What is the average time complexity of sequential search for an array of N elements when the value is in the array?",
+        options: ["O(1)", "O(log N)", "O(N/2)", "O(N^2)"],
+        answer: 2,
+        explanation: "On average, sequential search examines N/2 elements when the value is present in the array."
+    },
+
+    {
+        question: "Binary search requires the array to be:",
+        options: ["Unsorted", "Sorted", "Partitioned", "Hashed"],
+        answer: 1,
+        explanation: "Binary search works only on sorted arrays, as it repeatedly divides the search interval in half."
+    },
+
+    {
+        question: "What is the maximum number of comparisons needed for binary search on an array of N elements?",
+        options: ["N", "N/2", "log₂N", "N²"],
+        answer: 2,
+        explanation: "Binary search performs at most log₂N comparisons because it halves the search space each time."
+    },
+
+    {
+        question: "Which search method is faster for large sorted arrays?",
+        options: ["Sequential search", "Binary search", "Both are similar", "Depends on data distribution"],
+        answer: 1,
+        explanation: "Binary search (O(log N)) is significantly faster than sequential search (O(N)) for large sorted arrays."
+    },
+
+    {
+        question: "What is an index in database terms?",
+        options: ["A copy of the entire table", "A set of pages with pointers to data pages", "A backup file", "A log of transactions"],
+        answer: 1,
+        explanation: "An index is an auxiliary structure containing pointers to data pages, similar to a book index."
+    },
+
+    {
+        question: "What is a dense index?",
+        options: ["Index with entries for some search key values", "Index with entries for every search key value", "Index with no duplicates", "Index stored in memory only"],
+        answer: 1,
+        explanation: "A dense index has an entry for every search key value (and thus every record) in the data file."
+    },
+
+    {
+        question: "What is a sparse index?",
+        options: ["Index with entries for every block anchor", "Index with entries for every record", "Index with no pointers", "Index stored on disk only"],
+        answer: 0,
+        explanation: "A sparse index has entries only for some key values—typically one per data block (the block anchor)."
+    },
+
+    {
+        question: "Which index type can be built on an unsorted file?",
+        options: ["Primary index", "Clustering index", "Dense index", "Sparse index"],
+        answer: 2,
+        explanation: "Dense index can be created on an unsorted file because it has an entry for every record."
+    },
+
+    {
+        question: "Which index type requires the data file to be sorted?",
+        options: ["Dense index", "Sparse index", "Secondary index", "All of the above"],
+        answer: 1,
+        explanation: "Sparse index requires the data file to be sorted because it uses block anchors (first record per block)."
+    },
+
+    {
+        question: "In a primary index, what is a 'block anchor'?",
+        options: ["The last record in a block", "The first record in a block", "The middle record in a block", "The smallest key in a block"],
+        answer: 1,
+        explanation: "Block anchor is the first record in a data block; its key value is stored in the primary index entry for that block."
+    },
+
+    {
+        question: "A primary index is an example of which type of index?",
+        options: ["Dense index", "Sparse index", "Secondary index", "Hash index"],
+        answer: 1,
+        explanation: "Primary index is sparse because it has one entry per data block, not per record."
+    },
+
+    {
+        question: "Given: record size R=150 bytes, block size B=512 bytes, r=30,000 records. What is the blocking factor (Bfr)?",
+        options: ["3", "30", "40", "50"],
+        answer: 0,
+        explanation: "Bfr = B div R = 512 div 150 = 3 records per block (integer division)."
+    },
+
+    {
+        question: "Using the same values (R=150, B=512, r=30,000), how many data blocks (b) are needed?",
+        options: ["1,000", "10,000", "15,000", "30,000"],
+        answer: 1,
+        explanation: "b = r / Bfr = 30,000 / 3 = 10,000 blocks."
+    },
+
+    {
+        question: "If index entry size Rᵢ=16 bytes and block size B=512, what is the index blocking factor (Bfrᵢ)?",
+        options: ["16", "32", "64", "128"],
+        answer: 1,
+        explanation: "Bfrᵢ = B div Rᵢ = 512 div 16 = 32 entries per block."
+    },
+
+    {
+        question: "For 30,000 index entries and Bfrᵢ=32, how many index blocks are needed?",
+        options: ["938", "1,000", "1,500", "2,000"],
+        answer: 0,
+        explanation: "bᵢ = r / Bfrᵢ = 30,000 / 32 = 937.5 ≈ 938 blocks."
+    },
+
+    {
+        question: "How many block accesses are needed for binary search on an index with 938 blocks?",
+        options: ["9", "10", "11", "12"],
+        answer: 1,
+        explanation: "log₂(938) ≈ 9.87 → 10 block accesses (rounded up)."
+    },
+
+    {
+        question: "What is the average linear search cost for 10,000 data blocks?",
+        options: ["500", "5,000", "10,000", "20,000"],
+        answer: 1,
+        explanation: "Average linear search cost = b/2 = 10,000/2 = 5,000 block accesses."
+    },
+
+    {
+        question: "Which index is defined on the ordering key field of an ordered file?",
+        options: ["Secondary index", "Clustering index", "Primary index", "Hash index"],
+        answer: 2,
+        explanation: "Primary index is defined on the ordering key field of a sorted data file."
+    },
+
+    {
+        question: "Which index allows duplicate values for the ordering field?",
+        options: ["Primary index", "Clustering index", "Secondary index", "Unique index"],
+        answer: 1,
+        explanation: "Clustering index is used when many records can have the same value for the ordering field."
+    },
+
+    {
+        question: "Which index can be created on any non-ordering field?",
+        options: ["Primary index", "Clustering index", "Secondary index", "Sparse index"],
+        answer: 2,
+        explanation: "Secondary index can be specified on any field that is not the ordering key field."
+    },
+
+    {
+        question: "What is a major problem with primary indexes?",
+        options: ["Large size", "Slow search", "Insertion and deletion overhead", "Complex implementation"],
+        answer: 2,
+        explanation: "Insertions and deletions in primary indexes require reorganizing data and updating index entries."
+    },
+
+    {
+        question: "Which solution helps manage insertions in a primary index?",
+        options: ["Use an unordered overflow file", "Rebuild index every time", "Ignore new records", "Use only deletion"],
+        answer: 0,
+        explanation: "An unordered overflow file stores new records temporarily to reduce reorganization overhead."
+    },
+
+    {
+        question: "What does a single-level index contain?",
+        options: ["Data records", "<field value, pointer to record> entries", "Only keys", "Only pointers"],
+        answer: 1,
+        explanation: "A single-level index consists of entries with field values and pointers to corresponding records."
+    },
+
+    {
+        question: "Why is an index file smaller than the data file?",
+        options: ["Contains fewer records", "Entries are smaller (key + pointer only)", "Compressed", "Stored in memory"],
+        answer: 1,
+        explanation: "Index entries are much smaller than full data records, so the index occupies fewer disk blocks."
+    },
+
+    {
+        question: "Which index type is 'non-dense'?",
+        options: ["Dense index", "Secondary index", "Primary index", "All indexes are dense"],
+        answer: 2,
+        explanation: "Primary index is non-dense (sparse) because it has one entry per block, not per record."
+    },
+
+    {
+        question: "Problem: Ordered file with r=300,000, B=4,096, R=100. What is bfr?",
+        options: ["40", "41", "50", "100"],
+        answer: 0,
+        explanation: "bfr = ⌊B/R⌋ = ⌊4,096/100⌋ = 40 records per block."
+    },
+
+    {
+        question: "Same file: how many blocks (b) are needed?",
+        options: ["7,500", "10,000", "15,000", "30,000"],
+        answer: 0,
+        explanation: "b = ⌈r/bfr⌉ = ⌈300,000/40⌉ = 7,500 blocks."
+    },
+
+    {
+        question: "Primary index: V=9 bytes, P=6 bytes, B=4,096. What is Rᵢ?",
+        options: ["9", "15", "6", "24"],
+        answer: 1,
+        explanation: "Rᵢ = V + P = 9 + 6 = 15 bytes per index entry."
+    },
+
+    {
+        question: "How many index blocks (bᵢ) for rᵢ=7,500 and bfrᵢ=273?",
+        options: ["27", "28", "30", "35"],
+        answer: 1,
+        explanation: "bᵢ = ⌈rᵢ/bfrᵢ⌉ = ⌈7,500/273⌉ = ⌈27.47⌉ = 28 blocks."
+    },
+
+    {
+        question: "Total block accesses using primary index: binary search on index + data block = ?",
+        options: ["5+1=6", "13+1=14", "10+1=11", "28+1=29"],
+        answer: 0,
+        explanation: "Binary search on index (28 blocks) needs ⌈log₂28⌉=5 accesses, plus 1 for data block = 6 total."
+    },
+
+];
+
+
+const db2Questions7 = [
+
+    {
+        question: "What type of index is defined on an ordered data file with a non-key ordering field?",
+        options: ["Primary index", "Clustering index", "Secondary index", "Unique index"],
+        answer: 1,
+        explanation: "Clustering index is used when the data file is ordered on a non-key field (field with duplicate values)."
+    },
+
+    {
+        question: "How many index entries does a clustering index typically have?",
+        options: ["One per data block", "One per distinct field value", "One per record", "One per file"],
+        answer: 1,
+        explanation: "Clustering index has one entry for each distinct value of the indexing field, pointing to the first block with that value."
+    },
+
+    {
+        question: "What is the blocking factor (bfrᵢ) for a clustering index with B=4,096 bytes and Rᵢ=11 bytes (5-byte Zipcode + 6-byte pointer)?",
+        options: ["372", "273", "512", "1000"],
+        answer: 0,
+        explanation: "bfrᵢ = ⌊B/Rᵢ⌋ = ⌊4096/11⌋ = 372 entries per block."
+    },
+
+    {
+        question: "For a clustering index with 1,000 entries and bfrᵢ=372, how many index blocks (bᵢ) are needed?",
+        options: ["2", "3", "4", "5"],
+        answer: 1,
+        explanation: "bᵢ = ⌈rᵢ/bfrᵢ⌉ = ⌈1000/372⌉ = ⌈2.69⌉ = 3 blocks."
+    },
+
+    {
+        question: "Which index type is always dense?",
+        options: ["Primary index", "Clustering index", "Secondary index on a key field", "Sparse index"],
+        answer: 2,
+        explanation: "Secondary index on a key field is dense—it has one entry for each record in the data file."
+    },
+
+    {
+        question: "What is the main advantage of a secondary index?",
+        options: ["Smaller size", "Faster than primary index", "Allows efficient search on non-ordering fields", "No insertion overhead"],
+        answer: 2,
+        explanation: "Secondary index enables efficient searching on fields that are not used for physical ordering of the file."
+    },
+
+    {
+        question: "In Example 3, how many block accesses are needed for a linear search on 7,500 blocks?",
+        options: ["3,750", "7,500", "1,099", "12"],
+        answer: 0,
+        explanation: "Average linear search cost = b/2 = 7,500/2 = 3,750 block accesses."
+    },
+
+    {
+        question: "For the dense secondary index in Example 3, how many index entries (rᵢ) are there?",
+        options: ["7,500", "300,000", "1,099", "273"],
+        answer: 1,
+        explanation: "Dense secondary index has one entry per record: rᵢ = 300,000."
+    },
+
+    {
+        question: "How many index blocks (bᵢ) for the dense secondary index with bfrᵢ=273 and rᵢ=300,000?",
+        options: ["1,099", "1,100", "1,500", "2,000"],
+        answer: 0,
+        explanation: "bᵢ = ⌈rᵢ/bfrᵢ⌉ = ⌈300,000/273⌉ = ⌈1098.9⌉ = 1,099 blocks."
+    },
+
+    {
+        question: "What is the total block accesses using binary search on this secondary index (1,099 blocks) plus data block?",
+        options: ["11+1=12", "10+1=11", "12+1=13", "5+1=6"],
+        answer: 0,
+        explanation: "Binary search on 1,099 blocks needs ⌈log₂1099⌉=11 accesses + 1 data block = 12 total."
+    },
+
+    {
+        question: "Which index type provides logical ordering without physical ordering?",
+        options: ["Primary index", "Clustering index", "Secondary index", "All indexes"],
+        answer: 2,
+        explanation: "Secondary index provides logical ordering by the indexing field, regardless of physical record order."
+    },
+
+    {
+        question: "What is a multi-level index?",
+        options: ["Index on multiple fields", "Index with multiple entries per block", "Index to an index (hierarchical)", "Index with duplicate values"],
+        answer: 2,
+        explanation: "A multi-level index is created by making a primary index to the first-level index, forming a hierarchy."
+    },
+
+    {
+        question: "What is 'fan-out' (fo) in multi-level indexes?",
+        options: ["Number of index levels", "Number of entries per index block (bfrᵢ)", "Number of data blocks", "Height of tree"],
+        answer: 1,
+        explanation: "Fan-out (fo) = bfrᵢ = number of index entries per block; determines how many ways the search space splits."
+    },
+
+    {
+        question: "In Example 4, what is the fan-out (fo) for the multilevel index?",
+        options: ["273", "1,099", "5", "3"],
+        answer: 0,
+        explanation: "fo = bfrᵢ = 273 (same as in Example 3)."
+    },
+
+    {
+        question: "How many second-level blocks (b₂) for b₁=1,099 and fo=273?",
+        options: ["3", "4", "5", "6"],
+        answer: 2,
+        explanation: "b₂ = ⌈b₁/fo⌉ = ⌈1099/273⌉ = ⌈4.03⌉ = 5 blocks."
+    },
+
+    {
+        question: "How many third-level blocks (b₃) for b₂=5 and fo=273?",
+        options: ["1", "2", "3", "5"],
+        answer: 0,
+        explanation: "b₃ = ⌈b₂/fo⌉ = ⌈5/273⌉ = ⌈0.018⌉ = 1 block (top level)."
+    },
+
+    {
+        question: "Total block accesses in multi-level index with t=3 levels?",
+        options: ["t = 3", "t+1 = 4", "t-1 = 2", "fo+1 = 274"],
+        answer: 1,
+        explanation: "Access one block per level (t=3) + one data block = 4 total accesses."
+    },
+
+    {
+        question: "What problem do dynamic multilevel indexes (B-trees/B+-trees) solve?",
+        options: ["Large index size", "Inefficient search", "Insertion/deletion overhead in ordered indexes", "Duplicate values"],
+        answer: 2,
+        explanation: "B-trees/B+-trees handle insertions and deletions efficiently by allowing partial block occupancy and rebalancing."
+    },
+
+    {
+        question: "In a B-tree of order p=3, what is the maximum number of keys per node?",
+        options: ["1", "2", "3", "4"],
+        answer: 1,
+        explanation: "Maximum keys = p-1 = 3-1 = 2 keys per node."
+    },
+
+    {
+        question: "What is the minimum occupancy for B-tree nodes (except root)?",
+        options: ["25%", "50%", "75%", "100%"],
+        answer: 1,
+        explanation: "B-tree nodes are kept at least 50% full to maintain balance and efficiency."
+    },
+
+    {
+        question: "Where are data pointers stored in a B+-tree?",
+        options: ["In all nodes", "Only in leaf nodes", "Only in root", "In internal nodes only"],
+        answer: 1,
+        explanation: "In B+-trees, pointers to data records exist only in leaf nodes; internal nodes contain search keys and tree pointers."
+    },
+
+    {
+        question: "What is an advantage of B+-trees over B-trees?",
+        options: ["Shorter height (fewer levels)", "Faster insertion", "No deletion overhead", "Smaller node size"],
+        answer: 0,
+        explanation: "B+-trees can have fewer levels because internal nodes pack more keys (no data pointers), increasing fan-out."
+    },
+
+    {
+        question: "Which tree structure supports both range searches and equality searches?",
+        options: ["Hash index", "B-tree/B+-tree", "Linked list", "Sequential file"],
+        answer: 1,
+        explanation: "B-trees and B+-trees support both range queries (ordered traversal) and equality searches."
+    },
+
+    {
+        question: "What happens when a B-tree node becomes overfull during insertion?",
+        options: ["Records are deleted", "Node is split", "Tree is rebuilt", "Insertion is rejected"],
+        answer: 1,
+        explanation: "When a B-tree node exceeds its capacity, it splits into two nodes, which may propagate upward."
+    },
+
+    {
+        question: "What happens when a B-tree node becomes less than half full after deletion?",
+        options: ["It is merged with neighbors", "It is deleted", "It is split", "It is ignored"],
+        answer: 0,
+        explanation: "If a node falls below 50% occupancy, it may be merged with adjacent nodes to maintain balance."
+    },
+
+    {
+        question: "In B+-trees, leaf nodes are often linked to support:",
+        options: ["Faster insertion", "Ordered sequential access", "Higher fan-out", "Data compression"],
+        answer: 1,
+        explanation: "Leaf nodes in B+-trees are linked to allow efficient ordered traversal (range queries)."
+    },
+
+    {
+        question: "Which index type is 'nondense' and uses block anchors?",
+        options: ["Secondary index", "Clustering index", "Primary index", "Both primary and clustering"],
+        answer: 3,
+        explanation: "Both primary and clustering indexes are nondense (sparse) and use block anchors (first record per block or per value)."
+    },
+
+    {
+        question: "For a clustering index on Zipcode with 1,000 distinct values, how many block accesses are needed for binary search on the index?",
+        options: ["1", "2", "3", "4"],
+        answer: 1,
+        explanation: "With 3 index blocks, binary search needs ⌈log₂3⌉ = 2 block accesses."
+    },
+
+    {
+        question: "What is the typical use of an overflow file in index management?",
+        options: ["Store deleted records", "Handle insertions without immediate reorganization", "Backup index", "Store metadata"],
+        answer: 1,
+        explanation: "Overflow files temporarily store new records to reduce frequent reorganization due to insertions."
+    },
+
+    {
+        question: "In Table 17.1, which index type is used when the indexing field is a key but not used for physical ordering?",
+        options: ["Primary index", "Clustering index", "Secondary index (Key)", "Secondary index (NonKey)"],
+        answer: 2,
+        explanation: "Secondary index (Key) is for a key field that is not used for physical ordering of the file."
+    },
+
+    {
+        question: "What does 'fan-out' determine in multi-level indexes?",
+        options: ["Index height", "Search speed", "Number of children per node", "All of the above"],
+        answer: 3,
+        explanation: "High fan-out reduces index height, increases search speed, and determines how many children an internal node can have."
+    },
+
+    {
+        question: "Which statement about B-trees is FALSE?",
+        options: ["All leaf nodes are at same level", "Nodes are kept at least half full", "Data pointers exist in all nodes", "Support range queries"],
+        answer: 2,
+        explanation: "In B-trees, data pointers exist at all levels; in B+-trees, they exist only at leaf nodes."
+    },
+
+    {
+        question: "In Example 4, how many levels (t) does the multilevel index have?",
+        options: ["1", "2", "3", "4"],
+        answer: 2,
+        explanation: "With b₁=1,099, b₂=5, b₃=1, there are 3 index levels (first, second, third)."
+    },
+
+    {
+        question: "What is the main disadvantage of secondary indexes compared to primary indexes?",
+        options: ["Larger size and longer search time", "Cannot handle duplicates", "Require sorted data", "No deletion support"],
+        answer: 0,
+        explanation: "Secondary indexes are larger (dense) and may require more block accesses, but they enable search on non-ordering fields."
+    },
+
+    {
+        question: "When does a B-tree insertion cause a split to propagate to the root?",
+        options: ["Always", "When leaf is full", "When internal nodes are full up to root", "Never"],
+        answer: 2,
+        explanation: "Splitting propagates upward when nodes are full at each level, potentially increasing tree height."
+    },
+
+    {
+        question: "What is the key difference between B-tree and B+-tree internal nodes?",
+        options: ["B-tree internal nodes have data pointers", "B+-tree internal nodes have more keys", "B-tree internal nodes are smaller", "No difference"],
+        answer: 1,
+        explanation: "B+-tree internal nodes have only search keys and tree pointers (no data pointers), allowing more keys per node and higher fan-out."
+    },
+
+];
+
+const db2Questions8 = [
+    {
+        question: "Which of the following is an intermediate language used within DBMS for query processing?",
+        options: ["SQL", "Relational Algebra", "Python", "Java"],
+        answer: 1,
+        explanation: "Relational Algebra is a procedural language used internally by DBMS, unlike SQL which is declarative and used at the application level."
+    },
+    {
+        question: "Which operation selects a subset of tuples from a relation based on a condition?",
+        options: ["PROJECT", "SELECT", "JOIN", "UNION"],
+        answer: 1,
+        explanation: "SELECT (σ) is used to filter tuples horizontally based on a condition."
+    },
+    {
+        question: "Which operation removes duplicate tuples by default?",
+        options: ["SELECT", "PROJECT", "RENAME", "CARTESIAN PRODUCT"],
+        answer: 1,
+        explanation: "PROJECT (π) eliminates duplicate tuples because relations are defined as sets."
+    },
+    {
+        question: "Which operation is used to rename a relation or its attributes?",
+        options: ["σ", "π", "ρ", "×"],
+        answer: 2,
+        explanation: "ρ (rho) is the rename operator in relational algebra."
+    },
+    {
+        question: "Which set operation requires the relations to be type-compatible?",
+        options: ["UNION only", "INTERSECTION only", "SET DIFFERENCE only", "All of the above"],
+        answer: 3,
+        explanation: "UNION, INTERSECTION, and SET DIFFERENCE all require type compatibility."
+    },
+    {
+        question: "Which operation is commutative?",
+        options: ["SET DIFFERENCE", "CARTESIAN PRODUCT", "UNION", "PROJECT"],
+        answer: 2,
+        explanation: "UNION is commutative: R ∪ S = S ∪ R."
+    },
+    {
+        question: "If R has 3 tuples and S has 4 tuples, how many tuples will R × S have?",
+        options: ["7", "12", "1", "0"],
+        answer: 1,
+        explanation: "Cartesian product yields n_R * n_S tuples: 3 * 4 = 12."
+    },
+    {
+        question: "Which clause in SQL corresponds to the PROJECT operation?",
+        options: ["WHERE", "FROM", "SELECT", "GROUP BY"],
+        answer: 2,
+        explanation: "The SELECT clause in SQL specifies the attributes to project."
+    },
+    {
+        question: "Which operation is used to combine tuples from two relations in a combinatorial way?",
+        options: ["JOIN", "UNION", "CARTESIAN PRODUCT", "INTERSECTION"],
+        answer: 2,
+        explanation: "Cartesian product combines every tuple from R with every tuple from S."
+    },
+    {
+        question: "Which of the following is NOT a unary relational operation?",
+        options: ["SELECT", "PROJECT", "RENAME", "INTERSECTION"],
+        answer: 3,
+        explanation: "INTERSECTION is a binary set operation, not a unary relational operation."
+    },
+    {
+        question: "In relational algebra, the result of a query is always:",
+        options: ["A number", "A relation", "A tuple", "An attribute"],
+        answer: 1,
+        explanation: "Relational algebra operations always return a relation."
+    },
+    {
+        question: "Which symbol is used for the SELECT operation?",
+        options: ["π", "σ", "ρ", "∪"],
+        answer: 1,
+        explanation: "σ (sigma) denotes the SELECT operation."
+    },
+    {
+        question: "Which operation is used to select specific columns from a relation?",
+        options: ["SELECT", "PROJECT", "RENAME", "JOIN"],
+        answer: 1,
+        explanation: "PROJECT (π) selects columns (attributes) vertically."
+    },
+    {
+        question: "If a PROJECT operation includes a key attribute, the number of tuples:",
+        options: ["Increases", "Decreases", "Remains the same", "Becomes zero"],
+        answer: 2,
+        explanation: "If the projected list includes a key, duplicates are avoided and tuple count stays the same as the original relation."
+    },
+    {
+        question: "Which operation is equivalent to logical AND between two relations?",
+        options: ["UNION", "INTERSECTION", "DIFFERENCE", "PRODUCT"],
+        answer: 1,
+        explanation: "INTERSECTION returns tuples that are in both relations."
+    },
+    {
+        question: "Which operation is associative?",
+        options: ["UNION", "DIFFERENCE", "PROJECT", "SELECT"],
+        answer: 0,
+        explanation: "UNION is associative: R ∪ (S ∪ T) = (R ∪ S) ∪ T."
+    },
+    {
+        question: "Which SQL keyword is used to eliminate duplicates in a query result?",
+        options: ["UNIQUE", "DISTINCT", "ONLY", "SINGLE"],
+        answer: 1,
+        explanation: "DISTINCT eliminates duplicate rows in SQL, similar to PROJECT in relational algebra."
+    },
+    {
+        question: "Which of the following is a binary operation?",
+        options: ["SELECT", "PROJECT", "RENAME", "JOIN"],
+        answer: 3,
+        explanation: "JOIN is a binary operation that combines two relations."
+    },
+    {
+        question: "Which set operation is NOT commutative?",
+        options: ["UNION", "INTERSECTION", "SET DIFFERENCE", "CARTESIAN PRODUCT"],
+        answer: 2,
+        explanation: "SET DIFFERENCE is not commutative: R − S ≠ S − R."
+    },
+    {
+        question: "If R has 5 attributes and S has 3, how many attributes will R × S have?",
+        options: ["8", "15", "2", "5"],
+        answer: 0,
+        explanation: "Cartesian product degree = sum of attributes: 5 + 3 = 8."
+    },
+    {
+        question: "Which operation corresponds to a vertical partition of a relation?",
+        options: ["SELECT", "PROJECT", "UNION", "JOIN"],
+        answer: 1,
+        explanation: "PROJECT creates a vertical partition by selecting columns."
+    },
+    {
+        question: "Which operation can be cascaded in any order?",
+        options: ["SELECT", "PROJECT", "UNION", "JOIN"],
+        answer: 0,
+        explanation: "SELECT operations are commutative and can be cascaded in any order."
+    },
+    {
+        question: "In SQL, renaming of attributes is done using:",
+        options: ["RENAME", "AS", "TO", "SET"],
+        answer: 1,
+        explanation: "The AS keyword is used for aliasing (renaming) in SQL."
+    },
+    {
+        question: "Which operation is used to find employees in department 5 with salary > 30000?",
+        options: ["σ Dno=5 AND Salary>30000", "π Dno=5 AND Salary>30000", "ρ Dno=5 AND Salary>30000", "∪ Dno=5 AND Salary>30000"],
+        answer: 0,
+        explanation: "σ denotes SELECT with a compound condition."
+    },
+    {
+        question: "Which of the following is a formal foundation for relational operations?",
+        options: ["SQL", "Relational Algebra", "Calculus", "Boolean Algebra"],
+        answer: 1,
+        explanation: "Relational Algebra provides the formal foundation for relational model operations."
+    },
+    {
+        question: "Which operation returns tuples from R that are not in S?",
+        options: ["UNION", "INTERSECTION", "DIFFERENCE", "PRODUCT"],
+        answer: 2,
+        explanation: "DIFFERENCE (R − S) returns tuples in R but not in S."
+    },
+    {
+        question: "If π A (R) is performed, and A is not a key, the result:",
+        options: ["May have fewer tuples than R", "Will have more tuples than R", "Will have the same tuples as R", "Is always empty"],
+        answer: 0,
+        explanation: "Projection without a key may remove duplicates, reducing tuple count."
+    },
+    {
+        question: "Which operation does NOT require type compatibility?",
+        options: ["UNION", "INTERSECTION", "CARTESIAN PRODUCT", "DIFFERENCE"],
+        answer: 2,
+        explanation: "CARTESIAN PRODUCT does not require type compatibility."
+    },
+    {
+        question: "Which of the following is used in query optimization?",
+        options: ["SQL", "Relational Algebra", "Java", "HTML"],
+        answer: 1,
+        explanation: "Relational Algebra is used for query optimization in RDBMS."
+    },
+    {
+        question: "Which symbol denotes the PROJECT operation?",
+        options: ["σ", "π", "ρ", "∩"],
+        answer: 1,
+        explanation: "π (pi) denotes PROJECT."
+    },
+    {
+        question: "Which operation can be used to combine SELECT and PROJECT into one expression?",
+        options: ["RENAME", "JOIN", "Nesting", "UNION"],
+        answer: 2,
+        explanation: "Operations can be nested into a single relational algebra expression."
+    },
+    {
+        question: "In relational algebra, a relation is defined as a:",
+        options: ["Set of tuples", "List of tuples", "Bag of tuples", "Array of tuples"],
+        answer: 0,
+        explanation: "In the formal model, a relation is a set of tuples (no duplicates)."
+    },
+    {
+        question: "Which operation is performed first in π A (σ B=5 (R))?",
+        options: ["PROJECT", "SELECT", "RENAME", "UNION"],
+        answer: 1,
+        explanation: "SELECT (σ) is applied first to filter tuples, then PROJECT (π) is applied."
+    },
+    {
+        question: "Which of the following is a procedural query language?",
+        options: ["SQL", "Relational Algebra", "QBE", "XQuery"],
+        answer: 1,
+        explanation: "Relational Algebra is procedural; SQL is declarative."
+    },
+    {
+        question: "Which operation is used to retrieve names of dependents of female employees?",
+        options: ["SELECT only", "PROJECT only", "SELECT and PROJECT", "JOIN and PROJECT"],
+        answer: 3,
+        explanation: "It requires JOIN (or Cartesian + SELECT) and PROJECT to get names."
+    }
+];
+
+
+const db2Questions9 = [
+  {
+    question: "What is the main purpose of the JOIN operation in relational algebra?",
+    options: [
+      "To remove duplicate tuples",
+      "To combine related tuples from two relations",
+      "To sort data",
+      "To rename attributes"
+    ],
+    answer: 1,
+    explanation: "JOIN combines related tuples from two relations based on a condition."
+  },
+  {
+    question: "Which operation is equivalent to Cartesian Product followed by SELECT?",
+    options: [
+      "PROJECT",
+      "UNION",
+      "JOIN",
+      "DIVISION"
+    ],
+    answer: 2,
+    explanation: "JOIN is a shortcut for Cartesian Product followed by a selection condition."
+  },
+  {
+    question: "An EQUI-JOIN uses which comparison operator?",
+    options: ["<", ">", "=", "≠"],
+    answer: 2,
+    explanation: "EQUI-JOIN uses only equality (=) comparisons."
+  },
+  {
+    question: "What is removed in a NATURAL JOIN compared to an EQUI-JOIN?",
+    options: [
+      "Unmatched tuples",
+      "Duplicate join attributes",
+      "Null values",
+      "Primary keys"
+    ],
+    answer: 1,
+    explanation: "NATURAL JOIN removes duplicate join attributes."
+  },
+  {
+    question: "NATURAL JOIN requires join attributes to have:",
+    options: [
+      "Same values only",
+      "Same data type only",
+      "Same name",
+      "Primary key constraint"
+    ],
+    answer: 2,
+    explanation: "Join attributes must have the same name."
+  },
+  {
+    question: "Which join keeps all tuples from the left relation?",
+    options: [
+      "Right outer join",
+      "Full outer join",
+      "Natural join",
+      "Left outer join"
+    ],
+    answer: 3,
+    explanation: "Left outer join keeps all tuples from the left relation."
+  },
+  {
+    question: "Which join keeps tuples from both relations even if no match exists?",
+    options: [
+      "Left outer join",
+      "Right outer join",
+      "Full outer join",
+      "Equi-join"
+    ],
+    answer: 2,
+    explanation: "Full outer join keeps all tuples from both relations."
+  },
+  {
+    question: "What happens to unmatched tuples in NATURAL JOIN?",
+    options: [
+      "Kept with NULLs",
+      "Removed",
+      "Duplicated",
+      "Moved to another relation"
+    ],
+    answer: 1,
+    explanation: "Unmatched tuples are removed in NATURAL JOIN."
+  },
+  {
+    question: "Theta-Join allows which type of condition?",
+    options: [
+      "Only equality",
+      "Only inequality",
+      "Any comparison operator",
+      "No condition"
+    ],
+    answer: 2,
+    explanation: "Theta-Join allows <, >, =, ≠, ≤, ≥."
+  },
+  {
+    question: "If θ is '=', the Theta-Join becomes:",
+    options: [
+      "Natural Join",
+      "Equi-Join",
+      "Outer Join",
+      "Division"
+    ],
+    answer: 1,
+    explanation: "Theta-Join with '=' is Equi-Join."
+  },
+
+  {
+    question: "Retrieve the names of employees who work in the 'Research' department.",
+    options: [
+      "π FNAME,LNAME (EMPLOYEE)",
+      "σ DNAME='Research' (DEPARTMENT)",
+      "π FNAME,LNAME (EMPLOYEE ⋈ DEPARTMENT)",
+      "π FNAME,LNAME (σ DNAME='Research' (DEPARTMENT ⋈ EMPLOYEE))"
+    ],
+    answer: 3,
+    explanation: "Select Research department then join with EMPLOYEE and project names."
+  },
+  {
+    question: "Which operation is best to find employees who have NO dependents?",
+    options: [
+      "JOIN",
+      "INTERSECTION",
+      "SET DIFFERENCE",
+      "CARTESIAN PRODUCT"
+    ],
+    answer: 2,
+    explanation: "SET DIFFERENCE is used to exclude employees with dependents."
+  },
+  {
+    question: "Which operation is mainly used in DIVISION?",
+    options: [
+      "Find any matching tuple",
+      "Find tuples related to ALL values in another relation",
+      "Remove duplicates",
+      "Group attributes"
+    ],
+    answer: 1,
+    explanation: "DIVISION finds tuples related to ALL values in another relation."
+  },
+  {
+    question: "DIVISION is useful for queries like:",
+    options: [
+      "Employees working on at least one project",
+      "Employees working on exactly one project",
+      "Employees working on all projects of another employee",
+      "Employees with highest salary"
+    ],
+    answer: 2,
+    explanation: "DIVISION answers 'for all' type queries."
+  },
+  {
+    question: "Which symbol represents the aggregate function operation?",
+    options: ["σ", "π", "ℱ", "⋈"],
+    answer: 2,
+    explanation: "ℱ represents aggregate function operation."
+  },
+  {
+    question: "Which of the following is NOT an aggregate function?",
+    options: ["SUM", "AVG", "COUNT", "SELECT"],
+    answer: 3,
+    explanation: "SELECT is not an aggregate function."
+  },
+  {
+    question: "What does COUNT do in relational algebra?",
+    options: [
+      "Counts distinct values only",
+      "Counts rows without removing duplicates",
+      "Counts only non-null values",
+      "Counts attributes"
+    ],
+    answer: 1,
+    explanation: "COUNT counts rows without removing duplicates."
+  },
+  {
+    question: "Grouping with aggregation allows:",
+    options: [
+      "Multiple SELECT conditions",
+      "Aggregate results per group",
+      "Removal of duplicates",
+      "Natural join execution"
+    ],
+    answer: 1,
+    explanation: "Grouping computes aggregates per group."
+  },
+  {
+    question: "DNO ℱCOUNT SSN, AVG Salary (EMPLOYEE) means:",
+    options: [
+      "One result for all employees",
+      "Grouping employees by DNO",
+      "Grouping employees by salary",
+      "Joining EMPLOYEE with DEPARTMENT"
+    ],
+    answer: 1,
+    explanation: "Employees are grouped by department number."
+  },
+  {
+    question: "Which join pads unmatched tuples with NULL values?",
+    options: [
+      "Natural Join",
+      "Equi-Join",
+      "Outer Join",
+      "Theta-Join"
+    ],
+    answer: 2,
+    explanation: "Outer joins pad unmatched tuples with NULLs."
+  },
+  {
+    question: "Which operation is commutative?",
+    options: [
+      "JOIN",
+      "DIVISION",
+      "SET DIFFERENCE",
+      "CARTESIAN PRODUCT"
+    ],
+    answer: 3,
+    explanation: "Cartesian product is commutative."
+  },
+  {
+    question: "Which query retrieves projects that John Smith works on?",
+    options: [
+      "σ fname='John' (EMPLOYEE)",
+      "π pname (PROJECT)",
+      "π pname (σ fname='John' (EMPLOYEE) ⋈ WORKS_ON ⋈ PROJECT)",
+      "π fname (EMPLOYEE)"
+    ],
+    answer: 2,
+    explanation: "Select John Smith, join with WORKS_ON and PROJECT, then project project names."
+  },
+  {
+    question: "To find employees earning more than their supervisors, we need:",
+    options: [
+      "Self join on EMPLOYEE",
+      "Natural join",
+      "Division",
+      "Set difference"
+    ],
+    answer: 0,
+    explanation: "Self-join is needed to compare employee and supervisor salaries."
+  },
+  {
+    question: "Which operation removes attributes but keeps tuples?",
+    options: ["SELECT", "PROJECT", "JOIN", "DIVISION"],
+    answer: 1,
+    explanation: "PROJECT removes attributes."
+  },
+  {
+    question: "Which operation removes tuples but keeps attributes?",
+    options: ["SELECT", "PROJECT", "JOIN", "RENAME"],
+    answer: 0,
+    explanation: "SELECT removes tuples."
+  },
+  {
+    question: "Which operation changes only attribute names?",
+    options: ["JOIN", "RENAME", "PROJECT", "SELECT"],
+    answer: 1,
+    explanation: "RENAME changes attribute names."
+  },
+  {
+    question: "Which operation summarizes numeric values?",
+    options: ["JOIN", "DIVISION", "AGGREGATION", "RENAME"],
+    answer: 2,
+    explanation: "Aggregation summarizes numeric values."
+  },
+  {
+    question: "Which query finds total hours per project?",
+    options: [
+      "π pname (PROJECT)",
+      "γ pname, SUM(hours) (WORKS_ON ⋈ PROJECT)",
+      "σ hours > 10 (WORKS_ON)",
+      "π hours (WORKS_ON)"
+    ],
+    answer: 1,
+    explanation: "Grouping by project name and summing hours."
+  }
+];
+
+
+
+const db2Questions10 = [
+  {
+    question: "What is the main goal of query optimization?",
+    options: [
+      "Validate SQL syntax",
+      "Reduce storage size",
+      "Choose the best execution strategy",
+      "Convert SQL to relational algebra"
+    ],
+    answer: 2,
+    explanation: "Query optimization selects the most efficient execution strategy."
+  },
+  {
+    question: "Which component is responsible for query optimization in DBMS?",
+    options: [
+      "Query processor",
+      "Query optimizer",
+      "Parser",
+      "Validator"
+    ],
+    answer: 1,
+    explanation: "The query optimizer selects the best execution plan."
+  },
+  {
+    question: "Which data structure is commonly used to represent queries internally?",
+    options: [
+      "Linked list",
+      "Graph only",
+      "Tree",
+      "Hash table"
+    ],
+    answer: 2,
+    explanation: "Queries are commonly represented as query trees."
+  },
+  {
+    question: "Which step comes first in processing a high-level query?",
+    options: [
+      "Optimization",
+      "Execution",
+      "Scanning and parsing",
+      "Code generation"
+    ],
+    answer: 2,
+    explanation: "The query is first scanned, parsed, and validated."
+  },
+  {
+    question: "What does the parser check?",
+    options: [
+      "Attribute existence",
+      "Semantic correctness",
+      "Syntax correctness",
+      "Cost estimation"
+    ],
+    answer: 2,
+    explanation: "Parser checks whether the query follows grammar rules."
+  },
+  {
+    question: "What is the role of the validator?",
+    options: [
+      "Check syntax",
+      "Check execution plan",
+      "Check semantic correctness",
+      "Optimize joins"
+    ],
+    answer: 2,
+    explanation: "Validator ensures attributes and relations exist."
+  },
+  {
+    question: "What is a query tree?",
+    options: [
+      "Graph of SQL keywords",
+      "Execution plan only",
+      "Tree representing relational algebra expression",
+      "Index structure"
+    ],
+    answer: 2,
+    explanation: "Query tree represents relational algebra operations."
+  },
+  {
+    question: "Leaf nodes in a query tree represent:",
+    options: [
+      "Operations",
+      "Relations",
+      "Conditions",
+      "Indexes"
+    ],
+    answer: 1,
+    explanation: "Leaf nodes represent base relations."
+  },
+  {
+    question: "Internal nodes in a query tree represent:",
+    options: [
+      "Relations",
+      "Indexes",
+      "Operations",
+      "Tuples"
+    ],
+    answer: 2,
+    explanation: "Internal nodes represent relational algebra operations."
+  },
+  {
+    question: "Why are query trees preferred over query graphs?",
+    options: [
+      "They are smaller",
+      "They represent execution order",
+      "They are easier to draw",
+      "They store cost values"
+    ],
+    answer: 1,
+    explanation: "Query trees represent a specific execution order."
+  },
+
+  // Heuristics
+  {
+    question: "Which heuristic rule should be applied first?",
+    options: [
+      "JOIN before SELECT",
+      "PROJECT before SELECT",
+      "SELECT and PROJECT as early as possible",
+      "CARTESIAN PRODUCT first"
+    ],
+    answer: 2,
+    explanation: "Early SELECT and PROJECT reduce intermediate results."
+  },
+  {
+    question: "Why should SELECT operations be moved down the query tree?",
+    options: [
+      "Increase attributes",
+      "Reduce number of tuples",
+      "Increase cost accuracy",
+      "Simplify syntax"
+    ],
+    answer: 1,
+    explanation: "SELECT reduces number of tuples early."
+  },
+  {
+    question: "Replacing CARTESIAN PRODUCT + SELECT with JOIN improves:",
+    options: [
+      "Correctness",
+      "Storage",
+      "Efficiency",
+      "Normalization"
+    ],
+    answer: 2,
+    explanation: "JOIN is more efficient than Cartesian product."
+  },
+  {
+    question: "Which SELECT should be applied first?",
+    options: [
+      "Less restrictive",
+      "More restrictive",
+      "Randomly",
+      "After JOIN"
+    ],
+    answer: 1,
+    explanation: "More restrictive SELECT reduces data size faster."
+  },
+  {
+    question: "What does selectivity measure?",
+    options: [
+      "Number of attributes",
+      "Query complexity",
+      "Fraction of tuples selected",
+      "Execution time"
+    ],
+    answer: 2,
+    explanation: "Selectivity is the fraction of tuples satisfying a condition."
+  },
+
+  // مسائل (Problems)
+  {
+    question: "Applying SELECT before JOIN mainly reduces:",
+    options: [
+      "Number of attributes",
+      "Number of tuples",
+      "Disk blocks",
+      "Indexes"
+    ],
+    answer: 1,
+    explanation: "SELECT reduces the number of tuples."
+  },
+  {
+    question: "Moving PROJECT operations down the query tree reduces:",
+    options: [
+      "Tuples only",
+      "Attributes only",
+      "Cost estimation",
+      "Indexes"
+    ],
+    answer: 1,
+    explanation: "PROJECT reduces number of attributes."
+  },
+  {
+    question: "Which transformation breaks a conjunctive SELECT condition into multiple SELECTs?",
+    options: [
+      "Cascade of π",
+      "Cascade of σ",
+      "Commutativity of π",
+      "Join replacement"
+    ],
+    answer: 1,
+    explanation: "Cascade of σ splits conjunctive conditions."
+  },
+  {
+    question: "Which operation is commutative in relational algebra optimization?",
+    options: [
+      "σ",
+      "π",
+      "−",
+      "÷"
+    ],
+    answer: 0,
+    explanation: "SELECT operations are commutative."
+  },
+  {
+    question: "In a sequence of π operations:",
+    options: [
+      "All are needed",
+      "Only the first matters",
+      "Only the last matters",
+      "None matter"
+    ],
+    answer: 2,
+    explanation: "Only the last PROJECT matters."
+  },
+
+  // Execution plans
+  {
+    question: "What is materialized evaluation?",
+    options: [
+      "Streaming results directly",
+      "Storing intermediate results",
+      "Using indexes only",
+      "Parallel execution"
+    ],
+    answer: 1,
+    explanation: "Intermediate results are stored temporarily."
+  },
+  {
+    question: "What is pipelined evaluation?",
+    options: [
+      "Storing intermediate relations",
+      "Executing joins only",
+      "Passing results directly to next operation",
+      "Using disk-based execution"
+    ],
+    answer: 2,
+    explanation: "Results are passed directly without storing."
+  },
+  {
+    question: "Which evaluation reduces I/O overhead?",
+    options: [
+      "Materialized",
+      "Pipelined",
+      "Sequential",
+      "Indexed"
+    ],
+    answer: 1,
+    explanation: "Pipelined evaluation reduces I/O."
+  },
+  {
+    question: "Materialized evaluation is preferred when:",
+    options: [
+      "Memory is limited",
+      "Intermediate results reused",
+      "Real-time processing",
+      "Streaming data"
+    ],
+    answer: 1,
+    explanation: "Stored results can be reused."
+  },
+
+  // Cost-based optimization
+  {
+    question: "Cost-based optimization chooses plans based on:",
+    options: [
+      "Syntax rules",
+      "Heuristic rules only",
+      "Estimated execution cost",
+      "Query length"
+    ],
+    answer: 2,
+    explanation: "It compares estimated execution costs."
+  },
+  {
+    question: "Which is NOT a cost component?",
+    options: [
+      "Disk I/O cost",
+      "Memory usage cost",
+      "Communication cost",
+      "Normalization cost"
+    ],
+    answer: 3,
+    explanation: "Normalization cost is not a query cost."
+  },
+  {
+    question: "Catalog information helps optimizer estimate:",
+    options: [
+      "Syntax errors",
+      "Security violations",
+      "Query cost",
+      "User privileges"
+    ],
+    answer: 2,
+    explanation: "Catalog stores statistics used for cost estimation."
+  },
+  {
+    question: "Which statistic estimates attribute distribution?",
+    options: [
+      "Index levels",
+      "Histograms",
+      "Blocking factor",
+      "File size"
+    ],
+    answer: 1,
+    explanation: "Histograms describe data distribution."
+  },
+  {
+    question: "Selectivity is mainly used to estimate:",
+    options: [
+      "Join order",
+      "Selection cardinality",
+      "Index depth",
+      "Tuple size"
+    ],
+    answer: 1,
+    explanation: "Selectivity estimates number of selected records."
+  },
+
+  // Cost formulas
+  {
+    question: "Which SELECT method scans all blocks?",
+    options: [
+      "Binary search",
+      "Primary index search",
+      "Linear search",
+      "Hash search"
+    ],
+    answer: 2,
+    explanation: "Linear search scans all file blocks."
+  },
+  {
+    question: "Binary search is efficient when data is:",
+    options: [
+      "Hashed",
+      "Sorted",
+      "Unordered",
+      "Distributed"
+    ],
+    answer: 1,
+    explanation: "Binary search requires sorted data."
+  },
+  {
+    question: "Which method retrieves a single record using hash key?",
+    options: [
+      "S1",
+      "S2",
+      "S3a",
+      "S3b"
+    ],
+    answer: 3,
+    explanation: "S3b uses hash key with cost ≈ 1."
+  },
+  {
+    question: "Using a primary index to retrieve a single record has cost:",
+    options: [
+      "b",
+      "log₂b",
+      "x + 1",
+      "1"
+    ],
+    answer: 2,
+    explanation: "Primary index search cost is x + 1."
+  }
+];
 
 
 
@@ -5690,9 +7930,506 @@ const irQuestions4 = [
 
 
 
+const irQuestions5 = [
+
+    {
+        question: "What is the primary purpose of Parametric Search?",
+        options: ["To perform full-text search only.", "To combine full-text queries with filtering based on metadata fields (e.g., date, language).", "To execute pure Boolean operations (AND, OR, NOT).", "To calculate similarity between query and document."],
+        answer: 1,
+        explanation: "Parametric search allows users to combine a keyword search with constraints on specific document metadata fields, like a date range or file format."
+    },
+
+    {
+        question: "In the Bag of Words model, what is ignored in the document representation?",
+        options: ["The term frequency (TF).", "The relative importance of terms.", "The order of words in the document.", "The document's metadata."],
+        answer: 2,
+        explanation: "The Bag of Words model disregards word order and syntactic structure, representing a document only as an unordered multiset of its terms."
+    },
+
+    {
+        question: "What does the 'tf' in tf-idf stand for?",
+        options: ["Total Frequency", "Term Frequency", "Text Feature", "Token Factor"],
+        answer: 1,
+        explanation: "'tf' stands for Term Frequency, which is the raw count of how many times a term appears in a specific document."
+    },
+
+    {
+        question: "The Inverse Document Frequency (idf) of a term increases when:",
+        options: ["The term appears in more documents.", "The total number of documents (N) decreases.", "The term appears in fewer documents.", "The term frequency within a document is high."],
+        answer: 2,
+        explanation: "idf = log(N/df). Therefore, idf increases as the document frequency (df) decreases, meaning the term is rare across the collection."
+    },
+
+    {
+        question: "In the Vector Space Model, how is a collection of documents conceptually viewed?",
+        options: ["As a set of tables in a database.", "As points or vectors in a high-dimensional space where each term is an axis.", "As nodes in a graph network.", "As a sorted list based on publication date."],
+        answer: 1,
+        explanation: "The VSM represents documents as vectors in a space where each unique term in the vocabulary corresponds to a dimension. Documents are points in this space."
+    },
+
+    {
+        question: "Which metric is commonly used to measure similarity between two document vectors, compensating for document length?",
+        options: ["Euclidean Distance", "Manhattan Distance", "Dot Product", "Cosine Similarity"],
+        answer: 3,
+        explanation: "Cosine similarity measures the cosine of the angle between two vectors. It is length-normalized, so it compares vector direction (content) irrespective of their magnitude (length)."
+    },
+
+    {
+        question: "What is a 'zone' in information retrieval indexing?",
+        options: ["A type of stop word list.", "A specific ranking algorithm.", "An identified region within a document, like Title or Abstract.", "The physical storage location of an index."],
+        answer: 2,
+        explanation: "A zone is a clearly defined, free-text region of a document (e.g., Title, Author, Abstract) that can be indexed separately to allow field-specific searching."
+    },
+
+    {
+        question: "In Weighted Zone Scoring, if a query term appears in the Title (weight=0.4) and Body (weight=0.5) of a document, but not in the Author field (weight=0.1), what is the document's score?",
+        options: ["0.5", "0.9", "1.0", "0.4"],
+        answer: 1,
+        explanation: "Score = sum(zone_weight * match_score). Match score is 1 for present, 0 for absent. So, Score = (0.4*1) + (0.5*1) + (0.1*0) = 0.9."
+    },
+
+    {
+        question: "Why is raw term frequency (tf) often transformed using a logarithm in scoring?",
+        options: ["To make very common terms (stop words) more important.", "To ensure relevance increases linearly with frequency.", "To dampen the extreme effect of very high frequencies.", "To decrease the weight of rare terms."],
+        answer: 2,
+        explanation: "Log-frequency weighting (e.g., 1 + log(tf)) compresses the scale. A term appearing 100 times is not 100 times more important than appearing once, and the log reflects this diminishing return."
+    },
+
+    {
+        question: "What does a high 'idf' value indicate about a term?",
+        options: ["The term is very common across the document collection.", "The term is highly informative and discriminating.", "The term has a high frequency within individual documents.", "The term is likely a stop word."],
+        answer: 1,
+        explanation: "A high idf means the term appears in very few documents (low df). Such rare terms are often good discriminators between documents and carry more informational value."
+    },
+
+    {
+        question: "In the context of ranked retrieval, what does a free-text query typically consist of?",
+        options: ["A complex Boolean expression with operators.", "A formal query language statement.", "One or more words in a natural language.", "A specific document identifier."],
+        answer: 2,
+        explanation: "Ranked retrieval systems commonly accept free-text queries, which are simple one or multi-word queries as a user would naturally phrase them, without requiring special operators."
+    },
+
+    {
+        question: "The final score for a document under the tf-idf scoring scheme is calculated as:",
+        options: ["The sum of tf-idf weights for all terms in the document.", "The sum of tf-idf weights for query terms present in the document.", "The average idf of all terms in the query.", "The product of tf and idf for the most frequent query term."],
+        answer: 1,
+        explanation: "The relevance score for a document given a query is the sum of the tf-idf weights for each term that appears in both the query and the document: Score(q, d) = Σ_{t in q∩d} tf-idf_{t,d}."
+    },
+
+    {
+        question: "Which of the following is NOT a characteristic of the Vector Space Model?",
+        options: ["Documents and queries are represented as vectors.", "It can handle partial matching and ranking.", "It inherently considers the semantic meaning of words.", "It uses cosine similarity for comparing vectors."],
+        answer: 2,
+        explanation: "The basic VSM treats terms as independent dimensions and does not understand semantics or relationships between words (e.g., 'car' and 'automobile'). It is a statistical, not semantic, model."
+    },
+
+    {
+        question: "The document frequency (df) of a term is defined as:",
+        options: ["The total number of times the term appears in the entire collection.", "The maximum frequency of the term in any single document.", "The number of documents that contain the term at least once.", "The ratio of term frequency to collection frequency."],
+        answer: 2,
+        explanation: "Document Frequency (df_t) is a collection-wide statistic: it counts how many documents contain the term t, regardless of how many times it appears in each."
+    },
+
+    {
+        question: "What is the key advantage of ranked retrieval over Boolean retrieval?",
+        options: ["It always returns fewer documents.", "It provides a relevance-ordered list, allowing for partial matches.", "It executes queries much faster.", "It requires more complex query syntax from the user."],
+        answer: 1,
+        explanation: "Ranked retrieval's main benefit is returning documents in order of estimated relevance. This accommodates partial matches and is more forgiving and effective for user needs than the all-or-nothing Boolean model."
+    },
+
+    {
+        question: "Cosine similarity between two identical, non-zero vectors is always:",
+        options: ["0", "0.5", "1", "-1"],
+        answer: 2,
+        explanation: "The cosine of the angle between two identical vectors is 0 degrees. cos(0°) = 1, representing perfect similarity."
+    },
+
+    {
+        question: "In a term-document matrix, what does a cell value of '0' in a binary incidence matrix signify?",
+        options: ["The term is very important in that document.", "The term is absent from that document.", "The term's tf-idf weight is zero.", "The document is not relevant to any query."],
+        answer: 1,
+        explanation: "A binary incidence matrix uses 1s and 0s to indicate the mere presence or absence of a term in a document. A '0' means the term does not appear in that document."
+    },
+
+    {
+        question: "What is the primary function of a zone index?",
+        options: ["To store the posting lists for all terms.", "To record which zone (e.g., title, author) each occurrence of a term appears in.", "To calculate the idf for each term.", "To perform length normalization on document vectors."],
+        answer: 1,
+        explanation: "A zone index extends the standard inverted index by tagging each term occurrence with its zone location. This enables structured queries like 'find term X in the title'."
+    },
+
+    {
+        question: "Which formula correctly represents the tf-idf weight for term t in document d?",
+        options: ["tf_{t,d} / idf_t", "(1 + log(tf_{t,d})) * log(N/df_t)", "df_t * tf_{t,d}", "idf_t / tf_{t,d}"],
+        answer: 1,
+        explanation: "A standard tf-idf formulation uses log-frequency for tf (to dampen raw counts) and logarithmic idf. The weight is their product: w_{t,d} = (1 + log10(tf_{t,d})) * log10(N/df_t)."
+    },
+
+    {
+        question: "If two documents have the same bag of words, the cosine similarity between their vector representations will be:",
+        options: ["0", "Between 0 and 1, depending on length.", "1", "Impossible to determine without idf."],
+        answer: 2,
+        explanation: "If two documents contain exactly the same terms with the same frequencies (identical bags of words), their vector representations are identical in direction. Cosine similarity of a vector with itself is 1."
+    },
+
+    {
+        question: "The 'dampening' effect in idf calculation is achieved by using:",
+        options: ["A square root function.", "A logarithmic function.", "A reciprocal function (1/x).", "A minimum frequency threshold."],
+        answer: 1,
+        explanation: "Using log(N/df) instead of just N/df dampens the scale. The difference between idf for df=1 and df=10 is less extreme with a log, making weights more manageable."
+    },
+
+    {
+        question: "In the provided example for Weighted Zone Scoring (query: 'shakespeare'), why was the document score 0.8?",
+        options: ["The term appeared in all zones.", "The term appeared only in the body (weight=0.5).", "The term appeared in title (0.3) and body (0.5), giving 0.3+0.5=0.8.", "The term's idf was very high."],
+        answer: 2,
+        explanation: "The score is the sum of the weights of the zones where the query term is found. Here, it was found in Title (weight 0.3) and Body (weight 0.5), so score = 0.8."
+    },
+
+    {
+        question: "What problem does the Vector Space Model's cosine similarity directly address?",
+        options: ["The polysemy of words.", "The synonymy of words.", "The variability in document lengths.", "The need for Boolean operators."],
+        answer: 2,
+        explanation: "By normalizing vectors to unit length, cosine similarity measures the angle between them, effectively comparing their *direction* (content proportion) independent of their *magnitude* (document length)."
+    },
+
+    {
+        question: "A term that appears in every document of a collection (a stop word) will have an idf value of:",
+        options: ["0", "1", "log(N)", "A very high number"],
+        answer: 0,
+        explanation: "If df_t = N, then idf_t = log(N/N) = log(1) = 0. This correctly assigns zero discriminating power to terms that appear everywhere."
+    },
+
+    {
+        question: "Which of these is a correct statement about parametric and zone indexes?",
+        options: ["They are only useful for Boolean retrieval.", "They allow searching within specific document fields or regions.", "They replace the need for tf-idf weighting.", "They are the same as a positional index."],
+        answer: 1,
+        explanation: "Parametric indexes handle structured metadata fields (e.g., date, language), while zone indexes handle free-text regions (e.g., title, abstract). Both enable field/region-specific searching."
+    },
+
+    {
+        question: "When moving from a binary incidence matrix to a count matrix, what additional information is captured?",
+        options: ["The order of terms.", "The number of occurrences (frequency) of each term in each document.", "The document's metadata.", "The idf weight for each term."],
+        answer: 1,
+        explanation: "A count matrix (or term-frequency matrix) replaces the binary 0/1 values with integer counts (tf), capturing how many times each term appears in each document."
+    },
+
+    {
+        question: "For a given query, the vector space model score for a document is equivalent to:",
+        options: ["The Euclidean distance between the query and document vectors.", "The dot product of the length-normalized query and document vectors.", "The Manhattan distance between the vectors.", "The ratio of matching terms."],
+        answer: 1,
+        explanation: "Cosine similarity is calculated as the dot product of the length-normalized vectors. For scoring, we often compute the dot product of the (tf-idf weighted) query vector and document vector, which, when both are normalized, is the cosine similarity."
+    },
+
+    {
+        question: "In log-frequency weighting, if tf_{t,d} = 10, what is the resulting weight w_{t,d}?",
+        options: ["10", "2", "1.3", "1"],
+        answer: 1,
+        explanation: "w = 1 + log10(tf). 1 + log10(10) = 1 + 1 = 2."
+    },
+
+    {
+        question: "What is a key limitation of the bag-of-words model?",
+        options: ["It cannot handle stop words.", "It ignores word order and phrase structure.", "It overweights rare terms.", "It requires manual indexing."],
+        answer: 1,
+        explanation: "The bag-of-words model's major limitation is that it discards all information about the order, proximity, and syntactic structure of words, treating 'John loves Mary' and 'Mary loves John' as identical."
+    },
+
+    {
+        question: "The 'weighted zone scoring' method is best described as a:",
+        options: ["Ranked retrieval model for free-text queries.", "Method for scoring Boolean queries against documents with zones.", "Core component of the Vector Space Model.", "Technique for calculating idf."],
+        answer: 1,
+        explanation: "Weighted zone scoring is a method to assign a relevance score to a document for a Boolean query, based on which pre-defined zones (like title, abstract) contain the query terms, with different weights per zone."
+    },
+
+    {
+        question: "If the angle between a query vector and a document vector is 90 degrees, their cosine similarity is:",
+        options: ["1", "0.5", "0", "-1"],
+        answer: 2,
+        explanation: "cos(90°) = 0. This indicates orthogonality and no similarity based on the term weights used."
+    },
+
+    {
+        question: "Which of the following is TRUE about document frequency (df) and collection frequency (cf)?",
+        options: ["For a given term, df is always greater than cf.", "df counts documents, while cf counts total term occurrences.", "They are always equal for common terms.", "High df always means high idf."],
+        answer: 1,
+        explanation: "Document Frequency (df) is the number of documents containing the term. Collection Frequency (cf) is the total number of times the term appears in the entire collection. They are different measures."
+    },
+
+    {
+        question: "In the vector space, sparsity refers to the fact that:",
+        options: ["Most documents are very short.", "Most term-document tf-idf values are zero.", "The vocabulary size is small.", "Queries are typically long."],
+        answer: 1,
+        explanation: "In large vocabularies, any single document contains only a tiny fraction of all possible terms. Therefore, in the term-document matrix, the vast majority of entries (tf or tf-idf values) are zero, creating sparse vectors."
+    },
+
+    {
+        question: "For a ranked retrieval system using tf-idf, what is the default score for a document containing none of the query terms?",
+        options: ["A very high negative score.", "0", "1", "It is excluded from results."],
+        answer: 1,
+        explanation: "The score is the sum of tf-idf weights for overlapping terms. If there is no overlap, the sum is zero."
+    },
+
+    {
+        question: "What role does the denominator play in the cosine similarity formula?",
+        options: ["It penalizes long documents.", "It amplifies the effect of rare terms.", "It length-normalizes the vectors before taking their dot product.", "It calculates the idf component."],
+        answer: 2,
+        explanation: "The denominator (the product of the Euclidean lengths of the two vectors) scales the raw dot product down, effectively comparing the vectors as if they were both scaled to unit length. This removes the bias from document length."
+    },
+
+    {
+        question: "Which statement best describes the relationship between parametric indexes and zone indexes?",
+        options: ["They are two names for the same concept.", "Parametric indexes are for numeric/date fields, zone indexes are for free-text document regions.", "Zone indexes are a subset of parametric indexes.", "Parametric indexes require zone indexes to function."],
+        answer: 1,
+        explanation: "Both are types of structured indexing. Parametric indexes typically handle fields with a finite set of values (metadata). Zone indexes handle specified free-text regions within the document body."
+    },
+
+    {
+        question: "Why might a system use a combination of weighted zone scoring and tf-idf scoring?",
+        options: ["Weighted zone scoring is obsolete.", "To first filter by zone matches, then rank by tf-idf within that set.", "Tf-idf is only for Boolean models.", "Zone scoring provides the final ranked list."],
+        answer: 1,
+        explanation: "A system could use a Boolean query with weighted zone scoring as an initial filter (e.g., must have query term in title), and then use tf-idf scoring from the Vector Space Model to rank the documents that pass that filter."
+    },
+
+    {
+        question: "A key idea behind tf-idf weighting is that the importance of a term to a document is:",
+        options: ["Inversely proportional to its frequency in the document.", "Proportional to its frequency in the document and inversely proportional to how common it is in the collection.", "Only dependent on its position in the document.", "Solely determined by its document frequency."],
+        answer: 1,
+        explanation: "This is the core intuition: tf-idf increases with the term's frequency within the document (tf) and decreases with its commonness across documents (inverse of df, captured by idf)."
+    },
+
+    {
+        question: "In the provided 'car insurance' example, which query term contributed the most to the final document score (0.85) and why?",
+        options: ["'auto', because it had the highest tf in the document.", "'best', because it had a high idf.", "'car', because it was in both query and doc.", "'insurance', because its high idf (3.0) combined with its tf-wt (1.3) gave a high tf-idf."],
+        answer: 3,
+        explanation: "Looking at the table: 'insurance' had the highest tf-idf weight in the document (3.9) and a high normalized weight (0.80). Its contribution to the dot product was 0.63, the largest of the three matching terms."
+    },
+
+    {
+        question: "The primary output of a ranked retrieval system is:",
+        options: ["A set of documents matching a Boolean expression.", "A single best-matching document.", "A list of documents sorted by relevance to the query.", "A list of terms related to the query."],
+        answer: 2,
+        explanation: "The defining characteristic of ranked retrieval is that it returns an ordered list (ranking) of documents, typically from most to least relevant, rather than an unordered set."
+    },
+
+    {
+        question: "How does the vector space model handle a multi-term query?",
+        options: ["By processing each term separately and intersecting results.", "By creating a single query vector where each dimension holds the weight (e.g., tf-idf) for that query term.", "By requiring the user to specify Boolean operators.", "By only using the most frequent term in the query."],
+        answer: 1,
+        explanation: "The query is treated as a 'pseudo-document' and converted into a vector in the same term-space as the documents. The weight for each term in the query vector can be its tf-idf (often just idf or 1 for presence)."
+    },
+
+    {
+        question: "What is the purpose of adding '1' in the log-frequency weight formula (1 + log10(tf))?",
+        options: ["To ensure the weight is positive for tf=1.", "To make sure the weight is 0 when tf=0.", "To double the importance of all terms.", "To prevent taking the log of zero."],
+        answer: 0,
+        explanation: "For tf=1, log10(1)=0. Adding 1 ensures the weight is 1, not 0, giving a non-zero contribution for a single occurrence, which is reasonable. It also smoothly interpolates between tf=0 (weight=0) and tf=1 (weight=1)."
+    },
+
+    {
+        question: "In the context of the Vector Space Model, what does a high-dimensional space imply?",
+        options: ["It is computationally cheap to process.", "Each document vector has many non-zero entries.", "The number of unique terms (vocabulary size) is very large.", "Cosine similarity cannot be calculated."],
+        answer: 2,
+        explanation: "High-dimensionality refers to having one dimension per unique term in the vocabulary. For web-scale collections, this can mean millions of dimensions, though vectors remain sparse."
+    },
+
+    {
+        question: "Which of these is a direct application of the Vector Space Model?",
+        options: ["Spell checking.", "Document clustering.", "Grammar parsing.", "Speech recognition."],
+        answer: 1,
+        explanation: "By representing documents as vectors, the VSM enables geometric operations. Document clustering groups documents based on the proximity (e.g., cosine similarity) of their vectors in the space."
+    },
+
+    {
+        question: "If a document is very long and contains many common words, its raw term frequency vector might suggest high similarity to many queries. How does tf-idf weighting mitigate this?",
+        options: ["By using idf to downweight common terms, reducing their contribution.", "By ignoring document length completely.", "By increasing the weight of all terms in long documents.", "By only considering the title zone."],
+        answer: 0,
+        explanation: "Common words (high df) have low idf. So even if their tf is high in a long document, their tf-idf product remains low. This reduces the undue influence of frequent, non-discriminative words in long documents."
+    },
+
+    {
+        question: "Compared to the binary incidence model, what is the main advantage of the count (tf) model?",
+        options: ["It uses less storage space.", "It can distinguish between a document where a term appears once vs. many times.", "It executes Boolean queries faster.", "It automatically handles synonyms."],
+        answer: 1,
+        explanation: "The count model captures term frequency, allowing ranking algorithms to favor documents where a query term appears more frequently, which is often a signal of greater relevance."
+    },
+
+    {
+        question: "For the calculation of cosine similarity, the vectors involved are typically:",
+        options: ["Raw term frequency (tf) vectors.", "Binary incidence vectors.", "Tf-idf weighted vectors.", "Vectors of zone weights."],
+        answer: 2,
+        explanation: "While cosine similarity can be applied to any vector representation, in standard VSM for IR, documents and queries are first converted to their tf-idf (or similar) weighted vectors before computing cosine similarity for scoring."
+    },
+
+    {
+        question: "What information does a zone index add to a standard inverted index posting?",
+        options: ["The sentence number where the term appears.", "The font style of the term.", "An identifier for the document zone (e.g., <T>, <A>) where the occurrence is located.", "The timestamp of when the document was indexed."],
+        answer: 2,
+        explanation: "A zone index augments the standard posting list. Instead of just (docID), entries might be (docID, <TITLE>) or (docID, <ABSTRACT>), allowing the search to be restricted to specific zones."
+    },
+
+    {
+        question: "In the progression Binary -> Count -> Tf-idf, what is the general trend in the richness of the document representation?",
+        options: ["It becomes simpler and more efficient.", "It incorporates less information about term distribution.", "It incorporates more information about term importance and discriminative power.", "It moves away from numerical representation."],
+        answer: 2,
+        explanation: "Binary: only presence/absence. Count: adds within-document frequency. Tf-idf: further refines by weighting frequency with a log and downweighting terms common across the collection (idf), creating a richer, more nuanced representation."
+    },
+
+    {
+        question: "The final score of 0.85 in the 'car insurance' example is a:",
+        options: ["Binary match score.", "Cosine similarity value.", "Raw dot product value.", "Zone weight sum."],
+        answer: 1,
+        explanation: "The calculation shown (0.85) is the result of the dot product of the normalized query and document tf-idf vectors, which is their cosine similarity. It's the final relevance score."
+    },
+
+];
 
 
 
+
+const irQuestions6 = [
+
+    {
+        question: "What are the three main aspects used to measure a search engine's performance?",
+        options: ["Speed, Cost, Quality", "Efficiency, Effectiveness, Usability", "Indexing, Searching, Caching", "Precision, Recall, F-measure"],
+        answer: 1,
+        explanation: "The three key aspects are Efficiency (speed of indexing/searching), Effectiveness (quality of results), and Usability (expressiveness of query language)."
+    },
+
+    {
+        question: "When evaluating relevance, what is the assessment based on?",
+        options: ["The exact words in the query", "The information need behind the query", "The number of documents retrieved", "The indexing speed"],
+        answer: 1,
+        explanation: "Relevance is judged relative to the user's underlying information need, not just whether the document contains the query words."
+    },
+
+    {
+        question: "What is Precision in information retrieval?",
+        options: ["Fraction of relevant documents that are retrieved", "Fraction of retrieved documents that are relevant", "Total number of relevant documents", "Speed of retrieving documents"],
+        answer: 1,
+        explanation: "Precision = (relevant retrieved) / (retrieved). It measures the accuracy of the retrieved set."
+    },
+
+    {
+        question: "What is Recall in information retrieval?",
+        options: ["Fraction of relevant documents that are retrieved", "Fraction of retrieved documents that are relevant", "Total number of retrieved documents", "Time taken to retrieve all relevant documents"],
+        answer: 0,
+        explanation: "Recall = (relevant retrieved) / (relevant). It measures the completeness of the retrieved set."
+    },
+
+    {
+        question: "In the context of Precision and Recall, what does 'tp' stand for?",
+        options: ["Total precision", "True positive", "Temporary precision", "Term presence"],
+        answer: 1,
+        explanation: "tp = true positives = number of relevant documents that are retrieved."
+    },
+
+    {
+        question: "Why is Accuracy generally not used to evaluate IR systems?",
+        options: ["It is too difficult to compute", "It is misleading when the data is highly imbalanced (many nonrelevant documents)", "It only measures speed, not quality", "It requires human assessors"],
+        answer: 1,
+        explanation: "In IR, the number of nonrelevant documents (tn) is usually huge, so accuracy can be high even if the system retrieves no relevant documents, making it a poor measure of effectiveness."
+    },
+
+    {
+        question: "How can a system achieve high recall but low precision?",
+        options: ["By retrieving very few documents", "By retrieving all documents for all queries", "By using a very strict query", "By ignoring stop words"],
+        answer: 1,
+        explanation: "If you retrieve every document in the collection, you will get all relevant documents (high recall), but also many nonrelevant ones (low precision)."
+    },
+
+    {
+        question: "What is the F₁ measure?",
+        options: ["The arithmetic mean of Precision and Recall", "The weighted harmonic mean of Precision and Recall with equal weight", "The difference between Precision and Recall", "The product of Precision and Recall"],
+        answer: 1,
+        explanation: "F₁ = 2PR / (P + R). It is the harmonic mean of Precision and Recall, balancing both equally."
+    },
+
+    {
+        question: "What does a precision-recall curve show?",
+        options: ["The speed of the retrieval system", "The trade-off between Precision and Recall at different retrieval cutoffs", "The size of the document collection", "The number of queries processed per second"],
+        answer: 1,
+        explanation: "A precision-recall curve plots Precision against Recall as more documents are retrieved, showing how Precision typically decreases as Recall increases."
+    },
+
+    {
+        question: "Why is averaging performance over multiple queries important?",
+        options: ["To reduce computation time", "To get a single performance measure that generalizes across different information needs", "To increase recall", "To improve indexing speed"],
+        answer: 1,
+        explanation: "A single query's precision-recall graph can be noisy or unrepresentative. Averaging over many queries gives a more reliable estimate of system performance."
+    },
+
+    {
+        question: "What is a common benchmark used for IR evaluation?",
+        options: ["ISO Standards", "TREC (Text REtrieval Conference)", "Google PageRank", "IEEE 754"],
+        answer: 1,
+        explanation: "TREC, run by NIST, provides standard document collections, queries, and relevance judgments for evaluating IR systems."
+    },
+
+    {
+        question: "In the confusion matrix for IR, what does 'fp' represent?",
+        options: ["False precision", "False positive (nonrelevant documents retrieved)", "Full precision", "Future prediction"],
+        answer: 1,
+        explanation: "fp = false positives = number of nonrelevant documents that are retrieved."
+    },
+
+    {
+        question: "Which measure is more focused on the system's ability to return only relevant items?",
+        options: ["Recall", "Precision", "F-measure", "Accuracy"],
+        answer: 1,
+        explanation: "Precision focuses on the purity of the retrieved set—how many of the returned items are actually relevant."
+    },
+
+    {
+        question: "What does the F-measure combine?",
+        options: ["Speed and accuracy", "Precision and Recall", "Indexing time and query time", "Relevance and novelty"],
+        answer: 1,
+        explanation: "The F-measure (and specifically F₁) is a single score that harmonizes Precision and Recall into one metric."
+    },
+
+    {
+        question: "What is a typical trend between Precision and Recall as more documents are retrieved?",
+        options: ["Both increase", "Precision increases, Recall decreases", "Precision decreases, Recall increases", "Both decrease"],
+        answer: 2,
+        explanation: "As you retrieve more documents to increase Recall (find more relevant items), Precision usually decreases because you include more nonrelevant items."
+    },
+
+    {
+        question: "What is the main limitation of using only Precision for evaluation?",
+        options: ["It ignores the system's ability to find all relevant documents", "It is too slow to compute", "It depends on query length", "It requires special hardware"],
+        answer: 0,
+        explanation: "A system could have high Precision by retrieving only a few highly relevant documents, but miss many other relevant ones (low Recall)."
+    },
+
+    {
+        question: "How is 'Relevant' defined in TREC-style evaluations?",
+        options: ["By automated algorithms", "By the query words matched", "By human expert assessors", "By the document's publication date"],
+        answer: 2,
+        explanation: "In standard benchmarks like TREC, human assessors judge whether a document is relevant to the information need, not just the query."
+    },
+
+    {
+        question: "What does the '11-point precision' refer to?",
+        options: ["Precision at 11 different recall levels (0.0, 0.1, ..., 1.0)", "Precision after 11 documents are retrieved", "Precision for queries with 11 terms", "The 11th version of the precision measure"],
+        answer: 0,
+        explanation: "11-point precision is a standard method where Precision is measured at 11 standard Recall levels (0%, 10%, ..., 100%) and then averaged across queries."
+    },
+
+    {
+        question: "Which component of IR evaluation measures how well the query language can express complex needs?",
+        options: ["Efficiency", "Effectiveness", "Usability", "Reliability"],
+        answer: 2,
+        explanation: "Usability includes the expressiveness of the query language—how easily and powerfully users can formulate their information needs."
+    },
+
+    {
+        question: "If a system retrieves 10 documents, 7 of which are relevant, and there are 20 relevant documents in total, what is its Recall?",
+        options: ["0.7", "0.35", "0.5", "0.2"],
+        answer: 1,
+        explanation: "Recall = relevant retrieved / relevant = 7 / 20 = 0.35."
+    },
+
+];
 
 
 
@@ -6538,9 +9275,787 @@ const biQuestions4 =
 
 
 
+const biQuestions5 = [
+    {
+        "question": "What is the main goal of Business Intelligence (BI)?",
+        "options": [
+            "Increase storage capacity",
+            "Enable interactive access to data for analysis",
+            "Reduce data redundancy",
+            "Enhance transaction processing"
+        ],
+        "answer": 1,
+        "explanation": "BI focuses on providing interactive access to data for analysis to support business decision-making."
+    },
+    {
+        "question": "Which type of analytics is primarily associated with Data Science?",
+        "options": [
+            "Descriptive analytics",
+            "Predictive analytics",
+            "Standard reporting",
+            "Dashboard creation"
+        ],
+        "answer": 1,
+        "explanation": "Data Science is strongly associated with predictive analytics, using techniques like predictive modeling and forecasting."
+    },
+    {
+        "question": "What is a typical question asked in Business Intelligence?",
+        "options": [
+            "What will happen next?",
+            "What's the optimal scenario?",
+            "What happened last quarter?",
+            "Why is this happening?"
+        ],
+        "answer": 2,
+        "explanation": "BI typically asks retrospective questions like 'What happened last quarter?' focusing on past performance."
+    },
+    {
+        "question": "Which role is responsible for the genesis of an analytics project?",
+        "options": [
+            "Project Manager",
+            "Business User",
+            "Project Sponsor",
+            "Data Scientist"
+        ],
+        "answer": 2,
+        "explanation": "The Project Sponsor initiates the project, provides requirements, and defines the core business problem."
+    },
+    {
+        "question": "Who typically creates dashboards and reports in an analytics project?",
+        "options": [
+            "Data Engineer",
+            "Business Intelligence Analyst",
+            "Database Administrator",
+            "Data Scientist"
+        ],
+        "answer": 1,
+        "explanation": "Business Intelligence Analysts create dashboards and reports based on their understanding of KPIs and business metrics."
+    },
+    {
+        "question": "Which role provisions and configures the database environment?",
+        "options": [
+            "Data Engineer",
+            "Business User",
+            "Database Administrator",
+            "Project Manager"
+        ],
+        "answer": 2,
+        "explanation": "The Database Administrator (DBA) sets up and configures databases to support analytics needs."
+    },
+    {
+        "question": "What is the primary responsibility of a Data Engineer?",
+        "options": [
+            "Creating business strategies",
+            "Tuning SQL queries and performing data extractions",
+            "Providing project funding",
+            "Defining business problems"
+        ],
+        "answer": 1,
+        "explanation": "Data Engineers leverage technical skills for SQL tuning, data extraction, and data ingestion into analytic sandboxes."
+    },
+    {
+        "question": "Which role provides subject matter expertise for analytical techniques and data modeling?",
+        "options": [
+            "Business User",
+            "Project Sponsor",
+            "Data Scientist",
+            "Project Manager"
+        ],
+        "answer": 2,
+        "explanation": "Data Scientists provide expertise in analytical techniques, data modeling, and applying valid methods to business problems."
+    },
+    {
+        "question": "What is the first phase of the Data Analytics Lifecycle?",
+        "options": [
+            "Data Preparation",
+            "Discovery",
+            "Model Planning",
+            "Model Building"
+        ],
+        "answer": 1,
+        "explanation": "Phase 1 is Discovery, where the team learns the business domain and frames the business problem."
+    },
+    {
+        "question": "In which phase does the team learn the business domain and frame the business problem?",
+        "options": [
+            "Data Preparation",
+            "Discovery",
+            "Model Planning",
+            "Communicate Results"
+        ],
+        "answer": 1,
+        "explanation": "The Discovery phase involves learning the business domain, framing problems, and formulating initial hypotheses."
+    },
+    {
+        "question": "Which phase is typically the most labor-intensive in the analytics lifecycle?",
+        "options": [
+            "Discovery",
+            "Data Preparation",
+            "Model Planning",
+            "Model Building"
+        ],
+        "answer": 1,
+        "explanation": "Data Preparation is often the most labor-intensive, with teams spending 50% or more of project time in this phase."
+    },
+    {
+        "question": "What percentage of project time do teams typically spend in the Data Preparation phase?",
+        "options": [
+            "10-20%",
+            "25-35%",
+            "50% or more",
+            "Less than 10%"
+        ],
+        "answer": 2,
+        "explanation": "Teams commonly spend at least 50% of a data science project's time in Data Preparation."
+    },
+    {
+        "question": "What is an analytic sandbox?",
+        "options": [
+            "A physical storage facility",
+            "A workspace for exploring data without interfering with production databases",
+            "A type of database for transactional processing",
+            "A tool for data visualization"
+        ],
+        "answer": 1,
+        "explanation": "An analytic sandbox is a workspace where teams can explore data without affecting live production databases."
+    },
+    {
+        "question": "How large should an analytic sandbox be compared to the original datasets?",
+        "options": [
+            "The same size",
+            "2-3 times larger",
+            "5-10 times larger",
+            "100 times larger"
+        ],
+        "answer": 2,
+        "explanation": "A good rule is to plan for the sandbox to be at least 5-10 times the size of original datasets."
+    },
+    {
+        "question": "What does ETLT stand for?",
+        "options": [
+            "Extract, Transform, Load, Test",
+            "Extract, Transfer, Load, Transform",
+            "Extract, Load, Transform",
+            "Extract, Transform, Load, Transfer"
+        ],
+        "answer": 2,
+        "explanation": "ETLT stands for Extract, Load, and Transform, where data is extracted in raw form before transformation."
+    },
+    {
+        "question": "What is the main difference between ETL and ELT approaches?",
+        "options": [
+            "ETL is faster",
+            "ELT preserves raw data before transformation",
+            "ETL is only for small datasets",
+            "ELT doesn't use transformation"
+        ],
+        "answer": 1,
+        "explanation": "ELT (Extract, Load, Transform) preserves raw data in the sandbox before transformation, unlike ETL."
+    },
+    {
+        "question": "What technologies are mentioned for parallelizing Big ETL processes?",
+        "options": [
+            "Excel and Access",
+            "Hadoop, Spark, and Flink",
+            "Python and R only",
+            "SQL Server and Oracle"
+        ],
+        "answer": 1,
+        "explanation": "Hadoop, Spark, and Flink are mentioned for parallelizing large data movements in Big ETL processes."
+    },
+    {
+        "question": "What is the purpose of data conditioning?",
+        "options": [
+            "To increase data volume",
+            "To clean, normalize, and transform data",
+            "To create business strategies",
+            "To visualize data only"
+        ],
+        "answer": 1,
+        "explanation": "Data conditioning involves cleaning data, normalizing datasets, and performing transformations to prepare for analysis."
+    },
+    {
+        "question": "Why should multiple team members be involved in data conditioning decisions?",
+        "options": [
+            "To increase project costs",
+            "To avoid returning to retrieve discarded data",
+            "To make the process slower",
+            "To create more documentation"
+        ],
+        "answer": 1,
+        "explanation": "Involving multiple team members prevents situations where discarded data needs to be retrieved later."
+    },
+    {
+        "question": "Which tool is described as 'a free, open source, powerful tool for working with messy data'?",
+        "options": [
+            "Hadoop",
+            "Alpine Miner",
+            "OpenRefine",
+            "Data Wrangler"
+        ],
+        "answer": 2,
+        "explanation": "OpenRefine (formerly Google Refine) is described as a free, open source tool for working with messy data."
+    },
+    {
+        "question": "What is the main focus of Phase 3 (Model Planning)?",
+        "options": [
+            "Data collection",
+            "Determining methods and techniques for model building",
+            "Project funding",
+            "Final presentation"
+        ],
+        "answer": 1,
+        "explanation": "Model Planning involves determining methods, techniques, and workflows for subsequent model building."
+    },
+    {
+        "question": "What are the two main steps in Phase 3 (Model Planning)?",
+        "options": [
+            "Data collection and storage",
+            "Funding and resource allocation",
+            "Data exploration/variable selection and model selection",
+            "Testing and deployment"
+        ],
+        "answer": 2,
+        "explanation": "Phase 3 has two steps: Data exploration/variable selection and Model selection."
+    },
+    {
+        "question": "What is the objective of data exploration in Phase 3?",
+        "options": [
+            "To increase data volume",
+            "To understand relationships among variables",
+            "To create final reports",
+            "To hire more team members"
+        ],
+        "answer": 1,
+        "explanation": "Data exploration aims to understand variable relationships to inform variable and method selection."
+    },
+    {
+        "question": "What should the team aim for in variable selection?",
+        "options": [
+            "Including every possible variable",
+            "Capturing the most essential predictors",
+            "Using only demographic variables",
+            "Excluding all correlated variables"
+        ],
+        "answer": 1,
+        "explanation": "Teams should aim to capture the most essential predictors rather than including every possible variable."
+    },
+    {
+        "question": "In Phase 4 (Model Building), what are the three types of datasets needed?",
+        "options": [
+            "Small, medium, and large",
+            "Training, testing, and production",
+            "Raw, processed, and final",
+            "Internal, external, and mixed"
+        ],
+        "answer": 1,
+        "explanation": "Phase 4 requires datasets for training, testing, and production purposes."
+    },
+    {
+        "question": "What is the purpose of holding aside test data?",
+        "options": [
+            "To reduce storage costs",
+            "For validating models after training",
+            "To make training faster",
+            "For data visualization only"
+        ],
+        "answer": 1,
+        "explanation": "Test data (hold-out data) is used to validate models after they have been trained on training data."
+    },
+    {
+        "question": "What happens in Phase 5 (Communicate Results)?",
+        "options": [
+            "Data is collected",
+            "Models are trained",
+            "Findings are articulated to stakeholders",
+            "New data sources are identified"
+        ],
+        "answer": 2,
+        "explanation": "Phase 5 involves comparing outcomes to success criteria and articulating findings to stakeholders."
+    },
+    {
+        "question": "Which tool provides a GUI for creating analytic workflows?",
+        "options": [
+            "Hadoop",
+            "Alpine Miner",
+            "OpenRefine",
+            "SQL Server"
+        ],
+        "answer": 1,
+        "explanation": "Alpine Miner provides a graphical user interface for creating analytic workflows."
+    },
+    {
+        "question": "Where was Data Wrangler developed?",
+        "options": [
+            "Microsoft",
+            "Google",
+            "Stanford University",
+            "MIT"
+        ],
+        "answer": 2,
+        "explanation": "Data Wrangler was developed at Stanford University for data cleaning and transformation."
+    },
+    {
+        "question": "What advantage does Data Wrangler offer for larger datasets?",
+        "options": [
+            "It processes data instantly",
+            "Operations can be written as Java/Python code for offline execution",
+            "It requires no programming knowledge",
+            "It only works with small datasets"
+        ],
+        "answer": 1,
+        "explanation": "Data Wrangler allows operations to be output as Java or Python code for execution against larger datasets offline."
+    },
+    {
+        "question": "What is a common way to conduct data exploration in Phase 3?",
+        "options": [
+            "Manual calculations",
+            "Data visualizations",
+            "Guessing relationships",
+            "Asking stakeholders only"
+        ],
+        "answer": 1,
+        "explanation": "Data visualizations are a common method for conducting data exploration to understand variable relationships."
+    },
+    {
+        "question": "What should teams focus on in variable selection?",
+        "options": [
+            "Including all available variables",
+            "Variables that demonstrate strong relationship to outcomes",
+            "Variables that are easy to collect",
+            "Only numerical variables"
+        ],
+        "answer": 1,
+        "explanation": "Teams should focus on variables that demonstrate strong relationships to outcomes rather than to other inputs."
+    },
+    {
+        "question": "What types of techniques are grouped in machine learning for model selection?",
+        "options": [
+            "Classification, association rules, and clustering",
+            "Data entry, storage, and retrieval",
+            "Funding, planning, and execution",
+            "Collection, processing, and deletion"
+        ],
+        "answer": 0,
+        "explanation": "Machine learning techniques are grouped into categories like classification, association rules, and clustering."
+    },
+    {
+        "question": "Why is it critical to ensure training and test datasets are robust?",
+        "options": [
+            "To reduce project costs",
+            "For accurate model development and validation",
+            "To make presentations more attractive",
+            "To comply with regulations"
+        ],
+        "answer": 1,
+        "explanation": "Robust training and test datasets are critical for accurate model development and validation."
+    },
+    {
+        "question": "What should the team consider when communicating results?",
+        "options": [
+            "Only positive findings",
+            "Caveats, assumptions, and limitations",
+            "Technical details only",
+            "Future project plans"
+        ],
+        "answer": 1,
+        "explanation": "When communicating results, teams should consider caveats, assumptions, and limitations of the findings."
+    }
+];
 
 
 
+
+
+
+
+const biQuestions6 = [
+    {
+        "question": "What is the main goal of association rule mining?",
+        "options": [
+            "To classify data into predefined categories",
+            "To find associations between items in large datasets",
+            "To reduce data dimensionality",
+            "To predict future values based on historical data"
+        ],
+        "answer": 1,
+        "explanation": "Association rule mining aims to discover interesting relationships or associations between items in large datasets."
+    },
+    {
+        "question": "Which of the following is a key application of association rules mentioned in the lecture?",
+        "options": [
+            "Stock price prediction",
+            "Market basket analysis",
+            "Image recognition",
+            "Sentiment analysis"
+        ],
+        "answer": 1,
+        "explanation": "Market basket analysis is a key application where association rules help identify products frequently sold together."
+    },
+    {
+        "question": "What does KDD stand for in data mining?",
+        "options": [
+            "Knowledge Data Discovery",
+            "Knowledge Discovery in Databases",
+            "Key Data Development",
+            "Knowledge Distribution Database"
+        ],
+        "answer": 1,
+        "explanation": "KDD stands for Knowledge Discovery in Databases, which is the comprehensive process that encompasses data mining."
+    },
+    {
+        "question": "Which type of machine learning is association rule mining classified under?",
+        "options": [
+            "Supervised learning",
+            "Reinforcement learning",
+            "Unsupervised learning",
+            "Semi-supervised learning"
+        ],
+        "answer": 2,
+        "explanation": "Association rule mining is an unsupervised learning technique as it works with unlabeled data to find patterns."
+    },
+    {
+        "question": "What is the formula for calculating support of an itemset?",
+        "options": [
+            "Number of transactions containing itemset / Total number of transactions",
+            "Number of transactions containing itemset / Number of items in itemset",
+            "Total number of transactions / Number of transactions containing itemset",
+            "Number of items in itemset / Total number of transactions"
+        ],
+        "answer": 0,
+        "explanation": "Support = (Number of transactions containing the itemset) / (Total number of transactions)."
+    },
+    {
+        "question": "For the rule {Milk, Diaper} → {Beer} with support count of 2 and total transactions of 5, what is the support?",
+        "options": [
+            "0.2",
+            "0.4",
+            "0.67",
+            "0.5"
+        ],
+        "answer": 1,
+        "explanation": "Support = σ(Milk, Diaper, Beer) / |T| = 2/5 = 0.4"
+    },
+    {
+        "question": "What is the formula for calculating confidence of a rule X → Y?",
+        "options": [
+            "σ(X ∪ Y) / σ(X)",
+            "σ(X) / σ(Y)",
+            "σ(X ∪ Y) / σ(Y)",
+            "σ(X) / σ(X ∪ Y)"
+        ],
+        "answer": 0,
+        "explanation": "Confidence = σ(X ∪ Y) / σ(X), where σ is the support count."
+    },
+    {
+        "question": "For the rule {Milk, Diaper} → {Beer} with support count of 2 for the itemset and support count of 3 for {Milk, Diaper}, what is the confidence?",
+        "options": [
+            "0.4",
+            "0.67",
+            "1.0",
+            "0.5"
+        ],
+        "answer": 1,
+        "explanation": "Confidence = σ(Milk, Diaper, Beer) / σ(Milk, Diaper) = 2/3 = 0.67"
+    },
+    {
+        "question": "What is the Apriori principle?",
+        "options": [
+            "If an itemset is infrequent, all its supersets are frequent",
+            "If an itemset is frequent, all its subsets are also frequent",
+            "If an itemset is frequent, all its supersets are frequent",
+            "If an itemset is infrequent, all its subsets are infrequent"
+        ],
+        "answer": 1,
+        "explanation": "The Apriori principle states: If an itemset is frequent, then all of its subsets must also be frequent."
+    },
+    {
+        "question": "What property of support makes the Apriori principle work?",
+        "options": [
+            "Monotone property",
+            "Anti-monotone property",
+            "Symmetric property",
+            "Transitive property"
+        ],
+        "answer": 1,
+        "explanation": "The anti-monotone property of support ensures that the support of an itemset never exceeds the support of its subsets."
+    },
+    {
+        "question": "Given 5 items, how many possible candidate itemsets are there?",
+        "options": [
+            "5",
+            "10",
+            "32",
+            "25"
+        ],
+        "answer": 2,
+        "explanation": "For d items, there are 2^d possible candidate itemsets. For 5 items: 2^5 = 32."
+    },
+    {
+        "question": "What is the first step in the Apriori algorithm?",
+        "options": [
+            "Generate frequent 2-itemsets",
+            "Generate frequent 1-itemsets",
+            "Generate all possible rules",
+            "Calculate confidence for all rules"
+        ],
+        "answer": 1,
+        "explanation": "The Apriori algorithm starts by generating frequent 1-itemsets (individual items that meet the minimum support threshold)."
+    },
+    {
+        "question": "In the Apriori example with minimum support = 3, which item was infrequent in the 1-itemsets?",
+        "options": [
+            "Item 1",
+            "Item 2",
+            "Item 3",
+            "Item 4"
+        ],
+        "answer": 3,
+        "explanation": "Item 4 had support count of 1, which is less than the minimum support of 3, making it infrequent."
+    },
+    {
+        "question": "What happens during the pruning step in Apriori algorithm?",
+        "options": [
+            "Remove transactions from the database",
+            "Remove candidate itemsets containing infrequent subsets",
+            "Increase the minimum support threshold",
+            "Decrease the minimum confidence threshold"
+        ],
+        "answer": 1,
+        "explanation": "Pruning removes candidate itemsets that contain subsets which are infrequent, based on the Apriori principle."
+    },
+    {
+        "question": "Which of the following is NOT a factor affecting the complexity of association rule mining?",
+        "options": [
+            "Choice of minimum support threshold",
+            "Dimensionality (number of items)",
+            "Size of the database",
+            "Color of the user interface"
+        ],
+        "answer": 3,
+        "explanation": "Color of the user interface does not affect the computational complexity of association rule mining algorithms."
+    },
+    {
+        "question": "What is the two-step approach in association rule mining?",
+        "options": [
+            "1. Data cleaning, 2. Rule generation",
+            "1. Frequent itemset generation, 2. Rule generation",
+            "1. Data collection, 2. Visualization",
+            "1. Classification, 2. Clustering"
+        ],
+        "answer": 1,
+        "explanation": "The two-step approach: 1) Generate all frequent itemsets, 2) Generate high confidence rules from frequent itemsets."
+    },
+    {
+        "question": "What is a k-itemset?",
+        "options": [
+            "An itemset containing exactly k transactions",
+            "An itemset containing exactly k items",
+            "An itemset with support equal to k",
+            "An itemset with confidence equal to k"
+        ],
+        "answer": 1,
+        "explanation": "A k-itemset is an itemset that contains exactly k items."
+    },
+    {
+        "question": "In the market basket example, what is the support count for {Milk, Diaper, Beer}?",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "answer": 1,
+        "explanation": "From the transaction table, {Milk, Diaper, Beer} appears in transactions 3 and 4, giving a support count of 2."
+    },
+    {
+        "question": "Which algorithm is NOT mentioned as popular for finding frequent itemsets?",
+        "options": [
+            "Apriori",
+            "FP-Growth",
+            "Eclat",
+            "K-Means"
+        ],
+        "answer": 3,
+        "explanation": "K-Means is a clustering algorithm, not specifically for finding frequent itemsets in association rule mining."
+    },
+    {
+        "question": "What does the implication X → Y mean in association rules?",
+        "options": [
+            "X causes Y",
+            "X and Y are mutually exclusive",
+            "X and Y co-occur frequently",
+            "X is a subset of Y"
+        ],
+        "answer": 2,
+        "explanation": "The implication means co-occurrence, not causality. It indicates that when X appears, Y also tends to appear."
+    },
+    {
+        "question": "In supervised learning, what is provided to the algorithm?",
+        "options": [
+            "Only input variables",
+            "Only output variables",
+            "Pairs of inputs and desired outputs",
+            "No guidance at all"
+        ],
+        "answer": 2,
+        "explanation": "In supervised learning, the algorithm is provided with pairs of inputs and desired outputs (labeled data)."
+    },
+    {
+        "question": "What is the main characteristic of unsupervised learning?",
+        "options": [
+            "Uses labeled data",
+            "Uses input-output pairs",
+            "Works with unlabeled data without guidance",
+            "Requires constant human feedback"
+        ],
+        "answer": 2,
+        "explanation": "Unsupervised learning works with information that is neither classified nor labeled, allowing the algorithm to act without guidance."
+    },
+    {
+        "question": "Which data mining task is association rule discovery classified as?",
+        "options": [
+            "Predictive",
+            "Descriptive",
+            "Classification",
+            "Regression"
+        ],
+        "answer": 1,
+        "explanation": "Association rule discovery is a descriptive data mining task that finds human-interpretable patterns describing the data."
+    },
+    {
+        "question": "What is the support threshold also known as?",
+        "options": [
+            "minconf",
+            "minsup",
+            "maxsup",
+            "maxconf"
+        ],
+        "answer": 1,
+        "explanation": "The minimum support threshold is commonly referred to as minsup."
+    },
+    {
+        "question": "In the Apriori example with items {1,3,5}, which rule had 50% confidence?",
+        "options": [
+            "5 → {1,3}",
+            "{1,5} → {3}",
+            "{3,5} → {1}",
+            "3 → {1,5}"
+        ],
+        "answer": 1,
+        "explanation": "{1,5} → {3} had confidence = support(1,3,5)/support(1,5) = 2/2 = 100%, not 50%. Wait, let me check: Actually {1,5} → {3} had confidence = 2/2 = 100%. The 50% confidence rules were {1,3} → {5} and {1,5} → {3}? Let me re-examine: The slide shows {1,5} → {3} = 2/4 = 50% and {1,3} → {5} = 2/4 = 50%."
+    },
+    {
+        "question": "What is the main advantage of the Apriori principle?",
+        "options": [
+            "It increases the number of candidates",
+            "It reduces the number of candidates to evaluate",
+            "It makes all itemsets frequent",
+            "It eliminates the need for support calculation"
+        ],
+        "answer": 1,
+        "explanation": "The Apriori principle significantly reduces the number of candidate itemsets that need to be evaluated by pruning those with infrequent subsets."
+    },
+    {
+        "question": "How does lowering the minimum support threshold affect the mining process?",
+        "options": [
+            "Reduces number of frequent itemsets",
+            "Increases number of frequent itemsets and candidates",
+            "Has no effect on the process",
+            "Only affects confidence calculation"
+        ],
+        "answer": 1,
+        "explanation": "Lowering the minimum support threshold results in more frequent itemsets, which may increase both the number of candidates and maximum length of frequent itemsets."
+    },
+    {
+        "question": "What is σ in association rule mining?",
+        "options": [
+            "Standard deviation",
+            "Support count",
+            "Confidence level",
+            "Minimum threshold"
+        ],
+        "answer": 1,
+        "explanation": "σ (sigma) represents the support count - the frequency of occurrence of an itemset."
+    },
+    {
+        "question": "In the transaction table with 5 transactions, what is |T|?",
+        "options": [
+            "The number of items",
+            "The number of transactions (5)",
+            "The average transaction width",
+            "The maximum itemset size"
+        ],
+        "answer": 1,
+        "explanation": "|T| represents the total number of transactions in the dataset."
+    },
+    {
+        "question": "Which of these is a valid association rule notation?",
+        "options": [
+            "X ∪ Y",
+            "X ∩ Y",
+            "X → Y",
+            "X = Y"
+        ],
+        "answer": 2,
+        "explanation": "X → Y is the standard notation for an association rule where X implies Y."
+    },
+    {
+        "question": "What is the main difference between classification and association rule discovery?",
+        "options": [
+            "Classification is predictive, association rules are descriptive",
+            "Classification uses unlabeled data, association rules use labeled data",
+            "Classification finds item associations, association rules predicts categories",
+            "They are the same thing"
+        ],
+        "answer": 0,
+        "explanation": "Classification is a predictive task (predicting class labels), while association rule discovery is a descriptive task (finding patterns in data)."
+    },
+    {
+        "question": "In the context of association rules, what does 'frequent' mean?",
+        "options": [
+            "Occurs in at least one transaction",
+            "Has high confidence",
+            "Meets or exceeds the minimum support threshold",
+            "Contains many items"
+        ],
+        "answer": 2,
+        "explanation": "An itemset is considered frequent if its support is greater than or equal to the minimum support (minsup) threshold."
+    },
+    {
+        "question": "What is the brute-force approach to association rule mining?",
+        "options": [
+            "List all possible rules and compute support/confidence for each",
+            "Use the Apriori principle to prune candidates",
+            "Only check rules with 2 items",
+            "Ignore rules with low confidence"
+        ],
+        "answer": 0,
+        "explanation": "The brute-force approach lists all possible association rules and computes support and confidence for each, which is computationally prohibitive for large datasets."
+    },
+    {
+        "question": "Why is frequent itemset generation computationally expensive?",
+        "options": [
+            "Because it requires human intervention",
+            "Because the number of possible itemsets grows exponentially",
+            "Because confidence calculations are complex",
+            "Because it needs specialized hardware"
+        ],
+        "answer": 1,
+        "explanation": "The number of possible itemsets grows exponentially with the number of items (2^d for d items), making frequent itemset generation computationally expensive."
+    },
+    {
+        "question": "What is the final step in rule generation from frequent itemsets?",
+        "options": [
+            "Calculate support for each rule",
+            "Prune rules that fail minsup and minconf thresholds",
+            "Generate all possible binary partitions",
+            "Sort rules by number of items"
+        ],
+        "answer": 1,
+        "explanation": "After generating candidate rules from frequent itemsets, the final step is to prune rules that fail to meet both the minimum support and minimum confidence thresholds."
+    }
+];
 
 
 
@@ -12558,1365 +16073,1486 @@ const sq3 = [
 ];
 
 
+
+
+
+
 const sq4 = [
-    {
-        "question": "What is the primary purpose of software quality standards and models?",
-        "options": [
-            "To increase software development costs",
-            "To provide frameworks for meeting quality criteria",
-            "To replace software testing entirely",
-            "To focus only on code optimization"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which ISO standard provides a general framework for quality management systems?",
-        "options": [
-            "ISO/IEC 25010",
-            "ISO 9001",
-            "ISO 27001",
-            "ISO 14001"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "ISO 9001 emphasizes which of the following principles?",
-        "options": [
-            "Technology-first approach",
-            "Customer focus and continuous improvement",
-            "Maximum documentation requirements",
-            "Hardware optimization"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "How many key quality characteristics does ISO/IEC 25010 define for software products?",
-        "options": [
-            "5",
-            "6",
-            "8",
-            "10"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which ISO/IEC 25010 characteristic covers data protection and authentication?",
-        "options": [
-            "Functional Suitability",
-            "Performance Efficiency",
-            "Security",
-            "Portability"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "IEEE 730 standard specifically addresses:",
-        "options": [
-            "Software Quality Assurance Plans",
-            "Software Test Documentation",
-            "Software Verification and Validation",
-            "Software Life Cycle Processes"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "What does IEEE 829 standard define?",
-        "options": [
-            "Quality management systems",
-            "Software test documentation",
-            "Security protocols",
-            "Hardware interfaces"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "CMMI was developed by which organization?",
-        "options": [
-            "International Organization for Standardization",
-            "Software Engineering Institute",
-            "Institute of Electrical and Electronics Engineers",
-            "International Electrotechnical Commission"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the primary goal of CMMI?",
-        "options": [
-            "To replace all other quality standards",
-            "To provide a process improvement framework",
-            "To focus only on software testing",
-            "To eliminate documentation requirements"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "How many maturity levels does CMMI typically include?",
-        "options": [
-            "3",
-            "5",
-            "7",
-            "10"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which CMMI level is described as 'Initial' where processes are unpredictable?",
-        "options": [
-            "Level 1",
-            "Level 2",
-            "Level 3",
-            "Level 4"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "At which CMMI level are processes quantitatively managed using statistical techniques?",
-        "options": [
-            "Level 2",
-            "Level 3",
-            "Level 4",
-            "Level 5"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which CMMI maturity level focuses on continuous process improvement?",
-        "options": [
-            "Level 2",
-            "Level 3",
-            "Level 4",
-            "Level 5"
-        ],
-        "answer": 3
-    },
-    {
-        "question": "What does the acronym DMAIC stand for in Six Sigma?",
-        "options": [
-            "Define, Monitor, Analyze, Improve, Control",
-            "Define, Measure, Analyze, Improve, Control",
-            "Design, Measure, Analyze, Implement, Check",
-            "Develop, Measure, Assess, Improve, Control"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which phase of DMAIC involves identifying root causes of defects?",
-        "options": [
-            "Define",
-            "Measure",
-            "Analyze",
-            "Improve"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Six Sigma originated from which industry?",
-        "options": [
-            "Software Development",
-            "Manufacturing",
-            "Healthcare",
-            "Construction"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the primary focus of Lean software development?",
-        "options": [
-            "Maximum documentation",
-            "Eliminating waste and maximizing value",
-            "Following rigid processes",
-            "Extensive planning phases"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which of the following is NOT a key Lean principle mentioned in the chapter?",
-        "options": [
-            "Eliminate waste",
-            "Build quality in",
-            "Deliver fast",
-            "Maximize documentation"
-        ],
-        "answer": 3
-    },
-    {
-        "question": "Lean principles were originally inspired by:",
-        "options": [
-            "Microsoft development practices",
-            "Toyota's production system",
-            "IBM's management style",
-            "Google's innovation culture"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which quality model specifically defines attributes like functionality, performance, and security?",
-        "options": [
-            "ISO 9001",
-            "CMMI",
-            "ISO/IEC 25010",
-            "Six Sigma"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "IEEE 1012 standard focuses on:",
-        "options": [
-            "Software Quality Assurance Plans",
-            "Software Verification and Validation",
-            "Software Test Documentation",
-            "Software Life Cycle Processes"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What does ISO/IEC 25010's 'Usability' characteristic assess?",
-        "options": [
-            "Data protection measures",
-            "Ease of use and accessibility",
-            "System interoperability",
-            "Code modularity"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which standard is described as 'a globally recognized standard for quality management systems'?",
-        "options": [
-            "IEEE 730",
-            "CMMI",
-            "ISO 9001",
-            "ISO/IEC 25010"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "In CMMI, Level 2 is characterized by:",
-        "options": [
-            "Ad-hoc processes",
-            "Standard project management processes",
-            "Quantitatively managed processes",
-            "Continuously optimized processes"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which phase of Six Sigma's DMAIC involves collecting baseline performance data?",
-        "options": [
-            "Define",
-            "Measure",
-            "Analyze",
-            "Control"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "The 'Control' phase in DMAIC focuses on:",
-        "options": [
-            "Identifying problems",
-            "Collecting data",
-            "Maintaining improvements",
-            "Implementing solutions"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which Lean principle emphasizes 'ensuring quality at every stage of development'?",
-        "options": [
-            "Eliminate waste",
-            "Build quality in",
-            "Deliver fast",
-            "Empower teams"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What does CMMI stand for?",
-        "options": [
-            "Capability Maturity Model Integration",
-            "Computer Management Model Institute",
-            "Code Maturity Measurement Index",
-            "Comprehensive Management Methodology Integration"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which organization develops IEEE standards?",
-        "options": [
-            "International Organization for Standardization",
-            "Software Engineering Institute",
-            "Institute of Electrical and Electronics Engineers",
-            "International Software Quality Institute"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "ISO/IEC 25010's 'Performance Efficiency' characteristic measures:",
-        "options": [
-            "Security features",
-            "Response time and scalability",
-            "Code maintainability",
-            "System portability"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which of the following is a benefit of implementing Six Sigma in software development?",
-        "options": [
-            "Increased process variation",
-            "Higher defect rates",
-            "Better decision-making through data",
-            "Reduced customer satisfaction"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "The 'Optimize the whole' Lean principle refers to:",
-        "options": [
-            "Focusing only on coding tasks",
-            "Looking at the entire development lifecycle",
-            "Maximizing individual productivity",
-            "Minimizing team collaboration"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which CMMI level is also called 'Defined'?",
-        "options": [
-            "Level 1",
-            "Level 2",
-            "Level 3",
-            "Level 4"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "In the context of software quality, what does 'Maintainability' refer to?",
-        "options": [
-            "System security features",
-            "Ease of modifying and updating code",
-            "User interface design",
-            "Hardware compatibility"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which standard is specifically mentioned for 'Software Life Cycle Processes'?",
-        "options": [
-            "IEEE 730",
-            "IEEE 829",
-            "IEEE 1012",
-            "IEEE 12207"
-        ],
-        "answer": 3
-    }
+  {
+    question: "What is the primary purpose of software quality standards and models?",
+    options: [
+      "To increase software development costs",
+      "To provide frameworks for meeting quality criteria",
+      "To replace software testing entirely",
+      "To focus only on code optimization"
+    ],
+    answer: 1,
+    explanation: "Quality standards provide structured frameworks to ensure software meets defined quality requirements."
+  },
+  {
+    question: "Which ISO standard provides a general framework for quality management systems?",
+    options: [
+      "ISO/IEC 25010",
+      "ISO 9001",
+      "ISO 27001",
+      "ISO 14001"
+    ],
+    answer: 1,
+    explanation: "ISO 9001 defines general requirements for quality management systems across industries."
+  },
+  {
+    question: "ISO 9001 emphasizes which of the following principles?",
+    options: [
+      "Technology-first approach",
+      "Customer focus and continuous improvement",
+      "Maximum documentation requirements",
+      "Hardware optimization"
+    ],
+    answer: 1,
+    explanation: "ISO 9001 focuses on customer satisfaction and continuous process improvement."
+  },
+  {
+    question: "How many key quality characteristics does ISO/IEC 25010 define for software products?",
+    options: [
+      "5",
+      "6",
+      "8",
+      "10"
+    ],
+    answer: 2,
+    explanation: "ISO/IEC 25010 defines 8 main software quality characteristics."
+  },
+  {
+    question: "Which ISO/IEC 25010 characteristic covers data protection and authentication?",
+    options: [
+      "Functional Suitability",
+      "Performance Efficiency",
+      "Security",
+      "Portability"
+    ],
+    answer: 2,
+    explanation: "Security covers confidentiality, integrity, authentication, and data protection."
+  },
+  {
+    question: "IEEE 730 standard specifically addresses:",
+    options: [
+      "Software Quality Assurance Plans",
+      "Software Test Documentation",
+      "Software Verification and Validation",
+      "Software Life Cycle Processes"
+    ],
+    answer: 0,
+    explanation: "IEEE 730 defines standards for Software Quality Assurance (SQA) plans."
+  },
+  {
+    question: "What does IEEE 829 standard define?",
+    options: [
+      "Quality management systems",
+      "Software test documentation",
+      "Security protocols",
+      "Hardware interfaces"
+    ],
+    answer: 1,
+    explanation: "IEEE 829 defines templates and structure for software test documentation."
+  },
+  {
+    question: "CMMI was developed by which organization?",
+    options: [
+      "International Organization for Standardization",
+      "Software Engineering Institute",
+      "Institute of Electrical and Electronics Engineers",
+      "International Electrotechnical Commission"
+    ],
+    answer: 1,
+    explanation: "CMMI was developed by the Software Engineering Institute (SEI)."
+  },
+  {
+    question: "What is the primary goal of CMMI?",
+    options: [
+      "To replace all other quality standards",
+      "To provide a process improvement framework",
+      "To focus only on software testing",
+      "To eliminate documentation requirements"
+    ],
+    answer: 1,
+    explanation: "CMMI helps organizations improve and standardize their processes."
+  },
+  {
+    question: "How many maturity levels does CMMI typically include?",
+    options: [
+      "3",
+      "5",
+      "7",
+      "10"
+    ],
+    answer: 1,
+    explanation: "CMMI defines five maturity levels from Initial to Optimizing."
+  },
+
+  {
+    question: "Which CMMI level is described as 'Initial' where processes are unpredictable?",
+    options: [
+      "Level 1",
+      "Level 2",
+      "Level 3",
+      "Level 4"
+    ],
+    answer: 0,
+    explanation: "Level 1 is ad-hoc and unpredictable with no defined processes."
+  },
+  {
+    question: "At which CMMI level are processes quantitatively managed using statistical techniques?",
+    options: [
+      "Level 2",
+      "Level 3",
+      "Level 4",
+      "Level 5"
+    ],
+    answer: 2,
+    explanation: "Level 4 uses metrics and statistical control for process management."
+  },
+  {
+    question: "Which CMMI maturity level focuses on continuous process improvement?",
+    options: [
+      "Level 2",
+      "Level 3",
+      "Level 4",
+      "Level 5"
+    ],
+    answer: 3,
+    explanation: "Level 5 (Optimizing) focuses on continuous improvement."
+  },
+  {
+    question: "What does the acronym DMAIC stand for in Six Sigma?",
+    options: [
+      "Define, Monitor, Analyze, Improve, Control",
+      "Define, Measure, Analyze, Improve, Control",
+      "Design, Measure, Analyze, Implement, Check",
+      "Develop, Measure, Assess, Improve, Control"
+    ],
+    answer: 1,
+    explanation: "DMAIC stands for Define, Measure, Analyze, Improve, Control."
+  },
+  {
+    question: "Which phase of DMAIC involves identifying root causes of defects?",
+    options: [
+      "Define",
+      "Measure",
+      "Analyze",
+      "Improve"
+    ],
+    answer: 2,
+    explanation: "Analyze phase focuses on finding root causes of defects."
+  },
+  {
+    question: "Six Sigma originated from which industry?",
+    options: [
+      "Software Development",
+      "Manufacturing",
+      "Healthcare",
+      "Construction"
+    ],
+    answer: 1,
+    explanation: "Six Sigma originated in manufacturing (Motorola)."
+  },
+  {
+    question: "What is the primary focus of Lean software development?",
+    options: [
+      "Maximum documentation",
+      "Eliminating waste and maximizing value",
+      "Following rigid processes",
+      "Extensive planning phases"
+    ],
+    answer: 1,
+    explanation: "Lean focuses on eliminating waste and delivering customer value."
+  },
+  {
+    question: "Which of the following is NOT a key Lean principle mentioned in the chapter?",
+    options: [
+      "Eliminate waste",
+      "Build quality in",
+      "Deliver fast",
+      "Maximize documentation"
+    ],
+    answer: 3,
+    explanation: "Lean minimizes unnecessary documentation rather than maximizing it."
+  },
+  {
+    question: "Lean principles were originally inspired by:",
+    options: [
+      "Microsoft development practices",
+      "Toyota's production system",
+      "IBM's management style",
+      "Google's innovation culture"
+    ],
+    answer: 1,
+    explanation: "Lean originated from Toyota Production System."
+  },
+  {
+    question: "Which quality model specifically defines attributes like functionality, performance, and security?",
+    options: [
+      "ISO 9001",
+      "CMMI",
+      "ISO/IEC 25010",
+      "Six Sigma"
+    ],
+    answer: 2,
+    explanation: "ISO/IEC 25010 defines software product quality characteristics."
+  },
+  {
+    question: "IEEE 1012 standard focuses on:",
+    options: [
+      "Software Quality Assurance Plans",
+      "Software Verification and Validation",
+      "Software Test Documentation",
+      "Software Life Cycle Processes"
+    ],
+    answer: 1,
+    explanation: "IEEE 1012 focuses on Verification and Validation (V&V)."
+  },
+  {
+    question: "What does ISO/IEC 25010's 'Usability' characteristic assess?",
+    options: [
+      "Data protection measures",
+      "Ease of use and accessibility",
+      "System interoperability",
+      "Code modularity"
+    ],
+    answer: 1,
+    explanation: "Usability measures ease of use, learnability, and accessibility."
+  },
+  {
+    question: "Which standard is described as 'a globally recognized standard for quality management systems'?",
+    options: [
+      "IEEE 730",
+      "CMMI",
+      "ISO 9001",
+      "ISO/IEC 25010"
+    ],
+    answer: 2,
+    explanation: "ISO 9001 is globally recognized for quality management systems."
+  },
+  {
+    question: "In CMMI, Level 2 is characterized by:",
+    options: [
+      "Ad-hoc processes",
+      "Standard project management processes",
+      "Quantitatively managed processes",
+      "Continuously optimized processes"
+    ],
+    answer: 1,
+    explanation: "Level 2 focuses on managed and planned project processes."
+  },
+  {
+    question: "Which phase of Six Sigma's DMAIC involves collecting baseline performance data?",
+    options: [
+      "Define",
+      "Measure",
+      "Analyze",
+      "Control"
+    ],
+    answer: 1,
+    explanation: "Measure phase collects data to establish baseline performance."
+  },
+  {
+    question: "The 'Control' phase in DMAIC focuses on:",
+    options: [
+      "Identifying problems",
+      "Collecting data",
+      "Maintaining improvements",
+      "Implementing solutions"
+    ],
+    answer: 2,
+    explanation: "Control ensures improvements are sustained over time."
+  },
+  {
+    question: "Which Lean principle emphasizes 'ensuring quality at every stage of development'?",
+    options: [
+      "Eliminate waste",
+      "Build quality in",
+      "Deliver fast",
+      "Empower teams"
+    ],
+    answer: 1,
+    explanation: "Build quality in means preventing defects early."
+  },
+  {
+    question: "What does CMMI stand for?",
+    options: [
+      "Capability Maturity Model Integration",
+      "Computer Management Model Institute",
+      "Code Maturity Measurement Index",
+      "Comprehensive Management Methodology Integration"
+    ],
+    answer: 0,
+    explanation: "CMMI stands for Capability Maturity Model Integration."
+  },
+  {
+    question: "Which organization develops IEEE standards?",
+    options: [
+      "International Organization for Standardization",
+      "Software Engineering Institute",
+      "Institute of Electrical and Electronics Engineers",
+      "International Software Quality Institute"
+    ],
+    answer: 2,
+    explanation: "IEEE standards are developed by the Institute of Electrical and Electronics Engineers."
+  },
+  {
+    question: "ISO/IEC 25010's 'Performance Efficiency' characteristic measures:",
+    options: [
+      "Security features",
+      "Response time and scalability",
+      "Code maintainability",
+      "System portability"
+    ],
+    answer: 1,
+    explanation: "Performance efficiency includes response time, throughput, and scalability."
+  },
+  {
+    question: "Which of the following is a benefit of implementing Six Sigma in software development?",
+    options: [
+      "Increased process variation",
+      "Higher defect rates",
+      "Better decision-making through data",
+      "Reduced customer satisfaction"
+    ],
+    answer: 2,
+    explanation: "Six Sigma relies on data-driven decision making."
+  },
+  {
+    question: "The 'Optimize the whole' Lean principle refers to:",
+    options: [
+      "Focusing only on coding tasks",
+      "Looking at the entire development lifecycle",
+      "Maximizing individual productivity",
+      "Minimizing team collaboration"
+    ],
+    answer: 1,
+    explanation: "Lean encourages optimizing the entire value stream, not just parts."
+  },
+  {
+    question: "Which CMMI level is also called 'Defined'?",
+    options: [
+      "Level 1",
+      "Level 2",
+      "Level 3",
+      "Level 4"
+    ],
+    answer: 2,
+    explanation: "Level 3 is the Defined maturity level."
+  },
+  {
+    question: "In the context of software quality, what does 'Maintainability' refer to?",
+    options: [
+      "System security features",
+      "Ease of modifying and updating code",
+      "User interface design",
+      "Hardware compatibility"
+    ],
+    answer: 1,
+    explanation: "Maintainability measures how easily software can be modified."
+  },
+  {
+    question: "Which standard is specifically mentioned for 'Software Life Cycle Processes'?",
+    options: [
+      "IEEE 730",
+      "IEEE 829",
+      "IEEE 1012",
+      "IEEE 12207"
+    ],
+    answer: 3,
+    explanation: "IEEE 12207 defines software life cycle processes."
+  }
 ];
 
+
+
+
 const sq5 = [
-    {
-        "question": "In the V-Model, what is the primary focus?",
-        "options": [
-            "Continuous integration and continuous delivery",
-            "Parallel testing at each development stage",
-            "Iterative development and rapid cycles",
-            "Extensive documentation only in the final phase"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which of the following is considered static testing?",
-        "options": [
-            "Performance testing",
-            "Code review",
-            "Functional testing",
-            "Security testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the main difference between Verification and Validation?",
-        "options": [
-            "Verification deals with internal code, Validation deals with user interface",
-            "Verification checks if we're building the product right, Validation checks if we're building the right product",
-            "Verification is done after release, Validation is done during development",
-            "No difference, they mean the same thing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Given a function that accepts age between 18 and 60, which values would you test using Boundary Value Analysis?",
-        "options": [
-            "18, 30, 60",
-            "17, 18, 19, 59, 60, 61",
-            "0, 10, 18, 60, 70, 100",
-            "All integer values from 18 to 60"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which white-box testing technique ensures that each executable statement in the code is executed at least once?",
-        "options": [
-            "Branch Coverage",
-            "Path Coverage",
-            "Statement Coverage",
-            "Mutation Testing"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "What does Branch Coverage require?",
-        "options": [
-            "Every statement executed at least once",
-            "Every possible outcome of each decision point executed at least once",
-            "Every possible path through the code executed",
-            "Testing with mutated code versions"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "If you have a function that categorizes scores: >=90 = 'Excellent', >=75 = 'Good', otherwise = 'Needs Improvement'. How many paths need testing for 100% path coverage?",
-        "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "In Mutation Testing, what does it mean when a test case 'kills' a mutant?",
-        "options": [
-            "The mutant causes the system to crash",
-            "The test case fails when run against the mutant",
-            "The mutant improves code performance",
-            "The test case passes with the mutant"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "For email validation, using Equivalence Partitioning, which of these would be in the same equivalence class?",
-        "options": [
-            "test@example.com and test.com",
-            "user@domain.co.uk and @domain.com",
-            "valid@email.com and another@valid.com",
-            "test@example and test@example."
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which black-box testing technique is best for systems with workflow-based behavior like ATMs?",
-        "options": [
-            "Equivalence Partitioning",
-            "Boundary Value Analysis",
-            "Decision Table Testing",
-            "State Transition Testing"
-        ],
-        "answer": 3
-    },
-    {
-        "question": "Consider this discount logic: Members get 10% discount, and purchases over $100 get additional 5% discount. Using Decision Table Testing, how many test cases are needed for full coverage?",
-        "options": [
-            "2",
-            "3",
-            "4",
-            "6"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "In Big Bang Integration Testing, when is it most appropriate to use?",
-        "options": [
-            "When modules are developed sequentially",
-            "When all modules are ready at once and system is small",
-            "When high-level modules are ready first",
-            "When low-level modules are ready first"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the main disadvantage of Big Bang Integration Testing?",
-        "options": [
-            "Requires extensive planning",
-            "Bugs are harder to isolate",
-            "Needs many stubs and drivers",
-            "Delays UI testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Top-Down Integration Testing starts with:",
-        "options": [
-            "Lowest level modules",
-            "Main module with stubs for lower levels",
-            "All modules integrated at once",
-            "Database layer first"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which integration strategy would be best for an API-first development approach?",
-        "options": [
-            "Big Bang",
-            "Top-Down",
-            "Bottom-Up",
-            "Sandwich"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Sandwich (Hybrid) Integration Testing combines:",
-        "options": [
-            "Static and Dynamic testing",
-            "White-box and Black-box testing",
-            "Top-Down and Bottom-Up testing",
-            "Functional and Non-functional testing"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Stress testing is primarily concerned with:",
-        "options": [
-            "Testing under expected workload",
-            "Testing under extreme conditions",
-            "Testing basic functionality",
-            "Testing recovery from failures"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Load testing versus Stress testing: What's the key difference?",
-        "options": [
-            "Load testing uses more testers",
-            "Stress testing pushes beyond expected capacity",
-            "Load testing is only for web applications",
-            "Stress testing is faster to execute"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Spike testing involves:",
-        "options": [
-            "Gradual increase in load",
-            "Constant load over long period",
-            "Sudden, dramatic changes in load",
-            "Testing with corrupted data"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which testing verifies basic functionality after a new build?",
-        "options": [
-            "Sanity Testing",
-            "Smoke Testing",
-            "Regression Testing",
-            "Recovery Testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the purpose of Recovery Testing?",
-        "options": [
-            "To test how fast the system runs",
-            "To test how the system recovers from failures",
-            "To test security vulnerabilities",
-            "To test user interface responsiveness"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which tool is mentioned for security testing?",
-        "options": [
-            "Jira",
-            "Selenium",
-            "OWASP ZAP",
-            "LoadRunner"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Scalability testing measures:",
-        "options": [
-            "How well the system handles increasing workloads",
-            "How secure the system is",
-            "How easy the system is to use",
-            "How compatible the system is with different browsers"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Usability testing primarily focuses on:",
-        "options": [
-            "Code efficiency",
-            "System security",
-            "User satisfaction and ease of use",
-            "Network performance"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Regression testing is important because:",
-        "options": [
-            "It finds new features to add",
-            "It ensures new changes don't break existing functionality",
-            "It tests the system under extreme load",
-            "It verifies initial requirements"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Alpha testing is performed by:",
-        "options": [
-            "End users in real environment",
-            "Developers and internal QA team",
-            "Only the development team",
-            "External security experts"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Exploratory testing is most useful when:",
-        "options": [
-            "Requirements are well-defined and stable",
-            "Test cases are already documented",
-            "Requirements are vague or rapidly changing",
-            "Testing needs to be fully automated"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "The first phase of defect management is:",
-        "options": [
-            "Defect Logging",
-            "Defect Analysis",
-            "Defect Identification",
-            "Defect Resolution"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "When logging a defect, which of these is LEAST important?",
-        "options": [
-            "Steps to reproduce",
-            "Expected vs actual behavior",
-            "The tester's salary",
-            "Environment information"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Severity versus Priority: A system crash would typically have:",
-        "options": [
-            "High severity, low priority",
-            "Low severity, high priority",
-            "High severity, high priority",
-            "Low severity, low priority"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Root Cause Analysis helps to:",
-        "options": [
-            "Assign blame to developers",
-            "Prevent similar defects in the future",
-            "Increase testing time",
-            "Reduce documentation requirements"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Defect Density is calculated as:",
-        "options": [
-            "Defects found / Time taken to find them",
-            "Defects found / Size of software",
-            "Defects reopened / Total defects fixed",
-            "Defects leaked / Total defects"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "A module has 5000 lines of code and 25 defects. What is its defect density?",
-        "options": [
-            "0.005 defects per line",
-            "5 defects per 1000 lines",
-            "0.2 defects per line",
-            "25 defects total"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Defect Discovery Rate measures:",
-        "options": [
-            "How quickly defects are fixed",
-            "How many defects are found per time period",
-            "How many defects escape to production",
-            "How old the defects are"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "If 40 defects were found over 10 days of testing, what is the defect discovery rate?",
-        "options": [
-            "4 defects per day",
-            "0.25 days per defect",
-            "40 defects total",
-            "10 days testing period"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Defect Resolution Time is important because:",
-        "options": [
-            "It measures testing effectiveness",
-            "It shows how responsive the team is to fixing issues",
-            "It counts total defects found",
-            "It tracks defect patterns"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "A high Defect Reopen Rate indicates:",
-        "options": [
-            "Excellent testing coverage",
-            "Poor quality fixes or insufficient testing",
-            "Rapid development pace",
-            "Good defect management"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Defect Leakage refers to defects found:",
-        "options": [
-            "During unit testing",
-            "After release to production",
-            "During code review",
-            "In documentation"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "If 15 defects were found after release out of 150 total defects, what is the defect leakage percentage?",
-        "options": [
-            "10%",
-            "15%",
-            "90%",
-            "100%"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Defect Aging measures:",
-        "options": [
-            "How complex a defect is",
-            "How long defects remain open",
-            "How many developers worked on a defect",
-            "How many times a defect was reopened"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which metric helps identify bottlenecks in defect resolution?",
-        "options": [
-            "Defect Density",
-            "Defect Aging",
-            "Defect Discovery Rate",
-            "Defect Leakage"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Code review is most effective for finding which type of defects?",
-        "options": [
-            "Performance issues under load",
-            "Coding errors and standards violations",
-            "Usability problems",
-            "Compatibility issues with specific browsers"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "In Agile development, SQA activities are:",
-        "options": [
-            "Done only at the end of the project",
-            "Integrated into each iteration",
-            "Handled by a separate QA team only",
-            "Not necessary due to frequent releases"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which testing level verifies that different modules work together correctly?",
-        "options": [
-            "Unit Testing",
-            "Integration Testing",
-            "System Testing",
-            "Acceptance Testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Acceptance Testing is typically performed by:",
-        "options": [
-            "Developers",
-            "QA Engineers",
-            "End Users",
-            "Project Managers"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Consider this Python function:\ndef calculate_discount(member, amount):\n    discount = 0\n    if member:\n        discount += 10\n    if amount > 100:\n        discount += 5\n    return discount\nWhat is the minimum number of test cases needed for branch coverage?",
-        "options": [
-            "1",
-            "2",
-            "3",
-            "4"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "For the same discount function, how many test cases for 100% path coverage?",
-        "options": [
-            "2",
-            "3",
-            "4",
-            "5"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "A password field accepts 8-20 characters. Using BVA, which values should be tested?",
-        "options": [
-            "7, 8, 9, 19, 20, 21",
-            "8, 15, 20",
-            "0, 8, 20, 30",
-            "All values from 8 to 20"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which integration testing strategy would be best for testing a microservices architecture?",
-        "options": [
-            "Big Bang",
-            "Top-Down",
-            "Bottom-Up",
-            "Sandwich"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Smoke testing is also known as:",
-        "options": [
-            "Build Verification Testing",
-            "Exploratory Testing",
-            "Stress Testing",
-            "Compatibility Testing"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Sanity testing is performed when:",
-        "options": [
-            "A new build is received",
-            "Specific functionality is fixed or changed",
-            "Testing for the first time",
-            "Under extreme load conditions"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which is NOT a common defect tracking tool?",
-        "options": [
-            "Jira",
-            "Bugzilla",
-            "Selenium",
-            "Redmine"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "A defect marked as 'Critical' severity would typically:",
-        "options": [
-            "Be a cosmetic issue only",
-            "Cause system failure or data loss",
-            "Have a workaround available",
-            "Be fixed in a future release"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Traceability Matrix ensures:",
-        "options": [
-            "All requirements are mapped to test cases",
-            "All code is commented properly",
-            "All defects are fixed quickly",
-            "All tests are automated"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "In DevOps, SQA emphasizes:",
-        "options": [
-            "Manual testing only",
-            "Testing at the end of development",
-            "Continuous testing and automation",
-            "Eliminating all testing activities"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Pair programming is a form of:",
-        "options": [
-            "Performance testing",
-            "Code review",
-            "Security testing",
-            "User acceptance testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Technical reviews focus on:",
-        "options": [
-            "User interface design",
-            "System architecture and design patterns",
-            "Business requirements",
-            "Project timelines"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Walkthroughs are typically:",
-        "options": [
-            "Formal inspection meetings",
-            "Semi-formal presentation sessions",
-            "Fully automated processes",
-            "Done only by managers"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which testing type would you use to verify a login form is not vulnerable to SQL injection?",
-        "options": [
-            "Performance Testing",
-            "Security Testing",
-            "Usability Testing",
-            "Compatibility Testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Compatibility testing checks:",
-        "options": [
-            "How fast the system runs",
-            "How secure the system is",
-            "How the system works on different platforms/browsers",
-            "How easy the system is to use"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Ad-hoc testing is:",
-        "options": [
-            "Formal and structured",
-            "Informal without predefined test cases",
-            "Always automated",
-            "Only done by developers"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which metric would help identify if testing was thorough enough?",
-        "options": [
-            "Defect Leakage",
-            "Defect Density",
-            "Defect Resolution Time",
-            "Defect Aging"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "If out of 200 fixed defects, 12 were reopened, what is the defect reopen rate?",
-        "options": [
-            "6%",
-            "12%",
-            "94%",
-            "88%"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which is a benefit of tracking defect metrics?",
-        "options": [
-            "Increased paperwork",
-            "Data-driven decision making",
-            "Longer development cycles",
-            "Less time for actual testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "In the Waterfall model, SQA activities are:",
-        "options": [
-            "Applied sequentially at each phase",
-            "Integrated into every sprint",
-            "Done only at the end",
-            "Not formally defined"
-        ],
-        "answer": 0
-    }
+  {
+    question: "In the V-Model, what is the primary focus?",
+    options: [
+      "Continuous integration and continuous delivery",
+      "Parallel testing at each development stage",
+      "Iterative development and rapid cycles",
+      "Extensive documentation only in the final phase"
+    ],
+    answer: 1,
+    explanation: "The V-Model emphasizes parallel testing activities corresponding to each development stage, ensuring validation at every phase."
+  },
+  {
+    question: "Which of the following is considered static testing?",
+    options: [
+      "Performance testing",
+      "Code review",
+      "Functional testing",
+      "Security testing"
+    ],
+    answer: 1,
+    explanation: "Static testing involves examining code or documentation without executing the software, such as in code reviews."
+  },
+  {
+    question: "What is the main difference between Verification and Validation?",
+    options: [
+      "Verification deals with internal code, Validation deals with user interface",
+      "Verification checks if we're building the product right, Validation checks if we're building the right product",
+      "Verification is done after release, Validation is done during development",
+      "No difference, they mean the same thing"
+    ],
+    answer: 1,
+    explanation: "Verification ensures the product meets specified requirements (building it right), while validation ensures it meets user needs (building the right product)."
+  },
+  {
+    question: "Given a function that accepts age between 18 and 60, which values would you test using Boundary Value Analysis?",
+    options: [
+      "18, 30, 60",
+      "17, 18, 19, 59, 60, 61",
+      "0, 10, 18, 60, 70, 100",
+      "All integer values from 18 to 60"
+    ],
+    answer: 1,
+    explanation: "Boundary Value Analysis tests values at and just beyond the boundaries: min-1, min, min+1, max-1, max, max+1."
+  },
+  {
+    question: "Which white-box testing technique ensures that each executable statement in the code is executed at least once?",
+    options: [
+      "Branch Coverage",
+      "Path Coverage",
+      "Statement Coverage",
+      "Mutation Testing"
+    ],
+    answer: 2,
+    explanation: "Statement Coverage ensures every statement in the code is executed at least once during testing."
+  },
+  {
+    question: "What does Branch Coverage require?",
+    options: [
+      "Every statement executed at least once",
+      "Every possible outcome of each decision point executed at least once",
+      "Every possible path through the code executed",
+      "Testing with mutated code versions"
+    ],
+    answer: 1,
+    explanation: "Branch Coverage requires that each branch (true/false outcome) of every decision point is executed."
+  },
+  {
+    question: "If you have a function that categorizes scores: >=90 = 'Excellent', >=75 = 'Good', otherwise = 'Needs Improvement'. How many paths need testing for 100% path coverage?",
+    options: ["1", "2", "3", "4"],
+    answer: 2,
+    explanation: "There are three distinct logical outcomes: Excellent, Good, and Needs Improvement, each representing a unique path."
+  },
+  {
+    question: "In Mutation Testing, what does it mean when a test case 'kills' a mutant?",
+    options: [
+      "The mutant causes the system to crash",
+      "The test case fails when run against the mutant",
+      "The mutant improves code performance",
+      "The test case passes with the mutant"
+    ],
+    answer: 1,
+    explanation: "A mutant is 'killed' when a test case detects the change (i.e., the test fails), indicating good test coverage."
+  },
+  {
+    question: "For email validation, using Equivalence Partitioning, which of these would be in the same equivalence class?",
+    options: [
+      "test@example.com and test.com",
+      "user@domain.co.uk and @domain.com",
+      "valid@email.com and another@valid.com",
+      "test@example and test@example."
+    ],
+    answer: 2,
+    explanation: "Both 'valid@email.com' and 'another@valid.com' are valid email addresses and belong to the same valid equivalence class."
+  },
+  {
+    question: "Which black-box testing technique is best for systems with workflow-based behavior like ATMs?",
+    options: [
+      "Equivalence Partitioning",
+      "Boundary Value Analysis",
+      "Decision Table Testing",
+      "State Transition Testing"
+    ],
+    answer: 3,
+    explanation: "State Transition Testing is ideal for systems with defined states and transitions, such as ATM workflows."
+  },
+  {
+    question: "Consider this discount logic: Members get 10% discount, and purchases over $100 get additional 5% discount. Using Decision Table Testing, how many test cases are needed for full coverage?",
+    options: ["2", "3", "4", "6"],
+    answer: 2,
+    explanation: "Two independent conditions (member and purchase > $100) lead to 2^2 = 4 combinations, but some may be merged; typically 4 test cases cover all rules."
+  },
+  {
+    question: "In Big Bang Integration Testing, when is it most appropriate to use?",
+    options: [
+      "When modules are developed sequentially",
+      "When all modules are ready at once and system is small",
+      "When high-level modules are ready first",
+      "When low-level modules are ready first"
+    ],
+    answer: 1,
+    explanation: "Big Bang is suitable for small systems where all modules are integrated simultaneously after development."
+  },
+  {
+    question: "What is the main disadvantage of Big Bang Integration Testing?",
+    options: [
+      "Requires extensive planning",
+      "Bugs are harder to isolate",
+      "Needs many stubs and drivers",
+      "Delays UI testing"
+    ],
+    answer: 1,
+    explanation: "Since all modules are integrated at once, isolating the source of a defect becomes difficult."
+  },
+  {
+    question: "Top-Down Integration Testing starts with:",
+    options: [
+      "Lowest level modules",
+      "Main module with stubs for lower levels",
+      "All modules integrated at once",
+      "Database layer first"
+    ],
+    answer: 1,
+    explanation: "Top-Down begins with the main module, using stubs to simulate lower-level modules."
+  },
+  {
+    question: "Which integration strategy would be best for an API-first development approach?",
+    options: [
+      "Big Bang",
+      "Top-Down",
+      "Bottom-Up",
+      "Sandwich"
+    ],
+    answer: 2,
+    explanation: "Bottom-Up is ideal for API-first development as lower-level services (APIs) are developed and tested first."
+  },
+  {
+    question: "Sandwich (Hybrid) Integration Testing combines:",
+    options: [
+      "Static and Dynamic testing",
+      "White-box and Black-box testing",
+      "Top-Down and Bottom-Up testing",
+      "Functional and Non-functional testing"
+    ],
+    answer: 2,
+    explanation: "Sandwich Testing uses both Top-Down and Bottom-Up strategies simultaneously."
+  },
+  {
+    question: "Stress testing is primarily concerned with:",
+    options: [
+      "Testing under expected workload",
+      "Testing under extreme conditions",
+      "Testing basic functionality",
+      "Testing recovery from failures"
+    ],
+    answer: 1,
+    explanation: "Stress testing evaluates system behavior under extreme conditions beyond normal operational capacity."
+  },
+  {
+    question: "Load testing versus Stress testing: What's the key difference?",
+    options: [
+      "Load testing uses more testers",
+      "Stress testing pushes beyond expected capacity",
+      "Load testing is only for web applications",
+      "Stress testing is faster to execute"
+    ],
+    answer: 1,
+    explanation: "Load tests typical workload; stress tests go beyond to find breaking points."
+  },
+  {
+    question: "Spike testing involves:",
+    options: [
+      "Gradual increase in load",
+      "Constant load over long period",
+      "Sudden, dramatic changes in load",
+      "Testing with corrupted data"
+    ],
+    answer: 2,
+    explanation: "Spike testing involves sudden, significant increases in load to see how the system reacts."
+  },
+  {
+    question: "Which testing verifies basic functionality after a new build?",
+    options: [
+      "Sanity Testing",
+      "Smoke Testing",
+      "Regression Testing",
+      "Recovery Testing"
+    ],
+    answer: 1,
+    explanation: "Smoke Testing checks critical functionalities to ensure the build is stable for further testing."
+  },
+  {
+    question: "What is the purpose of Recovery Testing?",
+    options: [
+      "To test how fast the system runs",
+      "To test how the system recovers from failures",
+      "To test security vulnerabilities",
+      "To test user interface responsiveness"
+    ],
+    answer: 1,
+    explanation: "Recovery Testing assesses the system's ability to recover after hardware/software failures."
+  },
+  {
+    question: "Which tool is mentioned for security testing?",
+    options: [
+      "Jira",
+      "Selenium",
+      "OWASP ZAP",
+      "LoadRunner"
+    ],
+    answer: 2,
+    explanation: "OWASP ZAP is a popular open-source security testing tool."
+  },
+  {
+    question: "Scalability testing measures:",
+    options: [
+      "How well the system handles increasing workloads",
+      "How secure the system is",
+      "How easy the system is to use",
+      "How compatible the system is with different browsers"
+    ],
+    answer: 0,
+    explanation: "Scalability testing evaluates system performance as workload increases."
+  },
+  {
+    question: "Usability testing primarily focuses on:",
+    options: [
+      "Code efficiency",
+      "System security",
+      "User satisfaction and ease of use",
+      "Network performance"
+    ],
+    answer: 2,
+    explanation: "Usability testing assesses how user-friendly and intuitive the system is."
+  },
+  {
+    question: "Regression testing is important because:",
+    options: [
+      "It finds new features to add",
+      "It ensures new changes don't break existing functionality",
+      "It tests the system under extreme load",
+      "It verifies initial requirements"
+    ],
+    answer: 1,
+    explanation: "Regression testing confirms that recent code changes haven't adversely affected existing features."
+  },
+  {
+    question: "Alpha testing is performed by:",
+    options: [
+      "End users in real environment",
+      "Developers and internal QA team",
+      "Only the development team",
+      "External security experts"
+    ],
+    answer: 1,
+    explanation: "Alpha testing is done internally by developers and QA before release to external users."
+  },
+  {
+    question: "Exploratory testing is most useful when:",
+    options: [
+      "Requirements are well-defined and stable",
+      "Test cases are already documented",
+      "Requirements are vague or rapidly changing",
+      "Testing needs to be fully automated"
+    ],
+    answer: 2,
+    explanation: "Exploratory testing is effective in dynamic environments with unclear or evolving requirements."
+  },
+  {
+    question: "The first phase of defect management is:",
+    options: [
+      "Defect Logging",
+      "Defect Analysis",
+      "Defect Identification",
+      "Defect Resolution"
+    ],
+    answer: 2,
+    explanation: "Defect management starts with identifying a defect."
+  },
+  {
+    question: "When logging a defect, which of these is LEAST important?",
+    options: [
+      "Steps to reproduce",
+      "Expected vs actual behavior",
+      "The tester's salary",
+      "Environment information"
+    ],
+    answer: 2,
+    explanation: "Tester's salary is irrelevant to defect reporting."
+  },
+  {
+    question: "Severity versus Priority: A system crash would typically have:",
+    options: [
+      "High severity, low priority",
+      "Low severity, high priority",
+      "High severity, high priority",
+      "Low severity, low priority"
+    ],
+    answer: 2,
+    explanation: "A system crash is both severe (high impact) and urgent (high priority)."
+  },
+  {
+    question: "Root Cause Analysis helps to:",
+    options: [
+      "Assign blame to developers",
+      "Prevent similar defects in the future",
+      "Increase testing time",
+      "Reduce documentation requirements"
+    ],
+    answer: 1,
+    explanation: "Root Cause Analysis identifies underlying causes to prevent recurrence."
+  },
+  {
+    question: "Defect Density is calculated as:",
+    options: [
+      "Defects found / Time taken to find them",
+      "Defects found / Size of software",
+      "Defects reopened / Total defects fixed",
+      "Defects leaked / Total defects"
+    ],
+    answer: 1,
+    explanation: "Defect Density = Defects / Software size (e.g., lines of code)."
+  },
+  {
+    question: "A module has 5000 lines of code and 25 defects. What is its defect density?",
+    options: [
+      "0.005 defects per line",
+      "5 defects per 1000 lines",
+      "0.2 defects per line",
+      "25 defects total"
+    ],
+    answer: 1,
+    explanation: "25 defects / 5000 LOC = 0.005 per line = 5 per 1000 lines."
+  },
+  {
+    question: "Defect Discovery Rate measures:",
+    options: [
+      "How quickly defects are fixed",
+      "How many defects are found per time period",
+      "How many defects escape to production",
+      "How old the defects are"
+    ],
+    answer: 1,
+    explanation: "Defect Discovery Rate = Defects found / Time period."
+  },
+  {
+    question: "If 40 defects were found over 10 days of testing, what is the defect discovery rate?",
+    options: [
+      "4 defects per day",
+      "0.25 days per defect",
+      "40 defects total",
+      "10 days testing period"
+    ],
+    answer: 0,
+    explanation: "40 defects / 10 days = 4 defects/day."
+  },
+  {
+    question: "Defect Resolution Time is important because:",
+    options: [
+      "It measures testing effectiveness",
+      "It shows how responsive the team is to fixing issues",
+      "It counts total defects found",
+      "It tracks defect patterns"
+    ],
+    answer: 1,
+    explanation: "It indicates team efficiency in addressing reported defects."
+  },
+  {
+    question: "A high Defect Reopen Rate indicates:",
+    options: [
+      "Excellent testing coverage",
+      "Poor quality fixes or insufficient testing",
+      "Rapid development pace",
+      "Good defect management"
+    ],
+    answer: 1,
+    explanation: "High reopen rate suggests fixes are inadequate or testing is incomplete."
+  },
+  {
+    question: "Defect Leakage refers to defects found:",
+    options: [
+      "During unit testing",
+      "After release to production",
+      "During code review",
+      "In documentation"
+    ],
+    answer: 1,
+    explanation: "Defect Leakage = defects found post-release that should have been caught earlier."
+  },
+  {
+    question: "If 15 defects were found after release out of 150 total defects, what is the defect leakage percentage?",
+    options: ["10%", "15%", "90%", "100%"],
+    answer: 0,
+    explanation: "Leakage = (15/150)*100 = 10%."
+  },
+  {
+    question: "Defect Aging measures:",
+    options: [
+      "How complex a defect is",
+      "How long defects remain open",
+      "How many developers worked on a defect",
+      "How many times a defect was reopened"
+    ],
+    answer: 1,
+    explanation: "Defect Aging tracks the time from defect reporting to resolution."
+  },
+  {
+    question: "Which metric helps identify bottlenecks in defect resolution?",
+    options: [
+      "Defect Density",
+      "Defect Aging",
+      "Defect Discovery Rate",
+      "Defect Leakage"
+    ],
+    answer: 1,
+    explanation: "High aging indicates delays in fixing defects."
+  },
+  {
+    question: "Code review is most effective for finding which type of defects?",
+    options: [
+      "Performance issues under load",
+      "Coding errors and standards violations",
+      "Usability problems",
+      "Compatibility issues with specific browsers"
+    ],
+    answer: 1,
+    explanation: "Code reviews catch syntax errors, logic flaws, and adherence to coding standards."
+  },
+  {
+    question: "In Agile development, SQA activities are:",
+    options: [
+      "Done only at the end of the project",
+      "Integrated into each iteration",
+      "Handled by a separate QA team only",
+      "Not necessary due to frequent releases"
+    ],
+    answer: 1,
+    explanation: "Agile integrates testing continuously within each sprint/iteration."
+  },
+  {
+    question: "Which testing level verifies that different modules work together correctly?",
+    options: [
+      "Unit Testing",
+      "Integration Testing",
+      "System Testing",
+      "Acceptance Testing"
+    ],
+    answer: 1,
+    explanation: "Integration Testing focuses on interactions between modules."
+  },
+  {
+    question: "Acceptance Testing is typically performed by:",
+    options: [
+      "Developers",
+      "QA Engineers",
+      "End Users",
+      "Project Managers"
+    ],
+    answer: 2,
+    explanation: "Acceptance Testing is done by end users or clients to validate the product against their needs."
+  },
+  {
+    question: "Consider this Python function: def calculate_discount(member, amount): discount = 0; if member: discount += 10; if amount > 100: discount += 5; return discount. What is the minimum number of test cases needed for branch coverage?",
+    options: ["1", "2", "3", "4"],
+    answer: 1,
+    explanation: "Two independent conditions (member and amount > 100) require at least 2 test cases to cover all branches."
+  },
+  {
+    question: "For the same discount function, how many test cases for 100% path coverage?",
+    options: ["2", "3", "4", "5"],
+    answer: 2,
+    explanation: "There are 2^2 = 4 possible paths, but typically 4 test cases are needed for full path coverage."
+  },
+  {
+    question: "A password field accepts 8-20 characters. Using BVA, which values should be tested?",
+    options: [
+      "7, 8, 9, 19, 20, 21",
+      "8, 15, 20",
+      "0, 8, 20, 30",
+      "All values from 8 to 20"
+    ],
+    answer: 0,
+    explanation: "Boundary values: just below min (7), min (8), min+1 (9), max-1 (19), max (20), max+1 (21)."
+  },
+  {
+    question: "Which integration testing strategy would be best for testing a microservices architecture?",
+    options: [
+      "Big Bang",
+      "Top-Down",
+      "Bottom-Up",
+      "Sandwich"
+    ],
+    answer: 2,
+    explanation: "Bottom-Up is suitable for microservices as each service can be tested independently before integration."
+  },
+  {
+    question: "Smoke testing is also known as:",
+    options: [
+      "Build Verification Testing",
+      "Exploratory Testing",
+      "Stress Testing",
+      "Compatibility Testing"
+    ],
+    answer: 0,
+    explanation: "Smoke Testing is often called Build Verification Testing (BVT)."
+  },
+  {
+    question: "Sanity testing is performed when:",
+    options: [
+      "A new build is received",
+      "Specific functionality is fixed or changed",
+      "Testing for the first time",
+      "Under extreme load conditions"
+    ],
+    answer: 1,
+    explanation: "Sanity testing checks specific fixes or changes to ensure they work as intended."
+  },
+  {
+    question: "Which is NOT a common defect tracking tool?",
+    options: [
+      "Jira",
+      "Bugzilla",
+      "Selenium",
+      "Redmine"
+    ],
+    answer: 2,
+    explanation: "Selenium is an automation tool, not a defect tracker."
+  },
+  {
+    question: "A defect marked as 'Critical' severity would typically:",
+    options: [
+      "Be a cosmetic issue only",
+      "Cause system failure or data loss",
+      "Have a workaround available",
+      "Be fixed in a future release"
+    ],
+    answer: 1,
+    explanation: "Critical severity defects have major impact, such as system crashes or data loss."
+  },
+  {
+    question: "Traceability Matrix ensures:",
+    options: [
+      "All requirements are mapped to test cases",
+      "All code is commented properly",
+      "All defects are fixed quickly",
+      "All tests are automated"
+    ],
+    answer: 0,
+    explanation: "Traceability Matrix links requirements to test cases to ensure complete coverage."
+  },
+  {
+    question: "In DevOps, SQA emphasizes:",
+    options: [
+      "Manual testing only",
+      "Testing at the end of development",
+      "Continuous testing and automation",
+      "Eliminating all testing activities"
+    ],
+    answer: 2,
+    explanation: "DevOps promotes continuous testing and automation throughout the CI/CD pipeline."
+  },
+  {
+    question: "Pair programming is a form of:",
+    options: [
+      "Performance testing",
+      "Code review",
+      "Security testing",
+      "User acceptance testing"
+    ],
+    answer: 1,
+    explanation: "Pair programming involves real-time collaborative code review."
+  },
+  {
+    question: "Technical reviews focus on:",
+    options: [
+      "User interface design",
+      "System architecture and design patterns",
+      "Business requirements",
+      "Project timelines"
+    ],
+    answer: 1,
+    explanation: "Technical reviews evaluate design, architecture, and implementation details."
+  },
+  {
+    question: "Walkthroughs are typically:",
+    options: [
+      "Formal inspection meetings",
+      "Semi-formal presentation sessions",
+      "Fully automated processes",
+      "Done only by managers"
+    ],
+    answer: 1,
+    explanation: "Walkthroughs are informal or semi-formal meetings to review artifacts."
+  },
+  {
+    question: "Which testing type would you use to verify a login form is not vulnerable to SQL injection?",
+    options: [
+      "Performance Testing",
+      "Security Testing",
+      "Usability Testing",
+      "Compatibility Testing"
+    ],
+    answer: 1,
+    explanation: "SQL injection is a security vulnerability, so Security Testing is appropriate."
+  },
+  {
+    question: "Compatibility testing checks:",
+    options: [
+      "How fast the system runs",
+      "How secure the system is",
+      "How the system works on different platforms/browsers",
+      "How easy the system is to use"
+    ],
+    answer: 2,
+    explanation: "Compatibility testing verifies functionality across various environments."
+  },
+  {
+    question: "Ad-hoc testing is:",
+    options: [
+      "Formal and structured",
+      "Informal without predefined test cases",
+      "Always automated",
+      "Only done by developers"
+    ],
+    answer: 1,
+    explanation: "Ad-hoc testing is unscripted, exploratory testing without formal test cases."
+  },
+  {
+    question: "Which metric would help identify if testing was thorough enough?",
+    options: [
+      "Defect Leakage",
+      "Defect Density",
+      "Defect Resolution Time",
+      "Defect Aging"
+    ],
+    answer: 0,
+    explanation: "Low Defect Leakage indicates effective testing that caught most defects before release."
+  },
+  {
+    question: "If out of 200 fixed defects, 12 were reopened, what is the defect reopen rate?",
+    options: ["6%", "12%", "94%", "88%"],
+    answer: 0,
+    explanation: "Reopen Rate = (12/200)*100 = 6%."
+  },
+  {
+    question: "Which is a benefit of tracking defect metrics?",
+    options: [
+      "Increased paperwork",
+      "Data-driven decision making",
+      "Longer development cycles",
+      "Less time for actual testing"
+    ],
+    answer: 1,
+    explanation: "Metrics provide insights for improving processes and product quality."
+  },
+  {
+    question: "In the Waterfall model, SQA activities are:",
+    options: [
+      "Applied sequentially at each phase",
+      "Integrated into every sprint",
+      "Done only at the end",
+      "Not formally defined"
+    ],
+    answer: 0,
+    explanation: "Waterfall follows a sequential phase-wise approach, with SQA activities at each stage."
+  }
 ];
+
+
+
+
 
 
 const sq6 = [
-    {
-        "question": "What is the primary purpose of test automation in modern software development?",
-        "options": [
-            "To eliminate all manual testing",
-            "To improve efficiency, accuracy, and coverage in testing",
-            "To reduce development costs by 50%",
-            "To replace software developers with testers"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which of the following is NOT mentioned as a reason why manual testing struggles with modern software development?",
-        "options": [
-            "Frequent releases (e.g., weekly updates)",
-            "Complex systems with many integrations",
-            "Diverse environments (different browsers/devices)",
-            "Lack of skilled manual testers"
-        ],
-        "answer": 3
-    },
-    {
-        "question": "What advantage of automation specifically helps in CI/CD pipelines?",
-        "options": [
-            "Reusability of test scripts",
-            "Speed and efficiency for rapid feedback",
-            "Accuracy in test execution",
-            "Scalability across multiple platforms"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "How does test automation improve test coverage?",
-        "options": [
-            "By eliminating all manual testers",
-            "By executing a large number of test cases including complex scenarios",
-            "By reducing test documentation",
-            "By focusing only on critical paths"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which type of testing focuses on individual components or functions in isolation?",
-        "options": [
-            "Integration Testing",
-            "Functional/UI Testing",
-            "Unit Testing",
-            "Performance Testing"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "What do unit tests typically check according to the chapter?",
-        "options": [
-            "Only user interface elements",
-            "Functional correctness, exception handling, and boundary conditions",
-            "Database performance only",
-            "Network latency issues"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What characteristic should good automated unit tests have?",
-        "options": [
-            "Slow but thorough",
-            "Dependent on external systems",
-            "Isolated, fast, and repeatable",
-            "Non-deterministic for better coverage"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "Which tool is mentioned for API testing in integration testing?",
-        "options": [
-            "Selenium",
-            "Postman",
-            "JMeter",
-            "Cypress"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the key objective of integration testing?",
-        "options": [
-            "To test individual functions in isolation",
-            "To verify module-to-module interaction and communication",
-            "To measure user interface responsiveness",
-            "To check code formatting standards"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which automation tool is specifically designed for mobile application testing?",
-        "options": [
-            "Selenium",
-            "Appium",
-            "JUnit",
-            "Cypress"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Selenium supports testing across which of the following?",
-        "options": [
-            "Only Chrome browser",
-            "Multiple browsers and programming languages",
-            "Only Java applications",
-            "Mobile apps only"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What makes Cypress different from Selenium according to the chapter?",
-        "options": [
-            "Cypress only works with Java",
-            "Cypress runs directly in the browser with faster execution",
-            "Cypress doesn't support JavaScript",
-            "Cypress is only for backend testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which framework uses a keyword-driven, human-readable syntax?",
-        "options": [
-            "JUnit",
-            "TestNG",
-            "Robot Framework",
-            "Cypress"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "What is NOT mentioned as a factor when selecting an automation tool?",
-        "options": [
-            "Application type (web, mobile, desktop)",
-            "Programming language compatibility",
-            "Tool's popularity on social media",
-            "Integration support with CI/CD pipelines"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "What does CI (Continuous Integration) involve?",
-        "options": [
-            "Only deploying code to production",
-            "Regularly merging code changes into a shared repository",
-            "Manual code reviews only",
-            "Testing after the project is complete"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What happens during each integration in CI?",
-        "options": [
-            "Manual deployment only",
-            "Automated builds and tests are triggered",
-            "Code is reviewed by managers only",
-            "No testing occurs"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "How does CI help development teams?",
-        "options": [
-            "By delaying feedback until the end",
-            "By identifying issues early through immediate feedback",
-            "By eliminating all testing",
-            "By increasing manual intervention"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What does Continuous Deployment (CD) automate?",
-        "options": [
-            "Only code writing",
-            "The release of tested code into production",
-            "Manual test case creation",
-            "Project management meetings"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is a key benefit of CI/CD in testing mentioned in the chapter?",
-        "options": [
-            "Early bug detection",
-            "Elimination of all bugs",
-            "Reduction in code quality",
-            "Increase in manual testing"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which CI/CD tool is described as an open-source automation server?",
-        "options": [
-            "GitHub Actions",
-            "Jenkins",
-            "GitLab CI/CD",
-            "CircleCI"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Where is code typically pushed to trigger a CI/CD pipeline?",
-        "options": [
-            "Email attachment",
-            "Version control system like GitHub",
-            "Shared network drive",
-            "Physical USB drive"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What happens if tests fail in a CI/CD pipeline?",
-        "options": [
-            "Deployment proceeds anyway",
-            "Issues are flagged and deployment stops",
-            "Tests are ignored",
-            "Code is automatically rewritten"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which type of testing evaluates application speed, stability, and scalability?",
-        "options": [
-            "Unit Testing",
-            "Integration Testing",
-            "Performance Testing",
-            "Functional Testing"
-        ],
-        "answer": 2
-    },
-    {
-        "question": "What does automated testing eliminate that manual testing is prone to?",
-        "options": [
-            "All software bugs",
-            "Human errors in test execution",
-            "The need for test planning",
-            "Code documentation"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Why is scalability important in test automation?",
-        "options": [
-            "It allows tests to run on multiple devices/browsers without additional manual effort",
-            "It makes tests run slower but more thorough",
-            "It reduces the number of test cases needed",
-            "It eliminates the need for test environments"
-        ],
-        "answer": 0
-    },
-    {
-        "question": "Which cloud-based testing platforms are mentioned for enhancing scalability?",
-        "options": [
-            "AWS and Azure only",
-            "Sauce Labs and BrowserStack",
-            "Google Cloud only",
-            "IBM Cloud only"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What does JUnit primarily focus on?",
-        "options": [
-            "Mobile application testing",
-            "Testing individual components of Java applications",
-            "Web UI testing only",
-            "Performance testing only"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "How does TestNG extend JUnit's capabilities?",
-        "options": [
-            "By only supporting Python",
-            "By introducing parallel execution and data-driven testing",
-            "By eliminating all assertions",
-            "By focusing only on mobile testing"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What advantage does automation provide for regression testing?",
-        "options": [
-            "It makes regression testing unnecessary",
-            "It ensures consistent and frequent validation of small code changes",
-            "It only tests new features",
-            "It slows down the testing process"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is a long-term benefit of test automation despite high initial investment?",
-        "options": [
-            "Increased manual testing requirements",
-            "Reduced testing costs due to decreased manual effort",
-            "More complex test documentation",
-            "Slower release cycles"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What does CI encourage in terms of code updates?",
-        "options": [
-            "Large, infrequent updates",
-            "Small, incremental updates",
-            "No updates after initial release",
-            "Updates only from senior developers"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "Which programming languages does Selenium support according to the chapter?",
-        "options": [
-            "Only Java",
-            "Java, Python, C#, and JavaScript",
-            "Only Python",
-            "Only JavaScript"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What type of applications does Appium support testing?",
-        "options": [
-            "Only web applications",
-            "Native, hybrid, and web-based mobile applications",
-            "Only desktop applications",
-            "Only backend services"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What benefit does CI/CD provide for deployment according to the chapter?",
-        "options": [
-            "Makes deployments more risky",
-            "Reduces human intervention and minimizes deployment risks",
-            "Eliminates all deployment processes",
-            "Requires more manual approvals"
-        ],
-        "answer": 1
-    },
-    {
-        "question": "What is the final step in a typical CI/CD pipeline if tests pass?",
-        "options": [
-            "Code is deleted",
-            "Deployment proceeds",
-            "Pipeline stops completely",
-            "Manual review begins"
-        ],
-        "answer": 1
-    }
+  {
+    question: "What is the primary purpose of test automation in modern software development?",
+    options: [
+      "To eliminate all manual testing",
+      "To improve efficiency, accuracy, and coverage in testing",
+      "To reduce development costs by 50%",
+      "To replace software developers with testers"
+    ],
+    answer: 1,
+    explanation: "Automation improves speed, accuracy, and test coverage but does not eliminate manual testing."
+  },
+  {
+    question: "Which of the following is NOT mentioned as a reason why manual testing struggles with modern software development?",
+    options: [
+      "Frequent releases (e.g., weekly updates)",
+      "Complex systems with many integrations",
+      "Diverse environments (different browsers/devices)",
+      "Lack of skilled manual testers"
+    ],
+    answer: 3,
+    explanation: "The challenge is scale and speed, not lack of skilled testers."
+  },
+  {
+    question: "What advantage of automation specifically helps in CI/CD pipelines?",
+    options: [
+      "Reusability of test scripts",
+      "Speed and efficiency for rapid feedback",
+      "Accuracy in test execution",
+      "Scalability across multiple platforms"
+    ],
+    answer: 1,
+    explanation: "CI/CD requires fast feedback, which automation provides."
+  },
+  {
+    question: "How does test automation improve test coverage?",
+    options: [
+      "By eliminating all manual testers",
+      "By executing a large number of test cases including complex scenarios",
+      "By reducing test documentation",
+      "By focusing only on critical paths"
+    ],
+    answer: 1,
+    explanation: "Automation allows running many test cases repeatedly and consistently."
+  },
+  {
+    question: "Which type of testing focuses on individual components or functions in isolation?",
+    options: [
+      "Integration Testing",
+      "Functional/UI Testing",
+      "Unit Testing",
+      "Performance Testing"
+    ],
+    answer: 2,
+    explanation: "Unit testing validates individual functions or components separately."
+  },
+  {
+    question: "What do unit tests typically check according to the chapter?",
+    options: [
+      "Only user interface elements",
+      "Functional correctness, exception handling, and boundary conditions",
+      "Database performance only",
+      "Network latency issues"
+    ],
+    answer: 1,
+    explanation: "Unit tests verify logic correctness, edge cases, and error handling."
+  },
+  {
+    question: "What characteristic should good automated unit tests have?",
+    options: [
+      "Slow but thorough",
+      "Dependent on external systems",
+      "Isolated, fast, and repeatable",
+      "Non-deterministic for better coverage"
+    ],
+    answer: 2,
+    explanation: "Good unit tests should be fast, isolated, and produce consistent results."
+  },
+  {
+    question: "Which tool is mentioned for API testing in integration testing?",
+    options: [
+      "Selenium",
+      "Postman",
+      "JMeter",
+      "Cypress"
+    ],
+    answer: 1,
+    explanation: "Postman is commonly used for API and integration testing."
+  },
+  {
+    question: "What is the key objective of integration testing?",
+    options: [
+      "To test individual functions in isolation",
+      "To verify module-to-module interaction and communication",
+      "To measure user interface responsiveness",
+      "To check code formatting standards"
+    ],
+    answer: 1,
+    explanation: "Integration testing ensures modules work correctly together."
+  },
+  {
+    question: "Which automation tool is specifically designed for mobile application testing?",
+    options: [
+      "Selenium",
+      "Appium",
+      "JUnit",
+      "Cypress"
+    ],
+    answer: 1,
+    explanation: "Appium supports mobile application automation."
+  },
+  {
+    question: "Selenium supports testing across which of the following?",
+    options: [
+      "Only Chrome browser",
+      "Multiple browsers and programming languages",
+      "Only Java applications",
+      "Mobile apps only"
+    ],
+    answer: 1,
+    explanation: "Selenium supports multiple browsers and languages like Java, Python, and C#."
+  },
+  {
+    question: "What makes Cypress different from Selenium according to the chapter?",
+    options: [
+      "Cypress only works with Java",
+      "Cypress runs directly in the browser with faster execution",
+      "Cypress doesn't support JavaScript",
+      "Cypress is only for backend testing"
+    ],
+    answer: 1,
+    explanation: "Cypress runs inside the browser, making it faster and more reliable."
+  },
+  {
+    question: "Which framework uses a keyword-driven, human-readable syntax?",
+    options: [
+      "JUnit",
+      "TestNG",
+      "Robot Framework",
+      "Cypress"
+    ],
+    answer: 2,
+    explanation: "Robot Framework uses readable keywords for test cases."
+  },
+  {
+    question: "What is NOT mentioned as a factor when selecting an automation tool?",
+    options: [
+      "Application type (web, mobile, desktop)",
+      "Programming language compatibility",
+      "Tool's popularity on social media",
+      "Integration support with CI/CD pipelines"
+    ],
+    answer: 2,
+    explanation: "Tool popularity on social media is irrelevant to selection."
+  },
+  {
+    question: "What does CI (Continuous Integration) involve?",
+    options: [
+      "Only deploying code to production",
+      "Regularly merging code changes into a shared repository",
+      "Manual code reviews only",
+      "Testing after the project is complete"
+    ],
+    answer: 1,
+    explanation: "CI involves frequent code integration into a shared repository."
+  },
+  {
+    question: "What happens during each integration in CI?",
+    options: [
+      "Manual deployment only",
+      "Automated builds and tests are triggered",
+      "Code is reviewed by managers only",
+      "No testing occurs"
+    ],
+    answer: 1,
+    explanation: "CI automatically triggers builds and tests on each commit."
+  },
+  {
+    question: "How does CI help development teams?",
+    options: [
+      "By delaying feedback until the end",
+      "By identifying issues early through immediate feedback",
+      "By eliminating all testing",
+      "By increasing manual intervention"
+    ],
+    answer: 1,
+    explanation: "CI detects issues early by providing quick feedback."
+  },
+  {
+    question: "What does Continuous Deployment (CD) automate?",
+    options: [
+      "Only code writing",
+      "The release of tested code into production",
+      "Manual test case creation",
+      "Project management meetings"
+    ],
+    answer: 1,
+    explanation: "CD automates deploying tested code to production."
+  },
+  {
+    question: "What is a key benefit of CI/CD in testing mentioned in the chapter?",
+    options: [
+      "Early bug detection",
+      "Elimination of all bugs",
+      "Reduction in code quality",
+      "Increase in manual testing"
+    ],
+    answer: 0,
+    explanation: "CI/CD enables early detection of defects."
+  },
+  {
+    question: "Which CI/CD tool is described as an open-source automation server?",
+    options: [
+      "GitHub Actions",
+      "Jenkins",
+      "GitLab CI/CD",
+      "CircleCI"
+    ],
+    answer: 1,
+    explanation: "Jenkins is a popular open-source automation server."
+  },
+  {
+    question: "Where is code typically pushed to trigger a CI/CD pipeline?",
+    options: [
+      "Email attachment",
+      "Version control system like GitHub",
+      "Shared network drive",
+      "Physical USB drive"
+    ],
+    answer: 1,
+    explanation: "CI/CD pipelines are triggered by commits to version control systems."
+  },
+  {
+    question: "What happens if tests fail in a CI/CD pipeline?",
+    options: [
+      "Deployment proceeds anyway",
+      "Issues are flagged and deployment stops",
+      "Tests are ignored",
+      "Code is automatically rewritten"
+    ],
+    answer: 1,
+    explanation: "Failed tests stop the pipeline to prevent faulty deployment."
+  },
+  {
+    question: "Which type of testing evaluates application speed, stability, and scalability?",
+    options: [
+      "Unit Testing",
+      "Integration Testing",
+      "Performance Testing",
+      "Functional Testing"
+    ],
+    answer: 2,
+    explanation: "Performance testing measures speed, stability, and scalability."
+  },
+  {
+    question: "What does automated testing eliminate that manual testing is prone to?",
+    options: [
+      "All software bugs",
+      "Human errors in test execution",
+      "The need for test planning",
+      "Code documentation"
+    ],
+    answer: 1,
+    explanation: "Automation removes human execution errors."
+  },
+  {
+    question: "Why is scalability important in test automation?",
+    options: [
+      "It allows tests to run on multiple devices/browsers without extra effort",
+      "It makes tests slower but thorough",
+      "It reduces number of test cases",
+      "It eliminates test environments"
+    ],
+    answer: 0,
+    explanation: "Scalability allows running tests across many platforms efficiently."
+  },
+  {
+    question: "Which cloud-based testing platforms are mentioned for enhancing scalability?",
+    options: [
+      "AWS and Azure only",
+      "Sauce Labs and BrowserStack",
+      "Google Cloud only",
+      "IBM Cloud only"
+    ],
+    answer: 1,
+    explanation: "Sauce Labs and BrowserStack support cross-browser cloud testing."
+  },
+  {
+    question: "What does JUnit primarily focus on?",
+    options: [
+      "Mobile application testing",
+      "Testing individual components of Java applications",
+      "Web UI testing only",
+      "Performance testing only"
+    ],
+    answer: 1,
+    explanation: "JUnit is mainly used for unit testing Java applications."
+  },
+  {
+    question: "How does TestNG extend JUnit's capabilities?",
+    options: [
+      "By only supporting Python",
+      "By introducing parallel execution and data-driven testing",
+      "By eliminating all assertions",
+      "By focusing only on mobile testing"
+    ],
+    answer: 1,
+    explanation: "TestNG adds advanced features like parallel and data-driven testing."
+  },
+  {
+    question: "What advantage does automation provide for regression testing?",
+    options: [
+      "It makes regression testing unnecessary",
+      "It ensures consistent and frequent validation of small code changes",
+      "It only tests new features",
+      "It slows down testing"
+    ],
+    answer: 1,
+    explanation: "Automation ensures regression tests run consistently after each change."
+  },
+  {
+    question: "What is a long-term benefit of test automation despite high initial investment?",
+    options: [
+      "Increased manual testing requirements",
+      "Reduced testing costs due to decreased manual effort",
+      "More complex documentation",
+      "Slower release cycles"
+    ],
+    answer: 1,
+    explanation: "Over time, automation reduces manual effort and cost."
+  },
+  {
+    question: "What does CI encourage in terms of code updates?",
+    options: [
+      "Large, infrequent updates",
+      "Small, incremental updates",
+      "No updates after release",
+      "Updates only from senior developers"
+    ],
+    answer: 1,
+    explanation: "CI encourages frequent, small updates to reduce risk."
+  },
+  {
+    question: "Which programming languages does Selenium support according to the chapter?",
+    options: [
+      "Only Java",
+      "Java, Python, C#, and JavaScript",
+      "Only Python",
+      "Only JavaScript"
+    ],
+    answer: 1,
+    explanation: "Selenium supports multiple languages including Java and Python."
+  },
+  {
+    question: "What type of applications does Appium support testing?",
+    options: [
+      "Only web applications",
+      "Native, hybrid, and web-based mobile applications",
+      "Only desktop applications",
+      "Only backend services"
+    ],
+    answer: 1,
+    explanation: "Appium supports all major mobile app types."
+  },
+  {
+    question: "What benefit does CI/CD provide for deployment according to the chapter?",
+    options: [
+      "Makes deployments more risky",
+      "Reduces human intervention and minimizes deployment risks",
+      "Eliminates all deployment processes",
+      "Requires more manual approvals"
+    ],
+    answer: 1,
+    explanation: "CI/CD automates deployment and reduces human errors."
+  },
+  {
+    question: "What is the final step in a typical CI/CD pipeline if tests pass?",
+    options: [
+      "Code is deleted",
+      "Deployment proceeds",
+      "Pipeline stops",
+      "Manual review begins"
+    ],
+    answer: 1,
+    explanation: "Successful tests allow deployment to proceed."
+  }
 ];
+
+
+
+
 
 const ds1 = [
     {
@@ -15169,6 +18805,11 @@ function getbigdataQuestions() {
     if (bigdataQuizVariant === 3) return bigdataQuestions3;
     if (bigdataQuizVariant === 4) return bigdataQuestions4;
     if (bigdataQuizVariant === 5) return bigdataQuestions5;
+        if (bigdataQuizVariant === 6) return bigdataQuestions6;
+    if (bigdataQuizVariant === 7) return bigdataQuestions7;
+    if (bigdataQuizVariant === 8) return bigdataQuestions8;
+    if (bigdataQuizVariant === 9) return bigdataQuestions9;
+
 
 
 }
@@ -15214,6 +18855,12 @@ function getdb2Questions() {
     if (db2QuizVariant === 3) return db2Questions3;
     if (db2QuizVariant === 4) return db2Questions4;
     if (db2QuizVariant === 5) return db2Questions5;
+    if (db2QuizVariant === 6) return db2Questions6;
+    if (db2QuizVariant === 7) return db2Questions7;
+    if (db2QuizVariant === 8) return db2Questions8;
+    if (db2QuizVariant === 9) return db2Questions9;
+    if (db2QuizVariant === 10) return db2Questions10;
+
 }
 
 
@@ -15239,6 +18886,8 @@ function getirQuestions() {
     if (irQuizVariant === 3) return irQuestions3;
     if (irQuizVariant === 4) return irQuestions4;
     if (irQuizVariant === 5) return irQuestions5;
+        if (irQuizVariant === 6) return irQuestions6;
+
 
 }
 
@@ -15264,6 +18913,9 @@ function getbiQuestions() {
     if (biQuizVariant === 2) return biQuestions2;
     if (biQuizVariant === 3) return biQuestions3;
     if (biQuizVariant === 4) return biQuestions4;
+        if (biQuizVariant === 5) return biQuestions5;
+    if (biQuizVariant === 6) return biQuestions6;
+
 
 }
 

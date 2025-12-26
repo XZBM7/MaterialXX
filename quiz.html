@@ -2183,11 +2183,11 @@
                                 <i class="fas fa-database"></i>
                             </div>
                             <div class="card-content">
-                                <h3>Database</h3>
+                                <h3>Database - 1</h3>
                                 <p>Test your database knowledge</p>
                             </div>
                         </div>
-
+<!-- 
                         <div class="category-card"
                             onclick="selectQuiz('datastructures'); pushView('data-structure-quiz-selection', 'Select Data Structures Quiz');">
                             <div class="card-icon">
@@ -2208,7 +2208,7 @@
                                 <h3>Data Communication</h3>
                                 <p>Networking fundamentals</p>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="category-card"
                             onclick="selectQuiz('bigdata'); pushView('bigdata-quiz-selection', 'Select Big Data Quiz');">
@@ -2238,7 +2238,7 @@
                                 <i class="fas fa-database"></i>
                             </div>
                             <div class="card-content">
-                                <h3>Database 2</h3>
+                                <h3>Database - 2</h3>
                                 <p>Advanced database concepts</p>
                             </div>
                         </div>
@@ -2365,7 +2365,7 @@
                     </div>
                 </div>
 
-                <div id="data-structure-quiz-selection" class="hidden">
+                <!-- <div id="data-structure-quiz-selection" class="hidden">
                     <h3>Select Data Structures Quiz:</h3>
                     <div class="quiz-categories">
                         <div class="category-card"
@@ -2393,7 +2393,7 @@
                             <p>Advanced concepts</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div id="bigdata-quiz-selection" class="hidden">
                     <h3>Select Big Data Quiz:</h3>
@@ -2428,6 +2428,33 @@
                             <h3>Big Data LEC 6</h3>
                             <p>Lecture 6 concepts</p>
                         </div>
+                        <div class="category-card"
+    onclick="choosebigdataQuiz(6); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-hive"></i>
+    <h3>Big Data LEC 7</h3>
+    <p>Apache Hive Introduction</p>
+</div>
+
+<div class="category-card"
+    onclick="choosebigdataQuiz(7); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-table"></i>
+    <h3>Big Data LEC 8</h3>
+    <p>Hive Tables, Partitioning & Bucketing</p>
+</div>
+
+<div class="category-card"
+    onclick="choosebigdataQuiz(8); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-bolt"></i>
+    <h3>Big Data LEC 9</h3>
+    <p>Apache Spark Introduction</p>
+</div>
+
+<div class="category-card"
+    onclick="choosebigdataQuiz(9); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-cogs"></i>
+    <h3>Big Data LEC 10</h3>
+    <p>Spark Advanced Concepts</p>
+</div>
                     </div>
                 </div>
 
@@ -2488,6 +2515,36 @@
                             <h3>Database-2 LEC-2 New</h3>
                             <p>Updated Lecture 2</p>
                         </div>
+                           <div class="category-card"
+                            onclick="choosedb2Quiz(6); pushView('time-options', 'Select Time Option');">
+                            <i class="fas fa-database"></i>
+                            <h3>Database-2 LEC-4</h3>
+                            <p> Lecture 4</p>
+                        </div>
+                            <div class="category-card"
+                            onclick="choosedb2Quiz(7); pushView('time-options', 'Select Time Option');">
+                            <i class="fas fa-database"></i>
+                            <h3>Database-2 LEC-5</h3>
+                            <p> Lecture 5</p>
+                        </div>
+                            <div class="category-card"
+                            onclick="choosedb2Quiz(8); pushView('time-options', 'Select Time Option');">
+                            <i class="fas fa-database"></i>
+                            <h3>Database-2 LEC-6</h3>
+                            <p> Lecture 6</p>
+                        </div>
+                            <div class="category-card"
+                            onclick="choosedb2Quiz(9); pushView('time-options', 'Select Time Option');">
+                            <i class="fas fa-database"></i>
+                            <h3>Database-2 LEC-7</h3>
+                            <p> Lecture 7</p>
+                        </div>
+                            <div class="category-card"
+                            onclick="choosedb2Quiz(10); pushView('time-options', 'Select Time Option');">
+                            <i class="fas fa-database"></i>
+                            <h3>Database-2 LEC-8</h3>
+                            <p> Lecture 8</p>
+                        </div>
                     </div>
                 </div>
 
@@ -2518,6 +2575,19 @@
                             <h3>IR LEC 1-4</h3>
                             <p>Combined review</p>
                         </div>
+                        <div class="category-card"
+    onclick="chooseirQuiz(5); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-chart-line"></i>
+    <h3>IR LEC 4 & 5</h3>
+    <p>Vector Space Model & Scoring</p>
+</div>
+
+<div class="category-card"
+    onclick="chooseirQuiz(6); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-star-half-alt"></i>
+    <h3>IR LEC 6</h3>
+    <p>IR System Evaluation</p>
+</div>
                     </div>
                 </div>
 
@@ -2548,6 +2618,19 @@
                             <h3>BI LEC 5</h3>
                             <p>Lecture 5 concepts</p>
                         </div>
+                        <div class="category-card"
+     onclick="choosebiQuiz(5); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-chart-bar"></i>
+    <h3>BI LEC 8</h3>
+    <p>Introduction to Data Analytics & Data Analytics Lifecycle</p>
+</div>
+
+<div class="category-card"
+     onclick="choosebiQuiz(6); pushView('time-options', 'Select Time Option');">
+    <i class="fas fa-sitemap"></i>
+    <h3>BI LEC 9</h3>
+    <p>Association Rules Mining & Machine Learning Fundamentals</p>
+</div>
                     </div>
                 </div>
 
