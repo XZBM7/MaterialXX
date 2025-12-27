@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materialx | Chatbot</title>
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbc;
+            --accent-color: #ff7e5f;
+            --light-color: #f5f7fa;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --error-color: #e74c3c;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            text-align: right;
+            background: linear-gradient(135deg, #e5ddd5 0%, #d6e4f0 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            color: var(--dark-color);
+        }
+
+        .chatbot-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header .logo {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .chat-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--success-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        #chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: var(--light-color);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5f7fa"/><path d="M0 0L100 100M100 0L0 100" stroke="%23e0e7ff" stroke-width="0.5"/></svg>');
+            background-size: 200px;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--radius);
+            margin-bottom: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 5px 0;
+            position: relative;
+            transition: var(--transition);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background-color: white;
+            align-self: flex-start;
+            border-radius: 18px 18px 18px 5px;
+            color: var(--dark-color);
+            box-shadow: var(--shadow);
+            border: 1px solid #e0e7ff;
+        }
+
+        .bot-message:before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid white;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            align-self: flex-end;
+            border-radius: 18px 18px 5px 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .user-message:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--primary-color);
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .user-message .message-time {
+            text-align: right;
+        }
+
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background-color: white;
+            border-top: 1px solid #e0e7ff;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
+            background-color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            width: 45px;
+            height: 45px;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .clear-btn {
+            background-color: var(--warning-color);
+        }
+
+        .clear-btn:hover {
+            background-color: #e67e22;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option {
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: white;
+            border: 1px solid #e0e7ff;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .option:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .specialization-info {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-top: 10px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-section {
+            margin-bottom: 15px;
+        }
+
+        .info-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .info-section ul {
+            padding-right: 20px;
+        }
+
+        .info-section li {
+            margin-bottom: 5px;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quick-action {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 18px;
+            align-self: flex-start;
+            box-shadow: var(--shadow);
+            margin: 5px 0;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* تحسينات للأجهزة المحمولة */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                border-radius: 0;
+                height: 100vh;
+                max-width: 100%;
+            }
+            
+            .chat-message {
+                max-width: 90%;
+                font-size: 0.95rem;
+            }
+            
+            .input-area {
+                padding: 10px;
+                padding-bottom: calc(10px + env(safe-area-inset-bottom));
+                position: sticky;
+                bottom: 0;
+                background: white;
+                z-index: 1000;
+            }
+            
+            button {
+                width: 40px;
+                height: 40px;
+                padding: 10px;
+            }
+            
+            .options {
+                flex-direction: column;
+            }
+            
+            /* تحسينات خاصة للكيبورد على الأجهزة المحمولة */
+            #user-input {
+                font-size: 16px; /* يمنع التكبير التلقائي في iOS */
+            }
+            
+            /* تحسينات للشاشات الصغيرة */
+            .chat-header {
+                padding: 12px 15px;
+            }
+            
+            #chat-box {
+                padding: 15px;
+            }
+            
+            /* رفع منطقة الإدخال قليلاً لتكون أكثر وضوحاً */
+            .input-area {
+                padding-top: 12px;
+                padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chat-header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .chat-message {
+                max-width: 95%;
+                padding: 10px 15px;
+            }
+            
+            input[type="text"] {
+                padding: 10px 15px;
+            }
+            
+            .action-buttons {
+                gap: 5px;
+            }
+            
+            button {
+                width: 38px;
+                height: 38px;
+            }
+        }
+
+        /* تحسينات للشاشات الصغيرة جداً */
+        @media (max-width: 360px) {
+            .chat-header h1 {
+                font-size: 1.1rem;
+            }
+            
+            .chat-header .logo {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .action-buttons {
+                gap: 4px;
+            }
+            
+            button {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            input[type="text"] {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            .chat-header {
+                padding: 10px 15px;
+            }
+            
+            #chat-box {
+                padding: 10px;
+                max-height: 60vh;
+            }
+            
+            .input-area {
+                padding: 8px 10px;
+                padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            }
+        }
+
+       
+ .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            border: none;
+            font-size: 20px;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+      .scroll-to-top {
+    position: fixed;
+    bottom: 80px;
+    right: 20px; /* رجعت right لليمين */
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    border: none;
+    font-size: 20px;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+}
+
+/* تحسين الموضع في الهواتف */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 70px;
+        right: 15px; /* رجعت right لليمين */
+        width: 45px;
+        height: 45px;
+    }
+
+}
+
+ @media (max-width: 600px) {
+            .chat-message {
+                font-size: 0.9rem;
+            }
+
+            input[type="text"] {
+                font-size: 1rem;
+            }
+
+            button {
+                font-size: 1.1rem;
+            }
+
+            .input-area {
+                padding: 1vh;
+            }
+
+            #chat-box {
+                padding-bottom: 80px;
+            }
+        }
+
+        @media (min-width: 601px) {
+            .chat-message {
+                font-size: 1rem;
+            }
+
+            input[type="text"] {
+                font-size: 1.1rem;
+            }
+
+            button {
+                font-size: 1.2rem;
+            }
+
+            .input-area {
+                padding: 10px;
+            }
+
+            #chat-box {
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .chat-message {
+                max-width: 60%;
+            }
+
+            input[type="text"] {
+                padding: 10px;
+            }
+        }
+
+         .input-area {
+            display: flex;
+            padding: 10px;
+            background-color: #ffffff;
+            border-top: 1px solid #ddd;
+            align-items: center;
+            gap: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="chatbot-container">
+        <div class="chat-header">
+            <h1><span class="logo">M</span> Materialx Assistant</h1>
+            <div class="chat-status">
+                <span class="status-indicator"></span>
+                <span>متصل</span>
+            </div>
+        </div>
+        
+        <div id="chat-box">
+            <div class="welcome-message">
+                <h2>مرحباً بك في مساعد Materialx التعليمي!</h2>
+                <p>أنا هنا لمساعدتك في رحلتك التعليمية. كيف يمكنني مساعدتك اليوم؟ (ملحوظه لتجربه الهواتف اذا لم تقدر التحرك في الصفحه فقط اضغط على حقل اكتب رسالتك الان , وسوف تستطيع التحرك)</p>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="اكتب رسالتك هنا..." autocomplete="off">
+            <div class="action-buttons">
+                <button id="send-btn" title="إرسال"><i class="fas fa-paper-plane"></i></button>
+                <button id="clear-btn" class="clear-btn" title="مسح المحادثة"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        </div>
+    </div>
+
+           <button class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-chevron-up"></i>
+</button>
+    <script>
+const _0x460617=_0x5813;(function(_0x4c4a21,_0x329c4b){const _0x238b7a=_0x5813,_0x131289=_0x4c4a21();while(!![]){try{const _0xe4a253=-parseInt(_0x238b7a(0x12b))/0x1+parseInt(_0x238b7a(0x131))/0x2*(parseInt(_0x238b7a(0x257))/0x3)+-parseInt(_0x238b7a(0x128))/0x4+parseInt(_0x238b7a(0x273))/0x5+-parseInt(_0x238b7a(0x274))/0x6*(-parseInt(_0x238b7a(0x248))/0x7)+-parseInt(_0x238b7a(0x107))/0x8*(parseInt(_0x238b7a(0x139))/0x9)+parseInt(_0x238b7a(0x235))/0xa*(parseInt(_0x238b7a(0x275))/0xb);if(_0xe4a253===_0x329c4b)break;else _0x131289['push'](_0x131289['shift']());}catch(_0x366978){_0x131289['push'](_0x131289['shift']());}}}(_0x1845,0x783ba));const scrollToTopBtn=document[_0x460617(0x283)]('scrollToTop'),chatBox=document['getElementById'](_0x460617(0x215));chatBox[_0x460617(0x217)](_0x460617(0x1b6),function(){const _0x36427d=_0x460617;chatBox[_0x36427d(0x1eb)]>0xc8?scrollToTopBtn[_0x36427d(0xdf)][_0x36427d(0x1e4)](_0x36427d(0x1ae)):scrollToTopBtn[_0x36427d(0xdf)]['remove'](_0x36427d(0x1ae));}),scrollToTopBtn[_0x460617(0x217)]('click',function(){const _0x504cdd=_0x460617;chatBox['scrollTo']({'top':0x0,'behavior':_0x504cdd(0xc6)});});const userInput=document[_0x460617(0x283)](_0x460617(0x207)),inputArea=document[_0x460617(0xae)](_0x460617(0xd9));userInput[_0x460617(0x217)](_0x460617(0x21c),function(){const _0x29a2a8=_0x460617;document[_0x29a2a8(0xc1)]['classList'][_0x29a2a8(0x1e4)](_0x29a2a8(0x18d));}),userInput[_0x460617(0x217)](_0x460617(0x1a1),function(){const _0x5e874a=_0x460617;document[_0x5e874a(0xc1)][_0x5e874a(0xdf)][_0x5e874a(0x23a)](_0x5e874a(0x18d));});function updateInputAreaPosition(){const _0x2bff6a=_0x460617;window['innerHeight']<0x1f4&&(inputArea[_0x2bff6a(0x20f)][_0x2bff6a(0x110)]=_0x2bff6a(0x15b),inputArea[_0x2bff6a(0x20f)][_0x2bff6a(0x19b)]='0');}window['addEventListener']('resize',updateInputAreaPosition),updateInputAreaPosition();const data={0x1:{'advice':[_0x460617(0x259),_0x460617(0x1e2),_0x460617(0x16a),_0x460617(0xb1),_0x460617(0x266)],'resources':[_0x460617(0x130),_0x460617(0xe5),_0x460617(0x224),_0x460617(0x116)],'questions':['ما\x20هي\x20لغات\x20البرمجة\x20التي\x20تثير\x20اهتمامك؟',_0x460617(0x25a),'ما\x20هي\x20المشاريع\x20البسيطة\x20التي\x20تود\x20البدء\x20في\x20تنفيذها؟','هل\x20تفضل\x20التعلم\x20النظري\x20أم\x20العملي\x20أكثر؟',_0x460617(0xc5),_0x460617(0x134),_0x460617(0xee),'هل\x20تفكر\x20في\x20التخصص\x20في\x20مجال\x20معين\x20من\x20البرمجة؟','ما\x20هي\x20المواقع\x20التي\x20تستخدمها\x20للتعلم\x20حالياً؟','هل\x20تحضر\x20دورات\x20أو\x20ورش\x20عمل\x20في\x20البرمجة؟']},0x2:{'advice':[_0x460617(0x168),'حاول\x20تطبيق\x20المفاهيم\x20على\x20مشاكل\x20واقعية\x20مثل\x20بناء\x20تطبيقات\x20ويب\x20بسيطة.','ابحث\x20عن\x20فرص\x20تدريبية\x20في\x20شركات\x20التكنولوجيا.',_0x460617(0xdc),_0x460617(0x178)],'resources':[_0x460617(0x11e),_0x460617(0x1d4),_0x460617(0x249),_0x460617(0x230),_0x460617(0x1d3)],'questions':[_0x460617(0x23b),'هل\x20تفكر\x20في\x20التخصص\x20في\x20مجال\x20معين\x20من\x20البرمجة؟',_0x460617(0xfd),'هل\x20بدأت\x20في\x20تعلم\x20إطار\x20عمل\x20معين\x20مثل\x20React\x20أو\x20Django؟',_0x460617(0x187),_0x460617(0x105),_0x460617(0x158),_0x460617(0x149),_0x460617(0xb5),_0x460617(0x148)]},0x3:{'IS':{'description':{'advantages':_0x460617(0x27a),'disadvantages':'قد\x20تجد\x20نفسك\x20محصوراً\x20في\x20جوانب\x20إدارية\x20أكثر\x20من\x20الجوانب\x20التقنية.'},'advice':[_0x460617(0x19c),_0x460617(0x1cd),_0x460617(0x13b),_0x460617(0xce),_0x460617(0x15e)],'resources':[_0x460617(0x1b0),_0x460617(0xf4),'دورات\x20تحليل\x20البيانات\x20على\x20Coursera.','شهادات\x20في\x20إدارة\x20المشاريع\x20مثل\x20PMP.',_0x460617(0xf1)],'career':_0x460617(0x1fd),'questions':['هل\x20تهتم\x20أكثر\x20بالجانب\x20الإداري\x20أم\x20التقني\x20في\x20نظم\x20المعلومات؟',_0x460617(0x161),_0x460617(0x279),'ما\x20هو\x20رأيك\x20في\x20دمج\x20التقنية\x20مع\x20إدارة\x20الأعمال؟',_0x460617(0x198),_0x460617(0x19a),_0x460617(0xd3),_0x460617(0xfc),_0x460617(0x1e8),'ما\x20هي\x20المهارات\x20الإدارية\x20التي\x20تمتلكها؟']},'CS':{'description':{'advantages':_0x460617(0x14d),'disadvantages':_0x460617(0x24c)},'advice':[_0x460617(0x111),'استكشف\x20الأنظمة\x20التشغيلية\x20وبنية\x20الحاسوب.',_0x460617(0x199),'تعلم\x20لغات\x20برمجة\x20متعددة\x20وتخصص\x20في\x20واحدة.',_0x460617(0x135)],'resources':[_0x460617(0x231),_0x460617(0x151),_0x460617(0x14a),_0x460617(0xd4),'مجتمعات\x20برمجية\x20مثل\x20Stack\x20Overflow.'],'career':_0x460617(0xb2),'questions':[_0x460617(0xd6),_0x460617(0xe9),_0x460617(0x197),_0x460617(0x286),'هل\x20تفضل\x20العمل\x20على\x20البرمجيات\x20أم\x20الأجهزة؟',_0x460617(0x11b),_0x460617(0x180),_0x460617(0x194),_0x460617(0x24d),'ما\x20هو\x20حلمك\x20المهني\x20في\x20مجال\x20علوم\x20الحاسب؟']},'IT':{'description':{'advantages':_0x460617(0xfa),'disadvantages':_0x460617(0x13a)},'advice':[_0x460617(0x261),_0x460617(0x1c6),'احرص\x20على\x20الشهادات\x20المعترف\x20بها\x20مثل\x20CompTIA\x20وCisco.','طور\x20مهاراتك\x20في\x20حل\x20المشكلات\x20التقنية.',_0x460617(0xe6)],'resources':[_0x460617(0xfb),'منصات\x20مثل\x20\x27Microsoft\x20Learn\x27\x20للحوسبة\x20السحابية.',_0x460617(0xb6),_0x460617(0x190),_0x460617(0xc9)],'career':_0x460617(0x167),'questions':[_0x460617(0x109),_0x460617(0x1b3),_0x460617(0x232),'ما\x20هو\x20رأيك\x20في\x20مستقبل\x20الحوسبة\x20السحابية؟',_0x460617(0x1c5),'ما\x20هي\x20أكبر\x20مشكلة\x20شبكة\x20واجهتها\x20وحللتها؟','هل\x20لديك\x20خبرة\x20في\x20التعامل\x20مع\x20خوادم\x20Windows/Linux؟',_0x460617(0x17b),_0x460617(0xba),_0x460617(0xc2)]},'AI':{'description':{'advantages':_0x460617(0x10e),'disadvantages':_0x460617(0x20d)},'advice':[_0x460617(0x211),_0x460617(0x126),_0x460617(0x278),_0x460617(0xb4),'شارك\x20في\x20مشاريع\x20ذكاء\x20اصطناعي\x20عملية.'],'resources':[_0x460617(0x201),_0x460617(0x27f),_0x460617(0x112),_0x460617(0x22b),_0x460617(0x1fa)],'career':'فرص\x20العمل\x20تشمل:\x20مهندس\x20تعلم\x20الآلة،\x20مطور\x20ذكاء\x20اصطناعي،\x20باحث\x20في\x20الذكاء\x20الاصطناعي،\x20عالم\x20بيانات،\x20مهندس\x20رؤية\x20حاسوبية.','questions':[_0x460617(0x1ac),_0x460617(0x256),'ما\x20هي\x20أدوات\x20الذكاء\x20الاصطناعي\x20التي\x20جربتها؟','ما\x20هو\x20رأيك\x20في\x20الأخلاقيات\x20في\x20الذكاء\x20الاصطناعي؟',_0x460617(0x277),'ما\x20هو\x20المشروع\x20الأكثر\x20إثارة\x20في\x20الذكاء\x20الاصطناعي\x20برأيك؟',_0x460617(0x129),_0x460617(0x13f),_0x460617(0x22a),_0x460617(0x246)]}},0x4:{'IS':{'description':{'advantages':_0x460617(0x159),'disadvantages':_0x460617(0x267)},'advice':[_0x460617(0x1d9),_0x460617(0xce),_0x460617(0x253),_0x460617(0x1ef),_0x460617(0x18b)],'resources':[_0x460617(0x1d2),_0x460617(0x24e),_0x460617(0x16b),'شهادات\x20احترافية\x20مثل\x20PMP\x20أو\x20CBAP.',_0x460617(0x20b)],'career':_0x460617(0x26e),'questions':['ما\x20هو\x20موضوع\x20مشروع\x20التخرج\x20الذي\x20تخطط\x20له؟',_0x460617(0x166),_0x460617(0x1fb),_0x460617(0x203),_0x460617(0x15a),_0x460617(0x16d),_0x460617(0x169),'كيف\x20تخطط\x20لتطوير\x20مهاراتك\x20بعد\x20التخرج؟',_0x460617(0x24d),_0x460617(0xa9)]},'CS':{'description':{'advantages':_0x460617(0x21a),'disadvantages':'المنافسة\x20شديدة\x20في\x20سوق\x20العمل\x20لمجال\x20علوم\x20الحاسب.'},'advice':[_0x460617(0x17f),'تخصص\x20في\x20مجال\x20محدد\x20مثل\x20الذكاء\x20الاصطناعي\x20أو\x20الأمن\x20السيبراني.',_0x460617(0x103),_0x460617(0xed),'ابنِ\x20شبكة\x20علاقات\x20مهنية\x20قوية.'],'resources':[_0x460617(0x18c),_0x460617(0x15c),'شهادات\x20مثل\x20AWS\x20أو\x20Google\x20Cloud.',_0x460617(0x289),'مجتمعات\x20مثل\x20Stack\x20Overflow\x20وDev.to.'],'career':_0x460617(0x268),'questions':[_0x460617(0x206),'كم\x20مشروعاً\x20لديك\x20في\x20محفظتك؟',_0x460617(0x27e),_0x460617(0xe1),_0x460617(0x1de),_0x460617(0x12f),_0x460617(0x1e1),_0x460617(0x25e),'ما\x20هو\x20راتبك\x20المتوقع\x20بعد\x20التخرج؟','كيف\x20تواكب\x20التطورات\x20التقنية\x20السريعة؟']},'IT':{'description':{'advantages':'الفرقة\x20الرابعة\x20تركز\x20على\x20الجانب\x20العملي\x20والتطبيقي\x20في\x20بيئات\x20العمل.','disadvantages':_0x460617(0xda)},'advice':['احصل\x20على\x20شهادات\x20مهنية\x20مثل\x20CCNA\x20أو\x20Security+.',_0x460617(0x272),_0x460617(0x239),'اشترك\x20في\x20معامل\x20الحوسبة\x20السحابية.',_0x460617(0x238)],'resources':[_0x460617(0x106),_0x460617(0x18f),_0x460617(0x1f8),_0x460617(0x181),_0x460617(0x1e9)],'career':_0x460617(0x17d),'questions':[_0x460617(0x1d5),_0x460617(0xec),_0x460617(0x284),_0x460617(0xb7),_0x460617(0x186),'هل\x20تدربت\x20في\x20مركز\x20بيانات\x20حقيقي؟','ما\x20هو\x20رأيك\x20في\x20مستقبل\x20الحوسبة\x20السحابية؟',_0x460617(0x1c3),_0x460617(0x177),'ما\x20هي\x20المهارات\x20الأكثر\x20طلباً\x20في\x20سوق\x20العمل؟']},'AI':{'description':{'advantages':_0x460617(0xef),'disadvantages':'يتطلب\x20معرفة\x20عميقة\x20بالرياضيات\x20والخوارزميات.'},'advice':[_0x460617(0xfe),'شارك\x20في\x20مسابقات\x20Kaggle.','تعمق\x20في\x20مجال\x20تخصصي\x20مثل\x20الرؤية\x20الحاسوبية.','ابنِ\x20نماذج\x20ذكاء\x20اصطناعي\x20عملية.',_0x460617(0x1c9)],'resources':['منصة\x20Kaggle\x20للمسابقات\x20والتعلم.',_0x460617(0x22b),_0x460617(0x1a4),_0x460617(0x242),_0x460617(0x1e0)],'career':_0x460617(0xf6),'questions':['ما\x20هو\x20مجال\x20تخصصك\x20في\x20الذكاء\x20الاصطناعي؟','هل\x20نشرت\x20أي\x20أبحاث\x20أو\x20أوراق\x20علمية؟','ما\x20هي\x20المسابقات\x20التي\x20شاركت\x20فيها؟',_0x460617(0x11a),_0x460617(0x23c),_0x460617(0xb9),_0x460617(0xc4),_0x460617(0x20e),'كيف\x20ترى\x20مستقبل\x20الذكاء\x20الاصطناعي؟',_0x460617(0x240)]}}};let currentState={'year':null,'specialization':null,'lastQuestion':null};function startChat(){const _0x419762=_0x460617,_0x2fb49d=document[_0x419762(0x283)](_0x419762(0x215));addBotMessage(_0x419762(0x124)),showMainOptions();}function sendMessage(){const _0x2ff1b6=_0x460617,_0x2e68cf=document['getElementById'](_0x2ff1b6(0x207)),_0x53fda5=_0x2e68cf['value'][_0x2ff1b6(0x1ca)]();_0x53fda5?(addUserMessage(_0x53fda5),_0x2e68cf[_0x2ff1b6(0x1ea)]='',simulateTyping(()=>{handleUserMessage(_0x53fda5);})):showError(_0x2ff1b6(0x127));}function addUserMessage(_0x7daf0e){const _0x3ee86e=_0x460617,_0x267cd4=document[_0x3ee86e(0x283)](_0x3ee86e(0x215)),_0x36f746=document['createElement']('div');_0x36f746['className']='chat-message\x20user-message',_0x36f746[_0x3ee86e(0x153)]=_0x3ee86e(0xe7)+_0x7daf0e+_0x3ee86e(0x1f9)+getCurrentTime()+_0x3ee86e(0x22e),_0x267cd4['appendChild'](_0x36f746),scrollToBottom();}function addBotMessage(_0x3ea857,_0x43d2d8=null){const _0x3fb072=_0x460617,_0x783878=document['getElementById']('chat-box'),_0x520dbc=document[_0x3fb072(0x1be)]('div');_0x520dbc['className']=_0x3fb072(0x122),_0x520dbc['innerHTML']=_0x3fb072(0xe7)+_0x3ea857+_0x3fb072(0x1f9)+getCurrentTime()+_0x3fb072(0x22e),_0x783878[_0x3fb072(0xb8)](_0x520dbc),_0x43d2d8&&showOptions(_0x43d2d8),scrollToBottom();}function simulateTyping(_0x4b68f8){const _0x6bc702=_0x460617,_0x3e2add=document[_0x6bc702(0x283)]('chat-box'),_0x3e188d=document[_0x6bc702(0x1be)]('div');_0x3e188d['className']=_0x6bc702(0x10d),_0x3e188d[_0x6bc702(0x153)]=_0x6bc702(0x23e),_0x3e2add[_0x6bc702(0xb8)](_0x3e188d),scrollToBottom(),setTimeout(()=>{_0x3e2add['removeChild'](_0x3e188d),_0x4b68f8();},0x3e8+Math[_0x6bc702(0x14e)]()*0x3e8);}function getCurrentTime(){const _0xa6d38e=_0x460617,_0x5721f1=new Date();return _0x5721f1[_0xa6d38e(0x1e7)]()+':'+_0x5721f1[_0xa6d38e(0x213)]()['toString']()[_0xa6d38e(0x252)](0x2,'0');}function scrollToBottom(){const _0x44eda6=_0x460617,_0x311004=document[_0x44eda6(0x283)](_0x44eda6(0x215));_0x311004[_0x44eda6(0x1eb)]=_0x311004[_0x44eda6(0x26d)];}function showMainOptions(){const _0x335fed=_0x460617,_0x2022f1=[{'text':'نصائح\x20دراسية','action':()=>showYearOptions()},{'text':_0x335fed(0x19e),'action':()=>showSpecializationSelection()},{'text':_0x335fed(0xc3),'action':()=>showCareerInfo()},{'text':'أسئلة\x20تفاعلية','action':()=>startInteractiveQuestions()}];showOptions(_0x2022f1);}function showOptions(_0x1beb4c){const _0x2a3c89=_0x460617,_0xfae3ca=document[_0x2a3c89(0x283)](_0x2a3c89(0x215)),_0xb244c0=document['createElement'](_0x2a3c89(0x24a));_0xb244c0[_0x2a3c89(0x1bd)]=_0x2a3c89(0x12a),_0x1beb4c[_0x2a3c89(0x16e)](_0x318027=>{const _0x17b4bf=_0x2a3c89,_0x5393bd=document[_0x17b4bf(0x1be)](_0x17b4bf(0x24a));_0x5393bd['className']='option',_0x5393bd[_0x17b4bf(0x165)]=_0x318027[_0x17b4bf(0x1cc)],_0x5393bd[_0x17b4bf(0xca)]=_0x318027['action'],_0xb244c0[_0x17b4bf(0xb8)](_0x5393bd);}),_0xfae3ca[_0x2a3c89(0xb8)](_0xb244c0),scrollToBottom();}function handleUserMessage(_0x380aef){const _0x4c19d2=_0x460617,_0x200af3=_0x380aef[_0x4c19d2(0x26c)]();if(isGreeting(_0x200af3)){addBotMessage('أهلاً\x20وسهلاً!\x20كيف\x20يمكنني\x20مساعدتك\x20اليوم؟'),showMainOptions();return;}switch(_0x200af3){case _0x4c19d2(0x1b7):case _0x4c19d2(0x144):showYearOptions();break;case _0x4c19d2(0xb0):case _0x4c19d2(0x13d):case _0x4c19d2(0x21d):showSpecializationSelection();break;case'وظائف':case _0x4c19d2(0x120):case _0x4c19d2(0xf5):showCareerInfo();break;case _0x4c19d2(0x245):case _0x4c19d2(0x1ce):startInteractiveQuestions();break;case _0x4c19d2(0x114):case _0x4c19d2(0xf7):case'help':showHelp();break;default:currentState[_0x4c19d2(0xcd)]?handleAnswer(_0x380aef):(addBotMessage(_0x4c19d2(0x21e)),showMainOptions());}}function isGreeting(_0x3ef6c3){const _0x5a1f9b=_0x460617,_0x5e4705=[_0x5a1f9b(0xf8),'مرحبا','كيف\x20حالك',_0x5a1f9b(0x152),_0x5a1f9b(0x1f5),'مساء\x20الخير',_0x5a1f9b(0x1ff),'hello','hi'];return _0x5e4705[_0x5a1f9b(0x25d)](_0x5ac78a=>_0x3ef6c3[_0x5a1f9b(0xde)](_0x5ac78a));}function showYearOptions(){const _0x509900=_0x460617;addBotMessage(_0x509900(0x1df),[{'text':_0x509900(0x173),'action':()=>selectYear(0x1)},{'text':_0x509900(0xd2),'action':()=>selectYear(0x2)},{'text':_0x509900(0x1cf),'action':()=>selectYear(0x3)},{'text':_0x509900(0x281),'action':()=>selectYear(0x4)}]);}function _0x1845(){const _0xffac90=['6\x20أشهر\x20-\x202\x20سنة','مسؤول\x20أمن\x20معلومات\x20(480,000-720,000\x20جنيه\x20سنوياً)','هل\x20حصلت\x20على\x20أي\x20فرصة\x20تدريبية\x20أو\x20تدريب\x20عملي؟','هل\x20تشارك\x20في\x20أي\x20مسابقات\x20أو\x20هاكاثونز\x20برمجية؟','منصة\x20LeetCode\x20لتحسين\x20مهارات\x20حل\x20المشكلات.','باحث\x20في\x20الذكاء\x20الاصطناعي\x20(660,000-960,000\x20جنيه\x20سنوياً)','هندسة\x20البرمجيات\x20المتقدمة\x20★★★★★','علوم\x20الحاسب\x20تعتبر\x20من\x20أكثر\x20التخصصات\x20طلباً،\x20وتفتح\x20لك\x20أبواب\x20العديد\x20من\x20الفرص\x20في\x20مجالات\x20البرمجة\x20والتطوير.','random','\x27)\x22>مسارات\x20وظيفية</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showMainOptions()\x22>العودة\x20للرئيسية</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>كيفية\x20استخدام\x20المساعد:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>نصائح\x20دراسية:</strong>\x20احصل\x20على\x20نصائح\x20حسب\x20فرقتك\x20الدراسية</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>معلومات\x20عن\x20التخصصات:</strong>\x20تعرف\x20على\x20التخصصات\x20المختلفة\x20ومتطلباتها</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>معلومات\x20عن\x20الوظائف:</strong>\x20اكتشف\x20فرص\x20العمل\x20في\x20مجال\x20التكنولوجيا</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li><strong>أسئلة\x20تفاعلية:</strong>\x20شارك\x20في\x20حوار\x20تفاعلي\x20لمساعدتك\x20في\x20تحديد\x20مسارك</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>يمكنك\x20أيضاً\x20كتابة\x20رسائلك\x20مباشرة\x20وسأحاول\x20فهمها!</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','كتب\x20مثل\x20\x27Introduction\x20to\x20Algorithms\x27.','السلام\x20عليكم','innerHTML','مستوسط\x20الخبرة','محلل\x20نظم\x20متقدم\x20(420,000-600,000\x20جنيه\x20سنوياً)','مهندس\x20معماري\x20سحابة\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)','التواصل\x20مع\x20الإدارة\x20العليا\x20★★★★☆','ما\x20هي\x20أكبر\x20مشكلة\x20واجهتها\x20في\x20مشروعك\x20الأخير؟','في\x20الفرقة\x20الرابعة،\x20ستتعمق\x20في\x20مشروع\x20التخرج\x20وإدارة\x20نظم\x20المعلومات\x20المتقدمة.','ما\x20هي\x20الشركات\x20التي\x20تطمح\x20للعمل\x20فيها؟','sticky','GitHub\x20للمشاريع\x20المفتوحة\x20المصدر.','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>نصائح\x20مهمة</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>','تعلم\x20أدوات\x20تحليل\x20الأعمال\x20مثل\x20Tableau\x20أو\x20Power\x20BI.','دكتوراة،\x20براءات\x20اختراع،\x20قيادة\x20فرق\x20بحث','\x27)\x22>نصائح\x20سوق\x20العمل</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','ما\x20هي\x20أدوات\x20تحليل\x20البيانات\x20التي\x20تعرفها؟','أخصائي\x20أمن\x20معلومات\x20(420,000-600,000\x20جنيه\x20سنوياً)','قائد\x20تقني','قيادة\x20الفرق\x20التقنية\x20★★★★☆','textContent','هل\x20حصلت\x20على\x20أي\x20فرص\x20تدريبية\x20في\x20الشركات؟','فرص\x20العمل\x20تشمل:\x20مدير\x20نظم\x20معلومات،\x20مسؤول\x20شبكات،\x20أخصائي\x20دعم\x20فني،\x20مهندس\x20سحابة\x20إلكترونية،\x20مسؤول\x20أمن\x20معلومات.','ابدأ\x20بإنشاء\x20مشاريع\x20صغيرة\x20لزيادة\x20فهمك\x20العملي.','ما\x20هي\x20نقاط\x20قوتك\x20التي\x20ستسوقها\x20لسوق\x20العمل؟','اهتم\x20بفهم\x20المفاهيم\x20الأساسية\x20مثل\x20المتغيرات،\x20الشرطية،\x20والحلقات\x20التكرارية.','منصات\x20التوظيف\x20مثل\x20LinkedIn\x20وWuzzuf.','خبير\x20ذكاء\x20اصطناعي','هل\x20شاركت\x20في\x20أي\x20معارض\x20توظيف؟','forEach','متدرّب\x20إدارة\x20نظم\x20متقدمة\x20(384,000-552,000\x20جنيه\x20سنوياً)','قيادة\x20وإدارة','التخصص:\x20','مطور\x20ذكاء\x20اصطناعي\x20(960,000-1,440,000\x20جنيه\x20سنوياً)','الفرقة\x20الأولى','key','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>💰\x20مقارنة\x20الرواتب\x20في\x20سوق\x20العمل\x20المصري:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','عذراً،\x20لا\x20توجد\x20بيانات\x20للمسار\x20الوظيفي\x20المطلوع.','هل\x20تفكر\x20في\x20العمل\x20كمستقل؟','تعلم\x20استخدام\x20أنظمة\x20التحكم\x20في\x20النسخ\x20مثل\x20Git.','مطور\x20برامج\x20متقدم\x20(600,000-900,000\x20جنيه\x20سنوياً)','بكالوريوس\x20تكنولوجيا\x20معلومات،\x20شهادات\x20أساسية','ما\x20هي\x20أدوات\x20المراقبة\x20التي\x20تعرف如何使用ها؟','كبير\x20مسؤولي\x20الشبكات\x20(1,080,000-1,680,000\x20جنيه\x20سنوياً)','مسؤول\x20شبكات،\x20مهندس\x20أمن\x20معلومات،\x20مدير\x20أنظمة،\x20أو\x20مستشار\x20تقني.','لغات\x20برمجة\x20متعددة\x20★★★★★','أنشئ\x20محفظة\x20مشاريع\x20قوية\x20على\x20GitHub.','هل\x20تهتم\x20بمجال\x20أمن\x20المعلومات؟','دورات\x20الأمن\x20السيبراني\x20على\x20Cybrary.','إدارة\x20المشاريع\x20التقنية\x20الكبيرة\x20★★★★☆','مشروع\x20تخرج\x20متميز،\x20تدريب\x20عملي،\x20شهادات\x20أساسية\x20في\x20إدارة\x20المشاريع','disadvantages','خبرة\x20في\x20إستراتيجيات\x20الأمن\x20السيبراني،\x20إدارة\x20ميزانيات\x20كبيرة','ما\x20هي\x20خططك\x20للتخصص\x20في\x20مجال\x20تقني\x20محدد؟','ما\x20هو\x20مستوى\x20راحتك\x20في\x20التعامل\x20مع\x20قواعد\x20البيانات؟','specialization','floor','هل\x20تفضل\x20العمل\x20على\x20المشاريع\x20الفردية\x20أم\x20الجماعية؟','شارك\x20في\x20المعارض\x20التقنية\x20لعرض\x20مشاريعك.','منصة\x20LeetCode\x20لتحضير\x20مقابلات\x20العمل.','keyboard-open','تعلم\x20الآلـي\x20والتعلم\x20العميق\x20★★★★★','منصة\x20Microsoft\x20Learn\x20للحوسبة\x20السحابية.','دورات\x20إدارة\x20الأنظمة\x20على\x20Udemy.','send-btn','احصل\x20على\x20شهادات\x20Cisco\x20وCompTIA\x20وتخصص\x20في\x20الأمن\x20السيبراني','مساعد\x20مدخل\x20بيانات\x20(144,000-192,000\x20جنيه\x20سنوياً)','ما\x20هي\x20التقنيات\x20الناشئة\x20التي\x20تتابعها؟','نعم،\x20المزيد\x20من\x20المعلومات','كبير\x20مهندسي\x20البرمجيات\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)','ما\x20هي\x20اللغات\x20البرمجية\x20التي\x20تتقنها؟','هل\x20تعتبر\x20نفسك\x20أكثر\x20تحليلاً\x20أم\x20تنفيذياً؟','شارك\x20في\x20مسابقات\x20البرمجة\x20لتطوير\x20مهاراتك.','ما\x20هي\x20البرامج\x20التي\x20تجيد\x20استخدامها\x20في\x20تحليل\x20البيانات؟','bottom','ركز\x20على\x20فهم\x20نظم\x20المعلومات\x20وكيفية\x20تحليل\x20البيانات.','map','معلومات\x20عن\x20التخصصات','نظم\x20المعلومات','مسؤول\x20شبكات\x20(360,000-540,000\x20جنيه\x20سنوياً)','blur','0-1\x20سنة','عالم\x20بيانات\x20رئيسي\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','مكتبات\x20مثل\x20TensorFlow\x20وPyTorch.','دكتوراة\x20أو\x20شهادات\x20تنفيذية،\x20خبرة\x20قيادية\x20واسعة','مهندس\x20برمجيات\x20مبتدئ\x20(480,000-720,000\x20جنيه\x20سنوياً)','رياضيات\x20وإحصاء\x20متقدم\x20★★★★★','الأمن\x20السيبراني\x20الشامل\x20★★★★★','أدوات\x20الذكاء\x20الاصطناعي\x20(TensorFlow,\x20PyTorch)\x20★★★★☆','قواعد\x20البيانات\x20NoSQL/SQL\x20★★★★☆','keydown','ما\x20هي\x20تطبيقات\x20الذكاء\x20الاصطناعي\x20التي\x20تثير\x20اهتمامك؟','تكنولوجيا\x20المعلومات','visible','0-2\x20سنوات','دورات\x20نظم\x20المعلومات\x20على\x20\x27Udemy\x27.','مطور\x20تطبيقات\x20(384,000-552,000\x20جنيه\x20سنوياً)','طور\x20مهاراتك\x20في\x20الخوارزميات\x20وتعلم\x20إطارات\x20عمل\x20جديدة\x20باستمرار','ما\x20هي\x20الشهادات\x20التقنية\x20التي\x20تخطط\x20للحصول\x20عليها؟','شكراً\x20لمشاركتك!\x20إجابتك:\x20\x22','مدير\x20أبحاث\x20الذكاء\x20الاصطناعي\x20(6,000,000-9,000,000+\x20جنيه\x20سنوياً)','scroll','نصائح','أسئلة\x20تفاعلية','مدير\x20هندسة\x20البرمجيات\x20(2,400,000-4,000,000\x20جنيه\x20سنوياً)','متدرب/حديث\x20التخرج','شهادة\x20البكالوريوس،\x20مشروع\x20تخرج\x20قوي،\x20مهارات\x20تواصل\x20ممتازة','إدارة\x20المشاريع\x20التقنية\x20★★★★☆','className','createElement','year','1-3\x20سنوات','2-4\x20سنوات','مستوى\x20متقدم','كيف\x20تحافظ\x20على\x20أمان\x20الشبكات؟','المتقدم','هل\x20تعتبر\x20نفسك\x20ماهراً\x20في\x20حل\x20المشكلات\x20التقنية؟','تعلم\x20إدارة\x20الأنظمة\x20واستخدام\x20أدوات\x20الحوسبة\x20السحابية.','فني\x20دعم\x20فني\x20(192,000-276,000\x20جنيه\x20سنوياً)','باحث\x20ذكاء\x20اصطناعي\x20حديث\x20التخرج','تواصل\x20مع\x20الباحثين\x20في\x20المجال.','trim','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>أنشئ\x20ملفاً\x20شخصياً\x20قوياً\x20على\x20LinkedIn</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>شارك\x20في\x20المؤتمرات\x20وورش\x20العمل</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>طور\x20شبكة\x20علاقات\x20مهنية</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>تابع\x20أحدث\x20اتجاهات\x20السوق</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','text','تعلم\x20كيفية\x20تصميم\x20قواعد\x20البيانات\x20وتطبيق\x20نظم\x20إدارة\x20البيانات.','أسئلة','الفرقة\x20الثالثة','إدارة\x20الشبكات\x20والأجهزة\x20★★★★☆','مدير\x20مركز\x20بيانات\x20(1,800,000-3,000,000\x20جنيه\x20سنوياً)','دورات\x20إدارة\x20المشاريع\x20على\x20LinkedIn\x20Learning.','منصة\x20\x27Frontend\x20Mentor\x27\x20لتطوير\x20واجهات\x20المستخدم.','استفد\x20من\x20\x27GitHub\x27\x20لمشاركة\x20مشاريعك\x20مع\x20المجتمع.','ما\x20هي\x20الشهادات\x20المهنية\x20التي\x20حصلت\x20عليها؟','شريك\x20في\x20شركة\x20ناشئة\x20(5,000,000-10,000,000+\x20جنيه\x20سنوياً)','مدير\x20مشاريع\x20تقنية\x20مبتدئ\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','مدير\x20أبحاث\x20الذكاء\x20الاصطناعي\x20(3,000,000-4,800,000\x20جنيه\x20سنوياً)','ركز\x20على\x20مشروع\x20التخرج\x20واجعله\x20إضافة\x20حقيقية\x20لسيرتك\x20الذاتية.','شهادات\x20Cisco/CompTIA،\x20خبرة\x20عملية','مساعد\x20عالم\x20بيانات\x20(336,000-504,000\x20جنيه\x20سنوياً)','قيادة\x20المشاريع\x20البحثية\x20★★★★☆',':<br><ul>','كيف\x20تعد\x20لمقابلات\x20العمل\x20التقنية؟','اختر\x20فرقتك\x20الدراسية:','مجتمعات\x20مثل\x20Towards\x20Data\x20Science.','ما\x20هي\x20التقنيات\x20التي\x20تتقنها\x20بشكل\x20متقدم؟','ابدأ\x20بتجربة\x20لغات\x20برمجة\x20مختلفة\x20لتحديد\x20ما\x20يناسبك،\x20مثل\x20Python\x20وJavaScript.','محلل\x20أعمال\x20تقني\x20(450,000-660,000\x20جنيه\x20سنوياً)','add','duration','إدارة\x20المشاريع\x20المتقدمة\x20★★★★★','getHours','هل\x20تفضل\x20العمل\x20في\x20قطاع\x20خاص\x20أم\x20حكومي؟','مجلات\x20تقنية\x20مثل\x20Network\x20World.','value','scrollTop','0-6\x20أشهر','مهندس\x20بنية\x20تحتية\x20متقدم','مهندس\x20تعلم\x20آلي\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','جهز\x20نفسك\x20لسوق\x20العمل\x20من\x20خلال\x20الشهادات\x20الاحترافية.','stages','مشروع\x20تخرج\x20تقني\x20متقدم،\x20محفظة\x20مشاريع\x20قوية\x20على\x20GitHub','مهندس\x20أنظمة\x20(660,000-960,000\x20جنيه\x20سنوياً)','انشر\x20أبحاثاً\x20وشارك\x20في\x20مسابقات\x20Kaggle\x20لبناء\x20سمعة\x20قوية','advice','صباح\x20الخير','مهندس\x20برمجيات\x20حديث\x20التخرج','محترف\x20متقدم\x20(مسار\x20سريع)','شهادات\x20CompTIA\x20المتقدمة.','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22message-time\x22>','قنوات\x20يوتيوب\x20متخصصة\x20في\x20الذكاء\x20الاصطناعي.','ما\x20هي\x20الشهادات\x20الاحترافية\x20التي\x20تخطط\x20للحصول\x20عليها؟','مهندس\x20برمجيات\x20كبير\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','فرص\x20العمل\x20تشمل:\x20محلل\x20نظم،\x20مدير\x20قواعد\x20بيانات،\x20مسؤول\x20تكنولوجيا\x20المعلومات،\x20محلل\x20أعمال،\x20مدير\x20مشاريع\x20تقنية.','طلب\x20متزايد\x20بشكل\x20كبير\x20مع\x20تطور\x20التهديدات\x20الأمنية\x20والتقنيات\x20الحديثة','هاي','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>نبذة\x20عن\x20التخصص\x20-\x20الفرقة\x20','دورات\x20\x27deeplearning.ai\x27\x20على\x20Coursera.','الفرقة\x20','كيف\x20تستعد\x20لمقابلات\x20العمل؟','حسناً!\x20لا\x20تتردد\x20في\x20السؤال\x20إذا\x20احتجت\x20إلى\x20مساعدة\x20أخرى.','رائد\x20ذكاء\x20اصطناعي','ما\x20هو\x20تخصصك\x20الدقيق\x20في\x20علوم\x20الحاسب؟','user-input','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>الراتب\x20المتوسط\x20للتخصص:\x20<strong>600,000-1,200,000\x20جنيه\x20سنوياً</strong></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>أعلى\x20راتب\x20مسجل:\x20<strong>8,000,000+\x20جنيه\x20سنوياً</strong></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>معدل\x20النمو\x20السنوي:\x20<strong>10-15%</strong></li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','مساعد\x20محلل\x20نظم\x20(180,000-240,000\x20جنيه\x20سنوياً)','متدرّب\x20أمن\x20معلومات\x20(240,000-360,000\x20جنيه\x20سنوياً)','معارض\x20التوظيف\x20في\x20الجامعات.','طور\x20مشاريع\x20مفتوحة\x20المصدر\x20وشارك\x20في\x20مجتمعات\x20البرمجة\x20العالمية','يتطلب\x20فهماً\x20عميقاً\x20للرياضيات\x20والإحصاء.','هل\x20تفكر\x20في\x20العمل\x20في\x20شركات\x20التقنية\x20الكبرى؟','style','إدارة\x20الخوادم\x20والأنظمة\x20★★★★☆','ابدأ\x20بتعلم\x20مفاهيم\x20الذكاء\x20الاصطناعي\x20الأساسية\x20مثل\x20الشبكات\x20العصبية.','مدير\x20مركز\x20بيانات\x20(2,400,000-4,000,000\x20جنيه\x20سنوياً)','getMinutes','إستراتيجيات\x20تطوير\x20الذكاء\x20الاصطناعي\x20★★★★☆','chat-box','\x27)\x22>خطة\x20تطوير\x20المهارات</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showJobMarketTips(\x27','addEventListener','مدير\x20أمن\x20المعلومات\x20(2,160,000-3,600,000\x20جنيه\x20سنوياً)','تخصص\x20تقني،\x20شهادات\x20متقدمة،\x20خبرة\x20قيادية','الفرقة\x20الرابعة\x20فرصة\x20للتميز\x20في\x20مشاريع\x20التخرج\x20والتخصص\x20الدقيق.','محلل\x20نظم\x20متخصص\x20(600,000-900,000\x20جنيه\x20سنوياً)','focus','اعرف','عذراً،\x20لم\x20أفهم\x20رسالتك.\x20يمكنك\x20اختيار\x20أحد\x20الخيارات\x20التالية:','ما\x20هي\x20اهتماماتك\x20الرئيسية\x20في\x20مجال\x20التكنولوجيا؟','مطور\x20تطبيقات\x20متقدم\x20(600,000-900,000\x20جنيه\x20سنوياً)','7-12\x20سنة','قائد\x20البنية\x20التحتية','ركز\x20على\x20قطاعات\x20البنوك\x20والاتصالات\x20حيث\x20الطلب\x20كبير\x20على\x20محللي\x20النظم','كتاب\x20\x27Automate\x20the\x20Boring\x20Stuff\x20with\x20Python\x27\x20للمبتدئين.','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ol>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>السنة\x201-2:\x20بناء\x20أساس\x20قوي\x20في\x20التخصص</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>السنة\x203-4:\x20التخصص\x20والحصول\x20على\x20شهادات\x20متقدمة</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>السنة\x205:\x20القيادة\x20والتأثير\x20في\x20المجال</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ol>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','اختر\x20تخصصك:','مهندس\x20معماري\x20بنية\x20تحتية\x20(1,200,000-1,920,000\x20جنيه\x20سنوياً)','نظم\x20المعلومات\x20(IS)','أدوات\x20تحليل\x20البيانات\x20(Tableau,\x20Power\x20BI)\x20★★★☆☆','هل\x20تعتقد\x20أن\x20الذكاء\x20الاصطناعي\x20سيحل\x20محل\x20الوظائف؟','أوراق\x20بحثية\x20على\x20arXiv.','الذكاء\x20الاصطناعي','شهادات\x20قيادية،\x20خبرة\x20استراتيجية','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','خبرة\x20تنفيذية،\x20إدارة\x20ميزانيات\x20كبيرة','قناة\x20\x27Traversy\x20Media\x27\x20على\x20يوتيوب\x20لمشاريع\x20عملية.','دورات\x20على\x20\x27Coursera\x27\x20حول\x20الذكاء\x20الاصطناعي.','هل\x20لديك\x20خبرة\x20في\x20إدارة\x20الأنظمة\x20والشبكات؟','<div\x20class=\x22position\x22>•\x20','مهندس\x20تعلم\x20آلي\x20(600,000-900,000\x20جنيه\x20سنوياً)','430wqZQpW','بكالوريوس\x20علوم\x20حاسب،\x20مشاريع\x20شخصية،\x20معرفة\x20بلغات\x20برمجة','نمو\x20الوظائف:\x2013%\x20سنوياً\x20مع\x20زيادة\x20الاعتماد\x20على\x20التقنية','كن\x20على\x20اطلاع\x20بآخر\x20تهديدات\x20الأمن\x20المعلوماتي.','طور\x20مهاراتك\x20في\x20الأمن\x20السيبراني.','remove','ما\x20هي\x20المشاريع\x20التي\x20قمت\x20بتطويرها\x20حتى\x20الآن؟','ما\x20هو\x20رأيك\x20في\x20أخلاقيات\x20الذكاء\x20الاصطناعي؟','عالم\x20بيانات\x20كبير\x20(2,160,000-3,240,000\x20جنيه\x20سنوياً)','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22typing-dot\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22typing-dot\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22typing-dot\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','تحليل\x20النظم\x20المتكامل\x20★★★★★','ما\x20هي\x20المهارات\x20التي\x20تحتاج\x20لتطويرها؟','مهندس\x20شبكات\x20متقدم\x20(900,000-1,320,000\x20جنيه\x20سنوياً)','مسابقات\x20مثل\x20ImageNet.','عالم\x20بيانات\x20كبير\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>معلومات\x20عن\x20الوظائف\x20في\x20مجال\x20التكنولوجيا</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>للعمل\x20في\x20مجالات\x20التقنية،\x20عليك\x20اختيار\x20تخصص\x20مناسب\x20واتباع\x20نصائح\x20فعالة.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>نصائح\x20عامة\x20للنجاح\x20في\x20العمل:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>ابحث\x20عن\x20فرص\x20تدريبية\x20لتحسين\x20مهاراتك\x20العملية.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>حافظ\x20على\x20تطوير\x20مهاراتك\x20بانظام.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>قم\x20بتوسيع\x20شبكة\x20علاقاتك\x20في\x20المجال.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>كن\x20مرناً\x20في\x20قبول\x20المشاريع\x20الجديدة.</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>إذا\x20كنت\x20تريد\x20معلومات\x20عن\x20تخصص\x20محدد،\x20اختر\x20من\x20التخصصات\x20التالية:</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','اسئلة','ما\x20هو\x20حلمك\x20في\x20مجال\x20الذكاء\x20الاصطناعي؟','رؤية\x20حاسوبية\x20★★★★☆','7uuSALa','دورات\x20تطوير\x20الويب\x20على\x20\x27Udemy\x27.','div','مسار\x20سريع\x20للغاية\x20مع\x20إمكانيات\x20دولية\x20ورواتب\x20تنافسية\x20عالمياً','قد\x20تكون\x20المواد\x20الدراسية\x20صعبة\x20وتتطلب\x20جهداً\x20كبيراً\x20لفهم\x20الخوارزميات.','هل\x20تفكر\x20في\x20استكمال\x20الدراسات\x20العليا؟','كتب\x20مثل\x20\x27Project\x20Management\x20for\x20Information\x20Systems\x27.','مطور\x20ذكاء\x20اصطناعي\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','تحليل\x20متطلبات\x20الأعمال\x20★★★★☆','مدير\x20إستراتيجية\x20الذكاء\x20الاصطناعي\x20(3,600,000-6,000,000+\x20جنيه\x20سنوياً)','padStart','احرص\x20على\x20التواصل\x20مع\x20الشركات\x20للتدريب\x20العملي.',')</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22stage-positions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','التخطيط\x20للأمن\x20الاستباقي\x20★★★★☆','هل\x20لديك\x20خلفية\x20قوية\x20في\x20الرياضيات\x20والإحصاء؟','3SAowls','باحث\x20ذكاء\x20اصطناعي\x20رئيسي\x20(2,400,000-3,600,000\x20جنيه\x20سنوياً)','ركز\x20على\x20تعلم\x20أساسيات\x20البرمجة\x20مثل\x20الخوارزميات\x20وهياكل\x20البيانات.','هل\x20واجهت\x20أي\x20صعوبات\x20في\x20فهم\x20أساسيات\x20البرمجة؟','</div>','شريك\x20تقني\x20(4,000,000-8,000,000+\x20جنيه\x20سنوياً)','some','هل\x20تفكر\x20في\x20الهجرة\x20للعمل\x20بالخارج؟','مستشار\x20نظم\x20معلومات\x20(660,000-960,000\x20جنيه\x20سنوياً)','إستراتيجيات\x20التطوير\x20التقني\x20★★★★☆','ركز\x20على\x20فهم\x20شبكات\x20الحاسوب\x20وأمن\x20المعلومات.','رائع!\x20دعنا\x20نبدأ\x20ببعض\x20الأسئلة\x20التفاعلية\x20لمساعدتك\x20في\x20تحديد\x20مسارك.','</li>','مهندس\x20سحابة\x20إلكترونية\x20(540,000-780,000\x20جنيه\x20سنوياً)','description','انضم\x20لمجتمعات\x20برمجية\x20للتعلم\x20من\x20الآخرين.','يتطلب\x20جهداً\x20كبيراً\x20في\x20إنجاز\x20مشروع\x20التخرج.','مهندس\x20برمجيات،\x20مطور\x20تطبيقات،\x20عالم\x20بيانات،\x20أو\x20باحث.','خبرة\x20تنفيذية،\x20إسهامات\x20بارزة\x20في\x20المجال','12+\x20سنة','محلل\x20نظم\x20مبتدئ\x20(360,000-540,000\x20جنيه\x20سنوياً)','toLowerCase','scrollHeight','تهيئة\x20كاملة\x20لسوق\x20العمل\x20كمحلل\x20نظم،\x20مدير\x20مشاريع،\x20أو\x20مستشار\x20تقني.','career','growth','شهادات\x20متقدمة\x20(PMP,\x20CBAP)،\x20خبرة\x20إدارية،\x20إدارة\x20مشاريع','تدرب\x20على\x20إدارة\x20البنية\x20التحتية\x20للشركات.','2113510PYnQVz','4699698XHdEPG','254661ayyQJa','مستوى\x20مبتدئ','هل\x20تفضل\x20العمل\x20على\x20التعلم\x20العميق\x20أم\x20التعلم\x20الآلي\x20الكلاسيكي؟','كن\x20على\x20اطلاع\x20بأحدث\x20الأبحاث\x20والتطورات\x20في\x20هذا\x20المجال.','هل\x20لديك\x20خبرة\x20في\x20تصميم\x20قواعد\x20البيانات؟','تخصص\x20نظم\x20المعلومات\x20يتيح\x20لك\x20التعرف\x20على\x20كيفية\x20إدارة\x20البيانات\x20وتحليلها،\x20مما\x20يجعلك\x20مؤهلاً\x20للعمل\x20في\x20العديد\x20من\x20القطاعات.','join','length','هندسة\x20الشبكات\x20المتقدمة\x20★★★★★','هل\x20شاركت\x20في\x20مسابقات\x20برمجة\x20دولية؟','كتب\x20مثل\x20\x27Hands-On\x20Machine\x20Learning\x20with\x20Scikit-Learn\x27.','شريك\x20تقني\x20في\x20شركة\x20ناشئة\x20(4,000,000-8,000,000+\x20جنيه\x20سنوياً)','الفرقة\x20الرابعة','مدير\x20قاعدة\x20بيانات\x20(480,000-720,000\x20جنيه\x20سنوياً)','getElementById','ما\x20هي\x20أكبر\x20مشكلة\x20أمنية\x20واجهتها؟','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22skills-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>📊\x20المهارات\x20المطلوبة\x20وتقييمها:</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22skills-list\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','ما\x20هو\x20رأيك\x20في\x20مستقبل\x20الذكاء\x20الاصطناعي؟','مهندس\x20شبكات\x20متقدم\x20(600,000-900,000\x20جنيه\x20سنوياً)','شريك\x20في\x20شركة\x20ناشئة\x20للذكاء\x20الاصطناعي\x20(8,000,000-15,000,000+\x20جنيه\x20سنوياً)','مسابقات\x20مثل\x20ACM\x20ICPC.','علوم\x20الحاسب','ما\x20هو\x20أكبر\x20تحدي\x20تواجهه\x20في\x20التحضير\x20لسوق\x20العمل؟','شهادات\x20متقدمة\x20(CCNP,\x20CISSP)،\x20خبرة\x20في\x20إدارة\x20أنظمة\x20معقدة','أوراق\x20بحثية\x20منشورة،\x20براءات\x20اختراع،\x20مشاريع\x20ذكاء\x20اصطناعي\x20ناجحة','محلل\x20نظم\x20(240,000-360,000\x20جنيه\x20سنوياً)','resources','querySelector','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>التحديات:</strong>\x20','تخصصات','احرص\x20على\x20حل\x20مسائل\x20برمجية\x20يومياً\x20لتنمية\x20مهاراتك.','فرص\x20العمل\x20تشمل:\x20مهندس\x20برمجيات،\x20عالم\x20بيانات،\x20مطور\x20تطبيقات،\x20مهندس\x20أمن\x20معلومات،\x20باحث\x20في\x20الذكاء\x20الاصطناعي.','شريك\x20استشاري\x20(1,500,000-3,000,000+\x20جنيه\x20سنوياً)','طور\x20مهاراتك\x20في\x20الرياضيات\x20والإحصاء.','ما\x20هي\x20المهارات\x20التي\x20تشعر\x20أنك\x20بحاجة\x20لتحسينها؟','شهادات\x20CompTIA\x20A+,\x20Network+,\x20Security+.','كيف\x20تتعامل\x20مع\x20الأعطال\x20الحرجة؟','appendChild','هل\x20تعمل\x20على\x20مشاريع\x20ذكاء\x20اصطناعي\x20عملية؟','هل\x20تهتم\x20بمجال\x20إنترنت\x20الأشياء؟','مدير\x20نظم\x20المعلومات\x20(720,000-1,200,000\x20جنيه\x20سنوياً)','مدير\x20أمن\x20المعلومات\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','مهندس\x20أمن\x20سيبراني\x20(1,080,000-1,680,000\x20جنيه\x20سنوياً)','أمن\x20المعلومات\x20والسيبراني\x20★★★★☆','3-5\x20سنوات','نمو\x20الوظائف:\x2015%\x20سنوياً\x20مع\x20الثورة\x20الرقمية','body','ما\x20هو\x20تقييمك\x20لأهمية\x20الشهادات\x20المهنية\x20في\x20سوق\x20العمل؟','معلومات\x20عن\x20الوظائف','ما\x20هي\x20التحديات\x20التي\x20تواجهها\x20في\x20البحث؟','ما\x20هو\x20الوقت\x20الذي\x20تخصصه\x20للبرمجة\x20يومياً؟','smooth','ما\x20هو\x20مستوى\x20خبرتك\x20الحالي\x20في\x20البرمجة؟','تكنولوجيا\x20المعلومات\x20مستقرة\x20مع\x20طلب\x20متزايد\x20على\x20الأمن\x20السيبراني','مواقع\x20متخصصة\x20في\x20أمن\x20المعلومات.','onclick','chat-message\x20error-message','خبرة\x20عملية،\x20شهادات\x20في\x20SQL،\x20معرفة\x20بتحليل\x20النظم','lastQuestion','طور\x20مهاراتك\x20في\x20إدارة\x20المشاريع\x20التقنية.','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>المميزات:</strong>\x20','<li>','التخطيط\x20الاستراتيجي\x20للتكنولوجيا\x20★★★★☆','الفرقة\x20الثانية','هل\x20لديك\x20خبرة\x20في\x20إدارة\x20المشاريع\x20التقنية؟','قنوات\x20يوتيوب\x20متخصصة\x20في\x20الخوارزميات.','التعلم\x20العميق\x20المتقدم\x20★★★★★','ما\x20هي\x20مجالات\x20علوم\x20الحاسب\x20التي\x20تثير\x20اهتمامك\x20أكثر؟','مدير\x20تقنية\x20المعلومات\x20CIO\x20(1,200,000-2,400,000\x20جنيه\x20سنوياً)','مهندس\x20شبكات\x20مبتدئ\x20(420,000-600,000\x20جنيه\x20سنوياً)','.input-area','يحتاج\x20إلى\x20تحديث\x20مستمر\x20للمهارات\x20بسبب\x20التطور\x20التقني.','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22career-stage\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>','طور\x20مهاراتك\x20في\x20التعامل\x20مع\x20قواعد\x20البيانات.','إدارة\x20البنية\x20التحتية\x20المتكاملة\x20★★★★☆','includes','classList','أنظمة\x20التشغيل\x20والشبكات\x20★★★☆☆','ما\x20هي\x20الشركات\x20التقنية\x20التي\x20تفضل\x20العمل\x20بها؟','إدارة\x20قواعد\x20البيانات\x20SQL\x20★★★★☆','إدارة\x20الأزمات\x20الأمنية\x20★★★★☆','محترف\x20مبتدئ\x20(بعد\x20التخرج\x20مباشرة)','مواقع\x20مثل\x20\x27Codecademy\x27\x20و\x27Coursera\x27\x20للتدريب\x20العملي.','تعلم\x20أساسيات\x20البرمجة\x20النصية.','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','مهندس\x20تعلم\x20آلي\x20متقدم\x20(1,800,000-2,700,000\x20جنيه\x20سنوياً)','هل\x20شاركت\x20في\x20أي\x20مسابقات\x20برمجة\x20من\x20قبل؟','ماجستير،\x20أوراق\x20بحثية،\x20خبرة\x20متخصصة','ماجستير،\x20شهادات\x20قيادية،\x20خبرة\x20استشارية','هل\x20لديك\x20خبرة\x20في\x20إدارة\x20شبكات\x20حقيقية؟','احصل\x20على\x20شهادات\x20تقنية\x20متقدمة.','ما\x20هي\x20أكبر\x20تحد\x20تواجهه\x20في\x20البرمجة\x20حالياً؟','فرصة\x20للعمل\x20على\x20مشاريع\x20ذكاء\x20اصطناعي\x20متقدمة\x20ومبتكرة.','مطور\x20برامج\x20(360,000-540,000\x20جنيه\x20سنوياً)','مواقع\x20متخصصة\x20في\x20تحليل\x20الأعمال.','مهندس\x20معماري\x20برمجيات\x20(1,440,000-2,400,000\x20جنيه\x20سنوياً)','تخصص\x20دقيق،\x20شهادات\x20تقنية\x20متقدمة،\x20مشاركة\x20في\x20مشاريع\x20مفتوحة\x20المصدر','كتب\x20تحليل\x20النظم\x20مثل\x20\x27Systems\x20Analysis\x20and\x20Design\x27.','وظيفة','مهندس\x20تعلم\x20آلي،\x20عالم\x20بيانات،\x20باحث،\x20أو\x20مطور\x20ذكاء\x20اصطناعي.','مساعده','اهلا','<div\x20class=\x22skill-item\x22>','تخصص\x20تكنولوجيا\x20المعلومات\x20يشمل\x20العديد\x20من\x20الجوانب\x20العملية،\x20مما\x20يجعلك\x20مستعداً\x20للعمل\x20في\x20أي\x20مكان.','دورات\x20\x27Cisco\x27\x20لشبكات\x20الحاسوب.','ما\x20هو\x20أكبر\x20تحدي\x20في\x20نظم\x20المعلومات\x20برأيك؟','ما\x20هي\x20التقنيات\x20الجديدة\x20التي\x20تود\x20تعلمها؟','انشر\x20أبحاثاً\x20في\x20مجالات\x20الذكاء\x20الاصطناعي.','مدير\x20عمليات\x20تقنية\x20المعلومات\x20(2,160,000-3,600,000\x20جنيه\x20سنوياً)','</ul>','مهندس\x20تعلم\x20آلي\x20متقدم\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)','شهادات\x20احترافية\x20(PMP,\x20CBAP)،\x20خبرة\x20في\x20إدارة\x20فرق،\x20مشاريع\x20ناجحة','شارك\x20في\x20مسابقات\x20البرمجة\x20الدولية.','مدير\x20نظم\x20المعلومات\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)','هل\x20لديك\x20خبرة\x20في\x20استخدام\x20Git\x20وGitHub؟','معامل\x20Cisco\x20Networking\x20Academy.','136fAnytl','مطور\x20برامج\x20مبتدئ\x20(240,000-360,000\x20جنيه\x20سنوياً)','هل\x20تهتم\x20أكثر\x20بشبكات\x20الحاسوب\x20أم\x20أمن\x20المعلومات؟','مستشار\x20تقني\x20أول\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)','هذه\x20معلومات\x20قيمة!\x20هل\x20تود\x20معرفة\x20المزيد؟','questions','typing-indicator','الذكاء\x20الاصطناعي\x20هو\x20مجال\x20المستقبل،\x20ويتيح\x20لك\x20الابتكار\x20في\x20تطبيقات\x20جديدة.','متدرّب\x20تعلم\x20آلي\x20(360,000-540,000\x20جنيه\x20سنوياً)','position','تعمق\x20في\x20دراسة\x20الخوارزميات\x20وهياكل\x20البيانات\x20المتقدمة.','منصة\x20Kaggle\x20للمسابقات\x20والتعلم.','بكالوريوس\x20+\x20مشاريع\x20في\x20الذكاء\x20الاصطناعي','مساعدة','</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>مصادر\x20تعليمية</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>','منصة\x20HackerRank\x20لتحسين\x20مهارات\x20حل\x20المشكلات.','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>💼\x20نصائح\x20مهمة\x20لسوق\x20العمل:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>','شهادات\x20متقدمة،\x20خبرة\x20إدارية','شهادات\x20مهنية\x20(CCNA,\x20Security+)،\x20مشروع\x20تخرج\x20عملي','كيف\x20تطور\x20نماذج\x20الذكاء\x20الاصطناعي؟','ما\x20هو\x20المشروع\x20الأكثر\x20تعقيداً\x20قمت\x20بتنفيذه؟','تحليل\x20النظم\x20وتصميمها\x20★★★★☆','كبير\x20علماء\x20البيانات\x20(4,800,000-7,200,000\x20جنيه\x20سنوياً)','موقع\x20\x27freeCodeCamp\x27\x20يحتوي\x20على\x20مشاريع\x20عملية\x20مميزة.','إصلاح\x20الأعطال\x20والصيانة\x20★★★★★','شغل','كبير\x20محللي\x20النظم\x20(1,440,000-2,400,000\x20جنيه\x20سنوياً)','chat-message\x20bot-message','خبرة\x20في\x20إطار\x20عمل،\x20مشاريع\x20حقيقية،\x20معرفة\x20بالخوارزميات','أهلاً!\x20أنا\x20المساعد\x20الذكي\x20Materialx.\x20كيف\x20يمكنني\x20مساعدتك\x20اليوم؟','التصميم\x20المعماري\x20للنظم\x20★★★★★','تدرب\x20على\x20أدوات\x20تعلم\x20الآلة\x20مثل\x20TensorFlow.','يرجى\x20إدخال\x20رسالة\x20صحيحة.','3602028uGjhlg','هل\x20تتابع\x20آخر\x20الأبحاث\x20في\x20المجال؟','options','938298WrGPHo','requirements','4-7\x20سنوات','خوارزميات\x20وهياكل\x20بيانات\x20★★★★★','هل\x20لديك\x20خبرة\x20في\x20العمل\x20الحر؟','قنوات\x20يوتيوب\x20مثل\x20\x27TheNew\x20Boston\x27\x20و\x27Academind\x27\x20لتعلم\x20البرمجة.','526468JhGxQS','مهندس\x20معماري\x20البنية\x20التحتية\x20(3,000,000-5,000,000+\x20جنيه\x20سنوياً)','إدارة\x20الميزانيات\x20والمخاطر\x20★★★★☆','هل\x20شاركت\x20في\x20أي\x20مشاريع\x20برمجية\x20مع\x20زملائك؟','طور\x20مشاريع\x20شخصية\x20لتطبيق\x20ما\x20تتعلمه.','متدرّب\x20نظم\x20معلومات\x20(120,000-180,000\x20جنيه\x20سنوياً)','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22askSpecializationQuestion(\x27','خبرة\x20في\x20TensorFlow/PyTorch،\x20مشاريع\x20عملية','70641gWAYtJ','قد\x20تحتاج\x20إلى\x20مجهود\x20مستمر\x20لمواكبة\x20التطورات\x20السريعة\x20في\x20التكنولوجيا.','احرص\x20على\x20اكتساب\x20مهارات\x20تحليل\x20البيانات.','خريج\x20حديث\x20(مشروع\x20تخرج\x20متميز)','تخصص','DOMContentLoaded','ما\x20هي\x20التحديات\x20الأخلاقية\x20التي\x20تواجه\x20الذكاء\x20الاصطناعي؟','البحث\x20والتطوير\x20في\x20الذكاء\x20الاصطناعي\x20★★★★★','إسهامات\x20بارزة\x20في\x20المجال،\x20قيادة\x20فرق\x20بحثية،\x20ابتكارات\x20تقنية','نائب\x20رئيس\x20التقنية\x20(3,000,000-5,000,000+\x20جنيه\x20سنوياً)','name','نصيحة','Enter'];_0x1845=function(){return _0xffac90;};return _0x1845();}function selectYear(_0x636c52){const _0x95f9b5=_0x460617;currentState[_0x95f9b5(0x1bf)]=_0x636c52,addUserMessage(_0x95f9b5(0x202)+_0x636c52),_0x636c52===0x3||_0x636c52===0x4?showSpecializationSelection():addBotMessage('ممتاز!\x20أنت\x20في\x20الفرقة\x20'+_0x636c52+'.\x20ما\x20الذي\x20تود\x20معرفته؟',[{'text':'نصائح\x20دراسية','action':()=>showAdvice(_0x636c52)},{'text':'مصادر\x20تعليمية','action':()=>showResources(_0x636c52)},{'text':_0x95f9b5(0x1b8),'action':()=>askYearSpecificQuestion(_0x636c52)}]);}function showAdvice(_0x19f529){const _0x2ee95d=_0x460617,_0x5af59a=data[_0x19f529][_0x2ee95d(0x1f4)];addBotMessage('إليك\x20بعض\x20النصائح\x20للفرقة\x20'+_0x19f529+_0x2ee95d(0x1dd)+_0x5af59a['map'](_0x25d99c=>_0x2ee95d(0xd0)+_0x25d99c+_0x2ee95d(0x263))[_0x2ee95d(0x27b)]('')+_0x2ee95d(0x100)),askFollowUpQuestion(_0x19f529);}function showResources(_0x897f66){const _0x3a47c8=_0x460617,_0x5679b3=data[_0x897f66]['resources'];addBotMessage('إليك\x20بعض\x20المصادر\x20المفيدة\x20للفرقة\x20'+_0x897f66+':<br><ul>'+_0x5679b3[_0x3a47c8(0x19d)](_0x2667c6=>_0x3a47c8(0xd0)+_0x2667c6+_0x3a47c8(0x263))[_0x3a47c8(0x27b)]('')+_0x3a47c8(0x100)),askFollowUpQuestion(_0x897f66);}function showSpecializationSelection(){const _0x144fa5=_0x460617;addBotMessage(_0x144fa5(0x226),[{'text':_0x144fa5(0x228),'action':()=>selectSpecialization('IS')},{'text':'علوم\x20الحاسب\x20(CS)','action':()=>selectSpecialization('CS')},{'text':'تكنولوجيا\x20المعلومات\x20(IT)','action':()=>selectSpecialization('IT')},{'text':'الذكاء\x20الاصطناعي\x20(AI)','action':()=>selectSpecialization('AI')}]);}function selectSpecialization(_0x16baed){const _0x27c2cd=_0x460617;currentState[_0x27c2cd(0x188)]=_0x16baed;let _0x1c6fc3;currentState[_0x27c2cd(0x1bf)]===0x4?_0x1c6fc3=data[0x4][_0x16baed]:_0x1c6fc3=data[0x3][_0x16baed];addUserMessage(_0x27c2cd(0x171)+getSpecializationName(_0x16baed));const _0x5e4968=_0x27c2cd(0x200)+currentState[_0x27c2cd(0x1bf)]+_0x27c2cd(0xcf)+_0x1c6fc3[_0x27c2cd(0x265)]['advantages']+_0x27c2cd(0xaf)+_0x1c6fc3[_0x27c2cd(0x265)][_0x27c2cd(0x184)]+_0x27c2cd(0x15d)+_0x1c6fc3[_0x27c2cd(0x1f4)][_0x27c2cd(0x19d)](_0x9d14af=>_0x27c2cd(0xd0)+_0x9d14af+_0x27c2cd(0x263))[_0x27c2cd(0x27b)]('')+_0x27c2cd(0x115)+_0x1c6fc3[_0x27c2cd(0xad)][_0x27c2cd(0x19d)](_0x4c1aeb=>'<li>'+_0x4c1aeb+_0x27c2cd(0x263))[_0x27c2cd(0x27b)]('')+'</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22info-section\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>فرص\x20العمل</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>'+_0x1c6fc3[_0x27c2cd(0x26f)]+_0x27c2cd(0x137)+_0x16baed+'\x27)\x22>أسئلة\x20حول\x20التخصص</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showCareerPaths(\x27'+_0x16baed+_0x27c2cd(0x14f);addBotMessage(_0x5e4968);}function getSpecializationName(_0x3d47d2){const _0x4acf47=_0x460617,_0x2277d3={'IS':_0x4acf47(0x19f),'CS':_0x4acf47(0x28a),'IT':_0x4acf47(0x1ad),'AI':_0x4acf47(0x22c)};return _0x2277d3[_0x3d47d2]||_0x3d47d2;}function showCareerInfo(){const _0x4c5a87=_0x460617,_0x48a029=_0x4c5a87(0x244);addBotMessage(_0x48a029),showSpecializationSelection();}function startInteractiveQuestions(){const _0x3f512c=_0x460617;addBotMessage(_0x3f512c(0x262));if(currentState[_0x3f512c(0x1bf)])askYearSpecificQuestion(currentState[_0x3f512c(0x1bf)]);else currentState[_0x3f512c(0x188)]?askSpecializationQuestion(currentState[_0x3f512c(0x188)]):askGeneralQuestion();}function askGeneralQuestion(){const _0x3258a8=_0x460617,_0x3743f1=[_0x3258a8(0x21f),_0x3258a8(0x18a),_0x3258a8(0xc7)],_0x3611fd=_0x3743f1[Math['floor'](Math[_0x3258a8(0x14e)]()*_0x3743f1[_0x3258a8(0x27c)])];currentState['lastQuestion']=_0x3611fd,addBotMessage(_0x3611fd);}function askYearSpecificQuestion(_0x955076){const _0x16fe87=_0x460617;if(data[_0x955076]&&data[_0x955076][_0x16fe87(0x10c)]){const _0x553269=data[_0x955076][_0x16fe87(0x10c)][Math[_0x16fe87(0x189)](Math[_0x16fe87(0x14e)]()*data[_0x955076][_0x16fe87(0x10c)]['length'])];currentState[_0x16fe87(0xcd)]=_0x553269,addBotMessage(_0x553269);}else askGeneralQuestion();}function askSpecializationQuestion(_0x1e40bc){const _0x5f527c=_0x460617;let _0x1c7ae1;currentState[_0x5f527c(0x1bf)]===0x4?_0x1c7ae1=data[0x4][_0x1e40bc][_0x5f527c(0x10c)]:_0x1c7ae1=data[0x3][_0x1e40bc][_0x5f527c(0x10c)];if(_0x1c7ae1){const _0x45eadc=_0x1c7ae1[Math[_0x5f527c(0x189)](Math['random']()*_0x1c7ae1[_0x5f527c(0x27c)])];currentState[_0x5f527c(0xcd)]=_0x45eadc,addBotMessage(_0x45eadc);}else askGeneralQuestion();}function askFollowUpQuestion(_0x1bef9b){setTimeout(()=>{askYearSpecificQuestion(_0x1bef9b);},0x3e8);}function handleAnswer(_0x26f33c){const _0x30a25f=_0x460617;addBotMessage(_0x30a25f(0x1b4)+_0x26f33c+'\x22'),currentState[_0x30a25f(0xcd)]=null,setTimeout(()=>{const _0x20c79f=_0x30a25f;addBotMessage(_0x20c79f(0x10b),[{'text':_0x20c79f(0x195),'action':()=>{const _0x4bf6fc=_0x20c79f;if(currentState['year'])showAdvice(currentState['year']);else{if(currentState[_0x4bf6fc(0x188)])askSpecializationQuestion(currentState[_0x4bf6fc(0x188)]);else showMainOptions();}}},{'text':'شكراً،\x20هذا\x20يكفي','action':()=>addBotMessage(_0x20c79f(0x204))}]);},0x1f4);}function showHelp(){const _0x3459f7=_0x460617;addBotMessage(_0x3459f7(0x150));}function clearChat(){confirm('هل\x20تريد\x20مسح\x20المحادثة؟')&&location['reload']();}function showError(_0x41654f){const _0x40bcdc=_0x460617,_0x1c90b7=document['getElementById']('chat-box'),_0x1be625=document['createElement']('div');_0x1be625[_0x40bcdc(0x1bd)]=_0x40bcdc(0xcb),_0x1be625[_0x40bcdc(0x153)]=_0x40bcdc(0xe7)+_0x41654f+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22message-time\x22>'+getCurrentTime()+_0x40bcdc(0x22e),_0x1c90b7[_0x40bcdc(0xb8)](_0x1be625),scrollToBottom();}function showCareerPaths(_0x57f325){const _0x4efcf7=_0x460617,_0x321cd3={'IS':{'stages':[{'name':'متدرب/حديث\x20التخرج','positions':[_0x4efcf7(0x209),_0x4efcf7(0x193),_0x4efcf7(0x136)],'duration':'0-2\x20سنوات','requirements':'بكالوريوس\x20نظم\x20معلومات،\x20معرفة\x20بقواعد\x20البيانات،\x20تدريب\x20عملي'},{'name':_0x4efcf7(0x276),'positions':[_0x4efcf7(0xac),'مسؤول\x20قاعدة\x20بيانات\x20مبتدئ\x20(264,000-384,000\x20جنيه\x20سنوياً)','أخصائي\x20دعم\x20نظم\x20(216,000-312,000\x20جنيه\x20سنوياً)'],'duration':_0x4efcf7(0x1c1),'requirements':_0x4efcf7(0xcc)},{'name':_0x4efcf7(0x154),'positions':[_0x4efcf7(0x155),_0x4efcf7(0x282),_0x4efcf7(0x1e3)],'duration':_0x4efcf7(0x12d),'requirements':_0x4efcf7(0x271)},{'name':_0x4efcf7(0x1c2),'positions':[_0x4efcf7(0xbb),'كبير\x20محللي\x20النظم\x20(840,000-1,320,000\x20جنيه\x20سنوياً)','مستشار\x20نظم\x20معلومات\x20(600,000-960,000\x20جنيه\x20سنوياً)'],'duration':_0x4efcf7(0x221),'requirements':_0x4efcf7(0xeb)},{'name':_0x4efcf7(0x170),'positions':[_0x4efcf7(0xd7),'مدير\x20العمليات\x20التقنية\x20(960,000-1,800,000\x20جنيه\x20سنوياً)',_0x4efcf7(0xb3)],'duration':_0x4efcf7(0x26a),'requirements':_0x4efcf7(0x1a5)}],'skills':[_0x4efcf7(0x11c),_0x4efcf7(0xe2),_0x4efcf7(0x1bc),_0x4efcf7(0x250),_0x4efcf7(0x229)],'growth':'نمو\x20الوظائف:\x2011%\x20سنوياً\x20مع\x20زيادة\x20الطلب\x20على\x20محترفي\x20تحليل\x20البيانات'},'CS':{'stages':[{'name':_0x4efcf7(0x1ba),'positions':[_0x4efcf7(0x108),'مهندس\x20برمجيات\x20مبتدئ\x20(264,000-396,000\x20جنيه\x20سنوياً)','متدرّب\x20تطوير\x20(180,000-300,000\x20جنيه\x20سنوياً)'],'duration':_0x4efcf7(0x1af),'requirements':_0x4efcf7(0x236)},{'name':_0x4efcf7(0x276),'positions':[_0x4efcf7(0xf0),'مهندس\x20برمجيات\x20(420,000-600,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x1b1)],'duration':_0x4efcf7(0x1c1),'requirements':_0x4efcf7(0x123)},{'name':_0x4efcf7(0x154),'positions':[_0x4efcf7(0x179),_0x4efcf7(0x1fc),_0x4efcf7(0x1f2)],'duration':_0x4efcf7(0x12d),'requirements':_0x4efcf7(0x219)},{'name':_0x4efcf7(0x1c2),'positions':[_0x4efcf7(0x196),_0x4efcf7(0xf2),_0x4efcf7(0x1a3)],'duration':'7-12\x20سنة','requirements':'ماجستير،\x20خبرة\x20معمارية،\x20إدارة\x20فرق'},{'name':'قيادة\x20وإدارة','positions':[_0x4efcf7(0x1b9),'نائب\x20رئيس\x20التكنولوجيا\x20(3,000,000-6,000,000+\x20جنيه\x20سنوياً)',_0x4efcf7(0x25c)],'duration':_0x4efcf7(0x26a),'requirements':'دكتوراة،\x20خبرة\x20تنفيذية،\x20إدارة\x20استراتيجية'}],'skills':[_0x4efcf7(0x12e),_0x4efcf7(0x17e),'تطوير\x20تطبيقات\x20الويب\x20والجوال\x20★★★★☆',_0x4efcf7(0x1aa),_0x4efcf7(0xe0)],'growth':_0x4efcf7(0xc0)},'IT':{'stages':[{'name':_0x4efcf7(0x1ba),'positions':['مساعد\x20مسؤول\x20شبكات\x20(216,000-312,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x1c7),_0x4efcf7(0x20a)],'duration':_0x4efcf7(0x1af),'requirements':_0x4efcf7(0x17a)},{'name':_0x4efcf7(0x276),'positions':[_0x4efcf7(0x1a0),_0x4efcf7(0x162),'مسؤول\x20أنظمة\x20(384,000-552,000\x20جنيه\x20سنوياً)'],'duration':'2-4\x20سنوات','requirements':_0x4efcf7(0x1da)},{'name':_0x4efcf7(0x154),'positions':[_0x4efcf7(0x287),'مهندس\x20أمن\x20معلومات\x20كبير\x20(720,000-1,080,000\x20جنيه\x20سنوياً)','مهندس\x20سحابة\x20إلكترونية\x20(660,000-960,000\x20جنيه\x20سنوياً)'],'duration':_0x4efcf7(0x12d),'requirements':_0x4efcf7(0x118)},{'name':'مستوى\x20متقدم','positions':[_0x4efcf7(0x17c),_0x4efcf7(0xbc),_0x4efcf7(0x227)],'duration':_0x4efcf7(0x221),'requirements':_0x4efcf7(0x22d)},{'name':_0x4efcf7(0x170),'positions':[_0x4efcf7(0xff),_0x4efcf7(0x142),_0x4efcf7(0x1d1)],'duration':_0x4efcf7(0x26a),'requirements':_0x4efcf7(0x22f)}],'skills':[_0x4efcf7(0x1d0),_0x4efcf7(0xbe),_0x4efcf7(0x210),'الحوسبة\x20السحابية\x20(AWS,\x20Azure)\x20★★★☆☆',_0x4efcf7(0x11f)],'growth':_0x4efcf7(0x237)},'AI':{'stages':[{'name':_0x4efcf7(0x1ba),'positions':['مساعد\x20باحث\x20ذكاء\x20اصطناعي\x20(300,000-480,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x10f),_0x4efcf7(0x1db)],'duration':_0x4efcf7(0x1af),'requirements':_0x4efcf7(0x113)},{'name':_0x4efcf7(0x276),'positions':[_0x4efcf7(0x234),'عالم\x20بيانات\x20(660,000-960,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x24f)],'duration':_0x4efcf7(0x1c1),'requirements':_0x4efcf7(0x138)},{'name':_0x4efcf7(0x154),'positions':[_0x4efcf7(0x101),_0x4efcf7(0x243),'باحث\x20ذكاء\x20الاصطناعي\x20(1,440,000-2,400,000\x20جنيه\x20سنوياً)'],'duration':'4-7\x20سنوات','requirements':_0x4efcf7(0xea)},{'name':_0x4efcf7(0x1c2),'positions':['كبير\x20علماء\x20البيانات\x20(2,400,000-3,600,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x1d8),'مهندس\x20معماري\x20ذكاء\x20اصطناعي\x20(2,160,000-3,360,000\x20جنيه\x20سنوياً)'],'duration':'7-12\x20سنة','requirements':_0x4efcf7(0x15f)},{'name':_0x4efcf7(0x170),'positions':['نائب\x20رئيس\x20الذكاء\x20الاصطناعي\x20(4,800,000-8,000,000+\x20جنيه\x20سنوياً)',_0x4efcf7(0x251),_0x4efcf7(0x1d6)],'duration':'12+\x20سنة','requirements':_0x4efcf7(0x269)}],'skills':[_0x4efcf7(0x18e),'معالجة\x20اللغات\x20الطبيعية\x20★★★★☆',_0x4efcf7(0x247),_0x4efcf7(0x1a7),_0x4efcf7(0x1a9)],'growth':'نمو\x20الوظائف:\x2020%\x20سنوياً\x20مع\x20تسارع\x20التطور\x20في\x20المجال'},'4_IS':{'stages':[{'name':_0x4efcf7(0x13c),'positions':[_0x4efcf7(0x26b),'مساعد\x20مدير\x20مشاريع\x20تقنية\x20(420,000-600,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x16f)],'duration':_0x4efcf7(0x1ec),'requirements':_0x4efcf7(0x183)},{'name':_0x4efcf7(0xe4),'positions':[_0x4efcf7(0x21b),_0x4efcf7(0x1d7),_0x4efcf7(0x25f)],'duration':_0x4efcf7(0x146),'requirements':_0x4efcf7(0x1bb)},{'name':_0x4efcf7(0x1f7),'positions':[_0x4efcf7(0x104),_0x4efcf7(0x121),_0x4efcf7(0x10a)],'duration':_0x4efcf7(0x1c1),'requirements':_0x4efcf7(0x102)}],'skills':[_0x4efcf7(0x1e6),_0x4efcf7(0x23f),_0x4efcf7(0x157),_0x4efcf7(0xd1),_0x4efcf7(0x133)],'growth':'نمو\x20سريع\x20جداً\x20مع\x20إمكانية\x20الوصول\x20لمناصب\x20قيادية\x20خلال\x203-5\x20سنوات'},'4_CS':{'stages':[{'name':_0x4efcf7(0x1f6),'positions':[_0x4efcf7(0x1a6),_0x4efcf7(0x220),_0x4efcf7(0x14b)],'duration':_0x4efcf7(0x1a2),'requirements':_0x4efcf7(0x1f1)},{'name':'مهندس\x20متخصص','positions':['مهندس\x20برمجيات\x20كبير\x20(1,200,000-1,800,000\x20جنيه\x20سنوياً)',_0x4efcf7(0xf2),'عالم\x20بيانات\x20متقدم\x20(1,320,000-2,160,000\x20جنيه\x20سنوياً)'],'duration':'1-3\x20سنوات','requirements':_0x4efcf7(0xf3)},{'name':_0x4efcf7(0x163),'positions':['قائد\x20فريق\x20هندسة\x20البرمجيات\x20(2,400,000-3,600,000\x20جنيه\x20سنوياً)','مدير\x20تقنية\x20المعلومات\x20(3,000,000-4,800,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x280)],'duration':_0x4efcf7(0xbf),'requirements':'خبرة\x20قيادية،\x20إسهامات\x20تقنية\x20بارزة،\x20شبكة\x20علاقات\x20مهنية\x20قوية'}],'skills':[_0x4efcf7(0x14c),_0x4efcf7(0x125),_0x4efcf7(0x164),_0x4efcf7(0x260),_0x4efcf7(0x182)],'growth':_0x4efcf7(0x24b)},'4_IT':{'stages':[{'name':'خريج\x20متخصص\x20في\x20البنية\x20التحتية','positions':[_0x4efcf7(0xd8),_0x4efcf7(0x147),_0x4efcf7(0x264)],'duration':_0x4efcf7(0x1a2),'requirements':_0x4efcf7(0x119)},{'name':_0x4efcf7(0x1ed),'positions':[_0x4efcf7(0x241),_0x4efcf7(0xbd),_0x4efcf7(0x156)],'duration':_0x4efcf7(0x1c0),'requirements':_0x4efcf7(0xaa)},{'name':_0x4efcf7(0x222),'positions':[_0x4efcf7(0x218),_0x4efcf7(0x212),_0x4efcf7(0x132)],'duration':_0x4efcf7(0xbf),'requirements':_0x4efcf7(0x185)}],'skills':[_0x4efcf7(0x27d),_0x4efcf7(0x1a8),_0x4efcf7(0xdd),_0x4efcf7(0x255),_0x4efcf7(0xe3)],'growth':_0x4efcf7(0x1fe)},'4_AI':{'stages':[{'name':_0x4efcf7(0x1c8),'positions':[_0x4efcf7(0x1ee),'عالم\x20بيانات\x20(840,000-1,320,000\x20جنيه\x20سنوياً)',_0x4efcf7(0x172)],'duration':_0x4efcf7(0x1a2),'requirements':'مشروع\x20تخرج\x20مبتكر\x20في\x20الذكاء\x20الاصطناعي،\x20مشاركة\x20في\x20مسابقات\x20Kaggle'},{'name':_0x4efcf7(0x16c),'positions':[_0x4efcf7(0xe8),_0x4efcf7(0x23d),_0x4efcf7(0x258)],'duration':'1-3\x20سنوات','requirements':_0x4efcf7(0xab)},{'name':_0x4efcf7(0x205),'positions':[_0x4efcf7(0x11d),_0x4efcf7(0x1b5),_0x4efcf7(0x288)],'duration':_0x4efcf7(0xbf),'requirements':_0x4efcf7(0x141)}],'skills':[_0x4efcf7(0xd5),_0x4efcf7(0x140),_0x4efcf7(0x1dc),'الابتكار\x20في\x20تطبيقات\x20الذكاء\x20الاصطناعي\x20★★★★☆',_0x4efcf7(0x214)],'growth':'أسرع\x20مجال\x20نمواً\x20مع\x20إمكانيات\x20غير\x20محدودة\x20ورواتب\x20تنافسية\x20عالمياً'}},_0x452eaf=currentState[_0x4efcf7(0x1bf)]===0x4?'4_'+_0x57f325:_0x57f325,_0x3efb55=_0x321cd3[_0x452eaf];if(!_0x3efb55){addBotMessage(_0x4efcf7(0x176));return;}const _0x37493c='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>🚀\x20المسار\x20الوظيفي\x20'+(currentState[_0x4efcf7(0x1bf)]===0x4?_0x4efcf7(0x1c4):'')+'\x20في\x20'+getSpecializationName(_0x57f325)+'</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x3efb55[_0x4efcf7(0x1f0)][_0x4efcf7(0x19d)](_0x45cc7f=>_0x4efcf7(0xdb)+_0x45cc7f[_0x4efcf7(0x143)]+'\x20('+_0x45cc7f[_0x4efcf7(0x1e5)]+_0x4efcf7(0x254)+_0x45cc7f['positions'][_0x4efcf7(0x19d)](_0x5c54a3=>_0x4efcf7(0x233)+_0x5c54a3+_0x4efcf7(0x25b))[_0x4efcf7(0x27b)]('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22requirements\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<strong>المتطلبات:</strong>\x20'+_0x45cc7f[_0x4efcf7(0x12c)]+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')['join']('')+_0x4efcf7(0x285)+_0x3efb55['skills'][_0x4efcf7(0x19d)](_0x35213e=>_0x4efcf7(0xf9)+_0x35213e+_0x4efcf7(0x25b))[_0x4efcf7(0x27b)]('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22growth-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4>📈\x20توقعات\x20النمو:</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>'+_0x3efb55[_0x4efcf7(0x270)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showSalaryComparison(\x27'+_0x57f325+'\x27)\x22>مقارنة\x20الرواتب</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22quick-action\x22\x20onclick=\x22showSkillDevelopmentPlan(\x27'+_0x57f325+_0x4efcf7(0x216)+_0x57f325+_0x4efcf7(0x160);addBotMessage(_0x37493c);}function showSalaryComparison(_0x3a866b){const _0x35a682=_0x460617,_0x482333={'IS':'رواتب\x20نظم\x20المعلومات\x20تنافسية\x20خاصة\x20في\x20قطاعات\x20البنوك\x20والاتصالات','CS':'علوم\x20الحاسب\x20الأعلى\x20دخلاً\x20مع\x20فرص\x20عمل\x20محلية\x20ودولية','IT':_0x35a682(0xc8),'AI':'الذكاء\x20الاصطناعي\x20الأسرع\x20نمواً\x20مع\x20أعلى\x20الرواتب\x20على\x20المدى\x20الطويل'};addBotMessage(_0x35a682(0x175)+_0x482333[_0x3a866b]+_0x35a682(0x208));}function showSkillDevelopmentPlan(_0x24124a){const _0x26cff9=_0x460617,_0x546a70={'IS':'ركز\x20على\x20شهادات\x20PMP\x20وCBAP\x20وتعلم\x20أدوات\x20تحليل\x20البيانات','CS':_0x26cff9(0x1b2),'IT':_0x26cff9(0x192),'AI':'تعمق\x20في\x20الرياضيات\x20وتعلم\x20أحدث\x20أدوات\x20الذكاء\x20الاصطناعي'};addBotMessage('\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22specialization-info\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>🎯\x20خطة\x20تطوير\x20المهارات\x20خلال\x205\x20سنوات:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>'+_0x546a70[_0x24124a]+_0x26cff9(0x225));}function showJobMarketTips(_0x117883){const _0x12a5c2=_0x460617,_0x1d6c28={'IS':_0x12a5c2(0x223),'CS':_0x12a5c2(0x20c),'IT':'احصل\x20على\x20شهادات\x20معتمدة\x20وتخصص\x20في\x20الأمن\x20السيبراني','AI':_0x12a5c2(0x1f3)};addBotMessage(_0x12a5c2(0x117)+_0x1d6c28[_0x117883]+_0x12a5c2(0x1cb));}function _0x5813(_0x2a4d58,_0x4ccbcd){const _0x184512=_0x1845();return _0x5813=function(_0x581358,_0x510ef1){_0x581358=_0x581358-0xa9;let _0x48eeae=_0x184512[_0x581358];return _0x48eeae;},_0x5813(_0x2a4d58,_0x4ccbcd);}document['addEventListener'](_0x460617(0x13e),()=>{const _0x376a9f=_0x460617,_0x2ce8bc=document['getElementById'](_0x376a9f(0x207)),_0x42453f=document[_0x376a9f(0x283)](_0x376a9f(0x191)),_0x4da824=document[_0x376a9f(0x283)]('clear-btn');_0x2ce8bc[_0x376a9f(0x217)](_0x376a9f(0x1ab),_0x47e522=>{const _0x31cd32=_0x376a9f;_0x47e522[_0x31cd32(0x174)]===_0x31cd32(0x145)&&sendMessage();}),_0x42453f[_0x376a9f(0x217)]('click',sendMessage),_0x4da824[_0x376a9f(0x217)]('click',clearChat),setTimeout(startChat,0x1f4);});
+    </script>
+</body>
+
+</html>

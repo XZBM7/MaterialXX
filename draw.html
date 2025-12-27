@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Materialx | Drawing</title>   
+    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #000c37, #1a237e);
+        padding: 0;
+    }
+
+    /* شريط الأدوات العلوي */
+    .toolbar {
+        background: #fff;
+        padding: 12px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: center;
+        z-index: 100;
+    }
+
+    .tool-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 12px;
+        border-right: 1px solid #eee;
+    }
+
+    .tool-group:last-child {
+        border-right: none;
+    }
+
+    .tool-group .title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #333;
+        white-space: nowrap;
+    }
+
+    .tool-options {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .tool-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 10px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        min-width: 60px;
+    }
+
+    .tool-option:hover {
+        background: #f0f4ff;
+    }
+
+    .tool-option.active {
+        background: #e8f0fe;
+    }
+
+    .tool-option img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 5px;
+    }
+
+    .tool-option span {
+        font-size: 0.75rem;
+        color: #5A6168;
+        text-align: center;
+    }
+
+    .tool-option.active span {
+        color: #4A98F7;
+        font-weight: 500;
+    }
+
+    .option:is(:hover, .active) img {
+        filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+    }
+
+    .color-options {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .color-option {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: transform 0.2s ease;
+    }
+
+    .color-option:hover {
+        transform: scale(1.1);
+    }
+
+    .color-option.selected::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        height: 20px;
+        width: 20px;
+        background: inherit;
+        border-radius: inherit;
+        border: 2px solid #fff;
+        transform: translate(-50%, -50%);
+    }
+
+    .color-option:first-child {
+        background-color: #fff;
+        border: 1px solid #bfbfbf;
+    }
+
+    .color-option:first-child.selected::before {
+        border-color: #ccc;
+    }
+
+    .color-option:nth-child(2) {
+        background-color: #000;
+    }
+
+    .color-option:nth-child(3) {
+        background-color: #E02020;
+    }
+
+    .color-option:nth-child(4) {
+        background-color: #6DD400;
+    }
+
+    .color-option:nth-child(5) {
+        background-color: #4A98F7;
+    }
+
+    .color-picker-container {
+        position: relative;
+        width: 28px;
+        height: 28px;
+    }
+
+    #color-picker {
+        opacity: 0;
+        cursor: pointer;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .color-picker-preview {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #4A98F7;
+        border: 1px solid #ddd;
+    }
+
+    .size-slider-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #size-slider {
+        width: 120px;
+        height: 6px;
+        border-radius: 5px;
+        background: #e0e0e0;
+        outline: none;
+        -webkit-appearance: none;
+    }
+
+    #size-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #4A98F7;
+        cursor: pointer;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+    }
+
+    .clear-button {
+        color: #6C757D;
+        border: 1px solid #6C757D;
+        background: transparent;
+    }
+
+    .clear-button:hover {
+        color: #fff;
+        background: #6C757D;
+    }
+
+    .save-button {
+        background: #4A98F7;
+        color: white;
+        border: 1px solid #4A98F7;
+    }
+
+    .save-button:hover {
+        background: #3a88e7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(58, 136, 231, 0.3);
+    }
+
+    .home-button {
+        background: #6DD400;
+        color: white;
+        border: 1px solid #6DD400;
+    }
+
+    .home-button:hover {
+        background: #5cb300;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(108, 212, 0, 0.3);
+    }
+
+    /* إدارة الصفحات - تصميم محسن */
+    .pages-management {
+        background: #fff;
+        border-radius: 0 0 12px 12px;
+        padding: 15px 20px;
+        margin: 0 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        display: none; /* مخفي افتراضيًا */
+    }
+
+    .pages-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .pages-header h3 {
+        color: #333;
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    .pages-controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .pages-controls button {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+    }
+
+    .pages-controls .btn-new {
+        background: #4A98F7;
+        color: white;
+    }
+
+    .pages-controls .btn-new:hover {
+        background: #3a88e7;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(58, 136, 231, 0.3);
+    }
+
+    .pages-controls .btn-delete {
+        background: #f8f9fa;
+        color: #E02020;
+        border: 1px solid #E02020;
+    }
+
+    .pages-controls .btn-delete:hover {
+        background: #E02020;
+        color: white;
+    }
+
+    .pages-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-height: 120px;
+        overflow-y: auto;
+        padding: 5px;
+    }
+
+    .page-item {
+        background: #f8f9fa;
+        border-radius: 8px;
+        padding: 10px 12px;
+        cursor: pointer;
+        min-width: 120px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        border: 2px solid transparent;
+        flex: 1;
+        min-width: 140px;
+        max-width: 180px;
+    }
+
+    .page-item.active {
+        background: #4A98F7;
+        color: white;
+        border-color: #3a88e7;
+        box-shadow: 0 4px 8px rgba(58, 136, 231, 0.2);
+    }
+
+    .page-item:hover {
+        background: #e9ecef;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-item.active:hover {
+        background: #3a88e7;
+    }
+
+    .page-name {
+        font-weight: 500;
+        margin-bottom: 4px;
+        font-size: 0.9rem;
+    }
+
+    .page-date {
+        font-size: 0.7rem;
+        opacity: 0.7;
+    }
+
+    .delete-page {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: #E02020;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-item:hover .delete-page {
+        opacity: 1;
+    }
+
+    .delete-page:hover {
+        background: #c01818;
+        transform: scale(1.1);
+    }
+
+    /* مساحة الرسم */
+    .drawing-area {
+        flex: 1;
+        display: flex;
+        padding: 15px;
+        overflow: hidden;
+    }
+
+    .drawing-board {
+        flex: 1;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .drawing-board canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    /* زر تبديل إدارة الصفحات */
+    .toggle-pages {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #4A98F7;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 12px;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .toggle-pages:hover {
+        background: #3a88e7;
+        transform: translateY(-2px);
+    }
+
+    /* مؤشر الممحاة */
+    .eraser-indicator {
+        position: absolute;
+        display: none;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+        z-index: 10;
+    }
+
+    /* تحسينات للاستجابة */
+   /* القيم الافتراضية لجميع الشاشات الكبيرة */
+.toolbar {
+    padding: 15px 20px;
+    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tool-group {
+    padding: 10px 12px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tool-group .title {
+    display: block;
+}
+
+.tool-options {
+    display: flex;
+    gap: 8px;
+}
+
+.tool-option {
+    min-width: 60px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.tool-option img {
+    width: 24px;
+    height: 24px;
+}
+
+.tool-option span {
+    font-size: 0.85rem;
+}
+
+.color-option,
+.color-picker-container,
+.color-picker-preview {
+    width: 28px;
+    height: 28px;
+}
+
+#size-slider {
+    width: 120px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.action-button {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pages-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pages-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pages-list {
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.page-item {
+    min-width: 150px;
+    padding: 10px;
+}
+
+/* شريط التمرير المخصص */
+.pages-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.pages-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.pages-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.pages-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.drawing-area {
+    padding: 12px;
+}
+
+/* شاشات متوسطة */
+@media (max-width: 1200px) {
+    .tool-group {
+        padding: 8px 10px;
+    }
+
+    .tool-option {
+        min-width: 50px;
+        padding: 6px 8px;
+    }
+
+    .tool-option img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .tool-option span {
+        font-size: 0.75rem;
+    }
+}
+
+/* شاشات صغيرة */
+@media (max-width: 992px) {
+    .toolbar {
+        padding: 10px 15px;
+        gap: 10px;
+    }
+
+    .tool-group {
+        padding: 6px;
+        border-right: none;
+    }
+
+    .tool-group .title {
+        display: none;
+    }
+
+    .action-button span {
+        display: none;
+    }
+
+    .action-button {
+        padding: 8px 10px;
+    }
+
+    .pages-list {
+        max-height: 100px;
+    }
+
+    .page-item {
+        min-width: 120px;
+        max-width: 150px;
+        padding: 8px 10px;
+    }
+}
+
+/* شاشات صغيرة جدًا */
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .tool-group {
+        width: 100%;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .tool-group:last-child {
+        border-bottom: none;
+    }
+
+    .tool-options {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        flex: 1;
+    }
+
+    .action-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .action-button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .pages-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pages-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .pages-controls button {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .pages-list {
+        max-height: 80px;
+    }
+
+    .page-item {
+        min-width: calc(50% - 5px);
+        max-width: 100%;
+    }
+
+    .drawing-area {
+        padding: 10px;
+    }
+}
+
+/* شاشات جدًا صغيرة / الهواتف */
+@media (max-width: 480px) {
+    .tool-option {
+        min-width: 40px;
+        padding: 5px;
+    }
+
+    .tool-option img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .tool-option span {
+        font-size: 0.65rem;
+    }
+
+    .color-option,
+    .color-picker-container,
+    .color-picker-preview {
+        width: 24px;
+        height: 24px;
+    }
+
+    #size-slider {
+        width: 100px;
+    }
+
+    .pages-controls {
+        flex-direction: column;
+    }
+
+    .page-item {
+        min-width: 100%;
+    }
+}
+
+</style>
+
+<body>
+    <!-- شريط الأدوات العلوي -->
+    <div class="toolbar">
+        <div class="tool-group">
+            <span class="title">Shapes</span>
+            <div class="tool-options">
+                <div class="tool-option tool" id="rectangle">
+                    <img src="icons/rectangle.svg" alt="">
+                    <span>Rectangle</span>
+                </div>
+                <div class="tool-option tool" id="circle">
+                    <img src="icons/circle.svg" alt="">
+                    <span>Circle</span>
+                </div>
+                <div class="tool-option tool" id="triangle">
+                    <img src="icons/triangle.svg" alt="">
+                    <span>Triangle</span>
+                </div>
+                <div class="tool-option" id="fill-toggle">
+                    <input type="checkbox" id="fill-color" style="display: none;">
+                    <img src="icons/fill.svg" alt="">
+                    <span>Fill</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tool-group">
+            <span class="title">Tools</span>
+            <div class="tool-options">
+                <div class="tool-option active tool" id="brush">
+                    <img src="icons/brush.svg" alt="">
+                    <span>Brush</span>
+                </div>
+                <div class="tool-option tool" id="eraser">
+                    <img src="icons/eraser.svg" alt="">
+                    <span>Eraser</span>
+                </div>
+                <div class="size-slider-container">
+                    <span class="title">Size</span>
+                    <input type="range" id="size-slider" min="1" max="30" value="5">
+                </div>
+            </div>
+        </div>
+        
+        <div class="tool-group">
+            <span class="title">Colors</span>
+            <div class="color-options">
+                <div class="color-option"></div>
+                <div class="color-option selected"></div>
+                <div class="color-option"></div>
+                <div class="color-option"></div>
+                <div class="color-picker-container">
+                    <input type="color" id="color-picker" value="#4A98F7">
+                    <div class="color-picker-preview"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tool-group">
+            <div class="action-buttons">
+                <button class="action-button clear-button" id="clear-canvas">
+                    <i class="fas fa-broom"></i>
+                    <span>Clear</span>
+                </button>
+                <button class="action-button save-button" id="save-img">
+                    <i class="fas fa-save"></i>
+                    <span>Save</span>
+                </button>
+                <a href="homee.html" style="text-decoration: none;">
+                    <button class="action-button home-button">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- إدارة الصفحات -->
+    <section class="pages-management" id="pages-management">
+        <div class="pages-header">
+            <h3><i class="fas fa-file-alt"></i> Pages Management</h3>
+            <div class="pages-controls">
+                <button class="btn-new" id="new-page">
+                    <i class="fas fa-plus"></i> New Page
+                </button>
+                <button class="btn-delete" id="delete-all">
+                    <i class="fas fa-trash-alt"></i> Delete All
+                </button>
+            </div>
+        </div>
+        <div class="pages-list" id="pages-list">
+            <!-- سيتم ملء قائمة الصفحات ديناميكيًا -->
+        </div>
+    </section>
+    
+    <!-- مساحة الرسم -->
+    <div class="drawing-area">
+        <section class="drawing-board">
+            <button class="toggle-pages" id="toggle-pages">
+                <i class="fas fa-caret-down"></i> Pages
+            </button>
+            <canvas></canvas>
+        </section>
+    </div>
+    
+    <div class="eraser-indicator"></div>
+    
+    <script>
+        const canvas = document.querySelector("canvas"),
+            toolBtns = document.querySelectorAll(".tool"),
+            fillColor = document.querySelector("#fill-color"),
+            sizeSlider = document.querySelector("#size-slider"),
+            colorOptions = document.querySelectorAll(".color-option"),
+            colorPicker = document.querySelector("#color-picker"),
+            colorPickerPreview = document.querySelector(".color-picker-preview"),
+            clearCanvas = document.querySelector("#clear-canvas"),
+            eraserIndicator = document.querySelector(".eraser-indicator"),
+            saveImg = document.querySelector("#save-img"),
+            newPageBtn = document.querySelector("#new-page"),
+            deleteAllBtn = document.querySelector("#delete-all"),
+            pagesList = document.querySelector("#pages-list"),
+            pagesManagement = document.querySelector("#pages-management"),
+            togglePagesBtn = document.querySelector("#toggle-pages"),
+            fillToggle = document.querySelector("#fill-toggle"),
+            ctx = canvas.getContext("2d");
+
+        let prevMouseX, prevMouseY, snapshot,
+            isDrawing = false,
+            selectedTool = "brush",
+            brushWidth = 5,
+            selectedColor = "#000",
+            currentPageId = null,
+            pages = JSON.parse(localStorage.getItem('drawingPages')) || [];
+
+        // تهيئة التطبيق
+        const initApp = () => {
+            // إنشاء صفحة افتراضية إذا لم تكن هناك صفحات
+            if (pages.length === 0) {
+                createNewPage();
+            } else {
+                // تحميل الصفحة الأولى
+                loadPage(pages[0].id);
+            }
+            
+            // تحديث عرض قائمة الصفحات
+            updatePagesList();
+            
+            // ضبط أبعاد اللوحة
+            resizeCanvas();
+        };
+
+        // إنشاء صفحة جديدة
+        const createNewPage = () => {
+            const pageId = 'page_' + Date.now();
+            const newPage = {
+                id: pageId,
+                name: `Page ${pages.length + 1}`,
+                data: null, // سيتم حفظ البيانات عند التبديل
+                timestamp: Date.now()
+            };
+            
+            pages.push(newPage);
+            savePagesToStorage();
+            loadPage(pageId);
+            updatePagesList();
+        };
+
+        // تحميل صفحة
+        const loadPage = (pageId) => {
+            // حفظ الصفحة الحالية قبل التبديل
+            if (currentPageId) {
+                saveCurrentPage();
+            }
+            
+            const page = pages.find(p => p.id === pageId);
+            if (page) {
+                currentPageId = pageId;
+                
+                // مسح اللوحة الحالية
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                setCanvasBackground();
+                
+                // تحميل بيانات الصفحة إذا كانت موجودة
+                if (page.data) {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    img.src = page.data;
+                }
+                
+                // تحديث القائمة النشطة
+                updatePagesList();
+            }
+        };
+
+        // حفظ الصفحة الحالية
+        const saveCurrentPage = () => {
+            if (currentPageId) {
+                const pageIndex = pages.findIndex(p => p.id === currentPageId);
+                if (pageIndex !== -1) {
+                    pages[pageIndex].data = canvas.toDataURL();
+                    savePagesToStorage();
+                }
+            }
+        };
+
+        // حذف صفحة
+        const deletePage = (pageId) => {
+            if (pages.length <= 1) {
+                alert('You must have at least one page');
+                return;
+            }
+            
+            const pageIndex = pages.findIndex(p => p.id === pageId);
+            if (pageIndex !== -1) {
+                pages.splice(pageIndex, 1);
+                savePagesToStorage();
+                
+                // إذا كنا نحذف الصفحة النشطة، تحميل صفحة أخرى
+                if (pageId === currentPageId) {
+                    loadPage(pages[0].id);
+                } else {
+                    updatePagesList();
+                }
+            }
+        };
+
+        // حذف جميع الصفحات
+        const deleteAllPages = () => {
+            if (confirm('Are you sure you want to delete all pages?')) {
+                pages = [];
+                savePagesToStorage();
+                createNewPage();
+            }
+        };
+
+        // حفظ الصفحات في التخزين المحلي
+        const savePagesToStorage = () => {
+            localStorage.setItem('drawingPages', JSON.stringify(pages));
+        };
+
+        // تحديث قائمة الصفحات
+        const updatePagesList = () => {
+            pagesList.innerHTML = '';
+            
+            pages.forEach(page => {
+                const pageItem = document.createElement('div');
+                pageItem.className = `page-item ${page.id === currentPageId ? 'active' : ''}`;
+                
+                const pageName = document.createElement('div');
+                pageName.className = 'page-name';
+                pageName.textContent = page.name;
+                
+                const pageDate = document.createElement('div');
+                pageDate.className = 'page-date';
+                pageDate.textContent = new Date(page.timestamp).toLocaleDateString();
+                
+                pageItem.appendChild(pageName);
+                pageItem.appendChild(pageDate);
+                
+                pageItem.addEventListener('click', () => loadPage(page.id));
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-page';
+                deleteBtn.innerHTML = '&times;';
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deletePage(page.id);
+                });
+                
+                pageItem.appendChild(deleteBtn);
+                pagesList.appendChild(pageItem);
+            });
+        };
+
+        // ضبط خلفية اللوحة
+        const setCanvasBackground = () => {
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = selectedColor;
+        };
+
+        // ضبط أبعاد اللوحة
+        const resizeCanvas = () => {
+            const drawingBoard = document.querySelector('.drawing-board');
+            canvas.width = drawingBoard.offsetWidth;
+            canvas.height = drawingBoard.offsetHeight;
+            setCanvasBackground();
+            
+            // إعادة تحميل الصفحة الحالية بعد تغيير الحجم
+            if (currentPageId) {
+                const page = pages.find(p => p.id === currentPageId);
+                if (page && page.data) {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0);
+                    };
+                    img.src = page.data;
+                }
+            }
+        };
+
+        // دوال الرسم
+        const drawRect = (e) => {
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            if (!fillColor.checked) {
+                return ctx.strokeRect(mouseX, mouseY, prevMouseX - mouseX, prevMouseY - mouseY);
+            }
+            ctx.fillRect(mouseX, mouseY, prevMouseX - mouseX, prevMouseY - mouseY);
+        };
+
+        const drawCircle = (e) => {
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            ctx.beginPath();
+            let radius = Math.sqrt(Math.pow((prevMouseX - mouseX), 2) + Math.pow((prevMouseY - mouseY), 2));
+            ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
+            fillColor.checked ? ctx.fill() : ctx.stroke();
+        };
+
+        const drawTriangle = (e) => {
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            ctx.beginPath();
+            ctx.moveTo(prevMouseX, prevMouseY);
+            ctx.lineTo(mouseX, mouseY);
+            ctx.lineTo(prevMouseX * 2 - mouseX, mouseY);
+            ctx.closePath();
+            fillColor.checked ? ctx.fill() : ctx.stroke();
+        };
+
+        const startDraw = (e) => {
+            e.preventDefault();
+            isDrawing = true;
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            ctx.beginPath();
+            ctx.lineWidth = brushWidth;
+            ctx.strokeStyle = selectedColor;
+            ctx.fillStyle = selectedColor;
+            snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        };
+
+        const drawing = (e) => {
+            if (!isDrawing) return;
+            e.preventDefault();
+            ctx.putImageData(snapshot, 0, 0);
+            const mouseX = e.type.includes("touch") ? e.touches[0].clientX - canvas.getBoundingClientRect().left : e.offsetX;
+            const mouseY = e.type.includes("touch") ? e.touches[0].clientY - canvas.getBoundingClientRect().top : e.offsetY;
+
+            if (selectedTool === "brush" || selectedTool === "eraser") {
+                ctx.strokeStyle = selectedTool === "eraser" ? "#fff" : selectedColor;
+                ctx.lineTo(mouseX, mouseY);
+                ctx.stroke();
+            } else if (selectedTool === "rectangle") {
+                drawRect(e);
+            } else if (selectedTool === "circle") {
+                drawCircle(e);
+            } else {
+                drawTriangle(e);
+            }
+        };
+
+        const stopDraw = (e) => {
+            e.preventDefault();
+            isDrawing = false;
+            // حفظ الصفحة بعد الانتهاء من الرسم
+            saveCurrentPage();
+        };
+
+        // أحداث الأدوات
+        toolBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelector(".tool-option.active").classList.remove("active");
+                btn.classList.add("active");
+                selectedTool = btn.id;
+                eraserIndicator.style.display = (selectedTool === "eraser") ? "block" : "none";
+            });
+        });
+
+        // تبديل خاصية التعبئة
+        fillToggle.addEventListener("click", () => {
+            fillColor.checked = !fillColor.checked;
+            fillToggle.classList.toggle("active", fillColor.checked);
+        });
+
+        sizeSlider.addEventListener("change", () => brushWidth = sizeSlider.value);
+
+        colorOptions.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelector(".color-option.selected").classList.remove("selected");
+                btn.classList.add("selected");
+                selectedColor = window.getComputedStyle(btn).getPropertyValue("background-color");
+            });
+        });
+
+        colorPicker.addEventListener("change", () => {
+            colorPickerPreview.style.background = colorPicker.value;
+            selectedColor = colorPicker.value;
+            
+            // تحديث اللون المختار
+            document.querySelector(".color-option.selected").classList.remove("selected");
+            colorOptions[4].classList.add("selected");
+        });
+
+        clearCanvas.addEventListener("click", () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            setCanvasBackground();
+            saveCurrentPage();
+        });
+
+        saveImg.addEventListener("click", () => {
+            const link = document.createElement("a");
+            link.download = `drawing-${Date.now()}.jpg`;
+            link.href = canvas.toDataURL();
+            link.click();
+        });
+
+        newPageBtn.addEventListener("click", createNewPage);
+        deleteAllBtn.addEventListener("click", deleteAllPages);
+
+        // تبديل عرض إدارة الصفحات
+        togglePagesBtn.addEventListener("click", () => {
+            const isVisible = pagesManagement.style.display === "block";
+            pagesManagement.style.display = isVisible ? "none" : "block";
+            togglePagesBtn.innerHTML = isVisible ? 
+                '<i class="fas fa-caret-down"></i> Pages' : 
+                '<i class="fas fa-caret-up"></i> Pages';
+        });
+
+        // أحداث الفأرة واللمس
+        canvas.addEventListener("mousemove", (e) => {
+            if (selectedTool === "eraser") {
+                eraserIndicator.style.width = brushWidth + "px";
+                eraserIndicator.style.height = brushWidth + "px";
+                eraserIndicator.style.left = e.pageX - brushWidth / 2 + "px";
+                eraserIndicator.style.top = e.pageY - brushWidth / 2 + "px";
+                eraserIndicator.style.display = "block";
+            } else {
+                eraserIndicator.style.display = "none";
+            }
+            drawing(e);
+        });
+
+        canvas.addEventListener("mousedown", startDraw);
+        canvas.addEventListener("mousemove", drawing);
+        canvas.addEventListener("mouseup", stopDraw);
+
+        canvas.addEventListener("touchstart", startDraw);
+        canvas.addEventListener("touchmove", drawing);
+        canvas.addEventListener("touchend", stopDraw);
+
+        // أحداث تغيير الحجم
+        window.addEventListener("resize", resizeCanvas);
+
+        // تهيئة التطبيق عند التحميل
+        window.addEventListener("load", initApp);
+    </script>
+</body>
+</html>

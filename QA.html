@@ -1,0 +1,3217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MaterialX | Your Coding Path</title>
+      <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .question-counter {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .question-container {
+            animation: slideIn 0.5s ease;
+        }
+
+        .question {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .option.selected {
+            background: rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+        }
+
+        .option-icon {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .start-container {
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .start-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .start-btn {
+            background: var(--primary);
+            color: white;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+        }
+
+        .result-container {
+            text-align: center;
+            animation: fadeIn 1s ease;
+            display: none;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .major-result {
+            font-size: 1.5rem;
+            margin: 25px 0;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #7209b7, #4361ee);
+        }
+
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+        .restart-btn {
+            background: var(--accent);
+            color: white;
+            margin: 20px auto 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .major-result {
+                font-size: 1.3rem;
+            }
+        }
+     .skip-counter {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
+.btn-warning:disabled {
+    background: #6c757d;
+    color: white;
+    cursor: not-allowed;
+}
+
+    </style>
+</head>
+<body>
+     <div class="container">
+        <div class="header">
+            <h1>اكتشف مسارك البرمجي</h1>
+            <p>أجب على الأسئلة التالية لاكتشاف المسار البرمجي والتخصص الجامعي الأنسب لشخصيتك ومهاراتك</p>
+        </div>
+        
+        <div class="start-container" id="startContainer">
+            <div class="start-description">
+                <p>مرحباً بك في اختبار اكتشاف المسار البرمجي والتخصص الجامعي </p>
+                <p>هذا الاختبار يتكون من 20 سؤالاً مصمماً لمساعدتك في اكتشاف المجال البرمجي والتخصص الجامعي الأنسب لشخصيتك، مهاراتك، واهتماماتك.</p>
+                <p>سيتم عرض الأسئلة بشكل عشوائي في كل مرة تقوم فيها بإجراء الاختبار، مما يضمن تجربة فريدة في كل مرة.</p>
+                <p>اختر الإجابة التي تعكس تفضيلاتك الحقيقية دون التفكير كثيراً - لا توجد إجابات صحيحة أو خاطئة!</p>
+            </div>
+            <button class="btn start-btn" id="startBtn">ابدأ الاختبار</button>
+        </div>
+        
+       <div class="question-container hidden" id="questionContainer">
+    <div class="question-counter" id="questionCounter"></div>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <div class="question" id="questionText"></div>
+    <div class="options" id="optionsContainer"></div>
+    
+    <!-- إضافة عداد تبديل الأسئلة -->
+    <div class="skip-counter" id="skipCounter">
+        عدد مرات تبديل السؤال المتبقية: <span id="skipCount">10</span>
+    </div>
+    
+    <div class="navigation">
+        <button class="btn btn-secondary" id="prevBtn" disabled>السابق</button>
+        <button class="btn btn-warning" id="changeQuestionBtn">تبديل السؤال</button>
+        <button class="btn btn-primary" id="nextBtn">التالي</button>
+    </div>
+</div>
+        
+        <div class="result-container" id="resultContainer">
+            <h2 class="result-title" id="resultTitle"></h2>
+            <div class="result-description" id="resultDescription"></div>
+            
+            <div class="major-result" id="majorResult"></div>
+            
+            <div class="warning">
+                ⚠️ <strong>تنبيه:</strong> هذا الاختبار هو مجرد أداة تقديرية لمساعدتك في اكتشاف ميولك، وليس بديلاً عن الاستشارة الأكاديمية المهنية. النتائج تعتمد على إجاباتك وقد تختلف في الواقع.
+            </div>
+            
+            <button class="btn restart-btn" id="restartBtn">ابدأ من جديد</button>
+        </div>
+    </div>
+
+
+    <script>
+        // قاعدة بيانات الأسئلة
+
+  const questions = [
+  {
+    id: 1,
+    text: "ما الذي يجذبك أكثر في عالم التقنية؟",
+    options: [
+      { id: 1, text: "تصميم واجهات المستخدم الجميلة والتفاعلات", track: "frontend", major: "CS" },
+      { id: 2, text: "كتابة منطق الخوادم وإدارة البيانات", track: "backend", major: "IT" },
+      { id: 3, text: "تحليل البيانات واستخلاص أنماط مفيدة", track: "dataScience", major: "AI" },
+      { id: 4, text: "تدريب نماذج وتطبيقات تعلم آلي", track: "machineLearning", major: "AI" },
+      { id: 5, text: "بناء تطبيقات موبايل تلائم المستخدم", track: "mobile", major: "CS" },
+      { id: 6, text: "تصميم تجارب مستخدم سلسة وبديهية", track: "uiux", major: "IS" }
+    ]
+  },
+  {
+    id: 2,
+    text: "أي نوع من المشاريع تفضّل العمل عليه عادة؟",
+    options: [
+      { id: 1, text: "مواقع وتطبيقات بواجهة جذابة", track: "frontend", major: "CS" },
+      { id: 2, text: "أنظمة وخدمات خلفية قوية", track: "backend", major: "IT" },
+      { id: 3, text: "مشاريع تعلم آلي وتحليل بيانات", track: "aiEng", major: "AI" },
+      { id: 4, text: "تطبيقات موبايل عملية للمستخدمين", track: "mobile", major: "CS" },
+      { id: 5, text: "مشاريع بنية تحتية للبيانات الضخمة", track: "bigData", major: "AI" },
+      { id: 6, text: "أنظمة متصلة بأجهزة فعلية (IoT)", track: "iot", major: "EE" }
+    ]
+  },
+  {
+    id: 3,
+    text: "ما الذي يمنحك شعور الإنجاز عند إكمال مهمة تقنية؟",
+    options: [
+      { id: 1, text: "أن أرى الواجهة تعمل بسلاسة أمام المستخدم", track: "frontend", major: "CS" },
+      { id: 2, text: "أن يظل الخادم مستقراً تحت حمل كبير", track: "backend", major: "IT" },
+      { id: 3, text: "أن أكتشف رؤى جديدة من البيانات", track: "dataAnalysis", major: "BA" },
+      { id: 4, text: "أن يتعلم النموذج ويقدّم نتائج دقيقة", track: "llmsAI", major: "AI" },
+      { id: 5, text: "أن أمنع ثغرة قد تضر المستخدمين", track: "cyberSecurity", major: "SEC" },
+      { id: 6, text: "أن أحسّن بنية النظام لتكون قابلة للتوسع", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 4,
+    text: "عند مواجهة مشكلة تقنية، كيف تبدأ في حلها؟",
+    options: [
+      { id: 1, text: "أفحص التصميم والتفاعل في الواجهة أولًا", track: "uiux", major: "IS" },
+      { id: 2, text: "أتعقب الأخطاء في الكود الخلفي خطوة بخطوة", track: "backend", major: "IT" },
+      { id: 3, text: "أحلل بيانات السجلات لاستخراج السبب", track: "dataScience", major: "AI" },
+      { id: 4, text: "أجري اختبارات آلية شاملة", track: "testing", major: "SE" },
+      { id: 5, text: "أراجع إعدادات ونشر الخدمة السحابية", track: "cloudDevops", major: "IT" },
+      { id: 6, text: "أعيد تخطيط البنية المعمارية إذا لزم الأمر", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 5,
+    text: "أي من الأدوات تحب استخدامها في يوم عملك؟",
+    options: [
+      { id: 1, text: "Figma أو أدوات التصميم المشابهة", track: "uiux", major: "IS" },
+      { id: 2, text: "بيئات تطوير مثل VS Code أو WebStorm", track: "frontend", major: "CS" },
+      { id: 3, text: "قواعد بيانات وSQL Management", track: "backend", major: "IT" },
+      { id: 4, text: "دفاتر Jupyter وأدوات تحليل البيانات", track: "dataAnalysis", major: "BA" },
+      { id: 5, text: "TensorFlow/PyTorch لتدريب النماذج", track: "machineLearning", major: "AI" },
+      { id: 6, text: "أدوات فحص الأمان وتحليل الشبكات", track: "cyberSecurity", major: "SEC" }
+    ]
+  },
+  {
+    id: 6,
+    text: "ما الذي يثير اهتمامك عند بناء نظام متكامل؟",
+    options: [
+      { id: 1, text: "تجربة المستخدم والتفاعل مع الواجهة", track: "frontend", major: "CS" },
+      { id: 2, text: "تكامل الخوادم وقواعد البيانات", track: "backend", major: "IT" },
+      { id: 3, text: "تدفق البيانات وأنابيب ETL", track: "dataEng", major: "IT" },
+      { id: 4, text: "إضافة قدرات ذكاء اصطناعي للمشروع", track: "aiEng", major: "AI" },
+      { id: 5, text: "ضمان سلامة وأمن المعلومات", track: "cyberSecurity", major: "SEC" },
+      { id: 6, text: "نشر وتشغيل النظام بكفاءة في السحابة", track: "cloudDevops", major: "IT" }
+    ]
+  },
+  {
+    id: 7,
+    text: "عند رؤية مشروع جديد، ما الذي تود أن تعرفه أولاً؟",
+    options: [
+      { id: 1, text: "كيف صُممت الواجهة وتجربة المستخدم", track: "uiux", major: "IS" },
+      { id: 2, text: "كيف تم تنظيم الكود والخدمات الخلفية", track: "backend", major: "IT" },
+      { id: 3, text: "ما هي بيانات التدريب وكيفية معالجتها", track: "machineLearning", major: "AI" },
+      { id: 4, text: "كيف تؤمّنوا النظام ضد الهجمات", track: "cyberSecurity", major: "SEC" },
+      { id: 5, text: "كيف يخزنون البيانات ويعالجونها بسرعات عالية", track: "bigData", major: "AI" },
+      { id: 6, text: "كيف صُممت بنية النظام بشكل عام", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 8,
+    text: "ما أكثر ما تستمتع بفعله عند البرمجة؟",
+    options: [
+      { id: 1, text: "إخراج واجهة جذابة ومتجاوبة", track: "frontend", major: "CS" },
+      { id: 2, text: "حل مشاكل منطقية معقدة في الخادم", track: "backend", major: "IT" },
+      { id: 3, text: "النمذجة والتحليل الإحصائي", track: "dataScience", major: "AI" },
+      { id: 4, text: "بناء خدمات ذكاء اصطناعي تطبيقية", track: "aiEng", major: "AI" },
+      { id: 5, text: "كتابة اختبارات وتحقق من الجودة", track: "testing", major: "SE" },
+      { id: 6, text: "تصميم بنية قابلة للصيانة والتوسع", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 9,
+    text: "إذا فكرت في تطوير لعبة، ما الذي يهمّك أكثر؟",
+    options: [
+      { id: 1, text: "واجهة اللعب ورسومات جذابة", track: "frontend", major: "CS" },
+      { id: 2, text: "منطق اللعب والخوادم متعددة اللاعبين", track: "backend", major: "IT" },
+      { id: 3, text: "ذكاء شخصيات اللعبة وسلوكها", track: "aiEng", major: "AI" },
+      { id: 4, text: "تحليل سلوك اللاعبين لتحسين التجربة", track: "dataAnalysis", major: "BA" },
+      { id: 5, text: "أداء وتوزيع البيانات للعبة واسعة النطاق", track: "bigData", major: "AI" },
+      { id: 6, text: "أمن اللعبة ضد الغش والاختراقات", track: "cyberSecurity", major: "SEC" }
+    ]
+  },
+  {
+    id: 10,
+    text: "لو اخترت مشروع تخرج، ماذا تميل لبنائه؟",
+    options: [
+      { id: 1, text: "موقع ويب تفاعلي بذو واجهة متقدمة", track: "frontend", major: "CS" },
+      { id: 2, text: "نظام خلفي لإدارة بيانات المستخدمين", track: "backend", major: "IT" },
+      { id: 3, text: "نموذج تعلم آلي لحل مشكلة عملية", track: "machineLearning", major: "AI" },
+      { id: 4, text: "منصة تحليل بيانات لاتخاذ قرارات", track: "dataAnalysis", major: "BA" },
+      { id: 5, text: "نظام نشر وتكامل مستمر للسحابة", track: "cloudDevops", major: "IT" },
+      { id: 6, text: "نظام متكامل للأجهزة الذكية (IoT)", track: "iot", major: "EE" }
+    ]
+  },
+  {
+    id: 11,
+    text: "أي مهمة تسعدك أكثر عند العمل على مشروع؟",
+    options: [
+      { id: 1, text: "تصميم واجهة سلسة للمستخدم", track: "frontend", major: "CS" },
+      { id: 2, text: "تصميم قاعدة بيانات فعّالة", track: "backend", major: "IT" },
+      { id: 3, text: "تحليل النتائج واستخلاص تقارير", track: "dataAnalysis", major: "BA" },
+      { id: 4, text: "ابتكار خوارزميات ذكية", track: "aiEng", major: "AI" },
+      { id: 5, text: "اختبار الأنظمة وتحسين جودتها", track: "testing", major: "SE" },
+      { id: 6, text: "إدارة ونشر الخدمات على السحابة", track: "cloudDevops", major: "IT" }
+    ]
+  },
+  {
+    id: 12,
+    text: "عند استخدام تطبيق ناجح، ما الذي يلفت انتباهك فورًا؟",
+    options: [
+      { id: 1, text: "سلاسة التصميم والتفاعلات", track: "uiux", major: "IS" },
+      { id: 2, text: "سرعة واستجابة الخوادم", track: "backend", major: "IT" },
+      { id: 3, text: "دقة التوصيات والنتائج", track: "machineLearning", major: "AI" },
+      { id: 4, text: "تنظيم وتدفق البيانات داخل النظام", track: "dataEng", major: "IT" },
+      { id: 5, text: "مدى تأمين البيانات والخصوصية", track: "cyberSecurity", major: "SEC" },
+      { id: 6, text: "سهولة النشر والتحديثات السريعة", track: "cloudDevops", major: "IT" }
+    ]
+  },
+  {
+    id: 13,
+    text: "ما الذي تستمتع به أثناء كتابة الشيفرة؟",
+    options: [
+      { id: 1, text: "أن أرى تغييرات الواجهة فورًا", track: "frontend", major: "CS" },
+      { id: 2, text: "تحسين أداء الخوادم والـ APIs", track: "backend", major: "IT" },
+      { id: 3, text: "استخراج رؤى من مجموعات بيانات", track: "dataScience", major: "AI" },
+      { id: 4, text: "تدريب نموذج ويصل لمعدل دقة جيد", track: "machineLearning", major: "AI" },
+      { id: 5, text: "تصميم تجارب مستخدم بديهية", track: "uiux", major: "IS" },
+      { id: 6, text: "كتابة اختبارات تضمن استقرار الكود", track: "testing", major: "SE" }
+    ]
+  },
+  {
+    id: 14,
+    text: "ما الذي يجعلك تفخر بعملك كمطور/مطورّة؟",
+    options: [
+      { id: 1, text: "واجهة جذابة تُحبها الناس", track: "frontend", major: "CS" },
+      { id: 2, text: "قدرة النظام على معالجة أحمال كبيرة", track: "bigData", major: "AI" },
+      { id: 3, text: "منع هجمات أو ثغرات خطيرة", track: "cyberSecurity", major: "SEC" },
+      { id: 4, text: "نموذج يعطي نتائج دقيقة وموثوقة", track: "machineLearning", major: "AI" },
+      { id: 5, text: "استقرار النظام بعد نشره على السحابة", track: "cloudDevops", major: "IT" },
+      { id: 6, text: "تصميم بنية برمجية قابلة للتوسع", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 15,
+    text: "ما نوع التفكير الذي تشعر أنه الأقرب لك؟",
+    options: [
+      { id: 1, text: "تفكير بصري وإبداعي", track: "uiux", major: "IS" },
+      { id: 2, text: "تفكير منطقي وخوارزمي", track: "backend", major: "IT" },
+      { id: 3, text: "تفكير رياضي وإحصائي", track: "dataScience", major: "AI" },
+      { id: 4, text: "تركيز على الأمان واكتشاف الثغرات", track: "cyberSecurity", major: "SEC" },
+      { id: 5, text: "تفكير معماري ونظامي", track: "softwareArchitecture", major: "CS" },
+      { id: 6, text: "تفكير تطبيقي للذكاء الاصطناعي", track: "aiEng", major: "AI" }
+    ]
+  },
+  {
+    id: 16,
+    text: "أي فريق تحب الانضمام إليه؟",
+    options: [
+      { id: 1, text: "فريق مصممين ومجرّبي استخدام", track: "uiux", major: "IS" },
+      { id: 2, text: "فريق مهندسي Backend", track: "backend", major: "IT" },
+      { id: 3, text: "فريق محللي بيانات", track: "dataAnalysis", major: "BA" },
+      { id: 4, text: "فريق تطوير نماذج الذكاء الاصطناعي", track: "machineLearning", major: "AI" },
+      { id: 5, text: "فريق أمان المعلومات", track: "cyberSecurity", major: "SEC" },
+      { id: 6, text: "فريق اختبار وضمان جودة", track: "testing", major: "SE" }
+    ]
+  },
+  {
+    id: 17,
+    text: "ما الذي يحفّزك للاستمرار في مشروع طويل؟",
+    options: [
+      { id: 1, text: "تحسين تجربة المستخدم باستمرار", track: "frontend", major: "CS" },
+      { id: 2, text: "تحقيق أداء واستقرار عالي للنظام", track: "backend", major: "IT" },
+      { id: 3, text: "العمل على معالجة بيانات ضخمة", track: "bigData", major: "AI" },
+      { id: 4, text: "تحسين دقة النموذج الذكي", track: "aiEng", major: "AI" },
+      { id: 5, text: "تعزيز أمان النظام ضد التهديدات", track: "cyberSecurity", major: "SEC" },
+      { id: 6, text: "إعادة تصميم البنية لتحمل النمو", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 18,
+    text: "عند تعلم تقنية جديدة، أي جانب تختبره أولًا؟",
+    options: [
+      { id: 1, text: "كيف أستخدمها في تصميم الواجهة", track: "frontend", major: "CS" },
+      { id: 2, text: "كيف تطبقها في الخوادم", track: "backend", major: "IT" },
+      { id: 3, text: "كيف تساعد في تحليل البيانات", track: "dataAnalysis", major: "BA" },
+      { id: 4, text: "كيف تساهم في تحسين نموذج ذكي", track: "machineLearning", major: "AI" },
+      { id: 5, text: "كيف تؤثر على أمان النظام", track: "cyberSecurity", major: "SEC" },
+      { id: 6, text: "كيف تنظم البنية البرمجية", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 19,
+    text: "ما الجزء المفضل لديك في دورة حياة التطوير؟",
+    options: [
+      { id: 1, text: "تصميم واجهات وتجربة المستخدم", track: "uiux", major: "IS" },
+      { id: 2, text: "بناء الوظائف الخلفية APIs", track: "backend", major: "IT" },
+      { id: 3, text: "اختبار وتحليل البيانات الناتجة", track: "testing", major: "SE" },
+      { id: 4, text: "نشر الخدمات على السحابة", track: "cloudDevops", major: "IT" },
+      { id: 5, text: "تحليل سلوك المستخدمين والنتائج", track: "dataAnalysis", major: "BA" },
+      { id: 6, text: "تصميم البنية المعمارية للنظام", track: "softwareArchitecture", major: "CS" }
+    ]
+  },
+  {
+    id: 20,
+    text: "أي وصف يعبّر عنك أكثر كمطور؟",
+    options: [
+      { id: 1, text: "أحب رؤية النتائج فورًا في الواجهة", track: "frontend", major: "CS" },
+      { id: 2, text: "أحب التفكير في منطق النظام الداخلي", track: "backend", major: "IT" },
+      { id: 3, text: "أحب التعامل مع الأرقام والبيانات", track: "dataScience", major: "AI" },
+      { id: 4, text: "أحب كتابة اختبارات وتحسين الجودة", track: "testing", major: "SE" },
+      { id: 5, text: "أحب بناء حلول ذكاء اصطناعي تطبيقية", track: "aiEng", major: "AI" },
+      { id: 6, text: "أحب تطوير تطبيقات موبايل عملية", track: "mobile", major: "CS" }
+    ]
+  },
+  {
+    id: 21,
+    text: "عند العمل ضمن فريق، أي دور تميل إليه؟",
+    options: [
+      { id: 1, text: "مصمم واجهة وتجربة مستخدم", track: "uiux", major: "IS" },
+      { id: 2, text: "مطور Backend يبني الخدمات", track: "backend", major: "IT" },
+      { id: 3, text: "محلل بيانات لاستخراج رؤى", track: "dataAnalysis", major: "BA" },
+      { id: 4, text: "مهندس نشر والسحابة", track: "cloudDevops", major: "IT" },
+      { id: 5, text: "مختبر جودة واختبار تلقائي", track: "testing", major: "SE" },
+      { id: 6, text: "مختص أمان المعلومات", track: "cyberSecurity", major: "SEC" }
+    ]
+  },
+  {
+    id: 22,
+    text: "ما الذي يجذبك عند قراءة خبر عن تقنية جديدة؟",
+    options: [
+      { id: 1, text: "تحسين واجهات المستخدم وتجربة الاستخدام", track: "frontend", major: "CS" },
+      { id: 2, text: "تحسين أداء الخوادم والـAPIs", track: "backend", major: "IT" },
+      { id: 3, text: "قدرة التقنية على تحليل ومعالجة البيانات", track: "dataScience", major: "AI" },
+      { id: 4, text: "كيف تسهم في بناء نماذج ذكية", track: "machineLearning", major: "AI" },
+      { id: 5, text: "إمكانية استخدامها في السحابة والتشغيل الآمن", track: "cloudDevops", major: "IT" },
+      { id: 6, text: "احتمالية استخدامها في أجهزة إنترنت الأشياء", track: "iot", major: "EE" }
+    ]
+  },
+  {
+    id: 23,
+    text: "ما الذي تحب تعلمه أثناء مشاهدة دورة تقنية جديدة؟",
+    options: [
+      { id: 1, text: "تقنيات تصميم وتفاعل متقدمة", track: "uiux", major: "IS" },
+      { id: 2, text: "طرق تحسين أداء قواعد البيانات", track: "backend", major: "IT" },
+      { id: 3, text: "أساليب تنظيف وتحضير البيانات", track: "dataEng", major: "IT" },
+      { id: 4, text: "تقنيات تحسين دقة النماذج", track: "machineLearning", major: "AI" },
+      { id: 5, text: "أدوات لمراقبة ونشر التطبيقات", track: "cloudDevops", major: "IT" },
+      { id: 6, text: "طرق تأمين التطبيقات وبيانات المستخدم", track: "cyberSecurity", major: "SEC" }
+    ]
+  },
+  {
+    id: 24,
+    text: "ما الذي يهمك عند تصميم واجهة مستخدم؟",
+    options: [
+      { id: 1, text: "جماليات وتناسق الألوان والعناصر", track: "frontend", major: "CS" },
+      { id: 2, text: "سهولة وصول المستخدم للوظائف", track: "uiux", major: "IS" },
+      { id: 3, text: "تكامل الواجهة مع الـAPIs والخدمات", track: "backend", major: "IT" },
+      { id: 4, text: "إمكانية تحليل تفاعل المستخدم لاحقًا", track: "dataAnalysis", major: "BA" },
+      { id: 5, text: "إمكانية إضافة ميزات ذكية مدفوعة بالبيانات", track: "aiEng", major: "AI" },
+      { id: 6, text: "قابلية الواجهة للعمل على أجهزة متعددة", track: "mobile", major: "CS" }
+    ]
+  },
+  {
+    id: 25,
+    text: "ما الذي تبحث عنه في وظيفة تقنية تحلم بها؟",
+    options: [
+      { id: 1, text: "العمل على تصميم واجهات مستخدم متقدمة", track: "frontend", major: "CS" },
+      { id: 2, text: "العمل على أنظمة خلفية قابلة للتوسع", track: "backend", major: "IT" },
+      { id: 3, text: "العمل على مشاريع تحليل بيانات وتأثيرها", track: "dataScience", major: "AI" },
+      { id: 4, text: "العمل على نماذج تعلم آلي متقدمة", track: "machineLearning", major: "AI" },
+      { id: 5, text: "العمل على مشاريع سحابية ونشر مستمر", track: "cloudDevops", major: "IT" },
+      { id: 6, text: "العمل على حلول إنترنت الأشياء ودمجها", track: "iot", major: "EE" }
+    ]
+  },
+  {
+    id: 26,
+    text: "ما هو أكثر ما يثير فضولك عندما تسمع عن مشروع جديد؟",
+    options: [
+        { id: 1, text: "كيف تم تصميم الواجهة وتفاعل المستخدم", track: "frontend" },
+        { id: 2, text: "ما نوع الخادم المستخدم وكيفية تنظيم البيانات", track: "backend" },
+        { id: 3, text: "ما حجم البيانات وكيف يمكن تحليلها", track: "bigData" },
+        { id: 4, text: "هل تم تدريب نموذج ذكاء اصطناعي فيه", track: "aiEng" },
+        { id: 5, text: "هل التصميم مريح وسهل الاستخدام", track: "uiux" },
+        { id: 6, text: "هل يدعم المشروع الأجهزة الذكية المتصلة", track: "iot" }
+    ]
+},
+{
+    id: 27,
+    text: "ما هو أكثر جانب يحمسك عند العمل ضمن فريق تطوير؟",
+    options: [
+        { id: 1, text: "بناء واجهات جذابة", track: "frontend" },
+        { id: 2, text: "تحسين الأداء الخلفي", track: "backend" },
+        { id: 3, text: "تحليل البيانات لاكتشاف الأنماط", track: "dataScience" },
+        { id: 4, text: "تدريب النماذج الذكية", track: "machineLearning" },
+        { id: 5, text: "اختبار الجودة والأمان", track: "testing" },
+        { id: 6, text: "تصميم بنية النظام وتوزيع المهام", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 28,
+    text: "ما المجال الذي تراه أكثر تأثيرًا في مستقبل التكنولوجيا؟",
+    options: [
+        { id: 1, text: "الذكاء الاصطناعي", track: "aiEng" },
+        { id: 2, text: "الأمن السيبراني", track: "cyberSecurity" },
+        { id: 3, text: "البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "الذكاء التوليدي ونماذج اللغة", track: "llmsAI" },
+        { id: 5, text: "إنترنت الأشياء", track: "iot" },
+        { id: 6, text: "تطوير الألعاب التعليمية", track: "gameDev" }
+    ]
+},
+{
+    id: 29,
+    text: "ما نوع المهام التي تفضلها عند العمل على مشروع جديد؟",
+    options: [
+        { id: 1, text: "رسم واجهة المستخدم", track: "uiux" },
+        { id: 2, text: "كتابة منطق الخادم", track: "backend" },
+        { id: 3, text: "إدارة البيانات وتنظيمها", track: "dataEng" },
+        { id: 4, text: "تحليل الأداء واختبار الأخطاء", track: "testing" },
+        { id: 5, text: "تصميم النظام العام والتخطيط له", track: "softwareArchitecture" },
+        { id: 6, text: "تحسين تجربة المستخدم", track: "frontend" }
+    ]
+},
+{
+    id: 30,
+    text: "أي نوع من المشروعات يجذبك أكثر؟",
+    options: [
+        { id: 1, text: "تطبيق ويب تفاعلي", track: "frontend" },
+        { id: 2, text: "تطبيق موبايل", track: "mobile" },
+        { id: 3, text: "نظام يعتمد على الذكاء الاصطناعي", track: "aiEng" },
+        { id: 4, text: "نظام تحليل بيانات كبير", track: "bigData" },
+        { id: 5, text: "مشروع لتأمين المعلومات", track: "cyberSecurity" },
+        { id: 6, text: "لعبة تعليمية ممتعة", track: "gameDev" }
+    ]
+},
+{
+    id: 31,
+    text: "ما المهارة التي تحب تحسينها أكثر؟",
+    options: [
+        { id: 1, text: "القدرة على التصميم الإبداعي", track: "uiux" },
+        { id: 2, text: "المنطق البرمجي وحل المشكلات", track: "backend" },
+        { id: 3, text: "تحليل البيانات الإحصائي", track: "dataAnalysis" },
+        { id: 4, text: "فهم التعلم العميق", track: "machineLearning" },
+        { id: 5, text: "إدارة الخوادم السحابية", track: "cloudDevops" },
+        { id: 6, text: "تأمين الأنظمة من الهجمات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 32,
+    text: "عندما تواجه مشكلة تقنية صعبة، ما أول ما تفكر به؟",
+    options: [
+        { id: 1, text: "كيف أراها من منظور المستخدم", track: "uiux" },
+        { id: 2, text: "هل هناك خطأ في قاعدة البيانات", track: "backend" },
+        { id: 3, text: "هل يمكن تحليل البيانات لمعرفة السبب", track: "dataScience" },
+        { id: 4, text: "هل النموذج الذكي يتعلم بشكل صحيح", track: "machineLearning" },
+        { id: 5, text: "هل المشكلة في السحابة أو في البنية التحتية", track: "cloudDevops" },
+        { id: 6, text: "هل هناك تهديد أمني في الكود", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 33,
+    text: "ما المجال الذي ترى نفسك فيه بعد خمس سنوات؟",
+    options: [
+        { id: 1, text: "مطور واجهات أمامية محترف", track: "frontend" },
+        { id: 2, text: "مهندس خوادم وخدمات خلفية", track: "backend" },
+        { id: 3, text: "عالم بيانات", track: "dataScience" },
+        { id: 4, text: "مهندس ذكاء اصطناعي", track: "aiEng" },
+        { id: 5, text: "مهندس أمن سيبراني", track: "cyberSecurity" },
+        { id: 6, text: "مهندس سحابة وDevOps", track: "cloudDevops" }
+    ]
+},
+{
+    id: 34,
+    text: "ما هو أكثر جانب تحبه في عملية تطوير البرمجيات؟",
+    options: [
+        { id: 1, text: "الجزء الإبداعي في تصميم الواجهة", track: "frontend" },
+        { id: 2, text: "المنطق الداخلي للكود", track: "backend" },
+        { id: 3, text: "تحليل البيانات قبل التنفيذ", track: "dataAnalysis" },
+        { id: 4, text: "اختبار الأداء وتحسين الجودة", track: "testing" },
+        { id: 5, text: "التحكم في دورة التطوير ونشر النسخ", track: "cloudDevops" },
+        { id: 6, text: "تصميم النظام على مستوى عالٍ", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 35,
+    text: "إذا طُلب منك قيادة مشروع كبير، ما الدور الذي تختاره؟",
+    options: [
+        { id: 1, text: "تصميم الواجهة والتفاعل", track: "frontend" },
+        { id: 2, text: "إدارة قواعد البيانات والخوادم", track: "backend" },
+        { id: 3, text: "تحليل وتصور البيانات", track: "dataAnalysis" },
+        { id: 4, text: "تصميم نظام الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "ضمان جودة النظام", track: "testing" },
+        { id: 6, text: "تأمين البنية من الاختراق", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 36,
+    text: "ما هو العنصر الأكثر متعة بالنسبة لك أثناء البرمجة؟",
+    options: [
+        { id: 1, text: "رؤية التفاعل الفوري مع المستخدم", track: "frontend" },
+        { id: 2, text: "حل مشكلة منطقية معقدة", track: "backend" },
+        { id: 3, text: "رؤية خوارزمية ذكاء تتعلم", track: "machineLearning" },
+        { id: 4, text: "تحليل أرقام ضخمة", track: "bigData" },
+        { id: 5, text: "تحسين تجربة المستخدم", track: "uiux" },
+        { id: 6, text: "تأمين النظام ضد الأخطاء", track: "testing" }
+    ]
+},
+{
+    id: 37,
+    text: "عندما تشاهد تطبيقًا رائعًا، ما أكثر ما يلفت انتباهك؟",
+    options: [
+        { id: 1, text: "الواجهة الجذابة", track: "frontend" },
+        { id: 2, text: "سرعة الاستجابة", track: "backend" },
+        { id: 3, text: "ذكاء التفاعل مع المستخدم", track: "aiEng" },
+        { id: 4, text: "جودة البيانات ودقتها", track: "dataEng" },
+        { id: 5, text: "طريقة تنظيم المهام داخله", track: "softwareArchitecture" },
+        { id: 6, text: "سهولة التنقل والاستخدام", track: "uiux" }
+    ]
+},
+{
+    id: 38,
+    text: "كيف تفضل قضاء وقتك في مشروع طويل المدى؟",
+    options: [
+        { id: 1, text: "تحسين التصميم والتفاعل", track: "frontend" },
+        { id: 2, text: "كتابة وتحسين الأداء الخلفي", track: "backend" },
+        { id: 3, text: "تحليل البيانات المستمرة", track: "dataScience" },
+        { id: 4, text: "تطوير النماذج الذكية", track: "machineLearning" },
+        { id: 5, text: "ضبط الأنظمة السحابية", track: "cloudDevops" },
+        { id: 6, text: "اختبار الأداء بعد كل تحديث", track: "testing" }
+    ]
+},
+{
+    id: 39,
+    text: "عندما ينجح مشروعك، ما أكثر ما يجعلك فخورًا؟",
+    options: [
+        { id: 1, text: "أن المستخدمين يحبون التصميم", track: "uiux" },
+        { id: 2, text: "أن الأداء مستقر وسريع", track: "backend" },
+        { id: 3, text: "أن النموذج الذكي يعمل بدقة", track: "aiEng" },
+        { id: 4, text: "أن البيانات تم تحليلها بفعالية", track: "dataAnalysis" },
+        { id: 5, text: "أن النظام محمي وآمن", track: "cyberSecurity" },
+        { id: 6, text: "أن المعمارية كانت ناجحة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 40,
+    text: "ما نوع التكنولوجيا التي تحب استكشافها دائمًا؟",
+    options: [
+        { id: 1, text: "إطارات العمل الحديثة للويب", track: "frontend" },
+        { id: 2, text: "خدمات السحابة وDevOps", track: "cloudDevops" },
+        { id: 3, text: "أنظمة الذكاء الاصطناعي", track: "aiEng" },
+        { id: 4, text: "تحليل البيانات والأنماط", track: "dataScience" },
+        { id: 5, text: "تطبيقات إنترنت الأشياء", track: "iot" },
+        { id: 6, text: "التقنيات الأمنية الحديثة", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 41,
+    text: "ما هو أكثر جزء يثير اهتمامك في دورة تطوير النظام؟",
+    options: [
+        { id: 1, text: "تخطيط المعمارية", track: "softwareArchitecture" },
+        { id: 2, text: "التصميم الأمامي", track: "frontend" },
+        { id: 3, text: "البرمجة الخلفية", track: "backend" },
+        { id: 4, text: "اختبار الكود", track: "testing" },
+        { id: 5, text: "نشر التطبيق وإدارته", track: "cloudDevops" },
+        { id: 6, text: "تحليل البيانات بعد الإطلاق", track: "dataAnalysis" }
+    ]
+},
+{
+    id: 42,
+    text: "لو أتيحت لك فرصة تعلم شيء جديد هذا العام، ماذا تختار؟",
+    options: [
+        { id: 1, text: "React وواجهات الويب الحديثة", track: "frontend" },
+        { id: 2, text: "Python وNode.js", track: "backend" },
+        { id: 3, text: "تحليل البيانات باستخدام Python", track: "dataAnalysis" },
+        { id: 4, text: "خوارزميات تعلم الآلة", track: "machineLearning" },
+        { id: 5, text: "تأمين الأنظمة من الاختراق", track: "cyberSecurity" },
+        { id: 6, text: "نشر التطبيقات عبر السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 43,
+    text: "ما الذي يجذبك أكثر في مشاريع الذكاء الاصطناعي؟",
+    options: [
+        { id: 1, text: "تحليل البيانات قبل التدريب", track: "dataScience" },
+        { id: 2, text: "تدريب النماذج وتحسينها", track: "machineLearning" },
+        { id: 3, text: "دمج الذكاء في واجهات التطبيقات", track: "aiEng" },
+        { id: 4, text: "تطبيق نماذج اللغة الكبيرة", track: "llmsAI" },
+        { id: 5, text: "تأمين البيانات أثناء التدريب", track: "cyberSecurity" },
+        { id: 6, text: "نشر النماذج عبر السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 44,
+    text: "عند المشاركة في هاكاثون، أي نوع من المشاريع تختار؟",
+    options: [
+        { id: 1, text: "تطبيق ويب مبتكر", track: "frontend" },
+        { id: 2, text: "نظام تحليل بيانات", track: "dataScience" },
+        { id: 3, text: "تطبيق ذكاء اصطناعي", track: "aiEng" },
+        { id: 4, text: "لعبة تعليمية", track: "gameDev" },
+        { id: 5, text: "أداة لتأمين الأنظمة", track: "cyberSecurity" },
+        { id: 6, text: "مشروع يعتمد على أجهزة إنترنت الأشياء", track: "iot" }
+    ]
+},
+{
+    id: 45,
+    text: "ما نوع المشاريع التي تفضل بناؤها في وقت فراغك؟",
+    options: [
+        { id: 1, text: "تطبيق ويب شخصي", track: "frontend" },
+        { id: 2, text: "أداة برمجية داخلية", track: "backend" },
+        { id: 3, text: "نظام لتوصية الأفلام", track: "machineLearning" },
+        { id: 4, text: "لوحة تحليل بيانات", track: "dataAnalysis" },
+        { id: 5, text: "لعبة صغيرة تفاعلية", track: "gameDev" },
+        { id: 6, text: "تطبيق متصل بجهاز ذكي", track: "iot" }
+    ]
+},
+{
+    id: 46,
+    text: "أي جزء من دورة تطوير البرمجيات تعتبره الأمتع؟",
+    options: [
+        { id: 1, text: "التصميم الأولي وتجربة المستخدم", track: "uiux" },
+        { id: 2, text: "كتابة الكود الخلفي", track: "backend" },
+        { id: 3, text: "تدريب النماذج وتحليل النتائج", track: "dataScience" },
+        { id: 4, text: "تخطيط المعمارية وتوزيع المهام", track: "softwareArchitecture" },
+        { id: 5, text: "اختبار وتحسين الأداء", track: "testing" },
+        { id: 6, text: "النشر وإدارة السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 47,
+    text: "ما الذي يجعلك تستمتع أكثر أثناء العمل على مشروع؟",
+    options: [
+        { id: 1, text: "تفاعل المستخدم مع التصميم", track: "frontend" },
+        { id: 2, text: "حل مشكلة خوارزمية معقدة", track: "backend" },
+        { id: 3, text: "تحليل البيانات ورسم النتائج", track: "dataAnalysis" },
+        { id: 4, text: "تحسين تجربة الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "التحكم في بيئة التطوير", track: "cloudDevops" },
+        { id: 6, text: "تأمين التطبيق ضد الثغرات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 48,
+    text: "ما هو أكثر ما يدفعك لتعلم تقنية جديدة؟",
+    options: [
+        { id: 1, text: "سهولة بناء واجهات مذهلة", track: "frontend" },
+        { id: 2, text: "تحسين سرعة الأنظمة", track: "backend" },
+        { id: 3, text: "تحليل بيانات أعمق", track: "dataScience" },
+        { id: 4, text: "تدريب ذكاء أكثر دقة", track: "machineLearning" },
+        { id: 5, text: "تحسين أمن المعلومات", track: "cyberSecurity" },
+        { id: 6, text: "تطبيقها في السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 49,
+    text: "إذا كنت تعمل ضمن فريق، ما الدور الذي تشعر أنك تتقنه؟",
+    options: [
+        { id: 1, text: "تصميم واجهة جذابة", track: "frontend" },
+        { id: 2, text: "تنظيم البيانات وربط الخدمات", track: "backend" },
+        { id: 3, text: "تحليل الاتجاهات من البيانات", track: "dataAnalysis" },
+        { id: 4, text: "ضبط الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "اختبار الأداء", track: "testing" },
+        { id: 6, text: "تنظيم مهام الفريق", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 50,
+    text: "أي من هذه التحديات يحمسك أكثر؟",
+    options: [
+        { id: 1, text: "بناء واجهة تفاعلية معقدة", track: "frontend" },
+        { id: 2, text: "إدارة كميات ضخمة من البيانات", track: "bigData" },
+        { id: 3, text: "تحليل سلوك المستخدم", track: "dataScience" },
+        { id: 4, text: "بناء نموذج ذكاء دقيق", track: "machineLearning" },
+        { id: 5, text: "تأمين النظام من الهجمات", track: "cyberSecurity" },
+        { id: 6, text: "تصميم معمارية ذكية للمشروع", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 51,
+    text: "ما الذي يجذبك أكثر في عالم البرمجة؟",
+    options: [
+        { id: 1, text: "تفاعل المستخدم مع الواجهة", track: "frontend" },
+        { id: 2, text: "المنطق والتحكم في البيانات", track: "backend" },
+        { id: 3, text: "تحليل البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "استخدام الذكاء في الحلول", track: "aiEng" },
+        { id: 5, text: "التحليل الإحصائي الدقيق", track: "dataAnalysis" },
+        { id: 6, text: "تصميم تجربة مريحة للمستخدم", track: "uiux" }
+    ]
+},
+{
+    id: 52,
+    text: "أي من هذه المشاريع تحب أن تشارك فيها أكثر؟",
+    options: [
+        { id: 1, text: "موقع إلكتروني تفاعلي", track: "frontend" },
+        { id: 2, text: "نظام خلفي لمعالجة الطلبات", track: "backend" },
+        { id: 3, text: "روبوت ذكي يعتمد على الذكاء الصناعي", track: "aiEng" },
+        { id: 4, text: "لعبة ثلاثية الأبعاد", track: "gameDev" },
+        { id: 5, text: "تحليل بيانات المستخدمين", track: "dataScience" },
+        { id: 6, text: "تطبيق إنترنت الأشياء للتحكم عن بعد", track: "iot" }
+    ]
+},
+{
+    id: 53,
+    text: "عند تعلم مهارة جديدة، ما الذي يجعلك أكثر حماسًا؟",
+    options: [
+        { id: 1, text: "رؤية النتائج مباشرة على الشاشة", track: "frontend" },
+        { id: 2, text: "فهم كيفية معالجة الخوادم للبيانات", track: "backend" },
+        { id: 3, text: "تطبيق النظريات على الواقع", track: "aiEng" },
+        { id: 4, text: "تصميم جميل ومتناسق", track: "uiux" },
+        { id: 5, text: "معرفة كيف تُدار الأنظمة الكبيرة", track: "softwareArchitecture" },
+        { id: 6, text: "تحليل النتائج الرقمية", track: "dataAnalysis" }
+    ]
+},
+{
+    id: 54,
+    text: "أي نوع من المشاكل يجذبك لحلها؟",
+    options: [
+        { id: 1, text: "مشاكل عرض وتفاعل المستخدم", track: "frontend" },
+        { id: 2, text: "مشاكل قواعد البيانات والخوادم", track: "backend" },
+        { id: 3, text: "مشاكل السرعة في معالجة البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "مشاكل الدقة في الذكاء الصناعي", track: "machineLearning" },
+        { id: 5, text: "مشاكل تصميم النظام الكامل", track: "softwareArchitecture" },
+        { id: 6, text: "مشاكل الأمن وحماية البيانات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 55,
+    text: "أي مجال تعتبره أكثر إبداعًا؟",
+    options: [
+        { id: 1, text: "تصميم المواقع", track: "frontend" },
+        { id: 2, text: "تصميم واجهات المستخدم", track: "uiux" },
+        { id: 3, text: "تطوير تطبيقات الهاتف", track: "mobile" },
+        { id: 4, text: "تطوير الألعاب", track: "gameDev" },
+        { id: 5, text: "الذكاء الاصطناعي وتوليد الصور", track: "aiEng" },
+        { id: 6, text: "إنترنت الأشياء وأتمتة المنازل", track: "iot" }
+    ]
+},
+{
+    id: 56,
+    text: "ما أكثر ما يجذبك في تحليل البيانات؟",
+    options: [
+        { id: 1, text: "تنظيم البيانات بصريًا", track: "dataAnalysis" },
+        { id: 2, text: "استخدام الخوارزميات للذكاء", track: "machineLearning" },
+        { id: 3, text: "استخراج الأنماط من البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "عرض النتائج في لوحة تحكم", track: "frontend" },
+        { id: 5, text: "معالجة البيانات في الخلفية", track: "backend" },
+        { id: 6, text: "تطبيق التحليل لتطوير الأعمال", track: "dataScience" }
+    ]
+},
+{
+    id: 57,
+    text: "عندما تواجه خطأ في مشروعك، كيف تتصرف؟",
+    options: [
+        { id: 1, text: "أحلله وأختبره حتى أفهم السبب", track: "testing" },
+        { id: 2, text: "أراجع منطق الكود الخلفي", track: "backend" },
+        { id: 3, text: "أتحقق من البيانات المدخلة", track: "dataAnalysis" },
+        { id: 4, text: "أعيد تدريب النموذج الذكي", track: "machineLearning" },
+        { id: 5, text: "أراجع تصميم الواجهة", track: "frontend" },
+        { id: 6, text: "أبحث عن الثغرات الأمنية", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 58,
+    text: "أي نوع من الأدوات تحب استخدامها أكثر؟",
+    options: [
+        { id: 1, text: "محررات التصميم مثل Figma", track: "uiux" },
+        { id: 2, text: "أطر العمل مثل React وVue", track: "frontend" },
+        { id: 3, text: "خوادم Node.js أو Django", track: "backend" },
+        { id: 4, text: "منصات البيانات مثل Spark", track: "bigData" },
+        { id: 5, text: "بيئات الذكاء الصناعي مثل TensorFlow", track: "aiEng" },
+        { id: 6, text: "منصات الحوسبة السحابية", track: "cloudDevops" }
+    ]
+},
+{
+    id: 59,
+    text: "لو أعطوك مشروعًا مفتوحًا، ماذا تفضل أن تبنيه؟",
+    options: [
+        { id: 1, text: "موقع إلكتروني تفاعلي", track: "frontend" },
+        { id: 2, text: "API متكامل", track: "backend" },
+        { id: 3, text: "نظام ذكاء اصطناعي للتوصية", track: "machineLearning" },
+        { id: 4, text: "تطبيق هاتف متكامل", track: "mobile" },
+        { id: 5, text: "لوحة تحليل بيانات", track: "dataAnalysis" },
+        { id: 6, text: "شبكة أجهزة ذكية متصلة", track: "iot" }
+    ]
+},
+{
+    id: 60,
+    text: "ما أكثر ما يثير اهتمامك عند بناء الأنظمة؟",
+    options: [
+        { id: 1, text: "تصميم تجربة المستخدم", track: "uiux" },
+        { id: 2, text: "أداء الخوادم", track: "backend" },
+        { id: 3, text: "ذكاء النظام في اتخاذ القرارات", track: "aiEng" },
+        { id: 4, text: "تحليل الأداء بعد التنفيذ", track: "testing" },
+        { id: 5, text: "أمان النظام ضد الهجمات", track: "cyberSecurity" },
+        { id: 6, text: "قدرة النظام على التعامل مع البيانات الكبيرة", track: "bigData" }
+    ]
+},
+{
+    id: 61,
+    text: "عند العمل في مشروع جماعي، ما الدور الذي تفضله؟",
+    options: [
+        { id: 1, text: "تصميم الواجهة وتجربة المستخدم", track: "frontend" },
+        { id: 2, text: "تخطيط المعمارية وتوزيع المهام", track: "softwareArchitecture" },
+        { id: 3, text: "برمجة الواجهة الخلفية", track: "backend" },
+        { id: 4, text: "تحليل البيانات وقياس الأداء", track: "dataAnalysis" },
+        { id: 5, text: "بناء نموذج ذكاء اصطناعي", track: "aiEng" },
+        { id: 6, text: "اختبار وضمان الجودة", track: "testing" }
+    ]
+},
+{
+    id: 62,
+    text: "ما الجانب الذي تحب استكشافه أكثر؟",
+    options: [
+        { id: 1, text: "الواجهات التفاعلية", track: "frontend" },
+        { id: 2, text: "خدمات السحابة", track: "cloudDevops" },
+        { id: 3, text: "أنظمة إنترنت الأشياء", track: "iot" },
+        { id: 4, text: "تحليل البيانات الضخمة", track: "bigData" },
+        { id: 5, text: "الذكاء الاصطناعي التوليدي", track: "llmsAI" },
+        { id: 6, text: "أمن المعلومات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 63,
+    text: "عندما ترى واجهة سيئة التصميم، ما شعورك؟",
+    options: [
+        { id: 1, text: "أريد تحسينها فورًا", track: "uiux" },
+        { id: 2, text: "أفكر كيف تم بناؤها بالكود", track: "frontend" },
+        { id: 3, text: "أتساءل عن تجربة المستخدم فيها", track: "testing" },
+        { id: 4, text: "أفكر كيف يمكن للذكاء الصناعي تحسينها", track: "aiEng" },
+        { id: 5, text: "أراجع المنطق في الخادم", track: "backend" },
+        { id: 6, text: "أفكر في بيانات المستخدمين", track: "dataScience" }
+    ]
+},
+{
+    id: 64,
+    text: "أي مجال ترى أنه مستقبل التكنولوجيا؟",
+    options: [
+        { id: 1, text: "الذكاء الاصطناعي", track: "aiEng" },
+        { id: 2, text: "تحليل البيانات الضخمة", track: "bigData" },
+        { id: 3, text: "إنترنت الأشياء", track: "iot" },
+        { id: 4, text: "الحوسبة السحابية", track: "cloudDevops" },
+        { id: 5, text: "الأمن السيبراني", track: "cyberSecurity" },
+        { id: 6, text: "تصميم التجارب الذكية", track: "uiux" }
+    ]
+},
+{
+    id: 65,
+    text: "أي مما يلي تستمتع بتعلمه أكثر؟",
+    options: [
+        { id: 1, text: "HTML وCSS وJavaScript", track: "frontend" },
+        { id: 2, text: "Python وNode.js", track: "backend" },
+        { id: 3, text: "TensorFlow وPyTorch", track: "machineLearning" },
+        { id: 4, text: "Spark وHadoop", track: "bigData" },
+        { id: 5, text: "Figma وAdobe XD", track: "uiux" },
+        { id: 6, text: "AWS وDocker", track: "cloudDevops" }
+    ]
+},
+{
+    id: 66,
+    text: "ما الذي يجعلك تشعر بالإنجاز بعد إتمام مشروع؟",
+    options: [
+        { id: 1, text: "واجهة تعمل بسلاسة", track: "frontend" },
+        { id: 2, text: "نظام خلفي قوي وآمن", track: "backend" },
+        { id: 3, text: "تحليل دقيق للبيانات", track: "dataAnalysis" },
+        { id: 4, text: "ذكاء اصطناعي فعّال", track: "aiEng" },
+        { id: 5, text: "بنية نظام متكاملة", track: "softwareArchitecture" },
+        { id: 6, text: "اختبارات ناجحة بدون أخطاء", track: "testing" }
+    ]
+},
+{
+    id: 67,
+    text: "لو كنت مسؤولًا عن تطوير منتج ذكي، ما أول شيء تهتم به؟",
+    options: [
+        { id: 1, text: "سهولة استخدامه", track: "uiux" },
+        { id: 2, text: "ذكاء قراراته", track: "machineLearning" },
+        { id: 3, text: "أمانه وخصوصيته", track: "cyberSecurity" },
+        { id: 4, text: "اتصاله بالأجهزة الأخرى", track: "iot" },
+        { id: 5, text: "تحليله للبيانات", track: "dataScience" },
+        { id: 6, text: "أداءه في السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 68,
+    text: "لو طُلب منك شرح فكرة تقنية لغير متخصص، ماذا تختار؟",
+    options: [
+        { id: 1, text: "شرح تصميم واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "شرح منطق الخوادم", track: "backend" },
+        { id: 3, text: "تبسيط فكرة الذكاء الاصطناعي", track: "aiEng" },
+        { id: 4, text: "عرض البيانات بطريقة مفهومة", track: "dataAnalysis" },
+        { id: 5, text: "شرح طريقة تأمين النظام", track: "cyberSecurity" },
+        { id: 6, text: "شرح طريقة ربط الأجهزة الذكية", track: "iot" }
+    ]
+},
+{
+    id: 69,
+    text: "أي من هذه المهام اليومية تفضلها؟",
+    options: [
+        { id: 1, text: "تصميم عناصر واجهة المستخدم", track: "uiux" },
+        { id: 2, text: "برمجة الواجهات", track: "frontend" },
+        { id: 3, text: "إدارة البيانات في الخلفية", track: "backend" },
+        { id: 4, text: "تحليل مؤشرات الأداء", track: "dataAnalysis" },
+        { id: 5, text: "تدريب نماذج الذكاء الصناعي", track: "machineLearning" },
+        { id: 6, text: "نشر المشروع على السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 70,
+    text: "ما أكثر ما يثير اهتمامك عند رؤية تطبيق جديد؟",
+    options: [
+        { id: 1, text: "التصميم وسهولة الاستخدام", track: "uiux" },
+        { id: 2, text: "طريقة عمله في الخلفية", track: "backend" },
+        { id: 3, text: "كيف يجمع البيانات", track: "dataScience" },
+        { id: 4, text: "مدى ذكائه في التعامل", track: "aiEng" },
+        { id: 5, text: "أمان المستخدمين", track: "cyberSecurity" },
+        { id: 6, text: "أداؤه على السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 71,
+    text: "عندما تشاهد لعبة فيديو، ما الذي يجذبك فيها؟",
+    options: [
+        { id: 1, text: "الجرافيك والتصميم", track: "uiux" },
+        { id: 2, text: "منطق اللعبة والكود", track: "gameDev" },
+        { id: 3, text: "ذكاء الشخصيات الاصطناعي", track: "aiEng" },
+        { id: 4, text: "تفاعل البيانات أثناء اللعب", track: "dataEng" },
+        { id: 5, text: "الأداء السلس بدون أخطاء", track: "testing" },
+        { id: 6, text: "اتصال اللعبة عبر الإنترنت", track: "backend" }
+    ]
+},
+{
+    id: 72,
+    text: "لو أردت أن تبتكر مشروعًا جديدًا، ما الذي يلهمك؟",
+    options: [
+        { id: 1, text: "احتياجات المستخدم اليومية", track: "uiux" },
+        { id: 2, text: "حل مشكلة بالذكاء الصناعي", track: "machineLearning" },
+        { id: 3, text: "تحسين الأداء على السحابة", track: "cloudDevops" },
+        { id: 4, text: "تحليل بيانات لمجال جديد", track: "dataScience" },
+        { id: 5, text: "أمن تقنيات إنترنت الأشياء", track: "cyberSecurity" },
+        { id: 6, text: "بناء تجربة تفاعلية ممتعة", track: "frontend" }
+    ]
+},
+{
+    id: 73,
+    text: "أي من هذه المجالات تشعر أنه يناسب شخصيتك أكثر؟",
+    options: [
+        { id: 1, text: "الإبداع الفني والتصميم", track: "uiux" },
+        { id: 2, text: "التحليل المنطقي للأنظمة", track: "backend" },
+        { id: 3, text: "حلول الذكاء الاصطناعي", track: "aiEng" },
+        { id: 4, text: "إدارة البيانات الكبيرة", track: "bigData" },
+        { id: 5, text: "أمن المعلومات", track: "cyberSecurity" },
+        { id: 6, text: "تحليل النتائج الرقمية", track: "dataAnalysis" }
+    ]
+},
+{
+    id: 74,
+    text: "ما الذي تفضله عند تنفيذ مشروع جديد؟",
+    options: [
+        { id: 1, text: "العمل على التصميم أولًا", track: "frontend" },
+        { id: 2, text: "تحديد قاعدة البيانات والمنطق", track: "backend" },
+        { id: 3, text: "اختبار الأداء منذ البداية", track: "testing" },
+        { id: 4, text: "بناء نموذج الذكاء المساعد", track: "aiEng" },
+        { id: 5, text: "تحليل البيانات للقرارات", track: "dataScience" },
+        { id: 6, text: "ضمان الأمان والبنية الصحيحة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 75,
+    text: "أي من هذه المفاهيم تجده الأكثر إثارة؟",
+    options: [
+        { id: 1, text: "واجهات الواقع المعزز", track: "frontend" },
+        { id: 2, text: "الخوادم الموزعة", track: "backend" },
+        { id: 3, text: "النماذج اللغوية الكبيرة", track: "llmsAI" },
+        { id: 4, text: "تحليل البيانات الزمنية", track: "dataAnalysis" },
+        { id: 5, text: "روبوتات تعتمد على التعلم الذاتي", track: "machineLearning" },
+        { id: 6, text: "شبكات الأجهزة الذكية", track: "iot" }
+    ]
+},
+{
+    id: 76,
+    text: "ما أكثر ما يثير اهتمامك عند تطوير الأنظمة الذكية؟",
+    options: [
+        { id: 1, text: "تحسين تجربة المستخدم", track: "frontend" },
+        { id: 2, text: "تحسين كفاءة الخوادم", track: "backend" },
+        { id: 3, text: "تدريب النماذج التنبؤية", track: "machineLearning" },
+        { id: 4, text: "تحليل البيانات الضخمة", track: "dataScience" },
+        { id: 5, text: "تطبيقات الذكاء الاصطناعي في الحياة اليومية", track: "aiEng" },
+        { id: 6, text: "ضمان الأمان في الأنظمة", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 77,
+    text: "ما الذي تفضله في بيئة العمل التقنية؟",
+    options: [
+        { id: 1, text: "العمل الجماعي على واجهات المستخدم", track: "frontend" },
+        { id: 2, text: "تصميم حلول منطقية معقدة", track: "backend" },
+        { id: 3, text: "تحليل سلوك المستخدمين", track: "dataAnalysis" },
+        { id: 4, text: "بناء خوارزميات تعلم ذاتي", track: "machineLearning" },
+        { id: 5, text: "اختبار الأداء والاعتمادية", track: "testing" },
+        { id: 6, text: "إدارة المشاريع البرمجية", track: "projectManagement" }
+    ]
+},
+{
+    id: 78,
+    text: "أي من هذه الأدوات تفضل تعلمها أكثر؟",
+    options: [
+        { id: 1, text: "React أو Vue", track: "frontend" },
+        { id: 2, text: "Node.js أو Django", track: "backend" },
+        { id: 3, text: "TensorFlow أو PyTorch", track: "machineLearning" },
+        { id: 4, text: "Power BI أو Tableau", track: "dataAnalysis" },
+        { id: 5, text: "Kali Linux وأدوات الأمان", track: "cyberSecurity" },
+        { id: 6, text: "GitHub و CI/CD", track: "devops" }
+    ]
+},
+{
+    id: 79,
+    text: "ما الجانب الذي تفضله في تطوير تطبيقات الجوال؟",
+    options: [
+        { id: 1, text: "تصميم الواجهة وتجربة المستخدم", track: "mobileDev" },
+        { id: 2, text: "ربط التطبيق بواجهة برمجة التطبيقات", track: "backend" },
+        { id: 3, text: "تحليل استخدام التطبيق", track: "dataAnalysis" },
+        { id: 4, text: "تطبيق الذكاء الاصطناعي داخله", track: "aiEng" },
+        { id: 5, text: "اختبار التطبيق على الأجهزة", track: "testing" },
+        { id: 6, text: "تأمين بيانات المستخدمين", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 80,
+    text: "إذا واجهت خطأ في النظام، ماذا تفعل أولاً؟",
+    options: [
+        { id: 1, text: "أراجع الكود الواجهاتي", track: "frontend" },
+        { id: 2, text: "أحلل منطق الخادم", track: "backend" },
+        { id: 3, text: "أختبر الفرضيات باستخدام البيانات", track: "dataScience" },
+        { id: 4, text: "أشغل أدوات الاختبار الآلي", track: "testing" },
+        { id: 5, text: "أتحقق من الثغرات الأمنية", track: "cyberSecurity" },
+        { id: 6, text: "أحلله باستخدام التعلم الآلي", track: "machineLearning" }
+    ]
+},
+{
+    id: 81,
+    text: "ما أكثر ما يجذبك في الذكاء الاصطناعي؟",
+    options: [
+        { id: 1, text: "الروبوتات الذكية", track: "aiEng" },
+        { id: 2, text: "تحليل الصور والفيديوهات", track: "machineLearning" },
+        { id: 3, text: "التطبيقات اللغوية (LLMs)", track: "llmsAI" },
+        { id: 4, text: "تنبؤ الاتجاهات الرقمية", track: "dataScience" },
+        { id: 5, text: "تطبيق الذكاء في الأمن السيبراني", track: "cyberSecurity" },
+        { id: 6, text: "تسريع أداء الخوادم الذكية", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 82,
+    text: "عند تعلم تقنية جديدة، ما الذي تبحث عنه أولاً؟",
+    options: [
+        { id: 1, text: "سهولة بناء الواجهات", track: "frontend" },
+        { id: 2, text: "قوة الأداء والاستقرار", track: "backend" },
+        { id: 3, text: "قدرة الأداة على التعامل مع البيانات", track: "dataAnalysis" },
+        { id: 4, text: "إمكانية استخدامها في الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "مستوى الأمان والدعم", track: "cyberSecurity" },
+        { id: 6, text: "سهولة التكامل مع أنظمة أخرى", track: "devops" }
+    ]
+},
+{
+    id: 83,
+    text: "أي نوع من المشاريع تحب المشاركة فيه أكثر؟",
+    options: [
+        { id: 1, text: "مواقع إلكترونية تفاعلية", track: "frontend" },
+        { id: 2, text: "أنظمة إدارة بيانات", track: "backend" },
+        { id: 3, text: "أنظمة تنبؤية ذكية", track: "machineLearning" },
+        { id: 4, text: "أنظمة مراقبة وأمان", track: "cyberSecurity" },
+        { id: 5, text: "تطبيقات الهاتف", track: "mobileDev" },
+        { id: 6, text: "أنظمة تحليل بيانات ضخمة", track: "dataScience" }
+    ]
+},
+{
+    id: 84,
+    text: "عند بناء تطبيق، ما الذي يشغلك أكثر؟",
+    options: [
+        { id: 1, text: "أن يبدو التطبيق جذابًا وسهل الاستخدام", track: "frontend" },
+        { id: 2, text: "أن يعمل التطبيق بسلاسة في الخادم", track: "backend" },
+        { id: 3, text: "أن يتمكن التطبيق من التعلم ذاتيًا", track: "machineLearning" },
+        { id: 4, text: "أن تكون بيانات المستخدمين آمنة", track: "cyberSecurity" },
+        { id: 5, text: "أن يتم تحليل سلوك المستخدمين بذكاء", track: "dataAnalysis" },
+        { id: 6, text: "أن يكون الكود منظمًا وسهل الصيانة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 85,
+    text: "ما الذي يجعلك فخورًا عند الانتهاء من مشروع تقني؟",
+    options: [
+        { id: 1, text: "جمال التصميم وتفاعله", track: "frontend" },
+        { id: 2, text: "الاستجابة السريعة والكفاءة", track: "backend" },
+        { id: 3, text: "القدرة على التعلم والتنبؤ", track: "machineLearning" },
+        { id: 4, text: "الأمان العالي للنظام", track: "cyberSecurity" },
+        { id: 5, text: "تحليل النتائج وتحسينها", track: "dataScience" },
+        { id: 6, text: "العمل الجماعي المنظم", track: "projectManagement" }
+    ]
+},
+{
+    id: 86,
+    text: "إذا كنت تدرّب نموذج ذكاء اصطناعي، ما أول ما تفعله؟",
+    options: [
+        { id: 1, text: "أجمع البيانات وأجهزها", track: "dataScience" },
+        { id: 2, text: "أختار الخوارزمية المناسبة", track: "machineLearning" },
+        { id: 3, text: "أختبر النموذج على بيانات حقيقية", track: "testing" },
+        { id: 4, text: "أستخدم أدوات الذكاء الاصطناعي المتقدمة", track: "aiEng" },
+        { id: 5, text: "أحافظ على أمان البيانات أثناء التدريب", track: "cyberSecurity" },
+        { id: 6, text: "أبني واجهة تفاعلية لعرض النتائج", track: "frontend" }
+    ]
+},
+{
+    id: 87,
+    text: "ما الذي تعتبره تحديًا ممتعًا في البرمجة؟",
+    options: [
+        { id: 1, text: "بناء واجهة متجاوبة", track: "frontend" },
+        { id: 2, text: "تصميم قاعدة بيانات فعالة", track: "backend" },
+        { id: 3, text: "تحليل كم كبير من البيانات", track: "dataAnalysis" },
+        { id: 4, text: "تدريب نموذج دقيق", track: "machineLearning" },
+        { id: 5, text: "كشف الثغرات وتأمين الأنظمة", track: "cyberSecurity" },
+        { id: 6, text: "تحسين تدفق العمل البرمجي", track: "devops" }
+    ]
+},
+{
+    id: 88,
+    text: "ما أكثر ما يجذبك في عالم البيانات؟",
+    options: [
+        { id: 1, text: "التحليل الإحصائي المتقدم", track: "dataAnalysis" },
+        { id: 2, text: "تطبيق خوارزميات التعلم الآلي", track: "machineLearning" },
+        { id: 3, text: "تصور البيانات بشكل جذاب", track: "frontend" },
+        { id: 4, text: "تخزين البيانات بشكل آمن", track: "backend" },
+        { id: 5, text: "تنظيف البيانات وتحسين جودتها", track: "dataScience" },
+        { id: 6, text: "تحليل البيانات للأمان السيبراني", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 89,
+    text: "أي من هذه التخصصات تجد نفسك فيه أكثر؟",
+    options: [
+        { id: 1, text: "بناء مواقع ويب", track: "frontend" },
+        { id: 2, text: "بناء خوادم وتطبيقات", track: "backend" },
+        { id: 3, text: "تطوير نماذج تعلم آلي", track: "machineLearning" },
+        { id: 4, text: "تحليل بيانات ضخمة", track: "dataScience" },
+        { id: 5, text: "تصميم بنية البرامج", track: "softwareArchitecture" },
+        { id: 6, text: "إدارة مشروعات تقنية", track: "projectManagement" }
+    ]
+},
+{
+    id: 90,
+    text: "عند سماع كلمة 'ذكاء اصطناعي'، ما أول ما يخطر ببالك؟",
+    options: [
+        { id: 1, text: "روبوتات ذكية", track: "aiEng" },
+        { id: 2, text: "التعلم العميق", track: "machineLearning" },
+        { id: 3, text: "تحليل البيانات", track: "dataScience" },
+        { id: 4, text: "المساعدات الرقمية", track: "llmsAI" },
+        { id: 5, text: "أنظمة الأمن الذكية", track: "cyberSecurity" },
+        { id: 6, text: "التطبيقات التفاعلية", track: "frontend" }
+    ]
+},
+{
+    id: 91,
+    text: "إذا كنت تبني نظامًا جديدًا، ما أول ما تفكر فيه؟",
+    options: [
+        { id: 1, text: "تجربة المستخدم", track: "frontend" },
+        { id: 2, text: "أداء النظام", track: "backend" },
+        { id: 3, text: "تحليل البيانات المبدئية", track: "dataAnalysis" },
+        { id: 4, text: "الذكاء الاصطناعي المضمن", track: "aiEng" },
+        { id: 5, text: "اختبارات الجودة", track: "testing" },
+        { id: 6, text: "التحكم في الأمن", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 92,
+    text: "ما الذي تستمتع به أكثر أثناء البرمجة؟",
+    options: [
+        { id: 1, text: "الجانب الإبداعي في التصميم", track: "frontend" },
+        { id: 2, text: "حل المشكلات المنطقية", track: "backend" },
+        { id: 3, text: "تحليل البيانات واستخلاص الأنماط", track: "dataScience" },
+        { id: 4, text: "تدريب خوارزميات الذكاء", track: "machineLearning" },
+        { id: 5, text: "تحسين الأمان والخصوصية", track: "cyberSecurity" },
+        { id: 6, text: "تطوير أنظمة التشغيل", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 93,
+    text: "عند العمل في فريق، ما الدور الذي تختاره؟",
+    options: [
+        { id: 1, text: "تصميم الواجهات والعرض", track: "frontend" },
+        { id: 2, text: "كتابة منطق الخوادم", track: "backend" },
+        { id: 3, text: "إدارة قاعدة البيانات", track: "dataScience" },
+        { id: 4, text: "تحليل الأخطاء واختبار الأداء", track: "testing" },
+        { id: 5, text: "تأمين النظام من الهجمات", track: "cyberSecurity" },
+        { id: 6, text: "قيادة الفريق وتوزيع المهام", track: "projectManagement" }
+    ]
+},
+{
+    id: 94,
+    text: "إذا كان لديك يوم واحد لتجربة تقنية جديدة، ماذا تختار؟",
+    options: [
+        { id: 1, text: "تصميم واجهات بالـReact", track: "frontend" },
+        { id: 2, text: "إنشاء خادم Python Flask", track: "backend" },
+        { id: 3, text: "بناء نموذج ChatGPT مصغر", track: "llmsAI" },
+        { id: 4, text: "تحليل بيانات مالية", track: "dataAnalysis" },
+        { id: 5, text: "تجربة أداة اختبار تلقائي", track: "testing" },
+        { id: 6, text: "استخدام أداة لتشفير البيانات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 95,
+    text: "ما أكثر شيء يلهمك لتطوير نفسك تقنيًا؟",
+    options: [
+        { id: 1, text: "إبداع الواجهات الجديدة", track: "frontend" },
+        { id: 2, text: "حل مشكلات برمجية صعبة", track: "backend" },
+        { id: 3, text: "تطبيق الذكاء الاصطناعي عمليًا", track: "aiEng" },
+        { id: 4, text: "التحليل الدقيق للبيانات", track: "dataScience" },
+        { id: 5, text: "تحسين جودة البرمجيات", track: "testing" },
+        { id: 6, text: "ضمان أمان المعلومات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 96,
+    text: "أي مجال من مجالات المستقبل ترى نفسك فيه؟",
+    options: [
+        { id: 1, text: "تطوير تجارب المستخدم", track: "frontend" },
+        { id: 2, text: "الذكاء الاصطناعي وتعلم الآلة", track: "machineLearning" },
+        { id: 3, text: "أمن الأنظمة والشبكات", track: "cyberSecurity" },
+        { id: 4, text: "تحليل البيانات الكبرى", track: "dataScience" },
+        { id: 5, text: "تطوير تطبيقات الهواتف", track: "mobileDev" },
+        { id: 6, text: "إدارة الأنظمة السحابية", track: "devops" }
+    ]
+},
+{
+    id: 97,
+    text: "ما الذي تعتبره أهم مهارة في المبرمج الناجح؟",
+    options: [
+        { id: 1, text: "الاهتمام بالتفاصيل البصرية", track: "frontend" },
+        { id: 2, text: "المنطق والتحليل", track: "backend" },
+        { id: 3, text: "القدرة على التعلم المستمر", track: "machineLearning" },
+        { id: 4, text: "تحليل البيانات وفهم الأنماط", track: "dataScience" },
+        { id: 5, text: "التفكير الأمني والاحتياطي", track: "cyberSecurity" },
+        { id: 6, text: "إدارة الوقت والمشاريع", track: "projectManagement" }
+    ]
+},
+{
+    id: 98,
+    text: "عند سماعك عن مصطلح DevOps، ما الذي تفكر فيه؟",
+    options: [
+        { id: 1, text: "أتمتة عمليات النشر", track: "devops" },
+        { id: 2, text: "تحسين التواصل بين الفرق", track: "projectManagement" },
+        { id: 3, text: "اختبارات الأداء المستمرة", track: "testing" },
+        { id: 4, text: "تحسين أمان سير العمل", track: "cyberSecurity" },
+        { id: 5, text: "تكامل البرمجيات مع الخوادم", track: "backend" },
+        { id: 6, text: "تحليل مراحل التطوير بالذكاء الاصطناعي", track: "aiEng" }
+    ]
+},
+{
+    id: 99,
+    text: "ما الجزء المفضل لديك في دورة حياة النظام؟",
+    options: [
+        { id: 1, text: "تحليل المتطلبات", track: "softwareArchitecture" },
+        { id: 2, text: "تصميم الواجهة", track: "frontend" },
+        { id: 3, text: "تطوير الخادم والمنطق", track: "backend" },
+        { id: 4, text: "اختبار الأداء والجودة", track: "testing" },
+        { id: 5, text: "نشر النظام وإدارته", track: "devops" },
+        { id: 6, text: "تحليل البيانات لتحسينه", track: "dataScience" }
+    ]
+},
+{
+    id: 100,
+    text: "أي نوع من التطبيقات يثير حماسك أكثر؟",
+    options: [
+        { id: 1, text: "التطبيقات التعليمية التفاعلية", track: "frontend" },
+        { id: 2, text: "تطبيقات الذكاء الاصطناعي", track: "aiEng" },
+        { id: 3, text: "أنظمة الأمن السيبراني", track: "cyberSecurity" },
+        { id: 4, text: "تطبيقات تحليل البيانات", track: "dataAnalysis" },
+        { id: 5, text: "تطبيقات الهاتف المتصلة بالسحابة", track: "mobileDev" },
+        { id: 6, text: "أنظمة إدارة المشاريع", track: "projectManagement" }
+    ]
+},
+{
+    id: 101,
+    text: "إذا كنت تبني نظام مراقبة ذكي، ما دورك المفضل؟",
+    options: [
+        { id: 1, text: "تحليل الصور باستخدام التعلم الآلي", track: "machineLearning" },
+        { id: 2, text: "تصميم لوحة التحكم", track: "frontend" },
+        { id: 3, text: "إدارة الاتصالات مع الخوادم", track: "backend" },
+        { id: 4, text: "تحليل البيانات المجمعة", track: "dataScience" },
+        { id: 5, text: "ضمان الأمان والخصوصية", track: "cyberSecurity" },
+        { id: 6, text: "تنظيم سير العمل ونشر التحديثات", track: "devops" }
+    ]
+},
+{
+    id: 102,
+    text: "ما الجانب الأكثر إبداعًا بالنسبة لك في البرمجة؟",
+    options: [
+        { id: 1, text: "تصميم واجهات مبتكرة", track: "frontend" },
+        { id: 2, text: "ابتكار حلول منطقية", track: "backend" },
+        { id: 3, text: "تحليل أنماط معقدة من البيانات", track: "dataAnalysis" },
+        { id: 4, text: "بناء ذكاء اصطناعي جديد", track: "aiEng" },
+        { id: 5, text: "ابتكار استراتيجيات اختبار جديدة", track: "testing" },
+        { id: 6, text: "تصميم هيكل برمجي متكامل", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 103,
+    text: "ما الذي يجذبك في الأمن السيبراني؟",
+    options: [
+        { id: 1, text: "اختبار الاختراق", track: "cyberSecurity" },
+        { id: 2, text: "تشفير البيانات الحساسة", track: "cyberSecurity" },
+        { id: 3, text: "تصميم خوارزميات حماية ذكية", track: "aiEng" },
+        { id: 4, text: "تحليل السلوك الشبكي", track: "dataScience" },
+        { id: 5, text: "بناء أنظمة مراقبة أمنية", track: "backend" },
+        { id: 6, text: "تحليل الواجهات الآمنة", track: "frontend" }
+    ]
+},
+{
+    id: 104,
+    text: "عند بناء تطبيق ويب متكامل، أين تفضل التركيز؟",
+    options: [
+        { id: 1, text: "الواجهة وتجربة المستخدم", track: "frontend" },
+        { id: 2, text: "الخادم والـ API", track: "backend" },
+        { id: 3, text: "الأمان ومراقبة الدخول", track: "cyberSecurity" },
+        { id: 4, text: "تحليل بيانات الاستخدام", track: "dataAnalysis" },
+        { id: 5, text: "اختبار النظام والتصحيح", track: "testing" },
+        { id: 6, text: "تطوير بيئة النشر التلقائي", track: "devops" }
+    ]
+},
+{
+    id: 105,
+    text: "أي نوع من الخوارزميات يثير فضولك أكثر؟",
+    options: [
+        { id: 1, text: "خوارزميات الفرز والبحث", track: "backend" },
+        { id: 2, text: "خوارزميات التعلم العميق", track: "machineLearning" },
+        { id: 3, text: "خوارزميات التشفير", track: "cyberSecurity" },
+        { id: 4, text: "خوارزميات معالجة الصور", track: "aiEng" },
+        { id: 5, text: "خوارزميات تحليل الاتجاهات", track: "dataScience" },
+        { id: 6, text: "خوارزميات تحسين الأداء", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 106,
+    text: "ما الذي يجذبك في عالم إدارة المشاريع التقنية؟",
+    options: [
+        { id: 1, text: "تنظيم فرق العمل", track: "projectManagement" },
+        { id: 2, text: "تحليل مراحل التنفيذ", track: "softwareArchitecture" },
+        { id: 3, text: "التواصل الفعّال بين المبرمجين", track: "projectManagement" },
+        { id: 4, text: "ضمان جودة المنتج النهائي", track: "testing" },
+        { id: 5, text: "توزيع المهام بذكاء", track: "projectManagement" },
+        { id: 6, text: "دمج أدوات الذكاء الاصطناعي في الإدارة", track: "aiEng" }
+    ]
+},
+{
+    id: 107,
+    text: "ما أكثر ما تستمتع به أثناء حل مشكلة برمجية؟",
+    options: [
+        { id: 1, text: "تحليل واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "تفكيك المنطق الخاطئ", track: "backend" },
+        { id: 3, text: "تجربة حلول عبر البيانات", track: "dataScience" },
+        { id: 4, text: "اختبار الفرضيات بالذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "ضبط الثغرات الأمنية", track: "cyberSecurity" },
+        { id: 6, text: "مراجعة البنية المعمارية", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 108,
+    text: "أي من المجالات التالية تعتقد أنه مستقبل البرمجة؟",
+    options: [
+        { id: 1, text: "التطبيقات التفاعلية المتقدمة", track: "frontend" },
+        { id: 2, text: "الخوادم السحابية", track: "backend" },
+        { id: 3, text: "الذكاء الاصطناعي التوليدي", track: "llmsAI" },
+        { id: 4, text: "تحليل البيانات الفوري", track: "dataScience" },
+        { id: 5, text: "أتمتة الأمن السيبراني", track: "cyberSecurity" },
+        { id: 6, text: "الأنظمة المتكاملة بالـDevOps", track: "devops" }
+    ]
+},
+{
+    id: 109,
+    text: "ما الذي تفضله في مشاريع الذكاء الاصطناعي؟",
+    options: [
+        { id: 1, text: "جمع البيانات وتحليلها", track: "dataScience" },
+        { id: 2, text: "تدريب النماذج وتحسينها", track: "machineLearning" },
+        { id: 3, text: "دمج الذكاء مع تطبيقات الويب", track: "aiEng" },
+        { id: 4, text: "تصميم الواجهات التي تعرض النتائج", track: "frontend" },
+        { id: 5, text: "اختبار النتائج ومقارنتها", track: "testing" },
+        { id: 6, text: "ضمان أمن النماذج والبيانات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 110,
+    text: "إذا كنت تبني نظام ذكاء مؤسسي، ما أولويتك؟",
+    options: [
+        { id: 1, text: "تحليل البيانات التاريخية", track: "dataScience" },
+        { id: 2, text: "تدريب خوارزميات الذكاء", track: "machineLearning" },
+        { id: 3, text: "تأمين النظام ضد التهديدات", track: "cyberSecurity" },
+        { id: 4, text: "تطوير لوحة عرض البيانات", track: "frontend" },
+        { id: 5, text: "إدارة نشر النموذج تلقائيًا", track: "devops" },
+        { id: 6, text: "تنظيم الفريق والمراحل", track: "projectManagement" }
+    ]
+},
+{
+    id: 111,
+    text: "ما الذي يثير فضولك أكثر في تعلم الآلة؟",
+    options: [
+        { id: 1, text: "تحسين دقة النماذج", track: "machineLearning" },
+        { id: 2, text: "تحليل البيانات المعقدة", track: "dataScience" },
+        { id: 3, text: "استخدام الذكاء الصناعي في الروبوتات", track: "aiEng" },
+        { id: 4, text: "تطبيقه على النصوص واللغة", track: "llmsAI" },
+        { id: 5, text: "تحسين الكفاءة البرمجية", track: "backend" },
+        { id: 6, text: "تحسين واجهات عرض التنبؤات", track: "frontend" }
+    ]
+},
+{
+    id: 112,
+    text: "أي من هذه الأنظمة ترغب في تصميمه؟",
+    options: [
+        { id: 1, text: "نظام توصية للأفلام", track: "machineLearning" },
+        { id: 2, text: "نظام أمن إلكتروني", track: "cyberSecurity" },
+        { id: 3, text: "نظام تحليل بيانات مالية", track: "dataAnalysis" },
+        { id: 4, text: "نظام إدارة مستخدمين", track: "backend" },
+        { id: 5, text: "نظام تفاعلي تعليمي", track: "frontend" },
+        { id: 6, text: "نظام نشر تلقائي للبرامج", track: "devops" }
+    ]
+},
+{
+    id: 113,
+    text: "أي مهارة تعتبرها حجر الأساس في الذكاء الاصطناعي؟",
+    options: [
+        { id: 1, text: "الرياضيات والإحصاء", track: "dataScience" },
+        { id: 2, text: "برمجة الخوارزميات", track: "machineLearning" },
+        { id: 3, text: "معالجة البيانات", track: "dataAnalysis" },
+        { id: 4, text: "تصميم نماذج اللغة", track: "llmsAI" },
+        { id: 5, text: "تكامل النماذج في التطبيقات", track: "aiEng" },
+        { id: 6, text: "تقييم الأداء والتجريب", track: "testing" }
+    ]
+},
+{
+    id: 114,
+    text: "ما أكثر ما يهمك عند العمل على مشروع جماعي؟",
+    options: [
+        { id: 1, text: "توزيع المهام بدقة", track: "projectManagement" },
+        { id: 2, text: "توحيد أسلوب الكود", track: "softwareArchitecture" },
+        { id: 3, text: "سهولة التعاون عبر Git", track: "devops" },
+        { id: 4, text: "توحيد واجهة المستخدم", track: "frontend" },
+        { id: 5, text: "تكامل قاعدة البيانات", track: "backend" },
+        { id: 6, text: "اختبار المكونات المدمجة", track: "testing" }
+    ]
+},
+{
+    id: 115,
+    text: "عند تصميم تطبيق ذكي، ما أكثر ما يثير اهتمامك؟",
+    options: [
+        { id: 1, text: "القدرة على التفاعل الطبيعي", track: "llmsAI" },
+        { id: 2, text: "تحليل البيانات في الوقت الحقيقي", track: "dataScience" },
+        { id: 3, text: "الواجهة الذكية المتكيفة", track: "frontend" },
+        { id: 4, text: "ذكاء النظام في اتخاذ القرار", track: "machineLearning" },
+        { id: 5, text: "أمن الخصوصية", track: "cyberSecurity" },
+        { id: 6, text: "دمجه بسلاسة مع الخادم", track: "backend" }
+    ]
+},
+{
+    id: 116,
+    text: "ما هو أصعب تحدي بالنسبة لك كمبرمج؟",
+    options: [
+        { id: 1, text: "تصحيح أخطاء الواجهة", track: "frontend" },
+        { id: 2, text: "اكتشاف ثغرات الأداء", track: "backend" },
+        { id: 3, text: "اختبار الأنظمة المعقدة", track: "testing" },
+        { id: 4, text: "ضمان حماية المعلومات", track: "cyberSecurity" },
+        { id: 5, text: "تحسين دقة النماذج", track: "machineLearning" },
+        { id: 6, text: "إدارة الوقت ضمن الفريق", track: "projectManagement" }
+    ]
+},
+{
+    id: 117,
+    text: "أي من هذه الأدوات تود إتقانها أكثر؟",
+    options: [
+        { id: 1, text: "Docker و Kubernetes", track: "devops" },
+        { id: 2, text: "React و Next.js", track: "frontend" },
+        { id: 3, text: "Django و Flask", track: "backend" },
+        { id: 4, text: "TensorFlow و PyTorch", track: "machineLearning" },
+        { id: 5, text: "Power BI و Tableau", track: "dataAnalysis" },
+        { id: 6, text: "Burp Suite و Wireshark", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 118,
+    text: "في المستقبل، ترغب أن تعمل على مشروع في مجال:",
+    options: [
+        { id: 1, text: "الروبوتات الذكية", track: "aiEng" },
+        { id: 2, text: "أمن الفضاء السيبراني", track: "cyberSecurity" },
+        { id: 3, text: "تطبيقات الهاتف الذكية", track: "mobileDev" },
+        { id: 4, text: "تحليل البيانات العالمية", track: "dataScience" },
+        { id: 5, text: "أنظمة إدارة المحتوى", track: "backend" },
+        { id: 6, text: "منصات تعليم تفاعلية", track: "frontend" }
+    ]
+},
+{
+    id: 119,
+    text: "ما الذي يجعلك تشعر بالإنجاز في عالم التقنية؟",
+    options: [
+        { id: 1, text: "رؤية واجهة جميلة تعمل", track: "frontend" },
+        { id: 2, text: "أن يعمل النظام بكفاءة عالية", track: "backend" },
+        { id: 3, text: "أن يتعلم الذكاء الاصطناعي من تلقاء نفسه", track: "machineLearning" },
+        { id: 4, text: "أن يتم تحليل البيانات بدقة", track: "dataScience" },
+        { id: 5, text: "أن يكون النظام مؤمنًا تمامًا", track: "cyberSecurity" },
+        { id: 6, text: "أن ينجح الفريق في تسليم المشروع", track: "projectManagement" }
+    ]
+},
+{
+    id: 120,
+    text: "أي من هذه المهام تود ممارستها يوميًا؟",
+    options: [
+        { id: 1, text: "تصميم واجهات جذابة", track: "frontend" },
+        { id: 2, text: "كتابة أكواد خلفية قوية", track: "backend" },
+        { id: 3, text: "تحليل مجموعات بيانات ضخمة", track: "bigData" },
+        { id: 4, text: "اختبار الأنظمة بدقة", track: "testing" },
+        { id: 5, text: "تحسين خوارزميات الذكاء", track: "machineLearning" },
+        { id: 6, text: "إدارة بيئة التطوير السحابية", track: "devops" }
+    ]
+},
+{
+    id: 121,
+    text: "ما نوع المشاكل التي تستمتع بحلها أكثر؟",
+    options: [
+        { id: 1, text: "مشاكل في تصميم واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "مشاكل في الاتصال بالخادم", track: "backend" },
+        { id: 3, text: "مشاكل في أداء النموذج", track: "machineLearning" },
+        { id: 4, text: "مشاكل في تحليل البيانات", track: "dataScience" },
+        { id: 5, text: "مشاكل أمنية واختراقات", track: "cyberSecurity" },
+        { id: 6, text: "مشاكل في بيئة التشغيل", track: "devops" }
+    ]
+},
+{
+    id: 122,
+    text: "ما الجانب الذي يجذبك أكثر في تحليل البيانات؟",
+    options: [
+        { id: 1, text: "استخراج الرؤى من الأرقام", track: "dataAnalysis" },
+        { id: 2, text: "تحليل الاتجاهات المستقبلية", track: "dataScience" },
+        { id: 3, text: "تحسين خوارزميات التنبؤ", track: "machineLearning" },
+        { id: 4, text: "عرض البيانات بشكل تفاعلي", track: "frontend" },
+        { id: 5, text: "تجهيز البيانات للنمذجة", track: "dataEng" },
+        { id: 6, text: "تخزين البيانات بكفاءة", track: "bigData" }
+    ]
+},
+{
+    id: 123,
+    text: "عند تطوير لعبة، ما الجزء المفضل لديك؟",
+    options: [
+        { id: 1, text: "الرسومات والتحريك", track: "frontend" },
+        { id: 2, text: "محرك اللعبة والمنطق الداخلي", track: "gameDev" },
+        { id: 3, text: "تحليل تجربة اللاعب", track: "dataAnalysis" },
+        { id: 4, text: "تصميم الذكاء داخل اللعبة", track: "aiEng" },
+        { id: 5, text: "تجربة اللعب على الأجهزة المحمولة", track: "mobileDev" },
+        { id: 6, text: "تأمين النظام من الغش", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 124,
+    text: "عند تعلم تقنية جديدة، ما يحمسك أكثر؟",
+    options: [
+        { id: 1, text: "تجربتها عمليًا في مشروع", track: "frontend" },
+        { id: 2, text: "تطبيقها على بيانات حقيقية", track: "dataScience" },
+        { id: 3, text: "تطوير نموذج ذكاء جديد", track: "machineLearning" },
+        { id: 4, text: "إدارة نشرها في السحابة", track: "devops" },
+        { id: 5, text: "اختبارها بدقة", track: "testing" },
+        { id: 6, text: "دراسة أمانها واستقرارها", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 125,
+    text: "ما الذي يجذبك أكثر عند سماع مصطلح IoT (إنترنت الأشياء)؟",
+    options: [
+        { id: 1, text: "التحكم بالأجهزة عبر الهاتف", track: "mobileDev" },
+        { id: 2, text: "برمجة المستشعرات الذكية", track: "iot" },
+        { id: 3, text: "تحليل البيانات القادمة من الأجهزة", track: "dataScience" },
+        { id: 4, text: "ضمان أمن الاتصال بين الأجهزة", track: "cyberSecurity" },
+        { id: 5, text: "تصميم لوحات التحكم التفاعلية", track: "frontend" },
+        { id: 6, text: "تكامل الأجهزة مع الخوادم", track: "backend" }
+    ]
+},
+
+{
+    id: 126,
+    text: "عند بناء نظام متكامل، ما الجزء الذي تفضل العمل عليه؟",
+    options: [
+        { id: 1, text: "الواجهة التفاعلية", track: "frontend" },
+        { id: 2, text: "الخادم وقواعد البيانات", track: "backend" },
+        { id: 3, text: "اختبار وضمان الجودة", track: "testing" },
+        { id: 4, text: "بناء المعمارية الكاملة", track: "softwareArchitecture" },
+        { id: 5, text: "تحليل الأداء بالبيانات", track: "dataAnalysis" },
+        { id: 6, text: "تشغيله على بيئة سحابية", track: "cloudDevops" }
+    ]
+},
+{
+    id: 127,
+    text: "ما المجال الذي ترى أنه يجمع بين الإبداع والمنطق؟",
+    options: [
+        { id: 1, text: "تصميم تجربة المستخدم", track: "uiux" },
+        { id: 2, text: "تطوير الواجهة الأمامية", track: "frontend" },
+        { id: 3, text: "تحليل بيانات تفاعلية", track: "dataAnalysis" },
+        { id: 4, text: "إنشاء نماذج ذكاء مبتكرة", track: "aiEng" },
+        { id: 5, text: "تطوير ألعاب تفاعلية", track: "gameDev" },
+        { id: 6, text: "الروبوتات وإنترنت الأشياء", track: "iot" }
+    ]
+},
+{
+    id: 128,
+    text: "ما أكثر ما يجذبك في الذكاء الاصطناعي؟",
+    options: [
+        { id: 1, text: "تعليم الآلة من البيانات", track: "machineLearning" },
+        { id: 2, text: "النماذج اللغوية الكبيرة", track: "llmsAI" },
+        { id: 3, text: "تحسين تجربة المستخدم بالذكاء", track: "uiux" },
+        { id: 4, text: "تحليل البيانات التنبؤية", track: "dataScience" },
+        { id: 5, text: "تطبيقه في الروبوتات", track: "aiEng" },
+        { id: 6, text: "استخدامه في الأمن السيبراني", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 129,
+    text: "ما الذي يجعلك تشعر بالرضا بعد إتمام مشروع؟",
+    options: [
+        { id: 1, text: "واجهة جذابة وسريعة", track: "frontend" },
+        { id: 2, text: "كود منظم وسهل الصيانة", track: "backend" },
+        { id: 3, text: "نتائج دقيقة من البيانات", track: "dataAnalysis" },
+        { id: 4, text: "نظام ذكي يتعلم ذاتيًا", track: "machineLearning" },
+        { id: 5, text: "تطبيق متكامل يعمل في السحابة", track: "cloudDevops" },
+        { id: 6, text: "أمان عالي للنظام", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 130,
+    text: "في حال واجهت مشكلة تقنية معقدة، ما أول خطوة تقوم بها؟",
+    options: [
+        { id: 1, text: "تحليل الواجهة خطوة بخطوة", track: "frontend" },
+        { id: 2, text: "فحص الكود الخلفي والمنطق", track: "backend" },
+        { id: 3, text: "التحقق من البيانات", track: "dataScience" },
+        { id: 4, text: "تجربة حلول عبر الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "اختبار كل جزء منفصل", track: "testing" },
+        { id: 6, text: "مراقبة النظام باستخدام أدوات DevOps", track: "cloudDevops" }
+    ]
+},
+{
+    id: 131,
+    text: "أي نوع من المشاريع يجذبك أكثر؟",
+    options: [
+        { id: 1, text: "مواقع ويب حديثة", track: "frontend" },
+        { id: 2, text: "أنظمة قواعد بيانات ضخمة", track: "backend" },
+        { id: 3, text: "تحليل بيانات مالية أو طبية", track: "dataAnalysis" },
+        { id: 4, text: "روبوتات ذكية", track: "aiEng" },
+        { id: 5, text: "ألعاب تفاعلية", track: "gameDev" },
+        { id: 6, text: "أنظمة إنترنت الأشياء", track: "iot" }
+    ]
+},
+{
+    id: 132,
+    text: "كيف تتعامل مع مهام متعددة في نفس الوقت؟",
+    options: [
+        { id: 1, text: "تنظيم المهام بصريًا", track: "uiux" },
+        { id: 2, text: "تقسيم المشروع إلى أجزاء منطقية", track: "softwareArchitecture" },
+        { id: 3, text: "تحليل الأولويات بناءً على البيانات", track: "dataAnalysis" },
+        { id: 4, text: "أتمتة المهام المتكررة", track: "devops" },
+        { id: 5, text: "مراقبة الأداء المستمر", track: "testing" },
+        { id: 6, text: "استخدام الذكاء الاصطناعي للمساعدة", track: "aiEng" }
+    ]
+},
+{
+    id: 133,
+    text: "ما الذي يميزك أكثر أثناء تنفيذ المشاريع؟",
+    options: [
+        { id: 1, text: "إبداعي في التصميم", track: "uiux" },
+        { id: 2, text: "تحليلي في البيانات", track: "dataScience" },
+        { id: 3, text: "منطقي في الحلول البرمجية", track: "backend" },
+        { id: 4, text: "منظم في بنية المشاريع", track: "softwareArchitecture" },
+        { id: 5, text: "دقيق في الاختبارات", track: "testing" },
+        { id: 6, text: "سريع في التطوير والنشر", track: "cloudDevops" }
+    ]
+},
+{
+    id: 134,
+    text: "أي من هذه الأدوات تحب استخدامها أكثر؟",
+    options: [
+        { id: 1, text: "Figma أو Adobe XD", track: "uiux" },
+        { id: 2, text: "React أو Vue.js", track: "frontend" },
+        { id: 3, text: "Node.js أو Django", track: "backend" },
+        { id: 4, text: "TensorFlow أو PyTorch", track: "machineLearning" },
+        { id: 5, text: "Power BI أو Tableau", track: "dataAnalysis" },
+        { id: 6, text: "AWS أو Docker", track: "cloudDevops" }
+    ]
+},
+{
+    id: 135,
+    text: "في حال فشل مشروع، ما الذي تتعلمه أولًا؟",
+    options: [
+        { id: 1, text: "أسباب ضعف تجربة المستخدم", track: "uiux" },
+        { id: 2, text: "أخطاء في منطق الكود", track: "backend" },
+        { id: 3, text: "عدم دقة البيانات", track: "dataScience" },
+        { id: 4, text: "سوء هيكلة النظام", track: "softwareArchitecture" },
+        { id: 5, text: "مشاكل في النشر أو البنية", track: "devops" },
+        { id: 6, text: "أخطاء أمنية", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 136,
+    text: "ما أكثر ما تحبه في العمل الجماعي؟",
+    options: [
+        { id: 1, text: "تنسيق الأفكار والتصميم", track: "uiux" },
+        { id: 2, text: "تقسيم المهام المنطقية", track: "backend" },
+        { id: 3, text: "اختبار تكامل الأجزاء", track: "testing" },
+        { id: 4, text: "تحليل نتائج الفريق", track: "dataAnalysis" },
+        { id: 5, text: "العمل على أهداف ذكية", track: "aiEng" },
+        { id: 6, text: "إدارة النشر السحابي", track: "cloudDevops" }
+    ]
+},
+{
+    id: 137,
+    text: "أي من هذه المشاريع تود تنفيذها يومًا ما؟",
+    options: [
+        { id: 1, text: "موقع تفاعلي كبير", track: "frontend" },
+        { id: 2, text: "منصة بيانات تحليلية", track: "dataScience" },
+        { id: 3, text: "تطبيق ذكاء اصطناعي", track: "aiEng" },
+        { id: 4, text: "نظام ألعاب متكامل", track: "gameDev" },
+        { id: 5, text: "روبوت منزلي ذكي", track: "iot" },
+        { id: 6, text: "نظام أمن رقمي شامل", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 138,
+    text: "ما الذي تعتبره سر النجاح في البرمجة؟",
+    options: [
+        { id: 1, text: "الإبداع في الحلول", track: "frontend" },
+        { id: 2, text: "التفكير المنطقي العميق", track: "backend" },
+        { id: 3, text: "التحليل الدقيق", track: "dataScience" },
+        { id: 4, text: "الذكاء في التعامل مع البيانات", track: "aiEng" },
+        { id: 5, text: "الاختبار المستمر", track: "testing" },
+        { id: 6, text: "الالتزام بمعمارية واضحة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 139,
+    text: "ما الذي يجعلك تستمتع بتعلم التقنيات الجديدة؟",
+    options: [
+        { id: 1, text: "رؤية نتائج بصرية سريعة", track: "frontend" },
+        { id: 2, text: "تطبيقها في مشاريع منطقية", track: "backend" },
+        { id: 3, text: "تحليل البيانات بها", track: "dataScience" },
+        { id: 4, text: "تحسين الذكاء الاصطناعي", track: "machineLearning" },
+        { id: 5, text: "تطوير بنية أفضل للمشاريع", track: "softwareArchitecture" },
+        { id: 6, text: "أتمتة النشر بها", track: "cloudDevops" }
+    ]
+},
+{
+    id: 140,
+    text: "ما أكثر ما يثير اهتمامك في مستقبل التكنولوجيا؟",
+    options: [
+        { id: 1, text: "تطور الواجهات التفاعلية", track: "frontend" },
+        { id: 2, text: "الأنظمة الذكية المتصلة", track: "iot" },
+        { id: 3, text: "تحليل البيانات العميق", track: "dataScience" },
+        { id: 4, text: "الذكاء الاصطناعي العام", track: "aiEng" },
+        { id: 5, text: "الأمان في العالم الرقمي", track: "cyberSecurity" },
+        { id: 6, text: "التحول الكامل للسحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 141,
+    text: "عندما ترى واجهة تطبيق أنيقة، ما الذي يخطر ببالك؟",
+    options: [
+        { id: 1, text: "كيف صُممت الألوان", track: "uiux" },
+        { id: 2, text: "الكود خلفها", track: "frontend" },
+        { id: 3, text: "تحليل تفاعل المستخدمين", track: "dataAnalysis" },
+        { id: 4, text: "طريقة بناء النظام الخلفي", track: "backend" },
+        { id: 5, text: "اختبار أدائها", track: "testing" },
+        { id: 6, text: "ذكاء التطبيق في التفاعل", track: "aiEng" }
+    ]
+},
+{
+    id: 142,
+    text: "إذا كُلفت بتصميم تطبيق ذكي، ما أول خطوة ستقوم بها؟",
+    options: [
+        { id: 1, text: "تحديد واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "تصميم قواعد البيانات", track: "backend" },
+        { id: 3, text: "تحليل سلوك المستخدم", track: "dataAnalysis" },
+        { id: 4, text: "بناء النموذج الذكي", track: "machineLearning" },
+        { id: 5, text: "نشره في بيئة سحابية", track: "cloudDevops" },
+        { id: 6, text: "تأمينه ضد الثغرات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 143,
+    text: "أي من هذه الجوانب تحب دراسته بعمق أكثر؟",
+    options: [
+        { id: 1, text: "تصميم واجهات المستخدم", track: "uiux" },
+        { id: 2, text: "تحليل البيانات الإحصائي", track: "dataScience" },
+        { id: 3, text: "التعلم العميق", track: "machineLearning" },
+        { id: 4, text: "معمارية الأنظمة الكبيرة", track: "softwareArchitecture" },
+        { id: 5, text: "أمن المعلومات", track: "cyberSecurity" },
+        { id: 6, text: "أنظمة الذكاء اللغوي", track: "llmsAI" }
+    ]
+},
+{
+    id: 144,
+    text: "ما الذي يجذبك في تطوير الألعاب؟",
+    options: [
+        { id: 1, text: "الرسوميات والتفاعل", track: "frontend" },
+        { id: 2, text: "منطق اللعبة", track: "gameDev" },
+        { id: 3, text: "تحليل سلوك اللاعبين", track: "dataAnalysis" },
+        { id: 4, text: "إضافة الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "تحسين الأداء", track: "testing" },
+        { id: 6, text: "تأمين النظام من الاختراق", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 145,
+    text: "عند العمل على تطبيق ضخم، ما أكثر ما يهمك؟",
+    options: [
+        { id: 1, text: "تصميم تجربة مستخدم مريحة", track: "uiux" },
+        { id: 2, text: "كفاءة قاعدة البيانات", track: "backend" },
+        { id: 3, text: "سهولة تحليل البيانات", track: "dataAnalysis" },
+        { id: 4, text: "ذكاء التطبيق في اتخاذ القرار", track: "aiEng" },
+        { id: 5, text: "الأمان العالي", track: "cyberSecurity" },
+        { id: 6, text: "مرونة النشر والتحديث", track: "cloudDevops" }
+    ]
+},
+{
+    id: 146,
+    text: "ما نوع المشاريع التي تجدها مثيرة للتحدي؟",
+    options: [
+        { id: 1, text: "واجهات ثلاثية الأبعاد", track: "frontend" },
+        { id: 2, text: "أنظمة تحليل بيانات ضخمة", track: "bigData" },
+        { id: 3, text: "روبوتات تتعلم ذاتيًا", track: "aiEng" },
+        { id: 4, text: "شبكات أجهزة ذكية", track: "iot" },
+        { id: 5, text: "منصات سحابية متقدمة", track: "cloudDevops" },
+        { id: 6, text: "أنظمة أمان متطورة", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 147,
+    text: "كيف ترى نفسك بعد خمس سنوات في المجال التقني؟",
+    options: [
+        { id: 1, text: "خبير تصميم واجهات", track: "frontend" },
+        { id: 2, text: "مهندس ذكاء اصطناعي", track: "aiEng" },
+        { id: 3, text: "محلل بيانات رئيسي", track: "dataScience" },
+        { id: 4, text: "قائد بنية أنظمة", track: "softwareArchitecture" },
+        { id: 5, text: "خبير أمن معلومات", track: "cyberSecurity" },
+        { id: 6, text: "مهندس DevOps محترف", track: "cloudDevops" }
+    ]
+},
+{
+    id: 148,
+    text: "ما المهارة التي تعتبرها أساس أي مبرمج ناجح؟",
+    options: [
+        { id: 1, text: "الإبداع في الحلول", track: "frontend" },
+        { id: 2, text: "التحليل المنطقي", track: "backend" },
+        { id: 3, text: "الدقة في اختبار الكود", track: "testing" },
+        { id: 4, text: "القدرة على التعلم السريع", track: "machineLearning" },
+        { id: 5, text: "الاهتمام بالبنية الصحيحة", track: "softwareArchitecture" },
+        { id: 6, text: "التركيز على الأمان", track: "cyberSecurity" }
+    ]
+},
+
+{
+    id: 149,
+    text: "عند تصميم تطبيق جديد، ما الجزء الذي يجذبك أولاً؟",
+    options: [
+        { id: 1, text: "الواجهة والتفاعل", track: "frontend" },
+        { id: 2, text: "منطق التطبيق والربط بالخادم", track: "backend" },
+        { id: 3, text: "تحليل البيانات الناتجة", track: "dataAnalysis" },
+        { id: 4, text: "الذكاء الاصطناعي داخل التطبيق", track: "aiEng" },
+        { id: 5, text: "اختبار الأداء قبل الإطلاق", track: "testing" },
+        { id: 6, text: "بناء هيكلية مرنة للمشروع", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 150,
+    text: "لو أُعطيت مشروعًا كبيرًا، ما أول شيء تفعله؟",
+    options: [
+        { id: 1, text: "تصميم الواجهة وتجربة المستخدم", track: "uiux" },
+        { id: 2, text: "رسم مخطط قاعدة البيانات", track: "backend" },
+        { id: 3, text: "تحديد المعمارية المناسبة", track: "softwareArchitecture" },
+        { id: 4, text: "اختبار الأداء وتحديد الأخطاء", track: "testing" },
+        { id: 5, text: "تحليل السوق والبيانات", track: "dataAnalysis" },
+        { id: 6, text: "تصميم نموذج ذكاء اصطناعي مخصص", track: "machineLearning" }
+    ]
+},
+{
+    id: 151,
+    text: "ما المجال الذي تشعر أنه يحتاج لمزيد من التطوير في العالم؟",
+    options: [
+        { id: 1, text: "الذكاء الاصطناعي اللغوي", track: "llmsAI" },
+        { id: 2, text: "أمن المعلومات", track: "cyberSecurity" },
+        { id: 3, text: "إنترنت الأشياء", track: "iot" },
+        { id: 4, text: "البيانات الضخمة", track: "bigData" },
+        { id: 5, text: "واجهات الاستخدام الذكية", track: "frontend" },
+        { id: 6, text: "أنظمة السحابة المستقرة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 152,
+    text: "أين تشعر أنك تُبدع أكثر؟",
+    options: [
+        { id: 1, text: "في التصميم والإبداع البصري", track: "uiux" },
+        { id: 2, text: "في المنطق البرمجي المعقد", track: "backend" },
+        { id: 3, text: "في اختبار الأكواد وتحسينها", track: "testing" },
+        { id: 4, text: "في تحليل الأنماط والبيانات", track: "dataScience" },
+        { id: 5, text: "في تصميم معمارية الأنظمة", track: "softwareArchitecture" },
+        { id: 6, text: "في تطوير حلول ذكية متكاملة", track: "aiEng" }
+    ]
+},
+{
+    id: 153,
+    text: "لو كان عندك حرية كاملة لتصميم مشروع جامعي، ماذا تختار؟",
+    options: [
+        { id: 1, text: "موقع تفاعلي جذاب", track: "frontend" },
+        { id: 2, text: "تطبيق ذكي للتوصيات", track: "machineLearning" },
+        { id: 3, text: "نظام تحليلي متقدم", track: "bigData" },
+        { id: 4, text: "تطبيق موبايل مفيد", track: "mobile" },
+        { id: 5, text: "أداة لاختبار البرمجيات", track: "testing" },
+        { id: 6, text: "شبكة ذكية لإنترنت الأشياء", track: "iot" }
+    ]
+},
+{
+    id: 154,
+    text: "أي من هذه الجمل تصف طريقتك في العمل؟",
+    options: [
+        { id: 1, text: "أهتم بالشكل النهائي أولاً", track: "uiux" },
+        { id: 2, text: "أبدأ بالبنية التحتية", track: "backend" },
+        { id: 3, text: "أفكر في طريقة اختبار الحل", track: "testing" },
+        { id: 4, text: "أبحث عن البيانات قبل أي شيء", track: "dataAnalysis" },
+        { id: 5, text: "أضع تصورًا للمعمارية", track: "softwareArchitecture" },
+        { id: 6, text: "أتعامل مع خوارزميات الذكاء", track: "aiEng" }
+    ]
+},
+{
+    id: 155,
+    text: "ما الذي يثير اهتمامك أكثر في الذكاء الاصطناعي؟",
+    options: [
+        { id: 1, text: "التعلم العميق والتنبؤ", track: "machineLearning" },
+        { id: 2, text: "النماذج اللغوية الكبيرة", track: "llmsAI" },
+        { id: 3, text: "تحليل البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "أتمتة الأنظمة", track: "aiEng" },
+        { id: 5, text: "التكامل مع الأجهزة الذكية", track: "iot" },
+        { id: 6, text: "أمن أنظمة الذكاء الاصطناعي", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 156,
+    text: "عند العمل تحت الضغط، ما الذي تفعله أولاً؟",
+    options: [
+        { id: 1, text: "أنظم الواجهة لتبسيط الأمور", track: "frontend" },
+        { id: 2, text: "أراجع البنية الخلفية", track: "backend" },
+        { id: 3, text: "أستخدم أدوات الأتمتة السحابية", track: "cloudDevops" },
+        { id: 4, text: "أحلل البيانات لاتخاذ قرار", track: "dataAnalysis" },
+        { id: 5, text: "أختبر السيناريوهات المختلفة", track: "testing" },
+        { id: 6, text: "أعتمد على الذكاء الاصطناعي لتحسين الأداء", track: "aiEng" }
+    ]
+},
+{
+    id: 157,
+    text: "أي من هذه المشاريع تحب المشاركة فيها أكثر؟",
+    options: [
+        { id: 1, text: "موقع تفاعلي لتعليم البرمجة", track: "frontend" },
+        { id: 2, text: "نظام ذكاء اصطناعي للتوصية", track: "machineLearning" },
+        { id: 3, text: "تطبيق لتوقعات الطقس", track: "dataScience" },
+        { id: 4, text: "أداة لاختبار البرمجيات", track: "testing" },
+        { id: 5, text: "لوحة تحكم بيانات للشركات", track: "bigData" },
+        { id: 6, text: "شبكة مراقبة للأجهزة الذكية", track: "iot" }
+    ]
+},
+{
+    id: 158,
+    text: "عند مواجهة مشكلة، كيف تبدأ بحلها؟",
+    options: [
+        { id: 1, text: "أعيد تصميم الواجهة", track: "frontend" },
+        { id: 2, text: "أراجع منطق السيرفر", track: "backend" },
+        { id: 3, text: "أحلل البيانات أولاً", track: "dataAnalysis" },
+        { id: 4, text: "أختبر الاحتمالات الممكنة", track: "testing" },
+        { id: 5, text: "أستخدم نموذج ذكاء لتوقع الحل", track: "aiEng" },
+        { id: 6, text: "أبني نظام مراقبة ذكي", track: "iot" }
+    ]
+},
+{
+    id: 159,
+    text: "أي من هذه الأدوات تثير اهتمامك أكثر؟",
+    options: [
+        { id: 1, text: "React وVue.js", track: "frontend" },
+        { id: 2, text: "Node.js وDjango", track: "backend" },
+        { id: 3, text: "TensorFlow وPyTorch", track: "machineLearning" },
+        { id: 4, text: "PowerBI وTableau", track: "dataAnalysis" },
+        { id: 5, text: "JMeter وSelenium", track: "testing" },
+        { id: 6, text: "AWS وDocker", track: "cloudDevops" }
+    ]
+},
+{
+    id: 160,
+    text: "ما الذي تعتبره نجاحًا في مشروع تقني؟",
+    options: [
+        { id: 1, text: "واجهة مستخدم جذابة وسريعة", track: "frontend" },
+        { id: 2, text: "أداء ممتاز في الخادم", track: "backend" },
+        { id: 3, text: "تحليل دقيق للبيانات", track: "dataScience" },
+        { id: 4, text: "ذكاء اصطناعي فعال", track: "aiEng" },
+        { id: 5, text: "أمان عالي للنظام", track: "cyberSecurity" },
+        { id: 6, text: "هيكلية قابلة للتوسع", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 161,
+    text: "أي نوع من المشكلات تستمتع بحلها؟",
+    options: [
+        { id: 1, text: "تصميم الواجهات والتفاعل", track: "uiux" },
+        { id: 2, text: "تحسين أداء الخوادم", track: "backend" },
+        { id: 3, text: "معالجة البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "أمان الشبكات", track: "cyberSecurity" },
+        { id: 5, text: "تحليل الاتجاهات", track: "dataAnalysis" },
+        { id: 6, text: "تصميم نظام متكامل", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 162,
+    text: "لو كنت مسؤولًا عن مشروع تقني، ما أول خطوة تقوم بها؟",
+    options: [
+        { id: 1, text: "رسم واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "إعداد قاعدة البيانات", track: "backend" },
+        { id: 3, text: "تصميم بنية الكود", track: "softwareArchitecture" },
+        { id: 4, text: "تحديد معايير الاختبار", track: "testing" },
+        { id: 5, text: "إعداد بيئة التطوير السحابية", track: "cloudDevops" },
+        { id: 6, text: "جمع وتحليل البيانات", track: "dataScience" }
+    ]
+},
+{
+    id: 163,
+    text: "أي مجال ترى نفسك تتطور فيه أكثر في المستقبل؟",
+    options: [
+        { id: 1, text: "الذكاء الاصطناعي التوليدي", track: "llmsAI" },
+        { id: 2, text: "أمن المعلومات", track: "cyberSecurity" },
+        { id: 3, text: "تحليل البيانات في الزمن الحقيقي", track: "bigData" },
+        { id: 4, text: "تصميم واجهات ثلاثية الأبعاد", track: "frontend" },
+        { id: 5, text: "تطبيقات الموبايل الذكية", track: "mobile" },
+        { id: 6, text: "أنظمة إنترنت الأشياء", track: "iot" }
+    ]
+},
+{
+    id: 164,
+    text: "أي من هذه التجارب تود خوضها أكثر؟",
+    options: [
+        { id: 1, text: "تطوير لعبة", track: "gameDev" },
+        { id: 2, text: "تحليل بيانات ضخمة لشركة", track: "bigData" },
+        { id: 3, text: "تصميم تجربة مستخدم لتطبيق جديد", track: "uiux" },
+        { id: 4, text: "إدارة بيئة سحابية ضخمة", track: "cloudDevops" },
+        { id: 5, text: "بناء روبوت يتعلم ذاتيًا", track: "machineLearning" },
+        { id: 6, text: "تصميم شبكة أجهزة ذكية", track: "iot" }
+    ]
+},
+{
+    id: 165,
+    text: "ما أكثر ما يجذبك في عالم البرمجة؟",
+    options: [
+        { id: 1, text: "الإبداع في التصميم", track: "frontend" },
+        { id: 2, text: "المنطق والتحكم", track: "backend" },
+        { id: 3, text: "تحليل وفهم البيانات", track: "dataAnalysis" },
+        { id: 4, text: "أمان المعلومات", track: "cyberSecurity" },
+        { id: 5, text: "تصميم الأنظمة الكبرى", track: "softwareArchitecture" },
+        { id: 6, text: "ابتكار حلول ذكاء اصطناعي", track: "aiEng" }
+    ]
+},
+{
+    id: 166,
+    text: "ما أكثر ما يهمك أثناء العمل على مشروع؟",
+    options: [
+        { id: 1, text: "أن يكون سهل الاستخدام", track: "uiux" },
+        { id: 2, text: "أن يكون سريع الاستجابة", track: "frontend" },
+        { id: 3, text: "أن يكون آمنًا", track: "cyberSecurity" },
+        { id: 4, text: "أن يكون دقيقًا في النتائج", track: "dataScience" },
+        { id: 5, text: "أن يكون سهل التوسع", track: "softwareArchitecture" },
+        { id: 6, text: "أن يعمل تلقائيًا بذكاء", track: "aiEng" }
+    ]
+},
+{
+    id: 167,
+    text: "أي من هذه المجالات ترى أنه الأنسب لشخص تحليلي؟",
+    options: [
+        { id: 1, text: "تحليل البيانات", track: "dataAnalysis" },
+        { id: 2, text: "علم البيانات", track: "dataScience" },
+        { id: 3, text: "اختبار البرمجيات", track: "testing" },
+        { id: 4, text: "الهندسة الخلفية", track: "backend" },
+        { id: 5, text: "تصميم المعمارية", track: "softwareArchitecture" },
+        { id: 6, text: "تحليل التهديدات الأمنية", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 168,
+    text: "ما أكثر شيء يجعلك فخورًا بعملك؟",
+    options: [
+        { id: 1, text: "واجهة جذابة يحبها الناس", track: "frontend" },
+        { id: 2, text: "نظام يعمل بكفاءة", track: "backend" },
+        { id: 3, text: "تحليل دقيق للبيانات", track: "dataScience" },
+        { id: 4, text: "ذكاء اصطناعي ناجح", track: "machineLearning" },
+        { id: 5, text: "نظام آمن ومستقر", track: "cyberSecurity" },
+        { id: 6, text: "معمارية واضحة وذكية", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 169,
+    text: "لو كانت لديك شركة تقنية، ما أول قسم تؤسسه؟",
+    options: [
+        { id: 1, text: "قسم تصميم الواجهة", track: "frontend" },
+        { id: 2, text: "قسم الذكاء الاصطناعي", track: "aiEng" },
+        { id: 3, text: "قسم تحليل البيانات", track: "dataAnalysis" },
+        { id: 4, text: "قسم أمن المعلومات", track: "cyberSecurity" },
+        { id: 5, text: "قسم البنية السحابية", track: "cloudDevops" },
+        { id: 6, text: "قسم الاختبارات وضمان الجودة", track: "testing" }
+    ]
+},
+{
+    id: 170,
+    text: "أي نوع من المشاريع تحب متابعته على الإنترنت؟",
+    options: [
+        { id: 1, text: "مواقع تفاعلية مذهلة", track: "frontend" },
+        { id: 2, text: "أنظمة ذكاء مذهلة", track: "aiEng" },
+        { id: 3, text: "مشاريع تحليل بيانات ضخمة", track: "bigData" },
+        { id: 4, text: "اختبارات الأداء البرمجية", track: "testing" },
+        { id: 5, text: "روبوتات ذكية", track: "machineLearning" },
+        { id: 6, text: "أجهزة إنترنت الأشياء", track: "iot" }
+    ]
+},
+{
+    id: 171,
+    text: "أي من هذه اللغات تحب تعلمها أكثر؟",
+    options: [
+        { id: 1, text: "JavaScript", track: "frontend" },
+        { id: 2, text: "Python", track: "backend" },
+        { id: 3, text: "R", track: "dataScience" },
+        { id: 4, text: "C++", track: "gameDev" },
+        { id: 5, text: "Java", track: "mobile" },
+        { id: 6, text: "Go أو Rust", track: "cloudDevops" }
+    ]
+},
+{
+    id: 172,
+    text: "أي بيئة عمل تناسبك أكثر؟",
+    options: [
+        { id: 1, text: "العمل على تصميمات مرئية", track: "uiux" },
+        { id: 2, text: "الخوادم والعمليات المنطقية", track: "backend" },
+        { id: 3, text: "تحليل بيانات مستمرة", track: "dataAnalysis" },
+        { id: 4, text: "تدريب نماذج ذكاء", track: "machineLearning" },
+        { id: 5, text: "إدارة بيئة سحابية", track: "cloudDevops" },
+        { id: 6, text: "اختبار التطبيقات وضمان جودتها", track: "testing" }
+    ]
+},
+{
+    id: 173,
+    text: "لو أُتيح لك تطوير منتج تقني، ما نوعه؟",
+    options: [
+        { id: 1, text: "موقع ويب تفاعلي", track: "frontend" },
+        { id: 2, text: "نظام إدارة بيانات", track: "backend" },
+        { id: 3, text: "تطبيق ذكاء اصطناعي", track: "aiEng" },
+        { id: 4, text: "تطبيق هاتف مبتكر", track: "mobile" },
+        { id: 5, text: "لوحة تحكم تحليلية", track: "bigData" },
+        { id: 6, text: "نظام أمني متطور", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 174,
+    text: "عندما تواجه مشكلة تقنية، ما أسلوبك في حلها؟",
+    options: [
+        { id: 1, text: "أبحث في واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "أفحص الكود الخلفي", track: "backend" },
+        { id: 3, text: "أحلل البيانات المرتبطة بها", track: "dataScience" },
+        { id: 4, text: "أجرب أدوات الاختبار", track: "testing" },
+        { id: 5, text: "أستفيد من نموذج ذكاء اصطناعي", track: "machineLearning" },
+        { id: 6, text: "أعيد تنظيم البنية التقنية", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 175,
+    text: "أي من هذه الجوانب يجذبك أكثر في المشاريع الحديثة؟",
+    options: [
+        { id: 1, text: "الذكاء الاصطناعي التفاعلي", track: "llmsAI" },
+        { id: 2, text: "التطبيقات السحابية", track: "cloudDevops" },
+        { id: 3, text: "تحليل البيانات في الزمن الحقيقي", track: "bigData" },
+        { id: 4, text: "الأمان السيبراني", track: "cyberSecurity" },
+        { id: 5, text: "تجارب المستخدم الغامرة", track: "uiux" },
+        { id: 6, text: "الأجهزة المتصلة بالإنترنت", track: "iot" }
+    ]
+},
+{
+    id: 176,
+    text: "ما أكثر ما يجعلك متحمسًا لتعلم مهارة جديدة؟",
+    options: [
+        { id: 1, text: "رؤية نتائج بصرية فورية", track: "frontend" },
+        { id: 2, text: "تحدي في المنطق البرمجي", track: "backend" },
+        { id: 3, text: "تحليل بيانات واقعية", track: "dataAnalysis" },
+        { id: 4, text: "العمل على ذكاء اصطناعي", track: "aiEng" },
+        { id: 5, text: "تصميم تجربة فريدة", track: "uiux" },
+        { id: 6, text: "ضمان الأمان والتكامل", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 177,
+    text: "ما أكثر ما يصف طريقتك في التفكير؟",
+    options: [
+        { id: 1, text: "إبداعية وتخيلية", track: "uiux" },
+        { id: 2, text: "منهجية ومنظمة", track: "backend" },
+        { id: 3, text: "تحليلية وعلمية", track: "dataScience" },
+        { id: 4, text: "عملية وسريعة", track: "frontend" },
+        { id: 5, text: "استراتيجية وعميقة", track: "softwareArchitecture" },
+        { id: 6, text: "منطقية وتجريبية", track: "testing" }
+    ]
+},
+{
+    id: 178,
+    text: "ما أكثر ما يجذبك في عالم إنترنت الأشياء؟",
+    options: [
+        { id: 1, text: "توصيل الأجهزة معًا بذكاء", track: "iot" },
+        { id: 2, text: "تخزين وتحليل البيانات المجمعة", track: "bigData" },
+        { id: 3, text: "تأمين الاتصال بين الأجهزة", track: "cyberSecurity" },
+        { id: 4, text: "التحكم من خلال تطبيق ذكي", track: "mobile" },
+        { id: 5, text: "دمج الذكاء الاصطناعي بالأجهزة", track: "aiEng" },
+        { id: 6, text: "تصميم واجهات لمراقبة الأجهزة", track: "frontend" }
+    ]
+},
+{
+    id: 179,
+    text: "لو كنت جزءًا من فريق تطوير، ما الدور الذي يناسبك؟",
+    options: [
+        { id: 1, text: "مصمم تجربة المستخدم", track: "uiux" },
+        { id: 2, text: "مطور الواجهة الأمامية", track: "frontend" },
+        { id: 3, text: "مطور الخلفية", track: "backend" },
+        { id: 4, text: "محلل بيانات", track: "dataAnalysis" },
+        { id: 5, text: "مهندس اختبار", track: "testing" },
+        { id: 6, text: "مهندس سحابي أو ذكاء", track: "cloudDevops" }
+    ]
+},
+{
+    id: 180,
+    text: "أي من هذه التخصصات تراه مستقبل التقنية؟",
+    options: [
+        { id: 1, text: "النماذج اللغوية الكبيرة", track: "llmsAI" },
+        { id: 2, text: "الذكاء الاصطناعي التطبيقي", track: "aiEng" },
+        { id: 3, text: "تحليل البيانات الضخمة", track: "bigData" },
+        { id: 4, text: "أمن المعلومات المتطور", track: "cyberSecurity" },
+        { id: 5, text: "الأنظمة السحابية الموزعة", track: "cloudDevops" },
+        { id: 6, text: "الواقع الممتد والتجارب التفاعلية", track: "uiux" }
+    ]
+},
+{
+    id: 181,
+    text: "عند إدارة مشروع، ما أهم جانب بالنسبة لك؟",
+    options: [
+        { id: 1, text: "تصميم واجهة مثالية", track: "frontend" },
+        { id: 2, text: "استقرار الخوادم", track: "backend" },
+        { id: 3, text: "تحليل الأداء المستمر", track: "dataAnalysis" },
+        { id: 4, text: "الأمان والموثوقية", track: "cyberSecurity" },
+        { id: 5, text: "تكامل الذكاء الاصطناعي", track: "aiEng" },
+        { id: 6, text: "بنية هندسية محكمة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 182,
+    text: "أي من هذه المجالات يعتمد أكثر على الإبداع؟",
+    options: [
+        { id: 1, text: "تصميم تجربة المستخدم", track: "uiux" },
+        { id: 2, text: "بناء الألعاب", track: "gameDev" },
+        { id: 3, text: "التفاعل مع المستخدمين", track: "frontend" },
+        { id: 4, text: "ابتكار تطبيقات ذكاء اصطناعي", track: "aiEng" },
+        { id: 5, text: "التصور البياني للبيانات", track: "dataScience" },
+        { id: 6, text: "تصميم الأجهزة الذكية", track: "iot" }
+    ]
+},
+{
+    id: 183,
+    text: "لو كنت تدير نظامًا ذكيًا، ما الذي تراقبه باستمرار؟",
+    options: [
+        { id: 1, text: "واجهة المستخدم والتفاعل", track: "frontend" },
+        { id: 2, text: "سجلات الخادم", track: "backend" },
+        { id: 3, text: "جودة البيانات وتحليلها", track: "dataAnalysis" },
+        { id: 4, text: "نتائج النماذج الذكية", track: "machineLearning" },
+        { id: 5, text: "التهديدات الأمنية", track: "cyberSecurity" },
+        { id: 6, text: "الأداء السحابي", track: "cloudDevops" }
+    ]
+},
+{
+    id: 184,
+    text: "أي من هذه المجالات يحتاج دقة عالية أكثر من غيره؟",
+    options: [
+        { id: 1, text: "اختبار البرمجيات", track: "testing" },
+        { id: 2, text: "تحليل البيانات", track: "dataScience" },
+        { id: 3, text: "أمن الشبكات", track: "cyberSecurity" },
+        { id: 4, text: "هندسة الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "هندسة البرمجيات المتكاملة", track: "softwareArchitecture" },
+        { id: 6, text: "الأنظمة السحابية الموزعة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 185,
+    text: "ما نوع التحديات التي تحفزك أكثر؟",
+    options: [
+        { id: 1, text: "تصميم شيء جميل وسريع", track: "frontend" },
+        { id: 2, text: "إصلاح أخطاء معقدة", track: "backend" },
+        { id: 3, text: "تحليل ملايين السجلات", track: "bigData" },
+        { id: 4, text: "تدريب خوارزمية جديدة", track: "machineLearning" },
+        { id: 5, text: "اكتشاف ثغرات أمنية", track: "cyberSecurity" },
+        { id: 6, text: "ضمان جودة الكود", track: "testing" }
+    ]
+},
+{
+    id: 186,
+    text: "أي نوع من المشاريع تحب إنجازه بنفسك؟",
+    options: [
+        { id: 1, text: "موقع ويب تفاعلي", track: "frontend" },
+        { id: 2, text: "نظام خلفي متكامل", track: "backend" },
+        { id: 3, text: "تطبيق للهاتف الذكي", track: "mobile" },
+        { id: 4, text: "نموذج ذكاء اصطناعي", track: "machineLearning" },
+        { id: 5, text: "تحليل بيانات ضخمة", track: "bigData" },
+        { id: 6, text: "أداة لاختبار الأداء", track: "testing" }
+    ]
+},
+{
+    id: 187,
+    text: "أي من هذه التخصصات ترى أنه الأقرب لطريقتك في التفكير؟",
+    options: [
+        { id: 1, text: "واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "الخوادم والمنطق", track: "backend" },
+        { id: 3, text: "البيانات والتحليل", track: "dataScience" },
+        { id: 4, text: "الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "أمن المعلومات", track: "cyberSecurity" },
+        { id: 6, text: "تصميم الأنظمة الكبيرة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 188,
+    text: "لو كان عليك العمل في شركة عالمية، في أي قسم تود أن تكون؟",
+    options: [
+        { id: 1, text: "واجهة المستخدم", track: "frontend" },
+        { id: 2, text: "الهندسة الخلفية", track: "backend" },
+        { id: 3, text: "تحليل البيانات", track: "dataAnalysis" },
+        { id: 4, text: "تطوير الذكاء الاصطناعي", track: "aiEng" },
+        { id: 5, text: "أمن الأنظمة", track: "cyberSecurity" },
+        { id: 6, text: "اختبار المنتجات", track: "testing" }
+    ]
+},
+{
+    id: 189,
+    text: "ما الذي تستمتع به أكثر أثناء الكود؟",
+    options: [
+        { id: 1, text: "تجربة التأثيرات البصرية", track: "frontend" },
+        { id: 2, text: "تنفيذ الخوارزميات", track: "backend" },
+        { id: 3, text: "رؤية البيانات تتغير", track: "dataScience" },
+        { id: 4, text: "تحسين الأداء الذكي", track: "machineLearning" },
+        { id: 5, text: "اختبار النظام", track: "testing" },
+        { id: 6, text: "تصميم الحلول المعمارية", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 190,
+    text: "لو كنت تبني مشروعًا من الصفر، ما أول خطوة تقوم بها؟",
+    options: [
+        { id: 1, text: "تصميم الواجهة", track: "uiux" },
+        { id: 2, text: "إعداد البنية الخلفية", track: "backend" },
+        { id: 3, text: "اختبار الأداء", track: "testing" },
+        { id: 4, text: "تحليل المتطلبات", track: "dataAnalysis" },
+        { id: 5, text: "بناء النموذج الذكي", track: "aiEng" },
+        { id: 6, text: "توزيع العمل عبر السحابة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 191,
+    text: "أي من هذه المجالات يناسب شخص يحب الأرقام؟",
+    options: [
+        { id: 1, text: "تحليل البيانات", track: "dataScience" },
+        { id: 2, text: "تحليل الأداء المالي", track: "dataAnalysis" },
+        { id: 3, text: "التعلم الآلي", track: "machineLearning" },
+        { id: 4, text: "البيانات الضخمة", track: "bigData" },
+        { id: 5, text: "اختبار الأنظمة بالأرقام", track: "testing" },
+        { id: 6, text: "تحليل الأمان والهجمات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 192,
+    text: "أي من هذه الأعمال يجعلك تشعر بالإنجاز؟",
+    options: [
+        { id: 1, text: "واجهة رائعة تفاعل معها المستخدم", track: "frontend" },
+        { id: 2, text: "نظام يعمل بسلاسة خلف الكواليس", track: "backend" },
+        { id: 3, text: "نموذج ذكاء اصطناعي دقيق", track: "aiEng" },
+        { id: 4, text: "تحليل بيانات مفيد", track: "dataAnalysis" },
+        { id: 5, text: "نظام محمي وآمن", track: "cyberSecurity" },
+        { id: 6, text: "هيكلية متوازنة ومستقرة", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 193,
+    text: "أي من هذه الأنشطة تستمتع بها أثناء الكود؟",
+    options: [
+        { id: 1, text: "تجربة تصميم جديد", track: "uiux" },
+        { id: 2, text: "تحسين أداء الكود", track: "backend" },
+        { id: 3, text: "اختبار الأخطاء المنطقية", track: "testing" },
+        { id: 4, text: "تحليل نتائج الذكاء الاصطناعي", track: "machineLearning" },
+        { id: 5, text: "تصميم أنظمة ذكية متصلة", track: "iot" },
+        { id: 6, text: "توسيع قاعدة البيانات", track: "bigData" }
+    ]
+},
+{
+    id: 194,
+    text: "ما هو أكثر ما يشدك في تطبيقات الذكاء الاصطناعي الحديثة؟",
+    options: [
+        { id: 1, text: "قدرتها على الفهم اللغوي", track: "llmsAI" },
+        { id: 2, text: "تطبيقها في الأمن", track: "cyberSecurity" },
+        { id: 3, text: "تحليل البيانات المعقدة", track: "dataScience" },
+        { id: 4, text: "دمجها في الويب", track: "frontend" },
+        { id: 5, text: "تشغيلها على الأجهزة الذكية", track: "iot" },
+        { id: 6, text: "أتمتة المهام في الشركات", track: "aiEng" }
+    ]
+},
+
+{
+    id: 194,
+    text: "ما الذي يجذبك أكثر في تطوير أنظمة كبيرة ومعقدة؟",
+    options: [
+        { id: 1, text: "تنظيم المعمارية والتصميم", track: "softwareArchitecture" },
+        { id: 2, text: "إدارة البيانات الضخمة", track: "bigData" },
+        { id: 3, text: "توزيع العمل على الخوادم", track: "backend" },
+        { id: 4, text: "تحسين الأداء في السحابة", track: "cloudDevops" },
+        { id: 5, text: "تأمين البنية ضد الهجمات", track: "cyberSecurity" },
+        { id: 6, text: "تحليل تجربة المستخدم الكاملة", track: "uiux" }
+    ]
+},
+{
+    id: 195,
+    text: "ما المجال الذي تراه أكثر تأثيرًا في المستقبل القريب؟",
+    options: [
+        { id: 1, text: "الذكاء الاصطناعي التوليدي", track: "llmsAI" },
+        { id: 2, text: "تحليل البيانات للتنبؤ", track: "dataScience" },
+        { id: 3, text: "أمن المعلومات السيبراني", track: "cyberSecurity" },
+        { id: 4, text: "تطوير تطبيقات الهاتف الذكية", track: "mobile" },
+        { id: 5, text: "أنظمة إنترنت الأشياء", track: "iot" },
+        { id: 6, text: "تطوير تطبيقات الويب الحديثة", track: "frontend" }
+    ]
+},
+{
+    id: 196,
+    text: "عند بناء نظام ذكاء اصطناعي متكامل، ما الدور الذي تختاره؟",
+    options: [
+        { id: 1, text: "جمع وتنظيف البيانات", track: "dataEng" },
+        { id: 2, text: "تحليل البيانات وتصورها", track: "dataAnalysis" },
+        { id: 3, text: "تدريب النماذج الذكية", track: "machineLearning" },
+        { id: 4, text: "دمج النموذج داخل تطبيق فعلي", track: "aiEng" },
+        { id: 5, text: "نشر النظام على الخوادم السحابية", track: "cloudDevops" },
+        { id: 6, text: "تأمين النموذج ضد الاختراقات", track: "cyberSecurity" }
+    ]
+},
+{
+    id: 197,
+    text: "ما الجزء الأكثر متعة بالنسبة لك في العمل على مشروع فريق كبير؟",
+    options: [
+        { id: 1, text: "تنسيق عمل الفريق وتصميم البنية", track: "softwareArchitecture" },
+        { id: 2, text: "كتابة الواجهات الجذابة", track: "frontend" },
+        { id: 3, text: "برمجة منطق النظام", track: "backend" },
+        { id: 4, text: "التحقق من الجودة والاختبار", track: "testing" },
+        { id: 5, text: "تحليل البيانات ومتابعة الأداء", track: "dataAnalysis" },
+        { id: 6, text: "ضمان سير العمل السحابي بسلاسة", track: "cloudDevops" }
+    ]
+},
+{
+    id: 198,
+    text: "عند تطوير منتج ذكي متصل بالإنترنت، ما أكثر ما يثير اهتمامك؟",
+    options: [
+        { id: 1, text: "التحكم في الأجهزة عن بعد", track: "iot" },
+        { id: 2, text: "تأمين الاتصال بين الأجهزة", track: "cyberSecurity" },
+        { id: 3, text: "تحليل البيانات المرسلة من الأجهزة", track: "dataScience" },
+        { id: 4, text: "إدارة الخوادم السحابية", track: "cloudDevops" },
+        { id: 5, text: "تصميم واجهة المستخدم للتحكم", track: "frontend" },
+        { id: 6, text: "ربط الأجهزة بالذكاء الاصطناعي", track: "aiEng" }
+    ]
+},
+{
+    id: 199,
+    text: "ما المهارة التي تود تطويرها أكثر لتصبح متميزًا في مجالك؟",
+    options: [
+        { id: 1, text: "تصميم واجهات احترافية", track: "uiux" },
+        { id: 2, text: "كتابة أكواد منظمة وفعالة", track: "backend" },
+        { id: 3, text: "تحليل البيانات العميقة", track: "dataAnalysis" },
+        { id: 4, text: "تدريب نماذج الذكاء", track: "machineLearning" },
+        { id: 5, text: "تأمين الأنظمة والتطبيقات", track: "cyberSecurity" },
+        { id: 6, text: "إدارة المشاريع التقنية الكبرى", track: "softwareArchitecture" }
+    ]
+},
+{
+    id: 200,
+    text: "في النهاية، ما هو أكثر ما يجعلك متحمسًا في مجال التقنية؟",
+    options: [
+        { id: 1, text: "إبداع واجهات وتجارب جديدة", track: "frontend" },
+        { id: 2, text: "حل مشكلات معقدة بالخوادم", track: "backend" },
+        { id: 3, text: "تحليل بيانات ضخمة لاكتشاف الأنماط", track: "bigData" },
+        { id: 4, text: "ابتكار حلول ذكاء اصطناعي", track: "aiEng" },
+        { id: 5, text: "بناء أنظمة ذكية متصلة", track: "iot" },
+        { id: 6, text: "حماية العالم الرقمي من التهديدات", track: "cyberSecurity" }
+    ]
+}
+
+
+];
+
+
+        // المسارات البرمجية
+       const tracks = {
+    frontend: {
+        title: "تطوير الواجهات الأمامية (Frontend Development)",
+        description: "مسار تطوير الواجهات الأمامية مثالي للأشخاص المبدعين الذين يستمتعون ببناء تجارب مستخدم جذابة وتفاعلية. ستعمل على HTML, CSS, JavaScript وإطارات عمل مثل React أو Vue.js. هذا المسار يتطلب اهتماماً بالتفاصيل البصرية وفهماً لتصميم واجهات المستخدم."
+    },
+    backend: {
+        title: "تطوير الواجهات الخلفية (Backend Development)",
+        description: "مسار تطوير الواجهات الخلفية يناسب الأشخاص المنطقيين الذين يستمتعون بحل المشكلات المعقدة والعمل على الخوادم وقواعد البيانات. ستعمل على لغات مثل Python, Java, Node.js وقواعد البيانات مثل MySQL أو MongoDB. هذا المسار يتطلب تفكيراً تحليلياً ومنهجياً."
+    },
+    dataScience: {
+        title: "علم البيانات (Data Science)",
+        description: "مسار علم البيانات مثالي للأشخاص المهتمين بالرياضيات والإحصاء وتحليل البيانات. ستعمل على Python, R, SQL وتقنيات التعلم الآلي. هذا المسار يتطلب فضولاً علمياً وقدرة على استخراج رؤى قيمة من البيانات المعقدة."
+    },
+    machineLearning: {
+        title: "تعلم الآلة (Machine Learning)",
+        description: "مسار تعلم الآلة يركز على بناء أنظمة قادرة على التعلم من البيانات واتخاذ قرارات ذكية. ستتعلم خوارزميات مثل الانحدار، الأشجار، الشبكات العصبية، وطرق التعلم العميق باستخدام مكتبات مثل TensorFlow وPyTorch. يتطلب هذا المسار فهماً رياضياً وتحليلياً عميقاً."
+    },
+    mobile: {
+        title: "تطوير تطبيقات الهواتف (Mobile Development)",
+        description: "مسار تطوير تطبيقات الهواتف يناسب الأشخاص المهتمين بالوصول للمستخدمين على أجهزتهم المحمولة. ستعمل على إطارات عمل مثل React Native, Flutter أو التطوير الأصلي لنظامي iOS وAndroid. هذا المسار يتطلب فهماً لقيود وإمكانيات الأجهزة المحمولة."
+    },
+    uiux: {
+        title: "تصميم واجهات وتجربة المستخدم (UI/UX Design)",
+        description: "مسار تصميم واجهات وتجربة المستخدم مثالي للأشخاص المبدعين الذين يفهمون سلوك المستخدم ويهتمون بتحسين تجربته. ستعمل على أدوات التصميم مثل Figma وAdobe XD وإجراء اختبارات المستخدم. هذا المسار يتطلب تعاطفاً مع المستخدم وفهماً لاحتياجاته."
+    },
+    aiEng: {
+        title: "هندسة الذكاء الاصطناعي (AI Engineering)",
+        description: "مسار هندسة الذكاء الاصطناعي يجمع بين البرمجة وعلوم البيانات لتطوير أنظمة ذكية مثل المساعدات الصوتية والتوصيات الذكية. ستستخدم أدوات مثل Python, TensorFlow, OpenAI APIs. يتطلب هذا المسار فهماً للمنطق والتعلم الآلي والبرمجة."
+    },
+    testing: {
+        title: "اختبار البرمجيات وضمان الجودة (Software Testing & QA)",
+        description: "مسار اختبار البرمجيات مناسب للأشخاص الدقيقين الذين يحرصون على جودة الأنظمة. ستتعلم أدوات مثل Selenium, JUnit, Postman لاختبار الواجهات والأنظمة. يتطلب هذا المسار صبراً ومهارة في اكتشاف الأخطاء وتحليلها."
+    },
+    dataAnalysis: {
+        title: "تحليل البيانات (Data Analysis)",
+        description: "مسار تحليل البيانات يركز على تفسير البيانات وتقديم تقارير واضحة لدعم القرارات. ستتعلم Excel, Power BI, Python, SQL لإنشاء لوحات بيانات قوية. يتطلب هذا المسار تفكيراً منطقياً وقدرة على عرض المعلومات بوضوح."
+    },
+    bigData: {
+        title: "البيانات الضخمة (Big Data)",
+        description: "مسار البيانات الضخمة يناسب من يهتمون بإدارة وتحليل كميات هائلة من البيانات باستخدام أدوات مثل Hadoop, Spark, Kafka. يتطلب فهماً عميقاً للبنية التحتية للبيانات وطرق المعالجة الموزعة."
+    },
+    cloudDevops: {
+        title: "الحوسبة السحابية وDevOps",
+        description: "مسار الحوسبة السحابية وDevOps يركز على نشر الأنظمة وإدارتها باستخدام خدمات مثل AWS, Azure, Docker, Kubernetes. يتطلب هذا المسار فهماً للشبكات والتكامل بين البرمجيات."
+    },
+    gameDev: {
+        title: "تطوير الألعاب (Game Development)",
+        description: "مسار تطوير الألعاب مناسب للأشخاص المبدعين الذين يحبون المزج بين الفن والمنطق. ستتعلم محركات مثل Unity وUnreal Engine ولغات مثل C# وC++. هذا المسار يتطلب إبداعاً بصرياً وفهماً لميكانيكيات اللعب."
+    },
+    dataEng: {
+        title: "هندسة البيانات (Data Engineering)",
+        description: "مسار هندسة البيانات يركز على بناء البنى التحتية لأنظمة تحليل البيانات. ستتعلم أدوات مثل Apache Airflow, Spark, ETL pipelines وSQL. يتطلب هذا المسار مهارات برمجية قوية وتنظيماً دقيقاً."
+    },
+    cyberSecurity: {
+        title: "الأمن السيبراني (Cyber Security)",
+        description: "مسار الأمن السيبراني مثالي لمن يهتم بحماية الأنظمة من الهجمات والاختراقات. ستتعلم مفاهيم مثل التشفير، اختبار الاختراق، واكتشاف الثغرات باستخدام أدوات مثل Wireshark وMetasploit."
+    },
+    softwareArchitecture: {
+        title: "هندسة البرمجيات (Software Architecture)",
+        description: "مسار هندسة البرمجيات يركز على تصميم أنظمة برمجية متكاملة وقابلة للتوسع. ستتعلم مبادئ التصميم، الـSOLID، الأنماط المعمارية، وMicroservices. يتطلب هذا المسار خبرة برمجية وتفكيراً استراتيجياً."
+    },
+    llmsAI: {
+        title: "أنظمة الذكاء الاصطناعي اللغوية (LLMs & AI Systems)",
+        description: "مسار أنظمة الذكاء الاصطناعي اللغوية يركز على تطوير تطبيقات تعتمد على نماذج اللغة الكبيرة مثل ChatGPT وClaude. ستتعلم كيف تبني Chatbots وأنظمة تحليل نصوص ذكية باستخدام واجهات OpenAI API وNLP."
+    },
+    iot: {
+        title: "إنترنت الأشياء (Internet of Things - IoT)",
+        description: "مسار إنترنت الأشياء يركز على ربط الأجهزة الفيزيائية بالإنترنت لتبادل البيانات. ستتعلم عن المستشعرات، Arduino, Raspberry Pi، والبروتوكولات مثل MQTT. يتطلب هذا المسار فهماً للهاردوير والبرمجة المدمجة."
+    }
+};
+
+
+        // التخصصات الجامعية
+        const majors = {
+            CS: {
+                title: "علوم الحاسب (Computer Science)",
+                description: "يركز على الخوارزميات، بنية البيانات، البرمجة المتقدمة، والرياضيات المتعلقة بالحوسبة. مناسب لمن يهتم بالأساسيات النظرية للحاسوب وتطوير البرمجيات المعقدة."
+            },
+            IT: {
+                title: "تكنولوجيا المعلومات (Information Technology)",
+                description: "يركز على تطبيق التقنيات الحاسوبية في بيئات العمل، إدارة الشبكات، قواعد البيانات، وأمن المعلومات. مناسب لمن يهتم بالجوانب العملية والتطبيقية للتكنولوجيا."
+            },
+            IS: {
+                title: "نظم المعلومات (Information Systems)",
+                description: "يجمع بين التقنية والأعمال، ويركز على كيفية استخدام التقنية لتحسين العمليات التجارية واتخاذ القرارات. مناسب لمن يهتم بالجانب الإداري والتنظيمي للتكنولوجيا."
+            },
+            AI: {
+                title: "الذكاء الاصطناعي (Artificial Intelligence)",
+                description: "يركز على تطوير الأنظمة الذكية، التعلم الآلي، معالجة اللغات الطبيعية، والروبوتات. مناسب لمن يهتم بالرياضيات المتقدمة والخوارزميات المعقدة."
+            }
+        };
+
+/// دالة خلط الأسئلة عشوائياً
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+let currentQuestionIndex = 0;
+let userAnswers = {};
+let changeQuestionCount = 0;
+const maxChanges = 10;
+let trackScores = {};
+let majorScores = {};
+let shuffledQuestions = [];
+let allQuestions = []; // جميع الأسئلة المتاحة
+let usedQuestionsInCurrentTest = new Set(); // الأسئلة المستخدمة في الاختبار الحالي
+
+// عناصر DOM
+const questionText = document.getElementById('questionText');
+const optionsContainer = document.getElementById('optionsContainer');
+const progressBar = document.getElementById('progressBar');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const changeQuestionBtn = document.getElementById('changeQuestionBtn');
+const skipCounter = document.getElementById('skipCounter');
+const skipCount = document.getElementById('skipCount');
+const questionContainer = document.getElementById('questionContainer');
+const resultContainer = document.getElementById('resultContainer');
+const resultTitle = document.getElementById('resultTitle');
+const resultDescription = document.getElementById('resultDescription');
+const majorResult = document.getElementById('majorResult');
+const restartBtn = document.getElementById('restartBtn');
+const startContainer = document.getElementById('startContainer');
+const startBtn = document.getElementById('startBtn');
+const questionCounter = document.getElementById('questionCounter');
+
+// تهيئة التطبيق
+function initApp() {
+    nextBtn.addEventListener('click', goToNextQuestion);
+    prevBtn.addEventListener('click', goToPreviousQuestion);
+    restartBtn.addEventListener('click', restartQuiz);
+    startBtn.addEventListener('click', startQuiz);
+    
+    // إضافة مستمع حدث لزر تبديل السؤال
+    if (changeQuestionBtn) {
+        changeQuestionBtn.addEventListener('click', changeCurrentQuestion);
+    }
+}
+
+function startQuiz() {
+    startContainer.classList.add('hidden');
+
+    // حفظ جميع الأسئلة المتاحة
+    allQuestions = [...questions];
+    
+    // اختر 25 سؤال عشوائي
+    shuffledQuestions = shuffleArray(questions).slice(0, 25);
+
+    // إعادة تعيين مجموعة الأسئلة المستخدمة
+    usedQuestionsInCurrentTest.clear();
+    
+    // إضافة الأسئلة المختارة إلى المجموعة المستخدمة
+    shuffledQuestions.forEach(q => usedQuestionsInCurrentTest.add(q.id));
+
+    currentQuestionIndex = 0;
+    userAnswers = {};
+    changeQuestionCount = 0;
+    
+    // تحديث عرض عدد مرات التبديل المتبقية
+    updateChangeCounter();
+    
+    // تهيئة جميع المسارات
+    trackScores = {
+        frontend: 0, backend: 0, dataScience: 0, mobile: 0, uiux: 0,
+        aiEng: 0, testing: 0, dataAnalysis: 0, bigData: 0, cloudDevops: 0,
+        gameDev: 0, dataEng: 0, cyberSecurity: 0, softwareArchitecture: 0,
+        llmsAI: 0, iot: 0, machineLearning: 0
+    };
+    
+    majorScores = { CS: 0, IT: 0, IS: 0, AI: 0 };
+
+    questionContainer.classList.remove('hidden');
+    showQuestion(currentQuestionIndex);
+    updateProgressBar();
+}
+
+// عرض السؤال
+function showQuestion(index) {
+    if (index >= shuffledQuestions.length) {
+        showResult();
+        return;
+    }
+    
+    const question = shuffledQuestions[index];
+    questionText.textContent = question.text;
+    questionCounter.textContent = `سؤال ${index + 1} من ${shuffledQuestions.length}`;
+    
+    // مسح الخيارات السابقة
+    optionsContainer.innerHTML = '';
+
+    question.options.forEach(option => {
+        const optionElement = document.createElement('div');
+        optionElement.className = 'option';
+        if (userAnswers[question.id] === option.id) {
+            optionElement.classList.add('selected');
+        }
+
+        optionElement.innerHTML = `<span>${option.text}</span>`;
+        optionElement.addEventListener('click', () => selectOption(question.id, option.id));
+        optionsContainer.appendChild(optionElement);
+    });
+
+    updateNavigationButtons();
+    updateChangeCounter();
+}
+
+// اختيار خيار
+function selectOption(questionId, optionId) {
+    userAnswers[questionId] = optionId;
+    
+    // تحديث النقاط بناءً على الاختيار
+    const question = shuffledQuestions.find(q => q.id === questionId);
+    const selectedOption = question.options.find(opt => opt.id === optionId);
+    
+    if (selectedOption.track) {
+        trackScores[selectedOption.track] = (trackScores[selectedOption.track] || 0) + 1;
+    }
+    if (selectedOption.major) {
+        majorScores[selectedOption.major] = (majorScores[selectedOption.major] || 0) + 1;
+    }
+    
+    showQuestion(currentQuestionIndex);
+}
+
+// تبديل السؤال الحالي
+function changeCurrentQuestion() {
+    if (changeQuestionCount >= maxChanges) {
+        return; // لا يمكن تبديل أكثر من 10 مرات
+    }
+    
+    changeQuestionCount++;
+    
+    // الحصول على السؤال الحالي
+    const currentQuestion = shuffledQuestions[currentQuestionIndex];
+    const currentQuestionId = currentQuestion.id;
+    
+    // البحث عن سؤال جديد غير مستخدم في الاختبار الحالي
+    const availableQuestions = allQuestions.filter(q => !usedQuestionsInCurrentTest.has(q.id));
+    
+    if (availableQuestions.length > 0) {
+        // اختيار سؤال عشوائي من الأسئلة المتاحة
+        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+        const newQuestion = availableQuestions[randomIndex];
+        
+        // إزالة السؤال القديم من المجموعة المستخدمة
+        usedQuestionsInCurrentTest.delete(currentQuestionId);
+        
+        // إضافة السؤال الجديد إلى المجموعة المستخدمة
+        usedQuestionsInCurrentTest.add(newQuestion.id);
+        
+        // استبدال السؤال الحالي بالسؤال الجديد
+        shuffledQuestions[currentQuestionIndex] = newQuestion;
+        
+        // إذا كان المستخدم قد أجاب على السؤال القديم، احذف إجابته
+        if (userAnswers[currentQuestionId]) {
+            delete userAnswers[currentQuestionId];
+            
+            // خصم النقاط التي تم إضافتها من السؤال القديم
+            const oldSelectedOption = currentQuestion.options.find(opt => opt.id === userAnswers[currentQuestionId]);
+            if (oldSelectedOption) {
+                if (oldSelectedOption.track) {
+                    trackScores[oldSelectedOption.track] = Math.max(0, (trackScores[oldSelectedOption.track] || 0) - 1);
+                }
+                if (oldSelectedOption.major) {
+                    majorScores[oldSelectedOption.major] = Math.max(0, (majorScores[oldSelectedOption.major] || 0) - 1);
+                }
+            }
+        }
+        
+        // إعادة عرض السؤال الجديد
+        showQuestion(currentQuestionIndex);
+        updateChangeCounter();
+        
+        console.log(`تم تبديل السؤال ${currentQuestionId} بالسؤال ${newQuestion.id}`);
+        console.log('الأسئلة المستخدمة:', Array.from(usedQuestionsInCurrentTest));
+    } else {
+        // إذا لم توجد أسئلة متاحة، عرض رسالة
+        alert('لا توجد أسئلة متاحة للتبديل');
+        changeQuestionCount--; // تراجع عن زيادة العداد
+    }
+}
+
+// الانتقال للسؤال التالي
+function goToNextQuestion() {
+    if (currentQuestionIndex < shuffledQuestions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion(currentQuestionIndex);
+        updateProgressBar();
+    } else {
+        showResult();
+    }
+}
+
+// الانتقال للسؤال السابق
+function goToPreviousQuestion() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion(currentQuestionIndex);
+        updateProgressBar();
+    }
+}
+
+// تحديث شريط التقدم
+function updateProgressBar() {
+    const progress = ((currentQuestionIndex + 1) / shuffledQuestions.length) * 100;
+    progressBar.style.width = `${progress}%`;
+}
+
+// تحديث أزرار التنقل وعرض التبديل
+function updateNavigationButtons() {
+    prevBtn.disabled = currentQuestionIndex === 0;
+    
+    const currentQuestion = shuffledQuestions[currentQuestionIndex];
+    nextBtn.disabled = !userAnswers[currentQuestion.id];
+    
+    // تعطيل زر تبديل السؤال إذا نفذت المحاولات
+    changeQuestionBtn.disabled = changeQuestionCount >= maxChanges;
+    
+    if (currentQuestionIndex === shuffledQuestions.length - 1) {
+        nextBtn.textContent = 'اظهر النتيجة';
+    } else {
+        nextBtn.textContent = 'التالي';
+    }
+}
+
+// تحديث عرض عدد مرات التبديل المتبقية
+function updateChangeCounter() {
+    const remaining = maxChanges - changeQuestionCount;
+    if (skipCount) {
+        skipCount.textContent = remaining;
+    }
+    
+    // تحديث نص الزر
+    if (changeQuestionBtn) {
+        changeQuestionBtn.textContent = `تبديل السؤال (${remaining})`;
+    }
+    
+    // إخفاء العداد إذا نفذت جميع مرات التبديل
+    if (skipCounter) {
+        if (remaining === 0) {
+            skipCounter.style.display = 'none';
+        } else {
+            skipCounter.style.display = 'block';
+        }
+    }
+}
+
+// حساب النتائج
+function computeScoresFromAnswers() {
+    // إعادة تعيين النقاط
+    for (const track in trackScores) {
+        trackScores[track] = 0;
+    }
+    for (const major in majorScores) {
+        majorScores[major] = 0;
+    }
+
+    // حساب النقاط من الإجابات
+    Object.entries(userAnswers).forEach(([qId, optId]) => {
+        const question = shuffledQuestions.find(q => q.id === parseInt(qId));
+        if (!question) return;
+        
+        const option = question.options.find(opt => opt.id === parseInt(optId));
+        if (!option) return;
+        
+        if (option.track) {
+            trackScores[option.track] = (trackScores[option.track] || 0) + 1;
+        }
+        if (option.major) {
+            majorScores[option.major] = (majorScores[option.major] || 0) + 1;
+        }
+    });
+}
+
+// عرض النتيجة
+function showResult() {
+    computeScoresFromAnswers();
+
+    let recommendedTrack = Object.keys(trackScores).reduce((a, b) => 
+        trackScores[a] >= trackScores[b] ? a : b
+    );
+    
+    let recommendedMajor = Object.keys(majorScores).reduce((a, b) => 
+        majorScores[a] >= majorScores[b] ? a : b
+    );
+
+    if (tracks[recommendedTrack]) {
+        resultTitle.textContent = tracks[recommendedTrack].title;
+        resultDescription.textContent = tracks[recommendedTrack].description;
+    }
+    
+    if (majors[recommendedMajor]) {
+        majorResult.innerHTML = `
+            <strong>التخصص الجامعي المقترح:</strong><br>
+            ${majors[recommendedMajor].title}<br>
+            <small>${majors[recommendedMajor].description}</small>
+        `;
+    }
+
+    questionContainer.classList.add('hidden');
+    resultContainer.style.display = 'block';
+}
+
+// إعادة الاختبار
+function restartQuiz() {
+    currentQuestionIndex = 0;
+    userAnswers = {};
+    changeQuestionCount = 0;
+    usedQuestionsInCurrentTest.clear();
+    
+    trackScores = {
+        frontend: 0, backend: 0, dataScience: 0, mobile: 0, uiux: 0,
+        aiEng: 0, testing: 0, dataAnalysis: 0, bigData: 0, cloudDevops: 0,
+        gameDev: 0, dataEng: 0, cyberSecurity: 0, softwareArchitecture: 0,
+        llmsAI: 0, iot: 0, machineLearning: 0
+    };
+    
+    majorScores = { CS: 0, IT: 0, IS: 0, AI: 0 };
+
+    resultContainer.style.display = 'none';
+    startContainer.classList.remove('hidden');
+}
+
+// بدء التطبيق
+document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
