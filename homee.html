@@ -594,7 +594,7 @@
 
         <div class="time-info">
             <div class="time-item">
-                <div class="time-value" id="total-hours">21</div>
+                <div class="time-value" id="total-hours">24</div>
                 <div class="time-label">Total Hours</div>
             </div>
             <div class="time-item">
@@ -624,120 +624,112 @@
     </div>
 
     <script>
-        const HOURS_21 = 21 * 60 * 60 * 1000;
-        const STORAGE_KEY = "maintenance_end_time";
+    const TOTAL_HOURS = 24;
+const TOTAL_DURATION_MS = TOTAL_HOURS * 60 * 60 * 1000;
 
-        let endDate = localStorage.getItem(STORAGE_KEY);
-        if (!endDate) {
-            endDate = Date.now() + HOURS_21;
-            localStorage.setItem(STORAGE_KEY, endDate);
-        } else {
-            endDate = parseInt(endDate);
-        }
+const FIXED_END_TIME = new Date("2025-12-28T04:00:00").getTime();
 
-        const hoursElement = document.getElementById('hours');
-        const minutesElement = document.getElementById('minutes');
-        const secondsElement = document.getElementById('seconds');
-        const progressFill = document.getElementById('progress-fill');
-        const progressPercentage = document.getElementById('progress-percentage');
-        const remainingTimeElement = document.getElementById('remaining-time');
-        const elapsedTimeElement = document.getElementById('elapsed-time');
-        const totalHoursElement = document.getElementById('total-hours');
-        const progressHoursElement = document.getElementById('progress-hours');
-        const completionRateElement = document.getElementById('completion-rate');
-        const gamesBtn = document.getElementById('games-btn');
-        const homeBtn = document.getElementById('home-btn');
-        const subtitle = document.querySelector('.subtitle');
+const hoursElement = document.getElementById('hours');
+const minutesElement = document.getElementById('minutes');
+const secondsElement = document.getElementById('seconds');
+const progressFill = document.getElementById('progress-fill');
+const progressPercentage = document.getElementById('progress-percentage');
+const remainingTimeElement = document.getElementById('remaining-time');
+const elapsedTimeElement = document.getElementById('elapsed-time');
+const totalHoursElement = document.getElementById('total-hours');
+const progressHoursElement = document.getElementById('progress-hours');
+const completionRateElement = document.getElementById('completion-rate');
+const gamesBtn = document.getElementById('games-btn');
+const homeBtn = document.getElementById('home-btn');
+const subtitle = document.querySelector('.subtitle');
 
-        function formatTime(ms) {
-            const hours = Math.floor(ms / (1000 * 60 * 60));
-            const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
+function formatTime(ms) {
+    const hours = Math.floor(ms / (1000 * 60 * 60));
+    const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
-        function updateProgress(timeLeft) {
-            const elapsed = HOURS_21 - timeLeft;
-            const progress = (elapsed / HOURS_21) * 100;
+function updateProgress(timeLeft) {
+    const elapsed = TOTAL_DURATION_MS - timeLeft;
+    const progress = Math.min(Math.max((elapsed / TOTAL_DURATION_MS) * 100, 0), 100);
 
-            progressFill.style.width = `${progress}%`;
-            progressPercentage.textContent = `${Math.round(progress)}%`;
+    progressFill.style.width = `${progress}%`;
+    progressPercentage.textContent = `${Math.round(progress)}%`;
 
-            remainingTimeElement.textContent = formatTime(timeLeft);
-            elapsedTimeElement.textContent = formatTime(elapsed);
+    remainingTimeElement.textContent = formatTime(Math.max(timeLeft, 0));
+    elapsedTimeElement.textContent = formatTime(Math.min(elapsed, TOTAL_DURATION_MS));
 
-            const hoursCompleted = Math.floor(elapsed / (1000 * 60 * 60));
-            progressHoursElement.textContent = hoursCompleted;
-            completionRateElement.textContent = `${Math.round(progress)}%`;
+    const hoursCompleted = Math.floor(elapsed / (1000 * 60 * 60));
+    progressHoursElement.textContent = Math.max(hoursCompleted, 0);
+    completionRateElement.textContent = `${Math.round(progress)}%`;
 
-            return progress;
-        }
+    return progress;
+}
 
-        function updateCountdown() {
-            const now = Date.now();
-            const timeLeft = endDate - now;
+function updateCountdown() {
+    const now = Date.now();
+    const timeLeft = FIXED_END_TIME - now;
 
-            if (timeLeft <= 0) {
-                hoursElement.textContent = "00";
-                minutesElement.textContent = "00";
-                secondsElement.textContent = "00";
-                subtitle.textContent = "Maintenance complete! System is now back online! 🎉";
+    if (timeLeft <= 0) {
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
+        subtitle.textContent = "Maintenance complete! System is now back online! 🎉";
 
-                updateProgress(0);
-                progressFill.style.width = "100%";
-                progressPercentage.textContent = "100%";
-                progressHoursElement.textContent = "21";
-                completionRateElement.textContent = "100%";
-                remainingTimeElement.textContent = "00:00:00";
-                elapsedTimeElement.textContent = formatTime(HOURS_21);
+        updateProgress(0);
+        progressFill.style.width = "100%";
+        progressPercentage.textContent = "100%";
+        progressHoursElement.textContent = String(TOTAL_HOURS);
+        completionRateElement.textContent = "100%";
+        remainingTimeElement.textContent = "00:00:00";
+        elapsedTimeElement.textContent = formatTime(TOTAL_DURATION_MS);
 
-                clearInterval(timer);
-                localStorage.removeItem(STORAGE_KEY);
+        clearInterval(timer);
 
-                gamesBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Go to System';
-                gamesBtn.onclick = () => {
-                    window.location.href = "https://materialx-system.com";
-                };
+        gamesBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Go to System';
+        gamesBtn.onclick = () => {
+            window.location.href = "https://materialx-system.com";
+        };
 
-                homeBtn.innerHTML = '<i class="fas fa-rocket"></i> Launch Application';
-                homeBtn.onclick = () => {
-                    window.location.href = "https://materialx-system.com/dashboard";
-                };
-                return;
-            }
+        homeBtn.innerHTML = '<i class="fas fa-rocket"></i> Launch Application';
+        homeBtn.onclick = () => {
+            window.location.href = "https://materialx-system.com/dashboard";
+        };
+        return;
+    }
 
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            hoursElement.textContent = String(hours).padStart(2, '0');
-            minutesElement.textContent = String(minutes).padStart(2, '0');
-            secondsElement.textContent = String(seconds).padStart(2, '0');
+    hoursElement.textContent = String(hours).padStart(2, '0');
+    minutesElement.textContent = String(minutes).padStart(2, '0');
+    secondsElement.textContent = String(seconds).padStart(2, '0');
 
-            updateProgress(timeLeft);
-        }
+    updateProgress(timeLeft);
+}
 
-        const timer = setInterval(updateCountdown, 1000);
-        updateCountdown();
+const timer = setInterval(updateCountdown, 1000);
+updateCountdown();
 
-        gamesBtn.addEventListener('click', function () {
-            window.open('play.html', '_blank');
-        });
+gamesBtn.addEventListener('click', function () {
+    window.open('play.html', '_blank');
+});
 
-        homeBtn.addEventListener('click', function () {
+homeBtn.addEventListener('click', function () {
+    alert('In a live environment, this would redirect to the home page. For now, please check back later.');
+});
 
-            alert('In a live environment, this would redirect to the home page. For now, please check back later.');
-        });
+document.querySelectorAll('.countdown-item').forEach(item => {
+    item.addEventListener('mouseenter', function () {
+        this.style.transform = 'translateY(-10px)';
+    });
 
-        document.querySelectorAll('.countdown-item').forEach(item => {
-            item.addEventListener('mouseenter', function () {
-                this.style.transform = 'translateY(-10px)';
-            });
-
-            item.addEventListener('mouseleave', function () {
-                this.style.transform = 'translateY(0)';
-            });
-        });
+    item.addEventListener('mouseleave', function () {
+        this.style.transform = 'translateY(0)';
+    });
+});
     </script>
 </body>
 
