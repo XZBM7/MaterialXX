@@ -1,0 +1,3056 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MaterialX | Track</title>
+        <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+
+    <style>
+        /* CSS Styling - Over 800 lines of pure power */
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+        :root {
+            /* --- Dark Mode (Default) --- */
+            --bg-color: #1a1a2e;
+            --bg-secondary-color: #16213e;
+            --neumorphic-bg: #1a1a2e;
+            --neumorphic-shadow-light: rgba(30, 30, 60, 0.5);
+            --neumorphic-shadow-dark: rgba(0, 0, 0, 0.4);
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0c0;
+            --accent-primary: #7f5af0;
+            --accent-secondary: #2cb67d;
+            --glow-color: rgba(127, 90, 240, 0.4);
+            --transition-speed: 0.4s;
+            --border-radius-lg: 25px;
+            --border-radius-md: 15px;
+        }
+
+        body.light-mode {
+            /* --- Light Mode --- */
+            --bg-color: #e0e5ec;
+            --bg-secondary-color: #dde2e9;
+            --neumorphic-bg: #e0e5ec;
+            --neumorphic-shadow-light: rgba(255, 255, 255, 0.9);
+            --neumorphic-shadow-dark: rgba(163, 177, 198, 0.6);
+            --text-primary: #333a52;
+            --text-secondary: #5a6482;
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-secondary);
+            line-height: 1.9;
+            overflow-x: hidden;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        /* --- Particle JS Background --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* --- General Transition for Theme Change --- */
+        .header, #search-input, .specialization-card, .detail-section, .details-header, h1, h2, h3, h4, p, li, .back-button, .telegram-contact, .book-link {
+            transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+        /* --- Theme Toggle Switch --- */
+        .theme-switch-wrapper {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+        }
+        .theme-switch {
+            width: 70px;
+            height: 36px;
+            background: var(--neumorphic-bg);
+            border-radius: 50px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: inset 5px 5px 10px var(--neumorphic-shadow-dark), inset -5px -5px 10px var(--neumorphic-shadow-light);
+            display: flex;
+            align-items: center;
+        }
+        .theme-switch-handle {
+            height: 28px;
+            width: 28px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            position: absolute;
+            left: 4px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .theme-switch-handle .fa-moon { color: var(--bg-color); }
+        .theme-switch-handle .fa-sun { color: var(--bg-color); display: none; }
+        body.light-mode .theme-switch-handle { transform: translateX(34px); }
+        body.light-mode .fa-moon { display: none; }
+        body.light-mode .fa-sun { display: block; }
+
+        /* --- Scroll to Top Button --- */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--neumorphic-bg);
+            color: var(--text-secondary);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px var(--neumorphic-shadow-dark), -5px -5px 10px var(--neumorphic-shadow-light);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-to-top:hover {
+            color: var(--accent-primary);
+            box-shadow: 7px 7px 14px var(--neumorphic-shadow-dark), -7px -7px 14px var(--neumorphic-shadow-light), 0 0 10px var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        /* --- Header & Search --- */
+        .header {
+            text-align: center;
+            padding: 100px 0 60px 0;
+        }
+        .header h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -2px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUpFadeIn 0.8s 0.2s forwards;
+        }
+        .search-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+        }
+        #search-input {
+            width: 100%;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            background: var(--neumorphic-bg);
+            color: var(--text-primary);
+            box-shadow: inset 4px 4px 8px var(--neumorphic-shadow-dark), inset -4px -4px 8px var(--neumorphic-shadow-light);
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUpFadeIn 0.8s 0.4s forwards;
+        }
+        #search-input::placeholder { color: var(--text-secondary); }
+        #search-input:focus {
+            outline: none;
+            box-shadow: inset 6px 6px 12px var(--neumorphic-shadow-dark), inset -6px -6px 12px var(--neumorphic-shadow-light), 0 0 0 2px var(--accent-primary);
+        }
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* --- Specializations Grid --- */
+        #specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .specialization-card {
+            background: var(--neumorphic-bg);
+            border-radius: var(--border-radius-lg);
+            padding: 35px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 10px 10px 20px var(--neumorphic-shadow-dark), -10px -10px 20px var(--neumorphic-shadow-light);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUpFadeIn 0.6s forwards;
+        }
+        .specialization-card:nth-child(1) { animation-delay: 0.6s; }
+        .specialization-card:nth-child(2) { animation-delay: 0.7s; }
+        .specialization-card:nth-child(3) { animation-delay: 0.8s; }
+        
+        .specialization-card:hover {
+            box-shadow: 15px 15px 30px var(--neumorphic-shadow-dark), -15px -15px 30px var(--neumorphic-shadow-light);
+        }
+        .card-content h3 {
+            font-size: 1.9rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .card-content p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        .card-glow-border {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: var(--border-radius-lg);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--accent-primary), transparent 40%);
+        }
+        .specialization-card:hover .card-glow-border {
+            opacity: 0.2;
+        }
+
+        /* --- Search Results Counter --- */
+        .search-results-info {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .search-results-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Details View --- */
+        #details-view {
+            display: none;
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            overflow-y: auto;
+            perspective: 1000px;
+            background-color: var(--bg-color); /* Ensure background fills during transition */
+        }
+        #details-view.visible {
+            display: block;
+        }
+        .details-scroller {
+            padding: 40px 0;
+        }
+        .details-content {
+            background: var(--bg-color);
+            border-radius: var(--border-radius-lg);
+            opacity: 0;
+            transform-origin: center;
+            min-height: 100%;
+            position: relative; /* Needed for absolute positioning of back-button */
+            box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Stronger shadow for main content */
+        }
+        .details-header {
+            text-align: center;
+            padding: 120px 40px 80px 40px;
+            position: relative;
+            background: var(--bg-secondary-color);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+        }
+        .details-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -1.5px;
+        }
+        .back-button {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: var(--neumorphic-bg);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 5px 5px 10px var(--neumorphic-shadow-dark), -5px -5px 10px var(--neumorphic-shadow-light);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .back-button:hover {
+            color: var(--accent-primary);
+            box-shadow: 7px 7px 14px var(--neumorphic-shadow-dark), -7px -7px 14px var(--neumorphic-shadow-light), 0 0 10px var(--accent-primary);
+            transform: scale(1.05);
+        }
+        
+        .details-body {
+            padding: 50px clamp(20px, 5vw, 60px);
+        }
+        .detail-section {
+            margin-bottom: 50px;
+            padding: 40px;
+            background: var(--neumorphic-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 10px 10px 20px var(--neumorphic-shadow-dark), -10px -10px 20px var(--neumorphic-shadow-light);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .detail-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .detail-section h3 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+        .detail-section h3 i {
+            margin-left: 15px;
+            color: var(--accent-secondary);
+        }
+        .telegram-contact {
+            background-color: #2AABEE; color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-size: 0.95rem;
+            font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease;
+        }
+        .telegram-contact:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(42, 171, 238, 0.3);
+        }
+        .detail-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .detail-section ul li {
+            padding: 12px 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Lighter separator */
+            color: var(--text-secondary);
+        }
+        body.light-mode .detail-section ul li {
+             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .detail-section ul li:last-child {
+            border-bottom: none;
+        }
+        .detail-section h4 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-primary);
+            display: inline-block;
+        }
+        
+        /* Book Links */
+        .book-link {
+            color: var(--accent-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block; /* Allows transform */
+        }
+        .book-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(5px);
+            text-decoration: underline;
+        }
+
+
+        /* New styles for detailed roadmap */
+        .roadmap-step {
+            margin-bottom: 2rem;
+            padding: 20px;
+            background: var(--bg-secondary-color); /* Slightly different bg for steps */
+            border-radius: var(--border-radius-md);
+            box-shadow: inset 3px 3px 6px var(--neumorphic-shadow-dark), inset -3px -3px 6px var(--neumorphic-shadow-light);
+        }
+        .roadmap-step h4 {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            display: block; /* Override inline-block from generic h4 */
+        }
+        .roadmap-step p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+        .roadmap-step ul {
+            margin-top: 1rem;
+        }
+
+
+        /* --- Animations --- */
+        @keyframes slideUpFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .theme-switch-wrapper { top: 15px; left: 15px; }
+            .header { padding: 80px 0 40px 0; }
+            .details-scroller { padding: 0; }
+            .details-header { padding: 100px 20px 60px 20px; }
+            .back-button { top: 20px; right: 20px; width: 45px; height: 45px; font-size: 1rem;}
+            .details-body { padding: 30px 15px; }
+            .detail-section { padding: 30px; }
+            .roadmap-step { padding: 15px; }
+            .scroll-to-top { bottom: 20px; right: 20px; }
+        }
+ .quiz-link-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .quiz-text {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color var(--transition-speed) ease;
+        }
+        .quiz-button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5);
+            transition: all 0.3s ease;
+            animation: pulse-glow 2.5s infinite ease-in-out;
+        }
+        .quiz-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(127, 90, 240, 0.7);
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+            50% { box-shadow: 0 4px 30px rgba(44, 182, 125, 0.5); }
+            100% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+        }
+
+        @media (max-width: 768px) {
+        .theme-switch-wrapper { top: 15px; left: 15px; }
+        
+        /* ===== أضف الكود الجديد هنا ===== */
+        .quiz-text {
+            display: none; /* إخفاء النص في شاشات الجوال */
+        }
+        .quiz-link-wrapper {
+            top: 15px;
+            right: 15px;
+        }
+        /* ============================= */
+    }
+        .header { padding: 80px 0 40px 0; }
+        /* --- NEW: Quiz Button (Updated) --- */
+.quiz-link-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.quiz-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.quiz-link:hover {
+    transform: scale(1.03); /* تكبير بسيط عند مرور الماوس */
+}
+
+.quiz-text {
+    font-weight: 700; /* خط أعرض */
+    font-size: 1rem;
+    /* --- هذا هو الكود المسؤول عن اللون المميز المتدرج --- */
+    background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: filter 0.3s ease;
+}
+
+.quiz-link:hover .quiz-text {
+    filter: brightness(1.2); /* زيادة سطوع اللون عند مرور الماوس */
+}
+
+.quiz-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+    color: #fff;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5);
+    transition: all 0.3s ease;
+    animation: pulse-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+    50% { box-shadow: 0 4px 30px rgba(44, 182, 125, 0.5); }
+    100% { box-shadow: 0 4px 20px rgba(127, 90, 240, 0.5); }
+}
+/* ---------------------------------- */
+
+/* ===== استبدل كل تنسيقات الزر القديمة داخل الميديا كويري بهذا الكود ===== */
+.quiz-link-wrapper {
+    top: 15px;
+    right: 15px;
+}
+
+.quiz-text-desktop {
+    display: none; /* إخفاء نص الكمبيوتر على الجوال */
+}
+
+.quiz-text-mobile {
+    display: inline; /* إظهار نص الجوال */
+    font-size: 0.9rem; /* حجم خط مناسب */
+}
+
+.quiz-link {
+    /* (إذا كنت قد أضفت أي تنسيقات خاصة هنا مثل flex-direction، يمكنك حذفها ليعود للشكل الأفقي الافتراضي) */
+    gap: 12px; /* تعديل المسافة بين النص والزر */
+}
+
+.quiz-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+}
+/* ======================================================================= */
+
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    
+    <div class="theme-switch-wrapper">
+        <div id="theme-toggle" class="theme-switch">
+            <div class="theme-switch-handle">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </div>
+        </div>
+    </div>
+
+   <div class="quiz-link-wrapper">
+    <a href="QA.html" class="quiz-link">
+        <span class="quiz-text quiz-text-desktop">Confused? Test to know your inclination towards your track and specialty.</span>
+<span class="quiz-text quiz-text-mobile">Curious? Click here (Beta)</span>
+        
+        <div class="quiz-button">
+            <i class="fas fa-question-circle"></i>
+        </div>
+    </a>
+</div>
+
+   
+    <div class="container">
+        <header class="header">
+            <h1>Find Your Perfect Track</h1>
+            <div class="search-container">
+<input type="text" id="search-input" placeholder="Search for your professional track...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </header>
+
+        <div class="search-results-info" id="searchResultsInfo"></div>
+
+        <main id="specializations-grid">
+            <div class="specialization-card" data-track="data-analyst">
+                 <div class="card-glow-border"></div>
+                <div class="card-content">
+                    <h3>Data Analyst / Business Intelligence</h3>
+                    <p>المجال الذي يحول البيانات الخام إلى قرارات ذكية تقود نجاح الشركات في المستقبل.</p>
+                </div>
+            </div>
+
+            <div class="specialization-card" data-track="Back-End developer (dot-NET)">
+    <div class="card-glow-border"></div>
+    <div class="card-content">
+        <h3> dot-NET Developer / Back-End</h3>
+        <p>المجال الذي يبني أنظمة قوية وآمنة باستخدام تقنيات Microsoft لتطوير مواقع ويب وواجهات برمجية احترافية.</p>
+    </div>
+</div>      
+
+<div class="specialization-card" data-track="big-data-engineer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>Big Data Engineer</h3>
+    <p>
+      المتخصص الذي يصمم ويبني أنظمة لمعالجة كميات ضخمة من البيانات
+      باستخدام أدوات مثل Hadoop وSpark وKafka لتحليل البيانات بسرعة وكفاءة.
+    </p>
+  </div>
+</div>
+
+
+<div class="specialization-card" data-track="ai-engineer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>AI Engineer / الذكاء الاصطناعي</h3>
+    <p>
+      المهندس الذي يطوّر الأنظمة الذكية القادرة على التعلم، التحليل، واتخاذ القرارات باستخدام خوارزميات
+      تعلم الآلة والتعلم العميق، لبناء حلول ذكية مثل الرؤية الحاسوبية، معالجة اللغة، والمساعدات الذكية.
+    </p>
+  </div>
+</div>
+
+
+<div class="specialization-card" data-track="backend-python-developer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>Backend Python Developer</h3>
+    <p>
+      المهندس المسؤول عن بناء الأنظمة الخلفية للتطبيقات والمواقع، يتعامل مع قواعد البيانات، الخوادم، وواجهات الـ APIs
+      لضمان الأداء، الأمان، والكفاءة باستخدام Python وأطرها مثل Django وFlask وFastAPI.
+    </p>
+  </div>
+</div>
+
+<div class="specialization-card" data-track="backend-js">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>Backend JavaScript Developer (Node.js)</h3>
+    <p>
+      المهندس المسؤول عن بناء الأنظمة الخلفية للتطبيقات والمواقع باستخدام JavaScript أو TypeScript، يتعامل مع الخوادم،
+      قواعد البيانات، والـ APIs اللي بترتبط بالـ Frontend لضمان الأداء، الأمان، والكفاءة. يستخدم Node.js وأطر مثل Express.js وNestJS
+      لبناء APIs متقدمة وتطبيقات Real-Time وMicroservices.
+    </p>
+  </div>
+</div>
+
+<div class="specialization-card" data-track="llm-ai-developer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>LLM AI Developer (Large Language Models)</h3>
+    <p>
+      مهندس الـ LLM AI Developer هو الشخص اللي بيطوّر، يدرّب، ويستخدم النماذج اللغوية الضخمة (مثل GPT، Claude، LLaMA)
+      لبناء أنظمة ذكية قادرة على فهم اللغة البشرية وتوليد محتوى ذكي في مجالات مختلفة (برمجة، تحليل، دعم فني، كتابة محتوى...).
+      بيتعامل مع تدريب النماذج، Fine-tuning، Prompt Engineering، وبناء Chatbots وأنظمة توصية وتحليل نصوص.
+      يستخدم أدوات زي LangChain، Hugging Face، OpenAI API، وبيتم دمج النماذج داخل التطبيقات والخدمات.
+    </p>
+  </div>
+</div>
+
+
+<div class="specialization-card" data-track="cyber-security-engineer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>Cyber Security Engineer</h3>
+    <p>
+      مهندس الأمن السيبراني هو الشخص اللي بيحمي الأنظمة، الشبكات، وقواعد البيانات من أي اختراق أو تهديد إلكتروني.
+      دوره الأساسي إنه يبني، يختبر، ويطوّر أنظمة حماية قوية تمنع القراصنة (Hackers) من الوصول غير المصرّح به،
+      ويحافظ على سرّية وسلامة البيانات. بيشتغل على تحليل الثغرات، اختبار الاختراق (Penetration Testing)،
+      تأمين الشبكات والسيرفرات، تشفير البيانات، ومراقبة الأنظمة لمنع أي نشاط مشبوه.
+      بيستخدم أدوات زي Metasploit، Burp Suite، Nmap، Wireshark، Splunk، ويدمج حماية الأنظمة مع السحابة والتطبيقات.
+    </p>
+  </div>
+</div>
+
+
+<div class="specialization-card" data-track="backend-java-developer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>Backend Java Developer</h3>
+    <p>
+      مهندس باك إند جافا هو الشخص اللي بيبني ويطوّر الجزء اللي ورا الكواليس في التطبيقات باستخدام لغة Java وبيئاتها زي Spring.  
+      دوره الأساسي إنه يصمم APIs، يدير قواعد البيانات، يطبق منطق الأعمال، ويضمن إن الأنظمة سريعة، آمنة، وقابلة للصيانة.  
+      بيشتغل على بناء خدمات مستقرة، تحسين الأداء، التعامل مع الرسائل (Kafka/RabbitMQ)، واستخدام السحابة (AWS, GCP, Azure) لنشر التطبيقات الكبيرة والمعقدة.
+    </p>
+  </div>
+</div>
+
+
+
+
+<div class="specialization-card" data-track="machine-learning-engineer">
+  <div class="card-glow-border"></div>
+  <div class="card-content">
+    <h3>Machine Learning Engineer</h3>
+    <p>
+      مهندس تعلم الآلة هو الشخص اللي بيبني ويطوّر أنظمة قادرة على "التعلم من البيانات" بدل ما يتم برمجتها يدويًا. دوره الأساسي إنه يصمم النماذج (Models)، يدربها، ويحوّلها إلى أنظمة ذكية يمكن نشرها في الإنتاج — زي أنظمة التوصية، التنبؤ، والتصنيف.  
+      بيشتغل على تحليل ومعالجة البيانات (Data Preprocessing & Feature Engineering)، تدريب النماذج باستخدام مكتبات زي TensorFlow وPyTorch وScikit-learn، تقييم الأداء، وتحسين دقة النماذج. كما يقوم بنشر النماذج في التطبيقات والخدمات المختلفة ويطبق أفضل ممارسات MLOps لضمان الاستقرار والاعتمادية.
+    </p>
+  </div>
+</div>
+
+
+
+            </div>
+        </main>
+        
+        <div id="not-found-message" style="display: none; text-align:center; font-size: 1.5rem; padding: 50px; color: var(--text-primary);">
+Not Found        </div>
+    </div>
+    
+    <section id="details-view">
+         <div class="details-scroller">
+            <div class="details-content">
+                </div>
+        </div>
+    </section>
+
+    <button id="scrollToTop" class="scroll-to-top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+    <script>
+      
+    document.addEventListener('DOMContentLoaded', function() {
+        const telegramUsername = "B_X_Z7"; 
+        const specializations = {
+            'data-analyst': {
+                content: `
+                    <header class="details-header">
+                        <button class="back-button"><i class="fas fa-times"></i></button>
+                        <h2>Data Analyst / Business Intelligence</h2>
+                    </header>
+                    <div class="details-body">
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-bullseye"></i> تعريف المجال</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><p>محلل البيانات (Data Analyst) أو متخصص ذكاء الأعمال (Business Intelligence Analyst) هو الشخص اللي بيجمع وينظّف ويحلّل البيانات علشان يساعد الشركات تاخد قرارات مبنية على معلومات حقيقية مش تخمين. المجال ده بقى من أكتر المجالات المطلوبة دلوقتي، لإن كل مؤسسة تقريباً بقت محتاجة تفهم أرقامها وسلوك عملاءها وتطوّر قراراتها على أساس تحليلي.</p></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-cogs"></i> أهم المهارات المطلوبة</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>فهم كويس جداً لقواعد البيانات وكتابة استعلامات SQL.</li><li>القدرة على تحليل البيانات الإحصائية وتفسير النتائج.</li><li>مهارات عرض البيانات بشكل بصري جذّاب وواضح (Data Visualization).</li><li>معرفة كويسة بأدوات ذكاء الأعمال زي Power BI وTableau وGoogle Data Studio.</li><li>خبرة في Python أو R لتحليل البيانات (باستخدام مكتبات زي Pandas وNumPy وMatplotlib).</li><li>فهم عملية الـETL (استخراج وتحويل وتحميل البيانات).</li><li>القدرة على تصميم مستودعات البيانات (Data Warehouse) ونماذج الأبعاد (Star Schema / Snowflake).</li><li>فهم أساسيات التحليل التنبؤي وتعلم الآلة.</li><li>التركيز على جودة البيانات وحوكمتها (Data Quality & Governance).</li><li>مهارات تحليل الأعمال وكتابة تقارير احترافية توصل المعلومة ببساطة.</li><li>التفكير التحليلي وربط النتائج بالهدف التجاري مش بالأرقام بس.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-stream"></i> مسار التعلم</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><h4>البداية:</h4><ul><li>تعلم Excel بشكل متقدم (Pivot Tables، VLOOKUP، Conditional Formatting).</li><li>تعلم SQL من الأساسيات: SELECT، JOIN، GROUP BY.</li><li>مقدمة في Power BI أو Tableau علشان تتعلم إزاي تعرض البيانات.</li><li>دراسة مبادئ الإحصاء وتحليل البيانات.</li><li>تطبيق عملي على مشاريع بسيطة من مواقع زي Kaggle.</li></ul><h4>المستوى المتوسط:</h4><ul><li>SQL متقدم (Subqueries، Window Functions، CTE).</li><li>تحليل البيانات باستخدام Python (Pandas، NumPy، Matplotlib، Seaborn).</li><li>تعلم بناء خطوط بيانات (ETL pipelines).</li><li>إنشاء Dashboards تفاعلية واحترافية.</li><li>فهم تصميم نماذج البيانات (Data Modeling).</li><li>دراسة تحليل الأعمال وربط الأرقام بالنتائج التجارية.</li></ul><h4>المستوى المتقدم:</h4><ul><li>Predictive Analytics: تعلم خوارزميات أساسية في Machine Learning.</li><li>التعامل مع البيانات الضخمة (Big Data).</li><li>تعلم أدوات التحليل السحابية (AWS QuickSight، Google BigQuery، Azure Synapse).</li><li>بناء Data Pipelines متكاملة وأتمتة عمليات التحليل.</li><li>تحسين أداء الاستعلامات وقواعد البيانات.</li><li>إدارة جودة البيانات ووضع معايير لحوكمتها.</li><li>تقديم تحليلات استراتيجية للإدارة العليا.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-tools"></i> الأدوات اللي لازم تتقنها</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>Power BI، Tableau، Google Data Studio.</li><li>SQL (MySQL، PostgreSQL، SQL Server).</li><li>Python (Pandas، NumPy، Matplotlib، Seaborn، Scikit-learn).</li><li>أدوات ETL زي Talend، Apache Nifi، Airflow.</li><li>أدوات سحابية زي AWS Redshift، Azure Data Factory، Google BigQuery.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-certificate"></i> الشهادات المقترحة</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>Microsoft Certified: Data Analyst Associate.</li><li>Google Data Analytics Certificate.</li><li>Tableau Desktop Specialist.</li><li>Certified Business Intelligence Professional (CBIP).</li><li>AWS Data Analytics Specialty (لو حابب تتعمّق في السحابة).</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-sitemap"></i> التخصصات الفرعية</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>تحليل تسويقي (Marketing Analytics).</li><li>تحليل مالي (Financial Analytics).</li><li>تحليل منتجات (Product Analytics).</li><li>تحليل العمليات (Operations Analytics).</li><li>تحليل المستخدمين والويب (User & Web Analytics).</li><li>التحليل التنبؤي (Predictive Analytics).</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-chart-line"></i> مسار الوظائف</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><p>Junior Data Analyst → Data Analyst → Senior Data Analyst → BI Developer → BI Architect → Data Scientist → Data Strategy Lead. كل ترقية بتكون نتيجة تراكم خبرة تقنية وفهم أعمق للبيزنس.</p></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-money-bill-wave"></i> الرواتب في مصر</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>Junior: من 15,000 إلى 25,000 جنيه.</li><li>متوسط الخبرة: من 25,000 إلى 45,000 جنيه.</li><li>Senior: من 45,000 إلى 70,000 جنيه.</li><li>BI Developer / Data Scientist: قد يصل لـ 90,000 جنيه أو أكثر.</li></ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-book-open"></i> كتب ومراجع للمذاكرة</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul>
+                        <li><a href="https://www.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1491957662" target="_blank" class="book-link">Python for Data Analysis – Wes McKinney</a></li>
+                        <li><a href="https://www.amazon.com/Data-Science-Business-What-Need/dp/149208077X" target="_blank" class="book-link">Data Science for Business – Provost & Fawcett</a></li>
+                        <li><a href="https://www.amazon.com/Storytelling-Data-Visualization-Business-Professionals/dp/1119002257" target="_blank" class="book-link">Storytelling with Data – Cole Nussbaumer Knaflic</a></li>
+                        <li><a href="https://www.amazon.com/Data-Warehouse-Toolkit-Definitive-Dimensional/dp/1118530802" target="_blank" class="book-link">The Data Warehouse Toolkit – Ralph Kimball</a></li>
+                        <li><a href="https://www.amazon.com/Think-Stats-Probability-Programmers-Statistics/dp/1491957298" target="_blank" class="book-link">Think Stats – Allen B. Downey</a></li>
+                        <li><a href="https://www.amazon.com/Practical-Statistics-Data-Scientists-Python/dp/149207294X" target="_blank" class="book-link">Practical Statistics for Data Scientists – Bruce & Gedeck</a></li>
+                        <li>مواقع زي Coursera وDataCamp وKaggle ممتازة للتطبيق العملي.</li>
+                    </ul></div>
+                    <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-star"></i> خطوات عملية للتميّز</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><ul><li>اشتغل على مشاريع حقيقية وانشرها على GitHub أو LinkedIn.</li><li>ابنِ Portfolio فيه Dashboards وتصورات تفاعلية قوية.</li><li>شارك في مسابقات Kaggle لاكتساب خبرة حقيقية.</li><li>تعلم كل سنة Tool جديدة أو تقنية جديدة.</li><li>ركّز على القيمة اللي بتضيفها تحليلاتك للبيزنس.</li><li>شارك في مجتمعات تحليل البيانات وكن دائم التعلم.</li></ul></div>
+                    <div class="detail-section" id="roadmap-detailed-section"><div class="section-title-wrapper"><h3><i class="fas fa-road"></i> الخطة الدراسية (Roadmap)</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div>
+                        <div class="roadmap-step"><h4>الخطوة الأولى: بناء الأساس (Excel والإحصاء)</h4><p>المدة المقترحة: شهرين. أول خطوة تبدأ تبني الأساس بتاعك، فلازم تتقن Excel كويس جدًا لأنه أول أداة هتتعامل بيها مع البيانات. اتعلم الحاجات المتقدمة فيه زي Pivot Tables، وVLOOKUP، وConditional Formatting، وPower Query. ابدأ تحلل جداول بيانات حقيقية زي بيانات مبيعات أو عملاء من مواقع زي Kaggle علشان تتعود على التفكير التحليلي. في نفس المرحلة دي، راجع أساسيات الإحصاء البسيطة زي المتوسط والوسيط والانحراف المعياري والاحتمالات، لأن دي لغة التحليل اللي هتستخدمها بعد كده.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الثانية: لغة استخراج البيانات (SQL)</h4><p>المدة المقترحة: شهرين. بعد كده خش على SQL، ودي تعتبر أهم لغة في شغل المحلل. ابدأ بالأساسيات: SELECT، WHERE، JOIN، GROUP BY. لما تبقى مرتاح، اتعلم الحاجات المتقدمة زي Subqueries، CTE، Window Functions. جرب تشتغل على أدوات زي MySQL أو PostgreSQL واعمل مشروع بسيط، زي تحليل بيانات مبيعات أو بيانات موظفين. SQL هي اللي هتخليك تقدر تجيب البيانات بنفسك من قواعد البيانات وتجهزها للتحليل.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الثالثة: أدوات العرض البصري (Power BI / Tableau)</h4><p>المدة المقترحة: شهرين. الخطوة اللي بعد كده تكون إنك تتعلم Power BI أو Tableau، ودي الأدوات اللي بتعرض البيانات بشكل بصري تفاعلي. اتعلم إزاي تجيب البيانات من مصادر مختلفة وتبني Data Model بسيط وتعمل Dashboard احترافي يعرض الأرقام بطريقة مفهومة. ركز على إنك متكتفيش بالرسم، لكن تحكي قصة من ورا الأرقام – يعني Dashboard بتشرح واقع الشركة مش مجرد شارتات.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الرابعة: التحليل المتقدم (Python)</h4><p>المدة المقترحة: شهرين. بعدها تبدأ مرحلة Python لتحليل البيانات. اتعلم أساسيات اللغة الأول، وبعد كده اشتغل على مكتبات التحليل المشهورة زي Pandas، NumPy، Matplotlib، Seaborn. جرب تحلل ملفات CSV وتطلع Insights حقيقية زي “إيه أكتر منتج بيحقق أرباح” أو “العميل بيشتري إمتى أكتر”. المرحلة دي هتخليك تبدأ تفكر زي محلل فعلي مش مجرد مستخدم أدوات.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الخامسة: تنظيف البيانات (Data Cleaning)</h4><p>المدة المقترحة: شهر. بعد ما تتمكن من التحليل، لازم تتعلم جزء تنظيف البيانات (Data Cleaning) لأن دي أهم مرحلة في الشغل العملي. هتتعلم إزاي تتعامل مع Missing Values، والأخطاء في الأعمدة، وتوحّد الصيغ. تقدر تستخدم Python أو Power Query أو حتى SQL في الخطوة دي.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة السادسة: هندسة البيانات (ETL)</h4><p>المدة المقترحة: شهر. الخطوة اللي بعد كده هي فهم ETL، ودي عملية نقل وتحويل البيانات (Extract – Transform – Load). يعني إزاي تسحب البيانات من مصدر، تنظفها وتجهزها، وتحطها في قاعدة بيانات أو مستودع بيانات. افهم كمان أدوات زي Apache Airflow أو Talend أو حتى Power BI Dataflows.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة السابعة: تصميم النماذج التحليلية (Data Modeling)</h4><p>المدة المقترحة: شهر. بعد كده خش على تصميم قواعد البيانات التحليلية (Data Modeling & Warehousing). هنا هتفهم يعني إيه Fact وDimension، وإزاي تبني Star Schema. الجزء ده مهم جدًا في شغل الـ BI لأنك بتصمم النموذج اللي بيبني عليه التحليل كله. اقرأ في كتاب “The Data Warehouse Toolkit” لو عايز تفهم الأساس النظري صح.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة الثامنة: التحليل التنبؤي (Predictive Analytics)</h4><p>المدة المقترحة: شهر. بعد ما تبقى فاهم التحليل والتصميم، تبدأ تدخل على مرحلة التحليل التنبؤي (Predictive Analytics). هتتعلم مبادئ بسيطة في الـ Machine Learning زي الانحدار الخطي (Linear Regression) أو الأشجار (Decision Trees). الهدف إنك تفهم إزاي تتوقع المستقبل من خلال البيانات السابقة. مثلاً تتوقع حجم المبيعات الشهر الجاي أو نسبة العملاء اللي ممكن يسيبوا الخدمة.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة التاسعة: التحليل السحابي (Cloud Analytics)</h4><p>المدة المقترحة: شهر. بعد كده وسّع مداركك وتعلم الأساسيات بتاعة التحليل السحابي (Cloud Analytics). اتعرف على أدوات زي Google BigQuery، AWS QuickSight، Azure Synapse. مش لازم تتعمق قوي في الأول، بس تعرف إزاي الشركات الكبيرة بتخزن وتحلل بياناتها على السحابة.</p></div>
+                        <div class="roadmap-step"><h4>الخطوة العاشرة: بناء معرض الأعمال (Portfolio)</h4><p>المدة المقترحة: مستمر. وفي نهاية السنة، لازم تبني Portfolio محترم. جمّع كل المشاريع اللي اشتغلت عليها خلال رحلتك: تحليل Excel، Dashboards في Power BI، سكريبتات Python، تحليل تنبؤي بسيط. انشرهم على GitHub وLinkedIn، واعمل CV قوي يوضح مشاريعك ومهاراتك. ابدأ قدّم على شغل Junior Data Analyst أو BI Analyst، وراجع أسئلة مقابلات SQL وPower BI.</p></div>
+                    </div>
+                    </div>
+                `
+            },
+
+            'Back-End developer (dot-NET)':{
+                content:`
+                  <header class="details-header">
+                    <button class="back-button"><i class="fas fa-times"></i></button>
+                    <h2>dot-NET Developer</h2>
+                </header>
+                <div class="details-body">
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-bullseye"></i> تعريف المجال</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><p>مطور .NET هو الشخص اللي بيستخدم تقنيات Microsoft لتطوير تطبيقات ويب، ديسكتوب، أو موبايل باستخدام لغات زي C# وVB.NET. المنصة دي بتعتبر من أقوى البيئات اللي بتخليك تبني أي نوع من التطبيقات بسهولة، سواء مواقع، أنظمة مؤسسية، أو APIs، بفضل الأدوات المتكاملة والأداء العالي والأمان القوي جدًا.</p></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-fire"></i> ليه .NET مشهورة جدًا؟</h3><a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a></div><p>.NET Core ثم .NET 8 حولتها لمنصة مفتوحة المصدر وسريعة جدًا بتشتغل على Windows وLinux وmacOS. Microsoft بقت تحدثها باستمرار وتضيف مميزات حديثة كل سنة، فبقت المنصة قوية، مستقرة، وحديثة.</p></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-star"></i> مميزات .NET</h3></div><ul>
+                    <li>أداء عالي بفضل الـ CLR وJIT Compiler.</li>
+                    <li>تدعم Web وAPI وDesktop وMobile وCloud.</li>
+                    <li>Open Source ومدعومة رسميًا من Microsoft.</li>
+                    <li>لغة C# سهلة وحديثة جدًا.</li>
+                    <li>تكامل ممتاز مع Azure Cloud.</li>
+                    <li>نظام إدارة حزم قوي (NuGet).</li>
+                    <li>استقرار ومتانة في المشاريع الكبيرة.</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-cogs"></i> أهم المهارات المطلوبة</h3></div><ul>
+                    <li>إتقان C# وفهم الـ OOP.</li>
+                    <li>ASP.NET MVC وASP.NET Core.</li>
+                    <li>Entity Framework وLINQ.</li>
+                    <li>SQL Server وكتابة استعلامات معقدة.</li>
+                    <li>بناء RESTful APIs.</li>
+                    <li>فهم Authentication وAuthorization.</li>
+                    <li>استخدام Git وGitHub.</li>
+                    <li>تطبيق مبادئ SOLID وClean Architecture.</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-stream"></i> مسار التعلم (Roadmap)</h3></div>
+                    <h4>المرحلة الأولى – الأساسيات (1–2 شهر):</h4><ul><li>تعلم C# وفهم الـOOP.</li><li>بناء تطبيقات Console بسيطة.</li><li>تعلّم Clean Code & SOLID.</li></ul>
+                    <h4>المرحلة الثانية – تطوير الويب (2–3 شهور):</h4><ul><li>تعلم HTML، CSS، JS.</li><li>ASP.NET MVC وASP.NET Core.</li></ul>
+                    <h4>المرحلة الثالثة – قواعد البيانات (2 شهر):</h4><ul><li>SQL Server عمليًا.</li><li>Entity Framework Core.</li><li>مشاريع CRUD تطبيقية.</li></ul>
+                    <h4>المرحلة الرابعة – APIs (2 شهر):</h4><ul><li>ASP.NET Core Web API.</li><li>JWT Authentication.</li></ul>
+                    <h4>المرحلة الخامسة – الاحتراف (3–4 شهور):</h4><ul><li>Design Patterns.</li><li>Dependency Injection.</li><li>مشاريع حقيقية + نشر على Azure.</li></ul>
+                </div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-tools"></i> الأدوات المطلوبة</h3></div><ul>
+                    <li>Visual Studio / VS Code</li>
+                    <li>.NET SDK</li>
+                    <li>SQL Server</li>
+                    <li>Postman</li>
+                    <li>Git & GitHub</li>
+                    <li>Azure / IIS</li>
+                    <li>Entity Framework Core</li>
+                    <li>LINQ</li>
+                    <li>Swagger</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-certificate"></i> الشهادات المقترحة</h3></div><ul>
+                    <li>Microsoft Certified: .NET Developer</li>
+                    <li>Microsoft Certified: Azure Developer Associate</li>
+                    <li>MTA: Software Development Fundamentals</li>
+                    <li>Udemy / Coursera ASP.NET Core Courses</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-sitemap"></i> التخصصات الفرعية</h3></div><ul>
+                    <li>Back-End Developer (.NET Core)</li>
+                    <li>Full Stack Developer (.NET + Front-End)</li>
+                    <li>Desktop Developer (WPF / WinForms)</li>
+                    <li>Cloud Developer (Azure + .NET)</li>
+                    <li>Game Developer (Unity + C#)</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-chart-line"></i> مسار الوظائف</h3></div><p>Junior → Mid-Level → Senior → Team Leader → Software Architect → CTO</p></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-money-bill-wave"></i> الرواتب في مصر (2025)</h3></div><ul>
+                    <li>Junior: 12K–20K جنيه.</li>
+                    <li>Mid-Level: 20K–35K جنيه.</li>
+                    <li>Senior: 35K–55K جنيه.</li>
+                    <li>Architect: 60K–70K+ جنيه.</li>
+                    <li>Remote: حتى 3,000$ شهريًا.</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-book-open"></i> كتب ومراجع</h3></div><ul>
+                    <li>C# 12 and .NET 8 – Mark J. Price</li>
+                    <li>Pro ASP.NET Core MVC – Adam Freeman</li>
+                    <li>Clean Code – Robert C. Martin</li>
+                    <li>Design Patterns in C# – Steve Smith</li>
+                    <li>Entity Framework Core in Action – Jon P Smith</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fab fa-youtube"></i> كورسات YouTube</h3></div><ul>
+                    <li>عصام عبد النبي – C# احتراف.</li>
+                    <li>Mahmoud Zohdi – ASP.NET Core بالعربي.</li>
+                    <li>Dot Net Mastery – ASP.NET Core + EF Core.</li>
+                    <li>Programming with Mosh – ASP.NET Core.</li>
+                    <li>FreeCodeCamp – ASP.NET Core Web API.</li>
+                    <li>Ibrahim Taha – .NET وEF Core بالعربي.</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-graduation-cap"></i> كورسات Udemy</h3></div><ul>
+                    <li>Complete C# Masterclass – Denis Panjuta</li>
+                    <li>ASP.NET Core MVC – The Complete Guide – Bhrugen Patel</li>
+                    <li>Complete Guide to ASP.NET Core Web API – Patrick God</li>
+                    <li>Entity Framework Core – Code First – Mosh Hamedani</li>
+                    <li>Clean Architecture with ASP.NET Core – Mosh Hamedani</li>
+                </ul></div>
+
+                <div class="detail-section"><div class="section-title-wrapper"><h3><i class="fas fa-star"></i> خطوات عملية للتميّز</h3></div><ul>
+                    <li>ابنِ مشاريع حقيقية وانشرها على GitHub.</li>
+                    <li>اعمل Portfolio قوي بـ ASP.NET Core.</li>
+                    <li>شارك في مشاريع Open Source.</li>
+                    <li>راجع أسئلة مقابلات C# وASP.NET.</li>
+                    <li>تابع تحديثات Microsoft سنويًا.</li>
+                </ul></div>
+
+                </div>
+            `
+
+            },
+
+            'big-data-engineer': {
+  content: `
+    <header class="details-header">
+      <button class="back-button"><i class="fas fa-times"></i></button>
+      <h2>Big Data Engineer</h2>
+    </header>
+
+    <div class="details-body">
+
+      <div class="detail-section">
+        <h3>تعريف المجال</h3>
+        <p>
+          مهندس الـ Big Data هو الشخص اللي بيبني ويدير الأنظمة اللي بتتعامل مع كميات ضخمة جدًا من البيانات — بيانات أكبر بكتير من إن قواعد البيانات العادية (زي SQL Server أو MySQL) تقدر تتعامل معاها بكفاءة.
+          المهندس ده مسؤول عن جمع البيانات من مصادر مختلفة، تخزينها، وتنظيفها، وتحليلها علشان المؤسسات تقدر تستفيد منها في اتخاذ قرارات مبنية على حقائق وأرقام حقيقية.
+          <br><br>
+          المجال ده بقى مطلوب جدًا بسبب الانفجار في حجم البيانات اللي الشركات بتتعامل معاها — زي بيانات المستخدمين على الإنترنت، المعاملات البنكية، الـ IoT، والسوشيال ميديا.
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>ليه Big Data بقت مشهورة جدًا في وقت قصير؟</h3>
+        <p>
+          السبب الرئيسي هو الكم الهائل من البيانات اللي العالم بقى بينتجها كل ثانية.
+          منصات زي فيسبوك، يوتيوب، وأمازون بتجمع تيرابايتات من البيانات يوميًا، وده خلق احتياج لتقنيات جديدة تقدر:
+          <ul>
+            <li>تخزّن البيانات دي بكفاءة.</li>
+            <li>تعالجها بسرعة.</li>
+            <li>وتستخرج منها Insights مهمة.</li>
+          </ul>
+          كمان ظهور أدوات مفتوحة المصدر زي Hadoop وSpark سهّل جدًا التعامل مع البيانات الضخمة بتكلفة قليلة مقارنة بالأنظمة القديمة.
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>مميزات مجال الـ Big Data</h3>
+        <ul>
+          <li>واحد من أعلى المجالات طلبًا ورواتب في العالم.</li>
+          <li>مجال متنوع جدًا (Data Engineering – Analytics – Machine Learning).</li>
+          <li>التعامل مع أحدث التقنيات وأدوات الذكاء الاصطناعي.</li>
+          <li>فرص قوية للعمل مع شركات ضخمة أو Startups في مجالات مختلفة.</li>
+          <li>بيفتح الطريق لدخول مجالات تانية زي Data Science وAI.</li>
+          <li>مجال دايمًا بيتطور وفيه تحديثات مستمرة.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>أهم الأدوات والتقنيات في المجال</h3>
+        <ul>
+          <li>Hadoop Ecosystem (HDFS, MapReduce, YARN)</li>
+          <li>Apache Spark</li>
+          <li>Apache Flink</li>
+          <li>Kafka</li>
+          <li>Hive / Pig</li>
+          <li>Airflow</li>
+          <li>NoSQL Databases (MongoDB, Cassandra, HBase)</li>
+          <li>Cloud Platforms (AWS, Azure, GCP BigQuery)</li>
+          <li>Python / Scala / Java</li>
+          <li>Docker / Kubernetes</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الفرق بين Spark وMapReduce وFlink</h3>
+        <p>
+          الأنظمة التلاتة دول بيخدموا نفس الهدف — معالجة كميات ضخمة من البيانات — لكن كل واحد ليه طريقته ومميزاته.
+        </p>
+        <h4>1. MapReduce</h4>
+        <p>
+          النظام القديم في Hadoop. مستقر جدًا ومناسب لـ Batch Processing، لكن بطيء لأن كل خطوة لازم تتخزن على الهارد قبل اللي بعدها.
+        </p>
+        <h4>2. Apache Spark</h4>
+        <p>
+          أسرع بـ 100 مرة من MapReduce بفضل In-Memory Processing. سهل الاستخدام ويدعم Batch وStreaming. الأكثر استخدامًا حاليًا.
+        </p>
+        <h4>3. Apache Flink</h4>
+        <p>
+          أحدثهم ومصمم للـ Real-Time Streaming Processing. سريع جدًا ومستقر لكنه أعقد في الإعداد.
+        </p>
+        <p><strong>الخلاصة:</strong>  
+        MapReduce للـ Batch، Spark الأفضل والأشهر، Flink للمعالجة اللحظية.</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>المهارات المطلوبة</h3>
+        <ul>
+          <li>إتقان Python أو Scala.</li>
+          <li>فهم Data Processing وETL Pipelines.</li>
+          <li>SQL وNoSQL Databases.</li>
+          <li>Hadoop وSpark وKafka.</li>
+          <li>Linux وShell Scripting.</li>
+          <li>Cloud Platforms (AWS, Azure, GCP).</li>
+          <li>Data Warehousing (Redshift, BigQuery, Snowflake).</li>
+          <li>Machine Learning Basics (ميزة إضافية).</li>
+          <li>Git/GitHub.</li>
+          <li>Data Modeling وOptimization.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار التعلم (Roadmap)</h3>
+
+        <h4>المرحلة الأولى – الأساسيات (شهر)</h4>
+        <p>تعلم Python، Pandas، NumPy، SQL، Linux Basics.</p>
+        <p><strong>مشروع:</strong> تحليل Dataset كبيرة باستخدام Python وSQL.</p>
+
+        <h4>المرحلة الثانية – التعامل مع البيانات الضخمة (شهرين)</h4>
+        <p>تعلم Hadoop, Hive, Spark, ETL Pipelines.</p>
+        <p><strong>مشروع:</strong> بناء نظام تحليل بيانات كبير باستخدام HDFS + Spark + Hive.</p>
+
+        <h4>المرحلة الثالثة – الـ Streaming (شهرين)</h4>
+        <p>تعلم Kafka, Flink, Airflow, Docker.</p>
+        <p><strong>مشروع:</strong> نظام Streaming حقيقي بربط Kafka مع Spark/Flink.</p>
+
+        <h4>المرحلة الرابعة – الاحتراف والـ Cloud (2-3 شهور)</h4>
+        <p>تعلم AWS/Azure/GCP، NoSQL، CI/CD، Data Lake.</p>
+        <p><strong>مشروع نهائي:</strong> نظام Big Data متكامل من ingestion لعرض Dashboard.</p>
+
+        <h4>المرحلة الخامسة – التطوير المستمر</h4>
+        <p>قراءة Designing Data-Intensive Applications، متابعة Apache Projects، والمشاركة في مجتمعات GitHub.</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>الأدوات اللي لازم تتقنها</h3>
+        <ul>
+          <li>Hadoop, Spark, Flink, Kafka</li>
+          <li>Python / Scala</li>
+          <li>SQL / Hive</li>
+          <li>Airflow</li>
+          <li>Docker & Kubernetes</li>
+          <li>AWS / Azure / GCP</li>
+          <li>Git / GitHub</li>
+          <li>Jupyter Notebook</li>
+          <li>Power BI أو Tableau</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الشهادات المقترحة</h3>
+        <ul>
+          <li>Google Cloud Certified – Data Engineer</li>
+          <li>Microsoft Certified: Azure Data Engineer Associate</li>
+          <li>AWS Certified Data Analytics – Specialty</li>
+          <li>Databricks Certified Spark Developer</li>
+          <li>Cloudera Certified Data Engineer</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>التخصصات الفرعية في المجال</h3>
+        <ul>
+          <li>Big Data Engineer</li>
+          <li>Data Pipeline Engineer</li>
+          <li>Real-Time Data Engineer</li>
+          <li>Data Architect</li>
+          <li>DataOps Engineer</li>
+          <li>Cloud Data Engineer</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار الوظائف</h3>
+        <p>Junior → Mid-Level → Senior → Data Architect → Head of Data → CTO / Data Director</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>الرواتب في مصر (2025)</h3>
+        <ul>
+          <li>Junior: 15,000 – 25,000 جنيه.</li>
+          <li>Mid-Level: 25,000 – 40,000 جنيه.</li>
+          <li>Senior: 40,000 – 60,000 جنيه.</li>
+          <li>Architect / Lead: 65,000 – 80,000 جنيه.</li>
+          <li>Remote: يصل لـ 4,000$ شهريًا أو أكثر.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كتب ومراجع مهمة</h3>
+        <ul>
+          <li>Hadoop: The Definitive Guide – Tom White</li>
+          <li>Learning Spark (2nd Edition) – Jules Damji</li>
+          <li>Stream Processing with Apache Flink – Fabian Hueske</li>
+          <li>Designing Data-Intensive Applications – Martin Kleppmann</li>
+          <li>Data Engineering with Python – Paul Crickard</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات YouTube مجانية</h3>
+        <ul>
+          <li>Codebasics – Data Engineering وBig Data.</li>
+          <li>Simplilearn – Hadoop وSpark للمبتدئين.</li>
+          <li>Telusko – دروس Big Data Tools.</li>
+          <li>Krish Naik – Spark، Kafka، وAirflow.</li>
+          <li>Alex The Analyst – مشاريع عملية.</li>
+          <li>TechWorld with Nana – Docker, Kubernetes, Pipelines.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات Udemy مدفوعة</h3>
+        <ul>
+          <li>The Ultimate Hands-On Hadoop – Frank Kane</li>
+          <li>Apache Spark with Scala – Frank Kane</li>
+          <li>Data Engineering Essentials – Durga Viswanatha</li>
+          <li>Apache Flink – Real Time Data Processing – Sundog Education</li>
+          <li>Data Engineering on Google Cloud – Google Cloud Official</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>خطوات عملية للتميّز في المجال</h3>
+        <ul>
+          <li>ابني مشاريع Big Data حقيقية وانشرها على GitHub.</li>
+          <li>نفّذ Data Pipelines باستخدام Spark وKafka.</li>
+          <li>جرّب العمل على Cloud Platforms.</li>
+          <li>شارك في مشاريع مفتوحة المصدر.</li>
+          <li>اقرأ كتاب Designing Data-Intensive Applications.</li>
+          <li>تابع تحديثات Apache Projects أول بأول.</li>
+          <li>وسّع مهاراتك في Data Science وAI مع الوقت.</li>
+        </ul>
+      </div>
+
+    </div>
+  `
+},
+
+'ai-engineer': {
+    content: `
+        <header class="details-header">
+            <button class="back-button"><i class="fas fa-times"></i></button>
+            <h2>AI Engineer</h2>
+        </header>
+        <div class="details-body">
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-bullseye"></i> تعريف المجال</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                مهندس الذكاء الاصطناعي (AI Engineer) هو الشخص اللي بيبني ويطوّر أنظمة ذكية قادرة على التفكير، والتعلّم، واتخاذ قرارات شبيهة بالبشر.
+                بيشتغل على تصميم وتنفيذ حلول فيها ذكاء حقيقي زي:
+                <ul>
+                    <li>أنظمة التوصية (Recommendation Systems).</li>
+                    <li>المساعدين الصوتيين (زي Siri وAlexa).</li>
+                    <li>الرؤية الحاسوبية (Computer Vision).</li>
+                    <li>فهم اللغة الطبيعية (NLP).</li>
+                    <li>التنبؤ والسلوك الذكي في الأنظمة.</li>
+                </ul>
+                المهندس ده بيربط بين البرمجة، والرياضيات، وعلوم البيانات، والبنية التحتية التقنية علشان يحوّل الـ Models النظرية اللي بيعملها باحثو الـ Machine Learning إلى منتجات حقيقية بتشتغل بكفاءة في بيئة الإنتاج (Production).
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-cogs"></i> ليه AI Engineering بقت مشهورة جدًا في وقت قصير؟</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                لأن العالم بقى معتمد على الذكاء الاصطناعي في كل حاجة — من توصيات الأفلام والمشتريات لحد تحليل الصور الطبية وتشغيل السيارات ذاتية القيادة.
+                الشركات النهارده مش بس عايزة “نماذج تعلم آلي” (ML Models)، لكن عايزة كمان أنظمة إنتاجية ذكية وسريعة وآمنة. وده بالظبط دور مهندس الـ AI اللي بيقدر يحوّل النموذج العلمي لنظام واقعي يستخدمه ملايين الناس يوميًا.
+                كمان انتشار أدوات الذكاء الاصطناعي مفتوحة المصدر زي TensorFlow، PyTorch، Hugging Face، LangChain، وOpenAI APIs سهّل جدًا تطوير أنظمة ذكية بدون تكلفة ضخمة.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-star"></i> مميزات مجال الـ AI Engineering</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>من أكتر المجالات المطلوبة والمرتبات فيها عالية جدًا عالميًا.</li>
+                <li>بيفتح الباب لمجالات ضخمة زي Computer Vision، NLP، وGenerative AI.</li>
+                <li>بيدمج بين البرمجة والهندسة والعلوم، فبيخليك “شامل”.</li>
+                <li>فرص عمل قوية في كل الصناعات: الطب، التعليم، التمويل، الأمن، التجارة الإلكترونية.</li>
+                <li>المجال بيتطور بسرعة رهيبة كل شهر فيه Tools وتقنيات جديدة.</li>
+                <li>بيخليك جزء من المستقبل فعليًا، مش مجرد مستخدم للتكنولوجيا.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-exchange-alt"></i> الفرق بين AI Engineering وMachine Learning</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                رغم إن مجالي الـ AI Engineering وMachine Learning قريبين جدًا من بعض، لكن كل واحد فيهم ليه تركيز ودور مختلف في دورة حياة الذكاء الاصطناعي.
+            </p>
+            <p><strong>مهندس الـ Machine Learning</strong> بيكون تركيزه الأساسي على النماذج نفسها: تحليل البيانات، اختيار الخوارزميات، تدريب الموديل وتحسينه. شغله بيتمحور حوالين “إزاي أخلي الموديل يتعلم من البيانات ويكون دقيق أكتر”.</p>
+            <p><strong>مهندس الـ AI</strong> دوره أوسع: بياخد الموديل الجاهز ويحوله لنظام إنتاجي (APIs، Pipelines، تغليف بـ Docker، نشر على Cloud، مراقبة الأداء بعد النشر). بمعنى تاني: الـ ML Engineer بيبني “العقل”، والـ AI Engineer بيبني “الجسم” اللي يشغّله بشكل مستقر وآمن.</p>
+            <p>الشركات الكبيرة غالبًا بتعيّن النوعين مع بعض: الـ ML Engineer يركز على دقة النموذج، والـ AI Engineer يركز على تحويله لمنتج ذكي حقيقي يشتغل بكفاءة على نطاق واسع.</p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-tools"></i> أهم الأدوات والتقنيات في المجال</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>لغات البرمجة: Python (ممكن كمان C++ أو Java لمشاريع الأداء العالي).</li>
+                <li>أطر الذكاء الاصطناعي: TensorFlow – PyTorch – Keras – Hugging Face Transformers.</li>
+                <li>أدوات MLOps: MLflow – Kubeflow – Airflow – Docker – Kubernetes.</li>
+                <li>واجهات الذكاء الاصطناعي التوليدي: LangChain – OpenAI API – LlamaIndex.</li>
+                <li>قواعد بيانات: SQL / NoSQL (MongoDB, Redis).</li>
+                <li>Cloud Platforms: AWS SageMaker – Azure AI – Google Vertex AI.</li>
+                <li>أدوات النشر: FastAPI – Flask – Streamlit.</li>
+                <li>أدوات مراقبة النماذج: Prometheus – Evidently AI – Neptune.ai.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-user-cog"></i> المهارات المطلوبة</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>إتقان Python بعمق.</li>
+                <li>فهم قوي للرياضيات والإحصاء (Linear Algebra – Probability – Optimization).</li>
+                <li>معرفة بخوارزميات Machine Learning وDeep Learning.</li>
+                <li>بناء ودمج APIs باستخدام FastAPI أو Flask.</li>
+                <li>التعامل مع قواعد البيانات SQL وNoSQL.</li>
+                <li>خبرة في أدوات MLOps وCI/CD.</li>
+                <li>فهم بنية الأنظمة السحابية (AWS, GCP, Azure).</li>
+                <li>التعامل مع مكتبات NLP وComputer Vision.</li>
+                <li>معرفة بأساسيات الأمن في أنظمة الذكاء الاصطناعي.</li>
+                <li>Git/GitHub لتنظيم المشاريع والتعاون.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-stream"></i> مسار التعلم (AI Engineer Roadmap)</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+
+            <h4>المرحلة الأولى – الأساسيات (مدة: شهر ونصف)</h4>
+            <p><strong>الهدف:</strong> فهم البرمجة والرياضيات اللي بيقوم عليها الذكاء الاصطناعي.</p>
+            <ul>
+                <li>اتقن Python كويس جدًا (OOP، NumPy، Pandas، Matplotlib).</li>
+                <li>افهم الإحصاء والاحتمالات والخوارزميات.</li>
+                <li>اتعلم Linear Algebra وCalculus بشكل مبسط.</li>
+                <li>افهم مفهوم الـ Machine Learning وأنواعه (Supervised, Unsupervised, Reinforcement).</li>
+            </ul>
+            <p><strong>مشروع بسيط:</strong> ابني نموذج تنبؤ بأسعار العقارات أو التنبؤ بالطقس باستخدام Python وScikit-Learn.</p>
+
+            <h4>المرحلة الثانية – تعلم الآلة والتعلم العميق (مدة: شهرين)</h4>
+            <ul>
+                <li>اتعلم خوارزميات ML (Regression, Classification, Clustering).</li>
+                <li>اشتغل على مكتبات Scikit-Learn وTensorFlow وPyTorch.</li>
+                <li>افهم الشبكات العصبية (Neural Networks) وCNN وRNN وTransformers.</li>
+                <li>اتعلم استخدام GPU لتسريع التدريب.</li>
+            </ul>
+            <p><strong>مشروع متوسط:</strong> نظام تصنيف صور (مثلاً: التعرف على الوجوه أو الحيوانات).</p>
+
+            <h4>المرحلة الثالثة – بناء الأنظمة الذكية (مدة: شهرين)</h4>
+            <ul>
+                <li>اتعلم Flask أو FastAPI لبناء واجهات الـ AI.</li>
+                <li>تعلم Docker لتغليف المشاريع وتشغيلها على أي سيرفر.</li>
+                <li>جرب نشر النموذج على Cloud (AWS أو GCP).</li>
+                <li>اتعلم MLOps وAirflow لتنظيم Pipeline التدريب والنشر.</li>
+                <li>اتعلم أساسيات LangChain لو بتشتغل على Generative AI أو Chatbots.</li>
+            </ul>
+            <p><strong>مشروع عملي:</strong> ابني Chatbot ذكي يستخدم OpenAI API أو LLM محلي ودمجه مع واجهة ويب.</p>
+
+            <h4>المرحلة الرابعة – التخصص والاحتراف (مدة: 3 شهور)</h4>
+            <p><strong>الهدف:</strong> تتخصص في مجال فرعي داخل AI.</p>
+            <ul>
+                <li>Computer Vision</li>
+                <li>Natural Language Processing (NLP)</li>
+                <li>Generative AI (LLMs, Chatbots)</li>
+                <li>Reinforcement Learning</li>
+                <li>AI for Cloud / Edge Systems</li>
+            </ul>
+            <p><strong>مشروع احترافي:</strong> نظام توصية للأفلام أو مساعد ذكي صوتي أو تطبيق توليد نصوص وصور.</p>
+
+            <h4>المرحلة الخامسة – التطوير المستمر</h4>
+            <ul>
+                <li>اقرأ كتاب “Deep Learning” – Ian Goodfellow.</li>
+                <li>تابع مجتمع Hugging Face وOpenAI وGoogle AI.</li>
+                <li>شارك في Kaggle Competitions.</li>
+                <li>اطّلع على الأبحاث الحديثة (arXiv).</li>
+                <li>اشتغل على مشاريع مفتوحة المصدر.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-tools"></i> التخصصات الفرعية</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Machine Learning Engineer</li>
+                <li>Deep Learning Engineer</li>
+                <li>NLP Engineer</li>
+                <li>Computer Vision Engineer</li>
+                <li>Generative AI Engineer</li>
+                <li>MLOps Engineer</li>
+                <li>AI Research Engineer</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-chart-line"></i> مسار الوظائف</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>Junior AI Engineer → Mid-Level → Senior → AI Architect → Head of AI → CTO / Chief AI Officer</p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-money-bill-wave"></i> الرواتب في مصر (2025)</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Junior: من 18,000 إلى 28,000 جنيه شهريًا.</li>
+                <li>Mid-Level: من 30,000 إلى 45,000 جنيه.</li>
+                <li>Senior: من 50,000 إلى 70,000 جنيه.</li>
+                <li>Architect / Lead: من 75,000 إلى 90,000 جنيه.</li>
+                <li>المهندسين اللي بيشتغلوا Remote لشركات عالمية ممكن يوصل دخلهم لـ 5,000 دولار شهريًا أو أكتر.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-book-open"></i> كتب ومراجع مهمة</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Deep Learning – Ian Goodfellow.</li>
+                <li>Hands-On Machine Learning with Scikit-Learn & TensorFlow – Aurélien Géron.</li>
+                <li>Designing Machine Learning Systems – Chip Huyen.</li>
+                <li>Building Machine Learning Pipelines – Hannes Hapke.</li>
+                <li>Generative Deep Learning – David Foster.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-video"></i> كورسات قوية على YouTube</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Krish Naik – شروحات عملية في AI وMLOps.</li>
+                <li>Codebasics – أساسيات الذكاء الاصطناعي وتطبيقاته.</li>
+                <li>Sentdex – كورسات PyTorch وTensorFlow.</li>
+                <li>Deeplearning.ai (Andrew Ng) – كورسات من جامعة ستانفورد.</li>
+                <li>TechWorld with Nana – شروحات MLOps وDocker وCI/CD.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-graduation-cap"></i> كورسات قوية على Udemy</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>“Deep Learning A-Z” – Kirill Eremenko.</li>
+                <li>“Machine Learning, Data Science and Deep Learning with Python” – Sundog Education.</li>
+                <li>“MLOps: Deploy Machine Learning Models at Scale” – DataTalks.</li>
+                <li>“Generative AI with LangChain & OpenAI API” – Tomi G.</li>
+                <li>“TensorFlow Developer Certificate Preparation” – Zero to Mastery.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-star"></i> خطوات عملية للتميّز في المجال</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>نفّذ مشاريع AI حقيقية وانشرها على GitHub.</li>
+                <li>ابني Chatbots، Recommendation Systems، أو Vision Models بنفسك.</li>
+                <li>اتقن MLOps وCI/CD للنشر الاحترافي.</li>
+                <li>اشتغل على Cloud Platforms فعلية.</li>
+                <li>شارك في Kaggle Competitions.</li>
+                <li>تابع تحديثات الذكاء الاصطناعي أسبوعيًا.</li>
+                <li>اقرا أبحاث جديدة وجرّب تطبيقها عمليًا.</li>
+            </ul>
+        </div>
+
+        </div>
+    `
+},
+
+'backend-python-developer': {
+    content: `
+        <header class="details-header">
+            <button class="back-button"><i class="fas fa-times"></i></button>
+            <h2>Backend Python Developer</h2>
+        </header>
+        <div class="details-body">
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-bullseye"></i> تعريف المجال</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                مهندس Backend Python هو الشخص اللي بيبني ويطوّر الجزء اللي ورا الكواليس في أي تطبيق أو موقع ويب، يعني اللي بيتعامل مع البيانات، قواعد البيانات، الخوادم، وAPIs، بحيث يشتغل التطبيق بكفاءة وأمان.
+                بيشتغل على بناء حلول تشمل:
+                <ul>
+                    <li>APIs للتواصل بين الواجهات الأمامية والخلفية.</li>
+                    <li>إدارة قواعد البيانات (SQL وNoSQL).</li>
+                    <li>معالجة البيانات والأعمال المنطقية (Business Logic).</li>
+                    <li>أنظمة المصادقة والتفويض (Authentication & Authorization).</li>
+                    <li>تحسين الأداء وضمان استقرار التطبيقات.</li>
+                </ul>
+                المهندس ده بيربط بين البرمجة، قواعد البيانات، وأطر العمل علشان يحوّل الفكرة أو التصميم لنظام Backend متكامل يشتغل بشكل مستقر وسريع.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-cogs"></i> ليه Backend Python Developer مشهور جدًا؟</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                لأن معظم التطبيقات والمواقع الحديثة محتاجة خوادم قوية وقابلة للتوسع. الشركات النهارده مش بس عايزة Frontend جذاب، لكن عايزة Backend متين يقدر يتحمل ملايين المستخدمين، ويضمن أمان البيانات، ويقدر يتوسع مع زيادة الاستخدام.
+                Python بقت مشهورة جدًا في الـ Backend لأنها سهلة، قوية، وبتدعم مكتبات وأطر عمل قوية زي Django وFlask وFastAPI.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-star"></i> مميزات مجال Backend Python</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>من أكتر المجالات المطلوبة عالميًا ومحليًا.</li>
+                <li>رواتب جيدة خصوصًا مع الخبرة في Cloud وMLOps وAPIs.</li>
+                <li>فرصة العمل على مشاريع ضخمة ومتنوعة.</li>
+                <li>المهارات بتفتح أبواب للـ Full Stack وDevOps.</li>
+                <li>تطور مستمر مع ظهور تقنيات Cloud وMicroservices وServerless.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-exchange-alt"></i> الفرق بين Backend Python وFront-End / Full Stack</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                مهندس الـ Frontend بيشتغل على شكل ومظهر الموقع وتجربة المستخدم.
+                مهندس الـ Backend Python بيشتغل على:
+                <ul>
+                    <li>قواعد البيانات والخوادم.</li>
+                    <li>APIs وربطها بالـ Frontend.</li>
+                    <li>المعالجة الخلفية للبيانات.</li>
+                    <li>تحسين الأداء والأمان.</li>
+                </ul>
+                مهندس الـ Full Stack بيجمع الاثنين مع بعض: بيشتغل على Frontend وBackend معًا، لكن التركيز الأكبر غالبًا بيكون على حل المشاكل على كل المستويات.
+            </p>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-tools"></i> أهم الأدوات والتقنيات في المجال</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>لغات البرمجة: Python (أساسية)، أحيانًا Java أو Node.js.</li>
+                <li>أطر العمل: Django – Flask – FastAPI – Tornado.</li>
+                <li>قواعد البيانات: PostgreSQL, MySQL, MongoDB, Redis.</li>
+                <li>أدوات الـ API: REST – GraphQL – gRPC.</li>
+                <li>التطوير والنشر: Docker – Kubernetes – CI/CD (GitHub Actions، GitLab CI).</li>
+                <li>Cloud Platforms: AWS, GCP, Azure.</li>
+                <li>مراقبة وأداء: Prometheus – Grafana – Sentry.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-user-cog"></i> المهارات المطلوبة</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>إتقان Python بعمق (OOP, Asyncio).</li>
+                <li>فهم قواعد البيانات SQL وNoSQL.</li>
+                <li>بناء APIs باستخدام Flask أو FastAPI أو Django.</li>
+                <li>فهم أساسي لـ Cloud وDeployment.</li>
+                <li>معرفة بنظام المصادقة والتفويض (Auth, JWT, OAuth).</li>
+                <li>خبرة بـ Docker وCI/CD.</li>
+                <li>Git/GitHub لإدارة المشاريع والتعاون.</li>
+                <li>أساسيات الأمان وحماية البيانات.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-stream"></i> مسار التعلم (Backend Python Roadmap)</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+
+            <h4>المرحلة الأولى – الأساسيات (مدة: شهر ونصف)</h4>
+            <p>الهدف: فهم Python وقواعد البيانات الأساسية.</p>
+            <ul>
+                <li>اتقن Python (OOP, Modules, File Handling).</li>
+                <li>افهم SQL وNoSQL بشكل جيد.</li>
+                <li>تعلم أساسيات HTTP وAPIs.</li>
+                <li>افهم مفاهيم البرمجة الغير متزامنة (Async Programming).</li>
+            </ul>
+            <p><strong>مشروع بسيط:</strong> ابني API صغير لإدارة مهام (To-Do List) وتخزين البيانات في SQLite أو MongoDB.</p>
+
+            <h4>المرحلة الثانية – الأطر وAPIs (مدة: شهرين)</h4>
+            <ul>
+                <li>اتعلم Flask أو FastAPI كويس جدًا.</li>
+                <li>افهم RESTful APIs وGraphQL.</li>
+                <li>تعلم Authentication وAuthorization (JWT).</li>
+                <li>افهم Middleware وException Handling.</li>
+            </ul>
+            <p><strong>مشروع متوسط:</strong> نظام تسجيل مستخدمين مع CRUD باستخدام FastAPI وPostgreSQL.</p>
+
+            <h4>المرحلة الثالثة – أنظمة الإنتاج والنشر (مدة: شهرين)</h4>
+            <ul>
+                <li>اتعلم Docker وContainerization.</li>
+                <li>تعلم نشر التطبيقات على Cloud (AWS, GCP, Azure).</li>
+                <li>افهم CI/CD وGitHub Actions.</li>
+                <li>تعلم Monitoring باستخدام Sentry وPrometheus.</li>
+            </ul>
+            <p><strong>مشروع عملي:</strong> ابني تطبيق Backend كامل وقم بنشره على AWS مع Docker.</p>
+
+            <h4>المرحلة الرابعة – التخصص والاحتراف (مدة: 3 شهور)</h4>
+            <p>الهدف: التخصص في مجال فرعي داخل Backend.</p>
+            <ul>
+                <li>Backend APIs & Microservices</li>
+                <li>Cloud & Serverless Backend</li>
+                <li>Data Engineering & ETL Pipelines</li>
+                <li>High Performance Systems</li>
+            </ul>
+            <p><strong>مشروع احترافي:</strong> بناء نظام تجارة إلكترونية متكامل Backend مع Authentication وAPIs ونشره على Cloud.</p>
+
+            <h4>المرحلة الخامسة – التطوير المستمر</h4>
+            <ul>
+                <li>اقرأ مستندات Django, FastAPI, وPython.</li>
+                <li>تابع مجتمعات Stack Overflow وReddit وGitHub.</li>
+                <li>شارك في مشاريع مفتوحة المصدر.</li>
+                <li>تعلم أدوات جديدة في Cloud وMLOps وMicroservices.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-money-bill-wave"></i> الرواتب في مصر</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Junior: من 12,000 إلى 20,000 جنيه شهريًا.</li>
+                <li>Mid-Level: من 22,000 إلى 35,000 جنيه.</li>
+                <li>Senior: من 40,000 إلى 55,000 جنيه.</li>
+                <li>Lead / Architect: من 60,000 إلى 80,000 جنيه.</li>
+                <li>Remote لشركات عالمية: ممكن يوصل لـ 4,000$ شهريًا أو أكثر.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-book-open"></i> كتب ومراجع مهمة</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Python Crash Course – Eric Matthes.</li>
+                <li>Flask Web Development – Miguel Grinberg.</li>
+                <li>FastAPI Documentation & Tutorials.</li>
+                <li>Designing Data-Intensive Applications – Martin Kleppmann.</li>
+                <li>High Performance Python – Micha Gorelick.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-video"></i> كورسات قوية على YouTube</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>الزيرو – أساسيات بايثون.</li>
+                <li>Codebasics – Python Backend & APIs.</li>
+                <li>Tech With Tim – Python & Flask.</li>
+                <li>FreeCodeCamp – Full Python Backend Course.</li>
+                <li>Traversy Media – REST APIs with Python.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-graduation-cap"></i> كورسات مميزة على Udemy</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>Python and Django Full Stack Web Developer Bootcamp – Jose Portilla.</li>
+                <li>FastAPI: The Complete Guide – Patrick Kennedy.</li>
+                <li>Python REST APIs with Flask and FastAPI – Packt.</li>
+                <li>Advanced Python Backend & Deployment – Andrei Neagoie.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-star"></i> خطوات عملية للتميّز</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <ul>
+                <li>نفّذ مشاريع Backend حقيقية وانشرها على GitHub.</li>
+                <li>ابني APIs متقدمة وقواعد بيانات معقدة.</li>
+                <li>اتعلم Docker وCloud Deployment وCI/CD.</li>
+                <li>شارك في مشاريع Open Source واطّلع على كود مشاريع حقيقية.</li>
+                <li>تابع تحديثات Python وBackend أسبوعيًا.</li>
+            </ul>
+        </div>
+
+        <div class="detail-section">
+            <div class="section-title-wrapper">
+                <h3><i class="fas fa-code-branch"></i> الفرق بين Flask وDjango</h3>
+                <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+            </div>
+            <p>
+                فريموركي Flask وDjango هما أشهر أطر العمل في تطوير الـ Backend باستخدام Python، لكن كل واحد فيهم ليه فلسفة واستخدام مختلف.
+            </p>
+
+            <h4>أولاً: Django</h4>
+            <p>
+                Django بيتوصف إنه “فريمورك شامل” (Full-Stack Framework)، لأنه بييجي بكل حاجة جاهزة تقريبًا لبناء مشروع متكامل: ORM، نظام مصادقة، Admin Panel، إدارة الجلسات، والـ Security built-in.
+                مناسب للمشاريع الكبيرة والمعقدة اللي محتاجة تنظيم وهيكل واضح.
+            </p>
+
+            <h4>ثانيًا: Flask</h4>
+            <p>
+                Flask هو “Microframework” بسيط ومرن؛ بيقدملك الأساسيات وانت تختار الباقي. ممتاز للمشاريع الصغيرة والمتوسطة أو لو بتحب تحكم كامل في كل مكوّنات المشروع.
+                مناسب للـ REST APIs والتطبيقات الخفيفة.
+            </p>
+
+            <h4>الخلاصة</h4>
+            <p>
+                استخدم Django لما تكون بتبني مشروع ضخم أو مؤسسة تحتاج كل حاجة جاهزة من أول يوم.
+                استخدم Flask لما تكون عايز خفة ومرونة أو بتبني APIs أو مشاريع تجريبية.
+                FastAPI خيار ممتاز لو محتاج أداء عالي ودعم لـ async وType Hints.
+            </p>
+        </div>
+
+        </div>
+    `
+},
+
+'backend-js': {
+    content: `
+        <header class="details-header">
+            <button class="back-button"><i class="fas fa-times"></i></button>
+            <h2>Backend JavaScript Developer (Node.js)</h2>
+        </header>
+        <div class="details-body">
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-bullseye"></i> تعريف المجال</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <p>مهندس الـ Backend JavaScript (Node.js) هو الشخص اللي بيبني الجزء الخلفي من التطبيقات باستخدام JavaScript أو TypeScript، وبيتعامل مع الخوادم، قواعد البيانات، والـ APIs اللي بتربط الـ Frontend بالـ Backend. هو المسؤول عن إن التطبيق يشتغل بكفاءة في الخلفية، يتعامل مع البيانات، ويخدم ملايين الطلبات في الثانية لو النظام كبير.</p>
+                <p>بيشتغل على:</p>
+                <ul>
+                    <li>بناء APIs وخدمات REST وGraphQL.</li>
+                    <li>إدارة قواعد البيانات (SQL وNoSQL).</li>
+                    <li>معالجة الطلبات والـ Business Logic.</li>
+                    <li>التحكم في الجلسات (Sessions) والمصادقة (Auth).</li>
+                    <li>إدارة التخزين والكاش (Cache).</li>
+                    <li>تحسين الأداء وتوزيع الحمل (Load Balancing).</li>
+                </ul>
+            </div>
+            
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-cogs"></i> ليه المجال مشهور جدًا؟</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <p>لأن JavaScript بقت اللغة الوحيدة اللي تقدر تستخدمها في الـ Frontend وكمان في الـ Backend، وده خلاها اللغة المفضلة لأي فريق تطوير بيحب يوحد لغته في كل أجزاء المشروع. Node.js منتشرة جدًا في الشركات الناشئة والمشاريع اللي عايزة سرعة في التطوير وقابلية توسّع كبيرة.</p>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-stream"></i> مميزات المجال</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <ul>
+                    <li>لغة واحدة للـ Frontend والـ Backend = سرعة في التعلم والتطوير.</li>
+                    <li>أداء عالي جدًا بسبب Event Loop وAsynchronous I/O.</li>
+                    <li>مجتمع ضخم ومكتبات جاهزة في npm لأي حاجة تقريبًا.</li>
+                    <li>مطلوب جدًا في الشركات اللي بتبني تطبيقات Web وMobile حديثة.</li>
+                    <li>مناسب جدًا لتطبيقات Real-time (شات، ألعاب، بث مباشر).</li>
+                    <li>بيأهلك تبقى Full Stack بسرعة كبيرة.</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-tools"></i> أهم الأدوات والتقنيات</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <ul>
+                    <li>اللغة الأساسية: JavaScript / TypeScript</li>
+                    <li>البيئة: Node.js</li>
+                    <li>أطر العمل: Express.js – NestJS – Fastify – Koa</li>
+                    <li>قواعد البيانات: SQL (PostgreSQL – MySQL)، NoSQL (MongoDB – Redis – Firebase)</li>
+                    <li>APIs: REST – GraphQL – WebSockets</li>
+                    <li>DevOps: Docker – Kubernetes – GitHub Actions – CI/CD</li>
+                    <li>Cloud: AWS – GCP – Azure</li>
+                    <li>المراقبة: PM2 – Winston – Datadog – Grafana</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-cogs"></i> المهارات المطلوبة</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <ul>
+                    <li>فهم عميق للـ JavaScript وTypeScript.</li>
+                    <li>إتقان Express.js أو NestJS.</li>
+                    <li>فهم Asynchronous Programming والـ Event Loop.</li>
+                    <li>التعامل مع قواعد البيانات (ORM زي Sequelize أو Prisma).</li>
+                    <li>خبرة في تصميم APIs آمنة وسريعة.</li>
+                    <li>معرفة أساسية بـ Docker وCloud Deployment.</li>
+                    <li>التعامل مع Git وGitHub.</li>
+                    <li>معرفة بأمان التطبيقات (JWT, CORS, CSRF).</li>
+                    <li>Performance Optimization.</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-stream"></i> مسار التعلم (Roadmap)</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+
+                <h4>المرحلة الأولى – الأساسيات (شهر ونصف)</h4>
+                <ul>
+                    <li>إتقان JavaScript (ES6+, OOP, Async/Await).</li>
+                    <li>فهم HTTP وREST APIs.</li>
+                    <li>تعلم أساسيات Node.js وnpm.</li>
+                    <li>التعامل مع قواعد البيانات (MongoDB / PostgreSQL).</li>
+                </ul>
+                <p>🔹 مشروع بسيط: API لإدارة Tasks (To-Do List) بقاعدة بيانات MongoDB وExpress.</p>
+
+                <h4>المرحلة الثانية – أطر العمل وAPIs (شهرين)</h4>
+                <ul>
+                    <li>تعلم Express.js بعمق.</li>
+                    <li>RESTful APIs وGraphQL.</li>
+                    <li>Authentication وAuthorization (JWT, OAuth2).</li>
+                    <li>تنظيم الكود باستخدام MVC أو Clean Architecture.</li>
+                    <li>التعامل مع الملفات، Sessions، Cookies.</li>
+                </ul>
+                <p>🔹 مشروع متوسط: نظام تسجيل مستخدمين مع Login وCRUD للبيانات باستخدام Express.js وMongoDB.</p>
+
+                <h4>المرحلة الثالثة – الإنتاج والنشر (شهرين)</h4>
+                <ul>
+                    <li>تعلم Docker وContainerization.</li>
+                    <li>استخدام PM2 وNGINX لإدارة السيرفر.</li>
+                    <li>نشر المشروع على AWS أو Render أو Vercel.</li>
+                    <li>تعلم CI/CD وGitHub Actions.</li>
+                    <li>إضافة Logging وMonitoring.</li>
+                </ul>
+                <p>🔹 مشروع عملي: API لإدارة منتجات ومتجر إلكتروني بسيط مع Authentication ونشره على Cloud.</p>
+
+                <h4>المرحلة الرابعة – التخصص والاحتراف (3 شهور)</h4>
+                <ul>
+                    <li>Real-Time Systems (WebSockets, Socket.io).</li>
+                    <li>Microservices & Serverless Architecture.</li>
+                    <li>Scalable Cloud Backends (AWS Lambda, Docker Swarm).</li>
+                    <li>API Design & Performance Engineering.</li>
+                </ul>
+                <p>🔹 مشروع احترافي: بناء نظام تجارة إلكترونية Backend كامل بـ NestJS، قاعدة بيانات PostgreSQL، مصادقة JWT، ورفع المشروع على AWS.</p>
+
+                <h4>المرحلة الخامسة – التطوير المستمر</h4>
+                <ul>
+                    <li>تابع تحديثات Node.js وECMAScript.</li>
+                    <li>اقرأ Docs لـ Express وNestJS وTypeScript.</li>
+                    <li>شارك في مشاريع مفتوحة المصدر على GitHub.</li>
+                    <li>تابع مجتمعات Reddit وDiscord الخاصة بـ Node.js.</li>
+                    <li>اتعلم أدوات جديدة زي Deno وBun.</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-sitemap"></i> مسار الوظائف</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <p>Junior Node.js Developer → Mid-Level → Senior → Lead → Backend Architect → CTO</p>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-money-bill-wave"></i> الرواتب في مصر (2025)</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <ul>
+                    <li>Junior: من 10,000 إلى 18,000 جنيه.</li>
+                    <li>Mid-Level: من 20,000 إلى 30,000 جنيه.</li>
+                    <li>Senior: من 35,000 إلى 50,000 جنيه.</li>
+                    <li>Lead / Architect: من 55,000 إلى 75,000 جنيه.</li>
+                    <li>Remote لشركات عالمية: 3,000–5,000 دولار.</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-book-open"></i> كتب ومراجع مهمة</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <ul>
+                    <li>“Node.js Design Patterns” – Mario Casciaro</li>
+                    <li>“You Don’t Know JS” – Kyle Simpson</li>
+                    <li>“Mastering Express.js” – Azat Mardan</li>
+                    <li>“Designing Microservices with Node.js” – Packt</li>
+                    <li>“High Performance Browser Networking” – Ilya Grigorik</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-star"></i> خطوات عملية للتميّز</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+                <ul>
+                    <li>نفّذ مشاريع Backend قوية بـ Node.js وExpress أو NestJS.</li>
+                    <li>اربط الـ APIs بتطبيق Frontend أو موبايل فعلي.</li>
+                    <li>تعلم Docker وCloud Deployment.</li>
+                    <li>شارك في مشاريع Open Source.</li>
+                    <li>اشتغل على مشاريع Real-time وMicroservices.</li>
+                    <li>تابع تحديثات JavaScript وNode.js دائمًا.</li>
+                </ul>
+            </div>
+
+            <div class="detail-section">
+                <div class="section-title-wrapper">
+                    <h3><i class="fas fa-cogs"></i> الفرق بين Express.js وNestJS</h3>
+                    <a href="https://t.me/${telegramUsername}" target="_blank" class="telegram-contact"><i class="fab fa-telegram"></i> تواصل</a>
+                </div>
+
+                <h4>Express.js</h4>
+                <ul>
+                    <li>سهل وبسيط، مناسب للمشاريع الصغيرة والمتوسطة.</li>
+                    <li>مرن جدًا، لكن التنظيم بالكامل على المطور.</li>
+                    <li>خدمات REST APIs بسرعة.</li>
+                    <li>دعم TypeScript يدوي.</li>
+                </ul>
+
+                <h4>NestJS</h4>
+                <ul>
+                    <li>مبني على TypeScript ومنظم جدًا، مناسب للمشاريع الكبيرة.</li>
+                    <li>Modules, Controllers, Services لتسهيل التوسع والصيانة.</li>
+                    <li>يدعم Microservices، GraphQL وWebSockets.</li>
+                    <li>منحنى تعلم أعلى وأبطأ في الإعداد الأولي.</li>
+                </ul>
+            </div>
+        </div>
+    `
+},
+
+
+'llm-ai-developer': {
+  content: `
+    <header class="details-header">
+      <button class="back-button"><i class="fas fa-times"></i></button>
+      <h2>LLM AI Developer</h2>
+    </header>
+
+    <div class="details-body">
+
+      <div class="detail-section">
+        <h3>تعريف المجال</h3>
+        <p>
+          مهندس LLM AI Developer هو الشخص اللي بيطوّر، يدرّب، ويستخدم النماذج اللغوية الضخمة (Large Language Models) زي GPT وClaude وLLaMA لبناء أنظمة ذكية قادرة على فهم اللغة البشرية وتوليد نصوص ذكية في مجالات مختلفة (برمجة، تحليل، دعم فني، كتابة محتوى).
+          <br><br>
+          هو المسؤول عن:
+          <ul>
+            <li>تدريب النماذج أو تخصيصها (Fine-tuning / Prompt Engineering).</li>
+            <li>بناء أنظمة تعتمد على الذكاء الاصطناعي التوليدي (Generative AI).</li>
+            <li>دمج LLMs داخل التطبيقات والخدمات.</li>
+            <li>تحليل البيانات النصية واستخراج المعرفة منها.</li>
+            <li>تحسين أداء النماذج وضبطها حسب الاستخدام.</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>ليه مجال LLM AI بقى مهم جدًا؟</h3>
+        <p>
+          لأن الـ LLMs غيرت طريقة بناء الأنظمة الذكية بالكامل. بدل ما تكتب خوارزميات لكل مهمة، النموذج اللغوي يفهم اللغة ويولّد محتوى ذكي.
+          <br><br>
+          الشركات تقدر:
+          <ul>
+            <li>تبني منتجات أسرع بذكاء اصطناعي جاهز.</li>
+            <li>تطور روبوتات محادثة متقدمة جدًا.</li>
+            <li>تحلل بيانات ضخمة بلغة طبيعية.</li>
+            <li>تستفيد من قدرات توليد المحتوى، الكود، وحتى الصور.</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>مميزات مجال LLM AI</h3>
+        <ul>
+          <li>مطلوب بشدة في الشركات التقنية والبحثية.</li>
+          <li>بيجمع بين البرمجة، الذكاء الاصطناعي، وتحليل اللغة.</li>
+          <li>تقدر تبني منتجات تجارية قوية جدًا بسرعة.</li>
+          <li>أدوات جاهزة ومفتوحة المصدر زي OpenAI API وHugging Face.</li>
+          <li>مجال قابل للتطور اللامتناهي — كل شهر فيه ابتكار جديد.</li>
+          <li>بيفتح الباب للشغل في شركات عالمية عن بُعد.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الفرق بين LLM AI و Data Science / Machine Learning</h3>
+        <table>
+          <tr>
+            <th>المقارنة</th>
+            <th>LLM AI Developer</th>
+            <th>Data Scientist</th>
+            <th>ML Engineer</th>
+          </tr>
+          <tr>
+            <td>التركيز</td>
+            <td>نماذج لغوية ضخمة وتوليد النصوص</td>
+            <td>تحليل البيانات واستخراج Insights</td>
+            <td>بناء وتدريب نماذج تعلم الآلة</td>
+          </tr>
+          <tr>
+            <td>الأدوات</td>
+            <td>GPT, LLaMA, LangChain, OpenAI API</td>
+            <td>Pandas, NumPy, Scikit-learn</td>
+            <td>TensorFlow, PyTorch</td>
+          </tr>
+          <tr>
+            <td>الهدف</td>
+            <td>بناء أنظمة ذكية تفهم اللغة</td>
+            <td>تحليل البيانات واستخراج Insights</td>
+            <td>تحسين خوارزميات الذكاء الاصطناعي</td>
+          </tr>
+          <tr>
+            <td>المخرجات</td>
+            <td>محادثات، محتوى، تلخيص، كود</td>
+            <td>تقارير، تنبؤات</td>
+            <td>نماذج ذكاء دقيقة الأداء</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="detail-section">
+        <h3>أهم الأدوات والتقنيات في المجال</h3>
+        <ul>
+          <li>Python, TypeScript, JavaScript</li>
+          <li>LangChain, Hugging Face, OpenAI SDK, Transformers, LlamaIndex</li>
+          <li>OpenAI API, Anthropic, Google Gemini, Mistral, Ollama</li>
+          <li>Jupyter, VS Code, Google Colab</li>
+          <li>PyTorch, TensorFlow, DeepSpeed, LoRA, PEFT</li>
+          <li>Pinecone, Weaviate, ChromaDB, FAISS</li>
+          <li>AWS, GCP, Azure, Docker, FastAPI, Streamlit</li>
+          <li>Weights & Biases, MLflow, TensorBoard</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>المهارات المطلوبة</h3>
+        <ul>
+          <li>فهم عميق للذكاء الاصطناعي ومعالجة اللغة الطبيعية (NLP)</li>
+          <li>إتقان Python وAPI Integration</li>
+          <li>معرفة بـ LangChain وHugging Face</li>
+          <li>خبرة في Fine-tuning وPrompt Engineering</li>
+          <li>فهم Transformers وTokenization</li>
+          <li>التعامل مع Vector Databases</li>
+          <li>أساسيات MLOps وDeployment</li>
+          <li>تحليل بيانات نصية وضبط أداء النماذج</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار التعلم (Roadmap)</h3>
+        <h4>المرحلة الأولى – الأساسيات (شهرين)</h4>
+        <ul>
+          <li>Python, NumPy, Pandas</li>
+          <li>أساسيات Machine Learning وNLP</li>
+          <li>مكتبة Transformers من Hugging Face</li>
+          <li>تجربة OpenAI API وLangChain</li>
+        </ul>
+        <p><strong>مشروع:</strong> Chatbot بسيط يجاوب على الأسئلة باستخدام OpenAI API</p>
+
+        <h4>المرحلة الثانية – النماذج والـ APIs (شهرين)</h4>
+        <ul>
+          <li>بناء Chatbot ذكي باستخدام LangChain وFastAPI</li>
+          <li>استخدام Embeddings وVector Databases</li>
+          <li>Fine-tuning وPrompt Engineering</li>
+          <li>تحليل النصوص (Summarization, Sentiment Analysis)</li>
+        </ul>
+        <p><strong>مشروع:</strong> نظام أسئلة وأجوبة ذكي متصل بمستندات PDF (RAG System)</p>
+
+        <h4>المرحلة الثالثة – الإنتاج والنشر (شهرين)</h4>
+        <ul>
+          <li>Docker وCloud Deployment</li>
+          <li>Logging وMonitoring</li>
+          <li>ربط الـ LLM بواجهة مستخدم (React / Streamlit)</li>
+          <li>CI/CD وGitHub Actions</li>
+        </ul>
+        <p><strong>مشروع:</strong> مساعد ذكي للشركة يجيب على أسئلة العملاء من قاعدة معرفة داخلية</p>
+
+        <h4>المرحلة الرابعة – التخصص والاحتراف (3 شهور)</h4>
+        <ul>
+          <li>اختيار تخصص: Fine-tuning, RAG, Multi-agent Systems, AI Automation, AI Integration</li>
+        </ul>
+        <p><strong>مشروع:</strong> نظام ذكاء اصطناعي متكامل لفريق دعم فني يستخدم LLM وRAG في الوقت الحقيقي</p>
+
+        <h4>المرحلة الخامسة – التطوير المستمر</h4>
+        <ul>
+          <li>متابعة تحديثات OpenAI وHugging Face</li>
+          <li>قراءة أبحاث LLMs الحديثة</li>
+          <li>تجربة أدوات جديدة مثل Ollama وMistral</li>
+          <li>المشاركة في مسابقات Kaggle وHackathons</li>
+          <li>المساهمة في مشاريع Open Source</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار الوظائف</h3>
+        <p>Junior AI Developer → NLP Engineer → LLM Engineer → AI Researcher → AI Architect → CTO</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>الرواتب في مصر (2025)</h3>
+        <ul>
+          <li>Junior: 18,000 – 25,000 جنيه</li>
+          <li>Mid-Level: 30,000 – 45,000 جنيه</li>
+          <li>Senior: 50,000 – 80,000 جنيه</li>
+          <li>AI Architect / Lead: 90,000 – 130,000 جنيه</li>
+          <li>Remote عالمي: 4,000 – 9,000$ شهريًا</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كتب ومراجع مهمة</h3>
+        <ul>
+          <li>Deep Learning with Python – François Chollet</li>
+          <li>Transformers for Natural Language Processing – Denis Rothman</li>
+          <li>Hands-On Large Language Models – Packt</li>
+          <li>Natural Language Processing with Transformers – Hugging Face Team</li>
+          <li>Practical Deep Learning for Cloud, Mobile & Edge – Anirudh Koul</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات YouTube مجانية</h3>
+        <ul>
+          <li>FreeCodeCamp – LLM & ChatGPT API Course</li>
+          <li>Codebasics – LangChain Projects</li>
+          <li>Krish Naik – NLP & Generative AI</li>
+          <li>DeepLearning.AI – LLMs Specialization</li>
+          <li>Patrick Loeber – Hugging Face Tutorials</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات Udemy مدفوعة</h3>
+        <ul>
+          <li>Building LLM-Powered Apps with LangChain & OpenAI – Stephen Grider</li>
+          <li>Hands-On Generative AI & ChatGPT – Sundog Education</li>
+          <li>LangChain & Vector Databases Masterclass – DataIndependent</li>
+          <li>NLP with Transformers & Hugging Face – Lazy Programmer Inc.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>خطوات عملية للتميّز في المجال</h3>
+        <ul>
+          <li>نفّذ مشاريع واقعية بـ LangChain وOpenAI API</li>
+          <li>تعلم RAG وFine-tuning عمليًا</li>
+          <li>اربط الذكاء الاصطناعي بواجهة Frontend أو Chatbot فعلي</li>
+          <li>شارك في مشاريع Open Source على Hugging Face</li>
+          <li>ابني Portfolio ذكي بمشاريع تفاعلية</li>
+          <li>تابع آخر تحديثات GPT وLLaMA وGemini</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الفرق بين LangChain وLlamaIndex</h3>
+        <h4>LangChain</h4>
+        <ul>
+          <li>يبسط بناء تطبيقات تعتمد على LLMs</li>
+          <li>يدعم معظم الـ APIs (GPT, Claude, Gemini)</li>
+          <li>يبني سلاسل تفكير منطقية (Chains & Agents)</li>
+        </ul>
+        <p>عيوبه: أبطأ في بعض التطبيقات الثقيلة وممكن يكون Overkill للمشاريع الصغيرة</p>
+
+        <h4>LlamaIndex</h4>
+        <ul>
+          <li>يركز على RAG وربط النماذج بالمستندات والبيانات</li>
+          <li>مثالي للمساعدات الذكية المؤسسية</li>
+          <li>دعم قوي للـ Vector Databases وأداء عالي مع بيانات ضخمة</li>
+        </ul>
+        <p>عيوبه: يحتاج إعداد أكبر ومش قوي جدًا في إدارة Agents أو أدوات خارجية</p>
+      </div>
+
+    </div>
+  `
+},
+
+'cyber-security-engineer': {
+  content: `
+    <header class="details-header">
+      <button class="back-button"><i class="fas fa-times"></i></button>
+      <h2>Cyber Security Engineer</h2>
+    </header>
+
+    <div class="details-body">
+
+      <div class="detail-section">
+        <h3>تعريف المجال</h3>
+        <p>
+          مهندس الأمن السيبراني هو الشخص اللي بيحمي الأنظمة، الشبكات، وقواعد البيانات من أي اختراق أو تهديد إلكتروني.
+          دوره الأساسي إنه يبني، يختبر، ويطوّر أنظمة حماية قوية تمنع القراصنة (Hackers) من الوصول غير المصرّح به، وتحافظ على سرّية وسلامة البيانات.
+        </p>
+        <p>
+          المهندس بيشتغل على:
+          <ul>
+            <li>تحليل الثغرات واكتشاف نقاط الضعف (Vulnerability Assessment)</li>
+            <li>بناء جدران حماية (Firewalls) وأنظمة كشف التسلل (IDS/IPS)</li>
+            <li>تشفير البيانات وتأمينها</li>
+            <li>مراقبة حركة الشبكات ورصد أي نشاط مشبوه</li>
+            <li>اختبار الاختراق (Penetration Testing)</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>ليه المجال مهم؟</h3>
+        <p>
+          العالم بقى رقمي بالكامل — البنوك، المستشفيات، التعليم، والحكومات أونلاين. أي اختراق بسيط ممكن يسبب خسائر كبيرة.
+          الهجمات الإلكترونية زادت بشكل كبير، ومع ظهور الذكاء الاصطناعي صارت الهجمات أذكى وأكثر صعوبة في الاكتشاف، فالمهندسين الأمنيين مطلوبين بشدة.
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>مميزات المجال</h3>
+        <ul>
+          <li>مطلوب عالميًا ومحليًا</li>
+          <li>رواتب عالية خصوصًا في التقنية والبنوك</li>
+          <li>متنوع – الشبكات، السحابة، Web، أو Forensics</li>
+          <li>يتطور بسرعة مع أدوات وتقنيات جديدة</li>
+          <li>يحمي الناس والأنظمة من أضرار حقيقية</li>
+          <li>يفتح مجالات فرعية مثل Ethical Hacking وIncident Response</li>
+          <li>إمكانية العمل عن بُعد بسهولة</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الفرق بين Cyber Security Engineer وEthical Hacker</h3>
+        <p>
+          <strong>Ethical Hacker:</strong> يهاجم النظام بشكل قانوني لاكتشاف الثغرات.<br>
+          <strong>Cyber Security Engineer:</strong> يدافع عن النظام ويصلّح الثغرات ويحمي المكونات.
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>أهم الأدوات والتقنيات</h3>
+        <ul>
+          <li>اختبار الاختراق: Metasploit, Burp Suite, Nmap, Wireshark, Hydra</li>
+          <li>التحليل وForensics: Autopsy, Volatility, FTK Imager</li>
+          <li>SIEM: Splunk, IBM QRadar, ELK Stack</li>
+          <li>تشفير وإدارة مفاتيح: OpenSSL, Hashcat, GPG</li>
+          <li>الحماية السحابية: AWS Security Hub, Azure Defender</li>
+          <li>تأمين الأنظمة: Firewalls, IDS/IPS, Endpoint Security, VPNs</li>
+          <li>اكتشاف الثغرات: Nessus, OpenVAS, Qualys</li>
+          <li>تحليل Web Security: OWASP ZAP, Nikto</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>المهارات المطلوبة</h3>
+        <ul>
+          <li>إتقان أنظمة التشغيل Linux وWindows</li>
+          <li>فهم الشبكات TCP/IP, DNS, VPN, Firewalls</li>
+          <li>لغات البرمجة: Python, Bash, JavaScript</li>
+          <li>تحليل الثغرات الأمنية (OWASP Top 10)</li>
+          <li>اختبار الاختراق Web, Network, Cloud</li>
+          <li>فهم التشفير (Encryption & Hashing)</li>
+          <li>التعامل مع SIEM وأدوات التحليل</li>
+          <li>Incident Response & Digital Forensics</li>
+          <li>إدارة الأنظمة السحابية الآمنة</li>
+          <li>Git/GitHub لتنظيم المشاريع والتعاون</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار التعلم (Cyber Security Roadmap)</h3>
+
+        <h4>المرحلة الأولى – الأساسيات (شهر ونصف)</h4>
+        <ul>
+          <li>Networking Basics: IP, DNS, Subnetting, OSI Layers</li>
+          <li>أنظمة التشغيل: Linux & Windows</li>
+          <li>Command Line وBash Scripting</li>
+          <li>أنواع الهجمات: Phishing, Malware, DDOS</li>
+        </ul>
+        <p><strong>مشروع:</strong> شبكة افتراضية على VirtualBox مع مراقبة البيانات باستخدام Wireshark</p>
+
+        <h4>المرحلة الثانية – الأمن الهجومي والدفاعي (شهرين)</h4>
+        <ul>
+          <li>أساسيات Ethical Hacking</li>
+          <li>أدوات: Nmap, Burp Suite, Metasploit</li>
+          <li>OWASP Top 10 وثغرات Web Applications</li>
+          <li>هجمات تجريبية على أنظمة وهمية (TryHackMe, HackTheBox)</li>
+          <li>تشفير البيانات وتأمين السيرفرات</li>
+        </ul>
+        <p><strong>مشروع:</strong> اكتشاف ثغرات في تطبيق ويب محلي وكتابة تقرير أمني</p>
+
+        <h4>المرحلة الثالثة – الأمن المتقدم (شهرين)</h4>
+        <ul>
+          <li>SIEM Tools: Splunk, ELK Stack</li>
+          <li>Incident Response & Forensics</li>
+          <li>تأمين الشبكات والسيرفرات السحابية</li>
+          <li>Firewalls, IDS/IPS, VPN Configurations</li>
+          <li>نظام Monitoring لرصد الأنشطة المشبوهة</li>
+        </ul>
+        <p><strong>مشروع:</strong> إنشاء نظام Monitoring بسيط على خادم سحابي</p>
+
+        <h4>المرحلة الرابعة – التخصص والاحتراف (3 شهور)</h4>
+        <ul>
+          <li>تخصص في Web Penetration Testing, Network Security, Cloud Security, Digital Forensics, SOC Analyst / Incident Response, Malware Analysis & Reverse Engineering</li>
+        </ul>
+        <p><strong>مشروع:</strong> بناء Lab كامل لاختبار الاختراق وتطبيق هجمات قانونية</p>
+
+        <h4>المرحلة الخامسة – التطوير المستمر</h4>
+        <ul>
+          <li>متابعة Threat Intelligence: MITRE ATT&CK, CISA</li>
+          <li>اختبارات عملية أسبوعية على HackTheBox, TryHackMe</li>
+          <li>مشاركة في CTF Competitions</li>
+          <li>قراءة أبحاث حديثة على exploit-db وMedium</li>
+          <li>الحصول على شهادات دولية: CEH, CompTIA Security+, OSCP</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>التخصصات الفرعية</h3>
+        <ul>
+          <li>Ethical Hacker</li>
+          <li>Penetration Tester</li>
+          <li>SOC Analyst</li>
+          <li>Forensics Expert</li>
+          <li>Network Security Engineer</li>
+          <li>Cloud Security Engineer</li>
+          <li>Malware Analyst</li>
+          <li>Red Team / Blue Team Specialist</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار الوظائف</h3>
+        <p>Junior Security Analyst → Security Engineer → Senior → Security Architect → Head of Cyber Security → CISO</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>الرواتب في مصر (2025)</h3>
+        <ul>
+          <li>Junior: 15,000 – 25,000 جنيه</li>
+          <li>Mid-Level: 30,000 – 45,000 جنيه</li>
+          <li>Senior: 50,000 – 70,000 جنيه</li>
+          <li>Architect / Lead: 75,000 – 100,000 جنيه</li>
+          <li>Remote عالمي: 4,000 – 6,000$ شهريًا</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كتب ومراجع مهمة</h3>
+        <ul>
+          <li>The Web Application Hacker’s Handbook – Dafydd Stuttard</li>
+          <li>Hacking: The Art of Exploitation – Jon Erickson</li>
+          <li>Practical Malware Analysis – Michael Sikorski</li>
+          <li>Network Security Essentials – William Stallings</li>
+          <li>Metasploit: The Penetration Tester’s Guide – David Kennedy</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات YouTube مجانية</h3>
+        <ul>
+          <li>NetworkChuck – شروحات عملية في الهاكينج والأمن</li>
+          <li>John Hammond – تطبيقات عملية وCTFs</li>
+          <li>HackerSploit – كورسات متكاملة في PenTesting</li>
+          <li>The Cyber Mentor – كورسات CEH وOSCP عملي</li>
+          <li>David Bombal – شروحات Networking وCyber Security</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات Udemy مدفوعة</h3>
+        <ul>
+          <li>The Complete Cyber Security Course – Nathan House</li>
+          <li>Learn Ethical Hacking From Scratch – Zaid Sabih</li>
+          <li>CompTIA Security+ Certification – Jason Dion</li>
+          <li>Practical Ethical Hacking – The Complete Course – The Cyber Mentor</li>
+          <li>Network Security Masterclass – ITProTV</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>خطوات عملية للتميّز</h3>
+        <ul>
+          <li>اشتغل على مختبرك الشخصي (Home Lab)</li>
+          <li>شارك في تحديات TryHackMe وHackTheBox أسبوعيًا</li>
+          <li>اتقن Linux وNetworking بعمق</li>
+          <li>تعلم Python Automation في مجال الأمن</li>
+          <li>شارك في مسابقات CTF لتدريب عملي</li>
+          <li>تابع أخبار الثغرات اليومية على Exploit-DB وReddit/r/netsec</li>
+          <li>احصل على شهادات قوية مثل CEH أو OSCP</li>
+        </ul>
+      </div>
+
+    </div>
+  `
+},
+
+'backend-java-developer': {
+  content: `
+    <header class="details-header">
+      <button class="back-button"><i class="fas fa-times"></i></button>
+      <h2>Backend Java Developer</h2>
+    </header>
+
+    <div class="details-body">
+
+      <div class="detail-section">
+        <h3>تعريف المجال</h3>
+        <p>
+          مهندس باك إند جافا (Backend Java Developer) هو الشخص اللي يبني ويطوّر الجزء اللي ورا الكواليس في التطبيقات — APIs، منطق الأعمال، التعامل مع قواعد البيانات، والتكامل مع خدمات خارجية — باستخدام لغة Java وبيئاتها (مثل Spring). دوره الأساسي إنه يضمن إن الأنظمة سريعة، قابلة للصيانة، مؤمّنة، وتتعامل مع أحمال عالية بثبات.
+          <br><br>
+          بيشتغل على:
+          <ul>
+            <li>تصميم REST/GraphQL APIs.</li>
+            <li>بناء خدمات وخوادم باستخدام Spring Boot / Jakarta EE.</li>
+            <li>تصميم قواعد البيانات (SQL/NoSQL) وتطبيق استراتيجيات الـ caching.</li>
+            <li>كتابة اختبارات (Unit / Integration) وCI/CD.</li>
+            <li>تحسين الأداء (profiling, tuning) والتعامل مع الـ concurrency.</li>
+            <li>التكامل مع نظم الرسائل (Kafka/RabbitMQ) والسحابة (AWS/GCP/Azure).</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>ليه Backend Java مشهورة ومطلوبة؟</h3>
+        <p>
+          Java لغة قديمة ومستقرة ومستخدمة على نطاق واسع في البنوك، الشركات الكبيرة، وأنظمة المؤسسة — لذلك الطلب على مهندسي جافا قوي في السوق.  
+          الأداء، الـEcosystem الضخم (Spring, Hibernate, Maven/Gradle)، وتوافقها مع معماريات الـMicroservices والأنظمة الموزعة بيخلوها خيار آمن للمشاريع الكبيرة.
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>مميزات المجال</h3>
+        <ul>
+          <li>استقرار وظيفي وقبول واسع في الشركات الكبيرة والمؤسسات.</li>
+          <li>رواتب تنافسية — خصوصًا لو اشتغلت Remote أو لشركات دولية.</li>
+          <li>مكتبات وأطر عمل قوية (Spring ecosystem).</li>
+          <li>قابلية للنمو: من Junior → Architect → Lead → CTO.</li>
+          <li>مناسب للتعامل مع أنظمة تحتاج موثوقية عالية (مثل أنظمة مالية، telecom، نظم حكومية).</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الفرق بين Backend Java والـBackend العام (Node/Python)</h3>
+        <ul>
+          <li>Java بتركّز على الـstatic typing، أداء أعلى في بعض الحالات، وecosystem مؤسسي قوي (Spring, Hibernate).</li>
+          <li>Node/Python أسرع في التطوير الأولي والـprototyping لكن Java غالبًا أفضل للاستقرار على المدى الطويل في أنظمة المؤسسة الكبيرة.</li>
+          <li>اختيار اللغة حسب متطلبات المشروع (throughput, latency, team expertise).</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>أهم الأدوات والتقنيات</h3>
+        <ul>
+          <li>أطر العمل: Spring Boot / Spring MVC / Spring Data / Spring Security</li>
+          <li>ORM: Hibernate / JPA</li>
+          <li>إدارة الحزم: Maven / Gradle</li>
+          <li>قواعد البيانات: PostgreSQL / MySQL / Oracle / MongoDB / Cassandra</li>
+          <li>الرسائل وEvent Streaming: Kafka / RabbitMQ</li>
+          <li>API: REST / GraphQL</li>
+          <li>CI/CD: Jenkins / GitHub Actions / GitLab CI</li>
+          <li>Monitoring & Tracing: Prometheus / Grafana / ELK / Jaeger</li>
+          <li>Containerization / Orchestration: Docker / Kubernetes</li>
+          <li>Testing: JUnit / Mockito / Testcontainers</li>
+          <li>Performance Profiling: JVisualVM / YourKit</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>المهارات المطلوبة</h3>
+        <ul>
+          <li>اتقان Java (11, 17+).</li>
+          <li>فهم عميق للـOOP وDesign Patterns.</li>
+          <li>خبرة في Spring ecosystem.</li>
+          <li>تصميم RESTful APIs وAuthentication (JWT, OAuth2).</li>
+          <li>SQL وNoSQL وتصميم الـSchema.</li>
+          <li>فهم الـConcurrency وMultithreading.</li>
+          <li>معرفة Docker وKubernetes.</li>
+          <li>كتابة اختبارات آلية وCI/CD.</li>
+          <li>مهارات Debugging وPerformance Tuning.</li>
+          <li>أدوات المراقبة والـLogging.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار التعلم (Roadmap)</h3>
+
+        <h4>المرحلة الأولى – الأساسيات (شهران)</h4>
+        <p>💡 الهدف: فهم Java والـBackend basics.</p>
+        <ul>
+          <li>اتعلم Java (syntax, OOP, Collections).</li>
+          <li>افهم HTTP، REST، وJSON.</li>
+          <li>اتعلم SQL وأساليب تصميم قواعد البيانات.</li>
+          <li>جرب كتابة تطبيق console بسيط وCRUD بسيط مع JDBC أو Spring Data.</li>
+        </ul>
+        <p><strong>مشروع:</strong> API صغير (ToDo app) باستخدام Spring Boot وH2/SQLite.</p>
+
+        <h4>المرحلة الثانية – بناء الخدمات واستخدام Spring (شهران)</h4>
+        <ul>
+          <li>اتعلم Spring Boot, Spring MVC, Spring Data JPA.</li>
+          <li>افهم Dependency Injection والـBean lifecycle.</li>
+          <li>كتابة Unit وIntegration Tests (JUnit, Mockito).</li>
+          <li>التصديق والتفويض (Spring Security, JWT).</li>
+        </ul>
+        <p><strong>مشروع:</strong> نظام إدارة مستخدمين مع Authentication وRoles وCRUD مؤمّن.</p>
+
+        <h4>المرحلة الثالثة – السحابة والأداء (شهران)</h4>
+        <ul>
+          <li>تعلم Docker + بناء Images وContainers.</li>
+          <li>أساسيات Kubernetes ونشر خدمة بسيطة.</li>
+          <li>مبادئ الـCaching (Redis) وLoad Balancing.</li>
+          <li>Monitoring, Logging, Tracing.</li>
+        </ul>
+        <p><strong>مشروع:</strong> نشر تطبيق Spring Boot على Kubernetes مع Monitoring (Prometheus + Grafana) وCache (Redis).</p>
+
+        <h4>المرحلة الرابعة – معمارية متقدمة والتكامل (شهران)</h4>
+        <ul>
+          <li>Microservices patterns (Circuit Breaker, Service Discovery).</li>
+          <li>اتقان Kafka أو RabbitMQ للتراسل غير المتزامن.</li>
+          <li>تصميم Schemas للـEvent-Driven architecture.</li>
+          <li>Security hardening وThreat modelling.</li>
+        </ul>
+        <p><strong>مشروع:</strong> نظام Orders & Payments موزّع بخدمات منفصلة واتصال عبر Kafka وTracing كامل للطلبات.</p>
+
+        <h4>المرحلة الخامسة – التخصص والاحتراف (3 شهور)</h4>
+        <p>اختر تخصص متقدم: High-performance systems, Cloud-native microservices, Data-intensive backends, Platform/DevOps.</p>
+        <p><strong>مشروع:</strong> بناء Platform service يُخدم آلاف الطلبات/ثانية مع اختبارات تحميل وتخطيط Capacity.</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>التخصصات الفرعية</h3>
+        <ul>
+          <li>Java Microservices Engineer</li>
+          <li>Platform Engineer / Backend Platform</li>
+          <li>Distributed Systems Engineer</li>
+          <li>Java Performance Engineer</li>
+          <li>Cloud-native Backend Engineer</li>
+          <li>Data/Stream Processing Engineer (Kafka)</li>
+          <li>Integration Engineer (APIs, ESB)</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار الوظائف</h3>
+        <p>Junior Java Backend → Backend Engineer → Senior → Tech Lead → Architect → Head of Engineering → CTO</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>الرواتب في مصر (2025)</h3>
+        <ul>
+          <li>Junior: ~EGP 80k – 200k سنويًا</li>
+          <li>Mid-Level: ~EGP 200k – 420k سنويًا</li>
+          <li>Senior / Lead: 420k – >700k+ سنويًا</li>
+          <li>مهندسين Remote أو لشركات دولية: ممكن يوصلوا لمعدلات دولارية أعلى</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كتب ومراجع مهمة</h3>
+        <ul>
+          <li>Effective Java — Joshua Bloch</li>
+          <li>Spring in Action — Craig Walls</li>
+          <li>Java Concurrency in Practice — Brian Goetz</li>
+          <li>Clean Code — Robert C. Martin</li>
+          <li>Designing Data-Intensive Applications — Martin Kleppmann</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات YouTube</h3>
+        <ul>
+          <li>Amigoscode — شروحات Spring عملي</li>
+          <li>Java Brains — مفاهيم Java وSpring</li>
+          <li>Tech Primers — أمثلة على Microservices وKafka</li>
+          <li>Programming with Mosh — Java basics and OOP</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات Udemy</h3>
+        <ul>
+          <li>Spring & Spring Boot – Beginner to Guru (in28Minutes)</li>
+          <li>Master Microservices with Spring Boot and Spring Cloud</li>
+          <li>Java Multithreading, Concurrency & Performance Optimization</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>خطوات عملية للتميّز في المجال</h3>
+        <ul>
+          <li>اشتغل على Home Lab: شغّل خدمات متكاملة (DB, Cache, Broker)</li>
+          <li>شارك في مشاريع Open Source أو افتح مشروعك على GitHub</li>
+          <li>اتعلم كتابة اختبارات واقعية واستخدم CI/CD</li>
+          <li>تمرّن على تصميم APIs صحيحة وVersioning</li>
+          <li>اتعلم Debugging وprofiling وقياس الأداء (JVM tuning)</li>
+          <li>تابع مدونات رسمية (Oracle, Spring) وStackOverflow وMedium</li>
+        </ul>
+      </div>
+
+    </div>
+  `
+},
+
+'machine-learning-engineer': {
+  content: `
+    <header class="details-header">
+      <button class="back-button"><i class="fas fa-times"></i></button>
+      <h2>Machine Learning Engineer</h2>
+    </header>
+
+    <div class="details-body">
+
+      <div class="detail-section">
+        <h3>تعريف المجال</h3>
+        <p>
+          مهندس تعلم الآلة (Machine Learning Engineer) هو الشخص اللي يبني ويطوّر أنظمة قادرة على “التعلّم من البيانات” بدل ما يتم برمجتها يدويًا. دوره إنه يصمم النماذج (Models)، يدربها، ويحوّلها إلى أنظمة ذكية يمكن نشرها في بيئات الإنتاج — زي أنظمة التوصية، التصنيف، التنبؤ، والرؤية الحاسوبية.
+          <br><br>
+          بيشتغل على:
+          <ul>
+            <li>تحليل ومعالجة البيانات (Data Preprocessing & Feature Engineering).</li>
+            <li>تدريب النماذج باستخدام TensorFlow / PyTorch / Scikit-learn.</li>
+            <li>تصميم خوارزميات تعلم خاضع / غير خاضع / عميق.</li>
+            <li>نشر النماذج في الإنتاج (MLOps).</li>
+            <li>تحسين دقة النماذج وتقييمها (Evaluation, Metrics, Hyperparameter Tuning).</li>
+            <li>التكامل مع الأنظمة الخلفية (Backends, APIs, Pipelines).</li>
+          </ul>
+        </p>
+      </div>
+
+      <div class="detail-section">
+        <h3>ليه Machine Learning مطلوب؟</h3>
+        <ul>
+          <li>AI جزء أساسي من مستقبل البرمجة، الشركات تستخدمه في التسويق، الطب، التمويل، الأمن، السيارات، والترفيه.</li>
+          <li>الطلب على مهندسين يفهموا البيانات ويبنوا حلول ذكية بيزيد بسرعة.</li>
+          <li>المجال يجمع بين البرمجة، الإحصاء، والرياضيات — فبيخلق قيمة عالية ومهارات نادرة.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مميزات المجال</h3>
+        <ul>
+          <li>واحد من أعلى المجالات من حيث الدخل والنمو العالمي.</li>
+          <li>بتتعامل مع مشكلات واقعية معقدة (Prediction, Recognition, Automation).</li>
+          <li>متنوع: الذكاء الصناعي، الرؤية الحاسوبية، معالجة اللغة، تحليل البيانات.</li>
+          <li>مجال مفتوح للبحث والتطوير المستمر.</li>
+          <li>يجمع بين البرمجة والعلم (Math/Stats).</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>الفرق بين ML وData Science وAI</h3>
+        <ul>
+          <li>AI: المفهوم العام لصنع أنظمة ذكية.</li>
+          <li>ML: تدريب النماذج من البيانات.</li>
+          <li>Data Science: التحليل والإحصاء، بينما ML Engineer يركز على بناء النماذج وتشغيلها.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>أنواع تعلم الآلة</h3>
+        <ul>
+          <li><strong>Supervised Learning:</strong> بيانات عليها Labels، مثال: تصنيف الصور، التنبؤ بالأسعار. خوارزميات: Linear Regression, Decision Trees, Random Forests, SVM, Neural Networks.</li>
+          <li><strong>Unsupervised Learning:</strong> البيانات بدون Labels، مثال: Clustering، PCA. خوارزميات: K-Means, PCA, Hierarchical Clustering.</li>
+          <li><strong>Semi-Supervised Learning:</strong> مزيج بين الاثنين.</li>
+          <li><strong>Reinforcement Learning:</strong> التعلم من التجربة والمكافأة، مثال: AlphaGo، السيارات ذاتية القيادة. خوارزميات: Q-Learning, DQN, PPO.</li>
+          <li><strong>Deep Learning:</strong> الشبكات العصبية العميقة، ممتاز للرؤية الحاسوبية، معالجة اللغة، والصوت. أطر: TensorFlow, PyTorch.</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>أهم الأدوات والتقنيات</h3>
+        <ul>
+          <li>لغات: Python / R / C++</li>
+          <li>مكتبات ML: Scikit-learn / TensorFlow / PyTorch / Keras</li>
+          <li>تحليل البيانات: NumPy / Pandas / Matplotlib / Seaborn</li>
+          <li>معالجة اللغة: NLTK / SpaCy / Transformers</li>
+          <li>الرؤية الحاسوبية: OpenCV / YOLO / Detectron2</li>
+          <li>قواعد البيانات: PostgreSQL / MongoDB / BigQuery</li>
+          <li>MLOps & Deployment: Docker / Kubernetes / MLflow / TensorFlow Serving</li>
+          <li>Cloud ML Platforms: AWS Sagemaker / GCP Vertex AI / Azure ML</li>
+          <li>Experiment Tracking: Weights & Biases / Neptune.ai</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>المهارات المطلوبة</h3>
+        <ul>
+          <li>فهم رياضيات التعلم الآلي (Linear Algebra, Calculus, Probability, Statistics)</li>
+          <li>إجادة Python ومكتبات البيانات</li>
+          <li>فهم أنواع النماذج وكيفية تقييمها</li>
+          <li>خبرة في Preprocessing وFeature Engineering</li>
+          <li>بناء وتدريب نماذج باستخدام Scikit-learn أو TensorFlow/PyTorch</li>
+          <li>نشر النماذج (APIs, Containers)</li>
+          <li>معرفة بأساسيات الـMLOps (Automation, Monitoring, Retraining)</li>
+          <li>قراءة الأوراق البحثية وتنفيذها عمليًا</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار التعلم (Roadmap)</h3>
+
+        <h4>المرحلة الأولى – الأساسيات (2 شهر)</h4>
+        <ul>
+          <li>تعلم Python (OOP, NumPy, Pandas, Matplotlib)</li>
+          <li>تعلم الإحصاء والاحتمالات والمصفوفات</li>
+          <li>افهم أنواع البيانات وطرق تنظيفها</li>
+        </ul>
+        <p><strong>مشروع:</strong> تحليل بيانات واقعية (مثلاً Titanic Dataset)</p>
+
+        <h4>المرحلة الثانية – تعلم الآلة الكلاسيكي (2 شهر)</h4>
+        <ul>
+          <li>خوارزميات الانحدار، التصنيف، التجميع</li>
+          <li>تقييم النماذج (Precision, Recall, F1-score)</li>
+          <li>Cross-validation وHyperparameter Tuning</li>
+        </ul>
+        <p><strong>مشروع:</strong> نموذج يتنبأ بأسعار البيوت أو يصنّف أنواع الزهور</p>
+
+        <h4>المرحلة الثالثة – التعلم العميق (3 شهور)</h4>
+        <ul>
+          <li>بناء الشبكات العصبية باستخدام TensorFlow/PyTorch</li>
+          <li>دراسة CNNs (للصور) وRNNs/LSTMs (للنصوص)</li>
+          <li>Transfer Learning وFine-tuning</li>
+        </ul>
+        <p><strong>مشروع:</strong> تصنيف الصور أو تحليل المشاعر النصية</p>
+
+        <h4>المرحلة الرابعة – MLOps والسحابة (2 شهر)</h4>
+        <ul>
+          <li>Docker وREST APIs (Flask/FastAPI)</li>
+          <li>نشر النماذج على AWS أو GCP</li>
+          <li>MLflow أو Kubeflow لتتبع التجارب</li>
+        </ul>
+        <p><strong>مشروع:</strong> نشر نموذج على الويب لخدمة توقعات في الوقت الحقيقي</p>
+
+        <h4>المرحلة الخامسة – التخصص (3 شهور)</h4>
+        <ul>
+          <li>Computer Vision (CV)</li>
+          <li>Natural Language Processing (NLP)</li>
+          <li>Reinforcement Learning</li>
+          <li>Time Series Forecasting</li>
+        </ul>
+        <p><strong>مشروع احترافي:</strong> بناء نظام توصية أو نموذج رؤية حاسوبية واقعي</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>التخصصات الفرعية</h3>
+        <ul>
+          <li>Deep Learning Engineer</li>
+          <li>NLP Engineer</li>
+          <li>Computer Vision Engineer</li>
+          <li>Data Scientist / ML Researcher</li>
+          <li>MLOps Engineer</li>
+          <li>AI Engineer</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>مسار الوظائف</h3>
+        <p>Junior ML Engineer → ML Engineer → Senior → ML Architect / Researcher → AI Lead → Head of AI / CTO</p>
+      </div>
+
+      <div class="detail-section">
+        <h3>الرواتب في مصر (2025)</h3>
+        <ul>
+          <li>Junior: ~EGP 100k – 220k سنويًا</li>
+          <li>Mid-Level: ~EGP 220k – 450k سنويًا</li>
+          <li>Senior / Lead: ~EGP 450k – 800k+ سنويًا</li>
+          <li>Remote أو دولية: مرتب بالدولار 2k – 6k+ شهريًا</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كتب ومراجع مهمة</h3>
+        <ul>
+          <li>Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow — Aurélien Géron</li>
+          <li>Pattern Recognition and Machine Learning — Christopher Bishop</li>
+          <li>Deep Learning — Ian Goodfellow</li>
+          <li>Machine Learning Yearning — Andrew Ng</li>
+          <li>Designing Machine Learning Systems — Chip Huyen</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات YouTube</h3>
+        <ul>
+          <li>freeCodeCamp – Machine Learning Full Course</li>
+          <li>StatQuest with Josh Starmer – تبسيط المفاهيم الرياضية</li>
+          <li>Krish Naik – تطبيقات عملية على ML وDL</li>
+          <li>Sentdex – مشاريع حقيقية باستخدام TensorFlow وPyTorch</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>كورسات Udemy / Coursera</h3>
+        <ul>
+          <li>Machine Learning — Andrew Ng (Coursera)</li>
+          <li>Deep Learning Specialization — Andrew Ng</li>
+          <li>TensorFlow Developer Professional Certificate</li>
+          <li>PyTorch for Deep Learning</li>
+        </ul>
+      </div>
+
+      <div class="detail-section">
+        <h3>خطوات عملية للتميّز في المجال</h3>
+        <ul>
+          <li>شارك في Kaggle وابقَ على تواصل مع مجتمع ML</li>
+          <li>نفّذ مشاريع عملية من بيانات حقيقية</li>
+          <li>وثّق شغلك على GitHub (Notebooks + Deployment)</li>
+          <li>اقرأ أوراق بحثية من arXiv وطبقها عمليًا</li>
+          <li>افهم الـMLOps وتعلم بناء pipeline متكامل</li>
+          <li>طوّر مهاراتك في الرياضيات وDeep Learning Optimization</li>
+        </ul>
+      </div>
+
+    </div>
+  `
+},
+
+
+        };
+
+        const grid = document.getElementById('specializations-grid');
+        const detailsView = document.getElementById('details-view');
+        const detailsContent = detailsView.querySelector('.details-content');
+        const themeToggle = document.getElementById('theme-toggle');
+        const searchInput = document.getElementById('search-input');
+        const searchResultsInfo = document.getElementById('searchResultsInfo');
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        const notFoundMessage = document.getElementById('not-found-message');
+
+        // --- Scroll To Top Logic ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // For a smooth scrolling effect
+            });
+        });
+
+        // Search functionality with ranking
+        function performSearch(searchTerm) {
+            const cards = Array.from(document.querySelectorAll('.specialization-card'));
+            let foundCount = 0;
+            
+            // Reset all cards
+            cards.forEach(card => {
+                card.style.display = 'block';
+                card.style.order = '';
+            });
+            
+            if (searchTerm.trim() === '') {
+                searchResultsInfo.classList.remove('visible');
+                notFoundMessage.style.display = 'none';
+                return;
+            }
+            
+            // Score each card based on search relevance
+            const scoredCards = cards.map(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const track = card.getAttribute('data-track');
+                
+                let score = 0;
+                
+                // Exact match in title gets highest score
+                if (title.includes(searchTerm)) score += 10;
+                
+                // Partial match in title
+                if (title.includes(searchTerm.substring(0, Math.ceil(searchTerm.length / 2)))) score += 5;
+                
+                // Match in description
+                if (description.includes(searchTerm)) score += 3;
+                
+                // Partial match in description
+                if (description.includes(searchTerm.substring(0, Math.ceil(searchTerm.length / 2)))) score += 1;
+                
+                return { card, score, title };
+            });
+            
+            // Filter and sort by score
+            const filteredCards = scoredCards
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score);
+            
+            // Hide non-matching cards and reorder matching ones
+            cards.forEach(card => {
+                const isMatch = filteredCards.some(item => item.card === card);
+                if (!isMatch) {
+                    card.style.display = 'none';
+                } else {
+                    foundCount++;
+                    const index = filteredCards.findIndex(item => item.card === card);
+                    card.style.order = index;
+                }
+            });
+            
+            // Update search results info
+            if (foundCount > 0) {
+searchResultsInfo.textContent = `Found ${foundCount} result${foundCount !== 1 ? 's' : ''}`;
+                searchResultsInfo.classList.add('visible');
+                notFoundMessage.style.display = 'none';
+            } else {
+                searchResultsInfo.classList.remove('visible');
+                notFoundMessage.style.display = 'block';
+            }
+        }
+
+
+
+        function setupParticles() {
+            const isLight = document.body.classList.contains('light-mode');
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: isLight ? 100 : 50, density: { enable: true, value_area: 800 } },
+                    color: { value: isLight ? '#5a6482' : '#ffffff' },
+                    shape: { type: 'circle' },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: !isLight, distance: 150, color: '#ffffff', opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+                },
+                interactivity: {
+                    detect_on: 'canvas',
+                    events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+                    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+                },
+                retina_detect: true
+            });
+        }
+
+        function showDetails(trackId, clickedCard) {
+            if (specializations[trackId]) {
+                const cardRect = clickedCard.getBoundingClientRect();
+                detailsContent.innerHTML = specializations[trackId].content;
+                detailsView.classList.add('visible');
+                
+                // GSAP Shared Element Transition
+                gsap.fromTo(detailsContent, 
+                    { 
+                        top: cardRect.top, 
+                        left: cardRect.left, 
+                        width: cardRect.width, 
+                        height: cardRect.height,
+                        borderRadius: 'var(--border-radius-lg)',
+                        opacity: 0.5,
+                        position: 'fixed' // Temporarily fix position for smooth transition
+                    }, 
+                    { 
+                        top: 0, 
+                        left: 0, 
+                        width: '100%', 
+                        height: 'auto',
+                        minHeight: '100%',
+                        borderRadius: '0px',
+                        opacity: 1,
+                        duration: 0.7, 
+                        ease: 'expo.inOut',
+                        onComplete: () => {
+                            gsap.set(detailsContent, { position: 'static' }); // Revert to static after transition
+                            observeSections();
+                            detailsContent.querySelector('.back-button').addEventListener('click', () => hideDetails(cardRect));
+                        }
+                    }
+                );
+                
+                gsap.to(detailsView, { opacity: 1, duration: 0.3 });
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hideDetails(cardRect) {
+            gsap.to(detailsContent.querySelectorAll('.detail-section, .details-header > *'), {
+                opacity: 0,
+                y: 20,
+                stagger: 0.05,
+                duration: 0.4
+            });
+
+            // Re-apply fixed position for reverse transition
+            gsap.set(detailsContent, { position: 'fixed', top: detailsView.scrollTop, left: 0, width: '100%' });
+
+
+            gsap.to(detailsContent, { 
+                top: cardRect.top, 
+                left: cardRect.left, 
+                width: cardRect.width, 
+                height: cardRect.height,
+                borderRadius: 'var(--border-radius-lg)',
+                duration: 0.7,
+                delay: 0.2,
+                ease: 'expo.inOut',
+                onComplete: () => {
+                    detailsView.classList.remove('visible');
+                    detailsView.style.opacity = 0;
+                    detailsContent.innerHTML = '';
+                    document.body.style.overflow = 'auto';
+                    gsap.set(detailsContent, { position: 'static' }); // Clean up
+                }
+            });
+        }
+        
+        function observeSections() {
+            const sections = detailsContent.querySelectorAll('.detail-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const section = entry.target;
+                        section.classList.add('is-visible');
+                        
+                        // Animate elements inside the section
+                        const elementsToAnimate = section.querySelectorAll('h3, h4, p, ul > li, .roadmap-step');
+                        gsap.from(elementsToAnimate, {
+                            opacity: 0,
+                            y: 20,
+                            duration: 0.5,
+                            stagger: 0.1,
+                            ease: 'power2.out'
+                        });
+
+                        observer.unobserve(section);
+                    }
+                });
+            }, { root: detailsView.querySelector('.details-scroller'), threshold: 0.2 });
+            sections.forEach(section => observer.observe(section));
+        }
+
+        // Event Listeners
+        grid.addEventListener('click', (e) => {
+            const card = e.target.closest('.specialization-card');
+            if (card) showDetails(card.getAttribute('data-track'), card);
+        });
+
+        grid.addEventListener('mousemove', e => {
+            const card = e.target.closest('.specialization-card');
+            if(card) {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                
+                // 3D Tilt Effect
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateY = x / 20;
+                const rotateX = -y / 20;
+                gsap.to(card, {
+                    rotationY: rotateY,
+                    rotationX: rotateX,
+                    transformPerspective: 1000,
+                    ease: 'power1.out',
+                    duration: 0.5
+                });
+            }
+        });
+        
+        grid.addEventListener('mouseleave', e => {
+            const cards = grid.querySelectorAll('.specialization-card');
+            cards.forEach(card => {
+                 gsap.to(card, {
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: 'power3.out',
+                    duration: 1
+                });
+            });
+        });
+
+        // Search event listener
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            performSearch(searchTerm);
+        });
+
+
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            if (window.pJSDom && window.pJSDom[0]) {
+                window.pJSDom[0].pJS.fn.vendors.destroypJS();
+                window.pJSDom = [];
+            }
+            setupParticles();
+        });
+
+        // Initial Setup
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+        setupParticles();
+    });
+
+    </script>
+</body>
+</html>
