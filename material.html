@@ -6,35 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaterialX | Course Selection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+    <link rel="stylesheet" href="global-theme.css">
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #7209b7;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --primary: #6a1b9a;
+            --secondary: #4a148c;
+            --accent: #ab47bc;
+            --light: #1a1a2e;
+            --dark: #0a0a0a;
             --success: #4cc9f0;
-            --card-bg: #ffffff;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --cs-color: #4361ee;
-            --ai-color: #f72585;
-            --is-color: #4cc9f0;
-            --level1-color: #06d6a0;
-            --level2-color: #ffd166;
+            --card-bg: rgba(26, 26, 46, 0.8);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --glow-purple: rgba(186, 104, 200, 0.4);
+            --cs-color: #6a1b9a;
+            --ai-color: #ab47bc;
+            --is-color: #ba68c8;
+            --level1-color: #9c27b0;
+            --level2-color: #8e24aa;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--dark);
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
+            color: #ffffff;
             min-height: 100vh;
             padding: 20px;
             display: flex;
@@ -52,11 +54,11 @@
             text-align: center;
             margin-bottom: 40px;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow);
+            background: rgba(26, 26, 46, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow), 0 0 30px var(--glow-purple);
+            border: 1px solid rgba(186, 104, 200, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -72,16 +74,18 @@
         }
 
         h1 {
-            color: var(--secondary);
+            color: #ffffff;
             font-size: 2.8rem;
             margin-bottom: 10px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
+            background: linear-gradient(135deg, #ab47bc 0%, #ba68c8 50%, #ab47bc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px var(--glow-purple);
         }
 
         .subtitle {
-            color: var(--dark);
+            color: #e0e0e0;
             font-size: 1.3rem;
             margin-bottom: 20px;
             max-width: 600px;
@@ -103,18 +107,24 @@
         .search-input {
             width: 100%;
             padding: 15px 50px 15px 20px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid rgba(186, 104, 200, 0.3);
             border-radius: 50px;
             font-size: 1rem;
-            background: white;
+            background: rgba(26, 26, 46, 0.8);
+            color: #ffffff;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .search-input:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 5px 20px var(--glow-purple);
+            background: rgba(26, 26, 46, 0.95);
+        }
+        
+        .search-input::placeholder {
+            color: #b0b0b0;
         }
 
         .search-icon {
@@ -135,7 +145,8 @@
         }
 
         .department-card {
-            background: var(--card-bg);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px 25px;
             /* MODIFICATION: Replaced fixed width with flex properties */
@@ -183,14 +194,15 @@
 
         .department-card:hover {
             transform: translateY(-12px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+            border-color: rgba(186, 104, 200, 0.5);
         }
 
         .department-card.active {
             border-color: var(--accent);
-            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(35, 35, 60, 0.9) 100%);
             transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 40px var(--glow-purple);
         }
 
         .department-icon {
@@ -257,13 +269,15 @@
 
         .content-area {
             width: 100%;
-            background: var(--card-bg);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
             box-shadow: 0 10px 30px var(--shadow);
             margin-bottom: 40px;
             display: none;
             animation: fadeIn 0.6s ease;
+            border: 1px solid rgba(186, 104, 200, 0.2);
         }
 
         .content-area.active {
@@ -330,7 +344,8 @@
         }
 
         .course-card {
-            background: var(--light);
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 15px var(--shadow);
@@ -338,11 +353,13 @@
             border-left: 5px solid var(--success);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(186, 104, 200, 0.2);
         }
 
         .course-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5), 0 0 25px var(--glow-purple);
+            border-color: rgba(186, 104, 200, 0.5);
         }
 
         .course-number {
@@ -362,7 +379,7 @@
         .course-title {
             font-size: 1.4rem;
             margin-bottom: 12px;
-            color: var(--secondary);
+            color: #ffffff;
             font-weight: 600;
         }
 
@@ -389,20 +406,21 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: var(--primary);
+            color: var(--accent);
             text-decoration: none;
             font-weight: 600;
             padding: 8px 16px;
             border-radius: 50px;
-            background: rgba(67, 97, 238, 0.1);
+            background: rgba(186, 104, 200, 0.1);
             transition: all 0.3s ease;
             justify-content: center;
         }
 
         .course-link:hover {
             color: white;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             transform: translateX(5px);
+            box-shadow: 0 0 15px var(--glow-purple);
         }
 
         .playlist-link {
@@ -451,7 +469,7 @@
             right: 30px;
             width: 50px;
             height: 50px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white;
             border-radius: 50%;
             display: flex;
@@ -462,7 +480,7 @@
             opacity: 0;
             visibility: hidden;
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 4px 12px var(--glow-purple);
         }
 
         .back-to-top.active {
@@ -471,8 +489,9 @@
         }
 
         .back-to-top:hover {
-            background: var(--secondary);
+            background: linear-gradient(135deg, var(--accent), var(--primary));
             transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--glow-purple);
         }
 
         @media (max-width: 1100px) {

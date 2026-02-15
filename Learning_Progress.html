@@ -5,22 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materialx | Learning Progress</title>
-    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="global-theme.css">
     <style>
         :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
-            --accent: #ff6b6b;
-            --light: #f8f9fa;
-            --dark: #343a40;
+            --primary: #6a1b9a;
+            --secondary: #4a148c;
+            --accent: #ab47bc;
+            --light: #1a1a2e;
+            --dark: #0a0a0a;
             --success: #28a745;
             --warning: #ffc107;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             --radius: 12px;
+            --glow-purple: rgba(186, 104, 200, 0.4);
         }
 
         * {
@@ -35,8 +37,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--dark);
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
+            color: #ffffff;
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
@@ -54,7 +56,7 @@
             background: var(--gradient);
             color: white;
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow), 0 0 40px var(--glow-purple);
             position: relative;
             overflow: hidden;
         }
@@ -88,24 +90,31 @@
         }
 
         .card {
-            background: white;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             padding: clamp(15px, 4vw, 25px);
             margin-bottom: 25px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(186, 104, 200, 0.2);
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+            border-color: rgba(186, 104, 200, 0.5);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
         .card h2 {
-            color: var(--primary);
+            background: linear-gradient(135deg, #ab47bc 0%, #ba68c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
+            border-bottom: 2px solid rgba(186, 104, 200, 0.2);
             font-weight: 700;
             font-size: clamp(1.3rem, 4vw, 1.6rem);
         }
@@ -113,15 +122,16 @@
         select {
             width: 100%;
             padding: 15px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid rgba(186, 104, 200, 0.3);
             border-radius: var(--radius);
             font-size: 16px;
             font-family: 'Poppins', sans-serif;
-            background-color: white;
+            background: rgba(10, 10, 10, 0.6);
+            color: #ffffff;
             transition: all 0.3s ease;
             margin-bottom: 15px;
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236a11cb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ab47bc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 16px;
@@ -131,8 +141,9 @@
 
         select:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--glow-purple);
+            background: rgba(10, 10, 10, 0.8);
         }
 
         .lesson-container {
@@ -147,7 +158,8 @@
         }
 
         .lesson-card {
-            background: #f8f9fa;
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
             border-radius: var(--radius);
             padding: 20px;
             display: flex;
@@ -155,15 +167,18 @@
             transition: all 0.3s ease;
             border-left: 4px solid var(--primary);
             cursor: pointer;
+            border: 1px solid rgba(186, 104, 200, 0.2);
         }
 
         .lesson-card:hover {
-            background: #e9ecef;
+            background: rgba(26, 26, 46, 0.9);
             transform: translateX(5px);
+            box-shadow: 0 0 20px var(--glow-purple);
+            border-color: rgba(186, 104, 200, 0.5);
         }
 
         .lesson-card.completed {
-            background: #e8f5e9;
+            background: rgba(40, 167, 69, 0.2);
             border-left-color: var(--success);
         }
 
@@ -184,7 +199,7 @@
         .progress-section {
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 2px solid #f0f0f0;
+            border-top: 2px solid rgba(186, 104, 200, 0.2);
         }
 
         .progress-info {
@@ -198,7 +213,7 @@
 
         .progress-bar {
             height: 12px;
-            background-color: #e0e0e0;
+            background-color: rgba(186, 104, 200, 0.2);
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 10px;
@@ -210,18 +225,21 @@
             border-radius: 10px;
             width: 0%;
             transition: width 0.5s ease;
+            box-shadow: 0 0 15px var(--glow-purple);
         }
 
         .completion-message {
             text-align: center;
             padding: 15px;
-            background: #e8f5e9;
+            background: rgba(40, 167, 69, 0.2);
+            backdrop-filter: blur(10px);
             border-radius: var(--radius);
             color: var(--success);
             font-weight: 500;
             margin-top: 20px;
             display: none;
             animation: fadeIn 0.5s ease;
+            border: 1px solid rgba(40, 167, 69, 0.3);
         }
 
         @keyframes fadeIn {

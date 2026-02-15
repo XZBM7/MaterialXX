@@ -4,46 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaterialX | Articles</title>
-     <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global-theme.css">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #7209b7;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --primary: #6a1b9a;
+            --secondary: #4a148c;
+            --accent: #ab47bc;
+            --light: #1a1a2e;
+            --dark: #0a0a0a;
             --success: #4cc9f0;
             --warning: #f72585;
-            --gray: #6c757d;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            --bg-color: #f5f7fa;
-            --surface-color: #ffffff;
-            --text-color: #212529;
-            --text-secondary: #6c757d;
-            --border-color: #e9ecef;
+            --gray: #b0b0b0;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(186, 104, 200, 0.4);
+            --bg-color: #0a0a0a;
+            --surface-color: rgba(26, 26, 46, 0.8);
+            --text-color: #ffffff;
+            --text-secondary: #e0e0e0;
+            --border-color: rgba(186, 104, 200, 0.2);
+            --glow-purple: rgba(186, 104, 200, 0.4);
         }
 
         [data-theme="dark"] {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-color: #e9ecef;
-            --text-secondary: #adb5bd;
-            --border-color: #343a40;
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            --light: #2d3748;
+            --bg-color: #0a0a0a;
+            --surface-color: rgba(26, 26, 46, 0.8);
+            --text-color: #ffffff;
+            --text-secondary: #e0e0e0;
+            --border-color: rgba(186, 104, 200, 0.2);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            --hover-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+            --light: #1a1a2e;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: var(--bg-color); color: var(--text-color); line-height: 1.6; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
+        body { background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%); color: var(--text-color); line-height: 1.6; min-height: 100vh; transition: background-color 0.3s, color 0.3s; }
         .container { max-width: 1300px; margin: 0 auto; padding: 0 25px; }
         
         /* Header */
-        header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 1.5rem 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 100; }
+        header { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); color: white; padding: 1.5rem 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-purple); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(186, 104, 200, 0.2); }
         .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; font-size: 1.8rem; font-weight: 700; cursor: pointer; }
+        .logo { display: flex; align-items: center; font-size: 1.8rem; font-weight: 700; cursor: pointer; gap: 10px; }
+        .logo img { height: 40px; width: auto; border-radius: 8px; filter: drop-shadow(0 0 10px var(--glow-purple)); }
         .logo i { margin-right: 10px; font-size: 2rem; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 1.8rem; position: relative; }
@@ -55,7 +58,8 @@
         .theme-toggle:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
         
         /* Hero */
-        .hero { padding: 4rem 0; text-align: center; background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(58, 12, 163, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234361ee"/><path d="M0 0L100 100M100 0L0 100" stroke="%233a0ca3" stroke-width="2"/></svg>'); background-size: cover; color: white; border-radius: 0 0 30px 30px; margin-bottom: 3rem; }
+        .hero { padding: 4rem 0; text-align: center; background: linear-gradient(135deg, rgba(10, 10, 10, 0.85), rgba(26, 26, 46, 0.85)); color: white; border-radius: 0 0 30px 30px; margin-bottom: 3rem; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 100px rgba(186, 104, 200, 0.1); position: relative; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(186, 104, 200, 0.15) 0%, transparent 70%); z-index: 0; }
         .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 700; }
         .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
         
@@ -266,8 +270,8 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo" onclick="goHome()">
-                    <i class="fas fa-newspaper"></i>
-                    MaterialX-Articles
+                    <img src="img/logo.jpeg" alt="MaterialX Logo">
+                    <span>MaterialX-Articles</span>
                 </div>
                 <nav>
                     <ul>

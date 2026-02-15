@@ -3,27 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaterialX | Home</title>
-    <link rel="icon" type="image/png" href="img/photo_2024-10-01_00-48-56.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>MaterialX · Purple Horizon</title>
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        :root {
-            --primary-color: #00e5ff;
-            --primary-dark: #00b8d4;
-            --secondary-color: #7b1fa2;
-            --secondary-light: #9c27b0;
-            --dark-bg: #0a0a16;
-            --darker-bg: #050510;
-            --card-bg: rgba(18, 18, 35, 0.7);
-            --text-color: #ffffff;
-            --text-secondary: #b0b0b0;
-            --transition-speed: 0.4s;
-            --border-radius: 12px;
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -31,702 +15,431 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--darker-bg), var(--dark-bg));
-            color: var(--text-color);
+            background: #0b0712;
             font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            width: 100vw;
             overflow: hidden;
-            position: relative;
+            color: white;
         }
 
-        /* Advanced background effects */
-        .bg-effects {
-            position: absolute;
+        /* ===== BACKGROUND ELEGANT GRADIENT + SOFT PARTICLES ===== */
+        .bg-aura {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
-            overflow: hidden;
+            background: radial-gradient(circle at 40% 50%, #1f103a 0%, #080416 100%);
+            z-index: 0;
+        }
+
+        .particle-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0.7;
         }
 
         .particle {
             position: absolute;
+            background: rgba(190, 130, 250, 0.15);
             border-radius: 50%;
-            background: radial-gradient(circle, var(--primary-color), transparent);
-            opacity: 0.15;
-            animation: floatParticle 20s infinite linear;
-            filter: blur(1px);
-        }
-
-        .particle:nth-child(2n) {
-            background: radial-gradient(circle, var(--secondary-color), transparent);
-            animation-duration: 25s;
-            animation-direction: reverse;
+            filter: blur(8px);
+            animation: floatParticle 18s infinite alternate ease-in-out;
         }
 
         @keyframes floatParticle {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-            }
-            33% {
-                transform: translateY(-30vh) translateX(15vw) rotate(120deg);
-            }
-            66% {
-                transform: translateY(20vh) translateX(-20vw) rotate(240deg);
-            }
-            100% {
-                transform: translateY(0) translateX(0) rotate(360deg);
-            }
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -20px) scale(1.3); }
         }
 
-        /* Background grid */
+        /* subtle grid (barely visible) */
         .grid-lines {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(0, 229, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 229, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            opacity: 0.3;
+                linear-gradient(rgba(160, 100, 240, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(160, 100, 240, 0.08) 1px, transparent 1px);
+            background-size: 60px 60px;
             z-index: 1;
         }
 
-        /* Main container */
-        .intro-container {
+        /* ===== MAIN CONTENT (layered above) ===== */
+        .hero {
             position: relative;
             z-index: 20;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            max-width: 1400px;
-            padding: 30px;
-            perspective: 1000px;
             min-height: 100vh;
-            overflow-y: auto;
-        }
-
-        /* Logo */
-        #logo {
-            display: none;
-            width: min(35vw, 350px);
-            height: auto;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.8));
-            transform: translateY(100vh) rotateX(90deg);
-            animation: logoEntrance 2s ease-out forwards, logoFloat 4s 2s infinite ease-in-out;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 100%;
-        }
-
-        @keyframes logoEntrance {
-            0% { 
-                transform: translateY(100vh) rotateX(90deg) scale(0.5);
-                opacity: 0;
-            }
-            70% { 
-                transform: translateY(-20px) rotateX(0) scale(1.05);
-                opacity: 1;
-            }
-            100% { 
-                transform: translateY(0) rotateX(0) scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { 
-                transform: translateY(0) rotateX(0);
-            }
-            50% { 
-                transform: translateY(-15px) rotateX(5deg);
-            }
-        }
-
-        /* Main text */
-        #text {
-            display: none;
-            font-size: clamp(3rem, 9vw, 7rem);
-            font-weight: 900;
+            width: 100%;
+            padding: 1.5rem;
             text-align: center;
-            margin-bottom: 15px;
-            transform: translateY(-100vh) rotateY(90deg);
-            animation: textEntrance 1.8s 0.5s ease-out forwards, textShine 4s 2.5s infinite linear;
+            backdrop-filter: blur(1px);
+        }
+
+        /* ===== LOGO PRESERVED + NEXT-LEVEL ANIMATION ===== */
+        .logo-glassy {
+            max-width: min(450px, 75vw);
+            margin-bottom: 1.8rem;
+            filter: drop-shadow(0 0 30px rgba(170, 90, 255, 0.6));
+            animation: logoLevitate 4s infinite alternate, logoGlow 3s infinite alternate;
+            border-radius: 32px;
+            background: transparent; /* keep original image background */
+            transition: transform 0.2s ease;
+        }
+
+        .logo-glassy img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 32px;
+            border: 2px solid rgba(200, 150, 255, 0.25);
+            box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(200, 160, 255, 0.2) inset;
+            transition: all 0.4s;
+        }
+
+        /* preserve original image exactly, only animate container */
+        .logo-glassy:hover img {
+            border-color: #d9b0ff;
+            box-shadow: 0 0 35px #c285fd;
+        }
+
+        @keyframes logoLevitate {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            100% { transform: translateY(-18px) rotate(0.5deg) scale(1.01); }
+        }
+
+        @keyframes logoGlow {
+            0% { filter: drop-shadow(0 0 15px #b77ef0); }
+            100% { filter: drop-shadow(0 0 45px #e3b1ff) drop-shadow(0 0 15px #a64dff); }
+        }
+
+        /* ===== TITLE (ultra smooth, no hard glitch) ===== */
+        .sleek-title {
+            font-size: clamp(3.5rem, 15vw, 7.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: #f0eaff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             text-shadow: 
-                0 0 10px rgba(0, 255, 255, 0.8), 
-                0 0 20px rgba(0, 255, 255, 0.6),
-                0 0 30px rgba(0, 255, 255, 0.4);
-            background: linear-gradient(135deg, var(--primary-color), #ffffff, var(--secondary-light), var(--primary-color));
-            background-size: 300% 300%;
+                0 0 12px #c794ff,
+                0 0 30px #b46eff,
+                0 0 55px #9013fe;
+            animation: titleBreathing 5s infinite alternate, subtleShift 8s infinite;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            max-width: 100vw;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            -webkit-text-stroke: 0.5px rgba(255,255,240,0.3);
+        }
+
+        .sleek-title span {
+            display: inline-block;
+            animation: letterWave 3s infinite alternate;
+            animation-delay: calc(0.05s * var(--i));
+        }
+
+        @keyframes titleBreathing {
+            0% { letter-spacing: 0.1em; filter: brightness(0.9); text-shadow: 0 0 20px #bb88ff; }
+            100% { letter-spacing: 0.18em; filter: brightness(1.2); text-shadow: 0 0 50px #f0c4ff, 0 0 15px #b45eff; }
+        }
+
+        @keyframes subtleShift {
+            0% { transform: skew(0deg, 0deg); }
+            95% { transform: skew(0deg, 0deg); }
+            96% { transform: skew(1deg, 0.3deg); }
+            97% { transform: skew(-0.5deg, -0.1deg); }
+            100% { transform: skew(0deg, 0deg); }
+        }
+
+        @keyframes letterWave {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-7px); }
+        }
+
+        /* ===== SUBTITLE (flowing neon) ===== */
+        .flow-sub {
+            font-size: clamp(1rem, 3.8vw, 1.9rem);
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #dbbdff, #f0dcff, #c99aff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
-            position: relative;
-            overflow: hidden;
-            word-break: break-word;
-            line-height: 1.1;
+            text-shadow: 0 0 40px #c285fd;
+            margin: 0.5rem 0 2.2rem;
+            padding: 0.5rem 2rem;
+            border-radius: 60px;
+            backdrop-filter: blur(7px);
+            border: 1px solid rgba(200, 160, 255, 0.25);
+            white-space: nowrap;
+            max-width: 95vw;
+            overflow-x: auto;
+            animation: borderPulse 3s infinite alternate;
         }
 
-        #text::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: textShineOverlay 5s 2s infinite;
+        @keyframes borderPulse {
+            0% { border-color: rgba(200, 160, 255, 0.2); box-shadow: 0 0 20px rgba(160, 100, 255, 0.2); }
+            100% { border-color: rgba(240, 200, 255, 0.7); box-shadow: 0 0 45px #d29eff; }
         }
 
-        @keyframes textEntrance {
-            0% { 
-                transform: translateY(-100vh) rotateY(90deg) scale(0.7);
-                opacity: 0;
-            }
-            70% { 
-                transform: translateY(20px) rotateY(0) scale(1.05);
-                opacity: 1;
-            }
-            100% { 
-                transform: translateY(0) rotateY(0) scale(1);
-                opacity: 1;
-            }
+        /* ===== LOADING BAR (liquid purple) ===== */
+        .loader-wrapper {
+            width: min(550px, 80vw);
+            margin: 1.5rem auto 1rem;
         }
 
-        @keyframes textShine {
-            0%, 100% { 
-                background-position: 0% 50%;
-                transform: translateY(0);
-            }
-            50% { 
-                background-position: 100% 50%;
-                transform: translateY(-5px);
-            }
-        }
-
-        @keyframes textShineOverlay {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
-        }
-
-        /* Subtitle */
-        .subtitle {
-            display: none;
-            font-size: clamp(1.2rem, 3.5vw, 2rem);
-            text-align: center;
-            margin-top: 5px;
-            opacity: 0;
-            animation: subtitleEntrance 1s 2s forwards;
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            line-height: 1.3;
-            padding: 0 10px;
-        }
-
-        @keyframes subtitleEntrance {
-            0% { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Loading bar */
-        .loading-container {
-            position: relative;
-            width: 80%;
-            max-width: 500px;
-            margin-top: 40px;
-            display: none;
-        }
-
-        .loading-text {
-            text-align: center;
-            margin-bottom: 10px;
+        .status-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #dac0ff;
             font-size: 1rem;
-            color: var(--text-secondary);
-            opacity: 0;
-            animation: fadeIn 0.5s 2.5s forwards;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
-        .loading-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 3px;
-            overflow: hidden;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        .status-text i {
+            font-size: 1.7rem;
+            color: #d9b0ff;
+            animation: pulseIcon 2.2s infinite;
         }
 
-        .loading-progress {
+        @keyframes pulseIcon {
+            0% { opacity: 0.5; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.2); text-shadow: 0 0 25px white; }
+        }
+
+        .liquid-track {
+            height: 10px;
+            background: rgba(0, 0, 0, 0.45);
+            border-radius: 40px;
+            border: 1px solid #b27af0;
+            box-shadow: 0 0 10px #a451ff, inset 0 0 6px #2e0047;
+            padding: 2px;
+        }
+
+        .liquid-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 3px;
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, #c394ff, #eba0ff, #b45aff, #c27bff);
+            border-radius: 40px;
+            box-shadow: 0 0 35px #edbbff, 0 0 15px #b555ff;
+            transition: width 0.35s cubic-bezier(0.46, 0.03, 0.52, 0.96);
             position: relative;
-            overflow: hidden;
+            background-size: 200% 100%;
+            animation: liquidMove 2.5s infinite alternate;
         }
 
-        .loading-progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: loadingShine 1.5s infinite;
+        @keyframes liquidMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
         }
 
-        @keyframes loadingShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Transition effects */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes fadeInUp {
-            0% { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-out {
-            animation: fadeOut 1.2s forwards;
-        }
-
-        @keyframes fadeOut {
-            0% { 
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% { 
-                opacity: 0;
-                transform: scale(0.9);
-            }
-        }
-
-        /* Advanced responsive design */
-        @media (max-width: 1200px) {
-            .intro-container {
-                padding: 25px;
-            }
-            
-            #logo {
-                width: min(40vw, 320px);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .intro-container {
-                padding: 20px;
-            }
-            
-            #logo {
-                width: min(45vw, 300px);
-                margin-bottom: 25px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .intro-container {
-                padding: 15px;
-                justify-content: flex-start;
-                padding-top: 80px;
-            }
-            
-            #logo {
-                width: min(55vw, 280px);
-                margin-bottom: 20px;
-            }
-            
-            #text {
-                font-size: clamp(2.5rem, 12vw, 5rem);
-                padding: 8px 16px;
-                margin-bottom: 10px;
-            }
-            
-            .subtitle {
-                font-size: clamp(1rem, 4vw, 1.5rem);
-            }
-            
-            .loading-container {
-                width: 90%;
-                margin-top: 30px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .intro-container {
-                padding: 10px;
-                padding-top: 70px;
-            }
-            
-            #logo {
-                width: 70vw;
-                margin-bottom: 15px;
-            }
-            
-            #text {
-                font-size: clamp(2rem, 14vw, 4rem);
-                padding: 6px 12px;
-                margin-bottom: 8px;
-            }
-            
-            .subtitle {
-                font-size: clamp(0.9rem, 4.5vw, 1.3rem);
-                letter-spacing: 1px;
-            }
-            
-            .loading-container {
-                width: 95%;
-                margin-top: 25px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            #logo {
-                width: 80vw;
-            }
-            
-            #text {
-                font-size: clamp(1.8rem, 16vw, 3.5rem);
-            }
-            
-            .subtitle {
-                font-size: clamp(0.8rem, 5vw, 1.2rem);
-            }
-        }
-
-        @media (max-height: 600px) and (orientation: landscape) {
-            .intro-container {
-                padding: 15px;
-                flex-direction: row;
-                gap: 30px;
-                justify-content: center;
-                align-items: center;
-                padding-top: 60px;
-            }
-            
-            #logo {
-                width: min(25vh, 200px);
-                margin-bottom: 0;
-            }
-            
-            .text-content {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                flex: 1;
-            }
-            
-            #text {
-                font-size: clamp(2rem, 8vh, 4rem);
-                text-align: left;
-                margin-bottom: 5px;
-            }
-            
-            .subtitle {
-                text-align: left;
-                font-size: clamp(0.9rem, 3vh, 1.5rem);
-            }
-            
-            .loading-container {
-                width: 100%;
-                margin-top: 20px;
-            }
-        }
-
-        /* For very small screens */
-        @media (max-width: 320px) {
-            .intro-container {
-                padding: 5px;
-                padding-top: 60px;
-            }
-            
-            #logo {
-                width: 85vw;
-            }
-            
-            #text {
-                font-size: clamp(1.5rem, 18vw, 3rem);
-            }
-            
-            .subtitle {
-                font-size: clamp(0.7rem, 6vw, 1rem);
-            }
-        }
-
-        /* Initial loading screen */
-        #initial-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--darker-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader-spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Skip intro button for returning visitors */
+        /* ===== SKIP BUTTON (sleek) ===== */
         .skip-intro {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
+            top: 22px;
+            right: 28px;
+            background: rgba(18, 6, 33, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(210, 150, 255, 0.6);
+            color: #f0deff;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
             cursor: pointer;
-            z-index: 30;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
+            z-index: 100;
+            box-shadow: 0 0 20px #b163ff;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
         .skip-intro:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            background: #501f9a;
+            border-color: #f3ceff;
+            box-shadow: 0 0 50px #c67aff;
+            transform: scale(1.03);
         }
 
-        @media (max-width: 768px) {
-            .skip-intro {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-                font-size: 0.7rem;
-            }
+        /* ===== responsive fine-tuning ===== */
+        @media (max-width: 700px) {
+            .sleek-title { letter-spacing: 0.05em; }
+            .flow-sub { letter-spacing: 0.3em; }
         }
 
-        /* Content wrapper to ensure everything fits */
-        .content-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 100%;
-            padding: 0 10px;
+        @media (max-width: 500px) {
+            .skip-intro { padding: 0.5rem 1.3rem; font-size: 0.8rem; top: 15px; right: 15px; }
+            .logo-glassy { max-width: 70vw; }
         }
+
+        @media (max-height: 550px) and (orientation: landscape) {
+            .hero { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 2rem; }
+            .logo-glassy { width: 30vw; }
+            .sleek-title { font-size: 4rem; }
+        }
+
+        /* hide title scrollbar (just in case) */
+        .sleek-title::-webkit-scrollbar { height: 4px; background: #180032; }
+        .sleek-title::-webkit-scrollbar-thumb { background: #b77ef0; border-radius: 10px; }
+        .flow-sub::-webkit-scrollbar { height: 3px; background: #1c0035; }
+        .flow-sub::-webkit-scrollbar-thumb { background: #bc87fa; }
     </style>
 </head>
 <body>
-    <div id="initial-loader">
-        <div class="loader-spinner"></div>
-    </div>
-    
-    <button class="skip-intro" id="skipIntro">Skip Intro</button>
-    
-    <div class="bg-effects" id="bgEffects"></div>
+    <!-- background layers: soft deep purple -->
+    <div class="bg-aura"></div>
     <div class="grid-lines"></div>
-    
-    <div class="intro-container">
-        <div class="content-wrapper">
-            <img id="logo" src="img/WhatsApp_Image_2024-11-16_at_11.34.png" alt="MaterialX Logo">
-            
-            <div class="text-content">
-                <div id="text"></div>
-                <div class="subtitle">Premium Materials and Solutions</div>
+
+    <!-- floating particles (very subtle) -->
+    <div class="particle-field" id="particleField"></div>
+
+    <!-- skip button -->
+    <button class="skip-intro" id="skipIntro"> ENTER </button>
+
+    <!-- main hero unit -->
+    <div class="hero">
+        <!-- logo container — preserves original image exactly, no distortion -->
+        <div class="logo-glassy" id="logoContainer">
+            <img src="img/logo.jpeg" alt="MaterialX" id="logoImage">
+        </div>
+
+        <!-- title with soft wave animation -->
+        <div class="sleek-title" id="dynamicTitle">
+            <span style="--i:1">M</span><span style="--i:2">a</span><span style="--i:3">t</span><span style="--i:4">e</span><span style="--i:5">r</span><span style="--i:6">i</span><span style="--i:7">a</span><span style="--i:8">l</span><span style="--i:9">X</span>
+        </div>
+
+
+        <!-- elegant loader -->
+        <div class="loader-wrapper">
+            <div class="status-text">
+                <i>✦</i> loading <i>✦</i>
             </div>
-            
-            <div class="loading-container">
-                <div class="loading-text">Loading...</div>
-                <div class="loading-bar">
-                    <div class="loading-progress"></div>
-                </div>
+            <div class="liquid-track">
+                <div class="liquid-fill" id="liquidFill" style="width: 0%;"></div>
             </div>
         </div>
     </div>
 
     <script>
-        const textElement = document.getElementById('text');
-        const logoElement = document.getElementById('logo');
-        const subtitleElement = document.querySelector('.subtitle');
-        const loadingContainer = document.querySelector('.loading-container');
-        const loadingProgress = document.querySelector('.loading-progress');
-        const bgEffects = document.getElementById('bgEffects');
-        const initialLoader = document.getElementById('initial-loader');
-        const skipIntroBtn = document.getElementById('skipIntro');
-        const text = "MaterialX";
-        let index = 0;
-
-        // Hide initial loader after page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                initialLoader.style.opacity = '0';
-                setTimeout(() => {
-                    initialLoader.style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
-
-        // Create background particle effects
-        function createParticles() {
-            const particleCount = Math.min(40, Math.floor(window.innerWidth / 25));
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size
-                const size = Math.random() * 120 + 30;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation delay
-                particle.style.animationDelay = `${Math.random() * 20}s`;
-                
-                // Random opacity
-                particle.style.opacity = Math.random() * 0.1 + 0.05;
-                
-                bgEffects.appendChild(particle);
+        (function() {
+            // generate soft particles (much better than lightning)
+            function createParticles() {
+                const field = document.getElementById('particleField');
+                const count = Math.min(35, Math.floor(window.innerWidth / 40));
+                for (let i = 0; i < count; i++) {
+                    const p = document.createElement('div');
+                    p.className = 'particle';
+                    const size = 20 + Math.random() * 140;
+                    p.style.width = size + 'px';
+                    p.style.height = size + 'px';
+                    p.style.left = Math.random() * 100 + '%';
+                    p.style.top = Math.random() * 100 + '%';
+                    p.style.animationDelay = Math.random() * 10 + 's';
+                    p.style.animationDuration = 14 + Math.random() * 16 + 's';
+                    p.style.background = `rgba(${150 + Math.random()*80}, ${60 + Math.random()*70}, 255, 0.1)`;
+                    field.appendChild(p);
+                }
             }
-        }
 
-        // Skip intro functionality
-        skipIntroBtn.addEventListener('click', () => {
-            window.location.href = 'homee.html';
-        });
+            // ====== PROGRESS & REDIRECT ======
+            const fillBar = document.getElementById('liquidFill');
+            const skipBtn = document.getElementById('skipIntro');
+            let progress = 0;
+            let interval;
 
-        // Check if first visit
-        if (!sessionStorage.getItem('firstVisit')) {
-            sessionStorage.setItem('firstVisit', 'true');
-            setTimeout(() => {
-                createParticles();
-                showLogo();
-            }, 1200);
-        } else {
-            // Skip intro for returning visitors
-            skipIntroBtn.style.display = 'block';
-            setTimeout(() => {
-                createParticles();
-                showLogo();
-            }, 1200);
-        }
-
-        function showLogo() {
-            logoElement.style.display = 'block';
-            setTimeout(() => {
-                showText();
-            }, 1000);
-        }
-
-        function showText() {
-            textElement.style.display = 'block';
-            if (index < text.length) {
-                textElement.innerHTML += text[index];
-                index++;
-                setTimeout(showText, 100);
+            const hasVisited = sessionStorage.getItem('materialx_refined');
+            if (!hasVisited) {
+                sessionStorage.setItem('materialx_refined', 'true');
+                startLoading(false);
             } else {
-                // Show subtitle and loading bar
-                subtitleElement.style.display = 'block';
-                loadingContainer.style.display = 'block';
-                
-                // Simulate loading progress
-                let progress = 0;
-                const progressInterval = setInterval(() => {
-                    progress += Math.random() * 8 + 2;
+                // return visitor: faster
+                startLoading(true);
+            }
+
+            function startLoading(fast = false) {
+                const step = fast ? 2.8 : 1.2;
+                interval = setInterval(() => {
+                    progress += step + Math.random() * 1.2;
                     if (progress >= 100) {
                         progress = 100;
-                        clearInterval(progressInterval);
-                        
-                        // Redirect to next page after loading completes
+                        fillBar.style.width = '100%';
+                        clearInterval(interval);
                         setTimeout(() => {
-                            document.querySelector('.intro-container').classList.add('fade-out');
-                            setTimeout(() => {
-                                window.location.href = 'homee.html';
-                            }, 1200);
-                        }, 800);
+                            window.location.href = 'homee.html';
+                        }, 700);
+                    } else {
+                        fillBar.style.width = progress + '%';
                     }
-                    loadingProgress.style.width = `${progress}%`;
-                }, 150);
+                }, 110);
             }
-        }
 
-        // Recreate particles on window resize
-        window.addEventListener('resize', () => {
-            // Remove old particles
-            while (bgEffects.firstChild) {
-                bgEffects.removeChild(bgEffects.firstChild);
-            }
-            // Create new particles
-            createParticles();
-        });
+            skipBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                clearInterval(interval);
+                window.location.href = 'homee.html';
+            });
 
-        // Ensure content fits on screen
-        function adjustLayout() {
-            const container = document.querySelector('.intro-container');
-            const contentWrapper = document.querySelector('.content-wrapper');
-            const windowHeight = window.innerHeight;
-            const contentHeight = contentWrapper.scrollHeight;
-            
-            if (contentHeight > windowHeight * 0.9) {
-                container.style.justifyContent = 'flex-start';
-                container.style.paddingTop = '80px';
-            } else {
-                container.style.justifyContent = 'center';
-                container.style.paddingTop = '30px';
-            }
-        }
+            // ====== Particles generation ======
+            window.addEventListener('load', () => {
+                createParticles();
+            });
 
-        // Adjust layout on load and resize
-        window.addEventListener('load', adjustLayout);
-        window.addEventListener('resize', adjustLayout);
+            window.addEventListener('resize', () => {
+                document.getElementById('particleField').innerHTML = '';
+                createParticles();
+            });
+
+            // additional refined animation: logo subtle scale on title complete?
+            // we can also add a tiny extra delay before showing subline, but fine.
+
+            // ensure image doesn't break if missing (just in case)
+            const img = document.getElementById('logoImage');
+            img.addEventListener('error', function() {
+                // if image missing, replace with elegant fallback (preserve style)
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='180' viewBox='0 0 400 180'%3E%3Crect width='400' height='180' fill='%23200d47' rx='30' /%3E%3Ctext x='90' y='110' fill='%23e9cbff' font-size='60' font-weight='900' font-family='Poppins'%3EMX%3C/text%3E%3C/svg%3E";
+            });
+        })();
     </script>
+
+    <!-- small extra keyframes for border animation -->
+    <style>
+        /* additional smoothness */
+        .logo-glassy {
+            will-change: transform, filter;
+        }
+        .liquid-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 240, 255, 0.3), transparent);
+            animation: shinePass 2.8s infinite;
+        }
+        @keyframes shinePass {
+            0% { transform: translateX(-100%); }
+            60% { transform: translateX(100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
 </body>
 </html>

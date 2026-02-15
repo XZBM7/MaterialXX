@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Gaming Room | Materialx</title>
-    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+    <link rel="stylesheet" href="global-theme.css">
     <style>
         :root {
-            --primary-color: #38bdf8;
-            --secondary-color: #ef4444;
-            --accent-color: #10b981;
-            --dark-bg: #030337;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --text-color: #f1f5f9;
-            --hover-color: rgba(56, 189, 248, 0.2);
+            --primary-color: #6a1b9a;
+            --secondary-color: #ab47bc;
+            --accent-color: #ba68c8;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(26, 26, 46, 0.8);
+            --text-color: #ffffff;
+            --hover-color: rgba(186, 104, 200, 0.2);
+            --glow-purple: rgba(186, 104, 200, 0.4);
         }
 
         * {
@@ -25,8 +27,8 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg), #05052e);
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
             color: var(--text-color);
             margin: 0;
             padding: 0;
@@ -40,10 +42,10 @@
             padding: 20px;
             text-align: center;
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(186, 104, 200, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-purple);
         }
 
         .title {

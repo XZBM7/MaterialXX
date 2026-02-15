@@ -5,21 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Materialx | Chatbot</title>
-    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="global-theme.css">
     <style>
         :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #6b8cbc;
-            --accent-color: #ff7e5f;
-            --light-color: #f5f7fa;
-            --dark-color: #2c3e50;
+            --primary-color: #6a1b9a;
+            --secondary-color: #4a148c;
+            --accent-color: #ab47bc;
+            --light-color: #1a1a2e;
+            --dark-color: #0a0a0a;
             --success-color: #2ecc71;
             --warning-color: #f39c12;
             --error-color: #e74c3c;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             --radius: 12px;
             --transition: all 0.3s ease;
+            --glow-purple: rgba(186, 104, 200, 0.4);
         }
 
         * {
@@ -29,17 +31,17 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             direction: rtl;
             text-align: right;
-            background: linear-gradient(135deg, #e5ddd5 0%, #d6e4f0 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             height: 100vh;
             overflow: hidden;
-            color: var(--dark-color);
+            color: #ffffff;
         }
 
         .chatbot-container {
@@ -49,20 +51,22 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: var(--shadow);
+            background-color: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow), 0 0 30px var(--glow-purple);
             border-radius: var(--radius);
             overflow: hidden;
+            border: 1px solid rgba(186, 104, 200, 0.2);
         }
 
         .chat-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
             color: white;
             padding: 15px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-purple);
         }
 
         .chat-header h1 {

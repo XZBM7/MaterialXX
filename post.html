@@ -5,35 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaterialX | Post</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-      <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+  <link rel="stylesheet" href="global-theme.css">
 
   <style>
     :root {
-      --primary: #6c5ce7;
-      --primary-dark: #5649c0;
-      --secondary: #a29bfe;
-      --accent: #fd79a8;
-      --light: #f8f9fa;
-      --dark: #2d3436;
-      --gray: #636e72;
+      --primary: #6a1b9a;
+      --primary-dark: #4a148c;
+      --secondary: #ab47bc;
+      --accent: #ba68c8;
+      --light: #1a1a2e;
+      --dark: #0a0a0a;
+      --gray: #b0b0b0;
       --success: #00b894;
       --danger: #d63031;
       --warning: #fdcb6e;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       --radius: 12px;
       --transition: all 0.3s ease;
+      --glow-purple: rgba(186, 104, 200, 0.4);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      color: var(--dark);
+      background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
+      color: #ffffff;
       line-height: 1.6;
       min-height: 100vh;
       padding: 20px;
@@ -53,9 +55,12 @@
 
     h1 {
       font-size: 3rem;
-      color: var(--primary);
+      background: linear-gradient(135deg, #ab47bc 0%, #ba68c8 50%, #ab47bc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 10px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      text-shadow: 0 0 30px var(--glow-purple);
       position: relative;
       display: inline-block;
     }
@@ -68,12 +73,13 @@
       transform: translateX(-50%);
       width: 100px;
       height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--primary), var(--accent));
       border-radius: 2px;
+      box-shadow: 0 0 10px var(--glow-purple);
     }
 
     .subtitle {
-      color: var(--gray);
+      color: #e0e0e0;
       font-size: 1.2rem;
       margin-top: 10px;
     }
@@ -82,7 +88,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(to right, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       color: white;
       border: none;
       padding: 15px 30px;
@@ -91,13 +97,13 @@
       border-radius: 50px;
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow), 0 0 20px var(--glow-purple);
       margin: 20px auto;
     }
 
     .btn-add:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
     }
 
     .btn-add i {
@@ -114,16 +120,24 @@
     .search-box {
       width: 100%;
       padding: 15px 50px 15px 20px;
-      border: none;
+      border: 2px solid rgba(186, 104, 200, 0.3);
       border-radius: 50px;
       font-size: 1rem;
+      background: rgba(26, 26, 46, 0.8);
+      color: #ffffff;
       box-shadow: var(--shadow);
       transition: var(--transition);
     }
 
     .search-box:focus {
       outline: none;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 5px 20px var(--glow-purple);
+      background: rgba(26, 26, 46, 0.95);
+    }
+    
+    .search-box::placeholder {
+      color: #b0b0b0;
     }
 
     .search-icon {
@@ -136,13 +150,15 @@
     }
 
     .form-container {
-      background: white;
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(10px);
       border-radius: var(--radius);
       padding: 30px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow), 0 0 30px var(--glow-purple);
       margin-bottom: 40px;
       display: none;
       animation: fadeIn 0.5s ease;
+      border: 1px solid rgba(186, 104, 200, 0.2);
     }
 
     @keyframes fadeIn {
@@ -160,7 +176,10 @@
     }
 
     .form-header h2 {
-      color: var(--primary);
+      background: linear-gradient(135deg, #ab47bc 0%, #ba68c8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       font-size: 1.8rem;
     }
 
@@ -192,7 +211,7 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 600;
-      color: var(--dark);
+      color: #ffffff;
     }
 
     .required::after {
@@ -203,16 +222,23 @@
     input, textarea {
       width: 100%;
       padding: 12px 15px;
-      border: 2px solid #e0e0e0;
+      border: 2px solid rgba(186, 104, 200, 0.3);
       border-radius: 8px;
       font-size: 1rem;
+      background: rgba(10, 10, 10, 0.6);
+      color: #ffffff;
       transition: var(--transition);
     }
 
     input:focus, textarea:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--glow-purple);
+      background: rgba(10, 10, 10, 0.8);
+    }
+    
+    input::placeholder, textarea::placeholder {
+      color: #b0b0b0;
     }
 
     .error {
@@ -227,7 +253,7 @@
     }
 
     .submit-btn {
-      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       color: white;
       border: none;
       padding: 15px 30px;
@@ -238,11 +264,12 @@
       transition: var(--transition);
       width: 100%;
       margin-top: 10px;
+      box-shadow: 0 0 20px var(--glow-purple);
     }
 
     .submit-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
     }
 
     .submit-btn:disabled {
@@ -259,21 +286,24 @@
     }
 
     .post {
-      background: white;
+      background: rgba(26, 26, 46, 0.8);
+      backdrop-filter: blur(10px);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
       position: relative;
+      border: 1px solid rgba(186, 104, 200, 0.2);
     }
 
     .post:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+      border-color: rgba(186, 104, 200, 0.5);
     }
 
     .post-header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       color: white;
       padding: 20px;
       position: relative;

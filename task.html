@@ -5,28 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>MaterialX | Task Manager</title>
-    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+    <link rel="stylesheet" href="global-theme.css">
 
     <style>
         :root {
-            --primary: #5e35b1;
-            --primary-light: #9162e4;
-            --primary-dark: #280680;
-            --secondary: #00acc1;
-            --secondary-light: #5ddef4;
-            --secondary-dark: #007c91;
-            --surface: #ffffff;
-            --background: #f5f5f7;
+            --primary: #6a1b9a;
+            --primary-light: #ab47bc;
+            --primary-dark: #4a148c;
+            --secondary: #ba68c8;
+            --secondary-light: #ce93d8;
+            --secondary-dark: #8e24aa;
+            --surface: rgba(26, 26, 46, 0.8);
+            --background: #0a0a0a;
             --on-primary: #ffffff;
-            --on-secondary: #000000;
-            --on-surface: #000000;
+            --on-secondary: #ffffff;
+            --on-surface: #ffffff;
             --error: #b00020;
             --success: #00c853;
             --warning: #ffab00;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.15);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(186, 104, 200, 0.4);
             --radius: 12px;
             --transition: all 0.3s ease;
+            --glow-purple: rgba(186, 104, 200, 0.4);
         }
 
         * {
@@ -36,9 +38,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            background-color: var(--background);
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
             color: var(--on-surface);
             min-height: 100vh;
             display: flex;
@@ -46,11 +48,11 @@
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark), var(--primary-light));
             color: var(--on-primary);
             padding: 1.5rem 0;
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow), 0 0 20px var(--glow-purple);
             position: relative;
             overflow: hidden;
         }

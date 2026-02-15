@@ -5,47 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaterialX | Smart Student Organizer</title>
-    <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="global-theme.css">
 
     <style>
         /* CSS Variables & Reset */
         :root {
-            --primary-blue: #4361ee;
-            --primary-dark: #3a56d4;
-            --secondary-purple: #7209b7;
-            --accent-teal: #4cc9f0;
-            --success-green: #06d6a0;
-            --warning-yellow: #ffd166;
-            --danger-red: #ef476f;
-            --light-bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --dark-text: #2b2d42;
-            --medium-text: #6c757d;
-            --light-text: #adb5bd;
-            --border-color: #e9ecef;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --radius: 12px;
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --primary-light: #a78bfa;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --dark: #0f0f1a;
+            --darker: #0a0a0f;
+            --light: #1e1e2f;
+            --lighter: #2d2d44;
+            --gray: #9ca3af;
+            --gray-light: #d1d5db;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.4);
+            --border-glow: 1px solid rgba(139, 92, 246, 0.2);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
             --transition: all 0.3s ease;
+            --glow-purple: rgba(139, 92, 246, 0.4);
         }
 
-        /* Reset and Base Styles */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: var(--dark-text);
+            font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, #1a1a2e 100%);
+            color: #ffffff;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
@@ -58,16 +61,19 @@
         .app-container {
             width: 100%;
             max-width: 1400px;
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg), 0 0 30px var(--glow-purple);
             overflow: hidden;
             position: relative;
             transition: var(--transition);
+            border: var(--border-glow);
         }
 
         .app-container:hover {
-            box-shadow: var(--shadow-hover);
+            box-shadow: var(--shadow-lg), 0 0 40px var(--glow-purple);
+            border-color: rgba(139, 92, 246, 0.5);
         }
 
         /* View Management */
@@ -100,23 +106,23 @@
             position: relative;
             padding-bottom: 1.5rem;
             margin-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: var(--border-glow);
         }
 
         header h1 {
-            color: var(--primary-blue);
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 30px var(--glow-purple);
         }
 
         header p {
             font-size: 1.2rem;
-            color: var(--medium-text);
+            color: var(--gray-light);
             font-weight: 400;
         }
 
@@ -142,6 +148,7 @@
             margin: 0;
             text-align: left;
             font-size: 2rem;
+            color: white;
         }
 
         .header-actions {
@@ -152,28 +159,30 @@
 
         /* Improved Back Button */
         .btn-back {
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             font-size: 1.2rem;
             padding: 0.7rem 1rem;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow-purple);
             display: flex;
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
             width: auto;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-back:hover {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 25px var(--glow-purple);
         }
 
         /* Button Styles */
         .btn {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             padding: 0.85rem 1.5rem;
             font-size: 1rem;
             font-weight: 600;
@@ -181,20 +190,20 @@
             border-radius: 8px;
             cursor: pointer;
             transition: var(--transition);
-            background-color: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         .btn:hover {
-            background-color: var(--primary-dark);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 0 20px var(--glow-purple);
         }
 
         .btn:active {
@@ -202,7 +211,7 @@
         }
 
         .btn:disabled {
-            background-color: #ccc;
+            background: var(--gray);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
@@ -217,44 +226,43 @@
         }
 
         .btn-link {
-            background-color: var(--success-green);
+            background: linear-gradient(135deg, var(--success), #0d9488);
         }
 
         .btn-link:hover {
-            background-color: #05c290;
+            background: linear-gradient(135deg, #0d9488, var(--success));
         }
 
         .btn-reminder {
-            background-color: var(--warning-yellow);
-            color: #333;
+            background: linear-gradient(135deg, var(--warning), #d97706);
         }
 
         .btn-reminder:hover {
-            background-color: #ffc952;
+            background: linear-gradient(135deg, #d97706, var(--warning));
         }
 
         .btn-tracker-save {
-            background-color: var(--accent-teal);
+            background: linear-gradient(135deg, var(--accent), #0891b2);
         }
 
         .btn-tracker-save:hover {
-            background-color: #3ab9e0;
+            background: linear-gradient(135deg, #0891b2, var(--accent));
         }
 
         .btn-delete {
-            background-color: var(--danger-red);
+            background: linear-gradient(135deg, var(--danger), #dc2626);
         }
 
         .btn-delete:hover {
-            background-color: #ed2e5d;
+            background: linear-gradient(135deg, #dc2626, var(--danger));
         }
 
         .btn-saved-plans {
-            background-color: var(--secondary-purple);
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
         }
 
         .btn-saved-plans:hover {
-            background-color: #651a9e;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
         }
 
         /* Main Content Area */
@@ -275,28 +283,31 @@
         /* Motivational Quote */
         #motivational-quote {
             font-style: italic;
-            color: var(--medium-text);
+            color: var(--gray-light);
             text-align: center;
             margin: 1rem 0;
-            padding: 1rem;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(114, 9, 183, 0.05));
-            border-radius: var(--radius);
-            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary);
+            border: var(--border-glow);
+            backdrop-filter: blur(5px);
         }
 
         /* Improved Study Timer */
         .study-timer-container {
             width: 100%;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: var(--border-glow);
+            border-radius: var(--radius-md);
             padding: 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1.5rem;
             margin: 1rem 0;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
         }
 
         .timer-inputs-container {
@@ -309,21 +320,29 @@
         }
 
         #pomodoro-subject-select {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.1rem;
             padding: 0.85rem 1rem;
-            border: 1px solid var(--border-color);
+            border: var(--border-glow);
             border-radius: 8px;
-            background-color: white;
+            background: rgba(10, 10, 10, 0.6);
+            color: #ffffff;
             min-width: 250px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: var(--transition);
+            cursor: pointer;
         }
 
         #pomodoro-subject-select:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--glow-purple);
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        #pomodoro-subject-select option {
+            background: var(--dark);
+            color: white;
         }
 
         .timer-input-group {
@@ -335,35 +354,38 @@
         .timer-input-group label {
             font-size: 1rem;
             font-weight: 500;
-            color: var(--medium-text);
+            color: var(--gray-light);
             white-space: nowrap;
         }
 
         #pomodoro-time-input {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.1rem;
             padding: 0.85rem;
-            border: 1px solid var(--border-color);
+            border: var(--border-glow);
             border-radius: 8px;
             width: 120px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background: rgba(10, 10, 10, 0.6);
+            color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             transition: var(--transition);
         }
 
         #pomodoro-time-input:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--glow-purple);
+            background: rgba(10, 10, 10, 0.8);
         }
 
         #pomodoro-timer-display {
             font-size: 4rem;
             font-weight: 700;
-            color: var(--primary-blue);
+            color: var(--primary-light);
             margin: 0.5rem 0;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 20px var(--glow-purple);
+            font-family: 'Space Grotesk', monospace;
         }
 
         .pomodoro-controls {
@@ -375,10 +397,12 @@
         .global-summary-container {
             width: 100%;
             margin: 1.5rem 0;
-            background: white;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
             padding: 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md), 0 0 20px var(--glow-purple);
+            border: var(--border-glow);
         }
 
         #global-summary-text {
@@ -386,23 +410,23 @@
             font-weight: 600;
             text-align: center;
             margin-bottom: 1rem;
-            color: var(--dark-text);
+            color: var(--gray-light);
         }
 
         .global-progress-container {
             width: 100%;
             height: 30px;
-            background-color: #e9ecef;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             overflow: hidden;
             position: relative;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: var(--border-glow);
         }
 
         #global-progress-bar {
             width: 0%;
             height: 100%;
-            background: linear-gradient(90deg, var(--success-green), #06c290);
+            background: linear-gradient(90deg, var(--success), #0d9488);
             border-radius: 15px;
             text-align: center;
             line-height: 30px;
@@ -451,11 +475,12 @@
         }
 
         .schedule-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border: var(--border-glow);
+            border-radius: var(--radius-md);
             padding: 1.5rem;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
             display: flex;
             flex-direction: column;
@@ -471,18 +496,19 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-purple));
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
         .schedule-item:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: var(--shadow-lg), 0 0 30px var(--glow-purple);
+            border-color: rgba(139, 92, 246, 0.5);
         }
 
         /* FADED (manual) "Done" state */
         .schedule-item.completed {
             opacity: 0.7;
-            background: #f9f9f9;
+            background: rgba(26, 26, 46, 0.5);
         }
 
         .schedule-item.completed h3 {
@@ -491,13 +517,13 @@
 
         /* GREEN (automatic) "Exam Passed" state */
         .schedule-item.past-due {
-            background: #f0fff4;
-            border-left: 5px solid var(--success-green);
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--success);
             opacity: 1;
         }
 
         .schedule-item.past-due .countdown-timer {
-            color: var(--success-green) !important;
+            color: var(--success) !important;
             font-weight: 700;
         }
 
@@ -510,8 +536,8 @@
         .schedule-item.past-due .tracker-section input,
         .schedule-item.past-due .tracker-section button {
             pointer-events: none;
-            background-color: #eee !important;
-            color: #999 !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: var(--gray) !important;
             cursor: not-allowed;
             opacity: 0.7;
             box-shadow: none;
@@ -530,7 +556,7 @@
         }
 
         .schedule-item h3 {
-            color: var(--primary-blue);
+            color: var(--primary-light);
             font-size: 1.5rem;
             margin: 0;
             font-weight: 600;
@@ -542,7 +568,7 @@
             align-items: center;
             gap: 0.5rem;
             font-weight: 600;
-            color: var(--medium-text);
+            color: var(--gray-light);
             flex-shrink: 0;
             margin-left: 0.5rem;
         }
@@ -551,31 +577,37 @@
             width: 1.3rem;
             height: 1.3rem;
             cursor: pointer;
-            accent-color: var(--success-green);
+            accent-color: var(--success);
+        }
+
+        .completion-tracker label {
+            color: var(--gray-light);
         }
 
         .exam-datetime {
             font-size: 1rem;
             font-weight: 600;
-            color: var(--dark-text);
+            color: white;
             margin-bottom: 0.5rem;
-            background: #f8f9fa;
+            background: rgba(139, 92, 246, 0.1);
             padding: 0.75rem;
             border-radius: 8px;
             text-align: center;
-            border-left: 3px solid var(--accent-teal);
+            border-left: 3px solid var(--accent);
+            border: var(--border-glow);
         }
 
         .countdown-timer {
             font-size: 1.1rem;
-            color: var(--primary-blue);
+            color: var(--primary-light);
             margin-bottom: 1rem;
             font-weight: 600;
             min-height: 1.2rem;
             text-align: center;
             padding: 0.5rem;
-            background: rgba(67, 97, 238, 0.05);
+            background: rgba(139, 92, 246, 0.05);
             border-radius: 6px;
+            border: var(--border-glow);
         }
 
         .item-actions {
@@ -588,14 +620,14 @@
         /* Tracker Inputs */
         .tracker-section {
             margin-top: 1rem;
-            border-top: 1px dashed #ddd;
+            border-top: 1px dashed var(--border-glow);
             padding-top: 1.5rem;
-            margin-top: auto; /* Push tracker to bottom */
+            margin-top: auto;
         }
 
         .tracker-section h4 {
             margin-bottom: 1rem;
-            color: var(--medium-text);
+            color: var(--gray-light);
             font-size: 1.2rem;
             display: flex;
             align-items: center;
@@ -615,88 +647,98 @@
             gap: 0.75rem;
         }
 
+        .input-group label {
+            color: var(--gray-light);
+            font-weight: 500;
+        }
+
         .tracker-inputs label {
             font-weight: 600;
             font-size: 1rem;
-            min-width: 120px; /* Reduced width */
+            min-width: 120px;
+            color: var(--gray-light);
         }
 
         .tracker-inputs input[type="number"] {
-            width: 80px; /* Reduced width */
+            width: 80px;
             padding: 0.6rem;
-            border: 1px solid #ddd;
+            border: var(--border-glow);
             border-radius: 6px;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1rem;
             text-align: center;
             transition: var(--transition);
+            background: rgba(10, 10, 10, 0.6);
+            color: white;
         }
 
         .tracker-inputs input[type="number"]:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--glow-purple);
+            background: rgba(10, 10, 10, 0.8);
         }
 
         /* Dynamic Chapter Pages List */
         .chapter-pages-list {
             display: grid;
-            /* Adjust columns based on available space */
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 0.75rem;
             width: 100%;
             margin-top: 0.75rem;
-            padding-left: 0; /* Removed padding */
+            padding-left: 0;
         }
 
         .chapter-page-input-group {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            /* Allow wrapping if needed, but justify start */
             justify-content: flex-start;
-            flex-wrap: wrap; /* Allow wrapping */
+            flex-wrap: wrap;
         }
 
         .chapter-page-input-group label {
             font-weight: 500;
             font-size: 0.9rem;
-            white-space: nowrap; /* Prevent wrapping label text */
-            flex-shrink: 0; /* Don't shrink label */
+            white-space: nowrap;
+            flex-shrink: 0;
             margin-right: 5px;
-            /* Give label a minimum width if needed */
             min-width: 100px;
-            transition: all 0.2s ease-in-out; /* Add transition */
+            transition: all 0.2s ease-in-out;
+            color: var(--gray-light);
         }
 
         .chapter-page-input-group input[type="number"] {
             width: 70px;
             flex-shrink: 0;
-            margin-right: 5px; /* Add space before checkbox */
-            transition: all 0.2s ease-in-out; /* Add transition */
+            margin-right: 5px;
+            transition: all 0.2s ease-in-out;
+            background: rgba(10, 10, 10, 0.6);
+            border: var(--border-glow);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 6px;
         }
 
         .chapter-page-input-group input[type="checkbox"] {
             width: 1.1rem;
             height: 1.1rem;
             cursor: pointer;
-            accent-color: var(--success-green);
+            accent-color: var(--success);
             flex-shrink: 0;
         }
 
-        /* --- START: Strikethrough style for completed chapters --- */
         .chapter-page-input-group:has(input[type="checkbox"]:checked) label {
             text-decoration: line-through;
-            color: var(--medium-text);
+            color: var(--gray);
             opacity: 0.7;
         }
 
         .chapter-page-input-group:has(input[type="checkbox"]:checked) input[type="number"] {
             opacity: 0.7;
-            background-color: #f0f0f0;
-            text-decoration: line-through; /* Also strike through number */
+            background: rgba(255, 255, 255, 0.1);
+            text-decoration: line-through;
         }
-        /* --- END: Strikethrough style --- */
 
         /* --- MODAL STYLES --- */
         .modal-overlay {
@@ -706,28 +748,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
             z-index: 1000;
             animation: fadeIn 0.3s ease;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
         }
 
         .modal-content {
-            background: var(--card-bg);
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
             padding: 2.5rem;
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             width: 90%;
             max-width: 800px;
             max-height: 85vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg), 0 0 40px var(--glow-purple);
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
             animation: modalSlideIn 0.4s ease;
+            border: var(--border-glow);
         }
 
         @keyframes modalSlideIn {
@@ -748,7 +792,7 @@
             background: none;
             border: none;
             font-size: 2rem;
-            color: var(--medium-text);
+            color: var(--gray-light);
             cursor: pointer;
             transition: var(--transition);
             width: 40px;
@@ -760,14 +804,14 @@
         }
 
         .modal-close:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-            color: var(--danger-red);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--danger);
         }
 
         .modal-content h2 {
-            color: var(--primary-blue);
+            color: var(--primary-light);
             margin-bottom: 0;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: var(--border-glow);
             padding-bottom: 1rem;
             font-size: 1.8rem;
         }
@@ -778,8 +822,9 @@
             flex-direction: column;
             gap: 1.5rem;
             padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border: var(--border-glow);
         }
 
         .plan-input-group {
@@ -791,48 +836,55 @@
         .plan-input-section label {
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--dark-text);
+            color: var(--gray-light);
         }
 
         .plan-input-section input[type="number"] {
             padding: 0.85rem;
             font-size: 1.1rem;
-            border: 1px solid var(--border-color);
+            border: var(--border-glow);
             border-radius: 8px;
             width: 100%;
             transition: var(--transition);
+            background: rgba(10, 10, 10, 0.6);
+            color: white;
         }
 
         .plan-input-section input[type="number"]:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--glow-purple);
+            background: rgba(10, 10, 10, 0.8);
         }
 
         #run-plan-generator-btn {
-            background-color: var(--success-green);
+            background: linear-gradient(135deg, var(--success), #0d9488);
         }
 
         #plan-output-container {
-            border-top: 1px solid var(--border-color);
+            border-top: var(--border-glow);
             padding-top: 1.5rem;
+        }
+
+        #plan-output {
+            color: var(--gray-light);
         }
 
         /* Plan Output Styling */
         #plan-output h3 {
-            color: var(--primary-blue);
+            color: var(--primary-light);
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: var(--border-glow);
         }
 
         #plan-output .plan-day-group h3 {
-            color: var(--secondary-purple);
+            color: var(--secondary);
             border: none;
             margin-top: 1.5rem;
             margin-bottom: 0.75rem;
-            background: linear-gradient(135deg, rgba(114, 9, 183, 0.1), transparent);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
             padding: 0.75rem;
             border-radius: 8px;
         }
@@ -840,31 +892,32 @@
         #plan-output p {
             font-size: 1.1rem;
             margin-bottom: 1rem;
+            color: var(--gray-light);
         }
 
         #plan-output .plan-note {
             font-size: 0.9rem;
-            color: var(--medium-text);
+            color: var(--gray);
             margin-top: -0.5rem;
             font-style: italic;
         }
 
         #plan-output .warning {
-            color: #856404;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
+            color: var(--warning);
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.4);
             padding: 1rem;
             border-radius: 8px;
-            border-left: 4px solid #ffc107;
+            border-left: 4px solid var(--warning);
         }
 
         #plan-output .success {
-            color: #155724;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
+            color: var(--success);
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.4);
             padding: 1rem;
             border-radius: 8px;
-            border-left: 4px solid #28a745;
+            border-left: 4px solid var(--success);
         }
 
         #plan-output ul {
@@ -875,26 +928,29 @@
         #plan-output li {
             font-size: 1.1rem;
             margin-bottom: 0.75rem;
-            background: #f8f9fa;
+            background: rgba(26, 26, 46, 0.6);
             padding: 1rem;
             border-radius: 8px;
-            border-left: 5px solid var(--accent-teal);
+            border-left: 5px solid var(--accent);
             transition: var(--transition);
+            color: var(--gray-light);
+            border: var(--border-glow);
         }
 
         #plan-output li:hover {
-            background: #e9ecef;
+            background: rgba(26, 26, 46, 0.9);
             transform: translateX(5px);
+            box-shadow: 0 0 15px var(--glow-purple);
         }
 
         #plan-output li strong {
-            color: var(--dark-text);
+            color: var(--primary-light);
             margin-right: 0.5rem;
         }
 
         #plan-output li span {
             font-size: 0.9rem;
-            color: var(--medium-text);
+            color: var(--gray);
             margin-top: 0.25rem;
             display: block;
         }
@@ -907,14 +963,16 @@
         }
 
         #stats-summary {
-            background: #f8f9fa;
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
             padding: 1.5rem;
-            border-radius: var(--radius);
+            border-radius: var(--radius-md);
+            border: var(--border-glow);
         }
 
         #stats-summary h3 {
-            color: var(--primary-blue);
-            border-bottom: 1px solid var(--border-color);
+            color: var(--primary-light);
+            border-bottom: var(--border-glow);
             padding-bottom: 0.75rem;
             margin-bottom: 1rem;
         }
@@ -925,19 +983,21 @@
             margin-bottom: 0.5rem;
             display: flex;
             justify-content: space-between;
+            color: var(--gray-light);
         }
 
         #stats-summary p strong {
-            color: var(--dark-text);
+            color: var(--primary-light);
         }
 
         #stats-log {
             max-height: 350px;
             overflow-y: auto;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
+            border: var(--border-glow);
+            border-radius: var(--radius-md);
             padding: 0.5rem;
-            background: white;
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(10px);
         }
 
         .stat-item {
@@ -945,12 +1005,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: var(--border-glow);
             transition: var(--transition);
         }
 
         .stat-item:hover {
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .stat-item:last-child {
@@ -963,18 +1023,18 @@
         }
 
         .stat-item-info strong {
-            color: var(--primary-blue);
+            color: var(--primary-light);
         }
 
         .stat-item-info span {
             font-size: 0.9rem;
-            color: var(--medium-text);
+            color: var(--gray);
             display: block;
             margin-top: 0.25rem;
         }
 
         .delete-stat-btn {
-            background: var(--danger-red);
+            background: var(--danger);
             color: white;
             border: none;
             border-radius: 50%;
@@ -989,7 +1049,7 @@
         }
 
         .delete-stat-btn:hover {
-            background: #ed2e5d;
+            background: #dc2626;
             transform: scale(1.1);
         }
 
@@ -1010,15 +1070,17 @@
             padding: 1rem 1.5rem;
             border-radius: 8px;
             color: white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg), 0 0 20px var(--glow-purple);
             animation: slideIn 0.3s ease, fadeOut 0.5s ease 2.5s forwards;
             min-width: 300px;
+            border: var(--border-glow);
+            backdrop-filter: blur(10px);
         }
 
         .toast.toast--reminder {
             animation: slideIn 0.3s ease, fadeOut 0.5s ease 4.5s forwards;
-            background-color: var(--warning-yellow);
-            color: #333;
+            background: rgba(245, 158, 11, 0.9);
+            color: white;
         }
 
         .toast-icon {
@@ -1027,35 +1089,15 @@
         }
 
         .toast--success {
-            background-color: var(--success-green);
+            background: rgba(16, 185, 129, 0.9);
         }
 
         .toast--error {
-            background-color: var(--danger-red);
+            background: rgba(239, 68, 68, 0.9);
         }
 
         .toast--info {
-            background-color: var(--accent-teal);
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
+            background: rgba(6, 182, 212, 0.9);
         }
 
         /* --- Saved Plans Styles --- */
@@ -1067,23 +1109,25 @@
         }
 
         .saved-plan-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border: var(--border-glow);
+            border-radius: var(--radius-md);
             padding: 1.5rem;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
             transition: var(--transition);
             position: relative;
         }
 
         .saved-plan-item:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: var(--shadow-lg), 0 0 30px var(--glow-purple);
+            border-color: rgba(139, 92, 246, 0.5);
         }
 
         .saved-plan-item.completed {
-            background: #f0fff4;
-            border-left: 5px solid var(--success-green);
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 5px solid var(--success);
         }
 
         .saved-plan-header {
@@ -1092,19 +1136,19 @@
             align-items: center;
             margin-bottom: 1rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: var(--border-glow);
         }
 
         .saved-plan-title {
             font-size: 1.4rem;
-            color: var(--primary-blue);
+            color: var(--primary-light);
             font-weight: 600;
             margin: 0;
         }
 
         .saved-plan-date {
             font-size: 0.9rem;
-            color: var(--medium-text);
+            color: var(--gray);
         }
 
         .saved-plan-actions {
@@ -1116,6 +1160,10 @@
             margin-bottom: 1rem;
         }
 
+        .saved-plan-content p {
+            color: var(--gray-light);
+        }
+
         .saved-plan-days {
             display: flex;
             flex-direction: column;
@@ -1125,15 +1173,16 @@
         .saved-plan-day {
             position: relative;
             padding: 1rem;
-            background: #f8f9fa;
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 8px;
-            border-left: 4px solid var(--accent-teal);
+            border-left: 4px solid var(--accent);
             transition: var(--transition);
+            border: var(--border-glow);
         }
 
         .saved-plan-day.completed {
-            background: #e8f5e8;
-            border-left: 4px solid var(--success-green);
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
         }
 
         .saved-plan-day-header {
@@ -1145,7 +1194,7 @@
 
         .saved-plan-day-title {
             font-weight: 600;
-            color: var(--dark-text);
+            color: var(--gray-light);
             margin: 0;
             flex: 1;
         }
@@ -1157,11 +1206,15 @@
             margin-left: 1rem;
         }
 
+        .day-completion-toggle label {
+            color: var(--gray-light);
+        }
+
         .day-completion-toggle input[type="checkbox"] {
             width: 1.2rem;
             height: 1.2rem;
             cursor: pointer;
-            accent-color: var(--success-green);
+            accent-color: var(--success);
         }
 
         .saved-plan-day-tasks {
@@ -1173,24 +1226,29 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: var(--gray-light);
         }
 
         .saved-plan-day-task input[type="checkbox"] {
             width: 1.1rem;
             height: 1.1rem;
             cursor: pointer;
-            accent-color: var(--success-green);
+            accent-color: var(--success);
         }
 
         .saved-plan-day-task.completed {
             text-decoration: line-through;
-            color: var(--medium-text);
+            color: var(--gray);
+        }
+
+        .saved-plan-day-task label {
+            color: var(--gray-light);
         }
 
         .no-plans-message {
             text-align: center;
             padding: 2rem;
-            color: var(--medium-text);
+            color: var(--gray);
             font-style: italic;
         }
 
@@ -1200,23 +1258,34 @@
             gap: 0.5rem;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px dashed var(--border-color);
+            border-top: 1px dashed var(--border-glow);
+        }
+
+        .plan-completion-toggle label {
+            color: var(--gray-light);
+        }
+
+        .plan-completion-toggle input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            cursor: pointer;
+            accent-color: var(--success);
         }
 
         .plan-save-section {
             display: none;
             margin-top: 1.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
+            border-top: var(--border-glow);
         }
 
         .complete-all-days-btn {
-            background-color: var(--success-green);
+            background: linear-gradient(135deg, var(--success), #0d9488);
             margin-top: 0.5rem;
         }
 
         .complete-all-days-btn:hover {
-            background-color: #05c290;
+            background: linear-gradient(135deg, #0d9488, var(--success));
         }
 
         /* زر العودة للأعلى */
@@ -1224,7 +1293,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             width: 50px;
             height: 50px;
@@ -1234,16 +1303,16 @@
             justify-content: center;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md), 0 0 20px var(--glow-purple);
             transition: var(--transition);
             z-index: 100;
             border: none;
         }
 
         #back-to-top:hover {
-            background: var(--primary-dark);
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: var(--shadow-lg), 0 0 30px var(--glow-purple);
         }
 
         /* Responsive Design */
@@ -1253,7 +1322,7 @@
             }
 
             .app-container {
-                border-radius: 10px;
+                border-radius: var(--radius-md);
             }
 
             .view {
@@ -1309,7 +1378,6 @@
             }
 
             .chapter-pages-list {
-                /* On medium screens, maybe 2 columns */
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
 
@@ -1379,13 +1447,11 @@
             }
 
             .chapter-pages-list {
-                /* Stack chapters on very small screens */
                 grid-template-columns: 1fr;
             }
 
             .chapter-page-input-group {
                 justify-content: space-between;
-                /* Ensure spacing on small screens */
             }
 
             #back-to-top {
@@ -1396,113 +1462,108 @@
                 font-size: 1.2rem;
             }
         }
-        plan-save-section {
-    display: flex;
-    align-items: flex-end; /* محاذاة العناصر للأسفل */
-    gap: 16px; /* مسافة بين مربع الإدخال والزر */
-    background-color: #ffffff; /* خلفية بيضاء ناصعة */
-    padding: 24px; /* زيادة بسيطة في الحشو */
-    border-radius: 12px;
-    border: 1px solid #e0e0e0; /* حدود رمادية فاتحة جداً */
-    /* ظل ناعم جداً لإعطاء إحساس بالرفع */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05); 
-    max-width: 700px;
-    margin: 20px auto;
-    flex-wrap: wrap; /* للسماح بالالتفاف في الشاشات الصغيرة */
-}
 
-.plan-input-group {
-    flex-grow: 1; /* لجعل حقل الإدخال يأخذ المساحة المتاحة */
-    display: flex;
-    flex-direction: column;
-    min-width: 200px;
-}
+        .plan-save-section {
+            display: flex;
+            align-items: flex-end;
+            gap: 16px;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: var(--border-glow);
+            box-shadow: var(--shadow-md), 0 0 20px var(--glow-purple);
+            max-width: 700px;
+            margin: 20px auto;
+            flex-wrap: wrap;
+        }
 
-.plan-input-group label {
-    font-size: 0.85rem;
-    color: #555; /* لون رمادي داكن للعنوان */
-    margin-bottom: 8px;
-    font-weight: 500;
-}
+        .plan-input-group {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
 
-.plan-input-group input[type="text"] {
-    width: 100%;
-    padding: 14px 16px;
-    font-size: 1rem;
-    color: #111; /* لون نص داكن */
-    background-color: #ffffff; /* خلفية بيضاء */
-    border: 1px solid #ccc; /* حدود رمادية واضحة */
-    border-radius: 8px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    box-sizing: border-box; 
-}
+        .plan-input-group label {
+            font-size: 0.85rem;
+            color: var(--gray-light);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
 
-.plan-input-group input[type="text"]::placeholder {
-    color: #999; /* لون رمادي متوسط للنص المؤقت */
-}
+        .plan-input-group input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1rem;
+            color: #ffffff;
+            background: rgba(10, 10, 10, 0.6);
+            border: var(--border-glow);
+            border-radius: 8px;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
 
-.plan-input-group input[type="text"]:focus {
-    outline: none;
-    border-color: #007bff; /* نفس اللون الأزرق المميز */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); /* توهج أزرق خفيف */
-}
+        .plan-input-group input[type="text"]::placeholder {
+            color: var(--gray);
+        }
 
-/* تصميم الزر (بنفس التدرج اللوني) */
-.btn#save-plan-btn {
-    padding: 14px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #ffffff;
-    background: linear-gradient(90deg, #007bff, #0056b3);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    /* ظل أزرق متناسب مع الزر */
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2); 
-    flex-shrink: 0;
-}
+        .plan-input-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--glow-purple);
+        }
 
-.btn#save-plan-btn:hover {
-    background: linear-gradient(90deg, #0069d9, #004a99);
-    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3);
-    transform: translateY(-2px);
-}
+        .btn#save-plan-btn {
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
 
-.btn#save-plan-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
-}
+        .btn#save-plan-btn:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            box-shadow: var(--shadow-lg), 0 0 20px var(--glow-purple);
+            transform: translateY(-2px);
+        }
 
-/* --- جزء التجاوب مع الأجهزة (Responsive) --- */
-/* (هذا الجزء لم يتغير، فهو يعتمد على التخطيط وليس الألوان) */
+        .btn#save-plan-btn:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
 
-@media (max-width: 600px) {
-    .plan-save-section {
-        flex-direction: column;
-        align-items: stretch;
-    }
+        @media (max-width: 600px) {
+            .plan-save-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
 
-    .plan-input-group {
-        width: 100%;
-        margin-right: 0;
-        min-width: unset;
-    }
+            .plan-input-group {
+                width: 100%;
+                margin-right: 0;
+                min-width: unset;
+            }
 
-    .btn#save-plan-btn {
-        width: 100%;
-        padding: 16px;
-    }
-}
+            .btn#save-plan-btn {
+                width: 100%;
+                padding: 16px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <div id="toast-container"></div>
 
     <!-- زر العودة للأعلى -->
@@ -1511,10 +1572,9 @@
     </button>
 
     <div class="app-container">
-
         <div id="year-view" class="view active">
             <header>
-                <h1><i class="fas fa-graduation-cap"></i>MaterialX | Smart Student Organizer</h1>
+                <h1><i class="fas fa-graduation-cap"></i> MaterialX | Smart Student Organizer</h1>
                 <p>Please select your academic year:</p>
             </header>
             <main>
@@ -1527,24 +1587,21 @@
 
         <div id="spec-view" class="view">
             <header>
-                <button id="back-to-year" class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                <button id="back-to-year" class="btn-back"><i class="fas fa-arrow-left"></i></button>
                 <h1>Select Specialization</h1>
                 <p>Please select your specialization:</p>
             </header>
             <main>
-                <button class="btn btn-large" data-spec="IS"><i class="fas fa-database"></i> Information
-                    Systems (IS)</button>
-                <button class="btn btn-large" data-spec="CS"><i class="fas fa-laptop-code"></i> Computer
-                    Science (CS)</button>
-                <button class="btn btn-large" data-spec="AI"><i class="fas fa-robot"></i> Artificial
-                    Intelligence (AI)</button>
+                <button class="btn btn-large" data-spec="IS"><i class="fas fa-database"></i> Information Systems (IS)</button>
+                <button class="btn btn-large" data-spec="CS"><i class="fas fa-laptop-code"></i> Computer Science (CS)</button>
+                <button class="btn btn-large" data-spec="AI"><i class="fas fa-robot"></i> Artificial Intelligence (AI)</button>
             </main>
         </div>
 
         <div id="schedule-view" class="view">
             <header class="header-with-action">
                 <div class="header-title-container">
-                    <button id="back-to-selection" class="btn btn-back"><i class="fas fa-arrow-left"></i></button>
+                    <button id="back-to-selection" class="btn-back"><i class="fas fa-arrow-left"></i></button>
                     <h1 id="schedule-title">Your Schedule</h1>
                 </div>
                 <div class="header-actions">
@@ -1578,15 +1635,13 @@
 
             <div class="global-summary-container">
                 <p id="global-summary-text">Loading summary...</p>
-                 <div class="global-progress-container" title="Your overall progress (based on subjects marked done)">
+                <div class="global-progress-container" title="Your overall progress (based on subjects marked done)">
                     <div id="global-progress-bar">0%</div>
                 </div>
             </div>
 
-            <main id="schedule-list">
-                </main>
+            <main id="schedule-list"></main>
         </div>
-
     </div>
 
     <!-- نافذة الخطط المحفوظة -->
@@ -1645,9 +1700,8 @@
                 <div id="stats-summary">
                     <h3>Summary by Subject</h3>
                 </div>
-                <h3>Session Log</h3>
-                <div id="stats-log">
-                </div>
+                <h3 style="color: var(--gray-light);">Session Log</h3>
+                <div id="stats-log"></div>
                 <button class="btn btn-delete" id="delete-all-stats-btn"><i class="fas fa-trash-alt"></i> Delete All Statistics</button>
             </div>
         </div>
@@ -1884,7 +1938,7 @@
                 pomodoroSubjectSelect.innerHTML = '<option value="">Select a subject to study</option>';
 
                 if (!data || data.length === 0) {
-                    scheduleList.innerHTML = '<p>No schedule found for this selection.</p>';
+                    scheduleList.innerHTML = '<p style="color: var(--gray-light);">No schedule found for this selection.</p>';
                     updateGlobalProgress();
                     return;
                 }
@@ -1925,8 +1979,8 @@
                         <p class="countdown-timer" data-datetime="${item.dateTime}">Loading countdown...</p>
 
                         <div class="item-actions">
-                            <button class="btn btn-reminder" data-id="${item.id}">Set Reminder</button>
-                            <a href="${item.materialUrl}" target="_blank" class="btn btn-link">Material Link</a>
+                            <button class="btn btn-reminder" data-id="${item.id}"><i class="fas fa-bell"></i> Set Reminder</button>
+                            <a href="${item.materialUrl}" target="_blank" class="btn btn-link"><i class="fas fa-external-link-alt"></i> Material Link</a>
                         </div>
                         <div class="tracker-section" data-item-id="${item.id}">
                             <h4><i class="fas fa-book-reader"></i> Study Tracker</h4>
@@ -1935,8 +1989,7 @@
                                     <label for="total-chapters-${item.id}">Total Chapters:</label>
                                     <input type="number" id="total-chapters-${item.id}" class="tracker-total-chapters" min="0" value="${trackerData.totalChapters}">
                                 </div>
-                                <div class="chapter-pages-list" id="chapter-pages-container-${item.id}">
-                                    </div>
+                                <div class="chapter-pages-list" id="chapter-pages-container-${item.id}"></div>
                                 <button class="btn btn-tracker-save"><i class="fas fa-save"></i> Save Progress</button>
                             </div>
                         </div>
@@ -1985,7 +2038,7 @@
                     updateGlobalProgress();
                 }
             });
-             scheduleList.addEventListener('change', (e) => {
+            scheduleList.addEventListener('change', (e) => {
                 const completionCheckbox = e.target.closest('.completion-tracker input[type="checkbox"]');
                 const chapterCheckbox = e.target.closest('.chapter-completion-checkbox');
 
@@ -1997,8 +2050,8 @@
                         const chapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
                         chapterCheckboxes.forEach(cb => cb.checked = true);
                     } else {
-                         const chapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
-                         chapterCheckboxes.forEach(cb => cb.checked = false);
+                        const chapterCheckboxes = document.querySelectorAll(`#chapter-pages-container-${itemId} .chapter-completion-checkbox`);
+                        chapterCheckboxes.forEach(cb => cb.checked = false);
                     }
                     saveTrackerData(itemId);
                     updateGlobalProgress();
@@ -2010,17 +2063,17 @@
                     const allChaptersDone = allChapterCheckboxes.length > 0 && Array.from(allChapterCheckboxes).every(cb => cb.checked);
                     const subjectCheckbox = document.getElementById(`done-${itemId}`);
 
-                     if (subjectCheckbox && !subjectCheckbox.disabled) {
-                         if (allChaptersDone) {
-                             subjectCheckbox.checked = true;
-                             updateCardCompletionState(itemId, true);
-                             saveTrackerData(itemId);
-                         } else if (!chapterCheckbox.checked && subjectCheckbox.checked) {
-                             subjectCheckbox.checked = false;
-                             updateCardCompletionState(itemId, false);
-                             saveTrackerData(itemId);
-                         }
-                     }
+                    if (subjectCheckbox && !subjectCheckbox.disabled) {
+                        if (allChaptersDone) {
+                            subjectCheckbox.checked = true;
+                            updateCardCompletionState(itemId, true);
+                            saveTrackerData(itemId);
+                        } else if (!chapterCheckbox.checked && subjectCheckbox.checked) {
+                            subjectCheckbox.checked = false;
+                            updateCardCompletionState(itemId, false);
+                            saveTrackerData(itemId);
+                        }
+                    }
 
                     updateGlobalProgress();
                 }
@@ -2043,6 +2096,7 @@
                     container.appendChild(inputGroup);
                 }
             }
+
             function updateCardCompletionState(itemId, isComplete) {
                 const card = document.getElementById(`item-card-${itemId}`);
                 if (card) {
@@ -2052,7 +2106,7 @@
 
             // --- Reminder function ---
             async function setReminder(item) {
-                 const hoursBefore = prompt("How many hours before the exam to be notified? (Min: 1, Max: 24)", "2");
+                const hoursBefore = prompt("How many hours before the exam to be notified? (Min: 1, Max: 24)", "2");
 
                 if (hoursBefore === null) return;
 
@@ -2099,8 +2153,9 @@
 
                 showToast(`Reminder set! You will be notified ${hours} hours before the ${item.subjectName} exam.`, 'success');
             }
+
             function findItemById(id) {
-                 for (const key in scheduleData) {
+                for (const key in scheduleData) {
                     const found = scheduleData[key].find(item => item.id === id);
                     if (found) return found;
                 }
@@ -2116,18 +2171,18 @@
                     const parsed = JSON.parse(data);
                     parsed.chapterCompletion = parsed.chapterCompletion || [];
                     const adjustedCompletion = new Array(parsed.totalChapters).fill(false);
-                    for(let i=0; i<parsed.totalChapters; i++){
-                         if(parsed.chapterCompletion[i] === true) {
-                              adjustedCompletion[i] = true;
-                         }
+                    for (let i = 0; i < parsed.totalChapters; i++) {
+                        if (parsed.chapterCompletion[i] === true) {
+                            adjustedCompletion[i] = true;
+                        }
                     }
                     parsed.chapterCompletion = adjustedCompletion;
 
                     parsed.chapterPages = parsed.chapterPages || [];
                     const adjustedPages = new Array(parsed.totalChapters).fill(0);
-                     for(let i=0; i<parsed.totalChapters; i++){
-                         adjustedPages[i] = (parsed.chapterPages[i] !== undefined && parsed.chapterPages[i] !== null) ? parsed.chapterPages[i] : 0;
-                     }
+                    for (let i = 0; i < parsed.totalChapters; i++) {
+                        adjustedPages[i] = (parsed.chapterPages[i] !== undefined && parsed.chapterPages[i] !== null) ? parsed.chapterPages[i] : 0;
+                    }
                     parsed.chapterPages = adjustedPages;
 
                     return { ...defaults, ...parsed };
@@ -2148,19 +2203,19 @@
 
                 const chapterPageInputs = trackerSection.querySelectorAll('.chapter-page-input');
                 const chapterPages = new Array(totalChapters).fill(0);
-                 Array.from(chapterPageInputs).forEach((input, index) => {
+                Array.from(chapterPageInputs).forEach((input, index) => {
                     if (index < totalChapters) {
                         chapterPages[index] = parseInt(input.value, 10) || 0;
                     }
-                 });
+                });
 
                 const chapterCheckboxes = trackerSection.querySelectorAll('.chapter-completion-checkbox');
-                 const chapterCompletion = new Array(totalChapters).fill(false);
-                  Array.from(chapterCheckboxes).forEach((checkbox, index) => {
-                     if (index < totalChapters) {
-                         chapterCompletion[index] = checkbox.checked;
-                     }
-                  });
+                const chapterCompletion = new Array(totalChapters).fill(false);
+                Array.from(chapterCheckboxes).forEach((checkbox, index) => {
+                    if (index < totalChapters) {
+                        chapterCompletion[index] = checkbox.checked;
+                    }
+                });
 
                 const finalChapterCompletion = isSubjectComplete ? new Array(totalChapters).fill(true) : chapterCompletion;
 
@@ -2177,15 +2232,15 @@
                 }
             }
 
-            // --- MODIFIED: Global Progress Update (Based on SUBJECT completion) ---
-             function updateGlobalProgress() {
+            // --- Global Progress Update (Based on SUBJECT completion) ---
+            function updateGlobalProgress() {
                 const subjects = scheduleData[viewState.currentScheduleKey];
                 if (!subjects) {
-                     globalProgressBar.style.width = `0%`;
-                     globalProgressBar.textContent = `0%`;
-                     globalSummaryText.textContent = `Select year/spec first.`;
-                     return;
-                 }
+                    globalProgressBar.style.width = `0%`;
+                    globalProgressBar.textContent = `0%`;
+                    globalSummaryText.textContent = `Select year/spec first.`;
+                    return;
+                }
 
                 if (subjects.length === 0) {
                     globalProgressBar.style.width = `0%`;
@@ -2219,14 +2274,15 @@
                 stopLiveCountdowns();
                 updateAllCountdowns();
                 countdownInterval = setInterval(updateAllCountdowns, 1000);
-             }
+            }
+
             function stopLiveCountdowns() {
                 if (countdownInterval) clearInterval(countdownInterval);
-                 countdownInterval = null;
+                countdownInterval = null;
             }
 
             function checkAndDisableIfPastDue(countdownElement, distance) {
-                 const card = countdownElement.closest('.schedule-item');
+                const card = countdownElement.closest('.schedule-item');
                 if (!card) return;
 
                 const itemId = card.querySelector('.tracker-section').dataset.itemId;
@@ -2250,17 +2306,18 @@
                         updateGlobalProgress();
                     }
                 } else {
-                     if (card.classList.contains('past-due')) {
-                          card.classList.remove('past-due');
-                           const checkbox = card.querySelector('.completion-tracker input[type="checkbox"]');
-                           if(checkbox) checkbox.disabled = false;
-                           card.querySelectorAll('.btn-reminder, .btn-tracker-save, .tracker-total-chapters, .chapter-page-input, .chapter-completion-checkbox')
-                           .forEach(el => el.disabled = false);
-                            saveTrackerData(itemId);
-                            updateGlobalProgress();
-                     }
+                    if (card.classList.contains('past-due')) {
+                        card.classList.remove('past-due');
+                        const checkbox = card.querySelector('.completion-tracker input[type="checkbox"]');
+                        if (checkbox) checkbox.disabled = false;
+                        card.querySelectorAll('.btn-reminder, .btn-tracker-save, .tracker-total-chapters, .chapter-page-input, .chapter-completion-checkbox')
+                            .forEach(el => el.disabled = false);
+                        saveTrackerData(itemId);
+                        updateGlobalProgress();
+                    }
                 }
-             }
+            }
+
             function updateAllCountdowns() {
                 const countdownElements = document.querySelectorAll('#schedule-list .countdown-timer');
                 const now = new Date().getTime();
@@ -2277,10 +2334,10 @@
                         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                         el.textContent = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
                     } else if (distance < 0 && !el.closest('.schedule-item')?.classList.contains('past-due')) {
-                         el.textContent = "Exam has passed.";
+                        el.textContent = "Exam has passed.";
                     }
                 });
-             }
+            }
 
             // --- Study Timer Logic ---
             pomodoroStartBtn.addEventListener('click', startPomodoro);
@@ -2289,9 +2346,9 @@
             pomodoroTimeInput.addEventListener('input', updateTimerFromInput);
 
             function updateTimerFromInput() {
-                 if (isPomodoroRunning) return;
+                if (isPomodoroRunning) return;
                 let minutes = parseInt(pomodoroTimeInput.value, 10) || 0;
-                 const minTime = 1;
+                const minTime = 1;
                 const maxTime = 600;
                 if (minutes > maxTime) {
                     minutes = maxTime;
@@ -2299,19 +2356,20 @@
                     showToast(`Maximum time is ${maxTime} minutes (10 hours).`, 'error');
                 }
 
-                 if (minutes < minTime) {
+                if (minutes < minTime) {
                     minutes = minTime;
-                     if (parseInt(pomodoroTimeInput.value, 10) < minTime) {
-                          pomodoroTimeInput.value = minTime;
-                     }
+                    if (parseInt(pomodoroTimeInput.value, 10) < minTime) {
+                        pomodoroTimeInput.value = minTime;
+                    }
                 }
 
                 pomodoroTimeLeft = minutes * 60;
                 pomodoroInitialTime = pomodoroTimeLeft;
                 updatePomodoroDisplay();
-             }
+            }
+
             function startPomodoro() {
-                 if (isPomodoroRunning) return;
+                if (isPomodoroRunning) return;
 
                 const subject = pomodoroSubjectSelect.value;
                 if (!subject) {
@@ -2319,14 +2377,14 @@
                     return;
                 }
 
-                 const minutes = parseInt(pomodoroTimeInput.value, 10) || 0;
-                 const minTime = 1;
-                 const maxTime = 600;
+                const minutes = parseInt(pomodoroTimeInput.value, 10) || 0;
+                const minTime = 1;
+                const maxTime = 600;
 
-                 if (minutes < minTime || minutes > maxTime) {
-                     showToast(`Please enter a time between ${minTime} and ${maxTime} minutes.`, 'error');
-                     return;
-                 }
+                if (minutes < minTime || minutes > maxTime) {
+                    showToast(`Please enter a time between ${minTime} and ${maxTime} minutes.`, 'error');
+                    return;
+                }
 
                 pomodoroTimeLeft = minutes * 60;
                 pomodoroInitialTime = pomodoroTimeLeft;
@@ -2340,21 +2398,24 @@
                 updatePomodoroDisplay();
                 pomodoroInterval = setInterval(updatePomodoro, 1000);
             }
+
             function pausePomodoro() {
                 clearInterval(pomodoroInterval);
-                 pomodoroInterval = null;
+                pomodoroInterval = null;
                 isPomodoroRunning = false;
                 pomodoroStartBtn.style.display = 'inline-block';
                 pomodoroPauseBtn.style.display = 'none';
-             }
+            }
+
             function resetPomodoro() {
                 pausePomodoro();
-                 updateTimerFromInput();
-                 pomodoroTimeInput.disabled = false;
-                 pomodoroSubjectSelect.disabled = false;
-             }
+                updateTimerFromInput();
+                pomodoroTimeInput.disabled = false;
+                pomodoroSubjectSelect.disabled = false;
+            }
+
             function updatePomodoro() {
-                 pomodoroTimeLeft--;
+                pomodoroTimeLeft--;
 
                 if (pomodoroTimeLeft < 0) {
                     clearInterval(pomodoroInterval);
@@ -2374,26 +2435,29 @@
                     pomodoroSubjectSelect.disabled = false;
 
                     updateTimerFromInput();
-                     updatePomodoroDisplay();
+                    updatePomodoroDisplay();
                 } else {
                     updatePomodoroDisplay();
                 }
-             }
+            }
+
             function updatePomodoroDisplay() {
-                 const m = Math.floor(pomodoroTimeLeft / 60);
-                 const s = pomodoroTimeLeft % 60;
-                 pomodoroTimerDisplay.textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-             }
+                const m = Math.floor(pomodoroTimeLeft / 60);
+                const s = pomodoroTimeLeft % 60;
+                pomodoroTimerDisplay.textContent = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+            }
 
             // --- Statistics Log Functions ---
             function getStudyLogs() {
-                 return JSON.parse(localStorage.getItem('studyLogs') || '[]');
+                return JSON.parse(localStorage.getItem('studyLogs') || '[]');
             }
+
             function saveStudyLogs(logs) {
-                 localStorage.setItem('studyLogs', JSON.stringify(logs));
-             }
+                localStorage.setItem('studyLogs', JSON.stringify(logs));
+            }
+
             function logStudySession(subject, durationMinutes) {
-                 if (!subject || durationMinutes <= 0) return;
+                if (!subject || durationMinutes <= 0) return;
                 const logs = getStudyLogs();
                 logs.push({
                     id: Date.now(),
@@ -2403,16 +2467,17 @@
                 });
                 saveStudyLogs(logs);
             }
+
             function displayStudyStats() {
-                 const logs = getStudyLogs();
+                const logs = getStudyLogs();
                 let summary = {};
                 let totalTime = 0;
 
                 statsLogEl.innerHTML = '';
 
                 if (logs.length === 0) {
-                    statsSummaryEl.innerHTML = '<h3>Summary by Subject</h3><p>No study sessions logged yet.</p>';
-                    statsLogEl.innerHTML = '<p>No log entries.</p>';
+                    statsSummaryEl.innerHTML = '<h3>Summary by Subject</h3><p style="color: var(--gray);">No study sessions logged yet.</p>';
+                    statsLogEl.innerHTML = '<p style="color: var(--gray);">No log entries.</p>';
                     return;
                 }
 
@@ -2440,9 +2505,10 @@
                 }
                 summaryHtml += `<hr><p><strong>Total Time:</strong> ${totalTime} minutes (${(totalTime / 60).toFixed(1)} hours)</p>`;
                 statsSummaryEl.innerHTML = summaryHtml;
-             }
+            }
+
             statsListContainer.addEventListener('click', (e) => {
-                 if (e.target.matches('.delete-stat-btn')) {
+                if (e.target.matches('.delete-stat-btn')) {
                     const logId = Number(e.target.dataset.id);
                     let logs = getStudyLogs();
                     logs = logs.filter(log => log.id !== logId);
@@ -2456,18 +2522,18 @@
                         showToast("All stats deleted.", 'info');
                     }
                 }
-             });
+            });
 
             // --- Helper function to get local date string ---
             function getLocalDateString(date) {
                 const y = date.getFullYear();
-                 const m = (date.getMonth() + 1).toString().padStart(2, '0');
-                 const d = date.getDate().toString().padStart(2, '0');
-                 return `${y}-${m}-${d}`;
+                const m = (date.getMonth() + 1).toString().padStart(2, '0');
+                const d = date.getDate().toString().padStart(2, '0');
+                return `${y}-${m}-${d}`;
             }
 
             // --- Helper function to format hours into hours and minutes ---
-             function formatHoursMinutes(decimalHours) {
+            function formatHoursMinutes(decimalHours) {
                 const totalMinutes = Math.round(decimalHours * 60);
                 const hours = Math.floor(totalMinutes / 60);
                 const minutes = totalMinutes % 60;
@@ -2479,7 +2545,7 @@
                     if (hours > 0) result += ' and ';
                     result += `${minutes} minute${minutes > 1 ? 's' : ''}`;
                 }
-                 if (result === '') return '0 minutes';
+                if (result === '') return '0 minutes';
                 return result;
             }
 
@@ -2550,18 +2616,18 @@
                         if (new Date(item.dateTime) > latestExamDate) {
                             latestExamDate = new Date(item.dateTime);
                         }
-                    } else if (data.totalChapters > 0 && !subjectHasPages && !data.isComplete){
-                         if (new Date(item.dateTime) > latestExamDate) {
-                              latestExamDate = new Date(item.dateTime);
-                         }
+                    } else if (data.totalChapters > 0 && !subjectHasPages && !data.isComplete) {
+                        if (new Date(item.dateTime) > latestExamDate) {
+                            latestExamDate = new Date(item.dateTime);
+                        }
                     }
                 });
 
                 // --- Handle edge cases ---
                 if (!hasAtLeastOnePageEntered && subjects.some(s => !loadTrackerData(s.id).isComplete && new Date(s.dateTime) > now)) {
-                     planOutput.innerHTML = '<p class="warning">Please add chapters and page counts for at least one subject to generate a plan.</p>';
-                     return;
-                 }
+                    planOutput.innerHTML = '<p class="warning">Please add chapters and page counts for at least one subject to generate a plan.</p>';
+                    return;
+                }
 
                 if (subjectsWithRemaining.length === 0) {
                     planOutput.innerHTML = '<h3>Congratulations! 🎉</h3><p class="success">You have completed all chapters/pages for upcoming exams!</p>';
@@ -2569,9 +2635,9 @@
                 }
 
                 if (totalRemainingPages === 0) {
-                   planOutput.innerHTML = '<h3>Plan Ready!</h3><p class="success">All remaining subjects have 0 pages in their incomplete chapters. Mark chapters/subjects as done or add page counts.</p>';
-                   return;
-               }
+                    planOutput.innerHTML = '<h3>Plan Ready!</h3><p class="success">All remaining subjects have 0 pages in their incomplete chapters. Mark chapters/subjects as done or add page counts.</p>';
+                    return;
+                }
 
                 subjectsWithRemaining.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
 
@@ -2589,15 +2655,15 @@
                 }
 
                 // --- Calculate Effective Daily Page Capacity ---
-                 let actualPacePagesPerHour = DEFAULT_PAGES_PER_HOUR;
-                 if (hoursPerDay > 0 && totalAvailableDays > 0) {
+                let actualPacePagesPerHour = DEFAULT_PAGES_PER_HOUR;
+                if (hoursPerDay > 0 && totalAvailableDays > 0) {
                     actualPacePagesPerHour = Math.max(DEFAULT_PAGES_PER_HOUR, totalRemainingPages / (hoursPerDay * totalAvailableDays));
-                 }
+                }
                 const dailyPageCapacity = Math.floor(hoursPerDay * actualPacePagesPerHour);
 
-                 if (dailyPageCapacity <=0 && totalRemainingPages > 0) {
-                     planOutput.innerHTML = `<p class="warning">Cannot generate plan. The calculated daily page capacity is zero or negative. Check exam dates and study hours.</p>${suggestionHtml}`;
-                     return;
+                if (dailyPageCapacity <= 0 && totalRemainingPages > 0) {
+                    planOutput.innerHTML = `<p class="warning">Cannot generate plan. The calculated daily page capacity is zero or negative. Check exam dates and study hours.</p>${suggestionHtml}`;
+                    return;
                 }
 
                 // --- Initialize Daily Plan Map ---
@@ -2628,7 +2694,7 @@
                         }
                         const subjectDeadline = new Date(subject.dateTime);
                         subjectDeadline.setDate(subjectDeadline.getDate() - 1);
-                        subjectDeadline.setHours(0,0,0,0);
+                        subjectDeadline.setHours(0, 0, 0, 0);
                         if (currentDate > subjectDeadline) {
                             continue;
                         }
@@ -2637,7 +2703,7 @@
                             if (chapter.pagesRemainingForAllocation > 0 && dayPlanData.pagesLeftToday > 0) {
                                 const existingTaskIndex = dayPlanData.tasks.findIndex(t => t.subject === subject.subjectName);
                                 if (existingTaskIndex === -1 && dayPlanData.tasks.length >= MAX_SUBJECTS_PER_DAY) {
-                                     continue;
+                                    continue;
                                 }
 
                                 const pagesToAllocateThisSession = Math.min(
@@ -2652,7 +2718,7 @@
                                     } else {
                                         dayPlanData.tasks[existingTaskIndex].details.push({ chapter: chapter.chapterIndex + 1, pages: pagesToAllocateThisSession });
                                     }
-                                     dayPlanData.tasks[existingTaskIndex].totalPages += pagesToAllocateThisSession;
+                                    dayPlanData.tasks[existingTaskIndex].totalPages += pagesToAllocateThisSession;
                                 } else {
                                     dayPlanData.tasks.push({
                                         subject: subject.subjectName,
@@ -2688,11 +2754,11 @@
                 outputHtml += `<p>Calculated daily goal: ~<strong>${dailyPageCapacity} pages</strong>.</p>
                                <p class="plan-note">Plan prioritizes earlier deadlines. Max ${MAX_SUBJECTS_PER_DAY} subjects per day. Only includes pages from incomplete chapters.</p>`;
 
-                 if (pagesStillToAllocateOverall > 0.1) {
-                     outputHtml += `<p class="warning"><strong>Warning:</strong> Could not allocate all pages (${Math.ceil(pagesStillToAllocateOverall)} remaining). Your schedule might be too tight. Please review chapters, page counts, and consider increasing daily study hours (suggested: ${minRequiredHours} hours/day).</p>`;
-                 } else if (totalRemainingPages > 0 ) {
-                     outputHtml += `<p class="success">Great! This plan helps you cover all remaining pages. Stick to it! 💪</p>`;
-                 }
+                if (pagesStillToAllocateOverall > 0.1) {
+                    outputHtml += `<p class="warning"><strong>Warning:</strong> Could not allocate all pages (${Math.ceil(pagesStillToAllocateOverall)} remaining). Your schedule might be too tight. Please review chapters, page counts, and consider increasing daily study hours (suggested: ${minRequiredHours} hours/day).</p>`;
+                } else if (totalRemainingPages > 0) {
+                    outputHtml += `<p class="success">Great! This plan helps you cover all remaining pages. Stick to it! 💪</p>`;
+                }
 
                 let planHasTasks = false;
 
@@ -2707,11 +2773,11 @@
                         outputHtml += `<div class="plan-day-group"><h3>${dateLocale}</h3><ul>`;
 
                         tasks.forEach(task => {
-                             const chapterDetailsString = task.details.map(d => `Ch ${d.chapter} (${Math.round(d.pages)}p)`).join(', ');
-                             const totalHoursDecimal = task.totalPages / actualPacePagesPerHour;
-                             const timeString = formatHoursMinutes(totalHoursDecimal);
+                            const chapterDetailsString = task.details.map(d => `Ch ${d.chapter} (${Math.round(d.pages)}p)`).join(', ');
+                            const totalHoursDecimal = task.totalPages / actualPacePagesPerHour;
+                            const timeString = formatHoursMinutes(totalHoursDecimal);
 
-                             outputHtml += `
+                            outputHtml += `
                                 <li>
                                     <strong>${task.subject}</strong>: ${chapterDetailsString} (${Math.round(task.totalPages)} pages total)
                                     <span>Approx. ${timeString}</span>
@@ -2722,14 +2788,14 @@
                     }
                 });
 
-                 if (!planHasTasks && pagesStillToAllocateOverall <= 0.1 && totalRemainingPages > 0) {
+                if (!planHasTasks && pagesStillToAllocateOverall <= 0.1 && totalRemainingPages > 0) {
                     outputHtml += '<p>No specific tasks scheduled for the upcoming days. This might happen if remaining pages are very few or spread out far in the future.</p>';
                 } else if (!planHasTasks && pagesStillToAllocateOverall > 0.1) {
-                     outputHtml += '<p class="warning">Could not schedule any tasks. Please check your inputs and deadlines.</p>';
+                    outputHtml += '<p class="warning">Could not schedule any tasks. Please check your inputs and deadlines.</p>';
                 }
 
                 planOutput.innerHTML = outputHtml;
-                
+
                 // Show save section after generating plan
                 planSaveSection.style.display = 'block';
             }
@@ -2739,12 +2805,12 @@
                 displaySavedPlans();
                 savedPlansModal.style.display = 'flex';
             });
-            
+
             closeSavedPlansModalBtn.addEventListener('click', () => savedPlansModal.style.display = 'none');
             savedPlansModal.addEventListener('click', (e) => {
                 if (e.target === savedPlansModal) savedPlansModal.style.display = 'none';
             });
-            
+
             deleteAllPlansBtn.addEventListener('click', deleteAllSavedPlans);
             savePlanBtn.addEventListener('click', saveCurrentPlan);
 
@@ -2760,12 +2826,12 @@
                 const planContent = document.getElementById('plan-output').innerHTML;
                 const planName = planNameInput.value.trim() || `Study Plan ${new Date().toLocaleDateString()}`;
                 const hoursPerDay = document.getElementById('hours-per-day').value;
-                
+
                 if (!planContent || planContent.includes('Enter your daily hours')) {
                     showToast('Please generate a plan first before saving.', 'error');
                     return;
                 }
-                
+
                 const plans = getSavedPlans();
                 const newPlan = {
                     id: Date.now(),
@@ -2774,12 +2840,12 @@
                     hoursPerDay: hoursPerDay,
                     dateCreated: new Date().toISOString(),
                     completed: false,
-                    daysCompleted: {} // سيتم تخزين حالة إنجاز كل يوم هنا
+                    daysCompleted: {}
                 };
-                
+
                 plans.unshift(newPlan);
                 savePlansToStorage(plans);
-                
+
                 showToast(`Plan "${planName}" saved successfully!`, 'success');
                 planModal.style.display = 'none';
             }
@@ -2787,19 +2853,19 @@
             function displaySavedPlans() {
                 const plans = getSavedPlans();
                 savedPlansList.innerHTML = '';
-                
+
                 if (plans.length === 0) {
                     savedPlansList.innerHTML = '<div class="no-plans-message">You have no saved plans yet.</div>';
                     return;
                 }
-                
+
                 plans.forEach(plan => {
                     const planElement = document.createElement('div');
                     planElement.className = `saved-plan-item ${plan.completed ? 'completed' : ''}`;
-                    
+
                     // استخراج الأيام من محتوى الخطة
                     const daysContent = extractDaysFromPlan(plan.content);
-                    
+
                     planElement.innerHTML = `
                         <div class="saved-plan-header">
                             <div>
@@ -2824,19 +2890,19 @@
                             <i class="fas fa-check-double"></i> Mark All Days as Completed
                         </button>
                     `;
-                    
+
                     savedPlansList.appendChild(planElement);
-                    
+
                     // إضافة مستمعي الأحداث
                     const deleteBtn = planElement.querySelector('.delete-plan-btn');
                     deleteBtn.addEventListener('click', () => deleteSavedPlan(plan.id));
-                    
+
                     const completionCheckbox = planElement.querySelector('.plan-completion-checkbox');
                     completionCheckbox.addEventListener('change', () => togglePlanCompletion(plan.id, completionCheckbox.checked));
-                    
+
                     const completeAllBtn = planElement.querySelector('.complete-all-days-btn');
                     completeAllBtn.addEventListener('click', () => completeAllDays(plan.id));
-                    
+
                     // إضافة مستمعي الأحداث لمربعات اختيار الأيام
                     const dayCheckboxes = planElement.querySelectorAll('.day-completion-checkbox');
                     dayCheckboxes.forEach(checkbox => {
@@ -2845,7 +2911,7 @@
                             toggleDayCompletion(plan.id, dayIndex, e.target.checked);
                         });
                     });
-                    
+
                     // إضافة مستمعي الأحداث لمهام الأيام
                     const taskCheckboxes = planElement.querySelectorAll('.task-completion-checkbox');
                     taskCheckboxes.forEach(checkbox => {
@@ -2863,12 +2929,12 @@
                 const days = [];
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = planContent;
-                
+
                 const dayGroups = tempDiv.querySelectorAll('.plan-day-group');
                 dayGroups.forEach((dayGroup, index) => {
                     const dayTitle = dayGroup.querySelector('h3').textContent;
                     const tasks = [];
-                    
+
                     const taskItems = dayGroup.querySelectorAll('li');
                     taskItems.forEach((taskItem, taskIndex) => {
                         tasks.push({
@@ -2877,7 +2943,7 @@
                             completed: false
                         });
                     });
-                    
+
                     days.push({
                         index: index,
                         title: dayTitle,
@@ -2885,20 +2951,20 @@
                         completed: false
                     });
                 });
-                
+
                 return days;
             }
 
             // دالة إنشاء HTML للأيام
             function generateDaysHTML(planId, days, daysCompleted = {}) {
                 if (days.length === 0) return '';
-                
-                let daysHTML = '<h4 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary-blue);"><i class="fas fa-calendar-day"></i> Daily Progress</h4>';
-                
+
+                let daysHTML = '<h4 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary-light);"><i class="fas fa-calendar-day"></i> Daily Progress</h4>';
+
                 days.forEach((day, index) => {
                     const isDayCompleted = daysCompleted[day.index]?.completed || false;
                     const dayTasksCompleted = daysCompleted[day.index]?.tasks || {};
-                    
+
                     daysHTML += `
                         <div class="saved-plan-day ${isDayCompleted ? 'completed' : ''}" id="day-${planId}-${day.index}">
                             <div class="saved-plan-day-header">
@@ -2917,18 +2983,18 @@
                         </div>
                     `;
                 });
-                
+
                 return daysHTML;
             }
 
             // دالة إنشاء HTML للمهام
             function generateTasksHTML(planId, dayIndex, tasks, tasksCompleted = {}) {
                 if (tasks.length === 0) return '';
-                
+
                 let tasksHTML = '';
                 tasks.forEach((task, taskIndex) => {
                     const isTaskCompleted = tasksCompleted[taskIndex] || false;
-                    
+
                     tasksHTML += `
                         <div class="saved-plan-day-task ${isTaskCompleted ? 'completed' : ''}">
                             <input type="checkbox" id="task-${planId}-${dayIndex}-${taskIndex}" 
@@ -2940,7 +3006,7 @@
                         </div>
                     `;
                 });
-                
+
                 return tasksHTML;
             }
 
@@ -2948,13 +3014,13 @@
             function toggleDayCompletion(planId, dayIndex, isCompleted) {
                 const plans = getSavedPlans();
                 const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
-                
+
                 if (planIndex !== -1) {
                     // تهيئة daysCompleted إذا لم تكن موجودة
                     if (!plans[planIndex].daysCompleted) {
                         plans[planIndex].daysCompleted = {};
                     }
-                    
+
                     // تهيئة اليوم إذا لم يكن موجوداً
                     if (!plans[planIndex].daysCompleted[dayIndex]) {
                         plans[planIndex].daysCompleted[dayIndex] = {
@@ -2962,10 +3028,10 @@
                             tasks: {}
                         };
                     }
-                    
+
                     // تحديث حالة إنجاز اليوم
                     plans[planIndex].daysCompleted[dayIndex].completed = isCompleted;
-                    
+
                     // إذا تم تحديد إنجاز اليوم، حدد جميع مهامه
                     if (isCompleted) {
                         const dayElement = document.getElementById(`day-${planId}-${dayIndex}`);
@@ -2978,12 +3044,12 @@
                             });
                         }
                     }
-                    
+
                     savePlansToStorage(plans);
-                    
+
                     // التحقق مما إذا كانت جميع الأيام مكتملة لتحديد إنجاز الخطة
                     checkAndUpdatePlanCompletion(planId);
-                    
+
                     showToast(`Day ${parseInt(dayIndex) + 1} ${isCompleted ? 'marked as completed' : 'marked as not completed'}.`, 'success');
                 }
             }
@@ -2992,13 +3058,13 @@
             function toggleTaskCompletion(planId, dayIndex, taskIndex, isCompleted) {
                 const plans = getSavedPlans();
                 const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
-                
+
                 if (planIndex !== -1) {
                     // تهيئة daysCompleted إذا لم تكن موجودة
                     if (!plans[planIndex].daysCompleted) {
                         plans[planIndex].daysCompleted = {};
                     }
-                    
+
                     // تهيئة اليوم إذا لم يكن موجوداً
                     if (!plans[planIndex].daysCompleted[dayIndex]) {
                         plans[planIndex].daysCompleted[dayIndex] = {
@@ -3006,16 +3072,16 @@
                             tasks: {}
                         };
                     }
-                    
+
                     // تحديث حالة إنجاز المهمة
                     plans[planIndex].daysCompleted[dayIndex].tasks[taskIndex] = isCompleted;
-                    
+
                     // التحقق مما إذا كانت جميع مهام اليوم مكتملة لتحديد إنجاز اليوم
                     const dayElement = document.getElementById(`day-${planId}-${dayIndex}`);
                     if (dayElement) {
                         const taskCheckboxes = dayElement.querySelectorAll('.task-completion-checkbox');
                         const allTasksCompleted = Array.from(taskCheckboxes).every(checkbox => checkbox.checked);
-                        
+
                         if (allTasksCompleted) {
                             const dayCheckbox = dayElement.querySelector('.day-completion-checkbox');
                             if (dayCheckbox && !dayCheckbox.checked) {
@@ -3030,12 +3096,12 @@
                             }
                         }
                     }
-                    
+
                     savePlansToStorage(plans);
-                    
+
                     // التحقق مما إذا كانت جميع الأيام مكتملة لتحديد إنجاز الخطة
                     checkAndUpdatePlanCompletion(planId);
-                    
+
                     showToast(`Task ${parseInt(taskIndex) + 1} ${isCompleted ? 'marked as completed' : 'marked as not completed'}.`, 'success');
                 }
             }
@@ -3044,19 +3110,19 @@
             function completeAllDays(planId) {
                 const plans = getSavedPlans();
                 const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
-                
+
                 if (planIndex !== -1) {
                     // الحصول على جميع عناصر الأيام
                     const dayElements = document.querySelectorAll(`#days-container-${planId} .saved-plan-day`);
-                    
+
                     dayElements.forEach(dayElement => {
                         const dayIndex = dayElement.querySelector('.day-completion-checkbox').dataset.dayIndex;
-                        
+
                         // تحديث حالة اليوم
                         if (!plans[planIndex].daysCompleted) {
                             plans[planIndex].daysCompleted = {};
                         }
-                        
+
                         if (!plans[planIndex].daysCompleted[dayIndex]) {
                             plans[planIndex].daysCompleted[dayIndex] = {
                                 completed: true,
@@ -3065,7 +3131,7 @@
                         } else {
                             plans[planIndex].daysCompleted[dayIndex].completed = true;
                         }
-                        
+
                         // تحديث جميع مهام اليوم
                         const taskCheckboxes = dayElement.querySelectorAll('.task-completion-checkbox');
                         taskCheckboxes.forEach(checkbox => {
@@ -3074,12 +3140,12 @@
                             plans[planIndex].daysCompleted[dayIndex].tasks[taskIndex] = true;
                         });
                     });
-                    
+
                     savePlansToStorage(plans);
-                    
+
                     // تحديث واجهة المستخدم
                     displaySavedPlans();
-                    
+
                     showToast('All days marked as completed!', 'success');
                 }
             }
@@ -3088,20 +3154,20 @@
             function checkAndUpdatePlanCompletion(planId) {
                 const plans = getSavedPlans();
                 const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
-                
+
                 if (planIndex !== -1 && plans[planIndex].daysCompleted) {
                     const allDays = Object.values(plans[planIndex].daysCompleted);
                     const allDaysCompleted = allDays.length > 0 && allDays.every(day => day.completed);
-                    
+
                     if (allDaysCompleted && !plans[planIndex].completed) {
                         plans[planIndex].completed = true;
                         savePlansToStorage(plans);
-                        
+
                         const completionCheckbox = document.getElementById(`plan-complete-${planId}`);
                         if (completionCheckbox) {
                             completionCheckbox.checked = true;
                         }
-                        
+
                         showToast('Plan completed! All days are finished!', 'success');
                     }
                 }
@@ -3125,7 +3191,7 @@
                     showToast('No plans to delete.', 'info');
                     return;
                 }
-                
+
                 if (confirm('Are you sure you want to delete ALL saved plans? This cannot be undone.')) {
                     savePlansToStorage([]);
                     displaySavedPlans();
@@ -3137,7 +3203,7 @@
             function togglePlanCompletion(planId, isCompleted) {
                 const plans = getSavedPlans();
                 const planIndex = plans.findIndex(plan => plan.id === parseInt(planId));
-                
+
                 if (planIndex !== -1) {
                     plans[planIndex].completed = isCompleted;
                     savePlansToStorage(plans);

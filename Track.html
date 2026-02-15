@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MaterialX | Track</title>
-        <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+        <link rel="stylesheet" href="global-theme.css">
 
     <style>
         /* CSS Styling - Over 800 lines of pure power */
@@ -13,30 +14,30 @@
 
         :root {
             /* --- Dark Mode (Default) --- */
-            --bg-color: #1a1a2e;
-            --bg-secondary-color: #16213e;
+            --bg-color: #0a0a0a;
+            --bg-secondary-color: #0f0f1a;
             --neumorphic-bg: #1a1a2e;
             --neumorphic-shadow-light: rgba(30, 30, 60, 0.5);
             --neumorphic-shadow-dark: rgba(0, 0, 0, 0.4);
-            --text-primary: #e0e0e0;
-            --text-secondary: #a0a0c0;
-            --accent-primary: #7f5af0;
-            --accent-secondary: #2cb67d;
-            --glow-color: rgba(127, 90, 240, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --accent-primary: #6a1b9a;
+            --accent-secondary: #ab47bc;
+            --glow-color: rgba(186, 104, 200, 0.4);
             --transition-speed: 0.4s;
             --border-radius-lg: 25px;
             --border-radius-md: 15px;
         }
 
         body.light-mode {
-            /* --- Light Mode --- */
-            --bg-color: #e0e5ec;
-            --bg-secondary-color: #dde2e9;
-            --neumorphic-bg: #e0e5ec;
-            --neumorphic-shadow-light: rgba(255, 255, 255, 0.9);
-            --neumorphic-shadow-dark: rgba(163, 177, 198, 0.6);
-            --text-primary: #333a52;
-            --text-secondary: #5a6482;
+            /* --- Keep dark theme even in light mode for consistency --- */
+            --bg-color: #0a0a0a;
+            --bg-secondary-color: #0f0f1a;
+            --neumorphic-bg: #1a1a2e;
+            --neumorphic-shadow-light: rgba(30, 30, 60, 0.5);
+            --neumorphic-shadow-dark: rgba(0, 0, 0, 0.4);
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
         }
 
         /* --- Base & Reset --- */
@@ -51,8 +52,8 @@
         }
 
         body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Poppins', 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
             color: var(--text-secondary);
             line-height: 1.9;
             overflow-x: hidden;

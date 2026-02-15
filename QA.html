@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MaterialX | Your Coding Path</title>
-      <link rel="icon" type="image/png" href="img/photo_2024-11-16_17-45-40.jpg">    <style>
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+      <link rel="stylesheet" href="global-theme.css">
+      <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #7209b7;
-            --light: #f8f9fa;
-            --dark: #212529;
+            --primary: #6a1b9a;
+            --secondary: #4a148c;
+            --accent: #ab47bc;
+            --light: #1a1a2e;
+            --dark: #0a0a0a;
             --success: #4cc9f0;
             --transition: all 0.3s ease;
+            --glow-purple: rgba(186, 104, 200, 0.4);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: var(--light);
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f0f1a 50%, #1a1a2e 100%);
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -35,12 +38,12 @@
         .container {
             max-width: 800px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(26, 26, 46, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 30px var(--glow-purple);
+            border: 1px solid rgba(186, 104, 200, 0.2);
             overflow: hidden;
             position: relative;
         }
@@ -54,15 +57,17 @@
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            background: linear-gradient(135deg, #ab47bc 0%, #ba68c8 50%, #ab47bc 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-shadow: 0 0 30px var(--glow-purple);
         }
 
         .header p {
             font-size: 1.1rem;
-            opacity: 0.8;
+            color: #e0e0e0;
+            opacity: 0.9;
         }
 
         .progress-container {
@@ -76,10 +81,11 @@
 
         .progress-bar {
             height: 100%;
-            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            background: linear-gradient(135deg, #6a1b9a, #ab47bc, #ba68c8);
             border-radius: 10px;
             width: 0%;
             transition: width 0.5s ease;
+            box-shadow: 0 0 15px var(--glow-purple);
         }
 
         .question-counter {
