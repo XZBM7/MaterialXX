@@ -952,6 +952,13 @@
         body.ad-active {
             overflow: hidden !important;
         }
+        .logo-link {
+    text-decoration: none;
+    color: inherit; 
+    font-weight: inherit;
+}
+
+
         
     </style>
 </head>
@@ -971,10 +978,15 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <img src="img/logo.jpeg" alt="Materialx Logo">
-                    <h1>MaterialX</h1>
-                </div>
+              <div class="logo">
+<a href="homee.html">
+    <img src="img/logo.jpeg" alt="Materialx Logo">
+</a>
+    <h1>
+        <a href="homee.html" class="logo-link">MaterialX</a>
+    </h1>
+</div>
+
 
                 <!-- Search Bar -->
                 <div class="search-container">
@@ -998,7 +1010,7 @@
                         <li><a href="Exam.html"><i class="fas fa-calendar-alt"></i> Organizer</a></li>
                         <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
                         <li><a href="Articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
-                        <li><a href="play.html"><i class="fas fa-gamepad"></i> Games</a></li>
+                        <li><a href="Track.html"><i class="fas fa-route"></i> Track</a></li>
                         <li><a href="chat.html"><i class="fas fa-robot"></i> Chatbot</a></li>
 <li><a href="#departments"><i class="fas fa-building"></i> Departments</a></li>
                         <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -1158,6 +1170,18 @@
                     </div>
                 </div>
 
+               <div class="card">
+    <div class="card-icon"><i class="fas fa-compass"></i></div>
+    <div class="card-content">
+        <h3>Discover Your Programming Track</h3>
+        <p>Explore the best track for you based on your interests and goals</p>
+        <a href="QA.html" class="card-link">
+            Discover Track <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+            
                 <div class="card">
                     <div class="card-icon"><i class="fas fa-tasks"></i></div>
                     <div class="card-content">
@@ -1293,8 +1317,8 @@
     <section class="articles-section">
         <div class="container">
             <div class="section-title">
-                <h2>Latest Articles</h2>
-                <p>Stay updated with the latest in tech and programming</p>
+                <h2>Top Articles</h2>
+                <p>Stay updated with the top in tech and programming</p>
             </div>
             <div class="cards-grid">
                 <div class="card article-card">

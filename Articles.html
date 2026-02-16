@@ -86,8 +86,24 @@
         .article-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .article-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; color: var(--text-color); line-height: 1.4; }
         .article-excerpt { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1; }
-        .article-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); border-top: 1px solid var(--border-color); padding-top: 15px; }
-        .article-meta span { display: flex; align-items: center; }
+.article-meta { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 0.85rem; 
+    color: var(--text-secondary); 
+    border-top: 1px solid var(--border-color); 
+    padding-top: 15px;
+    gap: 20px; /* أضف هذه الخاصية للمسافة بين العناصر */
+    flex-wrap: wrap; /* إضافة هذه الخاصية للتوافق مع الشاشات الصغيرة */
+}
+
+.article-view-meta { 
+    display: flex; 
+    color: var(--text-secondary); 
+    font-size: 1rem; 
+    gap: 30px; /* زود المسافة هنا (كانت 20px) */
+    flex-wrap: wrap; 
+}        .article-meta span { display: flex; align-items: center; }
         .article-meta i { margin-right: 5px; }
         
         /* Article View */
@@ -95,7 +111,6 @@
         .article-view.active { display: block; }
         .article-header { margin-bottom: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 25px; }
         .article-view-title { font-size: 2.2rem; color: var(--text-color); margin-bottom: 15px; line-height: 1.3; }
-        .article-view-meta { display: flex; color: var(--text-secondary); font-size: 1rem; gap: 20px; flex-wrap: wrap; }
         .article-view-meta span { display: flex; align-items: center; }
         .article-view-meta i { margin-right: 8px; }
         .article-body { line-height: 1.8; font-size: 1.1rem; color: var(--text-color); }
@@ -313,6 +328,7 @@
                     <button class="filter-btn" data-filter="Development">Development</button>
                     <button class="filter-btn" data-filter="Databases">Databases</button>
                     <button class="filter-btn" data-filter="Mobile">Mobile</button>
+                    <button class="filter-btn" data-filter="Tech">Tech</button>
                 </div>
                 <div class="sort-options">
                     <select id="sortSelect">
@@ -476,6 +492,7 @@
      category: "Development", 
     likes: 0, 
     commentCount: 0,
+    author: "Omar Alharby",
     image: "https://www.biztechcs.com/wp-content/uploads/2023/04/What-is-Iterative-and-Incremental-Development-jpg-webp.webp"
 },
          { 
@@ -568,6 +585,7 @@
     category: "Software", 
     likes: 0, 
     commentCount: 0,
+        author: "Yara Hassan",
     image: "https://tse2.mm.bing.net/th/id/OIP.arXKiQ5AhzUykGihfyeK8wHaD3?rs=1&pid=ImgDetMain&o=7&rm=3"
 },
 
@@ -662,8 +680,206 @@ date: "2025-12-01T01:15:00.000Z",
     category: "AI", 
     likes: 0, 
     commentCount: 0,
+        author: "Ibrahim Amr",
     image: "https://blogs.skillovilla.com/wp-content/uploads/2022/03/What-is-the-scope-of-Data-Science-1.jpg"
 },
+
+{
+    "id": 4,
+    "title": "محتاج لابتوب جديد؟ دليلك الكامل لاختيار الجهاز المناسب (Processor, RAM, SSD, GPU)",
+    "excerpt": "دليل شامل ومبسط لاختيار لابتوب الدراسة والشغل والبرمجة. هتعرف الفرق بين المعالج والرام والهارد، وإزاي تختار المواصفات المناسبة لاحتياجك من غير ما تضيع فلوسك.",
+    "content": `
+        <div dir="rtl" style="text-align: right; font-family: 'Tahoma', 'Segoe UI', sans-serif; line-height: 1.8;">
+            <p>خالص داخلين على عام دراسى جديد، ومع بداية سنة دراسية جديدة، بنحس إننا محتاجين جهاز لابتوب يساعدنا في شغلنا أو دراستنا. وطبعا لو انت/ى ناوي/يه على برمجه، يبقى ده حرفياً "إيدك ورجلك". بس لما بنيجي بقا للخطوة دى بنفكر: طب اجيب مواصفاته إيه بحيث يغطى حاجتى على الأقل خالص؟ وده هدف المقال البسيط انه يضربلك ولو كشاف بسيط على الاجهزة واي اللي بنهتم بيه جدا ويكون مواصفاته إيه بالظبط بالنسبة لاحتياجك.</p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">أولاً: إيه مكونات الجهاز الأساسية لأي استخدام؟</h3>
+            <p>أي جهاز لابتوب بنشوفه بنهتم بأربع حاجات رئيسية:</p>
+            <ul style="padding-right: 20px;">
+                <li><strong>المعالج (Processor - CPU)</strong></li>
+                <li><strong>الرام (RAM)</strong></li>
+                <li><strong>الهارد ديسك (Hard Disk - Storage)</strong></li>
+                <li><strong>كارت الشاشة (GPU)</strong></li>
+                <li><strong>الشاشة (Monitor/Display)</strong></li>
+            </ul>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">1. المعالج (Processor) - عقل الجهاز</h3>
+            <p>المعالج هو عقل الجهاز، وهو المسئول عن تنفيذ الأوامر. من أهم حاجتين فيه:</p>
+            <ul style="padding-right: 20px;">
+                <li><strong>الـ (Clock Speed - Base & Turbo):</strong> وهتلاقيها عبارة عن رقمين كده بيتقاس ب الـ (GHz)، بيعبروا عن سرعة البروسيسور في الاستخدام العادي (Base). والرقم التاني (Turbo) دي أقصى سرعة بيوصلها تحت التحميل العالي عليه.</li>
+                <li><strong>عدد الأنوية (Cores):</strong> كل ما زاد، قدرته على تشغيل أكثر من برنامج في نفس الوقت (Multitasking) بتكون أفضل.</li>
+            </ul>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">2. الرام (RAM) - ذاكرة التشغيل المؤقتة</h3>
+            <p>أوبا، بقينا بقا على الكلمة المنطوقة على كل لسان: الرام، الرام، الرام. إيه هي الرام دي وقصتها إيه؟ الرام دي ذاكرة للجهاز. وإيه دا مش الـ Hard Disk هو اللي بيخزن وذاكرة برضو؟ أيوه بالضبط، لكن لازم تعرف إن الكمبيوتر ذاكرة التشغيل فيه هيا الـ RAM، والـ Hard Disk هو التخزين الدائم. الفرق زي "الترابيزة اللي بتشتغل عليها" (الرام) و"الدولاب اللي بتحفظ فيه شغلك" (الهارد). لما تقفل الجهاز، اللي على الترابيزة (الرام) بيروح، واللي في الدولاب (الهارد) لسه موجود. عشان تفهم أكتر، هتفهم ده أول ما تذاكر <em>نظام التشغيل (OS)</em>.</p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">3. الهارد ديسك (Storage) - التخزين الدائم</h3>
+            <p>واعتقد مشهور إن الـ SSD هو الأفضل، وبالتالى سعره لنفس السعه التخزينيه اللي بيوفرها HDD بيكون أعلى. فخليك عارف إن اللابتوب اللي هتيبه يا إما هيكون فيه واحد منهم، يا إما الاتنين مع بعض. وتعمل حساب إن الـ SSD أغلأ من الـ HDD لنفس السعة التخزينية. <strong>نصيحتي:</strong> لو تقدر، اختار 256GB على الأقل SSD. أو اختار كومبو (SSD + HDD) هيكون مريح جداً (واحد سريع لتشغيل النظام والبرامج، والتاني سعته كبيرة لحفظ الملفات).</p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">4. كارت الشاشة (GPU) - مسئول الجرافيك</h3>
+            <p>وده القطعة المسئولة بالتعاون مع الـ Processor عن تشغيل الألعاب والتصاميم، وبشكل مخصص للتحريك والـ rendering والألوان والـ frames وكده. أما تشغيل الكود نفسه بيكون عن طريق الـ Processor. المهم بعيداً عن التفاصيل دي، انت لو مبرمج ألعاب، أو Gamer، أو Graphic Designer، مهم تهتم أوي بالقطعة دي في جهازك. وهنا عندنا كذا براند زي nvidia و AMD.</p>
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 30px;">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.rI_QAkW1TauGDwj8XYu8pgHaGD?cb=defcache2&defcache=1&w=1296&h=1059&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Intel Core Ultra processor" class="gallery-image">
+                <img src="https://modo3.com/thumbs/fit630x300/142973/1478781718/%D8%B0%D8%A7%D9%83%D8%B1%D8%A9_%D8%A7%D9%84%D8%B1%D8%A7%D9%85.jpg" alt="DDR5 RAM" class="gallery-image">
+                <img src="https://www.go4it.ro/wp-content/uploads/2020/04/hdd.jpg" alt="NVMe SSD" class="gallery-image">
+                <img src="https://beta-tec.net/wp-content/uploads/2025/04/3333333333333.jpg" alt="Nvidia RTX 4090 GPU" class="gallery-image">
+            </div>
+
+            <h3 style="color: var(--warning); margin-top: 30px;">الخلاصة (The Verdict)</h3>
+            <p><strong>للاستخدامات البسيطة (تصفح، كتابة، مشاهدة):</strong> هتركز على معالج متوسط (Core i3/Ryzen 3)، 8 رام، وSSD صغير. مش محتاج كارت شاشة خارجي.</p>
+            <p><strong>للاستخدامات المكتبية والبرمجة العادية:</strong> محتاج معالج قوي شوية (Core i5/Ryzen 5)، 16 رام، وSSD 512 على الأقل.</p>
+            <p><strong>للألعاب، التصميم، ومونتاج الفيديو:</strong> محتاج أقوى معالج (Core i7/i9 أو Ryzen 7/9)، 16-32 رام، وكارت شاشة منفصل قوي (مثل Nvidia RTX). والـ SSD مسألة حياة أو موت هنا عشان سرعة تحميل الملفات.</p>
+            <p><strong>القاعدة الذهبية:</strong> حدد استخدامك الأول، وابني على أساسه المواصفات. متجيش تجيب حاجة أغلى من احتياجك، ومتشتريش حاجة أضعف من إنها تنجز معاك شغلك.</p>
+        </div>
+    `,
+    date: "2026-02-16T12:00:00.000Z",
+    category: "Tech",
+    likes: 0,
+    commentCount: 0,
+    author: "Salma Salah",
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=2071&auto=format&fit=crop"
+},
+{
+    "id": 5,
+    "title": "Backend Developer vs. Data Engineer: هما بيشتغلوا على الداتا، إيه الفرق؟",
+    "excerpt": "كتير مننا بيلاحظ إن الاتنين شغالين بالداتا، والوصف الوظيفي أحياناً متداخل. ناس كتير بتسأل: ليه شركات مصنفاهم بتخصصين مختلفين؟ إيه الـ Mindset بتاع كل واحد؟ وإيه علاقة الـ APIs بالـ Pipelines؟ المقال ده جاوب على السؤال بتاع الأسبوع اللي فات.",
+    "content": `
+        <div dir="rtl" style="text-align: right; font-family: 'Tahoma', 'Segoe UI', sans-serif; line-height: 1.8;">
+            <p>النهاردة هنكمل سلسلة "المسميات الوظيفية المتقاطعة"، وهنرد على سؤال جه كتير الأسبوع اللي فات:</p>
+            <p><strong>"يا ترى إيه الفرق بين الـ Backend Developer والـ Data Engineer؟ وعلى حسب فهمنا إنهم تقريباً بيعملوا نفس الحاجة، فليه الشركات مصنفاهم بـ 2 Titles مختلفين؟ وكل واحد ليه Job Description خاصة بيه وبيتطلب باسمه كده؟"</strong></p>
+            <p>السؤال ده شغلني الفترة اللي فاتت، وحاولت أجمعه في الرؤية دي. أتمنى حضراتكم تشاركوني الرأي في الـ Comments.</p>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">1. نقطة الاهتمام الأساسية (The Focus Area)</h3>
+            <p>الفرق اللي لاحظته بين الـ Backend والـ Data Engineer هو من جهة <strong>الاهتمام</strong>. بمعنى إن كل واحد بيهتم بجزء معين في رحلة الداتا:</p>
+            
+            <p><strong>الـ Data Engineer:</strong> مهتم <em>أوي</em> بالداتا نفسها. شغله الشاغل إنه يخليها Clean، يتعامل مع Missing Values والـ Null Values. هو دوره الأساسي إنه يبني الـ <strong>Pipelines</strong>، يعني "المواسير" اللي الداتا هتمشي فيها. بيهيأ الداتا اللي بيستقبلها بأشكال مختلفة زي (JSON, Excel, DB, وغيره) إنه يحولها لنفس الشكل، ويقدر يخزنها مع بعض تحت مسمى واحد، ويقدر يحضرها وينظفها ويخليها فعلاً شيء أنا قادر أستفيد منه. هو مهتم بجودة التخزين، يعني بيشوف هل أنا محتاج البيانات Real-Time أول بأول، ولا مثلاً يوم بيوم، وهكذا.</p>
+
+            <p><strong>الـ Backend Developer:</strong> جميل جداً... أما بقا الـ Backend فمش مهمته الأصلية إنه ينقي الداتا. هو مش مهتم بشكلها أو نوعها أو إذا كانت مترابطة مع بعض ولا لأ (Relevant). <strong>هو بيخزن بس... إذن هو مهمته التخزين والاسترجاع.</strong> كل ما يشغله هو: هل الداتا دي متصلة بالـ Frontend ولا لأ؟ يعني هو مشغول أكتر بالـ APIs وربط الموقع ببعضه. لو سجلت حاجة في الفرونت، هل هتظهر في الـ Back ولا لأ؟ هو كأنه بيربط بس، لكن ملوش دعوة إن كانت الداتا صحيحة ولا لأ، أو هتستخدمها في إيه في المستقبل. مهمته: التخزين والاسترجاع.</p>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">2. نقطة Authentication vs. Authorization</h3>
+            <p>طبعاً في نقطة تانية مهمة جداً في شغل الـ Backend، وهي حماية الداتا:</p>
+            <ul style="padding-right: 20px;">
+                <li><strong>Authentication (التحقق من الهوية):</strong> ده معناه إذن الدخول. هل أنت من حقك تدخل وتطلع على الداتا ولا لأ؟ يعني بتتأكد إن اليوزر ده هو اللي بيقول إنه هو فعلاً.</li>
+                <li><strong>Authorization (الصلاحيات):</strong> بعد ما طلعت من حقك (اتحققنا من هويتك)، نيجي بقا نشوف: إنت من حقك تشوف إيه بالضبط؟ يعني مثلاً لو أنت مدير، فمن حقك تشوف كل حاجة، وليه View يختلف تماماً عن شخص شغال في الـ Sales، إذن من حقه يشوف جزئيته فقط.</li>
+            </ul>
+            <p>وده جزء كبير من مسؤولية الـ Backend Developer، إنه ينفذ نظام الصلاحيات ده.</p>
+
+            <h3 style="color: var(--primary); margin-top: 30px;">جدول المقارنة "للناس التقيلة":</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em;">
+                <tr style="background: var(--light);">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Point of View</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Backend Developer</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Data Engineer</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>الهدف الأساسي</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">تشغيل التطبيقات، إدارة APIs، ربط الفرونت بالداتا.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">بناء وصيانة البنية التحتية للبيانات، تنظيفها، وإتاحتها للتحليل.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>الاهتمام بالداتا</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">يهتم بسرعة التخزين والاسترجاع، وبسلامة الـ (CRUD) Operations.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">يهتم بجودة الداتا، نقائها، تحويلها من مصادر متعددة، ودمجها.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>التحدي الأكبر</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">الأمان (Authentication/Authorization)، أداء الـ APIs، Scalability.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">التعامل مع Dirty Data، تصميم ETL Pipelines، تحمل الضغط (High Volume).</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>الأدوات (Tools)</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Node.js, Python (Django/Flask), Java (Spring), PHP, SQL, Postman.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Apache Spark, Hadoop, Airflow, Kafka, SQL, Python (Pandas), Cloud (AWS/GCP).</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>النتيجة (Output)</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">تطبيق شغال، API Endpoints، Database Queries سريعة.</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Data Lake/ Warehouse نظيف، Data Pipelines شغالة، Reports (جاهزة للـ DS).</td>
+                </tr>
+            </table>
+
+            <h3 style="color: var(--warning); margin-top: 30px;">الخلاصة (The Verdict)</h3>
+            <p>ببساطة، الـ <strong>Data Engineer</strong> بيحضر ويجهز المواد الخام (البيانات) عشان تكون صالحة للاستخدام.</p>
+            <p>والـ <strong>Backend Developer</strong> بيستخدم المواد دي عشان يبني منتج (تطبيق) بيتفاعل معاه اليوزر.</p>
+            <p>الاتنين شغالين في المطبخ، بس واحد بيغسل ويقطع ويجهز (Data Engineer)، والتاني بيطبخ ويقدم الأكل لليوزر (Backend Developer). أتمنى تكونوا استفدتوا!</p>
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 30px;">
+        </div>
+    `,
+    date: "2026-02-16T14:30:00.000Z",
+    category: "Tech",
+    likes: 0,
+    commentCount: 0,
+    author: "Salma Salah",
+    image: "https://as2.ftcdn.net/v2/jpg/02/99/62/11/1000_F_299621124_vutDKbNwRJG6poJRQQIMYfsc4tJCTO5E.jpg"
+},
+
+{
+    "id": 6,
+    "title": "Cloud Computing إيه هو؟ وإيه المشكلة اللي بيحلها ببساطة؟ (قصة موقع الجامعة)",
+    "excerpt": "أنا عندي موقع جامعة، وفيه طلبة بتسجل وبتأخذ نتائجها. الموقع شغال عندي على لابي، لكنه مش Public. إيه المشاكل اللي بتواجهني لو حولته لـ Server عادي؟ وإيه العلاقة بالتكييف والـ Security Teams؟ قصة مبسطة لشرح المشكلة اللي بيحلها الـ Cloud.",
+    "content": `
+        <div dir="rtl" style="text-align: right; font-family: 'Tahoma', 'Segoe UI', sans-serif; line-height: 1.8;">
+            <p>يا ترى انهارده موضوعنا إيه؟ موضوعنا عن الـ <strong>Cloud Computing</strong>. هو واحد من مجالات CS المهمة جداً حالياً، والمطلوبة في المستقبل. النهاردة هنشرح الفكرة بمثال عملي بسيط جداً عشان نفهم إيه المشكلة الأصلية اللي جت الـ Cloud عشان تحلها.</p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">البداية: موقع على اللاب بتاعي</h3>
+            <p>أنا دلوقتي كـ "سلمى"، لو افترضنا إني عايزة أعمل Website. طبيعي هستخدم HTML, CSS, JS زي ما قلنا قبل كده. وخلاص اكتمل الويب سايت. ده هيكون موجود على اللاب عندي بس. يعني أقدر أشتغله Offline وبس. أو يُقال إني عاملة للـ Website دي Host على اللاب عندي. لكن <strong>لا يمكن تشتغل Online</strong>.</p>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">طب دلوقتي، لو أنا موقع جامعة</h3>
+            <p>لو أنا (موقع جامعة) وفيه طلبة بتسجل وطلبة بتأخذ نتائجها وكده، إذن <strong>هحتاج أحول الـ Website إلى Public</strong>.</p>
+            
+            <h3 style="color: var(--secondary); margin-top: 25px;">🩷 جميل، طب ازاي أحوله Public؟</h3>
+            <p>أول حاجة: هيحتاج <strong>RAM و CPU قوي</strong> عشان يستحمل عدد الـ Users. ثانياً: هنحتاج <strong>Web Server</strong> يكون عليه عدد من الـ Applications. والـ Server لازم يكون له <strong>Public IP Address</strong>. ولازم دايماً نعمل Cooling أو تبريد للـ Server.</p>
+            <p>جميل 🤚 يبقى كده عندنا الـ Server وعليه الـ Applications المختلفة، وكمان عملنا له تبريد، وكمان لازم يكون فيه <strong>Admin</strong> يـ Manage الـ Server ويعمل له الـ Configuration. أي Server هو عبارة عن جهاز، لكن أنا بحوله من خادم أو Host إلى Server، إذن يلزمه Configurations عشان نقدر نحوله لـ Server. وده دور الـ Admin أو الـ IT Staff.</p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">طب هنحتاج إيه تاني؟ 😇</h3>
+            <p>زي ما احتجنا تيم IT عشان الـ Configuration، نحتاج أيضاً إلى <strong>تيم الـ Security</strong>. عشان الناس اللي بتستعلم عن درجاتها لازم يكون لها Authentication و Authorization. مفيش حد يقدر يشوف درجات طالب غيره وهكذا. وده يتطلب ويحتاج إلى Security Team.</p>
+
+            <div style="background-color: var(--light); padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <p style="font-weight: bold; margin-bottom: 10px;">🤚 كده احتياجاتنا هي:</p>
+                <ul style="list-style-type: none; padding-right: 0;">
+                    <li>✅ Servers (قوية)</li>
+                    <li>✅ مبردات للـ Server (Cooling)</li>
+                    <li>✅ IT Team for Configuration</li>
+                    <li>✅ Security Team</li>
+                </ul>
+            </div>
+
+            <hr style="margin: 25px 0; border-color: #eee;">
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">طب لسه كويس أوي... فين بقا المشكلة؟ 🤔</h3>
+            <p><strong>المشكلة هي فترات الذروة أو الـ Loading أو الـ Traffic.</strong> وهي ببساطة: فترة تسجيل لسنة أولى كلية (اللي بيسجل فيها طلاب الثانوية العامة)، وكذلك فترة إعلان النتائج.</p>
+            <p>لنفترض إن الموقع يستحمل ٢٠٠ طالب، وعدد الطلاب عندي ٢٠٠٠ طالب. أنا بكون متأكدة إنه مستحيل الـ ٢٠٠٠ طالب يعملوا Access على الموقع في نفس الوقت (في الأيام العادية)، فمفيش مشكلة. لكن في <strong>فترة النتيجة</strong>، الكل بيعمل Access مرة واحدة، فالموقع بيقع، أو بياخد عدده (الـ ٢٠٠ شخص اللي يستحملهم)، ويسيب الباقي Waiting، فيظهر لهم إن الموقع واقع. لكنه بيستقبل ٢٠٠ ويعمل Block للباقي، يخلص ٢٠٠ ويدخل على الـ ٢٠٠ اللي بعدهم وهكذا. ده بياخد وقت كبير وممكن يأخر على بعض الطلبة النتائج بتاعتها. <strong>دي مشكلة بتواجهنا.</strong></p>
+
+            <h3 style="color: var(--secondary); margin-top: 25px;">نحلها إزاي؟</h3>
+            <p>إننا نجيب Servers زيادة... وطبعاً لها مبردات خاصة بها. ودي تعتبر <strong>Wasting للـ Resources</strong>. لأن الـ Servers دي هتفضل ملهاش لازمة إلا في أوقات الذروة. غير كده هنصرف عليها مبردات دون أهمية.</p>
+
+            <div class="article-gallery" style="direction: ltr; margin-top: 30px;">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop" alt="Modern data center server racks with cooling" class="gallery-image">
+
+            </div>
+
+            <h3 style="color: var(--warning); margin-top: 30px;">يُتبع... الحل في المقال الجاي</h3>
+            <p>طيب والحل إيه؟؟ 🤔 <strong>الحل هو الـ Cloud Computing.</strong> وده هنوضحه في الـ Article الجاية بالتفصيل. إزاي الـ Cloud بيوفرلك Servers لما تحتاجها، وبسعر استخدامك الفعلي، ومن غير ما تضطر تشتري مبردات وتعيّن تيم أمن لكل جهاز. تابعونا!</p>
+            <p style="font-size: 0.9em; color: gray; margin-top: 20px;"><em>انتظروني في الجزء الثاني: إزاي الـ Cloud بيحل مشكلة التكييف والـ Traffic؟</em></p>
+        </div>
+    `,
+    "date": "2026-02-16T16:45:00.000Z",
+    "category": "Tech",
+    "likes": 0,
+    "commentCount": 0,
+     author: "Salma Salah",
+    "image": "https://www.device42.com/blog/wp-content/uploads/2023/03/14_01edge-cloud-computing.jpg"
+}
+
         ];
 
         const articlesGrid = document.getElementById('articlesGrid');
@@ -894,6 +1110,7 @@ date: "2025-12-01T01:15:00.000Z",
                     <h3 class="article-title">${article.title}</h3>
                     <p class="article-excerpt">${article.excerpt}</p>
                     <div class="article-meta">
+                         <span><i class="fas fa-user"></i> ${article.author || 'Unknown'}</span> <!-- أضف هذا السطر -->
                         <span><i class="far fa-clock"></i> ${timeString}</span>
                         <span><i class="fas fa-book-open"></i> ${readTime}</span>
                         <span><i class="fas fa-heart" style="color: ${article.likes > 0 ? '#e63946' : 'inherit'}"></i> ${article.likes}</span>
@@ -921,6 +1138,7 @@ date: "2025-12-01T01:15:00.000Z",
                 <div class="article-header">
                     <h2 class="article-view-title">${article.title}</h2>
                     <div class="article-view-meta">
+                        <span><i class="fas fa-user"></i> ${article.author || 'Unknown'}</span> 
                         <span><i class="far fa-clock"></i> ${timeAgo(article.date)}</span>
                         <span><i class="fas fa-book-open"></i> ${readTime}</span>
                         <span><i class="fas fa-tag"></i> ${article.category}</span>
