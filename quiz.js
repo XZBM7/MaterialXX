@@ -21696,79 +21696,79 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const adOverlay = document.getElementById('ad-overlay');
-    const adVideo = document.getElementById('ad-video');
-    const appLayout = document.querySelector('.app-layout');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const adOverlay = document.getElementById('ad-overlay');
+//     const adVideo = document.getElementById('ad-video');
+//     const appLayout = document.querySelector('.app-layout');
     
-    if (localStorage.getItem('adWatched') === 'true') {
-        adOverlay.style.display = 'none';
-        return;
-    }
+//     if (localStorage.getItem('adWatched') === 'true') {
+//         adOverlay.style.display = 'none';
+//         return;
+//     }
     
-    document.body.classList.add('ad-active');
-    appLayout.style.display = 'none';
+//     document.body.classList.add('ad-active');
+//     appLayout.style.display = 'none';
     
-    adVideo.setAttribute('playsinline', '');
-    adVideo.setAttribute('webkit-playsinline', '');
+//     adVideo.setAttribute('playsinline', '');
+//     adVideo.setAttribute('webkit-playsinline', '');
     
-    adVideo.addEventListener('ended', function() {
-        setTimeout(function() {
-            closeAd();
-        }, 2000); 
-    });
+//     adVideo.addEventListener('ended', function() {
+//         setTimeout(function() {
+//             closeAd();
+//         }, 2000); 
+//     });
     
-    adVideo.addEventListener('error', function() {
-        console.log('Video error, skipping ad');
-        closeAd();
-    });
+//     adVideo.addEventListener('error', function() {
+//         console.log('Video error, skipping ad');
+//         closeAd();
+//     });
     
-    setTimeout(function() {
-        if (adVideo.readyState === 0) { 
-            closeAd();
-        }
-    }, 5000);
+//     setTimeout(function() {
+//         if (adVideo.readyState === 0) { 
+//             closeAd();
+//         }
+//     }, 5000);
     
-    function closeAd() {
-        localStorage.setItem('adWatched', 'true');
+//     function closeAd() {
+//         localStorage.setItem('adWatched', 'true');
         
-        adOverlay.style.opacity = '0';
-        setTimeout(function() {
-            adOverlay.style.display = 'none';
-        }, 500);
+//         adOverlay.style.opacity = '0';
+//         setTimeout(function() {
+//             adOverlay.style.display = 'none';
+//         }, 500);
         
-        document.body.classList.remove('ad-active');
+//         document.body.classList.remove('ad-active');
         
-        setTimeout(function() {
-            appLayout.style.display = 'grid'; 
-        }, 100);
-    }
+//         setTimeout(function() {
+//             appLayout.style.display = 'grid'; 
+//         }, 100);
+//     }
 
-    let skipAttempts = 0;
-    adVideo.addEventListener('pause', function(e) {
-        if (!adVideo.ended && adVideo.currentTime < adVideo.duration - 2) {
-            skipAttempts++;
-            if (skipAttempts < 3) {
-                adVideo.play();
-                showSkipWarning();
-            }
-        }
-    });
+//     let skipAttempts = 0;
+//     adVideo.addEventListener('pause', function(e) {
+//         if (!adVideo.ended && adVideo.currentTime < adVideo.duration - 2) {
+//             skipAttempts++;
+//             if (skipAttempts < 3) {
+//                 adVideo.play();
+//                 showSkipWarning();
+//             }
+//         }
+//     });
 
-    adVideo.addEventListener('seeking', function(e) {
-        if (adVideo.currentTime > 0) { 
-        }
-    });
+//     adVideo.addEventListener('seeking', function(e) {
+//         if (adVideo.currentTime > 0) { 
+//         }
+//     });
 
-    function showSkipWarning() {
-        const countdown = document.querySelector('.ad-countdown');
-        const originalText = countdown.textContent;
-        countdown.textContent = 'Please watch the full ad to continue...';
-        countdown.style.color = '#ff6b6b';
+//     function showSkipWarning() {
+//         const countdown = document.querySelector('.ad-countdown');
+//         const originalText = countdown.textContent;
+//         countdown.textContent = 'Please watch the full ad to continue...';
+//         countdown.style.color = '#ff6b6b';
         
-        setTimeout(function() {
-            countdown.textContent = originalText;
-            countdown.style.color = 'white';
-        }, 2000);
-    }
-});
+//         setTimeout(function() {
+//             countdown.textContent = originalText;
+//             countdown.style.color = 'white';
+//         }, 2000);
+//     }
+// });

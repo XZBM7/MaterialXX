@@ -958,6 +958,106 @@
     font-weight: inherit;
 }
 
+#ad-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #020617, #0f172a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    padding: 20px;
+}
+
+.ad-container {
+    background: white;
+    border-radius: 25px;
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+    animation: adFade 0.6s ease;
+}
+
+body.dark-mode .ad-container {
+    background: #1e293b;
+    color: #fff;
+}
+
+.ad-image {
+    width: 100%;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.ad-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2a9d8f;
+    margin-bottom: 10px;
+}
+
+.ad-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 25px;
+}
+
+body.dark-mode .ad-text {
+    color: #cbd5f5;
+}
+
+.ad-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ad-btn {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.ad-btn.primary {
+    background: linear-gradient(135deg, #2a9d8f, #f4a261);
+    color: white;
+}
+
+.ad-btn.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.ad-btn.secondary {
+    background: #e76f51;
+    color: white;
+}
+
+.ad-btn.secondary:hover {
+    background: #d64f2a;
+}
+
+@keyframes adFade {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
         
     </style>
@@ -965,14 +1065,48 @@
 <body>
 
     <!-- Ad Overlay -->
-    <div id="ad-overlay">
+    <!-- <div id="ad-overlay">
         <video id="ad-video" controls autoplay muted playsinline>
             <source src="img/video_2025-12-25_22-01-00.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 <div class="ad-countdown" id="countdown-text">V 4.0 is now available on MaterialX </div>
         <div class="ad-message" id="message-text">Video will close automatically when finished</div>
+    </div> -->
+
+    <!-- Ad Overlay -->
+<div id="ad-overlay">
+    <div class="ad-container">
+
+        <!-- صورة الإعلان -->
+        <img src="img/1447-08-29 23.36.25.jpg" alt="Salaty App Ad" class="ad-image">
+
+        <!-- التهنئة -->
+        <h1 class="ad-title">
+            كل عام وأنتم بخير 🌙✨ رمضان كريم
+        </h1>
+
+        <!-- نص الإعلان -->
+        <p class="ad-text">
+            The new version of <strong>Salaty</strong> App 🕌 has been released <br>
+            Now fully integrated with <strong>MaterialX</strong> for a faster and more professional experience
+        </p>
+
+        <!-- Buttons -->
+        <div class="ad-buttons">
+            <a href="https://xzbm7.github.io/salaty/" target="_blank" class="ad-btn primary">
+                Enter Salaty App
+            </a>
+
+            <button id="close-ad-btn" class="ad-btn secondary">
+                Cancel
+            </button>
+        </div>
+
     </div>
+</div>
+
+
 
     <!-- Header -->
     <header>
@@ -1006,13 +1140,18 @@
 
                 <nav>
                     <ul id="nav-menu">
+<li>
+  <a href="https://xzbm7.github.io/salaty/" target="_blank">
+    <i class="fas fa-mosque"></i> Salaty
+  </a>
+</li>
                         <li><a href="material.html"><i class="fas fa-book"></i> Materials</a></li>
                         <li><a href="Exam.html"><i class="fas fa-calendar-alt"></i> Organizer</a></li>
                         <li><a href="quiz.html"><i class="fas fa-question-circle"></i> Quizzes</a></li>
                         <li><a href="Articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
                         <li><a href="Track.html"><i class="fas fa-route"></i> Track</a></li>
                         <li><a href="chat.html"><i class="fas fa-robot"></i> Chatbot</a></li>
-<li><a href="#departments"><i class="fas fa-building"></i> Departments</a></li>
+                        <li><a href="#departments"><i class="fas fa-building"></i> Departments</a></li>
                         <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
                     </ul>
                     
@@ -1725,7 +1864,7 @@
             initSearch();
             initFaq();
             initBackToTop();
-            initAdOverlay();
+            // initAdOverlay();
         });
 
         // Hamburger Menu
@@ -1954,6 +2093,35 @@
             alert("Message sent successfully!");
             messageField.value = "";
         }
+document.addEventListener("DOMContentLoaded", () => {
+    const adOverlay = document.getElementById("ad-overlay");
+    const closeBtn = document.getElementById("close-ad-btn");
+
+    // زر الإلغاء
+    closeBtn.addEventListener("click", () => {
+        adOverlay.style.display = "none";
+        localStorage.setItem("salaty_ad_v4", "seen");
+    });
+
+    // إخفاء الإعلان بعد الضغط على زر الدخول للتطبيق
+    document.querySelectorAll('.ad-btn.primary').forEach(btn => {
+        btn.addEventListener("click", () => {
+            adOverlay.style.display = "none";
+            localStorage.setItem("salaty_ad_v4", "seen");
+        });
+    });
+
+    // عدم ظهور الإعلان كل مرة (احترافي للإصدار الجديد)
+    if (localStorage.getItem("salaty_ad_v4") === "seen") {
+        adOverlay.style.display = "none";
+    }
+
+    // إغلاق تلقائي بعد 8 ثواني (اختياري)
+    // setTimeout(() => {
+    //     if (adOverlay) adOverlay.style.display = "none";
+    // }, 8000);
+});
+
     </script>
 </body>
 </html>
