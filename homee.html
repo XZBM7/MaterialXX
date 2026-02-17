@@ -957,7 +957,6 @@
     color: inherit; 
     font-weight: inherit;
 }
-
 #ad-overlay {
     position: fixed;
     inset: 0;
@@ -966,18 +965,21 @@
     align-items: center;
     justify-content: center;
     z-index: 999999;
-    padding: 20px;
+    padding: 16px;
 }
 
+/* الحاوية الرئيسية */
 .ad-container {
     background: white;
     border-radius: 25px;
-    max-width: 500px;
     width: 100%;
-    padding: 30px;
+    max-width: 500px;
+    padding: clamp(20px, 4vw, 30px);
     text-align: center;
     box-shadow: 0 25px 80px rgba(0,0,0,0.4);
     animation: adFade 0.6s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 body.dark-mode .ad-container {
@@ -985,32 +987,39 @@ body.dark-mode .ad-container {
     color: #fff;
 }
 
+/* الصورة */
 .ad-image {
     width: 100%;
+    height: auto;
     border-radius: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     max-height: 300px;
     object-fit: cover;
 }
 
+/* العنوان */
 .ad-title {
-    font-size: 2rem;
+    font-size: clamp(1.4rem, 4vw, 2rem);
     font-weight: 800;
     color: #2a9d8f;
     margin-bottom: 10px;
+    line-height: 1.3;
 }
 
+/* النص */
 .ad-text {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
     line-height: 1.7;
     color: #475569;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
+    padding: 0 5px;
 }
 
 body.dark-mode .ad-text {
     color: #cbd5f5;
 }
 
+/* الأزرار */
 .ad-buttons {
     display: flex;
     gap: 12px;
@@ -1021,12 +1030,13 @@ body.dark-mode .ad-text {
 .ad-btn {
     padding: 12px 25px;
     border-radius: 50px;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
     font-weight: bold;
     text-decoration: none;
     border: none;
     cursor: pointer;
     transition: 0.3s;
+    min-width: 140px;
 }
 
 .ad-btn.primary {
@@ -1048,6 +1058,47 @@ body.dark-mode .ad-text {
     background: #d64f2a;
 }
 
+/* موبايل صغير */
+@media (max-width: 480px) {
+    #ad-overlay {
+        padding: 12px;
+        align-items: flex-end; /* يظهر بشكل أجمل أسفل الشاشة */
+    }
+
+    .ad-container {
+        border-radius: 20px 20px 0 0;
+        max-height: 85vh;
+    }
+
+    .ad-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .ad-btn {
+        width: 100%;
+    }
+
+    .ad-image {
+        max-height: 200px;
+    }
+}
+
+/* تابلت */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .ad-container {
+        max-width: 600px;
+    }
+}
+
+/* شاشات كبيرة */
+@media (min-width: 1400px) {
+    .ad-container {
+        max-width: 650px;
+        padding: 35px;
+    }
+}
+
 @keyframes adFade {
     from {
         opacity: 0;
@@ -1058,6 +1109,7 @@ body.dark-mode .ad-text {
         transform: scale(1);
     }
 }
+
 
         
     </style>
