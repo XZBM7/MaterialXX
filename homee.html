@@ -1074,25 +1074,20 @@ body.dark-mode .ad-text {
         <div class="ad-message" id="message-text">Video will close automatically when finished</div>
     </div> -->
 
-    <!-- Ad Overlay -->
 <div id="ad-overlay">
     <div class="ad-container">
 
-        <!-- صورة الإعلان -->
         <img src="img/1447-08-29 23.36.25.jpg" alt="Salaty App Ad" class="ad-image">
 
-        <!-- التهنئة -->
         <h1 class="ad-title">
             كل عام وأنتم بخير 🌙✨ رمضان كريم
         </h1>
 
-        <!-- نص الإعلان -->
         <p class="ad-text">
             The new version of <strong>Salaty</strong> App 🕌 has been released <br>
             Now fully integrated with <strong>MaterialX</strong> for a faster and more professional experience
         </p>
 
-        <!-- Buttons -->
         <div class="ad-buttons">
             <a href="https://xzbm7.github.io/salaty/" target="_blank" class="ad-btn primary">
                 Enter Salaty App
@@ -2039,45 +2034,45 @@ body.dark-mode .ad-text {
         }
 
         // Ad Overlay
-     function initAdOverlay() {
-    const adOverlay = document.getElementById('ad-overlay');
-    const adVideo = document.getElementById('ad-video');
-    const closeBtn = document.getElementById('ad-close-btn'); // أضف زر إغلاق
+//      function initAdOverlay() {
+//     const adOverlay = document.getElementById('ad-overlay');
+//     const adVideo = document.getElementById('ad-video');
+//     const closeBtn = document.getElementById('ad-close-btn'); // أضف زر إغلاق
     
-    if (!adOverlay || !adVideo) return;
+//     if (!adOverlay || !adVideo) return;
 
-    if (sessionStorage.getItem('adWatchedSession') === 'true') {
-        adOverlay.style.display = 'none';
-        return;
-    }
+//     if (sessionStorage.getItem('adWatchedSession') === 'true') {
+//         adOverlay.style.display = 'none';
+//         return;
+//     }
 
-    document.body.classList.add('ad-active');
+//     document.body.classList.add('ad-active');
 
-    // إضافة زر إغلاق يدوي
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeAd);
-    }
+//     // إضافة زر إغلاق يدوي
+//     if (closeBtn) {
+//         closeBtn.addEventListener('click', closeAd);
+//     }
 
-    adVideo.addEventListener('ended', closeAd);
-    adVideo.addEventListener('error', closeAd);
+//     adVideo.addEventListener('ended', closeAd);
+//     adVideo.addEventListener('error', closeAd);
 
-    setTimeout(function() {
-        if (adVideo.readyState < 3 && !adVideo.ended) {
-            closeAd();
-        }
-    }, 10000);
+//     setTimeout(function() {
+//         if (adVideo.readyState < 3 && !adVideo.ended) {
+//             closeAd();
+//         }
+//     }, 10000);
 
-    function closeAd() {
-        sessionStorage.setItem('adWatchedSession', 'true');
-        adOverlay.style.opacity = '0';
-        adOverlay.style.transition = 'opacity 0.5s ease';
+//     function closeAd() {
+//         sessionStorage.setItem('adWatchedSession', 'true');
+//         adOverlay.style.opacity = '0';
+//         adOverlay.style.transition = 'opacity 0.5s ease';
         
-        setTimeout(function() {
-            adOverlay.style.display = 'none';
-            document.body.classList.remove('ad-active');
-        }, 500);
-    }
-}
+//         setTimeout(function() {
+//             adOverlay.style.display = 'none';
+//             document.body.classList.remove('ad-active');
+//         }, 500);
+//     }
+// }
         // Send to Telegram
         window.sendToTelegram = function() {
             const messageField = document.getElementById("messageInput");
